@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>show (RiManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/RiManager.rb, line 75</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show</span>(<span class="ruby-identifier">name_descriptor</span>, <span class="ruby-identifier">width</span>)
+                <span class="ruby-ivar">@display</span>.<span class="ruby-identifier">width</span> = <span class="ruby-identifier">width</span>
+                <span class="ruby-comment cmt"># narrow down namespace</span>
+                <span class="ruby-identifier">namespace</span> = <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">top_level_namespace</span>
+                <span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">class_names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">classname</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">namespace</span> = <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">lookup_namespace_in</span>(<span class="ruby-identifier">classname</span>, <span class="ruby-identifier">namespace</span>)
+                        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">empty?</span>
+                                <span class="ruby-identifier">raise</span> <span class="ruby-constant">RiError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;Nothing known about #{name_descriptor}&quot;</span>)
+                        <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">end</span>
+                
+                <span class="ruby-comment cmt"># At this point, if we have multiple possible namespaces, but one</span>
+                <span class="ruby-comment cmt"># is an exact match for our requested class, prune down to just it</span>
+                <span class="ruby-comment cmt"># PS: this comment is shamlessly stolen from ri_driver.rb</span>
+                <span class="ruby-identifier">entries</span> = <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">find_all</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">full_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">full_class_name</span>}
+                <span class="ruby-identifier">namespace</span> = <span class="ruby-identifier">entries</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">entries</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>
+                
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">method_name</span>
+                        <span class="ruby-identifier">methods</span> = <span class="ruby-ivar">@reader</span>.<span class="ruby-identifier">find_methods</span>(<span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">is_class_method</span>, <span class="ruby-identifier">namespace</span>)
+                        <span class="ruby-identifier">report_method_stuff</span>(<span class="ruby-identifier">name_descriptor</span>.<span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">methods</span>)
+                <span class="ruby-keyword kw">else</span>
+                        <span class="ruby-identifier">report_class_stuff</span>(<span class="ruby-identifier">namespace</span>)
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

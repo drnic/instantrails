@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Packet_Item)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/Packet_Item.rb, line 68</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">newParent</span>, <span class="ruby-identifier">icon</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">content</span>)
+                <span class="ruby-ivar">@content</span> = <span class="ruby-identifier">content</span>
+                <span class="ruby-ivar">@sortable</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@content</span>.<span class="ruby-identifier">size</span>)
+                <span class="ruby-ivar">@icon</span> = <span class="ruby-identifier">icon</span>
+                <span class="ruby-ivar">@data</span> = <span class="ruby-keyword kw">nil</span>
+                <span class="ruby-ivar">@parent</span> = <span class="ruby-keyword kw">nil</span>
+                <span class="ruby-ivar">@sort_key</span> = <span class="ruby-keyword kw">nil</span>
+                <span class="ruby-ivar">@searchable</span> = <span class="ruby-keyword kw">nil</span>
+                <span class="ruby-comment cmt"># call parent=, don't forget the self!!</span>
+                <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">parent</span> = <span class="ruby-identifier">newParent</span>
+                <span class="ruby-identifier">show</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">newParent</span>
+                <span class="ruby-comment cmt"># update sortable</span>
+                <span class="ruby-ivar">@content</span>.<span class="ruby-identifier">each_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pos</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">update_sortable</span>(<span class="ruby-identifier">pos</span>, <span class="ruby-ivar">@content</span>[<span class="ruby-identifier">pos</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parent</span>
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Creates an <tt>n</tt> by <tt>n</tt> diagonal matrix where each diagonal element is <tt>value</tt>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        Matrix.scalar(2, 5)
+          =&gt; 5 0
+             0 5
+
+full_name: Matrix::scalar
+is_singleton: true
+name: scalar
+params: "(n, value)"
+visibility: public

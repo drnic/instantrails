@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns <tt>true</tt> if the named method is defined by <em>mod</em> (or its
+      included modules and, if <em>mod</em> is a class, its ancestors). Public and
+      protected methods are matched."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         module A
+           def method1()  end
+         end
+         class B
+           def method2()  end
+         end
+         class C &lt; B
+           include A
+           def method3()  end
+         end
+
+         A.method_defined? :method1    #=&gt; true
+         C.method_defined? &quot;method1&quot;   #=&gt; true
+         C.method_defined? &quot;method2&quot;   #=&gt; true
+         C.method_defined? &quot;method3&quot;   #=&gt; true
+         C.method_defined? &quot;method4&quot;   #=&gt; false
+
+full_name: "Module#method_defined?"
+is_singleton: false
+name: "method_defined?"
+params: "mod.method_defined?(symbol)    => true or false
+
+  "
+visibility: public

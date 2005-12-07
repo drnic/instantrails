@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>fetch (DB2::Statement)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/vendor/db2.rb, line 291</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fetch</span>
+      <span class="ruby-identifier">cols</span> = <span class="ruby-identifier">get_col_desc</span>
+      <span class="ruby-identifier">rc</span> = <span class="ruby-constant">SQLFetch</span>(<span class="ruby-ivar">@handle</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rc</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SQL_NO_DATA_FOUND</span>
+        <span class="ruby-constant">SQLFreeStmt</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-constant">SQL_CLOSE</span>)        <span class="ruby-comment cmt"># Close cursor</span>
+        <span class="ruby-constant">SQLFreeStmt</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-constant">SQL_RESET_PARAMS</span>) <span class="ruby-comment cmt"># Reset parameters</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;ERROR&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">rc</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SQL_SUCCESS</span>
+
+      <span class="ruby-identifier">retval</span> = []
+      <span class="ruby-identifier">cols</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">rc</span>, <span class="ruby-identifier">content</span> = <span class="ruby-constant">SQLGetData</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">i</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>, <span class="ruby-identifier">c</span>[<span class="ruby-value">1</span>], <span class="ruby-identifier">c</span>[<span class="ruby-value">2</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span>) <span class="ruby-comment cmt">#yun added 1 to c[2]</span>
+        <span class="ruby-identifier">retval</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">adjust_content</span>(<span class="ruby-identifier">content</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">retval</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

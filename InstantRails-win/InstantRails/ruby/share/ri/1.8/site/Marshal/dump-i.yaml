@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Serializes obj and all descendent objects. If anIO is specified, the serialized
+      data will be written to it, otherwise the data will be returned as a String. If
+      limit is specified, the traversal of subobjects will be limited to that depth.
+      If limit is negative, no checking of depth will be performed."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+          class Klass
+            def initialize(str)
+              @str = str
+            end
+            def sayHello
+              @str
+            end
+          end
+
+  - !ruby/struct:SM::Flow::P 
+    body: "(produces no output)"
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+          o = Klass.new(&quot;hello\n&quot;)
+          data = Marshal.dump(o)
+          obj = Marshal.load(data)
+          obj.sayHello   #=&gt; &quot;hello\n&quot;
+
+full_name: Marshal#dump
+is_singleton: false
+name: dump
+params: "dump( obj [, anIO] , limit=--1 ) => anIO
+
+  "
+visibility: public

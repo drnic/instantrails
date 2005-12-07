@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Log a message. If needed, the log file is rolled and the new file is prepared.
+      Log device is not locked. Append open does not need to lock file but on an OS
+      which supports multi I/O, records could possibly be mixed."
+full_name: Logger::LogDevice#write
+is_singleton: false
+name: write
+params: "(message)"
+visibility: public

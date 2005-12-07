@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActionController::Dependencies::ClassMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActionController::Dependencies::ClassMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/action_controller/dependencies_rb.html">
+                lib/action_controller/dependencies.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Dependencies control what classes are needed for the controller to run its
+course. This is an alternative to doing explicit <tt>require</tt>
+statements that bring a number of benefits. It&#8217;s more succinct,
+communicates what type of dependency we&#8217;re talking about, can trigger
+special behavior (as in the case of <tt>observer</tt>), and enables Rails
+to be clever about reloading in cached environments like FCGI. Example:
+</p>
+<pre>
+  class ApplicationController &lt; ActionController::Base
+    model    :account, :company, :person, :project, :category
+    helper   :access_control
+    service  :notifications, :billings
+    observer :project_change_observer
+  end
+</pre>
+<p>
+Please note that a controller like ApplicationController will automatically
+attempt to require_dependency on a model of its singuralized name and a
+helper of its name. If nothing is found, no error is raised. This is
+especially useful for concrete controllers like PostController:
+</p>
+<pre>
+  class PostController &lt; ApplicationController
+    # model  :post (already required)
+    # helper :post (already required)
+  end
+</pre>
+<p>
+Also note, that if the models follow the pattern of just 1 class per file
+in the form of MyClass =&gt; my_class.rb, then these classes don&#8217;t
+have to be required as Active Support will auto-require them.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000623">dependencies_on</a>&nbsp;&nbsp;
+      <a href="#M000620">model</a>&nbsp;&nbsp;
+      <a href="#M000622">observer</a>&nbsp;&nbsp;
+      <a href="#M000621">service</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000623" class="method-detail">
+        <a name="M000623"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000623.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000623.html');return false;">
+          <span class="method-name">dependencies_on</span><span class="method-args">(layer)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of symbols that specify the dependencies on a given layer.
+For the example at the top, calling
+<tt>ApplicationController.dependencies_on(:model)</tt> would return
+<tt>[:account, :company, :person, :project, :category]</tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000620" class="method-detail">
+        <a name="M000620"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000620.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000620.html');return false;">
+          <span class="method-name">model</span><span class="method-args">(*models)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies a variable number of models that this controller depends on.
+Models are normally Active Record classes or a similar backend for
+modelling entity classes.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000622" class="method-detail">
+        <a name="M000622"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000622.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000622.html');return false;">
+          <span class="method-name">observer</span><span class="method-args">(*observers)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies a variable number of observers that are to govern when this
+controller is handling actions. The observers will automatically have
+.instance called on them to make them active on assignment.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000621" class="method-detail">
+        <a name="M000621"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000621.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000621.html');return false;">
+          <span class="method-name">service</span><span class="method-args">(*services)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies a variable number of services that this controller depends on.
+Services are normally singletons or factories, like Action Mailer service
+or a Payment Gateway service.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

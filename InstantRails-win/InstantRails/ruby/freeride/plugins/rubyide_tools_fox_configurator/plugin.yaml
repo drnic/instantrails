@@ -1,0 +1,11 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_configurator
+version: 1.0
+autoload: true
+require_path: rubyide_tools_fox_configurator/fox_configurator
+startup_module: FreeRIDE::FoxRenderer::Configurator
+load_dependencies: 
+  rubyide_fox_gui: "*"
+  rubyide_tools_configurator: "*"
+start_dependencies: 
+  rubyide_fox_gui: "*"

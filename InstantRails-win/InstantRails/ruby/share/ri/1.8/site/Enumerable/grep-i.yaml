@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns an array of every element in <em>enum</em> for which <tt>Pattern ===
+      element</tt>. If the optional <em>block</em> is supplied, each matching element
+      is passed to it, and the block's result is stored in the output array."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         (1..100).grep 38..44   #=&gt; [38, 39, 40, 41, 42, 43, 44]
+         c = IO.constants
+         c.grep(/SEEK/)         #=&gt; [&quot;SEEK_END&quot;, &quot;SEEK_SET&quot;, &quot;SEEK_CUR&quot;]
+         res = c.grep(/SEEK/) {|v| IO.const_get(v) }
+         res                    #=&gt; [2, 0, 1]
+
+full_name: Enumerable#grep
+is_singleton: false
+name: grep
+params: >
+  enum.grep(pattern)                   => array
+
+  enum.grep(pattern) {| obj | block }  => array
+
+visibility: public

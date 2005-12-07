@@ -1,0 +1,627 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+// Generated Help ID header file
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "resource.hm"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_APACHE_ONLY_RUN     ICON                    "res\\idr_apac.ico"
+IDR_MYSQL_ONLY_RUN      ICON                    "res\\idr_mysq.ico"
+IDR_EASYPHP_LOIC        ICON                    "res\\main2.ico"
+IDR_EASYPHP             ICON                    "res\\idr_easy.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_NOPIN               BITMAP                  "res\\noppin.bmp"
+IDB_PIN                 BITMAP                  "res\\pin.bmp"
+IDB_EASYPHP             BITMAP                  "res\\easyphp.bmp"
+IDB_BARRE               BITMAP                  "res\\barre.bmp"
+IDB_HAUT                BITMAP                  "res\\haut.bmp"
+IDB_HELP                BITMAP                  "res\\help.bmp"
+IDB_MINIMIZE            BITMAP                  "res\\minimize.bmp"
+IDB_ROUGE               BITMAP                  "res\\rouge.bmp"
+IDB_ORANGE              BITMAP                  "res\\orange.bmp"
+IDB_VERT                BITMAP                  "res\\vert.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_EASYPHP_DIALOG DIALOGEX 0, 0, 282, 110
+STYLE DS_SETFONT | DS_3DLOOK | DS_NOFAILCREATE | DS_CENTER | WS_MINIMIZEBOX | 
+    WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW
+CAPTION "Instant Rails"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "",ID_MENU,2,4,15,13,BS_BITMAP | BS_FLAT
+    PUSHBUTTON      "&Apache",ID_APACHE_MENU,19,4,50,13,BS_FLAT,
+                    WS_EX_TRANSPARENT
+    PUSHBUTTON      "&MySQL",ID_MYSQL_MENU,148,4,50,13,BS_FLAT
+    LISTBOX         IDC_LOG,5,25,271,77,LBS_NOSEL | WS_VSCROLL | WS_HSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "",ID_PIN,"Button",BS_AUTORADIOBUTTON | BS_BITMAP | 
+                    BS_PUSHLIKE | BS_FLAT | NOT WS_VISIBLE | WS_TABSTOP,241,
+                    94,15,15
+    LTEXT           "",IDC_STATUS_APACHE,86,4,55,13,SS_NOTIFY | 
+                    SS_CENTERIMAGE
+    LTEXT           "",IDC_STATUS_MYSQL,215,4,47,13,SS_NOTIFY | 
+                    SS_CENTERIMAGE
+    PUSHBUTTON      "",ID_HELP_CONTEXT,218,93,15,15,BS_BITMAP | BS_FLAT | 
+                    NOT WS_VISIBLE
+    CONTROL         189,IDCB_APACHE,"Static",SS_BITMAP | SS_REALSIZEIMAGE,73,
+                    4,8,15
+    CONTROL         189,IDCB_MYSQL,"Static",SS_BITMAP | SS_REALSIZEIMAGE,203,
+                    4,8,15
+    PUSHBUTTON      ">",IDC_EXPAND,265,4,16,14
+END
+
+IDD_PHPEXT DIALOGEX 0, 0, 236, 186
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rails Applications"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "&Close",IDOK,179,165,50,14
+    CONTROL         "List1",IDL_RAILS_APPS_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,5,7,120,102
+    LTEXT           "Check one or more Rails applications and then click a button to perform that action on those applications.",
+                    IDC_RA_MESSAGE,17,142,142,29
+    PUSHBUTTON      "&Refresh List",ID_REFRESH_EXTENSION,179,146,50,14
+    PUSHBUTTON      "Start SCGI Server",ID_START_SCGI,137,34,92,14
+    PUSHBUTTON      "Configure SCGI Settings...",ID_CONFIG_SCGI,138,15,91,14
+    PUSHBUTTON      "Open Rails Console...",ID_OPEN_RAILS_CONSOLE,138,87,91,
+                    14
+    PUSHBUTTON      "Start with WEBrick",ID_START_WEBRICK,138,68,91,14
+    PUSHBUTTON      "Create New Rails App (open console window)",
+                    ID_NEW_RAILS_APP,45,115,158,16
+END
+
+IDD_PREFERENCES DIALOGEX 0, 0, 282, 137
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CONTEXTHELP | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "InstantRails"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Cancel",IDCANCEL,102,117,50,14,BS_FLAT,
+                    WS_EX_TRANSPARENT
+    PUSHBUTTON      "Apply",ID_APPLY,185,117,52,14,BS_FLAT,WS_EX_TRANSPARENT
+    CONTROL         "Start Instant Rails automatically when Windows starts (administrators only)",
+                    IDC_CHECK_WINDOWSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,14,255,10,0,HIDC_CHECK_WINDOWSTART
+    CONTROL         "Automatically start the servers when Instant Rails starts",
+                    IDC_AUTOSERVEURSSTART,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,35,254,10
+    CONTROL         "Detect configuration changes and automatically restart the servers",
+                    IDC_CONFAUTORELOAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    15,56,253,10
+    CONTROL         "Verify that the ports are available before starting servers",
+                    IDC_CHECK_SERVERS_PORT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,15,77,253,10
+    PUSHBUTTON      "&OK",IDOK,41,117,50,14,BS_FLAT,WS_EX_TRANSPARENT
+    GROUPBOX        "",IDC_PREFERENCES,4,3,273,109
+END
+
+IDD_UPDATE DIALOGEX 0, 0, 428, 121
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Update..."
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,7,100,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,74,100,50,14
+    CONTROL         "List1",IDL_UPDATEFILELIST,"SysListView32",LVS_REPORT | 
+                    WS_BORDER | WS_TABSTOP,7,7,414,80
+    LTEXT           "",IDC_UPDATE_MESSAGE,7,90,414,8
+    PUSHBUTTON      "&Refresh",ID_REFRESH_UPDATE,371,100,50,14
+END
+
+IDD_ABOUT DIALOGEX 0, 0, 263, 135
+STYLE DS_SETFONT | DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "About Instant Rails"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "&OK",IDOK,91,114,71,14,BS_FLAT | NOT WS_TABSTOP
+    CTEXT           "http://instantrails.rubyforge.org/",IDC_HOME_PAGE_LINK,
+                    59,63,134,9,SS_NOTIFY
+    LTEXT           " ",IDC_LAURENT,47,27,8,8,SS_NOTIFY
+    LTEXT           " Curt Hibbs",IDC_EMMANUEL,104,27,36,8,SS_NOTIFY
+    LTEXT           " ",IDC_THIERRY,171,27,8,8,SS_NOTIFY
+    LTEXT           "Instant Rails is an open source product that is a prepackaged installation of Apache, MySQL, Ruby, and Rails created by:",
+                    IDC_PRESENTATION,15,7,228,19
+    LTEXT           "For more information, or to obtain the most recent version, please visit the Instant Rails project:",
+                    IDC_SEE_SITE,14,41,240,19
+    CTEXT           "",IDC_TRANSLATED_BY,44,69,179,8
+    LTEXT           "Instant Rails is based on the open source project EasyPHP (http://www.easyphp.org/).",
+                    IDC_STATIC,14,83,223,19
+END
+
+IDD_SCGI DIALOGEX 0, 0, 345, 319
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Configure SCGI"
+FONT 8, "MS Sans Serif", 0, 0, 0x0
+BEGIN
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,288,298,50,14
+    PUSHBUTTON      "OK",IDOK,232,298,50,14
+    RTEXT           "Runtime Mode:",IDC_STATIC,7,9,54,8
+    LTEXT           "SCGI Port:",IDC_STATIC,7,32,54,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_PORT,67,29,31,14,ES_AUTOHSCROLL
+    CONTROL         "Auto-Start SCGI (not yet implemented)",IDC_AUTO_START,
+                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,67,
+                    52,135,10
+    EDITTEXT        IDC_RUN_MODE,67,7,66,14,ES_AUTOHSCROLL
+    LTEXT           "Normally: development, \nproduction or test",IDC_STATIC,
+                    136,7,84,20
+    GROUPBOX        "",IDC_STATIC,7,78,331,215
+    LTEXT           "",IDC_SCGI_INSTRUCTIONS,14,88,317,199
+    PUSHBUTTON      "Edit Apache config file",ID_EDIT_APACHE,247,7,91,14
+    PUSHBUTTON      "Edit Windows Hosts file",ID_EDIT_HOSTS,247,27,91,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_EASYPHP_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 276
+        BOTTOMMARGIN, 109
+    END
+
+    IDD_PHPEXT, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 229
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 179
+    END
+
+    IDD_PREFERENCES, DIALOG
+    BEGIN
+        LEFTMARGIN, 4
+        RIGHTMARGIN, 277
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 130
+    END
+
+    IDD_UPDATE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 421
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 114
+    END
+
+    IDD_ABOUT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 254
+        BOTTOMMARGIN, 128
+    END
+
+    IDD_SCGI, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 338
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 312
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// RT_MANIFEST
+//
+
+1                       RT_MANIFEST             "res\\EasyPHP.exe.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,8,0,2
+ PRODUCTVERSION 1,8,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040c04b0"
+        BEGIN
+            VALUE "Comments", "Curt Hibbs curt@hibbs.com"
+            VALUE "CompanyName", "InstantRails"
+            VALUE "FileDescription", "InstantRails Manager"
+            VALUE "FileVersion", "1.8.0.2"
+            VALUE "InternalName", "InstantRails"
+            VALUE "LegalCopyright", "Copyright (C) 2005"
+            VALUE "LegalTrademarks", "Drinkware (http://drinkware.free.fr/)"
+            VALUE "OriginalFilename", "InstantRails.EXE"
+            VALUE "ProductName", "Application InstantRails"
+            VALUE "ProductVersion", "1.8.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x40c, 1200
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDM_START MENU 
+BEGIN
+    POPUP "not to translate"
+    BEGIN
+        POPUP "&Help"
+        BEGIN
+            MENUITEM "Getting Started",             ID_AIDE_INTRO
+            MENUITEM "Release Notes",               ID_RELEASE_NOTES
+            MENUITEM "Instant Rails home page",     ID_AIDE_FAQ
+            MENUITEM SEPARATOR
+            MENUITEM "fxri - Interactive Ruby Help + irb Console", 
+                                                    ID_HELP_FXRI
+            MENUITEM SEPARATOR
+            MENUITEM "&About Instant Rails...",     ID_ABOUT
+        END
+        MENUITEM SEPARATOR
+        POPUP "&Log Files"
+        BEGIN
+            MENUITEM "&Apache Error Log",           ID_APACHE_ERREUR_LOG
+            MENUITEM "Apache Access Log",           ID_APACHE_ACCES_LOG
+            MENUITEM "&MySQL Error Log",            ID_MYSQL_ERREUR_LOG
+            MENUITEM "&Instant Rails Log",          ID_EASYPHP_LOG
+        END
+        POPUP "&Configure"
+        BEGIN
+            MENUITEM "&Instant Rails",              ID_EASYPHP_CONF
+            MENUITEM SEPARATOR
+            MENUITEM "&Apache",                     ID_APACHE_CONF
+            MENUITEM "My&Sql",                      ID_MYSQL_CONF
+            MENUITEM "Database (via PhpMyAdmin)",   ID_MYADMIN_CONF
+            MENUITEM SEPARATOR
+            MENUITEM "Window's Hosts file",         ID_CONFIGURE_WINDOW
+            POPUP "Other"
+            BEGIN
+                MENUITEM "PHP",                         ID_PHP_CONF
+            END
+        END
+        POPUP "Rails Applications"
+        BEGIN
+            MENUITEM "Manage Rails Applications...", ID_MANAGERAILSAPPS
+            MENUITEM SEPARATOR
+            MENUITEM "Open Ruby Console Window",    ID_RAILSAPP_CONSOLE
+            MENUITEM "Open Windows Explorer",       ID_RAILSAPP_EXPLORER
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Restart Servers",            ID_RESTART
+        MENUITEM "Stop Servers",                ID_SWITCH
+        MENUITEM SEPARATOR
+        MENUITEM "&Exit",                       ID_QUIT
+    END
+END
+
+IDM_SERVEUR MENU 
+BEGIN
+    POPUP "not to translate"
+    BEGIN
+        MENUITEM "Start",                       ID_SERVER_START
+        MENUITEM "Restart",                     ID_SERVER_RESTART
+        MENUITEM "Stop",                        ID_SERVER_STOP
+        MENUITEM "&Kill",                       ID_SERVER_KILL
+    END
+END
+
+IDM_MAIN MENU 
+BEGIN
+    POPUP "&Fichier"
+    BEGIN
+        MENUITEM "Exit",                        ID_QUIT
+    END
+    POPUP "&Serveurs"
+    BEGIN
+        MENUITEM "&Redémarrer",                 ID_RESTART
+        MENUITEM "No title",                    ID_SWITCH
+    END
+END
+
+IDM_HELP MENU 
+BEGIN
+    POPUP "Help"
+    BEGIN
+        MENUITEM "&Introduction",               ID_AIDE_INTRO
+        MENUITEM "Stat with PHP",               ID_AIDE_DEBUTER
+        MENUITEM "&FAQ",                        ID_AIDE_FAQ
+        MENUITEM SEPARATOR
+        MENUITEM "About Instant Rails",         ID_ABOUT
+    END
+END
+
+IDM_MENU_SERVEURS MENU 
+BEGIN
+    POPUP "&Serveurs"
+    BEGIN
+        MENUITEM "&Restart",                    ID_RESTART
+        MENUITEM "IDM_SERVEUR-XXX",             ID_SWITCH
+    END
+END
+
+#endif    // Neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_START               "&Start Servers"
+    IDS_STOP                "&Stop Servers"
+    IDS_PENDING             "Pending..."
+    IDS_HELP_CMDLINE        "Display switches for Instant Rails.exe"
+    IDS_ERROR_MYSQL         "Unable to launch MySql : \n%s\n\nWould you like to launch Apache ?"
+    IDS_DEFAULT_MYSQLARG    "--skip-name-resolve --language=english"
+    IDS_ANOTHER_APACHE_RUN  "Another Apache server is already running."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_APACHE_ALREADY_RUN  "Apache is already running."
+    IDS_APACHEMSG_UNEXPECTED_END "Unexpected end of Apache !"
+    IDS_PORT_OCCUPE         "Apache cannot be runned : another Web server use the Web port"
+    IDS_SERVER_RUN_ERROR    "Cannot run server : %s"
+    IDS_EXPERT_MODE_WARNING "Attention ! This mode allows you to modify configuration files and a bad configuration can disturb servers.\nAre you sure ?"
+    IDS_SWITCH_SSL          "Restart Apache ?"
+    IDS_NEW_EASYPHP_VERSION "A new version (%s) is available. Go to the Instant Rails web ?"
+    IDS_RESTART             "Restart servers"
+    IDS_MYSQLMSG_UNEXPECTED_END "Unexpected end of MySql !"
+    IDS_STATE_STARTED       "Started"
+    IDS_STATE_STOPPED       "Stopped"
+    IDS_HELPCTX_IDC_SERVICE "Apache et MySql run as servers, and are available even if no user logged.\nThis option is available only on NT/2K and XP Windows and if user is admin."
+    IDS_HELPCTX_NOHELP      "No help for this."
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_ERROR_STOP_SERVER   "Can't stop server  : %s"
+    IDS_HELPCTX_IDC_CHECK_EASYPHP_VERSION 
+                            "Display a dialog box if a new version of Instant Rails is available. Need a Internet connection."
+    IDS_HELPCTX_IDC_CONFAUTORELOAD 
+                            "Servers are automaticaly restarted if their configuration file if modified."
+    IDS_HELPCTX_IDE_MYSQL_ARGUMENTS 
+                            "Set execution parameters for MySql.\nIf you run MySql as service, use configuration file instead."
+    IDS_HELPCTX_IDC_AUTOSERVEURSSTART 
+                            "This switch allows you to run Instant Rails at Windows startup. If you run servers as services, they will be automatically run at Windows startup."
+    IDS_ERROR_RESTART_SERVER "Can't restart server : %s"
+    IDS_ERROR_INSTALL_SERVICE "Can't install service: %s"
+    IDS_HELPCTX_IDC_STATUS_APACHE "Apache state"
+    IDS_HELPCTX_IDC_STATUS_MYSQL "MySql  state"
+    IDS_HELPCTX_ID_PIN      "Show always this dialog."
+    IDS_HELPCTX_ID_HELP_CONTEXT "Display help"
+    IDS_HELPCTX_IDSL_VIEW   "Minimize/maximize the window"
+    IDS_LOG_RESTART_SERVERS "Server are restarting..."
+    IDS_ERROR_APACHE_CONF   "Error in Apache configuration file:\n\n""%s""\n\nEdit ?"
+    IDS_LOG_CHANGE_CONF     "Configuration file changed"
+    IDS_LOG_START_SERVERS   "Servers starting"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_NOT_ADMIN           "You're not an administrator. Some actions will not be available.\n\nDo you want to continue?"
+    IDS_ERROR_BROWSER       "Can't launch browser : copy this address in your favorite browser : ""%s"".\n(to correct this error define a default browser)"
+    IDS_ERROR_REMOVE_SERVICE "Can't uninstall service : %s"
+    IDS_ABOUT_TITLE         "About Instant Rails"
+    IDS_ABOUT_VISIT_SITE    "For informations, visit the Instant Rails home page :"
+    IDS_ABOUT_SEE_LICENCE   "&View licence"
+    IDS_ABOUT_CHECK_VERSION "&Check version"
+    IDS_ABOUT_PRESENTATION  "Instant Rails, a easy way to install Apache, MySql, Ruby and Rails has been created by :"
+    IDS_MAIN_STATUS         "Status"
+    IDS_MAIN_CHECK_WINDOWSTART 
+                            "&Start on windows startup (administrator only)"
+    IDS_MAIN_SERVICE        "St&art Apache and MySql as services (administrator only)"
+    IDS_MAIN_AUTOSERVEURSSTART "&Launch server when this application start"
+    IDS_MAIN_CHECK_EASYPHP_VERSION_AT_STARTUP "&Check version at startup"
+    IDS_MAIN_CONFAUTORELOAD "&Automatic consideration of servers's configuration modification"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MAIN_MYSQL_ARGUMENTS "MySql arguments"
+    IDS_MAIN_APPLIQUER      "A&pply"
+    IDS_MAIN_FERMER         "&Close"
+    IDS_MAIN_ABOUT          "About"
+    IDS_MENU_HELP           "&Help"
+    IDS_MENU_LOGFILES       "&Log Files"
+    IDS_MENU_CONFIGURATION  "&Configuration"
+    IDS_MENU_EXPLORE        "&Explore"
+    IDS_MENU_ADMINISTRATION "&Administration"
+    IDS_MENU_WEBLOCAL       "Local &Web"
+    IDS_MENU_QUIT           "&Exit"
+    IDS_MENU_HELP_INTRODUCTION "&Introduction"
+    IDS_MENU_HELP_STARTPHP  "&Start with PHP"
+    IDS_MENU_HELP_FAQ       "&FAQ"
+    IDS_MENU_LOGFILES_APACHE_ERR "&Apache Error"
+    IDS_MENU_LOGFILES_APACHE_ACCESS "Apache A&cces"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_MENU_LOGFILES_MYSQLERR "&MySql Error"
+    IDS_MENU_CONFIGURATION_EXTENSIONSPHP "PHP &Extensions"
+    IDS_STARTPHP_URL        "http://www.php.net/"
+    IDS_MYSQL_LANGUAGE      "english"
+    IDS_REFRESH             "Refresh"
+    IDS_LOG_STOP_SERVERS    "Stop the Servers"
+    IDS_CONF_CHECK_SERVERS_PORT "Check server's TCP port before starting"
+    IDS_CONF_LANGUAGE       "Language"
+    IDS_CONF_PREFERENCES    "Configuration"
+    IDS_TRANSLATED_BY       " "
+    IDS_UPDATE_FILE         "File"
+    IDS_UPDATE_CURRENT_VERSION "Current"
+    IDS_UPDATE_NEW_VERSION  "New"
+    IDS_UPDATE_FILE_SIZE    "Size"
+    IDS_UPDATE_FILE_HASH    "Hash"
+END
+
+STRINGTABLE 
+BEGIN
+    IDS_UPDATE_WEB_FILE_ERROR "ERROR : Can't retreive upgrade data from Web"
+    IDS_UPDATE_HASH_DATA_ERROR "ERROR : Can't retreive hash data from Web"
+    IDS_UPDATE_UP_TO_DATE   "All files are already up to date"
+    IDS_UPDATE_UPDATING     "Updating ""%s""..."
+    IDS_UPDATE_BAD_HASH     "Bad Hash for  ""%s""\n%s\nshould be\n%s"
+    IDS_UPDATE_FILE_ERROR   "Error upgrading ""%s"" : %d !"
+    IDS_UPDATE_NEED_RESTART "Relaunch Instant Rails to finish the upgrade.\nRestart now ?"
+    IDS_REMOVABLE_DRIVE     "You're running Instant Rails from a removable drive. Do you want to regenerate conf files before running servers ?"
+    IDS_PORT_OCCUPE_XP      "%s port (%d) is used by %s !"
+    IDS_PROMPT_QUIT         "Do you really want to quit Instant Rails? (click Yes to quit, No to minimize)"
+    IDS_ALWAYS_VISIBLE      "Always visible"
+    IDS_FOLDER_CHANGED      "Instant Rails has moved from ""%s"" to ""%s"".\nRegenerate configuration files ?"
+    IDS_CONFIG_SCGI         "This will copy the needed SCGI files to each selected Rails application\n(unless they are already there), and then open all relevant configuration\nfiles for editing.\n\nTo configure your Rails application to run with SCGI you must pick a\nport # that SCGI will use to communicate between Apache and your\napplication, and a virtual host name that you will use (in the URL)\nto access the Rails applicaton from your browser (this can be a\nreal host name if it is set up in your DNS, or you can make one up\nfor localhost development purposes).\n\nSetting the Port #:\n\n1) Set the port number in the application's ""start_scgi.cmd"" file.\n\n2) Set the same port number in the Apache configuration file in the\n   SCGIMount directive of the application's VirtualHost section.\n   If you need to create the VirtualHost section, you can cut'n'paste\n   from one of the sample Rails applications.\n\nSetting the virtual host name:\n\n1) In the Apache configuration file, set the ServerName directive in\n   the application's VirtualHost section to the desired name\n   (like ""www.mydomain.com"").\n\n2) If the name really exists in the DNS, there is nothing more to do.\n\n3) If the name does not exist in the DNS, you must add the name to\n   your Windows HOSTS file like this: ""127.0.0.1  www.mydomain.com"".\n   In this case you can only use this Rails application from this machine.\n\nPress Ok to continue or Cancel to abort."
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// French (France) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\idr_main.ico"
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 12, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif\r\n"
+    "#include ""res\\EasyPhp.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""l.fra\\afxres.rc""          // Standard components\r\n"
+    "#endif\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // French (France) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_FRA)
+#ifdef _WIN32
+LANGUAGE 12, 1
+#pragma code_page(1252)
+#endif
+#include "res\EasyPhp.rc2"  // non-Microsoft Visual C++ edited resources
+#include "l.fra\afxres.rc"          // Standard components
+#endif
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

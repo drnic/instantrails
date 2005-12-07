@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Change the current process's real and effective group ID to that specified by
+      <em>integer</em>. Returns the new group ID. Not available on all platforms."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         [Process.gid, Process.egid]          #=&gt; [0, 0]
+         Process::GID.change_privilege(33)    #=&gt; 33
+         [Process.gid, Process.egid]          #=&gt; [33, 33]
+
+full_name: Process::GID#change_privilege
+is_singleton: false
+name: change_privilege
+params: "Process::GID.change_privilege(integer)   => fixnum
+
+  "
+visibility: public

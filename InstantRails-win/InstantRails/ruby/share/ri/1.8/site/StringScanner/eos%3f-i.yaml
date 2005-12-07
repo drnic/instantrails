@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns <tt>true</tt> if the scan pointer is at the end of the string.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        s = StringScanner.new('test string')
+        p s.eos?          # =&gt; false
+        s.scan(/test/)
+        p s.eos?          # =&gt; false
+        s.terminate
+        p s.eos?          # =&gt; true
+
+full_name: "StringScanner#eos?"
+is_singleton: false
+name: "eos?"
+params: "()"
+visibility: public

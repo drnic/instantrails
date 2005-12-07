@@ -1,0 +1,748 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>zlib.rd.ja</title>
+</head>
+<body>
+<h1><a name="label:0" id="label:0">Ruby/zlib version 0.6.0</a></h1><!-- RDLabel: "Ruby/zlib version 0.6.0" -->
+<p>Ruby/zlib は zlib を Ruby から使うための拡張ライブラリです。
+gzip ファイルの読み書きもサポートします。</p>
+<p>Ruby/zlib は Ruby と同じ条件で変更/配布することができます。
+Ruby/zlib の最新版は <a href="http://www.blue.sky.or.jp/">&lt;URL:http://www.blue.sky.or.jp/&gt;</a> から
+入手できます。</p>
+<p>Ruby/zlib に対するご意見、バグレポート等は ruby-list ML, ruby-dev ML,
+ruby-ext ML, ruby-talk ML, 又は <a href="mailto:katsu@blue.sky.or.jp">&lt;URL:mailto:katsu@blue.sky.or.jp&gt;</a>
+までお願いします。</p>
+<ul>
+<li><a href="#label:1">Zlib</a>
+<ul>
+<li><a href="#label:43">Zlib::Error</a></li>
+<li><a href="#label:45">Zlib::ZStream</a></li>
+<li><a href="#label:67">Zlib::Deflate</a></li>
+<li><a href="#label:80">Zlib::Inflate</a></li>
+<li><a href="#label:92">Zlib::GzipFile</a></li>
+<li><a href="#label:111">Zlib::GzipFile::Error</a></li>
+<li><a href="#label:143">Zlib::GzipWriter</a></li>
+<li><a href="#label:116">Zlib::GzipReader</a></li>
+</ul></li>
+<li><a href="#label:165">0.5 から 0.6 への変更点</a></li>
+<li><a href="#label:166">0.4 から 0.5 への変更点</a></li>
+</ul>
+<h2><a name="label:1" id="label:1">Zlib</a></h2><!-- RDLabel: "Zlib" -->
+<p>zlib ライブラリに含まれている雑多な機能を提供するモジュール。
+各モジュール関数の詳細は zlib.h を参照して下さい。</p>
+<h3><a name="label:2" id="label:2">モジュール関数:</a></h3><!-- RDLabel: "モジュール関数:" -->
+<dl>
+<dt><a name="label:3" id="label:3"><code>Zlib.zlib_version</code></a></dt><!-- RDLabel: "Zlib.zlib_version" -->
+<dd>
+<p>zlib ライブラリのバージョンを表す文字列を返します。</p></dd>
+<dt><a name="label:4" id="label:4"><code>Zlib.adler32([<var>string</var>[, <var>adler</var>]])</code></a></dt><!-- RDLabel: "Zlib.adler32" -->
+<dd>
+<p><var>string</var> の Adler-32 チェックサムを計算し、<var>adler</var> を
+更新した値を返します。<var>string</var> が省略された場合は
+Adler-32 チェックサムの初期値を返します。<var>adler</var> が
+省略された場合は <var>adler</var> に初期値が与えらたものとして
+計算します。</p></dd>
+<dt><a name="label:5" id="label:5"><code>Zlib.crc32([<var>string</var>[, <var>crc</var>]])</code></a></dt><!-- RDLabel: "Zlib.crc32" -->
+<dd>
+<p><var>string</var> の CRC チェックサムを計算し、<var>crc</var> を
+更新した値を返します。<var>string</var> が省略された場合は
+CRC チェックサムの初期値を返します。<var>crc</var> が
+省略された場合は <var>crc</var> に初期値が与えらたものとして
+計算します。</p></dd>
+<dt><a name="label:6" id="label:6"><code>Zlib.crc_table</code></a></dt><!-- RDLabel: "Zlib.crc_table" -->
+<dd>
+<p>CRC チェックサムの計算に用いるテーブルを配列で返します。</p></dd>
+</dl>
+<h3><a name="label:7" id="label:7">定数:</a></h3><!-- RDLabel: "定数:" -->
+<dl>
+<dt><a name="label:8" id="label:8"><code>Zlib::VERSION</code></a></dt><!-- RDLabel: "Zlib::VERSION" -->
+<dd>
+<p>Ruby/zlib のバージョンを表す文字列。</p></dd>
+<dt><a name="label:9" id="label:9"><code>Zlib::ZLIB_VERSION</code></a></dt><!-- RDLabel: "Zlib::ZLIB_VERSION" -->
+<dd>
+<p>zlib.h のバージョンを表す文字列。</p></dd>
+<dt><a name="label:10" id="label:10"><code>Zlib::BINARY</code></a></dt><!-- RDLabel: "Zlib::BINARY" -->
+<dt><a name="label:11" id="label:11"><code>Zlib::ASCII</code></a></dt><!-- RDLabel: "Zlib::ASCII" -->
+<dt><a name="label:12" id="label:12"><code>Zlib::UNKNOWN</code></a></dt><!-- RDLabel: "Zlib::UNKNOWN" -->
+<dd>
+<p><a href="#label:57">Zlib::ZStream#data_type</a> の返す、データタイプを表す整数。</p></dd>
+<dt><a name="label:13" id="label:13"><code>Zlib::NO_COMPRESSION</code></a></dt><!-- RDLabel: "Zlib::NO_COMPRESSION" -->
+<dt><a name="label:14" id="label:14"><code>Zlib::BEST_SPEED</code></a></dt><!-- RDLabel: "Zlib::BEST_SPEED" -->
+<dt><a name="label:15" id="label:15"><code>Zlib::BEST_COMPRESSION</code></a></dt><!-- RDLabel: "Zlib::BEST_COMPRESSION" -->
+<dt><a name="label:16" id="label:16"><code>Zlib::DEFAULT_COMPRESSION</code></a></dt><!-- RDLabel: "Zlib::DEFAULT_COMPRESSION" -->
+<dd>
+<p><a href="#label:71">Zlib::Deflate.new</a> や <a href="#label:74">Zlib::Deflate#deflate</a> 等に渡す、
+圧縮レベルを表す整数。</p></dd>
+<dt><a name="label:17" id="label:17"><code>Zlib::FILTERED</code></a></dt><!-- RDLabel: "Zlib::FILTERED" -->
+<dt><a name="label:18" id="label:18"><code>Zlib::HUFFMAN_ONLY</code></a></dt><!-- RDLabel: "Zlib::HUFFMAN_ONLY" -->
+<dt><a name="label:19" id="label:19"><code>Zlib::DEFAULT_STRATEGY</code></a></dt><!-- RDLabel: "Zlib::DEFAULT_STRATEGY" -->
+<dd>
+<p><a href="#label:71">Zlib::Deflate.new</a> や <a href="#label:78">Zlib::Deflate#params</a> に渡す、
+圧縮方法を表す整数。</p></dd>
+<dt><a name="label:20" id="label:20"><code>Zlib::DEF_MEM_LEVEL</code></a></dt><!-- RDLabel: "Zlib::DEF_MEM_LEVEL" -->
+<dt><a name="label:21" id="label:21"><code>Zlib::MAX_MEM_LEVEL</code></a></dt><!-- RDLabel: "Zlib::MAX_MEM_LEVEL" -->
+<dd>
+<p><a href="#label:71">Zlib::Deflate.new</a> 等に渡す、memory level を表す整数。</p></dd>
+<dt><a name="label:22" id="label:22"><code>Zlib::MAX_WBITS</code></a></dt><!-- RDLabel: "Zlib::MAX_WBITS" -->
+<dd>
+<p><a href="#label:71">Zlib::Deflate.new</a> や <a href="#label:84">Zlib::Inflate.new</a> での
+<var>windowBits</var> のデフォルト値。</p></dd>
+<dt><a name="label:23" id="label:23"><code>Zlib::NO_FLUSH</code></a></dt><!-- RDLabel: "Zlib::NO_FLUSH" -->
+<dt><a name="label:24" id="label:24"><code>Zlib::SYNC_FLUSH</code></a></dt><!-- RDLabel: "Zlib::SYNC_FLUSH" -->
+<dt><a name="label:25" id="label:25"><code>Zlib::FULL_FLUSH</code></a></dt><!-- RDLabel: "Zlib::FULL_FLUSH" -->
+<dt><a name="label:26" id="label:26"><code>Zlib::FINISH</code></a></dt><!-- RDLabel: "Zlib::FINISH" -->
+<dd>
+<p><a href="#label:74">Zlib::Deflate#deflate</a> 等に渡す、ストリームの出力を
+制御するための整数。</p></dd>
+<dt><a name="label:27" id="label:27"><code>Zlib::OS_CODE</code></a></dt><!-- RDLabel: "Zlib::OS_CODE" -->
+<dt><a name="label:28" id="label:28"><code>Zlib::OS_MSDOS</code></a></dt><!-- RDLabel: "Zlib::OS_MSDOS" -->
+<dt><a name="label:29" id="label:29"><code>Zlib::OS_AMIGA</code></a></dt><!-- RDLabel: "Zlib::OS_AMIGA" -->
+<dt><a name="label:30" id="label:30"><code>Zlib::OS_VMS</code></a></dt><!-- RDLabel: "Zlib::OS_VMS" -->
+<dt><a name="label:31" id="label:31"><code>Zlib::OS_UNIX</code></a></dt><!-- RDLabel: "Zlib::OS_UNIX" -->
+<dt><a name="label:32" id="label:32"><code>Zlib::OS_VMCMS</code></a></dt><!-- RDLabel: "Zlib::OS_VMCMS" -->
+<dt><a name="label:33" id="label:33"><code>Zlib::OS_ATARI</code></a></dt><!-- RDLabel: "Zlib::OS_ATARI" -->
+<dt><a name="label:34" id="label:34"><code>Zlib::OS_OS2</code></a></dt><!-- RDLabel: "Zlib::OS_OS2" -->
+<dt><a name="label:35" id="label:35"><code>Zlib::OS_MACOS</code></a></dt><!-- RDLabel: "Zlib::OS_MACOS" -->
+<dt><a name="label:36" id="label:36"><code>Zlib::OS_ZSYSTEM</code></a></dt><!-- RDLabel: "Zlib::OS_ZSYSTEM" -->
+<dt><a name="label:37" id="label:37"><code>Zlib::OS_CPM</code></a></dt><!-- RDLabel: "Zlib::OS_CPM" -->
+<dt><a name="label:38" id="label:38"><code>Zlib::OS_TOPS20</code></a></dt><!-- RDLabel: "Zlib::OS_TOPS20" -->
+<dt><a name="label:39" id="label:39"><code>Zlib::OS_WIN32</code></a></dt><!-- RDLabel: "Zlib::OS_WIN32" -->
+<dt><a name="label:40" id="label:40"><code>Zlib::OS_QDOS</code></a></dt><!-- RDLabel: "Zlib::OS_QDOS" -->
+<dt><a name="label:41" id="label:41"><code>Zlib::OS_RISCOS</code></a></dt><!-- RDLabel: "Zlib::OS_RISCOS" -->
+<dt><a name="label:42" id="label:42"><code>Zlib::OS_UNKNOWN</code></a></dt><!-- RDLabel: "Zlib::OS_UNKNOWN" -->
+<dd>
+<p><a href="#label:106">Zlib::GzipFile#os_code</a> メソッドの返す値。</p></dd>
+</dl>
+<h2><a name="label:43" id="label:43">Zlib::Error</a></h2><!-- RDLabel: "Zlib::Error" -->
+<p>Ruby/zlib の発行する全ての例外のスーパークラス。</p>
+<p>以下の例外が Zlib::Error のサブクラスとして定義されています。
+それぞれ zlib ライブラリ関数の返すエラーと対応しています。</p>
+<ul>
+<li>Zlib::StreamEnd</li>
+<li>Zlib::NeedDict</li>
+<li>Zlib::DataError</li>
+<li>Zlib::StreamError</li>
+<li>Zlib::MemError</li>
+<li>Zlib::BufError</li>
+<li>Zlib::VersionError</li>
+</ul>
+<h3><a name="label:44" id="label:44">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li>StandardError</li>
+</ul>
+<h2><a name="label:45" id="label:45">Zlib::ZStream</a></h2><!-- RDLabel: "Zlib::ZStream" -->
+<p>圧縮データを扱うストリームを表す抽象クラス。
+具体的な圧縮/展開の操作は、それぞれサブクラスの <a href="#label:67">Zlib::Deflate</a>,
+<a href="#label:80">Zlib::Inflate</a> で定義されています。</p>
+<p>Zlib::ZStream オブジェクトは、ストリーム (struct zstream) の
+入力側 (next_in) と出力側 (next_out) にそれぞれ可変長の
+バッファを持ちます。以下、入力側のバッファを「入力バッファ」、
+出力側のバッファを「出力バッファ」と呼びます。</p>
+<p>Zlib::ZStream オブジェクトに入力されたデータは、一旦入力バッファの
+末尾にストアされた後、ストリームからの出力がなくなるまで
+(処理後 avail_out &gt; 0 となるまで) 入力バッファの先頭から順に処理されます。
+処理の間、出力バッファは全出力を保持するために必要に応じて自動的に
+確保・拡張されます。</p>
+<p>いくつかのメソッドは、出力バッファ内のデータを取り出し、
+String オブジェクトとして返します。</p>
+<p>以上を図示すると次のようになります:</p>
+<pre>+================ an instance of Zlib::ZStream ================+
+||                                                            ||
+||     +--------+          +-------+          +--------+      ||
+||  +--| output |&lt;---------|zstream|&lt;---------| input  |&lt;--+  ||
+||  |  | buffer |  next_out+-------+next_in   | buffer |   |  ||
+||  |  +--------+                             +--------+   |  ||
+||  |                                                      |  ||
++===|======================================================|===+
+    |                                                      |
+    v                                                      |
+"output data"                                         "input data"</pre>
+<p>入力バッファの内容を処理している最中にエラーが発生した場合、
+<a href="#label:43">Zlib::Error</a> のサブクラスの例外が発生します。その時、
+入力/出力バッファは共に、エラーが発生した時点の状態をそのまま
+保持します。</p>
+<h3><a name="label:46" id="label:46">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li>Object</li>
+</ul>
+<h3><a name="label:47" id="label:47">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:48" id="label:48"><code>Zlib::ZStream.new</code></a></dt><!-- RDLabel: "Zlib::ZStream.new" -->
+<dd>
+<p><a href="#label:71">Zlib::Deflate.new</a> 及び <a href="#label:84">Zlib::Inflate.new</a> を参照。</p></dd>
+</dl>
+<h3><a name="label:49" id="label:49">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:50" id="label:50"><code>Zlib::ZStream#avail_in</code></a></dt><!-- RDLabel: "Zlib::ZStream#avail_in" -->
+<dd>
+<p>入力バッファに溜っているデータのバイト数を返します。通常は 0 です。</p></dd>
+<dt><a name="label:51" id="label:51"><code>Zlib::ZStream#avail_out</code></a></dt><!-- RDLabel: "Zlib::ZStream#avail_out" -->
+<dd>
+<p>出力バッファの空き用量をバイト数で返します。
+空きは必要な時に動的に確保されるため、通常は 0 です。</p></dd>
+<dt><a name="label:52" id="label:52"><code>Zlib::ZStream#avail_out = <var>size</var></code></a></dt><!-- RDLabel: "Zlib::ZStream#avail_out = size" -->
+<dd>
+<p>出力側のバッファに <var>size</var> バイトの空きを確保します。
+すでに <var>size</var> バイト以上の空きがある場合、バッファは
+縮められます。空きは必要な時に動的に確保されるため、通常
+このメソッドを使う必要はありません。</p></dd>
+<dt><a name="label:53" id="label:53"><code>Zlib::ZStream#flush_next_in</code></a></dt><!-- RDLabel: "Zlib::ZStream#flush_next_in" -->
+<dd>
+<p>入力バッファに残っているデータを強制的に取り出します。</p></dd>
+<dt><a name="label:54" id="label:54"><code>Zlib::ZStream#flush_next_out</code></a></dt><!-- RDLabel: "Zlib::ZStream#flush_next_out" -->
+<dd>
+<p>出力バッファに残っているデータを強制的に取り出します。</p></dd>
+<dt><a name="label:55" id="label:55"><code>Zlib::ZStream#total_in</code></a></dt><!-- RDLabel: "Zlib::ZStream#total_in" -->
+<dd>
+<p>ストリームに入力されたデータの総バイト数を返します。</p></dd>
+<dt><a name="label:56" id="label:56"><code>Zlib::ZStream#total_out</code></a></dt><!-- RDLabel: "Zlib::ZStream#total_out" -->
+<dd>
+<p>ストリームの出力したデータの総バイト数を返します。</p></dd>
+<dt><a name="label:57" id="label:57"><code>Zlib::ZStream#data_type</code></a></dt><!-- RDLabel: "Zlib::ZStream#data_type" -->
+<dd>
+<p>ストリームに入力されたデータの形式を推測します。
+返り値は <a href="#label:10">Zlib::BINARY</a>, <a href="#label:11">Zlib::ASCII</a>, <a href="#label:12">Zlib::UNKNOWN</a> の
+いずれかです。</p></dd>
+<dt><a name="label:58" id="label:58"><code>Zlib::ZStream#adler</code></a></dt><!-- RDLabel: "Zlib::ZStream#adler" -->
+<dd>
+<p>alder-32 チェックサムを返します。</p></dd>
+<dt><a name="label:59" id="label:59"><code>Zlib::ZStream#reset</code></a></dt><!-- RDLabel: "Zlib::ZStream#reset" -->
+<dd>
+<p>ストリームの状態をリセットします。
+入力/出力バッファ内に残っていたデータは破棄されます。</p></dd>
+<dt><a name="label:60" id="label:60"><code>Zlib::ZStream#finish</code></a></dt><!-- RDLabel: "Zlib::ZStream#finish" -->
+<dd>
+<p>ストリームへの入力を終了し、出力バッファをフラッシュします。
+より具体的な振る舞いは <a href="#label:77">Zlib::Deflate#finish</a>,
+<a href="#label:88">Zlib::Inflate#finish</a> を参照して下さい。</p></dd>
+<dt><a name="label:61" id="label:61"><code>Zlib::ZStream#finished?</code></a></dt><!-- RDLabel: "Zlib::ZStream#finished?" -->
+<dt><a name="label:62" id="label:62"><code>Zlib::ZStream#stream_end?</code></a></dt><!-- RDLabel: "Zlib::ZStream#stream_end?" -->
+<dd>
+<p>ストリームへの入力が終了している時に真を返します。</p></dd>
+<dt><a name="label:63" id="label:63"><code>Zlib::ZStream#close</code></a></dt><!-- RDLabel: "Zlib::ZStream#close" -->
+<dt><a name="label:64" id="label:64"><code>Zlib::ZStream#end</code></a></dt><!-- RDLabel: "Zlib::ZStream#end" -->
+<dd>
+<p>ストリームを閉じます。
+以後、このストリームにアクセスすることはできなくなります。</p></dd>
+<dt><a name="label:65" id="label:65"><code>Zlib::ZStream#closed?</code></a></dt><!-- RDLabel: "Zlib::ZStream#closed?" -->
+<dt><a name="label:66" id="label:66"><code>Zlib::ZStream#ended?</code></a></dt><!-- RDLabel: "Zlib::ZStream#ended?" -->
+<dd>
+<p>ストリームが閉じられている時に真を返します。</p></dd>
+</dl>
+<h2><a name="label:67" id="label:67">Zlib::Deflate</a></h2><!-- RDLabel: "Zlib::Deflate" -->
+<p>入力データを圧縮するストリームのクラス。</p>
+<h3><a name="label:68" id="label:68">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li><a href="#label:45">Zlib::ZStream</a></li>
+</ul>
+<h3><a name="label:69" id="label:69">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:70" id="label:70"><code>Zlib::Deflate.deflate(<var>string</var>[, <var>level</var>])</code></a></dt><!-- RDLabel: "Zlib::Deflate.deflate" -->
+<dd>
+<p><var>string</var> を圧縮します。<var>level</var> の有効な値は
+<a href="#label:13">Zlib::NO_COMPRESSION</a>, <a href="#label:14">Zlib::BEST_SPEED</a>,
+<a href="#label:15">Zlib::BEST_COMPRESSION</a>, <a href="#label:16">Zlib::DEFAULT_COMPRESSION</a>
+及び 0 から 9 の整数です。</p>
+<p>ちなみに、このメソッドは以下のコードとほぼ同じです:</p>
+<pre>def deflate(string, level)
+  z = Zlib::Deflate.new(level)
+  dst = z.deflate(string, Zlib::FINISH)
+  z.close
+  dst
+end</pre></dd>
+<dt><a name="label:71" id="label:71"><code>Zlib::Deflate.new([<var>level</var>[, <var>windowBits</var>[, <var>memlevel</var>[, <var>strategy</var>]]]])</code></a></dt><!-- RDLabel: "Zlib::Deflate.new" -->
+<dd>
+<p>圧縮ストリームを作成します。各引数の詳細は zlib.h を
+参照して下さい。nil の場合はデフォルトの値を使用します。</p></dd>
+</dl>
+<h3><a name="label:72" id="label:72">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:73" id="label:73"><code>Zlib::Deflate#clone</code></a></dt><!-- RDLabel: "Zlib::Deflate#clone" -->
+<dd>
+<p>圧縮ストリームを複製します。</p></dd>
+<dt><a name="label:74" id="label:74"><code>Zlib::Deflate#deflate(<var>string</var>[, <var>flush</var>])</code></a></dt><!-- RDLabel: "Zlib::Deflate#deflate" -->
+<dd>
+<p><var>string</var> を圧縮ストリームに入力します。処理後、ストリームからの
+出力を返します。このメソッドを呼ぶと出力バッファ及び入力バッファは
+空になります。<var>string</var> が nil の場合はストリームへの入力を
+終了します。(<a href="#label:60">Zlib::ZStream#finish</a> と同じ)。
+<var>flush</var> には <a href="#label:23">Zlib::NO_FLUSH</a>, <a href="#label:24">Zlib::SYNC_FLUSH</a>,
+<a href="#label:25">Zlib::FULL_FLUSH</a>, <a href="#label:26">Zlib::FINISH</a> のいずれかを指定します。
+詳しくは zlib.h を参照して下さい。</p></dd>
+<dt><a name="label:75" id="label:75"><code>Zlib::Deflate#&lt;&lt; <var>string</var></code></a></dt><!-- RDLabel: "Zlib::Deflate#<< string" -->
+<dd>
+<p><a href="#label:74">Zlib::Deflate#deflate</a> と同じように <var>string</var> を
+圧縮ストリームに入力しますが、Zlib::Deflate オブジェクト
+そのものを返します。圧縮ストリームからの出力は、
+出力バッファに保存されます。</p></dd>
+<dt><a name="label:76" id="label:76"><code>Zlib::Deflate#flush([<var>flush</var>])</code></a></dt><!-- RDLabel: "Zlib::Deflate#flush" -->
+<dd>
+<p><code>deflate('', <var>flush</var>)</code> と同じです。<var>flush</var> が
+省略された時は <a href="#label:24">Zlib::SYNC_FLUSH</a> が使用されます。
+このメソッドはスクリプトの可読性のために提供されています。</p></dd>
+<dt><a name="label:77" id="label:77"><code>Zlib::Deflate#finish</code></a></dt><!-- RDLabel: "Zlib::Deflate#finish" -->
+<dd>
+<p>圧縮ストリームを終了します。<code>deflate('', Zlib::FINISH)</code> と同じです。</p></dd>
+<dt><a name="label:78" id="label:78"><code>Zlib::Deflate#params(<var>level</var>, <var>strategy</var>)</code></a></dt><!-- RDLabel: "Zlib::Deflate#params" -->
+<dd>
+<p>圧縮ストリームの設定を変更します。詳しくは zlib.h を
+参照して下さい。設定の変更に伴うストリームからの出力は
+出力バッファに保存されます。</p></dd>
+<dt><a name="label:79" id="label:79"><code>Zlib::Deflate#set_dictionary(<var>string</var>)</code></a></dt><!-- RDLabel: "Zlib::Deflate#set_dictionary" -->
+<dd>
+<p>圧縮に用いる辞書を指定します。<var>string</var> を返します。
+このメソッドは <a href="#label:71">Zlib::Deflate.new</a>, <a href="#label:59">Zlib::ZStream#reset</a>
+を呼び出した直後にのみ有効です。詳細は zlib.h を参照して下さい。</p></dd>
+</dl>
+<h2><a name="label:80" id="label:80">Zlib::Inflate</a></h2><!-- RDLabel: "Zlib::Inflate" -->
+<p>入力データを展開するストリームのクラス。<a href="#label:67">Zlib::Deflate</a> と違い、
+このクラスのインスタンスを複製 (clone, dup) することはできません。</p>
+<h3><a name="label:81" id="label:81">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li><a href="#label:45">Zlib::ZStream</a></li>
+</ul>
+<h3><a name="label:82" id="label:82">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:83" id="label:83"><code>Zlib::Inflate.inflate(<var>string</var>)</code></a></dt><!-- RDLabel: "Zlib::Inflate.inflate" -->
+<dd>
+<p><var>string</var> を展開します。展開に辞書が必要な場合には
+<!-- Reference, RDLabel "Zlib::NeedDict" doesn't exist --><em class="label-not-found">Zlib::NeedDict</em><!-- Reference end --> 例外が発生します。</p>
+<p>ちなみに、このメソッドは以下のコードとほぼ同じです:</p>
+<pre>def inflate(string)
+  zstream = Zlib::Inflate.new
+  buf = zstream.inflate(string)
+  zstream.finish
+  zstream.close
+  buf
+end</pre></dd>
+<dt><a name="label:84" id="label:84"><code>Zlib::Inflate.new([<var>windowBits</var>])</code></a></dt><!-- RDLabel: "Zlib::Inflate.new" -->
+<dd>
+<p>展開ストリームを作成します。引数の詳細は zlib.h を参照して下さい。
+nil の場合はデフォルトの値を使用します。</p></dd>
+</dl>
+<h3><a name="label:85" id="label:85">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:86" id="label:86"><code>Zlib::Inflate#inflate(<var>string</var>)</code></a></dt><!-- RDLabel: "Zlib::Inflate#inflate" -->
+<dd>
+<p><var>string</var> を展開ストリームに入力します。処理後、ストリームからの
+出力を返します。このメソッドを呼ぶと出力バッファ及び入力バッファは
+空になります。<var>string</var> が nil の場合はストリームへの入力を
+終了します。(<a href="#label:60">Zlib::ZStream#finish</a> と同じ)。</p>
+<p>展開に辞書が必要な場合には <!-- Reference, RDLabel "Zlib::NeedDict" doesn't exist --><em class="label-not-found">Zlib::NeedDict</em><!-- Reference end --> 例外が発生します。
+<a href="#label:89">Zlib::Inflate#set_dictionary</a> メソッドで辞書をセットした
+後で、空文字列と共にこのメソッドを再度呼び出して下さい。</p></dd>
+<dt><a name="label:87" id="label:87"><code>Zlib::Inflate#&lt;&lt; <var>string</var></code></a></dt><!-- RDLabel: "Zlib::Inflate#<< string" -->
+<dd>
+<p><a href="#label:86">Zlib::Inflate#inflate</a> と同じように <var>string</var> を
+展開ストリームに入力しますが、Zlib::Inflate オブジェクト
+そのものを返します。展開ストリームからの出力は、
+出力バッファに保存されます。</p></dd>
+<dt><a name="label:88" id="label:88"><code>Zlib::Inflate#finish</code></a></dt><!-- RDLabel: "Zlib::Inflate#finish" -->
+<dd>
+<p>展開ストリームを終了します。
+ストリーム内に残っていたデータ (つまり圧縮データの後についていた
+ゴミデータ) を返します。
+<a href="#label:61">Zlib::ZStream#finished?</a> が真でない時に finish を呼ぶと
+例外が発生します。</p>
+<p>展開ストリームは圧縮データ内に終了コードを発見した時点で
+自ら終了するため、明示的に finish を呼ぶ必要は必ずしも
+ありませんが、このメソッドは圧縮データが正しく終了しているかを
+確認するのに便利です。</p></dd>
+<dt><a name="label:89" id="label:89"><code>Zlib::Inflate#set_dictionary(<var>string</var>)</code></a></dt><!-- RDLabel: "Zlib::Inflate#set_dictionary" -->
+<dd>
+<p>展開に用いる辞書を指定します。<var>string</var> を返します。
+このメソッドは <!-- Reference, RDLabel "Zlib::NeedDict" doesn't exist --><em class="label-not-found">Zlib::NeedDict</em><!-- Reference end --> 例外が発生した直後のみ
+有効です。詳細は zlib.h を参照して下さい。</p></dd>
+<dt><a name="label:90" id="label:90"><code>Zlib::Inflate#sync(<var>string</var>)</code></a></dt><!-- RDLabel: "Zlib::Inflate#sync" -->
+<dd>
+<p><var>string</var> を入力バッファの末尾に追加し、次の full flush
+point まで読み飛ばします。入力バッファ内に full flush point
+が存在しない場合は、入力バッファを空にし false を返します。
+入力バッファ内に full flush point が見つかった場合は
+true を返し、残りのデータは入力バッファ内に保持されます。</p></dd>
+<dt><a name="label:91" id="label:91"><code>Zlib::Inflate#sync_point?</code></a></dt><!-- RDLabel: "Zlib::Inflate#sync_point?" -->
+<dd>
+<p>What is this?</p></dd>
+</dl>
+<h2><a name="label:92" id="label:92">Zlib::GzipFile</a></h2><!-- RDLabel: "Zlib::GzipFile" -->
+<p>gzip 形式の圧縮ファイルを扱う抽象クラス。
+具体的な読み込み/書き込み操作は、それぞれサブクラスの
+<a href="#label:116">Zlib::GzipReader</a>, <a href="#label:143">Zlib::GzipWriter</a> で定義されています。</p>
+<p>IO クラスのインスタンス (又は IO クラスのインスタンスと同じメソッドを
+持つオブジェクト) と関連付けて使用します。</p>
+<h3><a name="label:93" id="label:93">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li>Object</li>
+</ul>
+<h3><a name="label:94" id="label:94">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:95" id="label:95"><code>Zlib::GzipFile.new(<var>args</var>...)</code></a></dt><!-- RDLabel: "Zlib::GzipFile.new" -->
+<dd>
+<p><a href="#label:120">Zlib::GzipReader.new</a> 及び <a href="#label:146">Zlib::GzipWriter.new</a> を参照。</p></dd>
+<dt><a name="label:96" id="label:96"><code>Zlib::GzipFile.wrap(<var>args</var>...) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipFile.wrap" -->
+<dd>
+<p><a href="#label:121">Zlib::GzipReader.wrap</a> 及び <a href="#label:147">Zlib::GzipWriter.wrap</a> を参照。</p></dd>
+<dt><a name="label:97" id="label:97"><code>Zlib::GzipFile.open(<var>args</var>...) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipFile.open" -->
+<dd>
+<p><a href="#label:122">Zlib::GzipReader.open</a> 及び <a href="#label:148">Zlib::GzipWriter.open</a> を参照。</p></dd>
+</dl>
+<h3><a name="label:98" id="label:98">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:99" id="label:99"><code>Zlib::GzipFile#closed?</code></a></dt><!-- RDLabel: "Zlib::GzipFile#closed?" -->
+<dt><a name="label:100" id="label:100"><code>Zlib::GzipFile#to_io</code></a></dt><!-- RDLabel: "Zlib::GzipFile#to_io" -->
+<dd>
+<p>IO クラスの同名メソッドと同じ。</p></dd>
+<dt><a name="label:101" id="label:101"><code>Zlib::GzipFile#close</code></a></dt><!-- RDLabel: "Zlib::GzipFile#close" -->
+<dd>
+<p>GzipFile オブジェクトをクローズします。このメソッドは
+関連付けられている IO オブジェクトの close メソッドを呼び出します。
+関連付けられている IO オブジェクトを返します。</p></dd>
+<dt><a name="label:102" id="label:102"><code>Zlib::GzipFile#finish</code></a></dt><!-- RDLabel: "Zlib::GzipFile#finish" -->
+<dd>
+<p>GzipFile オブジェクトをクローズします。<a href="#label:101">Zlib::GzipFile#close</a>と違い、
+このメソッドは関連付けられている IO オブジェクトの close メソッドを
+呼び出しません。関連付けられている IO オブジェクトを返します。</p></dd>
+<dt><a name="label:103" id="label:103"><code>Zlib::GzipFile#crc</code></a></dt><!-- RDLabel: "Zlib::GzipFile#crc" -->
+<dd>
+<p>圧縮されていないデータの CRC 値を返します。</p></dd>
+<dt><a name="label:104" id="label:104"><code>Zlib::GzipFile#level</code></a></dt><!-- RDLabel: "Zlib::GzipFile#level" -->
+<dd>
+<p>圧縮レベルを返します。</p></dd>
+<dt><a name="label:105" id="label:105"><code>Zlib::GzipFile#mtime</code></a></dt><!-- RDLabel: "Zlib::GzipFile#mtime" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録されている最終更新時間を返します。</p></dd>
+<dt><a name="label:106" id="label:106"><code>Zlib::GzipFile#os_code</code></a></dt><!-- RDLabel: "Zlib::GzipFile#os_code" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録されている OS コード番号を返します。</p></dd>
+<dt><a name="label:107" id="label:107"><code>Zlib::GzipFile#orig_name</code></a></dt><!-- RDLabel: "Zlib::GzipFile#orig_name" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録されている元ファイル名を返します。
+ファイル名が記録されていない場合は nil を返します。</p></dd>
+<dt><a name="label:108" id="label:108"><code>Zlib::GzipFile#comment</code></a></dt><!-- RDLabel: "Zlib::GzipFile#comment" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録されているコメントを返します。
+コメントが存在しない場合は nil を返します。</p></dd>
+<dt><a name="label:109" id="label:109"><code>Zlib::GzipFile#sync</code></a></dt><!-- RDLabel: "Zlib::GzipFile#sync" -->
+<dt><a name="label:110" id="label:110"><code>Zlib::GzipFile#sync= <var>flag</var></code></a></dt><!-- RDLabel: "Zlib::GzipFile#sync= flag" -->
+<dd>
+<p>IO クラスと同じ。<var>flag</var> が真の時、関連付けられている
+IO オブジェクトが flush メソッドを持っていなければなりません。
+また、true にすると圧縮率が著しく低下します。</p></dd>
+</dl>
+<h2><a name="label:111" id="label:111">Zlib::GzipFile::Error</a></h2><!-- RDLabel: "Zlib::GzipFile::Error" -->
+<p>gzip ファイルを処理している間にエラーが生じた時に発生する全ての例外の
+スーパークラス。</p>
+<p>次の例外が Zlib::GzipFile::Error のサブクラスとして定義されています。</p>
+<dl>
+<dt><a name="label:112" id="label:112">Zlib::GzipFile::NoFooter</a></dt><!-- RDLabel: "Zlib::GzipFile::NoFooter" -->
+<dd>
+<p>gzip ファイルにフッターが無い時に発生します。</p>
+</dd>
+<dt><a name="label:113" id="label:113">Zlib::GzipFile::CRCError</a></dt><!-- RDLabel: "Zlib::GzipFile::CRCError" -->
+<dd>
+<p>フッターに記録されている CRC 値と実際に展開したデータの CRC 値が
+異なる時に発生します。</p>
+</dd>
+<dt><a name="label:114" id="label:114">Zlib::GzipFile::LengthError</a></dt><!-- RDLabel: "Zlib::GzipFile::LengthError" -->
+<dd>
+<p>フッターに記録されているデータ長と実際に展開したデータの
+長さが異なる時に発生します。</p>
+</dd>
+</dl>
+<h3><a name="label:115" id="label:115">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li><a href="#label:43">Zlib::Error</a></li>
+</ul>
+<h2><a name="label:116" id="label:116">Zlib::GzipReader</a></h2><!-- RDLabel: "Zlib::GzipReader" -->
+<p>gzip 形式の圧縮ファイルを読み込むラッパークラス。
+IO クラスのインスタンス (又は IO クラスのインスタンスと同じメソッドを
+持つオブジェクト) と関連付けて使用します。</p>
+<pre>Zlib::GzipReader.open('hoge.gz') {|gz|
+  print gz.read
+}
+
+f = File.open('hoge.gz')
+gz = Zlib::GzipReader.new(f)
+print gz.read
+gz.close</pre>
+<h3><a name="label:117" id="label:117">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li><a href="#label:92">Zlib::GzipFile</a></li>
+</ul>
+<h3><a name="label:118" id="label:118">インクルードしているモジュール:</a></h3><!-- RDLabel: "インクルードしているモジュール:" -->
+<ul>
+<li>Enumerable</li>
+</ul>
+<h3><a name="label:119" id="label:119">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:120" id="label:120"><code>Zlib::GzipReader.new(<var>io</var>)</code></a></dt><!-- RDLabel: "Zlib::GzipReader.new" -->
+<dd>
+<p><var>io</var> と関連付けられた GzipReader オブジェクトを作成します。
+GzipReader オブジェクトは <var>io</var> からデータを逐次リードして
+解析/展開を行います。<var>io</var> には少なくとも、IO#read と
+同じ動作をする read メソッドが定義されている必要があります。</p>
+<p>ヘッダーの解析に失敗した場合 <a href="#label:111">Zlib::GzipFile::Error</a> 例外が
+発生します。</p></dd>
+<dt><a name="label:121" id="label:121"><code>Zlib::GzipReader.wrap(<var>io</var>) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipReader.wrap" -->
+<dd>
+<p><var>io</var> と関連付けられた GzipReader オブジェクトを作成し、
+それを引数としてブロックを実行します。
+ブロックの実行が終了すると、GzipReader オブジェクトは自動的に
+クローズされます。関連付けられている IO オブジェクトまで
+クローズしたくない時は、ブロック中で <a href="#label:102">Zlib::GzipFile#finish</a>
+メソッドを呼び出して下さい。</p></dd>
+<dt><a name="label:122" id="label:122"><code>Zlib::GzipReader.open(<var>filename</var>)</code></a></dt><!-- RDLabel: "Zlib::GzipReader.open" -->
+<dt><a name="label:123" id="label:123"><code>Zlib::GzipReader.open(<var>filename</var>) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipReader.open" -->
+<dd>
+<p><var>filename</var> で指定されるファイルを gzip ファイルとして
+オープンします。GzipReader オブジェクトを返します。
+その他詳細は <a href="#label:120">Zlib::GzipReader.new</a> や <a href="#label:121">Zlib::GzipReader.wrap</a> と
+同じです。</p></dd>
+</dl>
+<h3><a name="label:124" id="label:124">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:125" id="label:125"><code>Zlib::GzipReader#eof</code></a></dt><!-- RDLabel: "Zlib::GzipReader#eof" -->
+<dt><a name="label:126" id="label:126"><code>Zlib::GzipReader#eof?</code></a></dt><!-- RDLabel: "Zlib::GzipReader#eof?" -->
+<dd>
+<p>圧縮データの終端に達した場合真を返します。
+フッターが読み込まれていなくても真を返すことに注意して下さい。</p></dd>
+<dt><a name="label:127" id="label:127"><code>Zlib::GzipReader#pos</code></a></dt><!-- RDLabel: "Zlib::GzipReader#pos" -->
+<dt><a name="label:128" id="label:128"><code>Zlib::GzipReader#tell</code></a></dt><!-- RDLabel: "Zlib::GzipReader#tell" -->
+<dd>
+<p>現在までに展開したデータの長さの合計を返します。
+ファイルポインタの位置ではないことに注意して下さい。</p></dd>
+<dt><a name="label:129" id="label:129"><code>Zlib::GzipReader#each([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#each" -->
+<dt><a name="label:130" id="label:130"><code>Zlib::GzipReader#each_line([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#each_line" -->
+<dt><a name="label:131" id="label:131"><code>Zlib::GzipReader#each_byte([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#each_byte" -->
+<dt><a name="label:132" id="label:132"><code>Zlib::GzipReader#gets([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#gets" -->
+<dt><a name="label:133" id="label:133"><code>Zlib::GzipReader#getc</code></a></dt><!-- RDLabel: "Zlib::GzipReader#getc" -->
+<dt><a name="label:134" id="label:134"><code>Zlib::GzipReader#lineno</code></a></dt><!-- RDLabel: "Zlib::GzipReader#lineno" -->
+<dt><a name="label:135" id="label:135"><code>Zlib::GzipReader#lineno=</code></a></dt><!-- RDLabel: "Zlib::GzipReader#lineno=" -->
+<dt><a name="label:136" id="label:136"><code>Zlib::GzipReader#read([<var>length</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#read" -->
+<dt><a name="label:137" id="label:137"><code>Zlib::GzipReader#readchar</code></a></dt><!-- RDLabel: "Zlib::GzipReader#readchar" -->
+<dt><a name="label:138" id="label:138"><code>Zlib::GzipReader#readline([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#readline" -->
+<dt><a name="label:139" id="label:139"><code>Zlib::GzipReader#readlines([<var>rs</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipReader#readlines" -->
+<dt><a name="label:140" id="label:140"><code>Zlib::GzipReader#ungetc(<var>char</var>)</code></a></dt><!-- RDLabel: "Zlib::GzipReader#ungetc" -->
+<dd>
+<p>IO クラスの同名メソッドと同じですが、gzip ファイル中に
+エラーがあった場合 <a href="#label:43">Zlib::Error</a> 例外や
+<a href="#label:111">Zlib::GzipFile::Error</a> 例外が発生します。</p>
+<p>gzip ファイルのフッターの処理に注意して下さい。
+gzip ファイルのフッターには圧縮前データのチェックサムが
+記録されています。GzipReader オブジェクトは、次の時に展開した
+データとフッターの照合を行い、エラーがあった場合は
+<a href="#label:112">Zlib::GzipFile::NoFooter</a>, <a href="#label:113">Zlib::GzipFile::CRCError</a>,
+<a href="#label:114">Zlib::GzipFile::LengthError</a> 例外を発生させます。</p>
+<ul>
+<li>EOF (圧縮データの最後) を越えて読み込み要求を受けた時。
+      すなわち <a href="#label:136">Zlib::GzipReader#read</a>,
+      <a href="#label:132">Zlib::GzipReader#gets</a> メソッド等が nil を返す時。</li>
+<li>EOF まで読み込んだ後、<a href="#label:101">Zlib::GzipFile#close</a> メソッドが
+      呼び出された時。</li>
+<li>EOF まで読み込んだ後、<a href="#label:142">Zlib::GzipReader#unused</a> メソッドが
+      呼び出された時。</li>
+</ul></dd>
+<dt><a name="label:141" id="label:141"><code>Zlib::GzipReader#rewind</code></a></dt><!-- RDLabel: "Zlib::GzipReader#rewind" -->
+<dd>
+<p>ファイルポインタを <a href="#label:120">Zlib::GzipReader.new</a> を呼び出した直後の
+時点に戻します。関連付けられている IO オブジェクトに
+seek メソッドが定義されている必要があります。</p></dd>
+<dt><a name="label:142" id="label:142"><code>Zlib::GzipReader#unused</code></a></dt><!-- RDLabel: "Zlib::GzipReader#unused" -->
+<dd>
+<p>gzip フォーマットの解析のために読み込んだ余剰のデータを返します。
+gzip ファイルが最後まで解析されていない場合は nil を返します。</p></dd>
+</dl>
+<h2><a name="label:143" id="label:143">Zlib::GzipWriter</a></h2><!-- RDLabel: "Zlib::GzipWriter" -->
+<p>gzip 形式の圧縮ファイルを書き出すラッパークラス。
+IO クラスのインスタンス (又は IO クラスのインスタンスと同じメソッドを
+持つオブジェクト) と関連付けて使用します。</p>
+<pre>Zlib::GzipWriter.open('hoge.gz') {|gz|
+  gz.write 'jugemu jugemu gokou no surikire...'
+}
+
+f = File.open('hoge.gz', 'w')
+gz = Zlib::GzipWriter.new(f)
+gz.write 'jugemu jugemu gokou no surikire...'
+gz.close</pre>
+<p>なお、Ruby の finalizer の制約のため、GzipWriter オブジェクトは必ず
+<a href="#label:151">Zlib::GzipWriter#close</a> 等を用いてクローズしてください。
+そうしなければフッターを書き出すことができず、壊れた gzip ファイルを
+生成してしまう可能性があります。</p>
+<h3><a name="label:144" id="label:144">スーパークラス:</a></h3><!-- RDLabel: "スーパークラス:" -->
+<ul>
+<li><a href="#label:92">Zlib::GzipFile</a></li>
+</ul>
+<h3><a name="label:145" id="label:145">クラスメソッド:</a></h3><!-- RDLabel: "クラスメソッド:" -->
+<dl>
+<dt><a name="label:146" id="label:146"><code>Zlib::GzipWriter.new(<var>io</var>[, <var>level</var>[, <var>strategy</var>]])</code></a></dt><!-- RDLabel: "Zlib::GzipWriter.new" -->
+<dd>
+<p><var>io</var> と関連付けられた GzipWriter オブジェクトを作成します。
+<var>level</var>, <var>strategy</var> は <a href="#label:71">Zlib::Deflate.new</a> と同じです。
+GzipWriter オブジェクトは <var>io</var> に gzip 形式のデータを
+逐次ライトします。<var>io</var> には少なくとも、IO#write と
+同じ動作をする write メソッドが定義されている必要があります。</p></dd>
+<dt><a name="label:147" id="label:147"><code>Zlib::GzipWriter.wrap(<var>io</var>[, <var>level</var>[, <var>strategy</var>]]) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipWriter.wrap" -->
+<dd>
+<p><var>io</var> と関連付けられた GzipWriter オブジェクトを作成し、
+それを引数としてブロックを実行します。
+ブロックの実行が終了すると、GzipWriter オブジェクトは自動的に
+クローズされます。関連付けられている IO オブジェクトまで
+クローズしたくない時は、ブロック中で <a href="#label:102">Zlib::GzipFile#finish</a>
+メソッドを呼び出して下さい。</p></dd>
+<dt><a name="label:148" id="label:148"><code>Zlib::GzipWriter.open(<var>filename</var>[, <var>level</var>[, <var>strategy</var>]])</code></a></dt><!-- RDLabel: "Zlib::GzipWriter.open" -->
+<dt><a name="label:149" id="label:149"><code>Zlib::GzipWriter.open(<var>filename</var>[, <var>level</var>[, <var>strategy</var>]]) {|<var>gz</var>| ... }</code></a></dt><!-- RDLabel: "Zlib::GzipWriter.open" -->
+<dd>
+<p><var>filename</var> で指定されるファイルを gzip 圧縮データの
+書き出し用にオープンします。GzipWriter オブジェクトを返します。
+その他詳細は <a href="#label:146">Zlib::GzipWriter.new</a> や <a href="#label:147">Zlib::GzipWriter.wrap</a> と
+同じです。</p></dd>
+</dl>
+<h3><a name="label:150" id="label:150">メソッド:</a></h3><!-- RDLabel: "メソッド:" -->
+<dl>
+<dt><a name="label:151" id="label:151"><code>Zlib::GzipWriter#close</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#close" -->
+<dt><a name="label:152" id="label:152"><code>Zlib::GzipWriter#finish</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#finish" -->
+<dd>
+<p>フッターを書き出し、GzipWriter オブジェクトをクローズします。close と
+finish の違いは <a href="#label:101">Zlib::GzipFile#close</a>, <a href="#label:102">Zlib::GzipFile#finish</a> を
+参照して下さい。</p>
+<p><em>注意: Ruby の finalizer の制約のため、GzipWriter オブジェクトは
+必ずクローズしてください。そうしなければフッターを書き出すことが
+できず、壊れた gzip ファイルを生成してしまう可能性があります。</em></p></dd>
+<dt><a name="label:153" id="label:153"><code>Zlib::GzipWriter#pos</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#pos" -->
+<dt><a name="label:154" id="label:154"><code>Zlib::GzipWriter#tell</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#tell" -->
+<dd>
+<p>現在までに圧縮したデータの長さの合計を返します。
+ファイルポインタの位置ではないことに注意して下さい。</p></dd>
+<dt><a name="label:155" id="label:155"><code>Zlib::GzipWriter#&lt;&lt; <var>str</var></code></a></dt><!-- RDLabel: "Zlib::GzipWriter#<< str" -->
+<dt><a name="label:156" id="label:156"><code>Zlib::GzipWriter#putc(<var>ch</var>)</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#putc" -->
+<dt><a name="label:157" id="label:157"><code>Zlib::GzipWriter#puts(<var>obj</var>...)</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#puts" -->
+<dt><a name="label:158" id="label:158"><code>Zlib::GzipWriter#print(<var>arg</var>...)</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#print" -->
+<dt><a name="label:159" id="label:159"><code>Zlib::GzipWriter#printf(<var>format</var>, <var>arg</var>...)</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#printf" -->
+<dt><a name="label:160" id="label:160"><code>Zlib::GzipWriter#write(<var>str</var>)</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#write" -->
+<dd>
+<p>IO クラスの同名メソッドと同じ。</p></dd>
+<dt><a name="label:161" id="label:161"><code>Zlib::GzipWriter#flush([<var>flush</var>])</code></a></dt><!-- RDLabel: "Zlib::GzipWriter#flush" -->
+<dd>
+<p>まだ書き出されていないデータをフラッシュします。
+<var>flush</var> は <a href="#label:74">Zlib::Deflate#deflate</a> と同じです。
+省略時は <a href="#label:24">Zlib::SYNC_FLUSH</a> が使用されます。
+<var>flush</var> に <a href="#label:23">Zlib::NO_FLUSH</a> を指定することは無意味です。</p></dd>
+<dt><a name="label:162" id="label:162"><code>Zlib::GzipWriter#mtime= <var>time</var></code></a></dt><!-- RDLabel: "Zlib::GzipWriter#mtime= time" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録する最終更新時間を指定します。
+<a href="#label:160">Zlib::GzipWriter#write</a> 等の書き込み系メソッドを
+呼んだ後で指定しようとすると <a href="#label:111">Zlib::GzipFile::Error</a> 例外が
+発生します。</p></dd>
+<dt><a name="label:163" id="label:163"><code>Zlib::GzipWriter#orig_name= <var>filename</var></code></a></dt><!-- RDLabel: "Zlib::GzipWriter#orig_name= filename" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録する元ファイル名を指定します。
+<a href="#label:160">Zlib::GzipWriter#write</a> 等の書き込み系メソッドを
+呼んだ後で指定しようとすると <a href="#label:111">Zlib::GzipFile::Error</a> 例外が
+発生します。</p></dd>
+<dt><a name="label:164" id="label:164"><code>Zlib::GzipWriter#comment= <var>string</var></code></a></dt><!-- RDLabel: "Zlib::GzipWriter#comment= string" -->
+<dd>
+<p>gzip ファイルのヘッダーに記録するコメントを指定します。
+<a href="#label:160">Zlib::GzipWriter#write</a> 等の書き込み系メソッドを
+呼んだ後で指定しようとすると <a href="#label:111">Zlib::GzipFile::Error</a> 例外が
+発生します。</p></dd>
+</dl>
+<h2><a name="label:165" id="label:165">0.5 から 0.6 への変更点</a></h2><!-- RDLabel: "0.5 から 0.6 への変更点" -->
+<ul>
+<li>新しいメソッド:
+<ul>
+<li><a href="#label:96">Zlib::GzipFile.wrap</a></li>
+<li><a href="#label:102">Zlib::GzipFile#finish</a></li>
+</ul></li>
+<li>新しい定数:
+<ul>
+<li><a href="#label:9">Zlib::ZLIB_VERSION</a></li>
+<li><a href="#label:32">Zlib::OS_VMCMS</a></li>
+<li><a href="#label:36">Zlib::OS_ZSYSTEM</a></li>
+<li><a href="#label:37">Zlib::OS_CPM</a></li>
+<li><a href="#label:40">Zlib::OS_QDOS</a></li>
+<li><a href="#label:41">Zlib::OS_RISCOS</a></li>
+<li><a href="#label:42">Zlib::OS_UNKNOWN</a></li>
+</ul></li>
+<li>仕様が変更されたメソッド:
+<ul>
+<li><a href="#label:95">Zlib::GzipFile.new</a>にブロックを渡せなくなりました。代わりに
+    <a href="#label:96">Zlib::GzipFile.wrap</a>を使って下さい。</li>
+<li><a href="#label:101">Zlib::GzipFile#close</a>の引数がなくなりました。代わりに
+    <a href="#label:102">Zlib::GzipFile#finish</a>を使って下さい。</li>
+</ul></li>
+<li>名前が変更されたメソッド:
+<ul>
+<li>Zlib.versionは<a href="#label:3">Zlib.zlib_version</a>にリネームされました。</li>
+</ul></li>
+<li>仕様が変更された定数:
+<ul>
+<li><a href="#label:8">Zlib::VERSION</a>はRuby/zlibのバージョンを表す文字列になりました。
+    zlib.h のバージョンは<a href="#label:9">Zlib::ZLIB_VERSION</a>になります。</li>
+</ul></li>
+<li>後方互換性:
+<ul>
+<li>0.5 との互換性のために以前のメソッドや引数は残してあります。</li>
+<li>0.4 以前との互換性のために残していたクラス・定数・メソッドは
+    削除されました。</li>
+</ul></li>
+</ul>
+<h2><a name="label:166" id="label:166">0.4 から 0.5 への変更点</a></h2><!-- RDLabel: "0.4 から 0.5 への変更点" -->
+<p>全体的に書き換えてます。これで全部…だといいなぁ(汗::</p>
+<ul>
+<li>クラス名、メソッド名の変更。全てのクラスと定数は <a href="#label:1">Zlib</a> 以下に
+  移しました。0.4 との互換性のために以前のものも残してあります。
+<ul>
+<li>クラス
+<ul>
+<li>Deflate -&gt; <a href="#label:67">Zlib::Deflate</a></li>
+<li>Inflate -&gt; <a href="#label:80">Zlib::Inflate</a></li>
+<li>Zlib::Gzip -&gt; <a href="#label:92">Zlib::GzipFile</a></li>
+<li>GzipReader -&gt; <a href="#label:116">Zlib::GzipReader</a></li>
+<li>GzipWriter -&gt; <a href="#label:143">Zlib::GzipWriter</a></li>
+<li>Zlib::Gzip::Error -&gt; <a href="#label:111">Zlib::GzipFile::Error</a></li>
+<li>Zlib::GzipReader::NoFooter -&gt; <a href="#label:112">Zlib::GzipFile::NoFooter</a></li>
+<li>Zlib::GzipReader::CRCError -&gt; <a href="#label:113">Zlib::GzipFile::CRCError</a></li>
+<li>Zlib::GzipReader::LengthError -&gt; <a href="#label:114">Zlib::GzipFile::LengthError</a></li>
+</ul></li>
+<li>定数
+<ul>
+<li>Zlib::ZStream::BINARY -&gt; <a href="#label:10">Zlib::BINARY</a></li>
+<li>Zlib::ZStream::ASCII -&gt; <a href="#label:11">Zlib::ASCII</a></li>
+<li>Zlib::ZStream::UNKNOWN -&gt; <a href="#label:12">Zlib::UNKNOWN</a></li>
+<li>Zlib::Deflate::NO_COMPRESSION -&gt; <a href="#label:13">Zlib::NO_COMPRESSION</a></li>
+<li>Zlib::Deflate::BEST_SPEED -&gt; <a href="#label:14">Zlib::BEST_SPEED</a></li>
+<li>Zlib::Deflate::BEST_COMPRESSION -&gt; <a href="#label:15">Zlib::BEST_COMPRESSION</a></li>
+<li>Zlib::Deflate::DEFAULT_COMPRESSION -&gt; <a href="#label:16">Zlib::DEFAULT_COMPRESSION</a></li>
+<li>Zlib::Deflate::FILTERED -&gt; <a href="#label:17">Zlib::FILTERED</a></li>
+<li>Zlib::Deflate::HUFFMAN_ONLY -&gt; <a href="#label:18">Zlib::HUFFMAN_ONLY</a></li>
+<li>Zlib::Deflate::DEFAULT_STRATEGY -&gt; <a href="#label:19">Zlib::DEFAULT_STRATEGY</a></li>
+<li>Zlib::Deflate::MAX_WBITS -&gt; <a href="#label:22">Zlib::MAX_WBITS</a></li>
+<li>Zlib::Deflate::DEF_MEM_LEVEL -&gt; <a href="#label:20">Zlib::DEF_MEM_LEVEL</a></li>
+<li>Zlib::Deflate::MAX_MEM_LEVEL -&gt; <a href="#label:21">Zlib::MAX_MEM_LEVEL</a></li>
+<li>Zlib::Deflate::NO_FLUSH -&gt; <a href="#label:23">Zlib::NO_FLUSH</a></li>
+<li>Zlib::Deflate::SYNC_FLUSH -&gt; <a href="#label:24">Zlib::SYNC_FLUSH</a></li>
+<li>Zlib::Deflate::FULL_FLUSH -&gt; <a href="#label:25">Zlib::FULL_FLUSH</a></li>
+<li>Zlib::Inflate::MAX_WBITS -&gt; <a href="#label:22">Zlib::MAX_WBITS</a></li>
+<li>Zlib::GzipReader::OS_* -&gt; <a href="#label:27">Zlib::OS_*</a></li>
+</ul></li>
+<li>メソッド
+<ul>
+<li>Zlib::ZStream#flush_out -&gt; <a href="#label:54">Zlib::ZStream#flush_next_out</a></li>
+</ul></li>
+</ul></li>
+<li>入力側 (next_in) にもバッファを設ける。</li>
+<li><a href="#label:142">Zlib::GzipReader#unused</a> はクローズ後は nil を返す。</li>
+<li><a href="#label:151">Zlib::GzipWriter#close</a> の義務化。finalizer での segv を回避。
+  <a href="http://blade.nagaokaut.ac.jp/cgi-bin/scat.rb/ruby/ruby-dev/11915">[ruby-dev:11915]</a></li>
+<li>new と initialize を分けた。</li>
+<li>deflateInit2, inflateInit2 に渡す引数の sanity check をしないようにした。</li>
+<li><a href="#label:157">Zlib::GzipWriter#puts</a> の挙動は Ruby-1.7 に合わせることにした。</li>
+<li>全関数を static に。</li>
+</ul>
+
+</body>
+</html>

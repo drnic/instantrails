@@ -1,0 +1,34 @@
+Instant Rails -- Change Log
+===========================
+
+
+* Instant Rails now detects being run from a directory path
+  that containd spaces, issues a warning, and quits.
+
+-------------------------------------------------------------------
+2005-11-08: Instant Rails 1.0 preview5
+
+* Upgraded Rails to Rails 1.0: The Release Candidate 4 (aka 0.14.3)
+
+-------------------------------------------------------------------
+2005-11-01: Instant Rails 1.0 preview4
+
+* Added mysql\bin to the path in console windows.
+
+-------------------------------------------------------------------
+2005-10-27: Instant Rails 1.0 preview3
+
+* Upgraded Rails to Rails 1.0: The Release Candidate 3 (aka 0.14.2)
+
+* Upgraded to SCGI Rails Runer 0.4.3
+
+* Added "fxri" to the help menu.
+
+* Fixed a problem where console windows were being opened in the
+  wrong current directory. This meant that ruby\bin wasn't being
+  put on the path which, in turn, meant you couldn't execute the
+  "gem" or "rails" commands.
+
+* Fixed several minor problems.
+
+* Created this change log! Also, added a ToDo.txt file.

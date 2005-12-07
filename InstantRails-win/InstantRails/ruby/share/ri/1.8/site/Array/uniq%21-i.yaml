@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Removes duplicate elements from <em>self</em>. Returns <tt>nil</tt> if no
+      changes are made (that is, no duplicates are found)."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         a = [ &quot;a&quot;, &quot;a&quot;, &quot;b&quot;, &quot;b&quot;, &quot;c&quot; ]
+         a.uniq!   #=&gt; [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+         b = [ &quot;a&quot;, &quot;b&quot;, &quot;c&quot; ]
+         b.uniq!   #=&gt; nil
+
+full_name: Array#uniq!
+is_singleton: false
+name: uniq!
+params: "array.uniq! -> array or nil
+
+  "
+visibility: public

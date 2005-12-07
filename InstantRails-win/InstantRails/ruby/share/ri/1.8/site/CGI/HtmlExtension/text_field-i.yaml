@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Generate a text field Input element, as a String."
+  - !ruby/struct:SM::Flow::P 
+    body: "<tt>name</tt> is the name of the input field. <tt>value</tt> is its initial
+      value. <tt>size</tt> is the size of the input area. <tt>maxlength</tt> is the
+      maximum length of input accepted."
+  - !ruby/struct:SM::Flow::P 
+    body: "Alternatively, the attributes can be specified as a hash."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        text_field(&quot;name&quot;)
+          # &lt;INPUT TYPE=&quot;text&quot; NAME=&quot;name&quot; SIZE=&quot;40&quot;&gt;
+
+        text_field(&quot;name&quot;, &quot;value&quot;)
+          # &lt;INPUT TYPE=&quot;text&quot; NAME=&quot;name&quot; VALUE=&quot;value&quot; SIZE=&quot;40&quot;&gt;
+
+        text_field(&quot;name&quot;, &quot;value&quot;, 80)
+          # &lt;INPUT TYPE=&quot;text&quot; NAME=&quot;name&quot; VALUE=&quot;value&quot; SIZE=&quot;80&quot;&gt;
+
+        text_field(&quot;name&quot;, &quot;value&quot;, 80, 200)
+          # &lt;INPUT TYPE=&quot;text&quot; NAME=&quot;name&quot; VALUE=&quot;value&quot; SIZE=&quot;80&quot; MAXLENGTH=&quot;200&quot;&gt;
+
+        text_field(&quot;NAME&quot; =&gt; &quot;name&quot;, &quot;VALUE&quot; =&gt; &quot;value&quot;)
+          # &lt;INPUT TYPE=&quot;text&quot; NAME=&quot;name&quot; VALUE=&quot;value&quot;&gt;
+
+full_name: CGI::HtmlExtension#text_field
+is_singleton: false
+name: text_field
+params: "(name = \"\", value = nil, size = 40, maxlength = nil)"
+visibility: public

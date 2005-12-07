@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns <tt>true</tt> iff the last match was successful.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        s = StringScanner.new('test string')
+        s.match?(/\w+/)     # =&gt; 4
+        s.matched?          # =&gt; true
+        s.match?(/\d+/)     # =&gt; nil
+        s.matched?          # =&gt; false
+
+full_name: "StringScanner#matched?"
+is_singleton: false
+name: "matched?"
+params: "()"
+visibility: public

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns a copy of <em>str</em> with the first character converted to uppercase and the remainder to lowercase.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         &quot;hello&quot;.capitalize    #=&gt; &quot;Hello&quot;
+         &quot;HELLO&quot;.capitalize    #=&gt; &quot;Hello&quot;
+         &quot;123ABC&quot;.capitalize   #=&gt; &quot;123abc&quot;
+
+full_name: String#capitalize
+is_singleton: false
+name: capitalize
+params: "str.capitalize   => new_str
+
+  "
+visibility: public

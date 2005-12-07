@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+class_methods: 
+  - !ruby/object:RI::MethodSummary 
+    name: new
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "<tt>ConditionVariable</tt> objects augment class <tt>Mutex</tt>. Using condition
+      variables, it is possible to suspend while in the middle of a critical section
+      until a resource becomes available (see the discussion on page 117)."
+  - !ruby/struct:SM::Flow::P 
+    body: "Example:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        require 'thread'
+
+        mutex = Mutex.new
+        resource = ConditionVariable.new
+
+        a = Thread.new {
+          mutex.synchronize {
+            # Thread 'a' now needs the resource
+            resource.wait(mutex)
+            # 'a' can now have the resource
+          }
+        }
+
+        b = Thread.new {
+          mutex.synchronize {
+            # Thread 'b' has finished using the resource
+            resource.signal
+          }
+        }
+
+constants: []
+full_name: ConditionVariable
+includes: []
+instance_methods: 
+  - !ruby/object:RI::MethodSummary 
+    name: broadcast
+  - !ruby/object:RI::MethodSummary 
+    name: signal
+  - !ruby/object:RI::MethodSummary 
+    name: wait
+name: ConditionVariable
+superclass: Object

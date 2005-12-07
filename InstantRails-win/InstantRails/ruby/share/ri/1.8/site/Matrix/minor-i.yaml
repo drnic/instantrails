@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns a section of the matrix. The parameters are either:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+      - !ruby/struct:SM::Flow::LI 
+        label: "*"
+        body: "start_row, nrows, start_col, ncols; OR"
+      - !ruby/struct:SM::Flow::LI 
+        label: "*"
+        body: "col_range, row_range"
+    type: :BULLET
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        Matrix.diagonal(9, 5, -3).minor(0..1, 0..2)
+          =&gt; 9 0 0
+             0 5 0
+
+full_name: Matrix#minor
+is_singleton: false
+name: minor
+params: "(*param)"
+visibility: public

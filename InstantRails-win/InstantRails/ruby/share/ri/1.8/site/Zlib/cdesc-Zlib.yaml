@@ -1,0 +1,98 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+class_methods: []
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The Zlib module contains several classes for compressing and decompressing
+      streams, and for working with &quot;gzip&quot; files."
+  - !ruby/struct:SM::Flow::H 
+    level: 2
+    text: 
+      - Classes
+  - !ruby/struct:SM::Flow::P 
+    body: "Following are the classes that are most likely to be of interest to the user:
+      Zlib::Inflate Zlib::Deflate Zlib::GzipReader Zlib::GzipWriter"
+  - !ruby/struct:SM::Flow::P 
+    body: "There are two important base classes for the classes above: Zlib::ZStream and
+      Zlib::GzipFile. Everything else is an error class."
+  - !ruby/struct:SM::Flow::H 
+    level: 2
+    text: 
+      - Constants
+  - !ruby/struct:SM::Flow::P 
+    body: "Here's a list."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        Zlib::VERSION
+            The Ruby/zlib version string.
+
+        Zlib::ZLIB_VERSION
+            The string which represents the version of zlib.h.
+
+        Zlib::BINARY
+        Zlib::ASCII
+        Zlib::UNKNOWN
+            The integers representing data types which Zlib::ZStream#data_type
+            method returns.
+
+        Zlib::NO_COMPRESSION
+        Zlib::BEST_SPEED
+        Zlib::BEST_COMPRESSION
+        Zlib::DEFAULT_COMPRESSION
+            The integers representing compression levels which are an argument
+            for Zlib::Deflate.new, Zlib::Deflate#deflate, and so on.
+
+        Zlib::FILTERED
+        Zlib::HUFFMAN_ONLY
+        Zlib::DEFAULT_STRATEGY
+            The integers representing compression methods which are an argument
+            for Zlib::Deflate.new and Zlib::Deflate#params.
+
+        Zlib::DEF_MEM_LEVEL
+        Zlib::MAX_MEM_LEVEL
+            The integers representing memory levels which are an argument for
+            Zlib::Deflate.new, Zlib::Deflate#params, and so on.
+
+        Zlib::MAX_WBITS
+            The default value of windowBits which is an argument for
+            Zlib::Deflate.new and Zlib::Inflate.new.
+
+        Zlib::NO_FLUSH
+        Zlib::SYNC_FLUSH
+        Zlib::FULL_FLUSH
+        Zlib::FINISH
+            The integers to control the output of the deflate stream, which are
+            an argument for Zlib::Deflate#deflate and so on.
+
+        Zlib::OS_CODE
+        Zlib::OS_MSDOS
+        Zlib::OS_AMIGA
+        Zlib::OS_VMS
+        Zlib::OS_UNIX
+        Zlib::OS_VMCMS
+        Zlib::OS_ATARI
+        Zlib::OS_OS2
+        Zlib::OS_MACOS
+        Zlib::OS_ZSYSTEM
+        Zlib::OS_CPM
+        Zlib::OS_TOPS20
+        Zlib::OS_WIN32
+        Zlib::OS_QDOS
+        Zlib::OS_RISCOS
+        Zlib::OS_UNKNOWN
+            The return values of Zlib::GzipFile#os_code method.
+
+constants: []
+full_name: Zlib
+includes: []
+instance_methods: 
+  - !ruby/object:RI::MethodSummary 
+    name: adler32
+  - !ruby/object:RI::MethodSummary 
+    name: crc32
+  - !ruby/object:RI::MethodSummary 
+    name: crc_table
+  - !ruby/object:RI::MethodSummary 
+    name: zlib_version
+name: Zlib
+superclass: 

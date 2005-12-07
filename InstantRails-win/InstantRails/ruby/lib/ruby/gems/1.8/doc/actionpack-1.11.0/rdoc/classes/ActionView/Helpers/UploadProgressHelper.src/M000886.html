@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>form_tag_with_upload_progress (ActionView::Helpers::UploadProgressHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/upload_progress_helper.rb, line 149</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">form_tag_with_upload_progress</span>(<span class="ruby-identifier">url_for_options</span> = {}, <span class="ruby-identifier">options</span> = {}, <span class="ruby-identifier">status_url_for_options</span> = {}, <span class="ruby-operator">*</span><span class="ruby-identifier">parameters_for_url_method</span>)
+        
+        <span class="ruby-comment cmt">## Setup the action URL and the server-side upload_status action for</span>
+        <span class="ruby-comment cmt">## polling of status during the upload</span>
+
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dup</span>
+
+        <span class="ruby-identifier">upload_id</span> = <span class="ruby-identifier">url_for_options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:upload_id</span>) <span class="ruby-operator">||</span> <span class="ruby-identifier">next_upload_id</span>
+        <span class="ruby-identifier">upload_action_url</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">url_for_options</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">status_url_for_options</span>.<span class="ruby-identifier">is_a?</span> <span class="ruby-constant">Hash</span>
+          <span class="ruby-identifier">status_url_for_options</span> = <span class="ruby-identifier">status_url_for_options</span>.<span class="ruby-identifier">merge</span>({
+            <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'upload_status'</span>, 
+            <span class="ruby-identifier">:upload_id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">upload_id</span>})
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">status_url</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">status_url_for_options</span>)
+        
+        <span class="ruby-comment cmt">## Prepare the form options.  Dynamically change the target and URL to enable the status</span>
+        <span class="ruby-comment cmt">## updating only if javascript is enabled, otherwise perform the form submission in the same </span>
+        <span class="ruby-comment cmt">## frame.</span>
+        
+        <span class="ruby-identifier">upload_target</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:target</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">upload_target_id</span>
+        <span class="ruby-identifier">upload_id_param</span> = <span class="ruby-node">&quot;#{upload_action_url.include?('?') ? '&amp;' : '?'}upload_id=#{upload_id}&quot;</span>
+        
+        <span class="ruby-comment cmt">## Externally :begin and :finish are the entry and exit points</span>
+        <span class="ruby-comment cmt">## Internally, :finish is called :complete</span>
+
+        <span class="ruby-identifier">js_options</span> = {
+          <span class="ruby-identifier">:decay</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:decay</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">FREQUENCY_DECAY</span>,
+          <span class="ruby-identifier">:frequency</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:frequency</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">FREQUENCY</span>,
+        }
+
+        <span class="ruby-identifier">updater_options</span> = <span class="ruby-value str">'{'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">js_options</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-node">&quot;#{k}:#{v}&quot;</span>}.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'}'</span>
+
+        <span class="ruby-comment cmt">## Finish off the updating by forcing the progress bar to 100% and status text because the</span>
+        <span class="ruby-comment cmt">## results of the post may load and finish in the IFRAME before the last status update</span>
+        <span class="ruby-comment cmt">## is loaded. </span>
+
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:complete</span>] = <span class="ruby-node">&quot;$('#{status_tag_id}').innerHTML='#{escape_javascript upload_progress_text(:finish)}';&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:complete</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{upload_progress_update_bar_js(100)};&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:complete</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{upload_update_object} = null&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:complete</span>] = <span class="ruby-node">&quot;#{options[:complete]}; #{options[:finish]}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:finish</span>]
+
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:script</span>] = <span class="ruby-keyword kw">true</span>
+
+        <span class="ruby-comment cmt">## Prepare the periodic updater, clearing any previous updater</span>
+
+        <span class="ruby-identifier">updater</span> = <span class="ruby-node">&quot;if (#{upload_update_object}) { #{upload_update_object}.stop(); }&quot;</span>
+        <span class="ruby-identifier">updater</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{upload_update_object} = new Ajax.PeriodicalUpdater('#{status_tag_id}',&quot;</span>
+        <span class="ruby-identifier">updater</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{status_url}', Object.extend(#{options_for_ajax(options)},#{updater_options}))&quot;</span>
+
+        <span class="ruby-identifier">updater</span> = <span class="ruby-node">&quot;#{options[:begin]}; #{updater}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:begin</span>]
+        <span class="ruby-identifier">updater</span> = <span class="ruby-node">&quot;#{upload_progress_update_bar_js(0)}; #{updater}&quot;</span>
+        <span class="ruby-identifier">updater</span> = <span class="ruby-node">&quot;$('#{status_tag_id}').innerHTML='#{escape_javascript upload_progress_text(:begin)}'; #{updater}&quot;</span>
+        
+        <span class="ruby-comment cmt">## Touch up the form action and target to use the given target instead of the</span>
+        <span class="ruby-comment cmt">## default one. Then start the updater</span>
+
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:onsubmit</span>] = <span class="ruby-node">&quot;if (this.action.indexOf('upload_id') &lt; 0){ this.action += '#{escape_javascript upload_id_param}'; }&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:onsubmit</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;this.target = '#{escape_javascript upload_target}';&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:onsubmit</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{updater}; return true&quot;</span> 
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:multipart</span>] = <span class="ruby-keyword kw">true</span>
+
+        [<span class="ruby-identifier">:begin</span>, <span class="ruby-identifier">:finish</span>, <span class="ruby-identifier">:complete</span>, <span class="ruby-identifier">:frequency</span>, <span class="ruby-identifier">:decay</span>, <span class="ruby-identifier">:script</span>].<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">sym</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">sym</span>) }
+
+        <span class="ruby-comment cmt">## Create the tags</span>
+        <span class="ruby-comment cmt">## If a target for the form is given then avoid creating the hidden IFRAME</span>
+
+        <span class="ruby-identifier">tag</span> = <span class="ruby-identifier">form_tag</span>(<span class="ruby-identifier">upload_action_url</span>, <span class="ruby-identifier">options</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">parameters_for_url_method</span>)
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:target</span>]
+          <span class="ruby-identifier">tag</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">'iframe'</span>, <span class="ruby-value str">''</span>, { 
+            <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">upload_target</span>, 
+            <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">upload_target</span>,
+            <span class="ruby-identifier">:src</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">''</span>,
+            <span class="ruby-identifier">:style</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'width:0px;height:0px;border:0'</span> 
+          })
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">tag</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

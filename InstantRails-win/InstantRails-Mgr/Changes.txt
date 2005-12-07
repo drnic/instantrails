@@ -1,0 +1,48 @@
+ 15-05-01 Griser Mode SSL dans la dialogue de configuration
+ 31-05-01 Appel de PhpIni dans le menu configuration
+ 02-06-01 Lance MySqld-nt.exe sous NT/2K
+ 04-06-01 Recuperation du numero de port d'Apache
+~15-06-01 EasyPHP 1.4 !
+ 22-06-01 Remplacement de localhost par 127.0.0.1
+ 23-06-01 On force le "basedir" de MySql pour contrer les mauvaises installations precedentes 
+			de mysql.
+~17-08-01 EasyPHP 1.5
+ 27-07-01 Icone dans la barre de tache
+ 25-08-01 MFC virées
+ 29-08-01 Ajout de la licence
+ 07-09-01 Boite modale pour l'"a propos"
+ 01-10-01 -	Suppression de skip-grant-table dans les parametres par defaut de MySql
+		  - Lien vers l'aide HMTL
+ 01-12-01 bug XP corrigé
+~24-04-02 EasyPHP 1.6
+ 22-08-02 Utilisation des Event pour redemarrer et arreter Apache.
+          -> Prise en compte instantanée des modifs du httpd.conf.
+ 27-08-02 Ajout de l'aide pour la ligne de commande (easyphp.exe /?)
+ 03-09-02 Ajout de "Explorer" dans le menu
+ 09-10-03 Bug pour creer l'event MySql corrigé %d -> %u
+~09-10-03 EasyPHP 1.7
+ 16-10-03 Extensions PHP : test de l'integrité des extensions.
+ 04-12-03 Bug Apache : creation des events avec %u pour eviter les bugs avec 
+			9x ou Nt qui ont des PID avec MSB a 1.
+ 04-12-03 Bug : Lors de la lecture de httpd.conf pas de MAJ de DocumentRoot :
+			on s'arretait de parser httpd.conf des que Port renseigné.
+ 22-12-03 - Degriser "Appliquer" seulement quand on fait une modif.
+	      - Separation de la dialogue de configuration.
+ 21-02-04 Rajout des rep. d'Apache et PHP dans le PATH (sinon pb dependances d'extensions PHP)
+ 08-07-04 Affichage des raccourcis clavier
+ 08-07-04 Remet l'icone dans la tray bar en cas de crash/redemerrage d'explorer.exe
+ 09-07-04 Possibilité de desactiver la verification des ports avant le lancement des serveurs
+ 31-07-04 Interface avec degradé, gestion de la touche Alt pour avoir le menu
+ 17-12-04 GenConf pour regenerer les fichiers de conf a en fonction du path courant
+ 25-02-05 Bug lancement apache/98
+~01-03-05 EasyPHP 1.8
+ 03-03-05 Correction bug DocumentRoot
+ 09-03-05 - GetLongPathName en dynamique (pas present sous NT)
+		  - propose de regenerer les fichiers de conf si on deplace/renomme le repertoire d'installation.
+		  - Sous XP indique le nom du processus qui occupe le port
+~18-03-05 EasyPHP 1.8.0.1
+ 05-04-05 - Suppression de la liste des extensions listées mais pas présentes
+		  - Ajout dans la liste des extensions présentes mais pas listées.
+ 10-05-05 http://www.easyphp.org/forums/read.php?f=7&i=114362&t=114362#reply_114362
+ 06-06-05 Correction bug bug http://www.easyphp.org/forums/read.php?f=7&i=115491&t=114487#reply_115491
+			-> on testait toujours le port 3306 pour mysql même si il était configuré pour en utiliser un autre.

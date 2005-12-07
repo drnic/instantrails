@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns the number of arguments required by the block. If the block is declared
+      to take no arguments, returns 0. If the block is known to take exactly n
+      arguments, returns n. If the block has optional arguments, return -n-1, where n
+      is the number of mandatory arguments. A <tt>proc</tt> with no argument
+      declarations returns -1, as it can accept (and ignore) an arbitrary number of
+      parameters."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         Proc.new {}.arity          #=&gt; -1
+         Proc.new {||}.arity        #=&gt;  0
+         Proc.new {|a|}.arity       #=&gt;  1
+         Proc.new {|a,b|}.arity     #=&gt;  2
+         Proc.new {|a,b,c|}.arity   #=&gt;  3
+         Proc.new {|*a|}.arity      #=&gt; -1
+         Proc.new {|a,*b|}.arity    #=&gt; -2
+
+full_name: Proc#arity
+is_singleton: false
+name: arity
+params: "prc.arity -> fixnum
+
+  "
+visibility: public

@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Sets the default value, the value returned for a key that does not exist in the
+      hash. It is not possible to set the a default to a <tt>Proc</tt> that will be
+      executed on each key lookup."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         h = { &quot;a&quot; =&gt; 100, &quot;b&quot; =&gt; 200 }
+         h.default = &quot;Go fish&quot;
+         h[&quot;a&quot;]     #=&gt; 100
+         h[&quot;z&quot;]     #=&gt; &quot;Go fish&quot;
+         # This doesn't do what you might hope...
+         h.default = proc do |hash, key|
+           hash[key] = key + key
+         end
+         h[2]       #=&gt; #&lt;Proc:0x401b3948@-:6&gt;
+         h[&quot;cat&quot;]   #=&gt; #&lt;Proc:0x401b3948@-:6&gt;
+
+full_name: Hash#default=
+is_singleton: false
+name: default=
+params: "hsh.default = obj     => hsh
+
+  "
+visibility: public

@@ -1,0 +1,50 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::H 
+    level: 2
+    text: 
+      - Synopsis
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        Logger::LogDev.new(name, :shift_age =&gt; 'daily|weekly|monthly')
+        Logger::LogDev.new(name, :shift_age =&gt; 10, :shift_size =&gt; 1024*1024)
+
+  - !ruby/struct:SM::Flow::H 
+    level: 2
+    text: 
+      - Args
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+      - !ruby/struct:SM::Flow::LI 
+        label: "+name+:"
+        body: "A String (representing a filename) or an IO object (actually, anything that
+          responds to <tt>write</tt> and <tt>close</tt>). If a filename is given, then
+          that file is opened for writing (and appending if it already exists), with
+          <tt>sync</tt> set to <tt>true</tt>."
+      - !ruby/struct:SM::Flow::LI 
+        label: "+opts+:"
+        body: "Contains optional arguments for rolling (&quot;shifting&quot;) the log file.
+          <tt>:shift_age</tt> is either a description (e.g. 'daily'), or an integer number
+          of log files to keep. <tt>shift_size</tt> is the maximum size of the log file,
+          and is only significant is a number is given for <tt>shift_age</tt>."
+      - !ruby/struct:SM::Flow::P 
+        body: These arguments are only relevant if a filename is provided for the first argument.
+    type: :NOTE
+  - !ruby/struct:SM::Flow::H 
+    level: 2
+    text: 
+      - Description
+  - !ruby/struct:SM::Flow::P 
+    body: "Creates a LogDevice object, which is the target for log messages. Rolling of log
+      files is supported (only if a filename is given; you can't roll an IO object).
+      The beginning of each file created by this class is tagged with a header
+      message."
+  - !ruby/struct:SM::Flow::P 
+    body: This class is unlikely to be used directly; it is a backend for Logger.
+full_name: Logger::LogDevice::new
+is_singleton: true
+name: new
+params: "(log = nil, opt = {})"
+visibility: public

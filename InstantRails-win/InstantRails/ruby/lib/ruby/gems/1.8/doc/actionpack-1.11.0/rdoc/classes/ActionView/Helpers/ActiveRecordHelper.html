@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActionView::Helpers::ActiveRecordHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActionView::Helpers::ActiveRecordHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/action_view/helpers/active_record_helper_rb.html">
+                lib/action_view/helpers/active_record_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The Active Record Helper makes it easier to create forms for records kept
+in instance variables. The most far-reaching is the form method that
+creates a complete form for all the basic content types of the record (not
+associations or aggregations, though). This is a great of making the record
+quickly available for editing, but likely to prove lackluster for a
+complicated real-world form. In that case, it&#8217;s better to use the
+input method and the specialized form methods in <a
+href="FormHelper.html">classes/ActionView/Helpers/FormHelper.html</a>
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000806">error_message_on</a>&nbsp;&nbsp;
+      <a href="#M000807">error_messages_for</a>&nbsp;&nbsp;
+      <a href="#M000805">form</a>&nbsp;&nbsp;
+      <a href="#M000804">input</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000806" class="method-detail">
+        <a name="M000806"></a>
+
+        <div class="method-heading">
+          <a href="ActiveRecordHelper.src/M000806.html" target="Code" class="method-signature"
+            onclick="popupCode('ActiveRecordHelper.src/M000806.html');return false;">
+          <span class="method-name">error_message_on</span><span class="method-args">(object, method, prepend_text = &quot;&quot;, append_text = &quot;&quot;, css_class = &quot;formError&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a string containing the error message attached to the
+<tt>method</tt> on the <tt>object</tt>, if one exists. This error message
+is wrapped in a DIV tag, which can be specialized to include both a
+<tt>prepend_text</tt> and <tt>append_text</tt> to properly introduce the
+error and a <tt>css_class</tt> to style it accordingly. Examples (post has
+an error message &quot;can&#8217;t be empty&quot; on the title attribute):
+</p>
+<pre>
+  &lt;%= error_message_on &quot;post&quot;, &quot;title&quot; %&gt; =&gt;
+    &lt;div class=&quot;formError&quot;&gt;can't be empty&lt;/div&gt;
+
+  &lt;%= error_message_on &quot;post&quot;, &quot;title&quot;, &quot;Title simply &quot;, &quot; (or it won't work)&quot;, &quot;inputError&quot; %&gt; =&gt;
+    &lt;div class=&quot;inputError&quot;&gt;Title simply can't be empty (or it won't work)&lt;/div&gt;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000807" class="method-detail">
+        <a name="M000807"></a>
+
+        <div class="method-heading">
+          <a href="ActiveRecordHelper.src/M000807.html" target="Code" class="method-signature"
+            onclick="popupCode('ActiveRecordHelper.src/M000807.html');return false;">
+          <span class="method-name">error_messages_for</span><span class="method-args">(object_name, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a string with a div containing all the error messages for the
+object located as an instance variable by the name of <tt>object_name</tt>.
+This div can be tailored by the following options:
+</p>
+<ul>
+<li><tt>header_tag</tt> - Used for the header of the error div (default: h2)
+
+</li>
+<li><tt>id</tt> - The id of the error div (default: errorExplanation)
+
+</li>
+<li><tt>class</tt> - The class of the error div (default: errorExplanation)
+
+</li>
+</ul>
+<p>
+NOTE: This is a pre-packaged presentation of the errors with embedded
+strings and a certain HTML structure. If what you need is significantly
+different from the default presentation, it makes plenty of sense to access
+the object.errors instance yourself and set it up. View the source of this
+method to see how easy it is.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000805" class="method-detail">
+        <a name="M000805"></a>
+
+        <div class="method-heading">
+          <a href="ActiveRecordHelper.src/M000805.html" target="Code" class="method-signature"
+            onclick="popupCode('ActiveRecordHelper.src/M000805.html');return false;">
+          <span class="method-name">form</span><span class="method-args">(record_name, options = {}) {|contents if block_given?| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an entire form with input tags and everything for a specified
+Active Record object. Example (post is a new record that has a title using
+VARCHAR and a body using TEXT):
+</p>
+<pre>
+  form(&quot;post&quot;) =&gt;
+    &lt;form action='/post/create' method='post'&gt;
+      &lt;p&gt;
+        &lt;label for=&quot;post_title&quot;&gt;Title&lt;/label&gt;&lt;br /&gt;
+        &lt;input id=&quot;post_title&quot; name=&quot;post[title]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;Hello World&quot; /&gt;
+      &lt;/p&gt;
+      &lt;p&gt;
+        &lt;label for=&quot;post_body&quot;&gt;Body&lt;/label&gt;&lt;br /&gt;
+        &lt;textarea cols=&quot;40&quot; id=&quot;post_body&quot; name=&quot;post[body]&quot; rows=&quot;20&quot;&gt;
+          Back to the hill and over it again!
+        &lt;/textarea&gt;
+      &lt;/p&gt;
+      &lt;input type='submit' value='Create' /&gt;
+    &lt;/form&gt;
+</pre>
+<p>
+It&#8217;s possible to specialize the form builder by using a different
+action name and by supplying another block renderer. Example (entry is a
+new record that has a message attribute using VARCHAR):
+</p>
+<pre>
+  form(&quot;entry&quot;, :action =&gt; &quot;sign&quot;, :input_block =&gt;
+       Proc.new { |record, column| &quot;#{column.human_name}: #{input(record, column.name)}&lt;br /&gt;&quot; }) =&gt;
+
+    &lt;form action='/post/sign' method='post'&gt;
+      Message:
+      &lt;input id=&quot;post_title&quot; name=&quot;post[title]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;Hello World&quot; /&gt;&lt;br /&gt;
+      &lt;input type='submit' value='Sign' /&gt;
+    &lt;/form&gt;
+</pre>
+<p>
+It&#8217;s also possible to add additional content to the form by giving it
+a block, such as:
+</p>
+<pre>
+  form(&quot;entry&quot;, :action =&gt; &quot;sign&quot;) do |form|
+    form &lt;&lt; content_tag(&quot;b&quot;, &quot;Department&quot;)
+    form &lt;&lt; collection_select(&quot;department&quot;, &quot;id&quot;, @departments, &quot;id&quot;, &quot;name&quot;)
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000804" class="method-detail">
+        <a name="M000804"></a>
+
+        <div class="method-heading">
+          <a href="ActiveRecordHelper.src/M000804.html" target="Code" class="method-signature"
+            onclick="popupCode('ActiveRecordHelper.src/M000804.html');return false;">
+          <span class="method-name">input</span><span class="method-args">(record_name, method, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a default input tag for the type of object returned by the method.
+Example (title is a VARCHAR column and holds &quot;Hello World&quot;):
+</p>
+<pre>
+  input(&quot;post&quot;, &quot;title&quot;) =&gt;
+    &lt;input id=&quot;post_title&quot; name=&quot;post[title]&quot; size=&quot;30&quot; type=&quot;text&quot; value=&quot;Hello World&quot; /&gt;
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

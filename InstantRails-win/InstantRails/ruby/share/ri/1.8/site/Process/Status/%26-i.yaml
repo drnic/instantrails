@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Logical AND of the bits in <em>stat</em> with <em>num</em>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         fork { exit 0x37 }
+         Process.wait
+         sprintf('%04x', $?.to_i)       #=&gt; &quot;3700&quot;
+         sprintf('%04x', $? &amp; 0x1e00)   #=&gt; &quot;1600&quot;
+
+full_name: Process::Status#&
+is_singleton: false
+name: "&"
+params: "stat & num   => fixnum
+
+  "
+visibility: public

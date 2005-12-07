@@ -1,0 +1,28 @@
+--- !ruby/object:FreeBASE::SubsystemConfiguration 
+name: rubyide_commands
+version: 1.0
+plugins: 
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_commands-command_manager
+    version: 1.0
+    autoload: true
+    require_path: rubyide_commands/command_manager
+    startup_module: FreeRIDE::Commands::CommandManager
+    
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_commands-key_manager
+    version: 1.0
+    autoload: true
+    require_path: rubyide_commands/key_manager
+    startup_module: FreeRIDE::Commands::KeyManager
+    
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_commands-core_manager
+    version: 1.0
+    autoload: true
+    require_path: rubyide_commands/core_commands
+    startup_module: FreeRIDE::Commands::CoreCommands
+    start_dependencies: 
+      rubyide_commands-command_manager: "*"
+      rubyide_commands-key_manager: "*"

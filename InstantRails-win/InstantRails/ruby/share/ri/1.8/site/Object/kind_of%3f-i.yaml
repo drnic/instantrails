@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns <tt>true</tt> if <em>class</em> is the class of <em>obj</em>, or if
+      <em>class</em> is one of the superclasses of <em>obj</em> or modules included in
+      <em>obj</em>."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         module M;    end
+         class A
+           include M
+         end
+         class B &lt; A; end
+         class C &lt; B; end
+         b = B.new
+         b.instance_of? A   #=&gt; false
+         b.instance_of? B   #=&gt; true
+         b.instance_of? C   #=&gt; false
+         b.instance_of? M   #=&gt; false
+         b.kind_of? A       #=&gt; true
+         b.kind_of? B       #=&gt; true
+         b.kind_of? C       #=&gt; false
+         b.kind_of? M       #=&gt; true
+
+full_name: "Object#kind_of?"
+is_singleton: false
+name: "kind_of?"
+params: >
+  obj.is_a?(class)       => true or false
+
+  obj.kind_of?(class)    => true or false
+
+visibility: public

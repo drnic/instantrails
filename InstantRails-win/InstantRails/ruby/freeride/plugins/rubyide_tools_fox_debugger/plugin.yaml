@@ -1,0 +1,12 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_debugger
+version: 1.0
+autoload: true
+require_path: rubyide_tools_fox_debugger/fox_debugger
+startup_module: FreeRIDE::FoxRenderer::DebuggerRenderFox
+properties_path: properties.yaml
+load_dependencies: 
+  rubyide_fox_gui: "*"
+  rubyide_tools_debugger: "*"
+start_dependencies: 
+  rubyide_fox_gui: "*"

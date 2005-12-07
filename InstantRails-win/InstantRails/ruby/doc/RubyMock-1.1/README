@@ -1,0 +1,46 @@
+Ruby/Mock 1.1 - Mock objects for the RubyUnit framework
+=======================================================
+
+Introduction
+------------
+
+Ruby/Mock is an extension to the RUnit framework to make it easy to implement
+Mock Objects. Information about Mock Objects can be found online at
+http://www.mockobjects.com.
+
+Ruby/Mock was written by Nat Pryce (nat.pryce@b13media.com).
+
+Thanks to:
+  * Steve Freeman for suggestions.
+  * Morohoshi Akihiko for providing a patch to pass blocks to mocked methods 
+    with fixed arity.
+
+Please send comments, suggestions and bug reports to the author.
+
+
+Installation
+------------
+
+1) Unpack the archive.  That will create a directory called mock-1.1/
+   containing the Ruby/Mock package, the license, this README file and
+   some demo programs.
+2) Cd into the mock-1.1/ directory.
+3) Run the unit tests for the package to check that it works on your
+   platform:  
+       % ruby test_mock.rb
+   Ruby/Mock is completely platform independent, so the tests should
+   all pass.  If they do not, please send a bug report to the author
+   containing the test output.
+4) Add the mock-1.1/ directory to your RUBYLIB path or copy the mock.rb
+   file to your site-ruby directory.
+5) Happy mocking!
+
+
+Usage
+-----
+
+The unit tests of the Ruby/Mock package, in the test_mock.rb file, illustrate
+and tests each feature of the package.
+
+The demo/ directory contains commented examples.
+

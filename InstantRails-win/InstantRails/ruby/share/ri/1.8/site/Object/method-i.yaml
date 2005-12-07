@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Looks up the named method as a receiver in <em>obj</em>, returning a
+      <tt>Method</tt> object (or raising <tt>NameError</tt>). The <tt>Method</tt>
+      object acts as a closure in <em>obj</em>'s object instance, so instance
+      variables and the value of <tt>self</tt> remain available."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         class Demo
+           def initialize(n)
+             @iv = n
+           end
+           def hello()
+             &quot;Hello, @iv = #{@iv}&quot;
+           end
+         end
+
+         k = Demo.new(99)
+         m = k.method(:hello)
+         m.call   #=&gt; &quot;Hello, @iv = 99&quot;
+
+         l = Demo.new('Fred')
+         m = l.method(&quot;hello&quot;)
+         m.call   #=&gt; &quot;Hello, @iv = Fred&quot;
+
+full_name: Object#method
+is_singleton: false
+name: method
+params: "obj.method(sym)    => method
+
+  "
+visibility: public

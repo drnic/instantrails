@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head><title>InstantRails: Getting Started</title>
+<meta name="KEYWORDS" content="Getting_Started">
+<link rel="stylesheet" href="wiki.css"></head>
+<body bgcolor="white">
+<div class="wikiheader"><h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" align="right" border="0"></a><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?back=Getting+Started">Getting Started</a></h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
+<hr class="wikilineheader"></div><div class="wikitext"><p>
+Instant Rails is a one-stop Rails runtime solution containing Ruby,
+Rails, Apache, and MySQL, all preconfigured and ready to run. No
+installer, you simply drop it into the directory of your choice and run
+it. It does not modify your system environment.
+</p><p>
+This release of Instant Rails for Windows, but there are plans for ports to Linux, BSD, and OSX. See the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Release_Notes" class="wikipagelink">Release Notes</a> for a list of everything included in Instant Rails (including their version numbers).
+Install and Verify Instant Rails
+</p><p>
+Instant Rails includes the full source code of the cookbook application developed in the <a href="http://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[Rolling with Ruby on Rails]</a>
+tutorial. Once you have installed Instant Rails, you can verify that
+everything is working properly by running this cookbook application.
+</p><p>
+</p><h2>Upgrading</h2>
+
+<p>
+If you have installed a previous version of Instant Rails, see
+<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?How_To_Upgrade" class="wikipagelink">How To Upgrade</a> for instructions on how to upgrade you installation
+while retaining your data and cutomizations.
+</p><p>
+</p><h2>Install &amp; Verify</h2>
+
+<p>
+Follow these steps to install Instant Rails and verify that it is working properly:
+</p><p>
+</p><ul>
+<li> Download and unzip the Instant Rails zip file.
+</li></ul>
+<p>
+</p><ul>
+<li> Make sure the installation path does not contain any space characters, and then start <b>InstantRails.exe.</b>
+</li></ul>
+<p>
+</p><ul>
+<li> Instant Rails will detect that it is being started from a new
+directory and ask if you want to have it update the paths in the all of
+the configuration files... Just say yes.
+</li></ul>
+<p>
+</p><ul>
+<li> The cookbook app is already configured to use SCGI on port 9999,
+but we must tell Windows for fake the domain name that is preconfigured
+in the Apache configuration file: </li></ul>
+<p>
+</p><ul>
+<ul>
+<li>Click on the <b><code>I</code></b> button (or press and release the <code>Alt</code> key twice) to drop down the main menu and select <code>Configure &gt; Windows Hosts file</code>.
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<ul>
+<li> In the editor that pops up, add this line to the end of the file:
+</li></ul>
+</ul>
+<p>
+</p><dl>
+<dl>
+<dl>
+<dl>
+<dt></dt><dd><code>127.0.0.1   www.mycookbook.com</code>
+</dd></dl>
+</dl>
+</dl>
+</dl>
+<p>
+</p><ul>
+<ul>
+<li> Save the changes to the file (you must have Administrator
+privileges to do this), the filename is 'hosts' with no extension. Exit
+the editor.
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> In the main menu, select <code>Rails Applications &gt; Manage Rails Applications...</code>
+</li></ul>
+<p>
+</p><ul>
+<li> Check the checkbox next to the cookbook application.
+</li></ul>
+<p>
+</p><ul>
+<li> Click on the <code>Start SCGI</code> button. A minimized console window will appear. This contains the cookbook web app running through an SCGI server.
+</li></ul>
+<p>
+</p><ul>
+<li> Wait a few seconds to make sure the cookbook web app is fully
+initialized (nothing is displayed in the console window). Open your
+browser and go to:
+</li></ul>
+<p>
+</p><dl>
+<dl>
+<dl>
+<dt></dt><dd><code>www.mycookbook.com</code>
+</dd></dl>
+</dl>
+</dl>
+<p>
+You should now be using a running Rails application! 
+</p><p>
+Poke around in the menus of Instant Rails to see what's there.
+</p></div></body></html>

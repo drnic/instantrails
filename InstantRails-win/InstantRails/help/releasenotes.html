@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head><title>InstantRailsWiki: Release Notes</title>
+<meta name="KEYWORDS" content="Release_Notes">
+<link rel="stylesheet" href="wiki.css"></head>
+<body bgcolor="white">
+<div class="wikiheader"><h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" align="right" border="0"></a><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?back=Release+Notes">Release Notes</a></h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
+<hr class="wikilineheader"></div><div class="wikitext"><p>
+Instant Rails currently has only a preview release. There are still a
+number of rough edges, but it is essentially functional and usable.
+</p><p>
+Instant Rails includes a number of open source software packages. Below is a list of all included software.
+</p><p>
+</p><h2>Primary Instant Rails Components</h2>
+
+<p>
+</p><ul>
+<li> <a href="http://rubyforge.org/scm/?group_id=904">[Instant Rails Manager]</a> 1.0 preview3
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://ruby-lang.org/">[Ruby 1.8.2]</a> (from the <a href="http://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> 182-15)
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://www.rubyonrails.com/">[Ruby on Rails]</a> 1.0 Release Candidate 3 (aka 0.14.2)
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://httpd.apache.org/">[Apache]</a> 1.3.33
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://www.mysql.com/">[MySQL]</a> 4.1.9
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://www.mems-exchange.org/software/scgi/">[SCGI]</a> 1.7+
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://www.zedshaw.com/projects/scgi_rails/">[SCGI Rails Runner]</a> 0.4.3
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://www.phpmyadmin.net/home_page/index.php">[phpMyAdmin]</a> 2.6.1
+</li></ul>
+<p>
+</p><h2>Ancillary Instant Rails Components</h2>
+
+<p>These components are not the primary focus of Instant Rails, but are
+included because the primary components above depend upon them..
+</p><p>
+</p><ul>
+<li> <a href="http://www.php.net/">[PHP]</a> 4.3.10
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://rake.rubyforge.org/">[Rake]</a> 0.6.2
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://cmdparse.rubyforge.org/">[cmdparse]</a> 2.0.0
+</li></ul>
+<p>
+</p><ul>
+<li> <a href="http://highline.rubyforge.org/">[HighLine]</a> 1.0.1
+</li></ul>
+<p>
+</p><h2>Notes</h2>
+
+<p>
+</p><ul>
+<li> Instant Rails includes the <a href="http://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a>
+for Windows which contains a number of Ruby extensions and libraries
+that are not used by Instant Rails itself. For a list of those
+packages, please refer to the One-Click Ruby Installer project.
+</li></ul>
+<p>
+</p><h2>Desired Changes for 1.0 Final Release</h2>
+
+<p>
+</p><ul>
+<li> Update to Ruby on Rails 1.0 when it is released.
+</li></ul>
+<p>
+</p><ul>
+<li> Use Apache2 instead of Apache 1.3
+</li></ul>
+<p>
+</p><ul>
+<li> Update to a more recent version of MySQL<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=MySQL" class="wikipageedit">?</a>.
+</li></ul>
+<p>
+</p><ul>
+<li> Run SCGI Rails Runner in the background as a service.
+</li></ul>
+<p>
+</p><ul>
+<li> Allow mutliple SCGI Rails Runner processes to service requests for
+a single Rails application. SRR already allows this on Linux, but it
+still needs to be implemented on Windows.
+</li></ul>
+<p>
+</p><ul>
+<li> Use the C-based MySQL driver for for Ruby (currently the Ruby-based driver is used).
+</li></ul>
+<p>
+</p><ul>
+<li> Add <a href="http://typo.leetsoft.com/trac/">[Typo]</a> as a preinstalled sample app.
+</li></ul>
+</div></body></html>

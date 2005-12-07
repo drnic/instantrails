@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>onMiddleBtnPress (FXIrb)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/fxirb.rb, line 342</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">onMiddleBtnPress</span>(<span class="ruby-identifier">sender</span>,<span class="ruby-identifier">sel</span>,<span class="ruby-identifier">event</span>)
+                <span class="ruby-identifier">pos</span>=<span class="ruby-identifier">getPosAt</span>(<span class="ruby-identifier">event</span>.<span class="ruby-identifier">win_x</span>,<span class="ruby-identifier">event</span>.<span class="ruby-identifier">win_y</span>)
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pos</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@anchor</span>
+                        <span class="ruby-keyword kw">super</span>
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<html>
+ <head>
+   <title>Online Cookbook</title>
+ </head>
+ <body>
+   <h1>Online Cookbook</h1>
+   <%= @content_for_layout %>
+   <p>
+     <%= link_to "Create new recipe", 
+                 :controller => "recipe", 
+                 :action => "new" %>
+     
+   <%= link_to "Show all recipes", 
+               :controller => "recipe", 
+               :action => "list" %>
+     
+   <%= link_to "Show all categories", 
+               :controller => "category", 
+               :action => "list" %>
+   </p>
+ </body>
+</html>

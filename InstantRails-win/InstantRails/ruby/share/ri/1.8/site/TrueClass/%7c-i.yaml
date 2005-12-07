@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Or---Returns <tt>true</tt>. As <em>anObject</em> is an argument to a method
+      call, it is always evaluated; there is no short-circuit evaluation in this
+      case."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         true |  puts(&quot;or&quot;)
+         true || puts(&quot;logical or&quot;)
+
+  - !ruby/struct:SM::Flow::P 
+    body: "<em>produces:</em>"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "   or\n"
+full_name: TrueClass#|
+is_singleton: false
+name: "|"
+params: "true | obj   => true
+
+  "
+visibility: public

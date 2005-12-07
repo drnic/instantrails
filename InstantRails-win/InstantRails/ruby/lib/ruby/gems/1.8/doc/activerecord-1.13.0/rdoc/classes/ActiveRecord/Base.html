@@ -1,0 +1,2082 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::Base</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_record/base_rb.html">
+                lib/active_record/base.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/abstract/connection_specification_rb.html">
+                lib/active_record/connection_adapters/abstract/connection_specification.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/db2_adapter_rb.html">
+                lib/active_record/connection_adapters/db2_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/mysql_adapter_rb.html">
+                lib/active_record/connection_adapters/mysql_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/oci_adapter_rb.html">
+                lib/active_record/connection_adapters/oci_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/postgresql_adapter_rb.html">
+                lib/active_record/connection_adapters/postgresql_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/sqlite_adapter_rb.html">
+                lib/active_record/connection_adapters/sqlite_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/connection_adapters/sqlserver_adapter_rb.html">
+                lib/active_record/connection_adapters/sqlserver_adapter.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/deprecated_finders_rb.html">
+                lib/active_record/deprecated_finders.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/locking_rb.html">
+                lib/active_record/locking.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/query_cache_rb.html">
+                lib/active_record/query_cache.rb
+                </a>
+        <br />
+                <a href="../../files/lib/active_record/timestamp_rb.html">
+                lib/active_record/timestamp.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The root class of all active record objects.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000563">==</a>&nbsp;&nbsp;
+      <a href="#M000534">===</a>&nbsp;&nbsp;
+      <a href="#M000554">[]</a>&nbsp;&nbsp;
+      <a href="#M000555">[]=</a>&nbsp;&nbsp;
+      <a href="#M000510">attr_accessible</a>&nbsp;&nbsp;
+      <a href="#M000509">attr_protected</a>&nbsp;&nbsp;
+      <a href="#M000561">attribute_names</a>&nbsp;&nbsp;
+      <a href="#M000559">attribute_present?</a>&nbsp;&nbsp;
+      <a href="#M000557">attributes</a>&nbsp;&nbsp;
+      <a href="#M000556">attributes=</a>&nbsp;&nbsp;
+      <a href="#M000558">attributes_before_type_cast</a>&nbsp;&nbsp;
+      <a href="#M000575">attributes_with_quotes_pre_oci</a>&nbsp;&nbsp;
+      <a href="#M000531">benchmark</a>&nbsp;&nbsp;
+      <a href="#M000544">clone</a>&nbsp;&nbsp;
+      <a href="#M000562">column_for_attribute</a>&nbsp;&nbsp;
+      <a href="#M000528">column_methods_hash</a>&nbsp;&nbsp;
+      <a href="#M000526">column_names</a>&nbsp;&nbsp;
+      <a href="#M000524">columns</a>&nbsp;&nbsp;
+      <a href="#M000525">columns_hash</a>&nbsp;&nbsp;
+      <a href="#M000572">connected?</a>&nbsp;&nbsp;
+      <a href="#M000492">connection</a>&nbsp;&nbsp;
+      <a href="#M000493">connection</a>&nbsp;&nbsp;
+      <a href="#M000576">connection=</a>&nbsp;&nbsp;
+      <a href="#M000574">connection=</a>&nbsp;&nbsp;
+      <a href="#M000527">content_columns</a>&nbsp;&nbsp;
+      <a href="#M000505">count</a>&nbsp;&nbsp;
+      <a href="#M000506">count_by_sql</a>&nbsp;&nbsp;
+      <a href="#M000498">create</a>&nbsp;&nbsp;
+      <a href="#M000549">decrement</a>&nbsp;&nbsp;
+      <a href="#M000550">decrement!</a>&nbsp;&nbsp;
+      <a href="#M000508">decrement_counter</a>&nbsp;&nbsp;
+      <a href="#M000500">delete</a>&nbsp;&nbsp;
+      <a href="#M000504">delete_all</a>&nbsp;&nbsp;
+      <a href="#M000543">destroy</a>&nbsp;&nbsp;
+      <a href="#M000501">destroy</a>&nbsp;&nbsp;
+      <a href="#M000503">destroy_all</a>&nbsp;&nbsp;
+      <a href="#M000564">eql?</a>&nbsp;&nbsp;
+      <a href="#M000571">establish_connection</a>&nbsp;&nbsp;
+      <a href="#M000497">exists?</a>&nbsp;&nbsp;
+      <a href="#M000495">find</a>&nbsp;&nbsp;
+      <a href="#M000496">find_by_sql</a>&nbsp;&nbsp;
+      <a href="#M000567">freeze</a>&nbsp;&nbsp;
+      <a href="#M000568">frozen?</a>&nbsp;&nbsp;
+      <a href="#M000560">has_attribute?</a>&nbsp;&nbsp;
+      <a href="#M000565">hash</a>&nbsp;&nbsp;
+      <a href="#M000538">id</a>&nbsp;&nbsp;
+      <a href="#M000540">id=</a>&nbsp;&nbsp;
+      <a href="#M000547">increment</a>&nbsp;&nbsp;
+      <a href="#M000548">increment!</a>&nbsp;&nbsp;
+      <a href="#M000507">increment_counter</a>&nbsp;&nbsp;
+      <a href="#M000517">inheritance_column</a>&nbsp;&nbsp;
+      <a href="#M000537">new</a>&nbsp;&nbsp;
+      <a href="#M000541">new_record?</a>&nbsp;&nbsp;
+      <a href="#M000515">primary_key</a>&nbsp;&nbsp;
+      <a href="#M000529">read_methods</a>&nbsp;&nbsp;
+      <a href="#M000570">readonly!</a>&nbsp;&nbsp;
+      <a href="#M000569">readonly?</a>&nbsp;&nbsp;
+      <a href="#M000553">reload</a>&nbsp;&nbsp;
+      <a href="#M000573">remove_connection</a>&nbsp;&nbsp;
+      <a href="#M000530">reset_column_information</a>&nbsp;&nbsp;
+      <a href="#M000516">reset_primary_key</a>&nbsp;&nbsp;
+      <a href="#M000494">reset_subclasses</a>&nbsp;&nbsp;
+      <a href="#M000514">reset_table_name</a>&nbsp;&nbsp;
+      <a href="#M000566">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M000542">save</a>&nbsp;&nbsp;
+      <a href="#M000518">sequence_name</a>&nbsp;&nbsp;
+      <a href="#M000511">serialize</a>&nbsp;&nbsp;
+      <a href="#M000512">serialized_attributes</a>&nbsp;&nbsp;
+      <a href="#M000521">set_inheritance_column</a>&nbsp;&nbsp;
+      <a href="#M000520">set_primary_key</a>&nbsp;&nbsp;
+      <a href="#M000522">set_sequence_name</a>&nbsp;&nbsp;
+      <a href="#M000519">set_table_name</a>&nbsp;&nbsp;
+      <a href="#M000532">silence</a>&nbsp;&nbsp;
+      <a href="#M000523">table_exists?</a>&nbsp;&nbsp;
+      <a href="#M000513">table_name</a>&nbsp;&nbsp;
+      <a href="#M000535">threaded_connections</a>&nbsp;&nbsp;
+      <a href="#M000536">threaded_connections=</a>&nbsp;&nbsp;
+      <a href="#M000539">to_param</a>&nbsp;&nbsp;
+      <a href="#M000551">toggle</a>&nbsp;&nbsp;
+      <a href="#M000552">toggle!</a>&nbsp;&nbsp;
+      <a href="#M000499">update</a>&nbsp;&nbsp;
+      <a href="#M000502">update_all</a>&nbsp;&nbsp;
+      <a href="#M000545">update_attribute</a>&nbsp;&nbsp;
+      <a href="#M000546">update_attributes</a>&nbsp;&nbsp;
+      <a href="#M000533">with_scope</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">set_table_name</td>
+          <td>-></td>
+          <td class="context-item-value">table_name=</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">set_primary_key</td>
+          <td>-></td>
+          <td class="context-item-value">primary_key=</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">set_inheritance_column</td>
+          <td>-></td>
+          <td class="context-item-value">inheritance_column=</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">set_sequence_name</td>
+          <td>-></td>
+          <td class="context-item-value">sequence_name=</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">sanitize_sql</td>
+          <td>-></td>
+          <td class="context-item-value">sanitize_conditions</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">respond_to?</td>
+          <td>-></td>
+          <td class="context-item-value">respond_to_without_attributes?</td>
+        </tr>
+      <tr class="top-aligned-row context-row">
+        <td>&nbsp;</td>
+        <td colspan="2" class="context-item-desc">
+For checking <a href="Base.html#M000566">respond_to?</a> without searching
+the attributes (which is faster).
+
+</td>
+      </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">connection=</td>
+          <td>-></td>
+          <td class="context-item-value">connection_without_query_cache=</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000534" class="method-detail">
+        <a name="M000534"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000534.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000534.html');return false;">
+          <span class="method-name">===</span><span class="method-args">(object)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overwrite the default class equality method to provide support for
+association proxies.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000510" class="method-detail">
+        <a name="M000510"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000510.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000510.html');return false;">
+          <span class="method-name">attr_accessible</span><span class="method-args">(*attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If this macro is used, only those attributes named in it will be accessible
+for mass-assignment, such as <tt>new(attributes)</tt> and
+<tt>attributes=(attributes)</tt>. This is the more conservative choice for
+mass-assignment protection. If you&#8217;d rather start from an all-open
+default and restrict attributes as needed, have a look at <a
+href="Base.html#M000509">attr_protected</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000509" class="method-detail">
+        <a name="M000509"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000509.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000509.html');return false;">
+          <span class="method-name">attr_protected</span><span class="method-args">(*attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Attributes named in this macro are protected from mass-assignment, such as
+<tt>new(attributes)</tt> and <tt>attributes=(attributes)</tt>. Their
+assignment will simply be ignored. Instead, you can use the direct writer
+methods to do assignment. This is meant to protect sensitive attributes
+from being overwritten by URL/form hackers. Example:
+</p>
+<pre>
+  class Customer &lt; ActiveRecord::Base
+    attr_protected :credit_rating
+  end
+
+  customer = Customer.new(&quot;name&quot; =&gt; David, &quot;credit_rating&quot; =&gt; &quot;Excellent&quot;)
+  customer.credit_rating # =&gt; nil
+  customer.attributes = { &quot;description&quot; =&gt; &quot;Jolly fellow&quot;, &quot;credit_rating&quot; =&gt; &quot;Superb&quot; }
+  customer.credit_rating # =&gt; nil
+
+  customer.credit_rating = &quot;Average&quot;
+  customer.credit_rating # =&gt; &quot;Average&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000531" class="method-detail">
+        <a name="M000531"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000531.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000531.html');return false;">
+          <span class="method-name">benchmark</span><span class="method-args">(title, log_level = Logger::DEBUG, use_silence = true) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Log and benchmark multiple statements in a single block. Example:
+</p>
+<pre>
+  Project.benchmark(&quot;Creating project&quot;) do
+    project = Project.create(&quot;name&quot; =&gt; &quot;stuff&quot;)
+    project.create_manager(&quot;name&quot; =&gt; &quot;David&quot;)
+    project.milestones &lt;&lt; Milestone.find(:all)
+  end
+</pre>
+<p>
+The benchmark is only recorded if the current level of the logger matches
+the <tt>log_level</tt>, which makes it easy to include benchmarking
+statements in production software that will remain inexpensive because the
+benchmark will only be conducted if the log level is low enough.
+</p>
+<p>
+The logging of the multiple statements is turned off unless
+<tt>use_silence</tt> is set to false.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000528" class="method-detail">
+        <a name="M000528"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000528.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000528.html');return false;">
+          <span class="method-name">column_methods_hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of all the methods added to query each of the columns in the
+table with the name of the method as the key and true as the value. This
+makes it possible to do O(1) lookups in <a
+href="Base.html#M000566">respond_to?</a> to check if a given method for
+attribute is available.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000526" class="method-detail">
+        <a name="M000526"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000526.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000526.html');return false;">
+          <span class="method-name">column_names</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000524" class="method-detail">
+        <a name="M000524"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000524.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000524.html');return false;">
+          <span class="method-name">columns</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of column objects for the table associated with this
+class.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000525" class="method-detail">
+        <a name="M000525"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000525.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000525.html');return false;">
+          <span class="method-name">columns_hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of column objects for the table associated with this
+class.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000572" class="method-detail">
+        <a name="M000572"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000572.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000572.html');return false;">
+          <span class="method-name">connected?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if a connection that&#8217;s accessible to this class have
+already been opened.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000492" class="method-detail">
+        <a name="M000492"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000492.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000492.html');return false;">
+          <span class="method-name">connection</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the connection currently associated with the class. This can also
+be used to &quot;borrow&quot; the connection to do database work unrelated
+to any of the specific Active Records.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000576" class="method-detail">
+        <a name="M000576"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000576.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000576.html');return false;">
+          <span class="method-name">connection=</span><span class="method-args">(spec)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000574" class="method-detail">
+        <a name="M000574"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000574.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000574.html');return false;">
+          <span class="method-name">connection=</span><span class="method-args">(spec)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the connection for the class.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000527" class="method-detail">
+        <a name="M000527"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000527.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000527.html');return false;">
+          <span class="method-name">content_columns</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of column objects where the primary id, all columns ending
+in &quot;_id&quot; or &quot;_count&quot;, and columns used for single table
+inheritance have been removed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000505" class="method-detail">
+        <a name="M000505"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000505.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000505.html');return false;">
+          <span class="method-name">count</span><span class="method-args">(conditions = nil, joins = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of records that meet the <tt>conditions</tt>. Zero is
+returned if no records match. Example:
+</p>
+<pre>
+  Product.count &quot;sales &gt; 1&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000506" class="method-detail">
+        <a name="M000506"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000506.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000506.html');return false;">
+          <span class="method-name">count_by_sql</span><span class="method-args">(sql)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the result of an SQL statement that should only include a COUNT(*)
+in the SELECT part.
+</p>
+<pre>
+  Product.count_by_sql &quot;SELECT COUNT(*) FROM sales s, customers c WHERE s.customer_id = c.id&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000498" class="method-detail">
+        <a name="M000498"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000498.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000498.html');return false;">
+          <span class="method-name">create</span><span class="method-args">(attributes = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates an object, instantly saves it as a record (if the validation
+permits it), and returns it. If the save fails under validations, the
+unsaved object is still returned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000508" class="method-detail">
+        <a name="M000508"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000508.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000508.html');return false;">
+          <span class="method-name">decrement_counter</span><span class="method-args">(counter_name, id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works like <a href="Base.html#M000507">increment_counter</a>, but
+decrements instead.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000500" class="method-detail">
+        <a name="M000500"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000500.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000500.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes the record with the given <tt>id</tt> without instantiating an
+object first. If an array of ids is provided, all of them are deleted.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000504" class="method-detail">
+        <a name="M000504"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000504.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000504.html');return false;">
+          <span class="method-name">delete_all</span><span class="method-args">(conditions = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes all the records that match the <tt>condition</tt> without
+instantiating the objects first (and hence not calling the destroy method).
+Example:
+</p>
+<pre>
+  Post.destroy_all &quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000501" class="method-detail">
+        <a name="M000501"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000501.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000501.html');return false;">
+          <span class="method-name">destroy</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destroys the record with the given <tt>id</tt> by instantiating the object
+and calling <a href="Base.html#M000501">destroy</a> (all the callbacks are
+the triggered). If an array of ids is provided, all of them are destroyed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000503" class="method-detail">
+        <a name="M000503"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000503.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000503.html');return false;">
+          <span class="method-name">destroy_all</span><span class="method-args">(conditions = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destroys the objects for all the records that match the <tt>condition</tt>
+by instantiating each object and calling the destroy method. Example:
+</p>
+<pre>
+  Person.destroy_all &quot;last_login &lt; '2004-04-04'&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000571" class="method-detail">
+        <a name="M000571"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000571.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000571.html');return false;">
+          <span class="method-name">establish_connection</span><span class="method-args">(spec = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Establishes the connection to the database. Accepts a hash as input where
+the :adapter key must be specified with the name of a database adapter (in
+lower-case) example for regular databases (MySQL, Postgresql, etc):
+</p>
+<pre>
+  ActiveRecord::Base.establish_connection(
+    :adapter  =&gt; &quot;mysql&quot;,
+    :host     =&gt; &quot;localhost&quot;,
+    :username =&gt; &quot;myuser&quot;,
+    :password =&gt; &quot;mypass&quot;,
+    :database =&gt; &quot;somedatabase&quot;
+  )
+</pre>
+<p>
+Example for SQLite database:
+</p>
+<pre>
+  ActiveRecord::Base.establish_connection(
+    :adapter =&gt; &quot;sqlite&quot;,
+    :database  =&gt; &quot;path/to/dbfile&quot;
+  )
+</pre>
+<p>
+Also accepts keys as strings (for parsing from yaml for example):
+</p>
+<pre>
+  ActiveRecord::Base.establish_connection(
+    &quot;adapter&quot; =&gt; &quot;sqlite&quot;,
+    &quot;database&quot;  =&gt; &quot;path/to/dbfile&quot;
+  )
+</pre>
+<p>
+The exceptions AdapterNotSpecified, AdapterNotFound and ArgumentError may
+be returned on an error.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000497" class="method-detail">
+        <a name="M000497"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000497.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000497.html');return false;">
+          <span class="method-name">exists?</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the given <tt>id</tt> represents the primary key of a
+record in the database, false otherwise. Example:
+</p>
+<pre>
+  Person.exists?(5)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000495" class="method-detail">
+        <a name="M000495"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000495.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000495.html');return false;">
+          <span class="method-name">find</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find operates with three different retrieval approaches:
+</p>
+<ul>
+<li>Find by id: This can either be a specific id (1), a list of ids (1, 5, 6),
+or an array of ids ([5, 6, 10]). If no record can be found for all of the
+listed ids, then RecordNotFound will be raised.
+
+</li>
+<li>Find first: This will return the first record matched by the options used.
+These options can either be specific conditions or merely an order. If no
+record can matched, nil is returned.
+
+</li>
+<li>Find all: This will return all the records matched by the options used. If
+no records are found, an empty array is returned.
+
+</li>
+</ul>
+<p>
+All approaches accept an option hash as their last parameter. The options
+are:
+</p>
+<ul>
+<li><tt>:conditions</tt>: An SQL fragment like &quot;administrator = 1&quot; or
+[ &quot;user_name = ?&quot;, username ]. See conditions in the intro.
+
+</li>
+<li><tt>:order</tt>: An SQL fragment like &quot;created_at DESC, name&quot;.
+
+</li>
+<li><tt>:limit</tt>: An integer determining the limit on the number of rows
+that should be returned.
+
+</li>
+<li><tt>:offset</tt>: An integer determining the offset from where the rows
+should be fetched. So at 5, it would skip the first 4 rows.
+
+</li>
+<li><tt>:joins</tt>: An SQL fragment for additional joins like &quot;LEFT JOIN
+comments ON comments.post_id = id&quot;. (Rarely needed). The records will
+be returned read-only since they will have attributes that do not
+correspond to the table&#8217;s columns. Pass :readonly =&gt; false to
+override.
+
+</li>
+<li><tt>:include</tt>: Names associations that should be loaded alongside using
+LEFT OUTER JOINs. The symbols named refer to already defined associations.
+See eager loading under Associations.
+
+</li>
+<li><tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be
+changed if you for example want to do a join, but not include the joined
+columns.
+
+</li>
+<li><tt>:readonly</tt>: Mark the returned records read-only so they cannot be
+saved or updated.
+
+</li>
+</ul>
+<p>
+Examples for find by id:
+</p>
+<pre>
+  Person.find(1)       # returns the object for ID = 1
+  Person.find(1, 2, 6) # returns an array for objects with IDs in (1, 2, 6)
+  Person.find([7, 17]) # returns an array for objects with IDs in (7, 17)
+  Person.find([1])     # returns an array for objects the object with ID = 1
+  Person.find(1, :conditions =&gt; &quot;administrator = 1&quot;, :order =&gt; &quot;created_on DESC&quot;)
+</pre>
+<p>
+Examples for find first:
+</p>
+<pre>
+  Person.find(:first) # returns the first object fetched by SELECT * FROM people
+  Person.find(:first, :conditions =&gt; [ &quot;user_name = ?&quot;, user_name])
+  Person.find(:first, :order =&gt; &quot;created_on DESC&quot;, :offset =&gt; 5)
+</pre>
+<p>
+Examples for find all:
+</p>
+<pre>
+  Person.find(:all) # returns an array of objects for all the rows fetched by SELECT * FROM people
+  Person.find(:all, :conditions =&gt; [ &quot;category IN (?)&quot;, categories], :limit =&gt; 50)
+  Person.find(:all, :offset =&gt; 10, :limit =&gt; 10)
+  Person.find(:all, :include =&gt; [ :account, :friends ])
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000496" class="method-detail">
+        <a name="M000496"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000496.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000496.html');return false;">
+          <span class="method-name">find_by_sql</span><span class="method-args">(sql)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Works like find(:all), but requires a complete SQL string. Examples:
+</p>
+<pre>
+  Post.find_by_sql &quot;SELECT p.*, c.author FROM posts p, comments c WHERE p.id = c.post_id&quot;
+  Post.find_by_sql [&quot;SELECT * FROM posts WHERE author = ? AND created &gt; ?&quot;, author_id, start_date]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000507" class="method-detail">
+        <a name="M000507"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000507.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000507.html');return false;">
+          <span class="method-name">increment_counter</span><span class="method-args">(counter_name, id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Increments the specified counter by one. So
+<tt>DiscussionBoard.increment_counter(&quot;post_count&quot;,
+discussion_board_id)</tt> would increment the &quot;post_count&quot;
+counter on the board responding to discussion_board_id. This is used for
+caching aggregate values, so that they don&#8217;t need to be computed
+every time. Especially important for looping over a collection where each
+element require a number of aggregate values. Like the DiscussionBoard that
+needs to list both the number of posts and comments.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000517" class="method-detail">
+        <a name="M000517"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000517.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000517.html');return false;">
+          <span class="method-name">inheritance_column</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines the column name for use with single table inheritance &#8212; can
+be overridden in subclasses.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000537" class="method-detail">
+        <a name="M000537"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000537.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000537.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(attributes = nil) {|self if block_given?| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+New objects can be instantiated as either empty (pass no construction
+parameter) or pre-set with attributes but not yet saved (pass a hash with
+key names matching the associated table column names). In both instances,
+valid attribute keys are determined by the column names of the associated
+table &#8212; hence you can&#8217;t have attributes that aren&#8217;t part
+of the table columns.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000515" class="method-detail">
+        <a name="M000515"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000515.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000515.html');return false;">
+          <span class="method-name">primary_key</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Defines the primary key field &#8212; can be overridden in subclasses.
+Overwriting will negate any effect of the primary_key_prefix_type setting,
+though.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000529" class="method-detail">
+        <a name="M000529"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000529.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000529.html');return false;">
+          <span class="method-name">read_methods</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Contains the names of the generated reader methods.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000573" class="method-detail">
+        <a name="M000573"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000573.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000573.html');return false;">
+          <span class="method-name">remove_connection</span><span class="method-args">(klass=self)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the connection for this class. This will close the active connection
+and the defined connection (if they exist). The result can be used as
+argument for <a href="Base.html#M000571">establish_connection</a>, for easy
+re-establishing of the connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000530" class="method-detail">
+        <a name="M000530"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000530.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000530.html');return false;">
+          <span class="method-name">reset_column_information</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Resets all the cached information about columns, which will cause them to
+be reloaded on the next request.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000516" class="method-detail">
+        <a name="M000516"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000516.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000516.html');return false;">
+          <span class="method-name">reset_primary_key</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000494" class="method-detail">
+        <a name="M000494"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000494.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000494.html');return false;">
+          <span class="method-name">reset_subclasses</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000514" class="method-detail">
+        <a name="M000514"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000514.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000514.html');return false;">
+          <span class="method-name">reset_table_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000518" class="method-detail">
+        <a name="M000518"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000518.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000518.html');return false;">
+          <span class="method-name">sequence_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Default <a href="Base.html#M000518">sequence_name</a>. Use <a
+href="Base.html#M000522">set_sequence_name</a> to override.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000511" class="method-detail">
+        <a name="M000511"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000511.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000511.html');return false;">
+          <span class="method-name">serialize</span><span class="method-args">(attr_name, class_name = Object)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies that the attribute by the name of <tt>attr_name</tt> should be
+serialized before saving to the database and unserialized after loading
+from the database. The serialization is done through YAML. If
+<tt>class_name</tt> is specified, the serialized object must be of that
+class on retrieval or <tt>SerializationTypeMismatch</tt> will be raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000512" class="method-detail">
+        <a name="M000512"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000512.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000512.html');return false;">
+          <span class="method-name">serialized_attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of all the attributes that have been specified for
+serialization as keys and their class restriction as values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000521" class="method-detail">
+        <a name="M000521"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000521.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000521.html');return false;">
+          <span class="method-name">set_inheritance_column</span><span class="method-args">( value=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the name of the inheritance column to use to the given value, or (if
+the value # is nil or false) to the value returned by the given block.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Project &lt; ActiveRecord::Base
+    set_inheritance_column do
+      original_inheritance_column + &quot;_id&quot;
+    end
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000520" class="method-detail">
+        <a name="M000520"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000520.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000520.html');return false;">
+          <span class="method-name">set_primary_key</span><span class="method-args">( value=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the name of the primary key column to use to the given value, or (if
+the value is nil or false) to the value returned by the given block.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Project &lt; ActiveRecord::Base
+    set_primary_key &quot;sysid&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000522" class="method-detail">
+        <a name="M000522"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000522.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000522.html');return false;">
+          <span class="method-name">set_sequence_name</span><span class="method-args">( value=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the name of the sequence to use when generating ids to the given
+value, or (if the value is nil or false) to the value returned by the given
+block. This is required for Oracle and is useful for any database which
+relies on sequences for primary key generation.
+</p>
+<p>
+Setting the sequence name when using other dbs will have no effect. If a
+sequence name is not explicitly set when using Oracle, it will default to
+the commonly used pattern of: #{<a
+href="Base.html#M000513">table_name</a>}_seq
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Project &lt; ActiveRecord::Base
+    set_sequence_name &quot;projectseq&quot;   # default would have been &quot;project_seq&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000519" class="method-detail">
+        <a name="M000519"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000519.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000519.html');return false;">
+          <span class="method-name">set_table_name</span><span class="method-args">( value=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the table name to use to the given value, or (if the value is nil or
+false) to the value returned by the given block.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  class Project &lt; ActiveRecord::Base
+    set_table_name &quot;project&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000532" class="method-detail">
+        <a name="M000532"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000532.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000532.html');return false;">
+          <span class="method-name">silence</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Silences the logger for the duration of the block.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000523" class="method-detail">
+        <a name="M000523"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000523.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000523.html');return false;">
+          <span class="method-name">table_exists?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates whether the table associated with this class exists
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000513" class="method-detail">
+        <a name="M000513"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000513.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000513.html');return false;">
+          <span class="method-name">table_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Guesses the table name (in forced lower-case) based on the name of the
+class in the inheritance hierarchy descending directly from ActiveRecord.
+So if the hierarchy looks like: Reply &lt; Message &lt; ActiveRecord, then
+Message is used to guess the table name from even when called on Reply. The
+rules used to do the guess are handled by the Inflector class in Active
+Support, which knows almost all common English inflections (report a bug if
+your inflection isn&#8217;t covered).
+</p>
+<p>
+Additionally, the class-level table_name_prefix is prepended to the <a
+href="Base.html#M000513">table_name</a> and the table_name_suffix is
+appended. So if you have &quot;myapp_&quot; as a prefix, the table name
+guess for an Account class becomes &quot;myapp_accounts&quot;.
+</p>
+<p>
+You can also overwrite this class method to allow for unguessable links,
+such as a Mouse class with a link to a &quot;mice&quot; table. Example:
+</p>
+<pre>
+  class Mouse &lt; ActiveRecord::Base
+     set_table_name &quot;mice&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000535" class="method-detail">
+        <a name="M000535"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000535.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000535.html');return false;">
+          <span class="method-name">threaded_connections</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deprecated
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000536" class="method-detail">
+        <a name="M000536"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000536.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000536.html');return false;">
+          <span class="method-name">threaded_connections=</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deprecated
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000499" class="method-detail">
+        <a name="M000499"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000499.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000499.html');return false;">
+          <span class="method-name">update</span><span class="method-args">(id, attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finds the record from the passed <tt>id</tt>, instantly saves it with the
+passed <tt>attributes</tt> (if the validation permits it), and returns it.
+If the save fails under validations, the unsaved object is still returned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000502" class="method-detail">
+        <a name="M000502"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000502.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000502.html');return false;">
+          <span class="method-name">update_all</span><span class="method-args">(updates, conditions = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates all records with the SET-part of an SQL update statement in
+<tt>updates</tt> and returns an integer with the number of rows updated. A
+subset of the records can be selected by specifying <tt>conditions</tt>.
+Example:
+</p>
+<pre>
+  Billing.update_all &quot;category = 'authorized', approved = 1&quot;, &quot;author = 'David'&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000533" class="method-detail">
+        <a name="M000533"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000533.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000533.html');return false;">
+          <span class="method-name">with_scope</span><span class="method-args">(method_scoping = {}) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Scope parameters to method calls within the block. Takes a hash of
+method_name =&gt; parameters hash. method_name may be :find or :create.
+:find parameters may include the <tt>:conditions</tt>, <tt>:joins</tt>,
+<tt>:offset</tt>, <tt>:limit</tt>, and <tt>:readonly</tt> options. :create
+parameters are an attributes hash.
+</p>
+<pre>
+  Article.with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot; }, :create =&gt; { :blog_id =&gt; 1 }) do
+    Article.find(1) # =&gt; SELECT * from articles WHERE blog_id = 1 AND id = 1
+    a = Article.create(1)
+    a.blog_id == 1
+  end
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000563" class="method-detail">
+        <a name="M000563"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000563.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000563.html');return false;">
+          <span class="method-name">==</span><span class="method-args">(comparison_object)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the <tt>comparison_object</tt> is the same object, or is of
+the same type and has the same id.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000554" class="method-detail">
+        <a name="M000554"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000554.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000554.html');return false;">
+          <span class="method-name">[]</span><span class="method-args">(attr_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the value of the attribute identified by <tt>attr_name</tt> after
+it has been typecast (for example, &quot;2004-12-12&quot; in a data column
+is cast to a date object, like Date.new(2004, 12, 12)). (Alias for the
+protected read_attribute method).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000555" class="method-detail">
+        <a name="M000555"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000555.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000555.html');return false;">
+          <span class="method-name">[]=</span><span class="method-args">(attr_name, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates the attribute identified by <tt>attr_name</tt> with the specified
+<tt>value</tt>. (Alias for the protected write_attribute method).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000561" class="method-detail">
+        <a name="M000561"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000561.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000561.html');return false;">
+          <span class="method-name">attribute_names</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of names for the attributes available on this object
+sorted alphabetically.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000559" class="method-detail">
+        <a name="M000559"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000559.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000559.html');return false;">
+          <span class="method-name">attribute_present?</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the specified <tt>attribute</tt> has been set by the user
+or by a database load and is neither nil nor empty? (the latter only
+applies to objects that respond to empty?, most notably Strings).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000557" class="method-detail">
+        <a name="M000557"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000557.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000557.html');return false;">
+          <span class="method-name">attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of all the attributes with their names as keys and clones of
+their objects as values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000556" class="method-detail">
+        <a name="M000556"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000556.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000556.html');return false;">
+          <span class="method-name">attributes=</span><span class="method-args">(attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Allows you to set all the attributes at once by passing in a hash with keys
+matching the attribute names (which again matches the column names).
+Sensitive attributes can be protected from this form of mass-assignment by
+using the <tt><a href="Base.html#M000509">attr_protected</a></tt> macro. Or
+you can alternatively specify which attributes <b>can</b> be accessed in
+with the <tt><a href="Base.html#M000510">attr_accessible</a></tt> macro.
+Then all the attributes not included in that won&#8217;t be allowed to be
+mass-assigned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000558" class="method-detail">
+        <a name="M000558"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000558.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000558.html');return false;">
+          <span class="method-name">attributes_before_type_cast</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of cloned attributes before typecasting and deserialization.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000575" class="method-detail">
+        <a name="M000575"></a>
+
+        <div class="method-heading">
+          <span class="method-name">attributes_with_quotes_pre_oci</span><span class="method-args">(include_primary_key = true)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for attributes_with_quotes
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000544" class="method-detail">
+        <a name="M000544"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000544.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000544.html');return false;">
+          <span class="method-name">clone</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a clone of the record that hasn&#8217;t been assigned an id yet and
+is treated as a new record.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000562" class="method-detail">
+        <a name="M000562"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000562.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000562.html');return false;">
+          <span class="method-name">column_for_attribute</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the column object for the named attribute.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000493" class="method-detail">
+        <a name="M000493"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000493.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000493.html');return false;">
+          <span class="method-name">connection</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the connection currently associated with the class. This can also
+be used to &quot;borrow&quot; the connection to do database work that
+isn&#8217;t easily done without going straight to SQL.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000549" class="method-detail">
+        <a name="M000549"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000549.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000549.html');return false;">
+          <span class="method-name">decrement</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes the <tt>attribute</tt> to zero if nil and subtracts one. Only
+makes sense for number-based attributes. Returns self.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000550" class="method-detail">
+        <a name="M000550"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000550.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000550.html');return false;">
+          <span class="method-name">decrement!</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decrements the <tt>attribute</tt> and saves the record.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000543" class="method-detail">
+        <a name="M000543"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000543.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000543.html');return false;">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes the record in the database and freezes this instance to reflect
+that no changes should be made (since they can&#8217;t be persisted).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000564" class="method-detail">
+        <a name="M000564"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000564.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000564.html');return false;">
+          <span class="method-name">eql?</span><span class="method-args">(comparison_object)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to ==
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000567" class="method-detail">
+        <a name="M000567"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000567.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000567.html');return false;">
+          <span class="method-name">freeze</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Just freeze the attributes hash, such that associations are still
+accessible even on destroyed records.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000568" class="method-detail">
+        <a name="M000568"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000568.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000568.html');return false;">
+          <span class="method-name">frozen?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000560" class="method-detail">
+        <a name="M000560"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000560.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000560.html');return false;">
+          <span class="method-name">has_attribute?</span><span class="method-args">(attr_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the given attribute is in the attributes hash
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000565" class="method-detail">
+        <a name="M000565"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000565.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000565.html');return false;">
+          <span class="method-name">hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to id in order to allow two records of the same type and id to
+work with something like:
+</p>
+<pre>
+  [ Person.find(1), Person.find(2), Person.find(3) ] &amp; [ Person.find(1), Person.find(4) ] # =&gt; [ Person.find(1) ]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000538" class="method-detail">
+        <a name="M000538"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000538.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000538.html');return false;">
+          <span class="method-name">id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A model instance&#8217;s primary key is always available as model.id
+whether you name it the default &#8216;id&#8217; or set it to something
+else.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000540" class="method-detail">
+        <a name="M000540"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000540.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000540.html');return false;">
+          <span class="method-name">id=</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the primary ID.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000547" class="method-detail">
+        <a name="M000547"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000547.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000547.html');return false;">
+          <span class="method-name">increment</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes the <tt>attribute</tt> to zero if nil and adds one. Only makes
+sense for number-based attributes. Returns self.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000548" class="method-detail">
+        <a name="M000548"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000548.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000548.html');return false;">
+          <span class="method-name">increment!</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Increments the <tt>attribute</tt> and saves the record.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000541" class="method-detail">
+        <a name="M000541"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000541.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000541.html');return false;">
+          <span class="method-name">new_record?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if this object hasn&#8217;t been saved yet &#8212; that is, a
+record for the object doesn&#8217;t exist yet.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000570" class="method-detail">
+        <a name="M000570"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000570.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000570.html');return false;">
+          <span class="method-name">readonly!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000569" class="method-detail">
+        <a name="M000569"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000569.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000569.html');return false;">
+          <span class="method-name">readonly?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000553" class="method-detail">
+        <a name="M000553"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000553.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000553.html');return false;">
+          <span class="method-name">reload</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reloads the attributes of this object from the database.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000566" class="method-detail">
+        <a name="M000566"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000566.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000566.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">(method, include_priv = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A Person object with a name attribute can ask
+person.respond_to?(&quot;name&quot;),
+person.respond_to?(&quot;name=&quot;), and
+person.respond_to?(&quot;name?&quot;) which will all return true.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000542" class="method-detail">
+        <a name="M000542"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000542.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000542.html');return false;">
+          <span class="method-name">save</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <ul>
+<li>No record exists: Creates a new record with values matching those of the
+object attributes.
+
+</li>
+<li>A record does exist: Updates the record with values matching those of the
+object attributes.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000539" class="method-detail">
+        <a name="M000539"></a>
+
+        <div class="method-heading">
+          <span class="method-name">to_param</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Base.html#M000538">id</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000551" class="method-detail">
+        <a name="M000551"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000551.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000551.html');return false;">
+          <span class="method-name">toggle</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Turns an <tt>attribute</tt> that&#8217;s currently true into false and vice
+versa. Returns self.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000552" class="method-detail">
+        <a name="M000552"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000552.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000552.html');return false;">
+          <span class="method-name">toggle!</span><span class="method-args">(attribute)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Toggles the <tt>attribute</tt> and saves the record.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000545" class="method-detail">
+        <a name="M000545"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000545.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000545.html');return false;">
+          <span class="method-name">update_attribute</span><span class="method-args">(name, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates a single attribute and saves the record. This is especially useful
+for boolean flags on existing records. Note: This method is overwritten by
+the Validation module that&#8217;ll make sure that updates made with this
+method doesn&#8217;t get subjected to validation checks. Hence, attributes
+can be updated even if the full object isn&#8217;t valid.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000546" class="method-detail">
+        <a name="M000546"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M000546.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M000546.html');return false;">
+          <span class="method-name">update_attributes</span><span class="method-args">(attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Updates all the attributes from the passed-in Hash and saves the record. If
+the object is invalid, the saving will fail and false will be returned.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

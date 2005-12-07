@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hoge PUBLIC "-//Hoge Version 1.0//JA"
+                      "http://www.yoshidam.net/hoge/1.0/hoge.dtd" [
+<!ELEMENT hoge (hoge:a|hoge:b)>
+<!ATTLIST hoge aaa (AAAA|BBBB|CCCC) 'AAAA'
+               bbb CDATA #IMPLIED
+               ccc ID #IMPLIED
+               ddd NMTOKEN 'aaa'
+               eee NMTOKENS #REQUIRED>
+<!ELEMENT hoge:a EMPTY >
+<!ELEMENT hoge:b ANY >
+<!ELEMENT hoge:c (hoge:b?)>
+<!ELEMENT d (#PCDATA|hoge:a|hoge:b|hoge:c)*>
+<!ELEMENT e (hoge:a|hoge:b|hoge:c)?>
+<!ENTITY aaa "AAAAAAA">
+]>
+
+<hoge:ahoge xmlns:hoge="http://www.yoshidam.net/hoge" eee='a b c'>
+<aaa:aaa xmlns:aaa="http://aaaa" aaa:hoge="aaa"/>
+hoge
+</hoge:ahoge>

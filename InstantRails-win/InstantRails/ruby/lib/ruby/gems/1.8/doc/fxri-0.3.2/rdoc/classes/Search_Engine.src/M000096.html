@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>on_search (Search_Engine)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/Search_Engine.rb, line 10</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">on_search</span>
+                <span class="ruby-comment cmt"># restart current search</span>
+                <span class="ruby-ivar">@end_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$cfg</span>.<span class="ruby-identifier">search_delay</span>
+                <span class="ruby-ivar">@restart_search</span> = <span class="ruby-keyword kw">true</span>
+                <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">search_label</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">false</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@search_thread</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@search_thread</span>.<span class="ruby-identifier">status</span>
+                        
+                <span class="ruby-ivar">@search_thread</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@search_thread</span>) <span class="ruby-keyword kw">do</span>
+                        <span class="ruby-keyword kw">begin</span>
+                                <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">search_label</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">false</span>
+                                <span class="ruby-comment cmt"># wait untill deadline</span>
+                                <span class="ruby-keyword kw">while</span> (<span class="ruby-identifier">t</span> = (<span class="ruby-ivar">@end_time</span> <span class="ruby-operator">-</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>)) <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                                        <span class="ruby-identifier">sleep</span>(<span class="ruby-identifier">t</span>)
+                                <span class="ruby-keyword kw">end</span>
+                                
+                                <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">gui_mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+                                        <span class="ruby-comment cmt"># the thread has to use the gui mutex inside</span>
+                                        <span class="ruby-ivar">@restart_search</span> = <span class="ruby-keyword kw">false</span>
+                                        
+                                        <span class="ruby-identifier">match_data</span> = <span class="ruby-identifier">get_match_data</span>
+                                
+                                        <span class="ruby-comment cmt"># remove all items</span>
+                                        <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">packet_list</span>.<span class="ruby-identifier">dirty_clear</span>
+                                        
+                                        <span class="ruby-comment cmt"># add all items that match the search criteria</span>
+                                        <span class="ruby-identifier">status_text_deadline</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$cfg</span>.<span class="ruby-identifier">status_line_update_interval</span>
+                                        <span class="ruby-ivar">@data</span>.<span class="ruby-identifier">items</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+                                                <span class="ruby-comment cmt">#item.parent = @gui.packet_list if match?(item, match_data)</span>
+                                                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">match?</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">match_data</span>)
+                                                        <span class="ruby-identifier">item</span>.<span class="ruby-identifier">show</span>
+                                                        <span class="ruby-identifier">now</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+                                                        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">now</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">status_text_deadline</span>
+                                                                <span class="ruby-identifier">update_search_status_text</span>
+                                                                <span class="ruby-identifier">status_text_deadline</span> = <span class="ruby-identifier">now</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$cfg</span>.<span class="ruby-identifier">status_line_update_interval</span>
+                                                        <span class="ruby-keyword kw">end</span>
+                                                <span class="ruby-keyword kw">end</span>
+                                                <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@restart_search</span>
+                                        <span class="ruby-keyword kw">end</span>
+                                        <span class="ruby-identifier">update_search_status_text</span>
+                                        
+                                        <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">packet_list</span>.<span class="ruby-identifier">numItems</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>)
+                                                <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">packet_list</span>.<span class="ruby-identifier">setCurrentItem</span>(<span class="ruby-value">0</span>) 
+                                                <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">packet_list</span>.<span class="ruby-identifier">selectItem</span>(<span class="ruby-value">0</span>)
+                                                <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">main</span>.<span class="ruby-identifier">show_info</span>(<span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">packet_list</span>.<span class="ruby-identifier">getItem</span>(<span class="ruby-value">0</span>).<span class="ruby-identifier">packet_item</span>.<span class="ruby-identifier">data</span>)
+                                        <span class="ruby-keyword kw">end</span>
+                                        <span class="ruby-ivar">@gui</span>.<span class="ruby-identifier">search_label</span>.<span class="ruby-identifier">enabled</span> = <span class="ruby-keyword kw">true</span>
+                                        
+                                <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># synchronize</span>
+                        <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">while</span> <span class="ruby-ivar">@restart_search</span><span class="ruby-comment cmt"># || match_data != @gui.search_field.text.downcase.split</span>
+                <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#thread.new</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

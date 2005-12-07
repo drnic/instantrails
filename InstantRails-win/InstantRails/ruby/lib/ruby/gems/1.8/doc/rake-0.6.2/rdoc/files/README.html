@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sun Oct 09 01:49:42 Central Daylight Time 2005</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>RAKE &#8212; Ruby Make</h1>
+<p>
+Supporting Rake version: 0.6
+</p>
+<p>
+This package contains Rake, a simple ruby build program with capabilities
+similar to make.
+</p>
+<p>
+Rake has the following features:
+</p>
+<ul>
+<li>Rakefiles (rake&#8217;s version of Makefiles) are completely defined in
+standard Ruby syntax. No XML files to edit. No quirky Makefile syntax to
+worry about (is that a tab or a space?)
+
+</li>
+<li>Users can specify tasks with prerequisites.
+
+</li>
+<li>Rake supports rule patterns to sythesize implicit tasks.
+
+</li>
+<li>Flexible FileLists that act like arrays but know about manipulating file
+names and paths.
+
+</li>
+<li>A library of prepackaged tasks to make building rakefiles easier.
+
+</li>
+</ul>
+<h2>Download</h2>
+<p>
+The latest version of rake can be found at
+</p>
+<ul>
+<li><a
+href="http://rubyforge.org/project/showfiles.php?group_id=50">rubyforge.org/project/showfiles.php?group_id=50</a>
+
+</li>
+</ul>
+<h2>Installation</h2>
+<h3>Normal Installation</h3>
+<p>
+You can install rake with the following command.
+</p>
+<pre>
+  % ruby install.rb
+</pre>
+<p>
+from its distribution directory.
+</p>
+<h3>GEM Installation</h3>
+<p>
+Download and install rake with the following.
+</p>
+<pre>
+   gem install --remote rake
+</pre>
+<h2>Online Resources</h2>
+<h2>Rake References</h2>
+<ul>
+<li>Rake Documentation Home: <a
+href="http://docs.rubyrake.org">docs.rubyrake.org</a>
+
+</li>
+<li>Rake Project Page: <a
+href="http://rubyforge.org/projects/rake">rubyforge.org/projects/rake</a>
+
+</li>
+<li>Rake API Documents: <a
+href="http://rake.rubyforge.org">rake.rubyforge.org</a>
+
+</li>
+</ul>
+<h2>Presentations and Articles about Rake</h2>
+<ul>
+<li>Jim Weirich\u2019s 2003 RubyConf presentation: <a
+href="http://onestepback.org/articles/buildingwithrake">onestepback.org/articles/buildingwithrake</a>/
+
+</li>
+<li>Martin Fowler\u2019s article on Rake: <a
+href="http://martinfowler.com/articles/rake.html">martinfowler.com/articles/rake.html</a>
+
+</li>
+</ul>
+<h3>Road Map</h3>
+<ul>
+<li>If you want to see how to invoke rake to build your projects, read on.
+
+</li>
+<li>If you want to see the format of a Rakefile, see <a
+href="http://rake.rubyforge.org/files/doc/rakefile_rdoc.html">doc/rakefile.rdoc</a>.
+
+</li>
+<li>If you want to see the original announcement of rake, see <a
+href="http://rake.rubyforge.org/files/doc/rational_rdoc.html">doc/rational.rdoc</a>.
+
+</li>
+<li>If you want to see a glossary of terms, see <a
+href="http://rake.rubyforge.org/files/doc/glossary_rdoc.html">doc/glossary.rdoc</a>.
+
+</li>
+</ul>
+<h2>Simple Example</h2>
+<p>
+Once installed, you can run rake as follows &#8230;
+</p>
+<pre>
+  % rake [options ...]  [VAR=VALUE ...]  [tasks...]
+</pre>
+<p>
+Type &quot;rake &#8212;help&quot; for an up-to-date option summary.
+</p>
+<p>
+Invoking <tt>rake</tt> without any options or targets causes rake to look
+for a rakefile and invoke the default task in that rakefile.
+</p>
+<p>
+For example, given a simple rakefile like this &#8230;
+</p>
+<pre>
+  task :default =&gt; [:test]
+
+  task :test do
+    ruby &quot;test/unittest.rb&quot;
+  end
+</pre>
+<p>
+The command
+</p>
+<pre>
+  $ rake
+</pre>
+<p>
+will invoke the <tt>default</tt> task. As <tt>default</tt> satisfies its
+prerequisites, the <tt>test</tt> task will run the unit tests for the
+package.
+</p>
+<h2>Other Make Reinvisionings &#8230;</h2>
+<p>
+Rake is a late entry in the make replacement field. Here are links to other
+projects with similar (and not so similar) goals.
+</p>
+<ul>
+<li><a href="http://www.a-a-p.org">www.a-a-p.org</a> &#8212; Make in Python
+
+</li>
+<li><a
+href="http://www.aromatic.com/tools/jam.txt">www.aromatic.com/tools/jam.txt</a>
+&#8212; JAM, Java Automated Make
+
+</li>
+<li><a href="http://ant.apache.org">ant.apache.org</a> &#8212; The Ant project
+
+</li>
+<li><a
+href="http://www.perl.com/language/ppt/src/make/index.html">www.perl.com/language/ppt/src/make/index.html</a>
+&#8212; Make from the Perl Power Tools implementation.
+
+</li>
+</ul>
+<h2>Credits</h2>
+<dl>
+<dt><b>Ryan Dlugosz</b></dt><dd>For the initial conversation that sparked Rake.
+
+</dd>
+<dt><b>nobu.nokada@softhome.net</b></dt><dd>For the initial patch for rule support.
+
+</dd>
+<dt><b>Tilman Sauerbeck &lt;tilman@code-monkey.de&gt;</b></dt><dd>For the recursive rule patch.
+
+</dd>
+</dl>
+<h2>License</h2>
+<p>
+Rake is available under an MIT-style license.
+</p>
+<p>
+Copyright &#169; 2003, 2004 Jim Weirich
+</p>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+</p>
+<p>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+<h2>Support</h2>
+<p>
+The Rake homepage is <a
+href="http://rake.rubyforge.org">rake.rubyforge.org</a>. You can find the
+Rake RubyForge page at <a
+href="http://rubyforge.org/projects/rake">rubyforge.org/projects/rake</a>.
+</p>
+<p>
+Feel free to submit commits or feature requests. If you send a patch,
+remember to update the corresponding unit tests. If fact, I prefer new
+feature to be submitted in the form of new unit tests.
+</p>
+<p>
+For other information, feel free to ask on the ruby-talk mailing list
+(which is mirrored to comp.lang.ruby) or contact <a
+href="mailto:jim@weirichhouse.org">jim@weirichhouse.org</a>.
+</p>
+<hr size="2"></hr><h1>Usage</h1>
+<p>
+Rake is invoked from the command line using:
+</p>
+<pre>
+   % rake [&lt;em&gt;options&lt;/em&gt; ...]  [&lt;em&gt;VAR&lt;/em&gt;=&lt;em&gt;VALUE&lt;/em&gt;]  [&lt;em&gt;targets&lt;/em&gt; ...]
+</pre>
+<p>
+Options are:
+</p>
+<dl>
+<dt><tt><em>name</em>=<em>value</em></tt></dt><dd>Set the environment variable <em>name</em> to <em>value</em> during the
+execution of the <b>rake</b> command. You can access the value by using
+ENV[&#8216;<em>name</em>&#8217;].
+
+</dd>
+<dt><tt>&#8212;classic-namespace</tt> (-n)</dt><dd>Import the Task, FileTask, and FileCreateTask into the top-level scope to
+be compatible with older versions of Rake. Alternatively you can include
+the line <tt>require &#8216;rake/classic_namespace&#8216;</tt> in your
+Rakefile to get the classic behavior.
+
+</dd>
+<dt><tt>&#8212;dry-run</tt> (-n)</dt><dd>Do a dry run. Print the tasks invoked and executed, but do not actually
+execute any of the actions.
+
+</dd>
+<dt><tt>&#8212;help</tt>  (-H)</dt><dd>Display some help text and exit.
+
+</dd>
+<dt><tt>&#8212;libdir</tt> <em>directory</em>  (-I)</dt><dd>Add <em>directory</em> to the list of directories searched for require.
+
+</dd>
+<dt><tt>&#8212;nosearch</tt>  (-N)</dt><dd>Do not search for a Rakefile in parent directories.
+
+</dd>
+<dt><tt>&#8212;prereqs</tt>  (-P)</dt><dd>Display a list of all tasks and their immediate prerequisites.
+
+</dd>
+<dt><tt>&#8212;quiet</tt> (-q)</dt><dd>Do not echo commands from <a
+href="../classes/FileUtils.html">FileUtils</a>.
+
+</dd>
+<dt><tt>&#8212;rakefile</tt> <em>filename</em> (-f)</dt><dd>Use <em>filename</em> as the name of the rakefile. The default rakefile
+names are <tt>rakefile</tt> and <tt>Rakefile</tt> (with <tt>rakefile</tt>
+taking precedence). If the rakefile is not found in the current directory,
+<tt>rake</tt> will search parent directories for a match. The directory
+where the Rakefile is found will become the current directory for the
+actions executed in the Rakefile.
+
+</dd>
+<dt><tt>&#8212;require</tt> <em>name</em> (-r)</dt><dd>Require <em>name</em> before executing the Rakefile.
+
+</dd>
+<dt><tt>&#8212;tasks</tt> (-T)</dt><dd>Display a list of the major tasks and their comments. Comments are defined
+using the &quot;desc&quot; command.
+
+</dd>
+<dt><tt>&#8212;trace</tt> (-t)</dt><dd>Turn on invoke/execute tracing. Also enable full backtrace on errors.
+
+</dd>
+<dt><tt>&#8212;usage</tt> (-h)</dt><dd>Display a usage message and exit.
+
+</dd>
+<dt><tt>&#8212;verbose</tt> (-v)</dt><dd>Echo the <a href="../classes/Sys.html">Sys</a> commands to standard output.
+
+</dd>
+<dt><tt>&#8212;version</tt> (-V)</dt><dd>Display the program version and exit.
+
+</dd>
+</dl>
+<p>
+In addition, any command line option of the form
+<em>VAR</em>=<em>VALUE</em> will be added to the environment hash
+<tt>ENV</tt> and may be tested in the Rakefile.
+</p>
+<hr size="1"></hr><h1>Rakefile Format</h1>
+<p>
+See <a
+href="http://rake.rubyforge.org/files/doc/rakefile_rdoc.html">doc/rakefile.rdoc</a>
+for details on the Rakefile format.
+</p>
+<hr size="1"></hr><h1>Other stuff</h1>
+<table>
+<tr><td valign="top">Author:</td><td>Jim Weirich &lt;jim@weirichhouse.org&gt;
+
+</td></tr>
+<tr><td valign="top">Requires:</td><td>Ruby 1.8.0 or later
+
+</td></tr>
+<tr><td valign="top">License:</td><td>Copyright 2003, 2004 by Jim Weirich. Released under an MIT-style license.
+See the LICENSE file included in the distribution.
+
+</td></tr>
+</table>
+<h2>Warranty</h2>
+<p>
+This software is provided &quot;as is&quot; and without any express or
+implied warranties, including, without limitation, the implied warranties
+of merchantibility and fitness for a particular purpose.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

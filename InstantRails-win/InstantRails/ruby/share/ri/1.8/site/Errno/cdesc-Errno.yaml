@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+class_methods: []
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Ruby exception objects are subclasses of <tt>Exception</tt>. However, operating
+      systems typically report errors using plain integers. Module <tt>Errno</tt> is
+      created dynamically to map these operating system errors to Ruby classes, with
+      each error number generating its own subclass of <tt>SystemCallError</tt>. As
+      the subclass is created in module <tt>Errno</tt>, its name will start
+      <tt>Errno::</tt>."
+  - !ruby/struct:SM::Flow::P 
+    body: "The names of the <tt>Errno::</tt> classes depend on the environment in which
+      Ruby runs. On a typical Unix or Windows platform, there are <tt>Errno</tt>
+      classes such as <tt>Errno::EACCES</tt>, <tt>Errno::EAGAIN</tt>,
+      <tt>Errno::EINTR</tt>, and so on."
+  - !ruby/struct:SM::Flow::P 
+    body: The integer operating system error number corresponding to a particular error is available as the class constant <tt>Errno::</tt><em>error</em><tt>::Errno</tt>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         Errno::EACCES::Errno   #=&gt; 13
+         Errno::EAGAIN::Errno   #=&gt; 11
+         Errno::EINTR::Errno    #=&gt; 4
+
+  - !ruby/struct:SM::Flow::P 
+    body: The full list of operating system errors on your particular platform are available as the constants of <tt>Errno</tt>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "   Errno.constants   #=&gt; E2BIG, EACCES, EADDRINUSE, EADDRNOTAVAIL, ...\n"
+constants: []
+full_name: Errno
+includes: []
+instance_methods: []
+name: Errno
+superclass: 

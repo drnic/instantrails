@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns the (real) group ID for this process.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "   Process.gid   #=&gt; 500\n"
+full_name: Process#gid
+is_singleton: false
+name: gid
+params: >
+  Process.gid           => fixnum
+
+  Process::GID.rid      => fixnum
+
+  Process::Sys.getgid   => fixnum
+
+visibility: public

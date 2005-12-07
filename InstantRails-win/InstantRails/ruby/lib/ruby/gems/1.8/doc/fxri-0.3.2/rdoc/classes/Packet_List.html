@@ -1,0 +1,506 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Packet_List</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Packet_List</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/Packet_List_rb.html">
+                lib/Packet_List.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                FXIconList
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Packet_List.html">Packet_List</a> is a more convenient wrapper for
+FXIconList. This class has to be used in combination with <a
+href="Packet_Item.html">Packet_Item</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000044">add_header</a>&nbsp;&nbsp;
+      <a href="#M000046">add_item</a>&nbsp;&nbsp;
+      <a href="#M000048">appendItem</a>&nbsp;&nbsp;
+      <a href="#M000053">clear</a>&nbsp;&nbsp;
+      <a href="#M000050">clearItems</a>&nbsp;&nbsp;
+      <a href="#M000038">create</a>&nbsp;&nbsp;
+      <a href="#M000045">create_item</a>&nbsp;&nbsp;
+      <a href="#M000054">dirty_clear</a>&nbsp;&nbsp;
+      <a href="#M000052">getContentHeight</a>&nbsp;&nbsp;
+      <a href="#M000051">getContentWidth</a>&nbsp;&nbsp;
+      <a href="#M000037">getItem</a>&nbsp;&nbsp;
+      <a href="#M000036">new</a>&nbsp;&nbsp;
+      <a href="#M000040">on_cmd_header</a>&nbsp;&nbsp;
+      <a href="#M000049">removeItem</a>&nbsp;&nbsp;
+      <a href="#M000047">remove_item</a>&nbsp;&nbsp;
+      <a href="#M000042">reversed?</a>&nbsp;&nbsp;
+      <a href="#M000041">sortItems</a>&nbsp;&nbsp;
+      <a href="#M000055">sort_function</a>&nbsp;&nbsp;
+      <a href="#M000043">sort_index</a>&nbsp;&nbsp;
+      <a href="#M000039">update_header_width</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Responder</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000036.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000036.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(data, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a new <a href="Packet_List.html">Packet_List</a>. All parameters are
+passed to the parental constructor FXIconList.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000044.html');return false;">
+          <span class="method-name">add_header</span><span class="method-args">(text, width) {|item_column_text| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a new header. The block that you need to specify is used to convert a
+string of this column into something that can be used for sorting. The
+yielded parameter item_colum_text is the text of one item of this column.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000046.html');return false;">
+          <span class="method-name">add_item</span><span class="method-args">(item)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a new <a href="Packet_Item.html">Packet_Item</a> to this list.Called
+from within <a href="Packet_Item.html">Packet_Item</a> during <a
+href="Packet_Item.html#M000123">Packet_Item#parent</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000048.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000048.html');return false;">
+          <span class="method-name">appendItem</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000053.html');return false;">
+          <span class="method-name">clear</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removes all items from the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000050.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000050.html');return false;">
+          <span class="method-name">clearItems</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove all items, but do this within the mutex to be sure everything goes
+ok.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000038.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000038.html');return false;">
+          <span class="method-name">create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000045.html');return false;">
+          <span class="method-name">create_item</span><span class="method-args">(icon, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a new <a href="Packet_Item.html">Packet_Item</a>. After the icon,
+you can specify the text for each of the columns. Here is an example:
+</p>
+<pre>
+ list.create_item(my_icon, &quot;Martin&quot;, &quot;Ankerl&quot;, &quot;2005&quot;)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000054.html');return false;">
+          <span class="method-name">dirty_clear</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+use in combination with <a
+href="Packet_Item.html#M000125">Packet_Item#show</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000052.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000052.html');return false;">
+          <span class="method-name">getContentHeight</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This may be called when the item is currently beeing deleted. this method
+works only before or after the delete, therefore the mutex is necessary.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000051.html');return false;">
+          <span class="method-name">getContentWidth</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This may be called when the item is currently beeing deleted. this method
+works only before or after the delete, therefore the mutex is necessary.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000037.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000037.html');return false;">
+          <span class="method-name">getItem</span><span class="method-args">(num)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000040.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000040.html');return false;">
+          <span class="method-name">on_cmd_header</span><span class="method-args">(header_item_index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called whenever a header is clicked
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000049.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000049.html');return false;">
+          <span class="method-name">removeItem</span><span class="method-args">(*args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Before actually deleting, the item has to be marked as deleted to prevent
+drawing afterwards.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000047.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000047.html');return false;">
+          <span class="method-name">remove_item</span><span class="method-args">(item)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the given <a href="Packet_Item.html">Packet_Item</a> from the list.
+This is slow, because the item has to be searched with a linear search. To
+remove all items use <a href="Packet_List.html#M000053">clear</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000042.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000042.html');return false;">
+          <span class="method-name">reversed?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check if the search order is reversed (happens when clicking on the same
+header twice)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000041.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000041.html');return false;">
+          <span class="method-name">sortItems</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000055.html');return false;">
+          <span class="method-name">sort_function</span><span class="method-args">(header_item_index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the sort for a given header index. The sort function has been supplied
+when calling <a href="Packet_List.html#M000036">new</a>. This is used from
+<a href="Packet_Item.html">Packet_Item</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000043.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000043.html');return false;">
+          <span class="method-name">sort_index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get index of the header that should be used for sorting
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="Packet_List.src/M000039.html" target="Code" class="method-signature"
+            onclick="popupCode('Packet_List.src/M000039.html');return false;">
+          <span class="method-name">update_header_width</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+HACK: only works when one header is there.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>display_flow_item (FoxTextFormatter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/FoxTextFormatter.rb, line 203</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_flow_item</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">prefix</span>=<span class="ruby-ivar">@indent</span>)
+                <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">item</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">P</span>, <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">LI</span>
+                        <span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">conv_html</span>(<span class="ruby-identifier">item</span>.<span class="ruby-identifier">body</span>), <span class="ruby-identifier">prefix</span>)
+                        <span class="ruby-identifier">blankline</span>
+                
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">LIST</span>
+                        <span class="ruby-identifier">display_list</span>(<span class="ruby-identifier">item</span>)
+                
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">VERB</span>
+                        <span class="ruby-identifier">display_verbatim_flow_item</span>(<span class="ruby-identifier">item</span>, <span class="ruby-ivar">@indent</span>)
+                
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">H</span>
+                        <span class="ruby-identifier">display_heading</span>(<span class="ruby-identifier">conv_html</span>(<span class="ruby-identifier">item</span>.<span class="ruby-identifier">text</span>.<span class="ruby-identifier">join</span>), <span class="ruby-identifier">item</span>.<span class="ruby-identifier">level</span>, <span class="ruby-ivar">@indent</span>)
+                
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SM</span><span class="ruby-operator">::</span><span class="ruby-constant">Flow</span><span class="ruby-operator">::</span><span class="ruby-constant">RULE</span>
+                        <span class="ruby-identifier">draw_line</span>
+                        
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+                        <span class="ruby-identifier">wrap</span>(<span class="ruby-identifier">conv_html</span>(<span class="ruby-identifier">item</span>), <span class="ruby-identifier">prefix</span>)
+                
+                <span class="ruby-keyword kw">else</span>
+                        <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;Unknown flow element: #{item.class}&quot;</span>
+                <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

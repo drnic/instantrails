@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>real_connect (Mysql)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/vendor/mysql411.rb, line 38</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">real_connect</span>( <span class="ruby-identifier">host</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">user</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">passwd</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">db</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">port</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">socket</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flag</span>=<span class="ruby-keyword kw">nil</span> )
+    <span class="ruby-ivar">@server_status</span> = <span class="ruby-constant">SERVER_STATUS_AUTOCOMMIT</span>
+    
+    <span class="ruby-keyword kw">if</span>( <span class="ruby-identifier">host</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">host</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;localhost&quot;</span> ) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">UNIXSocket</span>
+      <span class="ruby-identifier">unix_socket</span> = <span class="ruby-identifier">socket</span> <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;MYSQL_UNIX_PORT&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">MYSQL_UNIX_ADDR</span>
+      <span class="ruby-identifier">sock</span> = <span class="ruby-constant">UNIXSocket</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span>( <span class="ruby-identifier">unix_socket</span> )
+      <span class="ruby-ivar">@host_info</span> = <span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-identifier">err</span>( <span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-constant">CR_LOCALHOST_CONNECTION</span> )
+      <span class="ruby-ivar">@unix_socket</span> = <span class="ruby-identifier">unix_socket</span>
+    <span class="ruby-keyword kw">else</span>      
+      <span class="ruby-identifier">sock</span> = <span class="ruby-constant">TCPSocket</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span><span class="ruby-operator">||</span><span class="ruby-constant">ENV</span>[<span class="ruby-value str">&quot;MYSQL_TCP_PORT&quot;</span>]<span class="ruby-operator">||</span>(<span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-identifier">getservbyname</span>(<span class="ruby-value str">&quot;mysql&quot;</span>,<span class="ruby-value str">&quot;tcp&quot;</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">MYSQL_PORT</span>))
+      <span class="ruby-ivar">@host_info</span> = <span class="ruby-identifier">sprintf</span> <span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-identifier">err</span>(<span class="ruby-constant">Error</span><span class="ruby-operator">::</span><span class="ruby-constant">CR_TCP_CONNECTION</span>), <span class="ruby-identifier">host</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">host</span> <span class="ruby-value">? </span><span class="ruby-identifier">host</span>.<span class="ruby-identifier">dup</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">sock</span>.<span class="ruby-identifier">setsockopt</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SOL_SOCKET</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">SO_KEEPALIVE</span>, <span class="ruby-keyword kw">true</span>
+    <span class="ruby-ivar">@net</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span> <span class="ruby-identifier">sock</span>
+    
+    <span class="ruby-identifier">a</span> = <span class="ruby-identifier">read</span>
+    
+    <span class="ruby-ivar">@protocol_version</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>)
+    <span class="ruby-ivar">@server_version</span>, <span class="ruby-identifier">a</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\0/</span>,<span class="ruby-value">2</span>)
+
+    <span class="ruby-comment cmt"># Store the version number components for speedy comparison</span>
+    <span class="ruby-identifier">version</span>, <span class="ruby-identifier">ostag</span> = <span class="ruby-ivar">@server_version</span>.<span class="ruby-identifier">split</span>( <span class="ruby-regexp re">/-/</span>, <span class="ruby-value">2</span> )
+    <span class="ruby-ivar">@use_411</span> = (<span class="ruby-identifier">version</span>.<span class="ruby-identifier">strip</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value str">'4.1.1'</span>)
+
+    <span class="ruby-ivar">@thread_id</span>, <span class="ruby-ivar">@scramble_buff</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>,<span class="ruby-value">13</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;La8&quot;</span>)
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">2</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-ivar">@server_capabilities</span>, = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>,<span class="ruby-value">2</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;v&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">a</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">16</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-ivar">@server_language</span>, <span class="ruby-ivar">@server_status</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;cv&quot;</span>)
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Set the flags we'll send back to the server</span>
+    <span class="ruby-identifier">flag</span> = <span class="ruby-value">0</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">flag</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-identifier">flag</span> <span class="ruby-operator">|=</span> <span class="ruby-ivar">@client_flag</span> <span class="ruby-operator">|</span> <span class="ruby-constant">CLIENT_CAPABILITIES</span>
+    <span class="ruby-identifier">flag</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">CLIENT_CONNECT_WITH_DB</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">db</span>
+    
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@use_411</span>
+      <span class="ruby-comment cmt"># In 4.1.1+ the seed comes in two parts which must be combined</span>
+      <span class="ruby-identifier">a</span>.<span class="ruby-identifier">slice!</span>( <span class="ruby-value">0</span>, <span class="ruby-value">16</span> )
+      <span class="ruby-identifier">seed_part_2</span> = <span class="ruby-identifier">a</span>.<span class="ruby-identifier">slice!</span>( <span class="ruby-value">0</span>, <span class="ruby-value">12</span> );      
+      <span class="ruby-ivar">@scramble_buff</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">seed_part_2</span>
+      
+      <span class="ruby-identifier">flag</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">CLIENT_FOUND_ROWS</span>
+      <span class="ruby-identifier">flag</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">CLIENT_PROTOCOL_41</span>
+      <span class="ruby-identifier">flag</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">CLIENT_SECURE_CONNECTION</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server_capabilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLIENT_SECURE_CONNECTION</span>;
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">db</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@server_capabilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLIENT_CONNECT_WITH_DB</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@db</span> = <span class="ruby-identifier">db</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">scrambled_password</span> = <span class="ruby-identifier">scramble411</span>( <span class="ruby-identifier">passwd</span>, <span class="ruby-ivar">@scramble_buff</span>, <span class="ruby-ivar">@protocol_version</span><span class="ruby-operator">==</span><span class="ruby-value">9</span> )
+      <span class="ruby-identifier">data</span> = <span class="ruby-identifier">make_client_auth_packet_41</span>( <span class="ruby-identifier">flag</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">scrambled_password</span>, <span class="ruby-identifier">db</span> )
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">scrambled_password</span> = <span class="ruby-identifier">scramble</span>( <span class="ruby-identifier">passwd</span>, <span class="ruby-ivar">@scramble_buff</span>, <span class="ruby-ivar">@protocol_version</span> <span class="ruby-operator">==</span> <span class="ruby-value">9</span> )
+      <span class="ruby-identifier">data</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-identifier">int2str</span>(<span class="ruby-identifier">flag</span>)<span class="ruby-operator">+</span><span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-identifier">int3str</span>(<span class="ruby-ivar">@max_allowed_packet</span>)<span class="ruby-operator">+</span>(<span class="ruby-identifier">user</span><span class="ruby-operator">||</span><span class="ruby-value str">&quot;&quot;</span>)<span class="ruby-operator">+</span><span class="ruby-value str">&quot;\0&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">scrambled_password</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">db</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@server_capabilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLIENT_CONNECT_WITH_DB</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\0&quot;</span><span class="ruby-operator">+</span><span class="ruby-identifier">db</span>
+        <span class="ruby-ivar">@db</span> = <span class="ruby-identifier">db</span>.<span class="ruby-identifier">dup</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-identifier">write</span> <span class="ruby-identifier">data</span>
+    <span class="ruby-identifier">read</span>
+    <span class="ruby-keyword kw">self</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

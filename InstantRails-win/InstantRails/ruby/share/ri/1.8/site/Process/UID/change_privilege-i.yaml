@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Change the current process's real and effective user ID to that specified by
+      <em>integer</em>. Returns the new user ID. Not available on all platforms."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         [Process.uid, Process.euid]          #=&gt; [0, 0]
+         Process::UID.change_privilege(31)    #=&gt; 31
+         [Process.uid, Process.euid]          #=&gt; [31, 31]
+
+full_name: Process::UID#change_privilege
+is_singleton: false
+name: change_privilege
+params: "Process::UID.change_privilege(integer)   => fixnum
+
+  "
+visibility: public

@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns a list of modules included in <em>mod</em> (including <em>mod</em> itself).
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         module Mod
+           include Math
+           include Comparable
+         end
+
+         Mod.ancestors    #=&gt; [Mod, Comparable, Math]
+         Math.ancestors   #=&gt; [Math]
+
+full_name: Module#ancestors
+is_singleton: false
+name: ancestors
+params: "mod.ancestors -> array
+
+  "
+visibility: public

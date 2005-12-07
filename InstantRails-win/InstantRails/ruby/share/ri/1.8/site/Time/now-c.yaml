@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Synonym for <tt>Time.new</tt>. Returns a <tt>Time</tt> object initialized tot he current system time.
+  - !ruby/struct:SM::Flow::P 
+    body: "Returns a <tt>Time</tt> object initialized to the current system time.
+      <b>Note:</b> The object created will be created using the resolution available
+      on your system clock, and so may include fractional seconds."
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         a = Time.new      #=&gt; Wed Apr 09 08:56:03 CDT 2003
+         b = Time.new      #=&gt; Wed Apr 09 08:56:03 CDT 2003
+         a == b            #=&gt; false
+         &quot;%.6f&quot; % a.to_f   #=&gt; &quot;1049896563.230740&quot;
+         &quot;%.6f&quot; % b.to_f   #=&gt; &quot;1049896563.231466&quot;
+
+full_name: Time::now
+is_singleton: true
+name: now
+params: "Time.new -> time
+
+  "
+visibility: public

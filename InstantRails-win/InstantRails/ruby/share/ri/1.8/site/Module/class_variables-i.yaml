@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns an array of the names of class variables in <em>mod</em> and the ancestors of <em>mod</em>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         class One
+           @@var1 = 1
+         end
+         class Two &lt; One
+           @@var2 = 2
+         end
+         One.class_variables   #=&gt; [&quot;@@var1&quot;]
+         Two.class_variables   #=&gt; [&quot;@@var2&quot;, &quot;@@var1&quot;]
+
+full_name: Module#class_variables
+is_singleton: false
+name: class_variables
+params: "mod.class_variables   => array
+
+  "
+visibility: public

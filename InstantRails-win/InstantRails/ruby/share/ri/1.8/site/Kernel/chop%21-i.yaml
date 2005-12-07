@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Equivalent to <tt>$_.chop!</tt>.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         a  = &quot;now\r\n&quot;
+         $_ = a
+         chop!   #=&gt; &quot;now&quot;
+         chop!   #=&gt; &quot;no&quot;
+         chop!   #=&gt; &quot;n&quot;
+         chop!   #=&gt; &quot;&quot;
+         chop!   #=&gt; nil
+         $_      #=&gt; &quot;&quot;
+         a       #=&gt; &quot;&quot;
+
+full_name: Kernel#chop!
+is_singleton: false
+name: chop!
+params: "chop!    => $_ or nil
+
+  "
+visibility: public

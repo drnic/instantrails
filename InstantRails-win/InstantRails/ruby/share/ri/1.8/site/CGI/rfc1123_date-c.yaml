@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Format a <tt>Time</tt> object as a String using the format specified by RFC 1123.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+        CGI::rfc1123_date(Time.now)
+          # Sat, 01 Jan 2000 00:00:00 GMT
+
+full_name: CGI::rfc1123_date
+is_singleton: true
+name: rfc1123_date
+params: "(time)"
+visibility: public

@@ -1,0 +1,32 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+block_params: 
+comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Invoked as a callback whenever a singleton method is added to the receiver.
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         module Chatty
+           def Chatty.singleton_method_added(id)
+             puts &quot;Adding #{id.id2name}&quot;
+           end
+           def self.one()     end
+           def two()          end
+           def Chatty.three() end
+         end
+
+  - !ruby/struct:SM::Flow::P 
+    body: "<em>produces:</em>"
+  - !ruby/struct:SM::Flow::VERB 
+    body: |2
+         Adding singleton_method_added
+         Adding one
+         Adding three
+
+full_name: Object#singleton_method_added
+is_singleton: false
+name: singleton_method_added
+params: "singleton_method_added(symbol)
+
+  "
+visibility: public
