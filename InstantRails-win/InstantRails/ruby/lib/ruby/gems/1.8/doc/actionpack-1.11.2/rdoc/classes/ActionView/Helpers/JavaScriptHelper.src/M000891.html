@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sortable_element (ActionView::Helpers::JavaScriptHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/javascript_helper.rb, line 400</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sortable_element</span>(<span class="ruby-identifier">element_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]     <span class="ruby-operator">||=</span> <span class="ruby-node">&quot;Sortable.serialize('#{element_id}')&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:onUpdate</span>] <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;function(){&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">remote_function</span>(<span class="ruby-identifier">options</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;}&quot;</span>
+        <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span> <span class="ruby-constant">AJAX_OPTIONS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>) }
+        
+        [<span class="ruby-identifier">:tag</span>, <span class="ruby-identifier">:overlap</span>, <span class="ruby-identifier">:constraint</span>, <span class="ruby-identifier">:handle</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">option</span>] = <span class="ruby-node">&quot;'#{options[option]}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">option</span>]
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:containment</span>] = <span class="ruby-identifier">array_or_string_for_javascript</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:containment</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:containment</span>]
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:only</span>] = <span class="ruby-identifier">array_or_string_for_javascript</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:only</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:only</span>]
+        
+        <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-node">&quot;Sortable.create('#{element_id}', #{options_for_javascript(options)})&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

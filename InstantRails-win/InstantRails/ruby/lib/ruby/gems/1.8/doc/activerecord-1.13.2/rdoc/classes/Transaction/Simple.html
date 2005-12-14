@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Transaction::Simple</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Transaction::Simple</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_record/vendor/simple_rb.html">
+                lib/active_record/vendor/simple.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="Simple.html">Transaction::Simple</a> for Ruby</h1>
+<p>
+<a href="Simple.html">Simple</a> object transaction support for Ruby
+</p>
+<h2>Introduction</h2>
+<p>
+<a href="Simple.html">Transaction::Simple</a> provides a generic way to add
+active transactional support to objects. The transaction methods added by
+this module will work with most objects, excluding those that cannot be
+<em>Marshal</em>ed (bindings, procedure objects, IO instances, or singleton
+objects).
+</p>
+<p>
+The transactions supported by <a href="Simple.html">Transaction::Simple</a>
+are not backed transactions; that is, they have nothing to do with any sort
+of data store. They are &quot;live&quot; transactions occurring in memory
+and in the object itself. This is to allow &quot;test&quot; changes to be
+made to an object before making the changes permanent.
+</p>
+<p>
+<a href="Simple.html">Transaction::Simple</a> can handle an
+&quot;infinite&quot; number of transactional levels (limited only by
+memory). If I open two transactions, commit the first, but abort the
+second, the object will revert to the original version.
+</p>
+<p>
+<a href="Simple.html">Transaction::Simple</a> supports &quot;named&quot;
+transactions, so that multiple levels of transactions can be committed,
+aborted, or rewound by referring to the appropriate name of the
+transaction. Names may be any object <b>except</b> <tt>nil</tt>.
+</p>
+<table>
+<tr><td valign="top">Copyright:</td><td>Copyright © 2003 by Austin Ziegler
+
+</td></tr>
+<tr><td valign="top">Version:</td><td>1.1
+
+</td></tr>
+<tr><td valign="top">Licence:</td><td>MIT-Style
+
+</td></tr>
+</table>
+<p>
+Thanks to David Black for help with the initial concept that led to this
+library.
+</p>
+<h2>Usage</h2>
+<pre>
+  include 'transaction/simple'
+
+  v = &quot;Hello, you.&quot;               # =&gt; &quot;Hello, you.&quot;
+  v.extend(Transaction::Simple)   # =&gt; &quot;Hello, you.&quot;
+
+  v.start_transaction             # =&gt; ... (a Marshal string)
+  v.transaction_open?             # =&gt; true
+  v.gsub!(/you/, &quot;world&quot;)         # =&gt; &quot;Hello, world.&quot;
+
+  v.rewind_transaction            # =&gt; &quot;Hello, you.&quot;
+  v.transaction_open?             # =&gt; true
+
+  v.gsub!(/you/, &quot;HAL&quot;)           # =&gt; &quot;Hello, HAL.&quot;
+  v.abort_transaction             # =&gt; &quot;Hello, you.&quot;
+  v.transaction_open?             # =&gt; false
+
+  v.start_transaction             # =&gt; ... (a Marshal string)
+  v.start_transaction             # =&gt; ... (a Marshal string)
+
+  v.transaction_open?             # =&gt; true
+  v.gsub!(/you/, &quot;HAL&quot;)           # =&gt; &quot;Hello, HAL.&quot;
+
+  v.commit_transaction            # =&gt; &quot;Hello, HAL.&quot;
+  v.transaction_open?             # =&gt; true
+  v.abort_transaction             # =&gt; &quot;Hello, you.&quot;
+  v.transaction_open?             # =&gt; false
+</pre>
+<h2>Named <a href="../Transaction.html">Transaction</a> Usage</h2>
+<pre>
+  v = &quot;Hello, you.&quot;               # =&gt; &quot;Hello, you.&quot;
+  v.extend(Transaction::Simple)   # =&gt; &quot;Hello, you.&quot;
+
+  v.start_transaction(:first)     # =&gt; ... (a Marshal string)
+  v.transaction_open?             # =&gt; true
+  v.transaction_open?(:first)     # =&gt; true
+  v.transaction_open?(:second)    # =&gt; false
+  v.gsub!(/you/, &quot;world&quot;)         # =&gt; &quot;Hello, world.&quot;
+
+  v.start_transaction(:second)    # =&gt; ... (a Marshal string)
+  v.gsub!(/world/, &quot;HAL&quot;)         # =&gt; &quot;Hello, HAL.&quot;
+  v.rewind_transaction(:first)    # =&gt; &quot;Hello, you.&quot;
+  v.transaction_open?             # =&gt; true
+  v.transaction_open?(:first)     # =&gt; true
+  v.transaction_open?(:second)    # =&gt; false
+
+  v.gsub!(/you/, &quot;world&quot;)         # =&gt; &quot;Hello, world.&quot;
+  v.start_transaction(:second)    # =&gt; ... (a Marshal string)
+  v.gsub!(/world/, &quot;HAL&quot;)         # =&gt; &quot;Hello, HAL.&quot;
+  v.transaction_name              # =&gt; :second
+  v.abort_transaction(:first)     # =&gt; &quot;Hello, you.&quot;
+  v.transaction_open?             # =&gt; false
+
+  v.start_transaction(:first)     # =&gt; ... (a Marshal string)
+  v.gsub!(/you/, &quot;world&quot;)         # =&gt; &quot;Hello, world.&quot;
+  v.start_transaction(:second)    # =&gt; ... (a Marshal string)
+  v.gsub!(/world/, &quot;HAL&quot;)         # =&gt; &quot;Hello, HAL.&quot;
+
+  v.commit_transaction(:first)    # =&gt; &quot;Hello, HAL.&quot;
+  v.transaction_open?             # =&gt; false
+</pre>
+<h2>Contraindications</h2>
+<p>
+While <a href="Simple.html">Transaction::Simple</a> is very useful, it has
+some severe limitations that must be understood. <a
+href="Simple.html">Transaction::Simple</a>:
+</p>
+<ul>
+<li>uses Marshal. Thus, any object which cannot be <em>Marshal</em>ed cannot
+use <a href="Simple.html">Transaction::Simple</a>.
+
+</li>
+<li>does not manage resources. Resources external to the object and its
+instance variables are not managed at all. However, all instance variables
+and objects &quot;belonging&quot; to those instance variables are managed.
+If there are object reference counts to be handled, <a
+href="Simple.html">Transaction::Simple</a> will probably cause problems.
+
+</li>
+<li>is not inherently thread-safe. In the ACID (&quot;atomic, consistent,
+isolated, durable&quot;) test, <a
+href="Simple.html">Transaction::Simple</a> provides CD, but it is up to the
+user of <a href="Simple.html">Transaction::Simple</a> to provide isolation
+and atomicity. Transactions should be considered &quot;critical
+sections&quot; in multi-threaded applications. If thread safety and
+atomicity is absolutely required, use <a
+href="Simple/ThreadSafe.html">Transaction::Simple::ThreadSafe</a>, which
+uses a Mutex object to synchronize the accesses on the object during the
+transactional operations.
+
+</li>
+<li>does not necessarily maintain Object#<em>id</em> values on rewind or abort.
+This may change for future versions that will be Ruby 1.8 or better
+<b>only</b>. Certain objects that support replace will maintain
+Object#<em>id</em>.
+
+</li>
+<li>Can be a memory hog if you use many levels of transactions on many objects.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000253">abort_transaction</a>&nbsp;&nbsp;
+      <a href="#M000254">commit_transaction</a>&nbsp;&nbsp;
+      <a href="#M000248">debug_io</a>&nbsp;&nbsp;
+      <a href="#M000247">debug_io=</a>&nbsp;&nbsp;
+      <a href="#M000252">rewind_transaction</a>&nbsp;&nbsp;
+      <a href="#M000251">start_transaction</a>&nbsp;&nbsp;
+      <a href="#M000255">transaction</a>&nbsp;&nbsp;
+      <a href="#M000250">transaction_name</a>&nbsp;&nbsp;
+      <a href="#M000249">transaction_open?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Simple/ThreadSafe.html" class="link">Transaction::Simple::ThreadSafe</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'1.1.1.0';</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000248" class="method-detail">
+        <a name="M000248"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000248.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000248.html');return false;">
+          <span class="method-name">debug_io</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Simple.html">Transaction::Simple</a> debug object. It
+must respond to #&lt;&lt;.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000247" class="method-detail">
+        <a name="M000247"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000247.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000247.html');return false;">
+          <span class="method-name">debug_io=</span><span class="method-args">(io)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the <a href="Simple.html">Transaction::Simple</a> debug object. It
+must respond to #&lt;&lt;. Sets the transaction debug object. Debugging
+will be performed automatically if there&#8217;s a debug object. The
+generic transaction error class.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000253" class="method-detail">
+        <a name="M000253"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000253.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000253.html');return false;">
+          <span class="method-name">abort_transaction</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Aborts the transaction. Resets the object state to what it was before the
+transaction was started and closes the transaction. If <tt>name</tt> is
+specified, then the intervening transactions and the named transaction will
+be aborted. Otherwise, only the current transaction is aborted.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000254" class="method-detail">
+        <a name="M000254"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000254.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000254.html');return false;">
+          <span class="method-name">commit_transaction</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If <tt>name</tt> is <tt>nil</tt> (default), the current transaction level
+is closed out and the changes are committed.
+</p>
+<p>
+If <tt>name</tt> is specified and <tt>name</tt> is in the list of named
+transactions, then all transactions are closed and committed until the
+named transaction is reached.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000252" class="method-detail">
+        <a name="M000252"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000252.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000252.html');return false;">
+          <span class="method-name">rewind_transaction</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Rewinds the transaction. If <tt>name</tt> is specified, then the
+intervening transactions will be aborted and the named transaction will be
+rewound. Otherwise, only the current transaction is rewound.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000251" class="method-detail">
+        <a name="M000251"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000251.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000251.html');return false;">
+          <span class="method-name">start_transaction</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Starts a transaction. Stores the current object state. If a transaction
+name is specified, the transaction will be named. <a
+href="../Transaction.html">Transaction</a> names must be unique. <a
+href="../Transaction.html">Transaction</a> names of <tt>nil</tt> will be
+treated as unnamed transactions.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000255" class="method-detail">
+        <a name="M000255"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000255.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000255.html');return false;">
+          <span class="method-name">transaction</span><span class="method-args">(action = nil, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alternative method for calling the transaction methods. An optional name
+can be specified for named transaction support.
+</p>
+<table>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>(:start):</td><td><a href="Simple.html#M000251">start_transaction</a>
+
+</td></tr>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>(:rewind):</td><td><a href="Simple.html#M000252">rewind_transaction</a>
+
+</td></tr>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>(:abort):</td><td><a href="Simple.html#M000253">abort_transaction</a>
+
+</td></tr>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>(:commit):</td><td><a href="Simple.html#M000254">commit_transaction</a>
+
+</td></tr>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>(:name):</td><td><a href="Simple.html#M000250">transaction_name</a>
+
+</td></tr>
+<tr><td valign="top"><a href="Simple.html#M000255">transaction</a>:</td><td><a href="Simple.html#M000249">transaction_open?</a>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000250" class="method-detail">
+        <a name="M000250"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000250.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000250.html');return false;">
+          <span class="method-name">transaction_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the current name of the transaction. Transactions not explicitly
+named are named <tt>nil</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000249" class="method-detail">
+        <a name="M000249"></a>
+
+        <div class="method-heading">
+          <a href="Simple.src/M000249.html" target="Code" class="method-signature"
+            onclick="popupCode('Simple.src/M000249.html');return false;">
+          <span class="method-name">transaction_open?</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If <tt>name</tt> is <tt>nil</tt> (default), then returns <tt>true</tt> if
+there is currently a transaction open.
+</p>
+<p>
+If <tt>name</tt> is specified, then returns <tt>true</tt> if there is
+currently a transaction that responds to <tt>name</tt> open.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

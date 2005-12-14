@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rescue_action_in_public (ActionController::Rescue)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/rescue.rb, line 51</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rescue_action_in_public</span>(<span class="ruby-identifier">exception</span>) <span class="ruby-comment cmt">#:doc:</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">exception</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">RoutingError</span>, <span class="ruby-constant">UnknownAction</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-identifier">render_text</span>(<span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">RAILS_ROOT</span>, <span class="ruby-value str">'public'</span>, <span class="ruby-value str">'404.html'</span>)), <span class="ruby-value str">&quot;404 Not Found&quot;</span>)
+          <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">render_text</span> <span class="ruby-value str">&quot;&lt;html&gt;&lt;body&gt;&lt;h1&gt;Application error (Rails)&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

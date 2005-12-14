@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>finish_upload_status (ActionView::Helpers::UploadProgressHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/upload_progress_helper.rb, line 261</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">finish_upload_status</span>(<span class="ruby-identifier">options</span> = {})
+        <span class="ruby-comment cmt"># Always trigger the stop/finish callback</span>
+        <span class="ruby-identifier">js</span> = <span class="ruby-node">&quot;parent.#{upload_update_object}.stop(#{options[:client_js_argument]});\n&quot;</span>
+
+        <span class="ruby-comment cmt"># Redirect if redirect_to was called in controller</span>
+        <span class="ruby-identifier">js</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;parent.location.replace('#{escape_javascript options[:redirect_to]}');\n&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:redirect_to</span>].<span class="ruby-identifier">blank?</span>
+
+        <span class="ruby-comment cmt"># Guard against multiple triggers/redirects on back</span>
+        <span class="ruby-identifier">js</span> = <span class="ruby-node">&quot;if (parent.#{upload_update_object}) { #{js} }\n&quot;</span>
+        
+        <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">&quot;html&quot;</span>, 
+          <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">&quot;head&quot;</span>, 
+            <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">&quot;script&quot;</span>, <span class="ruby-node">&quot;function finish() { #{js} }&quot;</span>, 
+              {<span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;text/javascript&quot;</span>, <span class="ruby-identifier">:language</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;javascript&quot;</span>})) <span class="ruby-operator">+</span> 
+          <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">&quot;body&quot;</span>, <span class="ruby-value str">''</span>, <span class="ruby-identifier">:onload</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'finish()'</span>))
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
