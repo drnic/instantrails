@@ -155,3 +155,37 @@ Rendering recipe/list
   [4;35;1mCategory Load (0.000000)[0m   [0mSELECT * FROM categories WHERE (categories.id = 1) LIMIT 1[0m
 Completed in 0.39100 (2 reqs/sec) | Rendering: 0.03100 (7%) | DB: 0.15700 (40%) | 200 OK [http://www.mycookbook.com/recipe/list]
   [4;36;1mRecipe Columns (0.093000)[0m   [0;1mSHOW FIELDS FROM recipes[0m
+
+
+Processing RecipeController#list (for 127.0.0.1 at 2005-12-13 16:59:15) [GET]
+  Parameters: {"action"=>"list", "controller"=>"recipe"}
+  [4;36;1mRecipe Load (0.859000)[0m   [0;1mSELECT * FROM recipes [0m
+Rendering  within layouts/standard-layout
+Rendering recipe/list
+  [4;35;1mRecipe Columns (0.093000)[0m   [0mSHOW FIELDS FROM recipes[0m
+  [4;36;1mCategory Load (0.047000)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) LIMIT 1[0m
+  [4;35;1mCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM categories[0m
+  [4;36;1mCategory Load (0.000000)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 2) LIMIT 1[0m
+  [4;35;1mCategory Load (0.016000)[0m   [0mSELECT * FROM categories WHERE (categories.id = 1) LIMIT 1[0m
+Completed in 4.61000 (0 reqs/sec) | Rendering: 0.06300 (1%) | DB: 1.01500 (22%) | 200 OK [http://127.0.0.1/recipe/list]
+
+
+Processing RecipeController#list (for 127.0.0.1 at 2005-12-13 16:59:49) [GET]
+  Parameters: {"action"=>"list", "controller"=>"recipe"}
+  [4;36;1mRecipe Load (0.000000)[0m   [0;1mSELECT * FROM recipes [0m
+Rendering  within layouts/standard-layout
+Rendering recipe/list
+  [4;35;1mRecipe Columns (0.000000)[0m   [0mSHOW FIELDS FROM recipes[0m
+  [4;36;1mCategory Load (0.000000)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 1) LIMIT 1[0m
+  [4;35;1mCategory Columns (0.000000)[0m   [0mSHOW FIELDS FROM categories[0m
+  [4;36;1mCategory Load (0.000000)[0m   [0;1mSELECT * FROM categories WHERE (categories.id = 2) LIMIT 1[0m
+  [4;35;1mCategory Load (0.000000)[0m   [0mSELECT * FROM categories WHERE (categories.id = 1) LIMIT 1[0m
+Completed in 0.15600 (6 reqs/sec) | Rendering: 0.04700 (30%) | DB: 0.00000 (0%) | 200 OK [http://www.mycookbook.com/recipe/list]
+
+
+Processing RecipeController#show (for 127.0.0.1 at 2005-12-13 16:59:52) [GET]
+  Parameters: {"action"=>"show", "id"=>"1", "controller"=>"recipe"}
+  [4;36;1mRecipe Load (0.000000)[0m   [0;1mSELECT * FROM recipes WHERE (recipes.id = '1') LIMIT 1[0m
+  [4;35;1mRecipe Columns (0.000000)[0m   [0mSHOW FIELDS FROM recipes[0m
+Rendering layouts/standard-layout
+Completed in 0.03100 (32 reqs/sec) | DB: 0.00000 (0%) | 200 OK [http://www.mycookbook.com/recipe/show/1]

@@ -3,6 +3,6 @@
 :
 : If you need to make changes to this file, you should edit
 : the source template file instead. The source template is
-: E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails\conf_files\ri.bat
+: E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails\conf_files\ri.bat
 :-----------------------------------------------------------
-@"E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails\ruby\bin\ruby.exe" "E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails\ruby\bin\ri" %1 %2 %3 %4 %5 %6 %7 %8 %9
+@"E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails\ruby\bin\ruby.exe" "E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails\ruby\bin\ri" %1 %2 %3 %4 %5 %6 %7 %8 %9

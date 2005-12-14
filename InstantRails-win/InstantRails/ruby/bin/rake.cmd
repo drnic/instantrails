@@ -3,6 +3,6 @@
 :
 : If you need to make changes to this file, you should edit
 : the source template file instead. The source template is
-: E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails\conf_files\rake.cmd
+: E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails\conf_files\rake.cmd
 :-----------------------------------------------------------
-@"E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails\ruby\bin\ruby.exe" "E:\Dev\RubyDev\InstantRails-Project\trunk\InstantRails/ruby/bin/rake" %*
+@"E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails\ruby\bin\ruby.exe" "E:\Dev\RubyDev\InstantRails-Project\InstantRails-win\InstantRails/ruby/bin/rake" %*
