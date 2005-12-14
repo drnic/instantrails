@@ -16,7 +16,7 @@ RewriteRule ^xml/([a-z]+)$ /xml/$1/feed.xml [R=301]
 RewriteRule ^$ index.html [QSA]
 RewriteRule ^([^.]+)$ $1.html [QSA]
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ dispatch.fcgi [QSA,L]
+RewriteRule ^(.*)$ /scgi-bin/%{REQUEST_URI} [QSA,L]
 
 # In case Rails experiences terminal errors
 ErrorDocument 500 "<h2>Application Error</h2>Typo could not be reached
