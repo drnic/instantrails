@@ -1,110 +1,146 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html><head><title>InstantRails: Getting Started</title>
-<meta name="KEYWORDS" content="Getting_Started">
-<link rel="stylesheet" href="wiki.css"></head>
-<body bgcolor="white">
-<div class="wikiheader"><h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" align="right" border="0"></a><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?back=Getting+Started">Getting Started</a></h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
-<hr class="wikilineheader"></div><div class="wikitext"><p>
-Instant Rails is a one-stop Rails runtime solution containing Ruby,
-Rails, Apache, and MySQL, all preconfigured and ready to run. No
-installer, you simply drop it into the directory of your choice and run
-it. It does not modify your system environment.
-</p><p>
-This release of Instant Rails for Windows, but there are plans for ports to Linux, BSD, and OSX. See the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Release_Notes" class="wikipagelink">Release Notes</a> for a list of everything included in Instant Rails (including their version numbers).
+<HTML><HEAD><TITLE>InstantRailsWiki: Getting Started</TITLE>
+<META NAME='KEYWORDS' CONTENT='Getting_Started'/>
+<LINK REL="stylesheet" HREF="/wiki.css">
+</HEAD><BODY BGCOLOR="white">
+<div class=wikiheader><h1><a href="wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" border=0 align="right"></a><a href="wiki.pl?back=Getting+Started">Getting Started</a></h1><a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
+<hr class=wikilineheader></div><div class=wikitext>Instant Rails is a one-stop Rails runtime solution containing Ruby, Rails, Apache, and MySQL, all preconfigured and ready to run. No installer, you simply drop it into the directory of your choice and run it. It does not modify your system environment.
+<p>
+
+This release of Instant Rails for Windows, but there are plans for ports to Linux, BSD, and OSX. See the <a href="wiki.pl?Release_Notes" class=wikipagelink>Release Notes</a> for a list of everything included in Instant Rails (including their version numbers).
 Install and Verify Instant Rails
-</p><p>
-Instant Rails includes the full source code of the cookbook application developed in the <a href="http://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[Rolling with Ruby on Rails]</a>
-tutorial. Once you have installed Instant Rails, you can verify that
-everything is working properly by running this cookbook application.
-</p><p>
-</p><h2>Upgrading</h2>
+<p>
+Instant Rails includes the full source code of the cookbook application developed in the <a href="HTTP://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[Rolling with Ruby on Rails]</a> tutorial. Once you have installed Instant Rails, you can verify that everything is working properly by running this cookbook application.
+<p>
+Instant Rails also contains the Rails-based blogging software 
+<a href="HTTP://typo.leetsoft.com/trac/">[Typo]</a> as a preinstalled sample web application.
+<p>
+<H2>Upgrading</H2>
 
 <p>
 If you have installed a previous version of Instant Rails, see
-<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?How_To_Upgrade" class="wikipagelink">How To Upgrade</a> for instructions on how to upgrade you installation
-while retaining your data and cutomizations.
-</p><p>
-</p><h2>Install &amp; Verify</h2>
+<a href="wiki.pl?How_To_Upgrade" class=wikipagelink>How To Upgrade</a> for instructions on how to upgrade your installation
+while retaining your data and customizations.
+<p>
+<H2>Install &amp; Verify</H2>
 
 <p>
 Follow these steps to install Instant Rails and verify that it is working properly:
-</p><p>
-</p><ul>
+<p>
+<UL >
 <li> Download and unzip the Instant Rails zip file.
-</li></ul>
+
+</UL>
 <p>
-</p><ul>
+<UL >
 <li> Make sure the installation path does not contain any space characters, and then start <b>InstantRails.exe.</b>
-</li></ul>
+</UL>
 <p>
-</p><ul>
-<li> Instant Rails will detect that it is being started from a new
-directory and ask if you want to have it update the paths in the all of
-the configuration files... Just say yes.
-</li></ul>
+<UL >
+<li> Instant Rails will detect that it is being started from a new directory and ask if you want to have it update the paths in the all of the configuration files... Just say yes.
+</UL>
 <p>
-</p><ul>
-<li> The cookbook app is already configured to use SCGI on port 9999,
-but we must tell Windows for fake the domain name that is preconfigured
-in the Apache configuration file: </li></ul>
+<UL >
+<li> The cookbook app is already configured to use SCGI on port 9999, and Typo is already configured to use SCGI on port 9998, but we must tell Windows to fake the domain names that is preconfigured in the Apache configuration file: 
+
+</UL>
 <p>
-</p><ul>
-<ul>
+<UL >
+<UL >
 <li>Click on the <b><code>I</code></b> button (or press and release the <code>Alt</code> key twice) to drop down the main menu and select <code>Configure &gt; Windows Hosts file</code>.
-</li></ul>
-</ul>
+</UL>
+</UL>
+
 <p>
-</p><ul>
-<ul>
-<li> In the editor that pops up, add this line to the end of the file:
-</li></ul>
-</ul>
+<UL >
+<UL >
+<li> In the editor that pops up, add these two lines to the end of the file:
+</UL>
+</UL>
 <p>
-</p><dl>
-<dl>
-<dl>
-<dl>
-<dt></dt><dd><code>127.0.0.1   www.mycookbook.com</code>
-</dd></dl>
-</dl>
-</dl>
-</dl>
+<DL >
+<DL >
+<DL >
+<DL >
+<dt><dd><code>127.0.0.1   www.mycookbook.com</code>
+<dt><dd><code>127.0.0.1   typo</code>
+</DL>
+
+</DL>
+</DL>
+</DL>
 <p>
-</p><ul>
-<ul>
-<li> Save the changes to the file (you must have Administrator
-privileges to do this), the filename is 'hosts' with no extension. Exit
-the editor.
-</li></ul>
-</ul>
+<UL >
+<UL >
+<li> Save the changes to the file (you must have Administrator privileges to do this), the filename is 'hosts' with no extension. Exit the editor.
+</UL>
+</UL>
 <p>
-</p><ul>
+<UL >
 <li> In the main menu, select <code>Rails Applications &gt; Manage Rails Applications...</code>
-</li></ul>
+
+</UL>
 <p>
-</p><ul>
+<UL >
 <li> Check the checkbox next to the cookbook application.
-</li></ul>
+</UL>
 <p>
-</p><ul>
+<UL >
 <li> Click on the <code>Start SCGI</code> button. A minimized console window will appear. This contains the cookbook web app running through an SCGI server.
-</li></ul>
+</UL>
 <p>
-</p><ul>
-<li> Wait a few seconds to make sure the cookbook web app is fully
-initialized (nothing is displayed in the console window). Open your
-browser and go to:
-</li></ul>
+<UL >
+<li> Wait a few seconds to make sure the cookbook web app is fully initialized (nothing is displayed in the console window). Open your browser and go to:
+
+</UL>
 <p>
-</p><dl>
-<dl>
-<dl>
-<dt></dt><dd><code>www.mycookbook.com</code>
-</dd></dl>
-</dl>
-</dl>
+<DL >
+<DL >
+<DL >
+<dt><dd><code>HTTP://www.mycookbook.com</code>
+</DL>
+</DL>
+</DL>
 <p>
 You should now be using a running Rails application! 
-</p><p>
+<p>
+If not, perhaps you have an already-running Apache instance. Shut this down, and InstantRails<a href="wiki.pl?action=edit&id=InstantRails" class=wikipageedit>?</a> should magically work.
 Poke around in the menus of Instant Rails to see what's there.
-</p></div></body></html>
+
+<p>
+<H2>Running Typo</H2>
+
+<p>
+<UL >
+<li> In the main menu, select <code>Rails Applications &gt; Manage Rails Applications...</code>
+</UL>
+<p>
+<UL >
+<li> Check the checkbox next to the typo application.
+
+</UL>
+<p>
+<UL >
+<li> Click on the <code>Start SCGI</code> button. A minimized console window will appear. This contains the typo web app running through an SCGI server.
+</UL>
+<p>
+<UL >
+<li> Wait a few seconds to make sure the Typo is fully initialized (nothing is displayed in the console window). Open your browser and go to:
+</UL>
+<p>
+<DL >
+<DL >
+
+<DL >
+<dt><dd><code>HTTP://typo</code>
+</DL>
+</DL>
+</DL>
+<p>
+You should be taken through a series of admin setup screens. 
+</div><hr class=wikilinefooter>
+<div class=wikifooter><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
+<a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
+
+<a href="wiki.pl?action=edit&id=Getting_Started" class=wikipageedit>Edit text of this page</a> | <a href="wiki.pl?action=history&id=Getting_Started">View other revisions</a><br>Last edited December 14, 2005 11:01 pm by d3-28.rt-bras.wnvl.centurytel.net <a href="wiki.pl?action=browse&diff=1&id=Getting_Started">(diff)</a><br>Search: <input type="text" name="search"  size="20" /><input type="hidden" name="dosearch" value="1" /><div></div>
+</form></div></body></html>
