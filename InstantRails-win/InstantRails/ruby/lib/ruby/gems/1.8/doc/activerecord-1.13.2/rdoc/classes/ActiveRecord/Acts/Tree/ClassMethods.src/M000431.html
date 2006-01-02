@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>acts_as_tree (ActiveRecord::Acts::Tree::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/acts/tree.rb, line 43</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">acts_as_tree</span>(<span class="ruby-identifier">options</span> = {})
+          <span class="ruby-identifier">configuration</span> = { <span class="ruby-identifier">:foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;parent_id&quot;</span>, <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">:counter_cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">nil</span> }
+          <span class="ruby-identifier">configuration</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">options</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+
+          <span class="ruby-identifier">belongs_to</span> <span class="ruby-identifier">:parent</span>, <span class="ruby-identifier">:class_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">:foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:foreign_key</span>], <span class="ruby-identifier">:counter_cache</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:counter_cache</span>]
+          <span class="ruby-identifier">has_many</span> <span class="ruby-identifier">:children</span>, <span class="ruby-identifier">:class_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>, <span class="ruby-identifier">:foreign_key</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:foreign_key</span>], <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">configuration</span>[<span class="ruby-identifier">:order</span>], <span class="ruby-identifier">:dependent</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>
+
+          <span class="ruby-identifier">module_eval</span> <span class="ruby-value str">&quot;def self.roots\nself.find(:all, :conditions =&gt; \&quot;\#{configuration[:foreign_key]} IS NULL\&quot;, :order =&gt; \#{configuration[:order].nil? ? \&quot;nil\&quot; : %Q{\&quot;\#{configuration[:order]}\&quot;}})\nend\ndef self.root\nself.find(:first, :conditions =&gt; \&quot;\#{configuration[:foreign_key]} IS NULL\&quot;, :order =&gt; \#{configuration[:order].nil? ? \&quot;nil\&quot; : %Q{\&quot;\#{configuration[:order]}\&quot;}})\nend\n&quot;</span>
+
+          <span class="ruby-comment cmt"># Returns list of ancestors, starting from parent until root.</span>
+          <span class="ruby-comment cmt">#</span>
+          <span class="ruby-comment cmt">#   subchild1.ancestors # =&gt; [child1, root]</span>
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:ancestors</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">node</span>, <span class="ruby-identifier">nodes</span> = <span class="ruby-keyword kw">self</span>, []
+            <span class="ruby-identifier">nodes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">node</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span> <span class="ruby-keyword kw">until</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">has_parent?</span>
+            <span class="ruby-identifier">nodes</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:root</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">node</span> = <span class="ruby-keyword kw">self</span>
+            <span class="ruby-identifier">node</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">parent</span> <span class="ruby-keyword kw">until</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">has_parent?</span>
+            <span class="ruby-identifier">node</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:siblings</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">self_and_siblings</span> <span class="ruby-operator">-</span> [<span class="ruby-keyword kw">self</span>]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:self_and_siblings</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">has_parent?</span> <span class="ruby-value">? </span><span class="ruby-identifier">parent</span>.<span class="ruby-identifier">children</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">roots</span>
+          <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

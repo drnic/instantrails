@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>of_caller (Binding)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/binding_of_caller.rb, line 39</span>
+<span class="ruby-keyword kw">def</span> <span class="ruby-constant">Binding</span>.<span class="ruby-identifier">of_caller</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+  <span class="ruby-identifier">old_critical</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span>
+  <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span> = <span class="ruby-keyword kw">true</span>
+  <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+  <span class="ruby-identifier">cc</span>, <span class="ruby-identifier">result</span>, <span class="ruby-identifier">error</span>, <span class="ruby-identifier">extra_data</span> = <span class="ruby-constant">Continuation</span>.<span class="ruby-identifier">create</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>)
+  <span class="ruby-identifier">error</span>.<span class="ruby-identifier">call</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">error</span>
+
+  <span class="ruby-identifier">tracer</span> = <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+    <span class="ruby-identifier">type</span>, <span class="ruby-identifier">context</span>, <span class="ruby-identifier">extra_data</span> = <span class="ruby-identifier">args</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">args</span>[<span class="ruby-value">4</span>], <span class="ruby-identifier">args</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;return&quot;</span>
+      <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+      <span class="ruby-comment cmt"># First this method and then calling one will return --</span>
+      <span class="ruby-comment cmt"># the trace event of the second event gets the context</span>
+      <span class="ruby-comment cmt"># of the method which called the method that called this</span>
+      <span class="ruby-comment cmt"># method.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">count</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+        <span class="ruby-comment cmt"># It would be nice if we could restore the trace_func</span>
+        <span class="ruby-comment cmt"># that was set before we swapped in our own one, but</span>
+        <span class="ruby-comment cmt"># this is impossible without overloading set_trace_func</span>
+        <span class="ruby-comment cmt"># in current Ruby.</span>
+        <span class="ruby-identifier">set_trace_func</span>(<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">cc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">eval</span>(<span class="ruby-value str">&quot;binding&quot;</span>, <span class="ruby-identifier">context</span>), <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">extra_data</span>)
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;line&quot;</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;c-return&quot;</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">extra_data</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:set_trace_func</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-keyword kw">nil</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">set_trace_func</span>(<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-identifier">error_msg</span> = <span class="ruby-value str">&quot;Binding.of_caller used in non-method context or &quot;</span> <span class="ruby-operator">+</span>
+        <span class="ruby-value str">&quot;trailing statements of method using it aren't in the block.&quot;</span>
+      <span class="ruby-identifier">cc</span>.<span class="ruby-identifier">call</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">lambda</span> { <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">error_msg</span>) }, <span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+
+  <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">result</span>
+    <span class="ruby-identifier">set_trace_func</span>(<span class="ruby-identifier">tracer</span>)
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+  <span class="ruby-keyword kw">else</span>
+    <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span> = <span class="ruby-identifier">old_critical</span>
+    <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">arity</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">then</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">result</span>)
+      <span class="ruby-keyword kw">else</span> <span class="ruby-keyword kw">yield</span>(<span class="ruby-identifier">result</span>, <span class="ruby-identifier">extra_data</span>)        
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span>
+<span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

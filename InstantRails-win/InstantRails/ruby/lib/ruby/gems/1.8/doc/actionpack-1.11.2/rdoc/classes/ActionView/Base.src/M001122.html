@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>compile_and_render_template (ActionView::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/base.rb, line 255</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">compile_and_render_template</span>(<span class="ruby-identifier">extension</span>, <span class="ruby-identifier">template</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">file_path</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">local_assigns</span> = {})
+      <span class="ruby-comment cmt"># compile the given template, if necessary</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">compile_template?</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">file_path</span>, <span class="ruby-identifier">local_assigns</span>)
+        <span class="ruby-identifier">template</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">read_template_file</span>(<span class="ruby-identifier">file_path</span>, <span class="ruby-identifier">extension</span>)
+        <span class="ruby-identifier">compile_template</span>(<span class="ruby-identifier">extension</span>, <span class="ruby-identifier">template</span>, <span class="ruby-identifier">file_path</span>, <span class="ruby-identifier">local_assigns</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Get the method name for this template and run it</span>
+      <span class="ruby-identifier">method_name</span> = <span class="ruby-ivar">@@method_names</span>[<span class="ruby-identifier">file_path</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">template</span>]
+      <span class="ruby-identifier">evaluate_assigns</span>                                    
+
+      <span class="ruby-identifier">local_assigns</span> = <span class="ruby-identifier">local_assigns</span>.<span class="ruby-identifier">symbolize_keys</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@local_assigns_support_string_keys</span>
+
+      <span class="ruby-identifier">send</span>(<span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">local_assigns</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-operator">*</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">instance_variable_get</span> <span class="ruby-node">&quot;@content_for_#{name.first || 'layout'}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

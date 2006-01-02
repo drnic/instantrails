@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>has_one (ActiveRecord::Associations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 437</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_one</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">options</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-identifier">:class_name</span>, <span class="ruby-identifier">:foreign_key</span>, <span class="ruby-identifier">:remote</span>, <span class="ruby-identifier">:conditions</span>, <span class="ruby-identifier">:order</span>, <span class="ruby-identifier">:include</span>, <span class="ruby-identifier">:dependent</span>, <span class="ruby-identifier">:counter_cache</span>, <span class="ruby-identifier">:extend</span>)
+
+        <span class="ruby-identifier">association_name</span>, <span class="ruby-identifier">association_class_name</span>, <span class="ruby-identifier">association_class_primary_key_name</span> =
+            <span class="ruby-identifier">associate_identification</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:class_name</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>], <span class="ruby-keyword kw">false</span>)
+
+        <span class="ruby-identifier">require_association_class</span>(<span class="ruby-identifier">association_class_name</span>)
+
+        <span class="ruby-identifier">module_eval</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">after_save</span> <span class="ruby-value str">&quot;association = instance_variable_get(\&quot;@\#{association_name}\&quot;)\nunless association.nil?\nassociation[\&quot;\#{association_class_primary_key_name}\&quot;] = id\nassociation.save(true)\nassociation.send(:construct_sql)\nend\n&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      
+        <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">association_name</span>, <span class="ruby-identifier">association_class_name</span>, <span class="ruby-identifier">association_class_primary_key_name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:build</span>, <span class="ruby-identifier">association_name</span>, <span class="ruby-identifier">association_class_name</span>, <span class="ruby-identifier">association_class_primary_key_name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:create</span>, <span class="ruby-identifier">association_name</span>, <span class="ruby-identifier">association_class_name</span>, <span class="ruby-identifier">association_class_primary_key_name</span>, <span class="ruby-identifier">options</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:dependent</span>]
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:destroy</span>, <span class="ruby-keyword kw">true</span>
+            <span class="ruby-identifier">module_eval</span> <span class="ruby-node">&quot;before_destroy '#{association_name}.destroy unless #{association_name}.nil?'&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:nullify</span>
+            <span class="ruby-identifier">module_eval</span> <span class="ruby-node">&quot;before_destroy '#{association_name}.update_attribute(\&quot;#{association_class_primary_key_name}\&quot;, nil)'&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">false</span>
+            <span class="ruby-comment cmt"># pass</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;The :dependent option expects either :destroy or :nullify.&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># deprecated api</span>
+        <span class="ruby-identifier">deprecated_has_association_method</span>(<span class="ruby-identifier">association_name</span>)
+        <span class="ruby-identifier">deprecated_association_comparison_method</span>(<span class="ruby-identifier">association_name</span>, <span class="ruby-identifier">association_class_name</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

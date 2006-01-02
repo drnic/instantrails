@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transaction (ActiveRecord::Transactions::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/transactions.rb, line 83</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transaction</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">objects</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">previous_handler</span> = <span class="ruby-identifier">trap</span>(<span class="ruby-value str">'TERM'</span>) { <span class="ruby-identifier">raise</span> <span class="ruby-constant">TransactionError</span>, <span class="ruby-value str">&quot;Transaction aborted&quot;</span> }
+        <span class="ruby-identifier">lock_mutex</span>
+        
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">Transaction</span><span class="ruby-operator">::</span><span class="ruby-constant">Simple</span>) }
+          <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">start_transaction</span> }
+
+          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">transaction</span>(<span class="ruby-constant">Thread</span>.<span class="ruby-identifier">current</span>[<span class="ruby-value str">'start_db_transaction'</span>], <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+
+          <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">commit_transaction</span> }
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">object_transaction_rollback</span>
+          <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">o</span><span class="ruby-operator">|</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">abort_transaction</span> }
+          <span class="ruby-identifier">raise</span>
+        <span class="ruby-keyword kw">ensure</span>
+          <span class="ruby-identifier">unlock_mutex</span>
+          <span class="ruby-identifier">trap</span>(<span class="ruby-value str">'TERM'</span>, <span class="ruby-identifier">previous_handler</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

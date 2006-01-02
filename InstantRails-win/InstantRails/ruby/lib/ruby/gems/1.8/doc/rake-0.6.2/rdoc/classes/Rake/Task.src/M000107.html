@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_comment (Rake::Task)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/rake.rb, line 218</span>
+218:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_comment</span>(<span class="ruby-identifier">comment</span>)
+219:       <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">$last_comment</span>
+220:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@comment</span> 
+221:         <span class="ruby-ivar">@comment</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; / &quot;</span>
+222:       <span class="ruby-keyword kw">else</span>
+223:         <span class="ruby-ivar">@comment</span> = <span class="ruby-value str">''</span>
+224:       <span class="ruby-keyword kw">end</span>
+225:       <span class="ruby-ivar">@comment</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">$last_comment</span>
+226:       <span class="ruby-identifier">$last_comment</span> = <span class="ruby-keyword kw">nil</span>
+227:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
