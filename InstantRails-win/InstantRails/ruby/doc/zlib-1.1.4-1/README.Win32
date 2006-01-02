@@ -1,0 +1,16 @@
+Zlib 1.1.4 port to MinGW, VC++ and BCC32,
+by NAKAMURA Usaku <usa@osb.att.ne.jp>,
+   WATANABE Hirofumi <eban@os.rim.or.jp>
+
+To build on a Windows machine:
+cd win32
+(n)make clean all examples
+
+To build static version on a Windows machine:
+cd win32
+(n)make DLL=0 clean all examples
+
+To use static library, define ZLIB_STATIC before include headers.
+
+Web page:
+  http://jarp.jin.gr.jp/win32/
