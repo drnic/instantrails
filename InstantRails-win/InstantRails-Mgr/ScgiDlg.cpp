@@ -9,7 +9,10 @@
 #include <stdio.h>
 #include  <io.h>			// _access
 #include <commctrl.h>
+#include <iostream>
+#include <fstream>
 #include <string>
+using namespace std;
 
 extern HINSTANCE g_hInstance;
 
@@ -29,11 +32,39 @@ CScgiDlg::~CScgiDlg()
 
 bool CScgiDlg::OnInitDialog()
 {
+	const char* installPath = CEasyPhpDlg::GetInstallPath();
+	char filepath[MAX_PATH+1] = {0};
+
 	::SendMessage(GetHandle(), WM_SETICON, (WPARAM) ICON_BIG, (LPARAM)::LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_EASYPHP_LOIC)));
 	::SendMessage(GetHandle(), WM_SETICON, (WPARAM) ICON_SMALL, (LPARAM)::LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_EASYPHP_LOIC)));
 
 	SetDlgItemText(GetHandle(), IDC_RUN_MODE, "development");
 	SetDlgItemText(GetHandle(), IDC_PORT, "9999");
+
+	_snprintf(filepath, sizeof(filepath), "%srails_apps\\%s\\config\\scgi.yaml", installPath, m_szAppName);
+
+	string line;
+	size_t index;
+	ifstream scgi_config (filepath);
+	if (scgi_config.is_open())
+	{
+		while (! scgi_config.eof() )
+		{
+			getline (scgi_config,line);
+			index = line.find(":port: ");
+			if (index == 0) {
+				line.erase(index,7);
+				SetDlgItemText(GetHandle(), IDC_PORT, line.c_str());
+			}
+			index = line.find(":env: ");
+			if (index == 0) {
+				line.erase(index,6);
+				SetDlgItemText(GetHandle(), IDC_RUN_MODE, line.c_str());
+			}
+		}
+		scgi_config.close();
+	}
+
 
 	SetDlgItemText(GetHandle(), IDC_SCGI_INSTRUCTIONS, 
 "\

@@ -114,11 +114,11 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	GenerateConfFile(szCurrentPath, szMySQLConfSrc, szMySQLConfDest, '#');
 	GenerateConfFile(szCurrentPath, szPHPConfSrc, szPHPConfDest, ';');
 
-	GenerateConfFile(szCurrentPath2, szRubyBinErbSrc, szRubyBinErbDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinIrbSrc, szRubyBinIrbDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinRdocSrc, szRubyBinRdocDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinRiSrc, szRubyBinRiDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinTestrbSrc, szRubyBinTestrbDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinErbSrc, szRubyBinErbDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinIrbSrc, szRubyBinIrbDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinRdocSrc, szRubyBinRdocDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinRiSrc, szRubyBinRiDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinTestrbSrc, szRubyBinTestrbDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinGemSrc, szRubyBinGemDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinGem_serverSrc, szRubyBinGem_serverDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinGemwhichSrc, szRubyBinGemwhichDest, ':');
@@ -126,7 +126,7 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
 	GenerateConfFile(szCurrentPath2, szUseRubySrc, szUseRubyDest, ':');
-	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
+//	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
 
 	return 0;
 }
