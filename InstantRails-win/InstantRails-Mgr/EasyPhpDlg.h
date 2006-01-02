@@ -48,6 +48,8 @@ public:
 // Access
 	static CApache* GetApache();
 	static const char* GetInstallPath();
+	static bool GetForceNotepad();
+	static void SetForceNotepad(bool newValue);
 
 
 // Implementation
@@ -139,6 +141,7 @@ private:
 	// used for external access to these values
 	static CApache*		g_apache;
 	static const char*	g_installPath; 
+	static bool			g_forceNotepad;
 
 	// EasyPhp
 	CEasyPHP			m_cEasyPHP;			// parametres

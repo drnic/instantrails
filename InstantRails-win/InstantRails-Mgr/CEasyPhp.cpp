@@ -44,6 +44,7 @@ CEasyPHP::CEasyPHP()
 	m_bModeSSL = false;
 	m_bCheckVersionAtStartup = false;
 	m_bStartAsService = false;
+	m_bForceNotepad = false;
 	memset(m_sMySql_Arguments, 0, sizeof(m_sMySql_Arguments));
 	m_bWinExpand = true;
 	memset(m_szSelectedLang, 0, sizeof(m_szSelectedLang));
@@ -58,6 +59,9 @@ CEasyPHP::CEasyPHP()
 	GetPrivateProfileString("InstantRails", "OldRunningPath", "", m_szOldRunningPath, sizeof(m_szOldRunningPath)-1, IniPath());
 	if (m_szOldRunningPath[0] == '\0') // pas trouvé
 		CUtils::GetLongPathName(m_szInstallPath, m_szOldRunningPath, sizeof(m_szOldRunningPath)-1);
+
+	GetPrivateProfileString("InstantRails", "ForceNotepad", "N", szReadConf, 100, IniPath());		
+	m_bForceNotepad = (szReadConf[0] == 'Y');
 
 	GetPrivateProfileString("InstantRails", "AutoStartServers", "Y", szReadConf, 100, IniPath());		
 	m_bAutoStartServeurs = (szReadConf[0] == 'Y');
@@ -121,6 +125,7 @@ DWORD CEasyPHP::Save()
 	DWORD dwRetour = ERROR_SUCCESS;
 
 	WritePrivateProfileString("InstantRails", "AutoStartServers", m_bAutoStartServeurs ? "Y" : "N", IniPath());
+	WritePrivateProfileString("InstantRails", "ForceNotepad", m_bForceNotepad ? "Y" : "N", IniPath());
 	WritePrivateProfileString("InstantRails", "AutoStartEasyPhp", m_bAutoStartEasyPhp ? "Y" : "N", IniPath());
 	WritePrivateProfileString("InstantRails", "AutoReloadConf", m_bAutoReloadConf ? "Y" : "N", IniPath());
 	WritePrivateProfileString("InstantRails", "CheckServerPorts", m_bCheckServerPorts ? "Y" : "N", IniPath());
@@ -171,6 +176,11 @@ DWORD CEasyPHP::Save()
 const char* CEasyPHP::InstallPath()
 {
 	return m_szInstallPath;
+}
+
+bool CEasyPHP::ForceNotepad()
+{
+	return m_bForceNotepad;
 }
 
 const char* CEasyPHP::OldRunningPath()

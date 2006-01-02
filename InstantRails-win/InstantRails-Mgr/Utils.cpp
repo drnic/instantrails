@@ -26,6 +26,7 @@
 
 #include <Tlhelp32.h>	// Process32First/Next
 
+#include "EasyPHPDlg.h"
 #include "utils.h"
 #include "EasyPHP.h"
 #include "Langue.h"
@@ -851,12 +852,13 @@ void CUtils::ViewFile(const char * pcaPath)
 {
 	if (pcaPath)
 	{
-//		if ((int) ShellExecute(NULL, "open", pcaPath, NULL, NULL, SW_SHOW) <= 32)
-//		{
+		if (CEasyPhpDlg::GetForceNotepad() ||
+			(int) ShellExecute(NULL, "open", pcaPath, NULL, NULL, SW_SHOW) <= 32)
+		{
 			char szToExecute[MAX_PATH] = {0};
 			_snprintf(szToExecute, MAX_PATH-1, "notepad %s", pcaPath);
 			WinExec(szToExecute, SW_SHOW);
-//		}
+		}
 	}
 }
 

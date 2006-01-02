@@ -1,4 +1,5 @@
 
+#include "EasyPHPDlg.h"
 #include "Preferences.h"
 #include "EasyPHPAboutDlg.h"
 #include "Langue.h"
@@ -59,6 +60,7 @@ bool CPreferencesDlg::OnCommand(WPARAM waCommand, LPARAM laParam)
 	case IDC_CHECK_EASYPHP_VERSION:
 	case IDC_CONFAUTORELOAD:
 	case IDC_CHECK_SERVERS_PORT:
+	case IDC_FORCE_NOTEPAD:
 		EnableWindow(GetDlgItem(IDOK), TRUE);
 		break;
 
@@ -134,6 +136,8 @@ bool CPreferencesDlg::UpdateData(bool baSaveAndValidate)
 		m_pEasyPHP->m_bModeSSL = (IsDlgButtonChecked(GetHandle(), IDC_SSL) ? true : false);
 		m_pEasyPHP->m_bCheckVersionAtStartup = (IsDlgButtonChecked(GetHandle(), IDC_CHECK_EASYPHP_VERSION) ? true : false);
 		m_pEasyPHP->m_bStartAsService = (IsDlgButtonChecked(GetHandle(), IDC_SERVICE) ? true : false);
+		m_pEasyPHP->m_bForceNotepad = (IsDlgButtonChecked(GetHandle(), IDC_FORCE_NOTEPAD) ? true : false);
+		CEasyPhpDlg::SetForceNotepad(m_pEasyPHP->m_bForceNotepad);
 	}
 	else
 	{
@@ -145,6 +149,7 @@ bool CPreferencesDlg::UpdateData(bool baSaveAndValidate)
 		CheckDlgButton(GetHandle(), IDC_SSL, m_pEasyPHP->m_bModeSSL ? BST_CHECKED : BST_UNCHECKED);
 		CheckDlgButton(GetHandle(), IDC_CHECK_EASYPHP_VERSION, m_pEasyPHP->m_bCheckVersionAtStartup ? BST_CHECKED : BST_UNCHECKED);
 		CheckDlgButton(GetHandle(), IDC_SERVICE, m_pEasyPHP->m_bStartAsService ? BST_CHECKED : BST_UNCHECKED);
+		CheckDlgButton(GetHandle(), IDC_FORCE_NOTEPAD, m_pEasyPHP->m_bForceNotepad ? BST_CHECKED : BST_UNCHECKED);
 		::EnableWindow(GetDlgItem(IDC_SERVICE), CUtils::UserIsAdmin() && CUtils::IsWindowsNTPlatform() && CUtils::IsFixedDrive());
 		::EnableWindow(GetDlgItem(IDC_CHECK_WINDOWSTART), CUtils::UserIsAdmin() && CUtils::IsWindowsNTPlatform() && CUtils::IsFixedDrive());
 		::EnableWindow(GetDlgItem(IDC_AUTOSERVEURSSTART), !m_pEasyPHP->m_bStartAsService);

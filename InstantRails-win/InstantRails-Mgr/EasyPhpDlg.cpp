@@ -55,6 +55,7 @@ UINT					m_uiPHPMessage = ::RegisterWindowMessage("EasyPhp_PHP");
 // Access
 CApache* CEasyPhpDlg::g_apache;
 const char*    CEasyPhpDlg::g_installPath;
+bool    CEasyPhpDlg::g_forceNotepad;
 
 CApache* CEasyPhpDlg::GetApache()
 {
@@ -64,6 +65,16 @@ CApache* CEasyPhpDlg::GetApache()
 const char* CEasyPhpDlg::GetInstallPath()
 {
 	return g_installPath;
+}
+
+bool CEasyPhpDlg::GetForceNotepad()
+{
+	return g_forceNotepad;
+}
+
+void CEasyPhpDlg::SetForceNotepad(bool newValue)
+{
+	g_forceNotepad = newValue;
 }
 
 
@@ -76,6 +87,7 @@ CEasyPhpDlg::CEasyPhpDlg(HWND haParent /*=NULL*/):
 	// initialize static fields for external access
 	g_apache = &m_cApache; 
 	g_installPath = m_cEasyPHP.InstallPath();
+	g_forceNotepad = m_cEasyPHP.ForceNotepad();
 
 	m_hIcon[0] = LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_MAINFRAME));
 	m_hIcon[1] = LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_APACHE_ONLY_RUN));

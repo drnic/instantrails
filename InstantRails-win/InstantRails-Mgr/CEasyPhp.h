@@ -35,6 +35,7 @@ public:
 	DWORD Save();
 
 	const char* InstallPath();
+	bool ForceNotepad();
 	const char* OldRunningPath();
 	const char* IniPath();
 	const char* LogPath();
@@ -51,6 +52,8 @@ protected:
 public:
 	// Parametres de configuration
 	bool			m_bAutoStartServeurs;
+	bool			m_bForceNotepad;
+	bool			m_bForceServers;
 	bool			m_bAutoStartEasyPhp;
 	bool			m_bAutoReloadConf;
 	bool			m_bCheckServerPorts;

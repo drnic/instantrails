@@ -122,15 +122,18 @@ BEGIN
                     WS_TABSTOP,15,14,255,10,0,HIDC_CHECK_WINDOWSTART
     CONTROL         "Automatically start the servers when Instant Rails starts",
                     IDC_AUTOSERVEURSSTART,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,15,35,254,10
+                    WS_TABSTOP,15,34,254,10
     CONTROL         "Detect configuration changes and automatically restart the servers",
                     IDC_CONFAUTORELOAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    15,56,253,10
+                    15,54,253,10
     CONTROL         "Verify that the ports are available before starting servers",
                     IDC_CHECK_SERVERS_PORT,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,15,77,253,10
+                    WS_TABSTOP,15,74,253,10
     PUSHBUTTON      "&OK",IDOK,41,117,50,14,BS_FLAT,WS_EX_TRANSPARENT
     GROUPBOX        "",IDC_PREFERENCES,4,3,273,109
+    CONTROL         "Force the use of Notepad.exe to edit configuration and log files.",
+                    IDC_FORCE_NOTEPAD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    15,94,253,10
 END
 
 IDD_UPDATE DIALOGEX 0, 0, 428, 121

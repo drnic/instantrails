@@ -36,6 +36,8 @@
 #define IDC_AUTOSERVEURSSTART           1002
 #define IDC_CONFAUTORELOAD              1003
 #define IDC_CHECK_SERVERS_PORT          1004
+#define IDC_CHECK_SERVERS_PORT2         1005
+#define IDC_FORCE_NOTEPAD               1005
 #define IDC_HOME_PAGE_LINK              1007
 #define ID_ABOUT                        1008
 #define IDC_LAURENT                     1009
