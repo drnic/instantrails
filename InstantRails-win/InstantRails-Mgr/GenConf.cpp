@@ -126,7 +126,7 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
 	GenerateConfFile(szCurrentPath2, szUseRubySrc, szUseRubyDest, ':');
-//	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
+	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
 
 	return 0;
 }
