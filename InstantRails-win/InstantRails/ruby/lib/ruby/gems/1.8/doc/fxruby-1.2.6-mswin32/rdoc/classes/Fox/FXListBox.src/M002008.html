@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>appendItem (Fox::FXListBox)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File rdoc-sources/FXListBox.rb, line 87</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">appendItem</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">icon</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">ptr</span>=<span class="ruby-keyword kw">nil</span>);
+  
+    <span class="ruby-comment cmt"># Prepend an item to the list</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">prependItem</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">icon</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">ptr</span>=<span class="ruby-keyword kw">nil</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Move item from _oldIndex_ to _newIndex_ and return the new</span>
+    <span class="ruby-comment cmt"># index of the item.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if either _oldIndex_ or _newIndex_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">moveItem</span>(<span class="ruby-identifier">newIndex</span>, <span class="ruby-identifier">oldIndex</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Remove this item from the list.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeItem</span>(<span class="ruby-identifier">index</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Remove all items from the list</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clearItems</span>(); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Search items for item by name, starting from _start_ item; the</span>
+    <span class="ruby-comment cmt"># _flags_ argument controls the search direction, and case sensitivity.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">findItem</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">start</span>=<span class="ruby-value">-1</span>, <span class="ruby-identifier">flags</span>=<span class="ruby-constant">SEARCH_FORWARD</span><span class="ruby-operator">|</span><span class="ruby-constant">SEARCH_WRAP</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Set text for specified item to _text_.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemText</span>(<span class="ruby-identifier">index</span>, <span class="ruby-identifier">text</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Return text for specified item.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemText</span>(<span class="ruby-identifier">index</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Set icon for specified item to _icon_.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemIcon</span>(<span class="ruby-identifier">index</span>, <span class="ruby-identifier">icon</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Return icon for specified item.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemIcon</span>(<span class="ruby-identifier">index</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Set user data object for specified item to _ptr_.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemData</span>(<span class="ruby-identifier">index</span>, <span class="ruby-identifier">ptr</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Return user data object for specified item.</span>
+    <span class="ruby-comment cmt"># Raises IndexError if _index_ is out of bounds.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemData</span>(<span class="ruby-identifier">index</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return +true+ if the pane is shown.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">paneShown?</span>; <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Sort items using current sort function</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sortItems</span>; <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-keyword kw">alias</span> <span class="ruby-identifier">appendItem</span> <span class="ruby-operator">&lt;&lt;</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>on_nonmodal_close (Fox::FTNonModal)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/fox12/execute_nonmodal.rb, line 61</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">on_nonmodal_close</span>(<span class="ruby-identifier">accepted</span>)
+      <span class="ruby-ivar">@__FTNonModal_block</span>[<span class="ruby-identifier">accepted</span>]
+
+      <span class="ruby-comment cmt">##return 0 -- why isn't this enough to close window?</span>
+      <span class="ruby-comment cmt">## oh well, let's imitate FXTopWindow:</span>
+      <span class="ruby-identifier">getApp</span>().<span class="ruby-identifier">stopModal</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">accepted</span> <span class="ruby-value">? </span><span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-value">0</span>)
+      <span class="ruby-identifier">hide</span>()
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Fox::FXFont</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Fox::FXFont</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fox12/aliases_rb.html">
+                lib/fox12/aliases.rb
+                </a>
+        <br />
+                <a href="../../files/rdoc-sources/FXFont_rb.html">
+                rdoc-sources/FXFont.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Font class
+</p>
+<h3>Font style hints which influence the matcher</h3>
+<table>
+<tr><td valign="top"><tt>FONTPITCH_DEFAULT</tt>:</td><td>Default pitch
+
+</td></tr>
+<tr><td valign="top"><tt>FONTPITCH_FIXED</tt>:</td><td>Fixed pitch, mono-spaced
+
+</td></tr>
+<tr><td valign="top"><tt>FONTPITCH_VARIABLE</tt>:</td><td>Variable pitch, proportional spacing
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_DONTCARE</tt>:</td><td>Don&#8216;t care which font
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_DECORATIVE</tt>:</td><td>Fancy fonts
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_MODERN</tt>:</td><td>Monospace typewriter font
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_ROMAN</tt>:</td><td>Variable width times-like font, serif
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_SCRIPT</tt>:</td><td>Script or cursive
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_SWISS</tt>:</td><td>Helvetica/swiss type font, sans-serif
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_SYSTEM</tt>:</td><td>System font
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_X11</tt>:</td><td>X11 Font string
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_SCALABLE</tt>:</td><td>Scalable fonts
+
+</td></tr>
+<tr><td valign="top"><tt>FONTHINT_POLYMORPHIC</tt>:</td><td>Polymorphic fonts
+
+</td></tr>
+</table>
+<h3>Font slant</h3>
+<table>
+<tr><td valign="top"><tt>FONTSLANT_DONTCARE</tt>:</td><td>Don&#8216;t care about slant
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSLANT_REGULAR</tt>:</td><td>Regular straight up
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSLANT_ITALIC</tt>:</td><td>Italics
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSLANT_OBLIQUE</tt>:</td><td>Oblique slant
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSLANT_REVERSE_ITALIC</tt>:</td><td>Reversed italic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSLANT_REVERSE_OBLIQUE</tt>:</td><td>Reversed oblique
+
+</td></tr>
+</table>
+<h3>Font character set encoding</h3>
+<table>
+<tr><td valign="top"><tt>FONTENCODING_DEFAULT</tt>:</td><td>Don&#8216;t care character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_1</tt>:</td><td>West European (Latin1)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_2</tt>:</td><td>Central and East European (Latin2)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_3</tt>:</td><td>Esperanto (Latin3)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_4</tt>:</td><td>ISO-8859-4 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_5</tt>:</td><td>Cyrillic (almost obsolete)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_6</tt>:</td><td>Arabic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_7</tt>:</td><td>Greek
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_8</tt>:</td><td>Hebrew
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_9</tt>:</td><td>Turkish (Latin5)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_10</tt>:</td><td>ISO-8859-10 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_11</tt>:</td><td>Thai
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_13</tt>:</td><td>Baltic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_14</tt>:</td><td>ISO-8859-14 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_15</tt>:</td><td>ISO-8859-15 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ISO_8859_16</tt>:</td><td>ISO-8859-16 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_KOI8</tt>:</td><td>KOI-8 character encoding
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_KOI8_R</tt>:</td><td>Russian
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_KOI8_U</tt>:</td><td>Ukrainian
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_KOI8_UNIFIED</tt>:</td><td>x
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP437</tt>:</td><td>IBM-PC code page
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP850</tt>:</td><td>IBM-PC Multilingual
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP851</tt>:</td><td>IBM-PC Greek
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP852</tt>:</td><td>IBM-PC Latin2
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP855</tt>:</td><td>IBM-PC Cyrillic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP856</tt>:</td><td>IBM-PC Hebrew
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP857</tt>:</td><td>IBM-PC Turkish
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP860</tt>:</td><td>IBM-PC Portugese
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP861</tt>:</td><td>IBM-PC Iceland
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP862</tt>:</td><td>IBM-PC Israel
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP863</tt>:</td><td>IBM-PC Canadian/French
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP864</tt>:</td><td>IBM-PC Arabic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP865</tt>:</td><td>IBM-PC Nordic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP866</tt>:</td><td>IBM-PC Cyrillic 2
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP869</tt>:</td><td>IBM-PC Greek 2
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP870</tt>:</td><td>Latin-2 Multilingual
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1250</tt>:</td><td>Windows Central European
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1251</tt>:</td><td>Windows Russian
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1252</tt>:</td><td>Windows Latin1
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1253</tt>:</td><td>Windows Greek
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1254</tt>:</td><td>Windows Turkish
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1255</tt>:</td><td>Windows Hebrew
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1256</tt>:</td><td>Windows Arabic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1257</tt>:</td><td>Windows Baltic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP1258</tt>:</td><td>Windows Vietnam
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CP874</tt>:</td><td>Windows Thai
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN1</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1 (West European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN2</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_2</tt>, Latin 2 (East European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN3</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_3</tt>, Latin 3 (South European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN4</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_4</tt>, Latin 4 (North European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN5</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_9</tt>, Latin 5 (Turkish)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN6</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_10</tt>, Latin 6 (Nordic)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN7</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_13</tt>, Latin 7 (Baltic Rim)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN8</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_14</tt>, Latin 8 (Celtic)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN9</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_15</tt>, Latin 9 (a.k.a. Latin 0)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_LATIN10</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_16</tt>, Latin 10
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_USASCII</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_WESTEUROPE</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1 (West European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_EASTEUROPE</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_2</tt>, Latin 2 (East European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_SOUTHEUROPE</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_3</tt>, Latin 3 (South European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_NORTHEUROPE</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_4</tt>, Latin 4 (North European)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CYRILLIC</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_5</tt>, Cyrillic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_RUSSIAN</tt>:</td><td>same as <tt>FONTENCODING_KOI8</tt>, Cyrillic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_ARABIC</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_6</tt>, Arabic
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_GREEK</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_7</tt>, Greek
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_HEBREW</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_8</tt>, Hebrew
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_TURKISH</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_9</tt>, Latin 5 (Turkish)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_NORDIC</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_10</tt>, Latin 6 (Nordic)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_THAI</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_11</tt>, Thai
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_BALTIC</tt>:</td><td>same as <tt>FONTENCODING_ISO_8859_13</tt>, Latin 7 (Baltic Rim)
+
+</td></tr>
+<tr><td valign="top"><tt>FONTENCODING_CELTIC</tt>:</td><td>same as &lt;tt&gt;FONTENCODING_ISO_8859_14, Latin 8 (Celtic)
+
+</td></tr>
+</table>
+<h3>Font weight</h3>
+<table>
+<tr><td valign="top"><tt>FONTWEIGHT_DONTCARE</tt>:</td><td>Don&#8216;t care about weight
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_THIN</tt>:</td><td>Thin
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_EXTRALIGHT</tt>:</td><td>Extra light
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_LIGHT</tt>:</td><td>Light
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_NORMAL</tt>:</td><td>Normal or regular weight
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_REGULAR</tt>:</td><td>Normal or regular weight
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_MEDIUM</tt>:</td><td>Medium bold face
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_DEMIBOLD</tt>:</td><td>Demi bold face
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_BOLD</tt>:</td><td>Bold face
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_EXTRABOLD</tt>:</td><td>Extra
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_HEAVY</tt>:</td><td>Heavy
+
+</td></tr>
+<tr><td valign="top"><tt>FONTWEIGHT_BLACK</tt>:</td><td>Black
+
+</td></tr>
+</table>
+<h3>Font relative setwidth</h3>
+<table>
+<tr><td valign="top"><tt>FONTSETWIDTH_DONTCARE</tt>:</td><td>Don&#8216;t care about set width
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_ULTRACONDENSED</tt>:</td><td>Ultra condensed printing
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_EXTRACONDENSED</tt>:</td><td>Extra condensed
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_CONDENSED</tt>:</td><td>Condensed
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_NARROW</tt>:</td><td>Narrow
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_COMPRESSED</tt>:</td><td>Compressed
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_SEMICONDENSED</tt>:</td><td>Semi-condensed
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_MEDIUM</tt>:</td><td>Medium printing
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_NORMAL</tt>:</td><td>Normal printing
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_REGULAR</tt>:</td><td>Regular printing
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_SEMIEXPANDED</tt>:</td><td>Semi expanded
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_EXPANDED</tt>:</td><td>Expanded
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_WIDE</tt>:</td><td>Wide
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_EXTRAEXPANDED</tt>:</td><td>Extra expanded
+
+</td></tr>
+<tr><td valign="top"><tt>FONTSETWIDTH_ULTRAEXPANDED</tt>:</td><td>Ultra expanded
+
+</td></tr>
+</table>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001761">fontMono?</a>&nbsp;&nbsp;
+      <a href="#M001760">getFont</a>&nbsp;&nbsp;
+      <a href="#M001766">getTextHeight</a>&nbsp;&nbsp;
+      <a href="#M001765">getTextWidth</a>&nbsp;&nbsp;
+      <a href="#M001762">hasChar?</a>&nbsp;&nbsp;
+      <a href="#M001763">leftBearing</a>&nbsp;&nbsp;
+      <a href="#M001767">listFonts</a>&nbsp;&nbsp;
+      <a href="#M001756">new</a>&nbsp;&nbsp;
+      <a href="#M001757">new</a>&nbsp;&nbsp;
+      <a href="#M001758">new</a>&nbsp;&nbsp;
+      <a href="#M001764">rightBearing</a>&nbsp;&nbsp;
+      <a href="#M001759">setFont</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hasChar</td>
+          <td>-></td>
+          <td class="context-item-value">hasChar?</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualEncoding</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual encoding [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualName</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual font family name [String]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualSetWidth</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual set width [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualSize</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual size in deci-points [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualSlant</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual slant [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">actualWeight</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Actual font weight [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">encoding</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Encoding [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontAscent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Ascent from baseline [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontDesc</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Font description [<a href="FXFontDesc.html">FXFontDesc</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontDescent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Descent from baseline [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontHeight</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Height of tallest character in font [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontLeading</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Font leading [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontSpacing</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Font line spacing [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">fontWidth</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Width of widest character in font [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hints</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Hints [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">maxChar</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Last character glyph in font [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">minChar</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+First character glyph in font [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">name</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Font family name [String]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">setWidth</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Set width [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">size</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Size in decipoints [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">slant</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Slant [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">weight</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Font weight [Integer]
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001767" class="method-detail">
+        <a name="M001767"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001767.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001767.html');return false;">
+          <span class="method-name">listFonts</span><span class="method-args">(face, weight=FONTWEIGHT_DONTCARE, slant=FONTSLANT_DONTCARE, setWidth=FONTSETWIDTH_DONTCARE, encoding=FONTENCODING_DEFAULT, hints=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+List all fonts matching hints. Returns an array of <a
+href="FXFontDesc.html">FXFontDesc</a> objects.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001756" class="method-detail">
+        <a name="M001756"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001756.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001756.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(a, fontDesc) {|theFont| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an <a href="FXFont.html">FXFont</a> instance, initialized from a
+font description.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>a</tt>:</td><td>an application instance [<a href="FXApp.html">FXApp</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>fontDesc</tt>:</td><td>a font description [<a href="FXFontDesc.html">FXFontDesc</a>]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001757" class="method-detail">
+        <a name="M001757"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001757.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001757.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(a, face, size, weight=FONTWEIGHT_NORMAL, slant=FONTSLANT_REGULAR, encoding=FONTENCODING_DEFAULT, setWidth=FONTSETWIDTH_DONTCARE, hints=0) {|theFont| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an <a href="FXFont.html">FXFont</a> instance initialized with the
+given face name, size in points (pixels), weight, slant, character set
+encoding, set width, and hints. The font name may be comprised of a family
+name and optional foundry name enclosed in square brackets, for example,
+&quot;helvetica [bitstream]&quot;.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>a</tt>:</td><td>an application instance [<a href="FXApp.html">FXApp</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>face</tt>:</td><td>font face name [String]
+
+</td></tr>
+<tr><td valign="top"><tt>size</tt>:</td><td>requested font size, in points [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>weight</tt>:</td><td>requested font weight [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>encoding</tt>:</td><td>requested font encoding [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>setWidth</tt>:</td><td>requested font set width [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>hints</tt>:</td><td>font construction hints for font matching algorithm [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001758" class="method-detail">
+        <a name="M001758"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001758.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001758.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(a, string) {|theFont| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Construct a font with given font description of the form:
+</p>
+<pre>
+    fontname [ &quot;[&quot; foundry &quot;]&quot; ] [&quot;,&quot; size [&quot;,&quot; weight [&quot;,&quot; slant [&quot;,&quot; setwidth [&quot;,&quot; encoding [&quot;,&quot; hints]]]]]]
+</pre>
+<p>
+For example:
+</p>
+<pre>
+    &quot;helvetica [bitstream],12,bold,i,normal,iso8859-1,0&quot;
+</pre>
+<p>
+Typically, at least the font name, and size must be given for normal font
+matching. As a special case, raw X11 fonts can also be passed, for example:
+</p>
+<pre>
+    &quot;9x15bold&quot;
+</pre>
+<p>
+Finally, an old FOX 1.0 style font string may be passed as well:
+</p>
+<pre>
+    &quot;[helvetica] 90 700 1 1 0 0&quot;
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001761" class="method-detail">
+        <a name="M001761"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001761.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001761.html');return false;">
+          <span class="method-name">fontMono?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if font is monospaced.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001760" class="method-detail">
+        <a name="M001760"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001760.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001760.html');return false;">
+          <span class="method-name">getFont</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the font description as a string suitable for parsing with <a
+href="FXFont.html#M001759">setFont</a>, see above.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001766" class="method-detail">
+        <a name="M001766"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001766.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001766.html');return false;">
+          <span class="method-name">getTextHeight</span><span class="method-args">(text)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the height of given <em>text</em> in this font.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001765" class="method-detail">
+        <a name="M001765"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001765.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001765.html');return false;">
+          <span class="method-name">getTextWidth</span><span class="method-args">(text)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the width of given <em>text</em> in this font.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001762" class="method-detail">
+        <a name="M001762"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001762.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001762.html');return false;">
+          <span class="method-name">hasChar?</span><span class="method-args">(ch)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if font has glyph for <em>ch</em>. Here, <em>ch</em>
+can either be an ordinal value, e.g.
+</p>
+<pre>
+    aFont.hasChar?(?a)
+</pre>
+<p>
+or a string of length one (i.e. a single character), e.g.
+</p>
+<pre>
+    aFont.hasChar?('a')
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M001763" class="method-detail">
+        <a name="M001763"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001763.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001763.html');return false;">
+          <span class="method-name">leftBearing</span><span class="method-args">(ch)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the left-side bearing (the distance from the origin to the leftmost
+pixel in the character) for <em>ch</em>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001764" class="method-detail">
+        <a name="M001764"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001764.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001764.html');return false;">
+          <span class="method-name">rightBearing</span><span class="method-args">(ch)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the right-side bearing (the distance from the origin to the
+rightmost pixel in the character) for <em>ch</em>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001759" class="method-detail">
+        <a name="M001759"></a>
+
+        <div class="method-heading">
+          <a href="FXFont.src/M001759.html" target="Code" class="method-signature"
+            onclick="popupCode('FXFont.src/M001759.html');return false;">
+          <span class="method-name">setFont</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change the font to the specified font description string. Returns
+<tt>true</tt> on success.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

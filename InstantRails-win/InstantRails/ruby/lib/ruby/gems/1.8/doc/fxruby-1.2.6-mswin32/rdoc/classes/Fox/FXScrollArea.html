@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Fox::FXScrollArea</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Fox::FXScrollArea</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fox12/aliases_rb.html">
+                lib/fox12/aliases.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/core_rb.html">
+                lib/fox12/core.rb
+                </a>
+        <br />
+                <a href="../../files/rdoc-sources/FXScrollArea_rb.html">
+                rdoc-sources/FXScrollArea.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The scroll area widget manages a content area and a viewport area through
+which the content is viewed. When the content area becomes larger than the
+viewport area, scrollbars are placed to permit viewing of the entire
+content by scrolling the content. Depending on the mode, scrollbars may be
+displayed on an as-needed basis, always, or never. Normally, the scroll
+area&#8217;s size and the content&#8217;s size are independent; however, it
+is possible to disable scrolling in the horizontal (vertical) direction. In
+this case, the content width (height) will influence the width (height) of
+the scroll area widget. For content which is time-consuming to repaint,
+continuous scrolling may be turned off.
+</p>
+<h3>Scrollbar options</h3>
+<table>
+<tr><td valign="top"><tt>SCROLLERS_NORMAL</tt>:</td><td>Show the scrollbars when needed
+
+</td></tr>
+<tr><td valign="top"><tt>HSCROLLER_ALWAYS</tt>:</td><td>Always show horizontal scrollers
+
+</td></tr>
+<tr><td valign="top"><tt>HSCROLLER_NEVER</tt>:</td><td>Never show horizontal scrollers
+
+</td></tr>
+<tr><td valign="top"><tt>VSCROLLER_ALWAYS</tt>:</td><td>Always show vertical scrollers
+
+</td></tr>
+<tr><td valign="top"><tt>VSCROLLER_NEVER</tt>:</td><td>Never show vertical scrollers
+
+</td></tr>
+<tr><td valign="top"><tt>HSCROLLING_ON</tt>:</td><td>Horizontal scrolling turned on (default)
+
+</td></tr>
+<tr><td valign="top"><tt>HSCROLLING_OFF</tt>:</td><td>Horizontal scrolling turned off
+
+</td></tr>
+<tr><td valign="top"><tt>VSCROLLING_ON</tt>:</td><td>Vertical scrolling turned on (default)
+
+</td></tr>
+<tr><td valign="top"><tt>VSCROLLING_OFF</tt>:</td><td>Vertical scrolling turned off
+
+</td></tr>
+<tr><td valign="top"><tt>SCROLLERS_TRACK</tt>:</td><td>Scrollers track continuously for smooth scrolling
+
+</td></tr>
+<tr><td valign="top"><tt>SCROLLERS_DONT_TRACK</tt>:</td><td>Scrollers don&#8217;t track continuously
+
+</td></tr>
+</table>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001262">horizontalScrollable?</a>&nbsp;&nbsp;
+      <a href="#M001261">new</a>&nbsp;&nbsp;
+      <a href="#M001265">position</a>&nbsp;&nbsp;
+      <a href="#M001260">scrollCorner</a>&nbsp;&nbsp;
+      <a href="#M001264">setPosition</a>&nbsp;&nbsp;
+      <a href="#M001263">verticalScrollable?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">contentHeight</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Content height, in pixels [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">contentWidth</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Content width, in pixels [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">horizontalScrollBar</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Horizontal scrollbar [<a href="FXScrollBar.html">FXScrollBar</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scrollStyle</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Scroll style [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">verticalScrollBar</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Vertical scrollbar [<a href="FXScrollBar.html">FXScrollBar</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">viewportHeight</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Viewport height, in pixels [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">viewportWidth</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Viewport width, in pixels [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">xPosition</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Current x-position [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">yPosition</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Current y-position [Integer]
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001261" class="method-detail">
+        <a name="M001261"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001261.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001261.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(parent, opts=0, x=0, y=0, width=0, height=0) {|theScrollArea| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an initialized <a href="FXScrollArea.html">FXScrollArea</a>
+instance.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>parent</tt>:</td><td>the parent widget for this scroll area [<a
+href="FXComposite.html">FXComposite</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>opts</tt>:</td><td>the options [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>x</tt>:</td><td>initial x-position, when the <tt>LAYOUT_FIX_X</tt> layout hint is in effect
+[Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>y</tt>:</td><td>initial y-position, when the <tt>LAYOUT_FIX_Y</tt> layout hint is in effect
+[Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>width</tt>:</td><td>initial width, when the <tt>LAYOUT_FIX_WIDTH</tt> layout hint is in effect
+[Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>height</tt>:</td><td>initial height, when the <tt>LAYOUT_FIX_HEIGHT</tt> layout hint is in
+effect [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001262" class="method-detail">
+        <a name="M001262"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001262.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001262.html');return false;">
+          <span class="method-name">horizontalScrollable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if horizontally scrollable
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001265" class="method-detail">
+        <a name="M001265"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001265.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001265.html');return false;">
+          <span class="method-name">position</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the current position as an array [x, y]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001260" class="method-detail">
+        <a name="M001260"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001260.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001260.html');return false;">
+          <span class="method-name">scrollCorner</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a reference to the scroll corner (an <a
+href="FXScrollCorner.html">FXScrollCorner</a> instance) for this window.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001264" class="method-detail">
+        <a name="M001264"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001264.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001264.html');return false;">
+          <span class="method-name">setPosition</span><span class="method-args">(x, y)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the current position to (<em>x</em>, <em>y</em>)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001263" class="method-detail">
+        <a name="M001263"></a>
+
+        <div class="method-heading">
+          <a href="FXScrollArea.src/M001263.html" target="Code" class="method-signature"
+            onclick="popupCode('FXScrollArea.src/M001263.html');return false;">
+          <span class="method-name">verticalScrollable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if vertically scrollable
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

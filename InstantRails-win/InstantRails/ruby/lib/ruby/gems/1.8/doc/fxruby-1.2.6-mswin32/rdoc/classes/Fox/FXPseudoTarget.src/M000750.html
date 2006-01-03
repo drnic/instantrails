@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>pconnect (Fox::FXPseudoTarget)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/fox12/responder2.rb, line 31</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pconnect</span>(<span class="ruby-identifier">messageType</span>, <span class="ruby-identifier">callableObject</span>, <span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">callableObject</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-ivar">@blocks</span>[<span class="ruby-identifier">messageType</span>] = <span class="ruby-identifier">block</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@blocks</span>[<span class="ruby-identifier">messageType</span>] = <span class="ruby-identifier">callableObject</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-constant">FXMAPTYPE</span>(<span class="ruby-identifier">messageType</span>, <span class="ruby-identifier">:onHandleMsg</span>)
+      
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">messageType</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SEL_TIMEOUT</span>
+          <span class="ruby-ivar">@@targets_of_pending_timers</span>[<span class="ruby-keyword kw">self</span>] = <span class="ruby-keyword kw">self</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SEL_CHORE</span>
+          <span class="ruby-ivar">@@targets_of_pending_chores</span>[<span class="ruby-keyword kw">self</span>] = <span class="ruby-keyword kw">self</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SEL_SIGNAL</span>
+          <span class="ruby-ivar">@@targets_of_pending_signals</span>[<span class="ruby-keyword kw">self</span>] = <span class="ruby-keyword kw">self</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SEL_IO_READ</span>, <span class="ruby-constant">SEL_IO_WRITE</span>, <span class="ruby-constant">SEL_IO_EXCEPT</span>
+          <span class="ruby-ivar">@@targets_of_pending_inputs</span>[<span class="ruby-keyword kw">self</span>] = <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

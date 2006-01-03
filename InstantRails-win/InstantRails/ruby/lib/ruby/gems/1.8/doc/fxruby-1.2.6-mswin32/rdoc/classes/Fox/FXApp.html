@@ -1,0 +1,1992 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Fox::FXApp</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Fox::FXApp</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fox12/aliases_rb.html">
+                lib/fox12/aliases.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/chore_rb.html">
+                lib/fox12/chore.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/input_rb.html">
+                lib/fox12/input.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/iterators_rb.html">
+                lib/fox12/iterators.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/signal_rb.html">
+                lib/fox12/signal.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/timeout_rb.html">
+                lib/fox12/timeout.rb
+                </a>
+        <br />
+                <a href="../../files/rdoc-sources/FXApp_rb.html">
+                rdoc-sources/FXApp.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Application Object
+</p>
+<h3>Events</h3>
+<p>
+The <a href="FXApp.html">FXApp</a> object itself doesn&#8217;t have a
+designated message target like other FOX objects, but it can send messages
+to objects for a few special events.
+</p>
+<dl>
+<dt><b>Timers</b></dt><dd>When a timeout event is registered with the application using the
+addTimeout method, a <tt>SEL_TIMEOUT</tt> message is sent to the message
+target.
+
+</dd>
+<dt><b>Chores</b></dt><dd>When a chore event is registered with the application using the addChore
+method, a <tt>SEL_CHORE</tt> message is sent to the message target.
+
+</dd>
+<dt><b>Inputs</b></dt><dd>When an input event is registered with the application using the addInput
+method, a <tt>SEL_IO_READ</tt>, <tt>SEL_IO_WRITE</tt> or
+<tt>SEL_IO_EXCEPT</tt> message may be sent to the message target.
+
+</dd>
+<dt><b>Signals</b></dt><dd>When a signal handler object is registered with the application using the
+addSignal method, a <tt>SEL_SIGNAL</tt> message may be sent to the message
+target.
+
+</dd>
+</dl>
+<h3>File input modes for <a href="FXApp.html#M000614">addInput</a></h3>
+<table>
+<tr><td valign="top"><tt>INPUT_NONE</tt>:</td><td>inactive
+
+</td></tr>
+<tr><td valign="top"><tt>INPUT_READ</tt>:</td><td>read input fd
+
+</td></tr>
+<tr><td valign="top"><tt>INPUT_WRITE</tt>:</td><td>write input fd
+
+</td></tr>
+<tr><td valign="top"><tt>INPUT_EXCEPT</tt>:</td><td>except input fd
+
+</td></tr>
+</table>
+<h3>All ways of being modal</h3>
+<table>
+<tr><td valign="top"><tt>MODAL_FOR_NONE</tt>:</td><td>Non modal event loop (dispatch normally)
+
+</td></tr>
+<tr><td valign="top"><tt>MODAL_FOR_WINDOW</tt>:</td><td>Modal dialog (beep if outside of modal dialog)
+
+</td></tr>
+<tr><td valign="top"><tt>MODAL_FOR_POPUP</tt>:</td><td>Modal for popup (always dispatch to popup)
+
+</td></tr>
+</table>
+<h3>Default cursors provided by the application</h3>
+<p>
+These constants symbolically represent the different cursor shapes used in
+FOX applications, and can be used as the <em>which</em> arguments for <a
+href="FXApp.html#M000664">getDefaultCursor</a> and <a
+href="FXApp.html#M000665">setDefaultCursor</a>.
+</p>
+<table>
+<tr><td valign="top"><tt>DEF_ARROW_CURSOR</tt>:</td><td>Arrow cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_RARROW_CURSOR</tt>:</td><td>Reverse arrow cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_TEXT_CURSOR</tt>:</td><td>Text cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_HSPLIT_CURSOR</tt>:</td><td>Horizontal split cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_VSPLIT_CURSOR</tt>:</td><td>Vertical split cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_XSPLIT_CURSOR</tt>:</td><td>Cross split cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_SWATCH_CURSOR</tt>:</td><td>Color swatch drag cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_MOVE_CURSOR</tt>:</td><td>Move cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGH_CURSOR</tt>:</td><td>Resize horizontal edge
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGV_CURSOR</tt>:</td><td>Resize vertical edge
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGTL_CURSOR</tt>:</td><td>Resize upper-leftcorner
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGBR_CURSOR</tt>:</td><td>Resize bottom-right corner
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGTR_CURSOR</tt>:</td><td>Resize upper-right corner
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DRAGBL_CURSOR</tt>:</td><td>Resize bottom-left corner
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DNDSTOP_CURSOR</tt>:</td><td>Drag and drop stop
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DNDCOPY_CURSOR</tt>:</td><td>Drag and drop copy
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DNDMOVE_CURSOR</tt>:</td><td>Drag and drop move
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_DNDLINK_CURSOR</tt>:</td><td>Drag and drop link
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_CROSSHAIR_CURSOR</tt>:</td><td>Cross hair cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_CORNERNE_CURSOR</tt>:</td><td>North-east cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_CORNERNW_CURSOR</tt>:</td><td>North-west cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_CORNERSE_CURSOR</tt>:</td><td>South-east cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_CORNERSW_CURSOR</tt>:</td><td>South-west cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_HELP_CURSOR</tt>:</td><td>Help arrow cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_HAND_CURSOR</tt>:</td><td>Hand cursor
+
+</td></tr>
+<tr><td valign="top"><tt>DEF_ROTATE_CURSOR</tt>:</td><td>Rotate cursor
+
+</td></tr>
+</table>
+<h3>Messages identifiers</h3>
+<table>
+<tr><td valign="top"><tt>ID_QUIT</tt>:</td><td>Terminate the application normally
+
+</td></tr>
+<tr><td valign="top"><tt>ID_DUMP</tt>:</td><td>Dump the current widget tree
+
+</td></tr>
+</table>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000613">addChore</a>&nbsp;&nbsp;
+      <a href="#M000629">addChore</a>&nbsp;&nbsp;
+      <a href="#M000614">addInput</a>&nbsp;&nbsp;
+      <a href="#M000616">addSignal</a>&nbsp;&nbsp;
+      <a href="#M000633">addSignal</a>&nbsp;&nbsp;
+      <a href="#M000623">addTimeout</a>&nbsp;&nbsp;
+      <a href="#M000617">addTimeout</a>&nbsp;&nbsp;
+      <a href="#M000661">beep</a>&nbsp;&nbsp;
+      <a href="#M000615">beginWaitCursor</a>&nbsp;&nbsp;
+      <a href="#M000621">closeDisplay</a>&nbsp;&nbsp;
+      <a href="#M000618">copyright</a>&nbsp;&nbsp;
+      <a href="#M000636">create</a>&nbsp;&nbsp;
+      <a href="#M000637">destroy</a>&nbsp;&nbsp;
+      <a href="#M000638">detach</a>&nbsp;&nbsp;
+      <a href="#M000668">disableThreads</a>&nbsp;&nbsp;
+      <a href="#M000666">dumpWidgets</a>&nbsp;&nbsp;
+      <a href="#M000667">enableThreads</a>&nbsp;&nbsp;
+      <a href="#M000663">endWaitCursor</a>&nbsp;&nbsp;
+      <a href="#M000658">exit</a>&nbsp;&nbsp;
+      <a href="#M000655">flush</a>&nbsp;&nbsp;
+      <a href="#M000653">forceRefresh</a>&nbsp;&nbsp;
+      <a href="#M000664">getDefaultCursor</a>&nbsp;&nbsp;
+      <a href="#M000660">getDragTypeName</a>&nbsp;&nbsp;
+      <a href="#M000632">hasChore?</a>&nbsp;&nbsp;
+      <a href="#M000626">hasTimeout?</a>&nbsp;&nbsp;
+      <a href="#M000657">init</a>&nbsp;&nbsp;
+      <a href="#M000622">initialized?</a>&nbsp;&nbsp;
+      <a href="#M000662">instance</a>&nbsp;&nbsp;
+      <a href="#M000649">modal?</a>&nbsp;&nbsp;
+      <a href="#M000619">new</a>&nbsp;&nbsp;
+      <a href="#M000620">openDisplay</a>&nbsp;&nbsp;
+      <a href="#M000639">peekEvent</a>&nbsp;&nbsp;
+      <a href="#M000654">refresh</a>&nbsp;&nbsp;
+      <a href="#M000659">registerDragType</a>&nbsp;&nbsp;
+      <a href="#M000628">remainingTimeout</a>&nbsp;&nbsp;
+      <a href="#M000627">remainingTimeout</a>&nbsp;&nbsp;
+      <a href="#M000630">removeChore</a>&nbsp;&nbsp;
+      <a href="#M000631">removeChore</a>&nbsp;&nbsp;
+      <a href="#M000635">removeInput</a>&nbsp;&nbsp;
+      <a href="#M000634">removeSignal</a>&nbsp;&nbsp;
+      <a href="#M000625">removeTimeout</a>&nbsp;&nbsp;
+      <a href="#M000624">removeTimeout</a>&nbsp;&nbsp;
+      <a href="#M000656">repaint</a>&nbsp;&nbsp;
+      <a href="#M000641">run</a>&nbsp;&nbsp;
+      <a href="#M000645">runModal</a>&nbsp;&nbsp;
+      <a href="#M000646">runModalFor</a>&nbsp;&nbsp;
+      <a href="#M000644">runModalWhileEvents</a>&nbsp;&nbsp;
+      <a href="#M000647">runModalWhileShown</a>&nbsp;&nbsp;
+      <a href="#M000640">runOneEvent</a>&nbsp;&nbsp;
+      <a href="#M000648">runPopup</a>&nbsp;&nbsp;
+      <a href="#M000642">runUntil</a>&nbsp;&nbsp;
+      <a href="#M000643">runWhileEvents</a>&nbsp;&nbsp;
+      <a href="#M000665">setDefaultCursor</a>&nbsp;&nbsp;
+      <a href="#M000650">stop</a>&nbsp;&nbsp;
+      <a href="#M000652">stopModal</a>&nbsp;&nbsp;
+      <a href="#M000651">stopModal</a>&nbsp;&nbsp;
+      <a href="#M000669">threadsEnabled?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">addChore</td>
+          <td>-></td>
+          <td class="context-item-value">addChoreOrig</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">addInput</td>
+          <td>-></td>
+          <td class="context-item-value">addInputOrig</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">beginWaitCursor</td>
+          <td>-></td>
+          <td class="context-item-value">beginWaitCursor0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">addSignal</td>
+          <td>-></td>
+          <td class="context-item-value">addSignalOrig</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">addTimeout</td>
+          <td>-></td>
+          <td class="context-item-value">addTimeoutOrig</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">animSpeed</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Animation speed, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">appName</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Application name [String]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">argc</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Argument count [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">argv</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Argument vector [Array]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">backColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default background color [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">baseColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Background color of GUI controls [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">blinkSpeed</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Blink speed, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">borderColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Border color [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">clickSpeed</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Click speed, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">cursorWindow</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The window under the cursor, if any [<a href="FXWindow.html">FXWindow</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">defaultVisual</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default visual [<a href="FXVisual.html">FXVisual</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">display</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Display [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">dragDelta</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Drag delta, in pixels [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">focusWindow</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The shell window at the top of the focus chain, if any [<a
+href="FXWindow.html">FXWindow</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">foreColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default foreground color [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hiliteColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Hilite color of GUI controls [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">mainWindow</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The main window, if any [<a href="FXWindow.html">FXWindow</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">menuPause</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Menu pause, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">modalModality</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Mode of current modal loop [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">modalWindow</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The window of the current modal loop [<a href="FXWindow.html">FXWindow</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">monoVisual</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Monochrome visual [<a href="FXVisual.html">FXVisual</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">normalFont</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default font [<a href="FXFont.html">FXFont</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">reg</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Registry for this application [<a href="FXRegistry.html">FXRegistry</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">root</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Root window [<a href="FXRootWindow.html">FXRootWindow</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scrollDelay</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Scroll delay time, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scrollSpeed</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Scroll speed, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">selbackColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default background color for selected objects [<a
+href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">selforeColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default foreground color for selected objects [<a
+href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">shadowColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Shadow color of GUI controls [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">sleepTime</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Amount of time (in milliseconds) to yield to Ruby&#8217;s thread scheduler
+[Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tipbackColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default background color for tooltips [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tipforeColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Default foreground color for tooltips [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tooltipPause</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Tooltip pause, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tooltipTime</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Tooltip time, in milliseconds [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">typingSpeed</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Typing speed used for the <a href="FXIconList.html">FXIconList</a>, <a
+href="FXList.html">FXList</a> and <a href="FXTreeList.html">FXTreeList</a>
+widgets&#8217; lookup features, in milliseconds. Default value is 1000
+milliseconds.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">vendorName</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Vendor name [String]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">waitCursor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Wait cursor [<a href="FXCursor.html">FXCursor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">wheelLines</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Number of wheel lines [Integer]
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000618" class="method-detail">
+        <a name="M000618"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000618.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000618.html');return false;">
+          <span class="method-name">copyright</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Copyright notice for library
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000662" class="method-detail">
+        <a name="M000662"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000662.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000662.html');return false;">
+          <span class="method-name">instance</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return application instance
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000619" class="method-detail">
+        <a name="M000619"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000619.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000619.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(appName=&quot;Application&quot;, vendorName=&quot;FoxDefault&quot;) {|theApp| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Construct application object; the <em>appName</em> and <em>vendorName</em>
+strings are used as keys into the registry database for this
+application&#8217;s settings
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000613" class="method-detail">
+        <a name="M000613"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000613.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000613.html');return false;">
+          <span class="method-name">addChore</span><span class="method-args">(*args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a idle processing message to be sent to a target object when the system
+becomes idle, i.e. when there are no more events to be processed. There are
+several forms for <a href="FXApp.html#M000613">addChore</a>; the original
+form (from FOX) takes two arguments, a target object and a message
+identifier:
+</p>
+<pre>
+  anApp.addChore(anObject, aMessageId)
+</pre>
+<p>
+A second form takes a Method instance as its single argument:
+</p>
+<pre>
+  anApp.addChore(aMethod)
+</pre>
+<p>
+For this form, the method should have the standard argument list for a FOX
+message handler. That is, the method should take three arguments, for the
+message <em>sender</em> (an <a href="FXObject.html">FXObject</a>), the
+message <em>selector</em>, and the message <em>data</em> (if any).
+</p>
+<p>
+The last form takes a block:
+</p>
+<pre>
+  anApp.addChore() { |sender, sel, data|
+    ... handle the chore ...
+  }
+</pre>
+<p>
+All of these return a reference to an opaque FXChore instance that can be
+passed to <a href="FXApp.html#M000630">removeChore</a> if it is necessary
+to remove the chore before it fires.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000629" class="method-detail">
+        <a name="M000629"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000629.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000629.html');return false;">
+          <span class="method-name">addChore</span><span class="method-args">(tgt, sel, ptr=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a idle processing message to be sent to target object when the system
+becomes idle, i.e. there are no events to be processed. The void* ptr is
+user data which will be passed into the void* ptr of the message handler.
+If a chore with the same target and message already exists, it will be
+rescheduled.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000614" class="method-detail">
+        <a name="M000614"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000614.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000614.html');return false;">
+          <span class="method-name">addInput</span><span class="method-args">(fd, mode, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a file descriptor <em>fileDesc</em> to be watched for activity as
+determined by <em>mode</em>, where <em>mode</em> is a bitwise OR
+(<tt>INPUT_READ</tt>, <tt>INPUT_WRITE</tt>, <tt>INPUT_EXCEPT</tt>). A
+message of type <tt>SEL_IO_READ</tt>, <tt>SEL_IO_WRITE</tt>, or
+<tt>SEL_IO_EXCEPT</tt> will be sent to the target when the specified
+activity is detected on the file descriptor.
+</p>
+<p>
+There are several forms for <a href="FXApp.html#M000614">addInput</a>; the
+original form (from FOX) takes four arguments:
+</p>
+<pre>
+  anApp.addInput(fileDesc, mode, anObject, aMessageId)
+</pre>
+<p>
+A second form takes three arguments:
+</p>
+<pre>
+  anApp.addInput(fileDesc, mode, aMethod)
+</pre>
+<p>
+For this form, <em>aMethod</em> should have the standard argument list for
+a FOX message handler. That is, the method should take three arguments, for
+the message <em>sender</em> (an <a href="FXObject.html">FXObject</a>), the
+message <em>selector</em>, and the message <em>data</em> (if any).
+</p>
+<p>
+The last form of <a href="FXApp.html#M000614">addInput</a> takes a block:
+</p>
+<pre>
+  anApp.addInput(fileDesc, mode) { |sender, sel, data|
+    ... handle the I/O event ...
+  }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000616" class="method-detail">
+        <a name="M000616"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000616.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000616.html');return false;">
+          <span class="method-name">addSignal</span><span class="method-args">(sig, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register a signal processing message to be sent to target object when the
+specified signal is raised.
+</p>
+<p>
+There are several forms for <a href="FXApp.html#M000616">addSignal</a>; the
+original form (from FOX) takes (up to) five arguments:
+</p>
+<pre>
+  anApp.addSignal(aSignal, anObject, aMessageId, sendImmediately=false, flags=0)
+</pre>
+<p>
+Here, <em>aSignal</em> is a string indicating the operating system signal
+of interest (such as &quot;SIGINT&quot;). The second and third arguments
+are the target object and message identifier for the message to be sent
+when this signal is raised. If <em>sendImmediately</em> is <tt>true</tt>,
+the message will be sent to the target right away; this should be used with
+extreme care as the application is interrupted at an unknown point it its
+execution. The <em>flags</em> are to be set as per POSIX definitions.
+</p>
+<p>
+A second form of <a href="FXApp.html#M000616">addSignal</a> takes a Method
+instance as its second argument:
+</p>
+<pre>
+  anApp.addSignal(aSignal, aMethod, sendImmediately=false, flags=0)
+</pre>
+<p>
+For this form, the method should have the standard argument list for a FOX
+message handler. That is, the method should take three arguments, for the
+message <em>sender</em> (an <a href="FXObject.html">FXObject</a>), the
+message <em>selector</em>, and the message <em>data</em> (if any).
+</p>
+<p>
+The last form of <a href="FXApp.html#M000616">addSignal</a> takes a block:
+</p>
+<pre>
+  anApp.addSignal(aSignal, sendImmediately=false, flags=0) { |sender, sel, data|
+    ... handle the signal ...
+  }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000633" class="method-detail">
+        <a name="M000633"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000633.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000633.html');return false;">
+          <span class="method-name">addSignal</span><span class="method-args">(sig, tgt, sel, immediate=false, flags=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add signal processing message to be sent to target object when the signal
+<em>sig</em> is raised; flags are to be set as per POSIX definitions. When
+<em>immediate</em> is <tt>true</tt>, the message will be sent to the target
+right away; this should be used with extreme care as the application is
+interrupted at an unknown point in its execution.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000623" class="method-detail">
+        <a name="M000623"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000623.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000623.html');return false;">
+          <span class="method-name">addTimeout</span><span class="method-args">(ms, tgt, sel, ptr=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add timeout message to be sent to target object in <em>ms</em>
+milliseconds; the timer fires only once after the interval expires. The
+last argument is optional user data which will be passed along as the
+<em>ptr</em> argument of the message handler. If a timer with the same
+target and message already exists, it will be rescheduled.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>ms</tt>:</td><td>timeout interval, in milliseconds [Integer]
+
+</td></tr>
+<tr><td valign="top"><tt>tgt</tt>:</td><td>target object for the timeout [<a href="FXObject.html">FXObject</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>sel</tt>:</td><td>message identifier for the timeout [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000617" class="method-detail">
+        <a name="M000617"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000617.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000617.html');return false;">
+          <span class="method-name">addTimeout</span><span class="method-args">(ms, *args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register a timeout message to be sent to a target object; the timer fires
+only once after the interval expires.
+</p>
+<p>
+There are several forms for <a href="FXApp.html#M000617">addTimeout</a>;
+the original form (from FOX) takes three arguments:
+</p>
+<pre>
+  anApp.addTimeout(aDelay, anObject, aMessageId)
+</pre>
+<p>
+Here, <em>aDelay</em> is the time interval (in milliseconds) to wait before
+firing this timeout. The second and third arguments are the target object
+and message identifier for the message to be sent when this timeout fires.
+</p>
+<p>
+A second form of <a href="FXApp.html#M000617">addTimeout</a> takes a Method
+instance as its single argument:
+</p>
+<pre>
+  anApp.addTimeout(aDelay, aMethod)
+</pre>
+<p>
+For this form, the method should have the standard argument list for a FOX
+message handler. That is, the method should take three arguments, for the
+message <em>sender</em> (an <a href="FXObject.html">FXObject</a>), the
+message <em>selector</em>, and the message <em>data</em> (if any).
+</p>
+<p>
+The last form of <a href="FXApp.html#M000617">addTimeout</a> takes a block:
+</p>
+<pre>
+  anApp.addTimeout(aDelay) { |sender, sel, data|
+    ... handle the chore ...
+  }
+</pre>
+<p>
+All of these return a reference to an opaque FXTimer instance that can be
+passed to <a href="FXApp.html#M000624">removeTimeout</a> if it is necessary
+to remove the timeout before it fires.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000661" class="method-detail">
+        <a name="M000661"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000661.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000661.html');return false;">
+          <span class="method-name">beep</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Beep
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000615" class="method-detail">
+        <a name="M000615"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000615.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000615.html');return false;">
+          <span class="method-name">beginWaitCursor</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Changes the default application cursor to an hourglass shape, to provide a
+visual cue to the user that it&#8217;s time to wait. To revert the default
+application cursor to its normal shape, call the <a
+href="FXApp.html#M000663">endWaitCursor</a> method. For example,
+</p>
+<pre>
+   getApp().beginWaitCursor()
+     ... time-consuming operation ...
+   getApp().endWaitCursor()
+</pre>
+<p>
+Invocations of <a href="FXApp.html#M000615">beginWaitCursor</a> may be
+nested, and if so, the call to <a
+href="FXApp.html#M000663">endWaitCursor</a> is matched with the most recent
+call to <a href="FXApp.html#M000615">beginWaitCursor</a>.
+</p>
+<p>
+If an optional code block is provided, <a
+href="FXApp.html#M000663">endWaitCursor</a> is automatically called after
+the block terminates, e.g.
+</p>
+<pre>
+   getApp().beginWaitCursor() {
+             ... time-consuming operation ...
+     ... endWaitCursor() is called automatically ...
+   }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000621" class="method-detail">
+        <a name="M000621"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000621.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000621.html');return false;">
+          <span class="method-name">closeDisplay</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Close connection to the display
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000636" class="method-detail">
+        <a name="M000636"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000636.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000636.html');return false;">
+          <span class="method-name">create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create application&#8217;s windows
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000637" class="method-detail">
+        <a name="M000637"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000637.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000637.html');return false;">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Destroy application&#8217;s windows
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000638" class="method-detail">
+        <a name="M000638"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000638.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000638.html');return false;">
+          <span class="method-name">detach</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Detach application&#8217;s windows
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000668" class="method-detail">
+        <a name="M000668"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000668.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000668.html');return false;">
+          <span class="method-name">disableThreads</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Disable support for multithreaded applications
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000666" class="method-detail">
+        <a name="M000666"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000666.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000666.html');return false;">
+          <span class="method-name">dumpWidgets</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dump widget information
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000667" class="method-detail">
+        <a name="M000667"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000667.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000667.html');return false;">
+          <span class="method-name">enableThreads</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Enable support for multithreaded applications
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000663" class="method-detail">
+        <a name="M000663"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000663.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000663.html');return false;">
+          <span class="method-name">endWaitCursor</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+End the most deeply nested wait-cursor block. See also <a
+href="FXApp.html#M000615">beginWaitCursor</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000658" class="method-detail">
+        <a name="M000658"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000658.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000658.html');return false;">
+          <span class="method-name">exit</span><span class="method-args">(code=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Exit application. Closes the display and writes the registry.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000655" class="method-detail">
+        <a name="M000655"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000655.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000655.html');return false;">
+          <span class="method-name">flush</span><span class="method-args">(sync=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Flush pending repaints
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000653" class="method-detail">
+        <a name="M000653"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000653.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000653.html');return false;">
+          <span class="method-name">forceRefresh</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Force GUI refresh
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000664" class="method-detail">
+        <a name="M000664"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000664.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000664.html');return false;">
+          <span class="method-name">getDefaultCursor</span><span class="method-args">(which)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a reference to one of the default application cursors (an <a
+href="FXCursor.html">FXCursor</a> instance), where <em>which</em> is one of
+the default cursor identifiers listed above, e.g.
+</p>
+<pre>
+  rotateCursor = app.getDefaultCursor(DEF_ROTATE_CURSOR)
+</pre>
+<p>
+See also <a href="FXApp.html#M000665">setDefaultCursor</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000660" class="method-detail">
+        <a name="M000660"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000660.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000660.html');return false;">
+          <span class="method-name">getDragTypeName</span><span class="method-args">(dragType)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the name of a previously registered drag type, e.g.
+</p>
+<pre>
+  dragTypeName = app.getDragTypeName(yamlDragType)
+</pre>
+<p>
+See also <a href="FXApp.html#M000659">registerDragType</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000632" class="method-detail">
+        <a name="M000632"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000632.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000632.html');return false;">
+          <span class="method-name">hasChore?</span><span class="method-args">(tgt, sel)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if given chore has been set, otherwise return
+<tt>false</tt>.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>tgt</tt>:</td><td>target object for the chore [<a href="FXObject.html">FXObject</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>sel</tt>:</td><td>message identifier for the chore [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000626" class="method-detail">
+        <a name="M000626"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000626.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000626.html');return false;">
+          <span class="method-name">hasTimeout?</span><span class="method-args">(tgt, sel)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if given timeout has been set, otherwise return
+<tt>false</tt>.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>tgt</tt>:</td><td>target object for the timeout [<a href="FXObject.html">FXObject</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>sel</tt>:</td><td>message identifier for the timeout [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000657" class="method-detail">
+        <a name="M000657"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000657.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000657.html');return false;">
+          <span class="method-name">init</span><span class="method-args">(argv, connect=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initialize application. Parses and removes common command line arguments,
+reads the registry. Finally, if <em>connect</em> is <tt>true</tt>, it opens
+the display.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000622" class="method-detail">
+        <a name="M000622"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000622.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000622.html');return false;">
+          <span class="method-name">initialized?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if the application has been initialized.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000649" class="method-detail">
+        <a name="M000649"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000649.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000649.html');return false;">
+          <span class="method-name">modal?</span><span class="method-args">(window)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the window is modal
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000620" class="method-detail">
+        <a name="M000620"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000620.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000620.html');return false;">
+          <span class="method-name">openDisplay</span><span class="method-args">(dpyname=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Open connection to display; this is called by <a
+href="FXApp.html#M000657">init</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000639" class="method-detail">
+        <a name="M000639"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000639.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000639.html');return false;">
+          <span class="method-name">peekEvent</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Peek to determine if there&#8217;s an event
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000654" class="method-detail">
+        <a name="M000654"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000654.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000654.html');return false;">
+          <span class="method-name">refresh</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Schedule a refresh
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000659" class="method-detail">
+        <a name="M000659"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000659.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000659.html');return false;">
+          <span class="method-name">registerDragType</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register a drag type with the given name and return the drag drag type. If
+this drag type has already been registered, this method will return the
+previously returned drag type. For example,
+</p>
+<pre>
+  yamlDragType = app.registerDragType(&quot;application/x-yaml&quot;)
+</pre>
+<p>
+See also <a href="FXApp.html#M000660">getDragTypeName</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000628" class="method-detail">
+        <a name="M000628"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000628.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000628.html');return false;">
+          <span class="method-name">remainingTimeout</span><span class="method-args">(timer)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the time remaining (in milliseconds) until the given timer fires. If
+the timer is past due, zero is returned. If there is no such timer,
+infinity (UINT_MAX) is returned.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>timer</tt>:</td><td>a reference to the timer originally returned by the call to addTimeout
+[FXTimer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000627" class="method-detail">
+        <a name="M000627"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000627.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000627.html');return false;">
+          <span class="method-name">remainingTimeout</span><span class="method-args">(tgt, sel)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the time remaining (in milliseconds) until the given timer fires. If
+the timer is past due, zero is returned. If there is no such timer,
+infinity (UINT_MAX) is returned.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>tgt</tt>:</td><td>target object for the timeout [<a href="FXObject.html">FXObject</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>sel</tt>:</td><td>message identifier for the timeout [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000630" class="method-detail">
+        <a name="M000630"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000630.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000630.html');return false;">
+          <span class="method-name">removeChore</span><span class="method-args">(tgt, sel)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove idle processing message identified by <em>tgt</em> and <em>sel</em>;
+returns <tt>nil</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000631" class="method-detail">
+        <a name="M000631"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000631.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000631.html');return false;">
+          <span class="method-name">removeChore</span><span class="method-args">(chore)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove idle processing message identified by <em>chore</em>; returns
+<tt>nil</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000635" class="method-detail">
+        <a name="M000635"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000635.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000635.html');return false;">
+          <span class="method-name">removeInput</span><span class="method-args">(fd, mode)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove input message and target object for the specified file descriptor
+and mode, which is a bitwise OR of (<tt>INPUT_READ</tt>,
+<tt>INPUT_WRITE</tt>, <tt>INPUT_EXCEPT</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000634" class="method-detail">
+        <a name="M000634"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000634.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000634.html');return false;">
+          <span class="method-name">removeSignal</span><span class="method-args">(sig)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove signal message for signal sig
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000625" class="method-detail">
+        <a name="M000625"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000625.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000625.html');return false;">
+          <span class="method-name">removeTimeout</span><span class="method-args">(timer)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove timeout identified by <em>timer</em>; returns <tt>nil</tt>.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>timer</tt>:</td><td>timer record originally returned by <a
+href="FXApp.html#M000617">addTimeout</a> [FXTimer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000624" class="method-detail">
+        <a name="M000624"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000624.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000624.html');return false;">
+          <span class="method-name">removeTimeout</span><span class="method-args">(tgt, sel)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove timeout identified by <em>tgt</em> and <em>sel</em>; returns
+<tt>nil</tt>.
+</p>
+<h4>Parameters:</h4>
+<table>
+<tr><td valign="top"><tt>tgt</tt>:</td><td>target object for the timeout [<a href="FXObject.html">FXObject</a>]
+
+</td></tr>
+<tr><td valign="top"><tt>sel</tt>:</td><td>message identifier for the timeout [Integer]
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000656" class="method-detail">
+        <a name="M000656"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000656.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000656.html');return false;">
+          <span class="method-name">repaint</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Paint all windows marked for repainting. On return all the applications
+windows have been painted.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000641" class="method-detail">
+        <a name="M000641"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000641.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000641.html');return false;">
+          <span class="method-name">run</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run the main application event loop until <a
+href="FXApp.html#M000650">stop</a> is called, and return the exit code
+passed as argument to <a href="FXApp.html#M000650">stop</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000645" class="method-detail">
+        <a name="M000645"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000645.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000645.html');return false;">
+          <span class="method-name">runModal</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run modal event loop, blocking keyboard and mouse events to all windows
+until <a href="FXApp.html#M000651">stopModal</a> is called.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000646" class="method-detail">
+        <a name="M000646"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000646.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000646.html');return false;">
+          <span class="method-name">runModalFor</span><span class="method-args">(window)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run a modal event loop for the given window, until <a
+href="FXApp.html#M000650">stop</a> or <a
+href="FXApp.html#M000651">stopModal</a> is called. Except for the modal
+window and its children, user input to all windows is blocked; if the modal
+window is <tt>nil</tt> all user input is blocked.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000644" class="method-detail">
+        <a name="M000644"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000644.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000644.html');return false;">
+          <span class="method-name">runModalWhileEvents</span><span class="method-args">(window=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run event loop while there are events are available in the queue. Returns 1
+when all events in the queue have been handled, and 0 when the event loop
+was terminated due to <a href="FXApp.html#M000650">stop</a> or <a
+href="FXApp.html#M000651">stopModal</a>. Except for the modal window and
+its children, user input to all windows is blocked; if the modal window is
+<tt>nil</tt>, all user input is blocked.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000647" class="method-detail">
+        <a name="M000647"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000647.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000647.html');return false;">
+          <span class="method-name">runModalWhileShown</span><span class="method-args">(window)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run modal while window is shown, or until <a
+href="FXApp.html#M000650">stop</a> or <a
+href="FXApp.html#M000651">stopModal</a> is called. Except for the modal
+window and its children, user input to all windows is blocked; if the modal
+window is <tt>nil</tt> all user input is blocked.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000640" class="method-detail">
+        <a name="M000640"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000640.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000640.html');return false;">
+          <span class="method-name">runOneEvent</span><span class="method-args">(blocking=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Perform one event dispatch; return <tt>true</tt> if event was dispatched.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000648" class="method-detail">
+        <a name="M000648"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000648.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000648.html');return false;">
+          <span class="method-name">runPopup</span><span class="method-args">(window)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run popup menu while shown, until <a href="FXApp.html#M000650">stop</a> or
+<a href="FXApp.html#M000651">stopModal</a> is called. Also returns when
+entering previous cascading popup menu.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000642" class="method-detail">
+        <a name="M000642"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000642.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000642.html');return false;">
+          <span class="method-name">runUntil</span><span class="method-args">(condition)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run an event loop till some flag becomes non-zero, and then return.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000643" class="method-detail">
+        <a name="M000643"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000643.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000643.html');return false;">
+          <span class="method-name">runWhileEvents</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Run event loop while events are available, non-modally. Return when no more
+events, timers, or chores are outstanding.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000665" class="method-detail">
+        <a name="M000665"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000665.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000665.html');return false;">
+          <span class="method-name">setDefaultCursor</span><span class="method-args">(which, cursor)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replace one of the default application cursors with <em>cursor</em>; e.g
+</p>
+<pre>
+  app.setDefaultCursor(DEF_ROTATE_CURSOR, myRotateCursor)
+</pre>
+<p>
+See also <a href="FXApp.html#M000664">getDefaultCursor</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000650" class="method-detail">
+        <a name="M000650"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000650.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000650.html');return false;">
+          <span class="method-name">stop</span><span class="method-args">(value=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Terminate the outermost event loop, and all inner modal loops; All more
+deeper nested event loops will be terminated with code equal to 0, while
+the outermost event loop will return code equal to <em>value</em>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000652" class="method-detail">
+        <a name="M000652"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000652.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000652.html');return false;">
+          <span class="method-name">stopModal</span><span class="method-args">(value=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Break out of the innermost modal loop, returning code equal to
+<em>value</em>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000651" class="method-detail">
+        <a name="M000651"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000651.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000651.html');return false;">
+          <span class="method-name">stopModal</span><span class="method-args">(window, value=0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Break out of the matching modal loop, returning code equal to
+<em>value</em>. All deeper nested event loops are terminated with code
+equal to 0.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000669" class="method-detail">
+        <a name="M000669"></a>
+
+        <div class="method-heading">
+          <a href="FXApp.src/M000669.html" target="Code" class="method-signature"
+            onclick="popupCode('FXApp.src/M000669.html');return false;">
+          <span class="method-name">threadsEnabled?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check to see if multithreaded applications are supported
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

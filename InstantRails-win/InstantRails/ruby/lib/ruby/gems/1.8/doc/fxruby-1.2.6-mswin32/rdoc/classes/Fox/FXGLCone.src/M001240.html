@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>drawshape (Fox::FXGLCone)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/fox12/glshapes.rb, line 312</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">drawshape</span>(<span class="ruby-identifier">viewer</span>)
+      <span class="ruby-identifier">quad</span> = <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">NewQuadric</span>()
+      <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">QuadricDrawStyle</span>(<span class="ruby-identifier">quad</span>, <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">FILL</span>)
+      <span class="ruby-constant">GL</span><span class="ruby-operator">::</span><span class="ruby-constant">PushMatrix</span>()
+      <span class="ruby-constant">GL</span><span class="ruby-operator">::</span><span class="ruby-constant">Rotate</span>(<span class="ruby-value">-90</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>)
+      <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">Cylinder</span>(<span class="ruby-identifier">quad</span>, <span class="ruby-ivar">@radius</span>, <span class="ruby-value">0</span>, <span class="ruby-ivar">@height</span>, <span class="ruby-ivar">@slices</span>, <span class="ruby-ivar">@stacks</span>)
+      <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">QuadricOrientation</span>(<span class="ruby-identifier">quad</span>, <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">INSIDE</span>)
+      <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">Disk</span>(<span class="ruby-identifier">quad</span>, <span class="ruby-value">0</span>, <span class="ruby-ivar">@radius</span>, <span class="ruby-ivar">@slices</span>, <span class="ruby-ivar">@loops</span>)
+      <span class="ruby-constant">GLU</span><span class="ruby-operator">::</span><span class="ruby-constant">DeleteQuadric</span>(<span class="ruby-identifier">quad</span>)
+      <span class="ruby-constant">GL</span><span class="ruby-operator">::</span><span class="ruby-constant">PopMatrix</span>()
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
