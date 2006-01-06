@@ -1,0 +1,16 @@
+PDCureses 2.6 port to MinGW, VC++ and BCC32,
+by WATANABE Hirofumi <eban@os.rim.or.jp>,
+   NAKAMURA Usaku <usa@osb.att.ne.jp>
+
+To build on a Windows machine:
+cd win32
+(n)make clean all
+
+To build static version on a Windows machine:
+cd win32
+(n)make DLL=0 clean all
+
+To use static library, define PDCURSES_STATIC before include headers.
+
+Web page:
+  http://jarp.jin.gr.jp/win32/

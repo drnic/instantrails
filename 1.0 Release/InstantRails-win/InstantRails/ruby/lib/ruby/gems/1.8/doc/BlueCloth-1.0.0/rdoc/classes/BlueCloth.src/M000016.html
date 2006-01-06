@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transform_block_quotes (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 582</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transform_block_quotes</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Transforming block quotes&quot;</span>
+
+                <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-constant">BlockQuoteRegexp</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">quote</span><span class="ruby-operator">|</span>
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Making blockquote from %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">quote</span>
+
+                        <span class="ruby-identifier">quote</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^ *&gt; ?/</span>, <span class="ruby-value str">''</span> ) <span class="ruby-comment cmt"># Trim one level of quoting </span>
+                        <span class="ruby-identifier">quote</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/^ +$/</span>, <span class="ruby-value str">''</span> )    <span class="ruby-comment cmt"># Trim whitespace-only lines</span>
+
+                        <span class="ruby-identifier">indent</span> = <span class="ruby-value str">&quot; &quot;</span> <span class="ruby-operator">*</span> <span class="ruby-constant">TabWidth</span>
+                        <span class="ruby-identifier">quoted</span> = <span class="ruby-value str">%{&lt;blockquote&gt;\n%s\n&lt;/blockquote&gt;\n\n}</span> <span class="ruby-operator">%</span>
+                                <span class="ruby-identifier">apply_block_transforms</span>( <span class="ruby-identifier">quote</span>, <span class="ruby-identifier">rs</span> ).
+                                <span class="ruby-identifier">gsub</span>( <span class="ruby-regexp re">/^/</span>, <span class="ruby-identifier">indent</span> ).
+                                <span class="ruby-identifier">gsub</span>( <span class="ruby-constant">PreChunk</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">m</span><span class="ruby-operator">|</span> <span class="ruby-identifier">m</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-node">/^#{indent}/o</span>, <span class="ruby-value str">''</span>) }
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Blockquoted chunk is: %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">quoted</span>
+                        <span class="ruby-identifier">quoted</span>
+                }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

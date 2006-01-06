@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>removeItem (Fox::FXTreeList)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File rdoc-sources/FXTreeList.rb, line 343</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>);
+
+    <span class="ruby-comment cmt"># Remove items in range [_fromItem_, _toItem_] inclusively.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message</span>
+    <span class="ruby-comment cmt"># target before each item is removed.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">removeItems</span>(<span class="ruby-identifier">fromItem</span>, <span class="ruby-identifier">toItem</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Remove all items from the list.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_DELETED+ message is sent to the list's message</span>
+    <span class="ruby-comment cmt"># target before each item is removed.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">clearItems</span>(<span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return item width</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemWidth</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return item height</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemHeight</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return a reference to the tree item at (_x_, _y_), if any.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemAt</span>(<span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Search items for item by _text_, starting from _startItem_; the</span>
+    <span class="ruby-comment cmt"># _flags_ argument controls the search direction, and case sensitivity.</span>
+    <span class="ruby-comment cmt"># Returns a reference to the matching item, or +nil+ if no match is found.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">findItem</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">startItem</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">flags</span>=<span class="ruby-constant">SEARCH_FORWARD</span><span class="ruby-operator">|</span><span class="ruby-constant">SEARCH_WRAP</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Scroll the list to make _item_ visible</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">makeItemVisible</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Change item's text</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemText</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">text</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return item's text</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemText</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Change item's open icon</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemOpenIcon</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">openIcon</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return item's open icon</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemOpenIcon</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Change item's closed icon</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemClosedIcon</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">closedIcon</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return item's closed icon</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemClosedIcon</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Change item's user data</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setItemData</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">data</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return item's user data</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">getItemData</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return +true+ if item is selected</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemSelected?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return +true+ if item is current</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemCurrent?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return +true+ if item is visible</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemVisible?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return +true+ if item opened</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemOpened?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return +true+ if item expanded</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemExpanded?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return +true+ if item is a leaf-item, i.e. has no children</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemLeaf?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Return +true+ if item is enabled</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">itemEnabled?</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return item hit code: 0 outside, 1 icon, 2 text, 3 box</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hitItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">x</span>, <span class="ruby-identifier">y</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Repaint item</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">updateItem</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Enable item</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">enableItem</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Disable item</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">disableItem</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Select item.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_SELECTED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the item is selected.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">selectItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Deselect item.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_DESELECTED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the item is deselected.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">deselectItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Toggle item selection.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_SELECTED+ or +SEL_DESELECTED+ message is</span>
+    <span class="ruby-comment cmt"># sent to the list's message target to indicate the change.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">toggleItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Set this item's state to opened. The primary result of this change is</span>
+    <span class="ruby-comment cmt"># that the item's icon will change to its &quot;open&quot; icon.</span>
+    <span class="ruby-comment cmt"># This is different from the #expandTree method, which actually</span>
+    <span class="ruby-comment cmt"># collapses part of the tree list, making some items invisible.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_OPENED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the item is opened.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">openItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Set this item's state to closed. The primary result of this change is</span>
+    <span class="ruby-comment cmt"># that the item's icon will change to its &quot;closed&quot; icon.</span>
+    <span class="ruby-comment cmt"># This is different from the #collapseTree method, which actually</span>
+    <span class="ruby-comment cmt"># collapses part of the tree list, making some items invisible.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_CLOSED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the item is closed.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">closeItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Collapse sub-tree rooted at _tree_.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_COLLAPSED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the sub-tree is collapsed.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">collapseTree</span>(<span class="ruby-identifier">tree</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Expand sub-tree rooted at _tree_.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_EXPANDED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the sub-tree is expanded.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">expandTree</span>(<span class="ruby-identifier">tree</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Reparent _item_ under _parentItem_.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reparentItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">parentItem</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Change current item. If there is already a current item, that item</span>
+    <span class="ruby-comment cmt"># is first closed. After _item_ is set as the tree list's current item,</span>
+    <span class="ruby-comment cmt"># it is opened and selected.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a +SEL_CHANGED+ message is sent to the list's</span>
+    <span class="ruby-comment cmt"># message target after the current item changes.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setCurrentItem</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+  
+    <span class="ruby-comment cmt"># Extend selection from anchor item to _item_.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, a series of +SEL_SELECTED+ and +SEL_DESELECTED+</span>
+    <span class="ruby-comment cmt"># messages may be sent to the list's message target, indicating the changes.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">extendSelection</span>(<span class="ruby-identifier">item</span>, <span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Deselect all items.</span>
+    <span class="ruby-comment cmt"># If _notify_ is +true+, +SEL_DESELECTED+ messages will be sent to the list's</span>
+    <span class="ruby-comment cmt"># message target indicating the affected items.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">killSelection</span>(<span class="ruby-identifier">notify</span>=<span class="ruby-keyword kw">false</span>); <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Sort root items.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sortRootItems</span>(); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Sort all items recursively.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sortItems</span>(); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Sort children of _item_</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sortChildItems</span>(<span class="ruby-identifier">item</span>); <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

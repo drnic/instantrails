@@ -1,0 +1,25 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/clean'
+require 'rake/gempackagetask'
+require 'rake/rdoctask'
+require 'tools/rakehelp'
+require 'fileutils'
+include FileUtils
+
+setup_tests
+setup_clean ["pkg"]
+setup_rdoc ['README', 'LICENSE', 'COPYING', 'lib/**/*.rb', 'doc/**/*.rdoc', 'test/*.rb']
+
+desc "Does a full compile, test run"
+task :default => [:test]
+task :package => [:clean]
+
+desc "Installs using the setup.rb"
+task :install do
+    `sudo ruby setup.rb`
+end
+
+summary = "SCGI Rails Runner -- A complete SCGI for Rails (and others)"
+test_file = "test/test_srr.rb"
+setup_gem("scgi_rails", "0.4.3",  "Zed A. Shaw", summary, ["scgi_service", "scgi_cluster", "scgi_ctrl"], test_file)

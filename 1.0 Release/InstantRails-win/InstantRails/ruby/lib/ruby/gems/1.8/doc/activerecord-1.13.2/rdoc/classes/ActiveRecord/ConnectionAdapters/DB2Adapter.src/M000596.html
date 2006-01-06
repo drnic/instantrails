@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_limit_offset! (ActiveRecord::ConnectionAdapters::DB2Adapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/db2_adapter.rb, line 94</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_limit_offset!</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">options</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>].<span class="ruby-identifier">nil?</span>
+            <span class="ruby-comment cmt"># &quot;FETCH FIRST 0 ROWS ONLY&quot; is not allowed, so we have</span>
+            <span class="ruby-comment cmt"># to use a cheap trick.</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:limit</span>] <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sql</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/WHERE/i</span>
+                <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/WHERE/i</span>, <span class="ruby-value str">'WHERE 1 = 2 AND '</span>)
+              <span class="ruby-keyword kw">elsif</span>
+                <span class="ruby-identifier">sql</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/ORDER\s+BY/i</span>
+                <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/ORDER\s+BY/i</span>, <span class="ruby-value str">'WHERE 1 = 2 ORDER BY'</span>)
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'WHERE 1 = 2'</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">sql</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; FETCH FIRST #{options[:limit]} ROWS ONLY&quot;</span> 
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:offset</span>].<span class="ruby-identifier">nil?</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">':offset option is not yet supported!'</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

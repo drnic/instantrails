@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>defaults (SCGI::Configuration)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/scgi.rb, line 552</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">defaults</span>(<span class="ruby-identifier">settings</span>)
+            <span class="ruby-identifier">defaults</span> = <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:merge</span>]
+                <span class="ruby-constant">UI</span>.<span class="ruby-identifier">say</span>(<span class="ruby-value str">&quot;Merging with previous settings.&quot;</span>)
+                <span class="ruby-identifier">defaults</span> = <span class="ruby-constant">YAML</span>.<span class="ruby-identifier">load_file</span>(<span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:config</span>] <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_CONFIG</span>)
+            <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">defaults</span> = {
+                <span class="ruby-identifier">:env</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;production&quot;</span>,
+                <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;127.0.0.1&quot;</span>,
+                <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">9999</span>,
+                <span class="ruby-identifier">:logfile</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;log/scgi.log&quot;</span>,
+                <span class="ruby-identifier">:config</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">$config_path</span> <span class="ruby-operator">||</span> <span class="ruby-constant">DEFAULT_CONFIG</span> }
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">settings</span> = <span class="ruby-identifier">defaults</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">settings</span>)
+            <span class="ruby-comment cmt"># fix up the stuff that's not quite right yet</span>
+            <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:control_url</span>] = <span class="ruby-node">&quot;druby://127.0.0.1:#{settings[:port].to_i-1000}&quot;</span>
+            <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:port</span>] = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:port</span>].<span class="ruby-identifier">to_i</span>
+            <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:throttle</span>] = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:throttle</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:throttle</span>]
+            <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:maxconns</span>] = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:maxconns</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:maxconns</span>]
+    
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">settings</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

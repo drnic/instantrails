@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ActionMailer::Part)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/part.rb, line 43</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>)
+      <span class="ruby-ivar">@content_type</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:content_type</span>]
+      <span class="ruby-ivar">@content_disposition</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:disposition</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;inline&quot;</span>
+      <span class="ruby-ivar">@charset</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:charset</span>]
+      <span class="ruby-ivar">@body</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:body</span>]
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:filename</span>]
+      <span class="ruby-ivar">@transfer_encoding</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:transfer_encoding</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;quoted-printable&quot;</span>
+      <span class="ruby-ivar">@headers</span> = <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:headers</span>] <span class="ruby-operator">||</span> {}
+      <span class="ruby-ivar">@parts</span> = []
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

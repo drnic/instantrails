@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+begin
+    require 'rubygems'
+rescue
+    # ignored so people don't *have* to have rubygems
+end
+require 'scgi'
+
+class RailsProcessor < SCGI::Processor
+    
+    def initialize(settings)
+        super(settings)
+        @guard = Mutex.new
+    end
+    
+    def process_request(request, body, socket)
+        return if socket.closed?
+        cgi = SCGI::CGIFixed.new(request, body, socket)
+        begin
+            @guard.synchronize do
+                # Rails is not thread safe so must be run entirely within synchronize 
+                Dispatcher.dispatch(cgi, ActionController::CgiRequest::DEFAULT_SESSION_OPTIONS, cgi.stdoutput)
+            end
+        rescue IOError
+            @log.error("received IOError #$! when handling client.  Your web server doesn't like me.")
+        rescue Object => rails_error
+            @log.error("calling Dispatcher.dispatch", rails_error)
+        end
+    end
+end
+
+def configure_rails(environment)
+    ENV["RAILS_ENV"] = environment
+    require "config/environment"
+    ActiveRecord::Base.threaded_connections = false
+    require 'dispatcher'
+end
+
+class RailsController < SCGI::Controller
+    def initialize(config_file)
+        @config_file = config_file
+        configure_rails(config[:env])
+        super(RailsProcessor.new(config))
+    end
+    
+    def config
+        YAML.load_file(@config_file)
+    end
+end
+
+
+config = ARGV[0] || ENV["SCGI_CONFIG"] || "config/scgi.yaml"
+if not File.exist? config
+    STDERR.puts("No configuration file given and #{config} not found.")
+    exit 1
+end
+
+
+control = RailsController.new(config)
+control.run
+
+# check to see if a restart was requested rather than a shutdown, then start up the new one
+if control.restart_requested
+    exec "ruby", __FILE__, config
+end

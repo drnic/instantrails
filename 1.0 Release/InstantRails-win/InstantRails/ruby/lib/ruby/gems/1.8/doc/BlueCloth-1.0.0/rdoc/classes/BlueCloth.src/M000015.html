@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transform_code_blocks (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 555</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transform_code_blocks</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Transforming code blocks&quot;</span>
+
+                <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-constant">CodeBlockRegexp</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">block</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">codeblock</span> = <span class="ruby-identifier">$1</span>
+                        <span class="ruby-identifier">remainder</span> = <span class="ruby-identifier">$2</span>
+
+                        <span class="ruby-comment cmt"># Generate the codeblock</span>
+                        <span class="ruby-value str">%{\n\n&lt;pre&gt;&lt;code&gt;%s\n&lt;/code&gt;&lt;/pre&gt;\n\n%s}</span> <span class="ruby-operator">%</span>
+                                [ <span class="ruby-identifier">encode_code</span>( <span class="ruby-identifier">outdent</span>(<span class="ruby-identifier">codeblock</span>), <span class="ruby-identifier">rs</span> ).<span class="ruby-identifier">rstrip</span>, <span class="ruby-identifier">remainder</span> ]
+                }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

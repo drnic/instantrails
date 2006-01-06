@@ -1,0 +1,135 @@
+- Voir les A FAIRE dans le code
+
+Legende : + fait, - a faire, / partiel
+
+/ ActiveX ?
++ Controler les nouvelles versions
++ Verifier pour le lancement de MySql pour NT
++ Finir les services
+	+ controler si user admin
++ Bugs MFC42.dll
+	+ ne pas utiliser de handler de message MFC
+	+ Virer MFC
+- Aide en ligne ?
++ Monitorer l'exe de MySql
++ Verifier le monitor d'Apache : CheckApache appelle appel Stop toutes le n ms.
+	+ Fermeture d'Apache
++ mysqld-nt reste en memoire
++ bug : le check version dans connexion freeze
++ arguments pour MySql
++ gerer le cancel
++ status bar avec les etats des serveurs
+	+ ajouter des leds
+	+ localisation
++ verifier le rechargement automatique d'apache apres modifs
+	+ rechargement automatique d'apache apres modifs pour services
+- pouvoir choisir entre module et cgi
++ changements service/exe foire
+- verifier memory leaks
++ faire des booleens switchToExe switchtoService et faire la bascule dans la func timer
++ Changer : prise en compte des modifications de conf pour les *deux* serveurs.
+- verifier strncpy / _snprintf
++ tooltips dans la boite "a propos"
+- gerer le port pour Apache (IsPortUsed et bug sscanf)
++ virer les consoles qui apparaissent au demarrage des serveurs
+- verifier le fichier de conf d'Apache avant même un stop : le stop foire
+si le fichier est pas bon. Controler donc au niveau de ServerBase ?
+- mettre toutes les chaines dans un fichier pour ne plus se faire chier avec les trads.
+
+1-6
+- Faire un  virtual host pour 127.0.0.1 donnant sur la page d'easyphp.
+(deplacer l'index.php vers home et faire pointer ce VH sur ce rep. ?)
+Les pages d'accueils/aide peuvent eventuellement y être aussi.
+- un document root a definir a l'install, ce qu'accederont les machines
+de l'intranet/internenet
+- remplacer Web local par le virtual host sur locahost, et Web local -> nom machine sur res. local.
+(ajout d'un item dans le menu du manager)
+- tree view pour les extensions (?)
+- aide/tutorial (j'ai rajouté un item dans le menu qui lance la page d'accueil, on peut peut-etre
+faire une page a part) Faudra rajouter dans cette aide qu'il faut que l'option "masquer les
+extensions des fichiers connus" soit desactivées) (pas mal de retours sur ça).
+Y'a pas mal de retours de mecs qui clic sur le fichier php dans l'explorateur, mais bon, on peut
+pas grand chose pour eux.
+(affichage/options des dossiers/affichage/masquer les extensions des fichiers connus)
++Rajouter aussi une rubrique "partager son site vers l'intranet/internet" (problemes 
+de conf DNS, firewall, ...) Je peux faire la page.
++ secu
+	(voir
+	http://easyphp.manucorp.com/forums/read.php?f=7&i=8185&t=8152#REPLY , )
+
+	+ supprimer le --skip-grant-table comme param. par defaut dans le manager (fait)
+	+ virer tout les utilisateurs qui n'ont pas de mot de passe
+	+ vire tout les user qui peuvent se connecter a distance ( % au lieu de localhost )
+	-> en gros ne garder que le compte root sur localhost.
+- demander le mot de passe root/mysql a utiliser lors de l'installation (gererer les pages d'aide en
+consequence).
++ Laurent, tu peux regarder su y'a pas un probleme au niveau des drivers ODBC (genre verifier
+la version et ne pas "downgrader").
+
+1.7:
+[Conf]
+- SSL
+- Apache
+- PHP
+- MySql
+- phpMyAdmin
+- PEAR
+- rajouter l'extension php_dbg.
+- derniere version de GD.
+- ajouter server-status et server-info accessibles de "localhost" uniquement
+ (rajouter les liens dans la page d'admin)
+- mettre des exemples de VirtualHost en commentaires
+- mettre bind-address=127.0.0.1 dans le my.ini (sécu)
+
+[Setup]
+- InnoSetup 3.0 (pour permettre une installation en silencieux)
+- demander le DocumentRoot a l'installation.
+(ne pas y mettre l'index.php si existant ?)
+- Mettre si possible le path d'Easy dans la BDR (pour autres programmes, patch, ...)
+- Ajout du path de PHP dans %PATH%
+- Utiliser UPX pour la compression
+- corriger l'erreur pour la protection de /home (erreur copier/coller)
+
+[Home]
+- mettre a part les ressources pour faciliter les trads.
+- pour le path des data mysql : generer le path avec des / plutot que des \
+
+[Manager]
++ Explorer le www
++ utilisation des events pour redemarrer /arreter Apache
+et arreter MySql.
+- T: recuperer les traces du debugger
++ T: control separé d'Apache et MySql
+- T: regarder un moyen pour redemarrer mysql comme phpMyAdmin
+/ verifier la validite du httpd.conf (apache -t) : ne pas utiliser system qui affiche 
+  une fenetre console
+  Bug 98/ME a corriger
+/ T: recuperer les sorties lors de l'exec d'Apache et MySql
+/ T: bug sous XP : apache plante quand on l'arrete (service).
+(voir si c'est systematique)
++ look XP (.manifest)
++ compatibilite XP pour l'interface
++ bug : si une exe contenant le nom du service est lancé, le manager considere que le serveur est lancé.
+(par exemple mysqlcc -> mysql est considéré comme lancé).
++ Weblocal redirige vers localhost si y'a des caracteres a la con dans le nom de l'ordi.
++ afficher un message d'erreur si pas de browser par defaut (ret ShellExecute)
+	Cles a renommer pour simuler:
+	HKEY_CLASSES_ROOT\PROTOCOLS\Handler\http
+	HKEY_CLASSES_ROOT\http
++ Erreur pour connaitre l'etat des services si utilisateur pas admin.
++ faciliter la localisation
++ mettre en param l'URL "debuter PHP"
++ recup des erreurs... (try / except)
+
+
+[Doc / Aide]
+- manuel de debugage / explication du fonctionnement des serveurs.
+
+
+
+Doc 1.7:
++ Indiquer comment rendre accessible mysql a distance (because bind-address)
++ Indiquer comment changer le data-dir.
+
+Todo 1.8
+- bouger le my.ini du rep Apache vers C:\windows si service ou pas.

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>public_name (ActionWebService::Client::XmlRpc)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_web_service/client/xmlrpc_client.rb, line 52</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">public_name</span>(<span class="ruby-identifier">method_name</span>)
+          <span class="ruby-identifier">public_name</span> = <span class="ruby-ivar">@api</span>.<span class="ruby-identifier">public_api_method_name</span>(<span class="ruby-identifier">method_name</span>)
+          <span class="ruby-ivar">@handler_name</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{@handler_name}.#{public_name}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">public_name</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

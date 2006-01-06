@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sh (FileUtils)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/rake.rb, line 552</span>
+552:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sh</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">cmd</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+553:     <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">last</span> <span class="ruby-keyword kw">then</span>
+554:       <span class="ruby-identifier">options</span> = <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">pop</span>
+555:     <span class="ruby-keyword kw">else</span>
+556:       <span class="ruby-identifier">options</span> = {}
+557:     <span class="ruby-keyword kw">end</span>
+558:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>
+559:       <span class="ruby-identifier">show_command</span> = <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>)
+560:       <span class="ruby-identifier">show_command</span> = <span class="ruby-identifier">show_command</span>[<span class="ruby-value">0</span>,<span class="ruby-value">42</span>] <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;...&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">show_command</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">45</span>
+561:       <span class="ruby-identifier">block</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">ok</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">|</span>
+562:         <span class="ruby-identifier">ok</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;Command failed with status (#{status.exitstatus}): [#{show_command}]&quot;</span>
+563:       }
+564:     <span class="ruby-keyword kw">end</span>
+565:     <span class="ruby-identifier">fu_check_options</span> <span class="ruby-identifier">options</span>, <span class="ruby-identifier">:noop</span>, <span class="ruby-identifier">:verbose</span>
+566:     <span class="ruby-identifier">fu_output_message</span> <span class="ruby-identifier">cmd</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot; &quot;</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:verbose</span>]
+567:     <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:noop</span>]
+568:       <span class="ruby-identifier">res</span> = <span class="ruby-identifier">system</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">cmd</span>)      
+569:       <span class="ruby-identifier">block</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">res</span>, <span class="ruby-identifier">$?</span>)
+570:     <span class="ruby-keyword kw">end</span>
+571:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

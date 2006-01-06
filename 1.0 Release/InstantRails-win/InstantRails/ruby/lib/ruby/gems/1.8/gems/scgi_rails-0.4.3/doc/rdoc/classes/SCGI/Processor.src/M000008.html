@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>configure (SCGI::Processor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/scgi.rb, line 150</span>
+150:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">configure</span>(<span class="ruby-identifier">settings</span>)
+151:             <span class="ruby-ivar">@settings</span> = <span class="ruby-identifier">settings</span>
+152:             <span class="ruby-ivar">@log</span> = <span class="ruby-constant">LogFactory</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">create</span>(<span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:logfile</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;log/scgi.log&quot;</span>)
+153:             <span class="ruby-ivar">@maxconns</span> = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:maxconns</span>] <span class="ruby-operator">||</span> <span class="ruby-value">2</span><span class="ruby-operator">**</span><span class="ruby-value">30</span><span class="ruby-operator">-</span><span class="ruby-value">1</span>
+154:             <span class="ruby-ivar">@started</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+155:             <span class="ruby-ivar">@host</span> = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:host</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;127.0.0.1&quot;</span>
+156:             <span class="ruby-ivar">@port</span> = <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:port</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;9999&quot;</span>
+157:             
+158:             <span class="ruby-ivar">@throttle_sleep</span> = <span class="ruby-value">1.0</span><span class="ruby-operator">/</span><span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:throttle</span>].<span class="ruby-identifier">to_f</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">settings</span>[<span class="ruby-identifier">:throttle</span>]
+159:         <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

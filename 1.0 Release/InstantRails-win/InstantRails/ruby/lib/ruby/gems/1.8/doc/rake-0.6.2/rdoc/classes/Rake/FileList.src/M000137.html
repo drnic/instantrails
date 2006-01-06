@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>calculate_exclude_regexp (Rake::FileList)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/rake.rb, line 951</span>
+951:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">calculate_exclude_regexp</span>
+952:       <span class="ruby-identifier">ignores</span> = []
+953:       <span class="ruby-ivar">@exclude_patterns</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">pat</span><span class="ruby-operator">|</span>
+954:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">pat</span>
+955:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Regexp</span>
+956:           <span class="ruby-identifier">ignores</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">pat</span>
+957:         <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/[*.]/</span>
+958:           <span class="ruby-constant">Dir</span>[<span class="ruby-identifier">pat</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">ignores</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">p</span> <span class="ruby-keyword kw">end</span>
+959:         <span class="ruby-keyword kw">else</span>
+960:           <span class="ruby-identifier">ignores</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">pat</span>)
+961:         <span class="ruby-keyword kw">end</span>
+962:       <span class="ruby-keyword kw">end</span>
+963:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ignores</span>.<span class="ruby-identifier">empty?</span>
+964:         <span class="ruby-ivar">@exclude_re</span> = <span class="ruby-regexp re">/^$/</span>
+965:       <span class="ruby-keyword kw">else</span>
+966:         <span class="ruby-identifier">re_str</span> = <span class="ruby-identifier">ignores</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-value str">&quot;(&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;)&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;|&quot;</span>)
+967:         <span class="ruby-ivar">@exclude_re</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">re_str</span>)
+968:       <span class="ruby-keyword kw">end</span>
+969:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

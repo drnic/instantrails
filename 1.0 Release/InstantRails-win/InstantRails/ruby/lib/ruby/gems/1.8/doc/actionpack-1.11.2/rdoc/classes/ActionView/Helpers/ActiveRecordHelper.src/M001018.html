@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>form (ActionView::Helpers::ActiveRecordHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/active_record_helper.rb, line 59</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">form</span>(<span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">record</span> = <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{record_name}&quot;</span>)
+
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>] <span class="ruby-operator">||=</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">new_record?</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot;create&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;update&quot;</span>
+        <span class="ruby-identifier">action</span> = <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>], <span class="ruby-identifier">:id</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">record</span>)
+
+        <span class="ruby-identifier">submit_value</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:submit_value</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/[^\w]/</span>, <span class="ruby-value str">''</span>).<span class="ruby-identifier">capitalize</span>
+
+        <span class="ruby-identifier">contents</span> = <span class="ruby-value str">''</span>
+        <span class="ruby-identifier">contents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hidden_field</span>(<span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">:id</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">record</span>.<span class="ruby-identifier">new_record?</span>
+        <span class="ruby-identifier">contents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">all_input_tags</span>(<span class="ruby-identifier">record</span>, <span class="ruby-identifier">record_name</span>, <span class="ruby-identifier">options</span>)
+        <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">contents</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-identifier">contents</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">submit_tag</span>(<span class="ruby-identifier">submit_value</span>)
+
+        <span class="ruby-identifier">content_tag</span>(<span class="ruby-value str">'form'</span>, <span class="ruby-identifier">contents</span>, <span class="ruby-identifier">:action</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">action</span>, <span class="ruby-identifier">:method</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'post'</span>, <span class="ruby-identifier">:enctype</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:multipart</span>] <span class="ruby-operator">?</span> <span class="ruby-value str">'multipart/form-data'</span><span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

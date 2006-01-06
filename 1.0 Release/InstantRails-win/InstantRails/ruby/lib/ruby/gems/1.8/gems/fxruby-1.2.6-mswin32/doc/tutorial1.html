@@ -1,0 +1,97 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Chapter&nbsp;3.&nbsp;Hello, World!</title><meta name="generator" content="DocBook XSL Stylesheets V1.61.2"><link rel="home" href="book.html" title="Developing Graphical User Interfaces with FXRuby"><link rel="up" href="pt01.html" title="Part&nbsp;I.&nbsp;The Basics"><link rel="previous" href="gems.html" title="Chapter&nbsp;2.&nbsp;Installing from Gems"><link rel="next" href="ch03s02.html" title="Better living through buttons"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter&nbsp;3.&nbsp;Hello, World!</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="gems.html">Prev</a>&nbsp;</td><th width="60%" align="center">Part&nbsp;I.&nbsp;The Basics</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="ch03s02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="tutorial1"></a>Chapter&nbsp;3.&nbsp;Hello, World!</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="tutorial1.html#d0e619">First Things First</a></dt><dt><a href="ch03s02.html">Better living through buttons</a></dt><dt><a href="ch03s03.html">Messages</a></dt><dt><a href="ch03s04.html">Adding a tool tip</a></dt><dt><a href="ch03s05.html">Adding an icon</a></dt></dl></div><p>There are a few things common to all programs that use FXRuby, and the
+  purpose of this chapter is to help you get familiar with those. We'll do
+  this by developing a short program that simply displays a button containing
+  the text, "Hello, World!". For reference, this program is included in the
+  <tt class="filename">examples</tt> subdirectory of the standard FXRuby source
+  code distribution.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e619"></a>First Things First</h2></div></div><div></div></div><p>All of the code associated with the FXRuby extension is provided by
+    the <tt class="classname">fxruby </tt>gem, so we need to start by requiring
+    this gem:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'</pre></td></tr></table><p>Since all of the FXRuby classes are defined under the
+    <tt class="classname">Fox</tt> module, you'd normally need to refer to them
+    using their "fully qualified" names (i.e. names that begin with the
+    <tt class="classname">Fox::</tt> prefix). Because this can get a little
+    tedious, and because there's not really much chance of name conflicts
+    between FXRuby and other Ruby extensions, I usually like to add an
+    <tt class="methodname">include Fox</tt> statement so that all of the names in
+    the <tt class="classname">Fox</tt> module are "included" into the global
+    namespace:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+<span class="bold"><b>include Fox</b></span></pre></td></tr></table><p>Every FXRuby program begins by creating an
+    <tt class="classname">FXApp</tt> instance:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+include Fox
+
+<span class="bold"><b>theApp = FXApp.new</b></span></pre></td></tr></table><p>The <tt class="classname">FXApp</tt> instance has a lot of
+    responsibilities in an FXRuby application. One of the most frequent ways
+    you'll use it is to kick off the application's main event loop (which
+    you'll see later in this tutorial). The application is also the object
+    responsible for managing "global" resources like timers and the FOX
+    registry. It is a different approach from some other GUI toolkits for
+    Ruby, where these kinds of global resources are accessed using
+    module-level methods. As you continue to develop programs using FXRuby,
+    you'll learn about other ways that the <tt class="classname">FXApp</tt> object
+    is used.</p><p>The next step is to create an <tt class="classname">FXMainWindow</tt>
+    instance to serve as the application's main window. If you've used Ruby/Tk
+    before, this is similar to its <tt class="classname">TkRoot</tt>
+    window:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+include Fox
+
+theApp = FXApp.new
+
+<span class="bold"><b>theMainWindow = FXMainWindow.new(theApp, "Hello")</b></span></pre></td></tr></table><p>Here, we pass <i class="parameter"><tt>theApp</tt></i> as the first argument to
+    <tt class="methodname">FXMainWindow.new</tt> to associate the new
+    <tt class="classname">FXMainWindow</tt> instance with this
+    <tt class="classname">FXApp</tt>. The second argument to
+    <tt class="methodname">FXMainWindow.new</tt> is a string that will be used
+    for the main window's title.</p><p>So far, all we've done is instantiate the client-side objects.
+    Unlike most other toolkits, FOX makes a distinction between client-side
+    data (such as an <tt class="classname">FXMainWindow</tt> object) and
+    server-side data (such as the X window associated with that Ruby object).
+    To create the server-side objects associated with the already-constructed
+    client-side objects, we call <tt class="methodname">FXApp#create</tt>:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+
+<span class="bold"><b>theApp.create</b></span></pre></td></tr></table><p>By default, all windows in FXRuby programs are invisible, so we need
+    to call our main window's <tt class="methodname">show</tt> instance
+    method:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+theApp.create
+
+<span class="bold"><b>theMainWindow.show</b></span></pre></td></tr></table><p>The last step is to start the program's main loop by calling
+    <i class="parameter"><tt>theApp</tt></i>'s <tt class="methodname">run</tt> instance
+    method:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'rubygems'
+require_gem 'fxruby'
+
+include Fox
+
+theApp = FXApp.new
+
+theMainWindow = FXMainWindow.new(theApp, "Hello")
+theApp.create
+
+theMainWindow.show
+
+<span class="bold"><b>theApp.run</b></span></pre></td></tr></table><p>The <tt class="methodname">FXApp#run</tt> method doesn't return until
+    the program exits. It is similar to the <tt class="methodname">mainloop</tt>
+    method used for Ruby/Tk and Ruby/GTK, and you can in fact use
+    <tt class="methodname">FXApp#mainloop</tt> as an alias for
+    <tt class="methodname">run</tt> if you prefer.</p><p>At this point, we have a working (if not very interesting) program
+    that uses FXRuby. If you run it, you'll see something like this:</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/hello-without-button.png" align="middle"></div></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="gems.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="pt01.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="ch03s02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter&nbsp;2.&nbsp;Installing from Gems&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="book.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Better living through buttons</td></tr></table></div></body></html>

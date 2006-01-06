@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Fox::FXHeader</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Fox::FXHeader</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fox12/aliases_rb.html">
+                lib/fox12/aliases.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/core_rb.html">
+                lib/fox12/core.rb
+                </a>
+        <br />
+                <a href="../../files/lib/fox12/iterators_rb.html">
+                lib/fox12/iterators.rb
+                </a>
+        <br />
+                <a href="../../files/rdoc-sources/FXHeader_rb.html">
+                rdoc-sources/FXHeader.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Header control may be placed over a table or list to provide a resizable
+captions above a number of columns. Each caption comprises a label and an
+optional icon; in addition, an arrow may be shown to indicate whether the
+items in that column are sorted, and if so, whether they are sorted in
+increasing or decreasing order. Each caption can be interactively resized.
+During the resizing, if the HEADER_TRACKING was specified, the header
+control sends a SEL_CHANGED message to its target, with the message data
+set to the caption number being resized, of the type FXint. If the
+HEADER_TRACKING was not specified the SEL_CHANGED message is sent at the
+end of the resizing operation. Clicking on a caption causes a message of
+type SEL_COMMAND to be sent to the target, with the message data set to the
+caption number being clicked. A single click on a split causes a message of
+type SEL_CLICKED to be sent to the target; a typical response to this
+message would be to adjust the size of the split to fit the contents
+displayed underneath it. The contents may be scrolled by calling
+setPosition().
+</p>
+<h3>Events</h3>
+<p>
+The following messages are sent by <a href="FXHeader.html">FXHeader</a> to
+its target:
+</p>
+<table>
+<tr><td valign="top"><tt>SEL_CHANGED</tt>:</td><td>sent continuously while a header item is being resized, if the
+<tt>HEADER_TRACKING</tt> option was specified, or at the end of the resize
+if <tt>HEADER_TRACKING</tt> was not specfied. The message data is an
+integer indicating the index of the item being resized.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_COMMAND</tt>:</td><td>sent when a header item is clicked; the message data is an integer
+indicating the index of the current item.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_LEFTBUTTONPRESS</tt>:</td><td>sent when the left mouse button goes down; the message data is an <a
+href="FXEvent.html">FXEvent</a> instance.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_LEFTBUTTONRELEASE</tt>:</td><td>sent when the left mouse button goes up; the message data is an <a
+href="FXEvent.html">FXEvent</a> instance.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_REPLACED</tt>:</td><td>sent when a header item is about to be replaced; the message data is an
+Integer indicating the index of the item to be replaced.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_INSERTED</tt>:</td><td>sent after a header item is inserted; the message data is an Integer
+indicating the index of the item that was inserted.
+
+</td></tr>
+<tr><td valign="top"><tt>SEL_DELETED</tt>:</td><td>sent when a header item is about to be removed; the message data is an
+Integer indicating the index of the item to be removed.
+
+</td></tr>
+</table>
+<h3>Header style options</h3>
+<table>
+<tr><td valign="top"><tt>HEADER_BUTTON</tt>:</td><td>Button style can be clicked
+
+</td></tr>
+<tr><td valign="top"><tt>HEADER_HORIZONTAL</tt>:</td><td>Horizontal header control (default)
+
+</td></tr>
+<tr><td valign="top"><tt>HEADER_VERTICAL</tt>:</td><td>Vertical header control
+
+</td></tr>
+<tr><td valign="top"><tt>HEADER_TRACKING</tt>:</td><td>Tracks continuously while moving
+
+</td></tr>
+<tr><td valign="top"><tt>HEADER_NORMAL</tt>:</td><td>Normal options, same as <tt>HEADER_HORIZONTAL|FRAME_NORMAL</tt>
+
+</td></tr>
+</table>
+<h3>Message identifiers</h3>
+<table>
+<tr><td valign="top"><tt>ID_TIPTIMER</tt>:</td><td>x
+
+</td></tr>
+</table>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001892">appendItem</a>&nbsp;&nbsp;
+      <a href="#M001893">appendItem</a>&nbsp;&nbsp;
+      <a href="#M001882">arrowDown?</a>&nbsp;&nbsp;
+      <a href="#M001883">arrowMaybe?</a>&nbsp;&nbsp;
+      <a href="#M001881">arrowUp?</a>&nbsp;&nbsp;
+      <a href="#M001897">clearItems</a>&nbsp;&nbsp;
+      <a href="#M001884">each</a>&nbsp;&nbsp;
+      <a href="#M001908">getArrowDir</a>&nbsp;&nbsp;
+      <a href="#M001886">getItem</a>&nbsp;&nbsp;
+      <a href="#M001887">getItemAt</a>&nbsp;&nbsp;
+      <a href="#M001906">getItemData</a>&nbsp;&nbsp;
+      <a href="#M001901">getItemIcon</a>&nbsp;&nbsp;
+      <a href="#M001912">getItemIconPosition</a>&nbsp;&nbsp;
+      <a href="#M001910">getItemJustify</a>&nbsp;&nbsp;
+      <a href="#M001904">getItemOffset</a>&nbsp;&nbsp;
+      <a href="#M001903">getItemSize</a>&nbsp;&nbsp;
+      <a href="#M001899">getItemText</a>&nbsp;&nbsp;
+      <a href="#M001890">insertItem</a>&nbsp;&nbsp;
+      <a href="#M001891">insertItem</a>&nbsp;&nbsp;
+      <a href="#M001914">isItemPressed</a>&nbsp;&nbsp;
+      <a href="#M001915">makeItemVisible</a>&nbsp;&nbsp;
+      <a href="#M001885">new</a>&nbsp;&nbsp;
+      <a href="#M001894">prependItem</a>&nbsp;&nbsp;
+      <a href="#M001895">prependItem</a>&nbsp;&nbsp;
+      <a href="#M001896">removeItem</a>&nbsp;&nbsp;
+      <a href="#M001907">setArrowDir</a>&nbsp;&nbsp;
+      <a href="#M001889">setItem</a>&nbsp;&nbsp;
+      <a href="#M001888">setItem</a>&nbsp;&nbsp;
+      <a href="#M001905">setItemData</a>&nbsp;&nbsp;
+      <a href="#M001900">setItemIcon</a>&nbsp;&nbsp;
+      <a href="#M001911">setItemIconPosition</a>&nbsp;&nbsp;
+      <a href="#M001909">setItemJustify</a>&nbsp;&nbsp;
+      <a href="#M001913">setItemPressed</a>&nbsp;&nbsp;
+      <a href="#M001902">setItemSize</a>&nbsp;&nbsp;
+      <a href="#M001898">setItemText</a>&nbsp;&nbsp;
+      <a href="#M001916">updateItem</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Enumerable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">font</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Text font [<a href="FXFont.html">FXFont</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">headerStyle</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Header style options [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">helpText</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Status line help text for this header
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">numItems</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Number of items [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">position</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Current position [Integer]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">textColor</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Text color [<a href="FXColor.html">FXColor</a>]
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">totalSize</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Total size of all items [Integer]
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001885" class="method-detail">
+        <a name="M001885"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001885.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001885.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(p, tgt=nil, sel=0, opts=HEADER_NORMAL, x=0, y=0, w=0, h=0, pl=DEFAULT_PAD, pr=DEFAULT_PAD, pt=DEFAULT_PAD, pb=DEFAULT_PAD) {|theHeader| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an initialized <a href="FXHeader.html">FXHeader</a> instance.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001892" class="method-detail">
+        <a name="M001892"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001892.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001892.html');return false;">
+          <span class="method-name">appendItem</span><span class="method-args">(item, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Append a (possibly subclassed) item to the list and return the index of the
+appended item. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt>
+message is sent to the header&#8217;s message target after the item is
+appended.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001893" class="method-detail">
+        <a name="M001893"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001893.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001893.html');return false;">
+          <span class="method-name">appendItem</span><span class="method-args">(text, icon=nil, size=0, data=nil, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Append a new item with the specified text, icon, size and user data object,
+and return the index of the appended item. The new item is created by
+calling the FXHeader#createItem method. If <em>notify</em> is
+<tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the
+header&#8217;s message target after the item is appended.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001882" class="method-detail">
+        <a name="M001882"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001882.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001882.html');return false;">
+          <span class="method-name">arrowDown?</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the specified header item&#8217;s arrow points down. Raises
+IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001883" class="method-detail">
+        <a name="M001883"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001883.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001883.html');return false;">
+          <span class="method-name">arrowMaybe?</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the specified header item does not display any arrow.
+Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001881" class="method-detail">
+        <a name="M001881"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001881.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001881.html');return false;">
+          <span class="method-name">arrowUp?</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the specified header item&#8217;s arrow points up. Raises
+IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001897" class="method-detail">
+        <a name="M001897"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001897.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001897.html');return false;">
+          <span class="method-name">clearItems</span><span class="method-args">(notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove all items from this header. If <em>notify</em> is <tt>true</tt>, a
+<tt>SEL_DELETED</tt> message is sent to the header&#8217;s message target
+before each item is removed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001884" class="method-detail">
+        <a name="M001884"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001884.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001884.html');return false;">
+          <span class="method-name">each</span><span class="method-args">( {|aHeaderItem| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Calls block once for each item in the list, passing a reference to that
+item as a parameter.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001908" class="method-detail">
+        <a name="M001908"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001908.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001908.html');return false;">
+          <span class="method-name">getArrowDir</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return sort direction for the item at index, one of <tt>FALSE</tt>,
+<tt>TRUE</tt> or <tt>MAYBE</tt>. If <em>dir</em> is <tt>TRUE</tt>, the
+arrow will point up; if <em>dir</em> is <tt>FALSE</tt>, the arrow points
+down; and if <em>dir</em> is <tt>MAYBE</tt>, no arrow is drawn. Raises
+IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001886" class="method-detail">
+        <a name="M001886"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001886.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001886.html');return false;">
+          <span class="method-name">getItem</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the item (a <a href="FXHeaderItem.html">FXHeaderItem</a> instance)
+at the given index. Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001887" class="method-detail">
+        <a name="M001887"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001887.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001887.html');return false;">
+          <span class="method-name">getItemAt</span><span class="method-args">(coord)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the item-index given its coordinate offset. Returns -1 if the
+specified coordinate is before the first item in the header, or
+<em>numItems</em> if the coordinate is after the last item in the header.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001906" class="method-detail">
+        <a name="M001906"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001906.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001906.html');return false;">
+          <span class="method-name">getItemData</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return user data for item at index. Raises IndexError if <em>index</em> is
+out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001901" class="method-detail">
+        <a name="M001901"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001901.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001901.html');return false;">
+          <span class="method-name">getItemIcon</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return icon of item at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001912" class="method-detail">
+        <a name="M001912"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001912.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001912.html');return false;">
+          <span class="method-name">getItemIconPosition</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return relative icon and text position of the item at <em>index</em>, one
+of <tt>ABOVE</tt>, <tt>BELOW</tt>, <tt>BEFORE</tt> or <tt>AFTER</tt>.
+Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001910" class="method-detail">
+        <a name="M001910"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001910.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001910.html');return false;">
+          <span class="method-name">getItemJustify</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return item justification for the item at <em>index</em>, one of
+<tt>LEFT</tt>, <tt>RIGHT</tt>, <tt>CENTER_X</tt>, <tt>TOP</tt>,
+<tt>BOTTOM</tt> or <tt>CENTER_Y</tt>. Raises IndexError if <em>index</em>
+is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001904" class="method-detail">
+        <a name="M001904"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001904.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001904.html');return false;">
+          <span class="method-name">getItemOffset</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the offset (in pixels) of the left side of the item at index. (If
+it&#8217;s a vertical header, return the offset of the top side of the
+item). Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001903" class="method-detail">
+        <a name="M001903"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001903.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001903.html');return false;">
+          <span class="method-name">getItemSize</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return size of item at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001899" class="method-detail">
+        <a name="M001899"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001899.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001899.html');return false;">
+          <span class="method-name">getItemText</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get text of item at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001890" class="method-detail">
+        <a name="M001890"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001890.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001890.html');return false;">
+          <span class="method-name">insertItem</span><span class="method-args">(index, item, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Insert a new (possibly subclassed) item at the specified <em>index</em> and
+return the index of the inserted item. If <em>notify</em> is <tt>true</tt>,
+a <tt>SEL_INSERTED</tt> message is sent to the header&#8217;s message
+target after the item is inserted. Raises IndexError if <em>index</em> is
+out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001891" class="method-detail">
+        <a name="M001891"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001891.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001891.html');return false;">
+          <span class="method-name">insertItem</span><span class="method-args">(index, text, icon=nil, size=0, data=nil, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Insert a new item at the specified <em>index</em> with the specified text,
+icon, size and user data object, and return the index of the inserted item.
+The new item is created by calling the FXHeader#createItem method. If
+<em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent
+to the header&#8217;s message target after the item is inserted. Raises
+IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001914" class="method-detail">
+        <a name="M001914"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001914.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001914.html');return false;">
+          <span class="method-name">isItemPressed</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if button item at specified index is pressed in.
+Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001915" class="method-detail">
+        <a name="M001915"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001915.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001915.html');return false;">
+          <span class="method-name">makeItemVisible</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Scroll to make the specified item visible.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001894" class="method-detail">
+        <a name="M001894"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001894.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001894.html');return false;">
+          <span class="method-name">prependItem</span><span class="method-args">(item, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepend a (possibly subclassed) item to the list and return the index of
+the prepended item. If <em>notify</em> is <tt>true</tt>, a
+<tt>SEL_INSERTED</tt> message is sent to the header&#8217;s message target
+after the item is appended.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001895" class="method-detail">
+        <a name="M001895"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001895.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001895.html');return false;">
+          <span class="method-name">prependItem</span><span class="method-args">(text, icon=nil, size=0, data=nil, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Prepend a new item with the specified text, icon, size and user data
+object, and return the index of the appended item. The new item is created
+by calling the FXHeader#createItem method. If <em>notify</em> is
+<tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the
+header&#8217;s message target after the item is appended.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001896" class="method-detail">
+        <a name="M001896"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001896.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001896.html');return false;">
+          <span class="method-name">removeItem</span><span class="method-args">(index, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the item at the specified index from this header. If <em>notify</em>
+is <tt>true</tt>, a <tt>SEL_DELETED</tt> message is sent to the
+header&#8217;s message target before the item is removed. Raises IndexError
+if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001907" class="method-detail">
+        <a name="M001907"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001907.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001907.html');return false;">
+          <span class="method-name">setArrowDir</span><span class="method-args">(index, dir=MAYBE)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change arrow (sort) direction for item at index, where <em>dir</em> is
+either <tt>FALSE</tt>, <tt>TRUE</tt> or <tt>MAYBE</tt>. If <em>dir</em> is
+<tt>TRUE</tt>, the arrow will point up; if <em>dir</em> is <tt>FALSE</tt>,
+the arrow points down; and if <em>dir</em> is <tt>MAYBE</tt>, no arrow is
+drawn. Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001889" class="method-detail">
+        <a name="M001889"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001889.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001889.html');return false;">
+          <span class="method-name">setItem</span><span class="method-args">(index, text, icon=nil, size=0, data=nil, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replace the item at <em>index</em> with a new item with the specified text,
+icon, size and user data object, and return the index of the replaced item.
+The new item is created by calling the FXHeader#createItem method. If
+<em>notify</em> is <tt>true</tt>, a <tt>SEL_REPLACED</tt> message is sent
+to the header&#8217;s message target before the item is replaced. Raises
+IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001888" class="method-detail">
+        <a name="M001888"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001888.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001888.html');return false;">
+          <span class="method-name">setItem</span><span class="method-args">(index, item, notify=false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replace the item at <em>index</em> with a (possibly subclassed) item and
+return the index of the replaced item. If <em>notify</em> is <tt>true</tt>,
+a <tt>SEL_REPLACED</tt> message is sent to the header&#8217;s message
+target before the item is replaced. Raises IndexError if <em>index</em> is
+out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001905" class="method-detail">
+        <a name="M001905"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001905.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001905.html');return false;">
+          <span class="method-name">setItemData</span><span class="method-args">(index, ptr)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change user data object of item at index. Raises IndexError if
+<em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001900" class="method-detail">
+        <a name="M001900"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001900.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001900.html');return false;">
+          <span class="method-name">setItemIcon</span><span class="method-args">(index, icon)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change icon of item at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001911" class="method-detail">
+        <a name="M001911"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001911.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001911.html');return false;">
+          <span class="method-name">setItemIconPosition</span><span class="method-args">(index, mode)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change relative position of icon and text of the item at <em>index</em> to
+one of <tt>ABOVE</tt>, <tt>BELOW</tt>, <tt>BEFORE</tt> or <tt>AFTER</tt>.
+Raises IndexError if <em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001909" class="method-detail">
+        <a name="M001909"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001909.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001909.html');return false;">
+          <span class="method-name">setItemJustify</span><span class="method-args">(index, justify)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change item justification for the item at <em>index</em>, to one of
+<tt>LEFT</tt>, <tt>RIGHT</tt>, <tt>CENTER_X</tt>, <tt>TOP</tt>,
+<tt>BOTTOM</tt> or <tt>CENTER_Y</tt>. Raises IndexError if <em>index</em>
+is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001913" class="method-detail">
+        <a name="M001913"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001913.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001913.html');return false;">
+          <span class="method-name">setItemPressed</span><span class="method-args">(index, pressed=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Changed button item&#8217;s pressed state. Raises IndexError if
+<em>index</em> is out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001902" class="method-detail">
+        <a name="M001902"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001902.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001902.html');return false;">
+          <span class="method-name">setItemSize</span><span class="method-args">(index, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change size of item at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001898" class="method-detail">
+        <a name="M001898"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001898.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001898.html');return false;">
+          <span class="method-name">setItemText</span><span class="method-args">(index, text)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Change text label for item at index. Raises IndexError if <em>index</em> is
+out of bounds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001916" class="method-detail">
+        <a name="M001916"></a>
+
+        <div class="method-heading">
+          <a href="FXHeader.src/M001916.html" target="Code" class="method-signature"
+            onclick="popupCode('FXHeader.src/M001916.html');return false;">
+          <span class="method-name">updateItem</span><span class="method-args">(index)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Repaint header at index. Raises IndexError if <em>index</em> is out of
+bounds.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

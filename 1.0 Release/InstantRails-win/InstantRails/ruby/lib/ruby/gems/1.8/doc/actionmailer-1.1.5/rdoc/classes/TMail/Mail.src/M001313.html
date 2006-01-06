@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>mime_encode_multipart (TMail::Mail)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail/net.rb, line 120</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mime_encode_multipart</span>( <span class="ruby-identifier">top</span> = <span class="ruby-keyword kw">true</span> )
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">mime_version</span> = <span class="ruby-value str">'1.0'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">top</span>
+      <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">set_content_type</span> <span class="ruby-value str">'multipart'</span>, <span class="ruby-value str">'mixed'</span>
+      <span class="ruby-identifier">e</span> = <span class="ruby-identifier">encoding</span>(<span class="ruby-keyword kw">nil</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-regexp re">/\A(?:7bit|8bit|binary)\z/i</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>,
+              <span class="ruby-value str">'using C.T.Encoding with multipart mail is not permitted'</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

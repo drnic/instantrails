@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>egrep (Rake::FileList)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/rake.rb, line 1048</span>
+1048:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">egrep</span>(<span class="ruby-identifier">pattern</span>)
+1049:       <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">fn</span><span class="ruby-operator">|</span>
+1050:         <span class="ruby-identifier">open</span>(<span class="ruby-identifier">fn</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">inf</span><span class="ruby-operator">|</span>
+1051:           <span class="ruby-identifier">count</span> = <span class="ruby-value">0</span>
+1052:           <span class="ruby-identifier">inf</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+1053:             <span class="ruby-identifier">count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+1054:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pattern</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">line</span>)
+1055:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+1056:                 <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">fn</span>, <span class="ruby-identifier">count</span>, <span class="ruby-identifier">line</span>
+1057:               <span class="ruby-keyword kw">else</span>
+1058:                 <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{fn}:#{count}:#{line}&quot;</span>
+1059:               <span class="ruby-keyword kw">end</span>              
+1060:             <span class="ruby-keyword kw">end</span>
+1061:           <span class="ruby-keyword kw">end</span>
+1062:         <span class="ruby-keyword kw">end</span>
+1063:       <span class="ruby-keyword kw">end</span>
+1064:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

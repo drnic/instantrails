@@ -1,0 +1,21 @@
+GNU readline library 4.3 port to MinGW, VC++ and BCC32,
+by WATANABE Hirofumi <eban@os.rim.or.jp>
+
+This port is similar to Michael Rickmann's port of the readline library 4.0.
+http://www.gwdg.de/~mrickma/ming/
+
+To build dll on a Windows machine:
+cd win32
+(n)make clean all examples
+
+To build static libraries on a Windows machine:
+cd win32
+(n)make DLL=0 clean all examples
+
+To use static library, define READLINE_STATIC before include headers.
+
+Web page:
+  http://jarp.jin.gr.jp/win32/
+
+4.3-2 (2003-12-28)
+  * input.c (ibuffer_len): fix buffer overrun.

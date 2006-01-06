@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transform_list_items (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 515</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transform_list_items</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Transforming list items&quot;</span>
+
+                <span class="ruby-comment cmt"># Trim trailing blank lines</span>
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">sub</span>( <span class="ruby-regexp re">/\n{2,}\z/</span>, <span class="ruby-value str">&quot;\n&quot;</span> )
+
+                <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-constant">ListItemRegexp</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;  Found item line %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">line</span>
+                        <span class="ruby-identifier">leading_line</span>, <span class="ruby-identifier">item</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$4</span>
+
+                        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">leading_line</span> <span class="ruby-keyword kw">or</span> <span class="ruby-regexp re">/\n{2,}/</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">item</span> )
+                                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;   Found leading line or item has a blank&quot;</span>
+                                <span class="ruby-identifier">item</span> = <span class="ruby-identifier">apply_block_transforms</span>( <span class="ruby-identifier">outdent</span>(<span class="ruby-identifier">item</span>), <span class="ruby-identifier">rs</span> )
+                        <span class="ruby-keyword kw">else</span>
+                                <span class="ruby-comment cmt"># Recursion for sub-lists</span>
+                                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;   Recursing for sublist&quot;</span>
+                                <span class="ruby-identifier">item</span> = <span class="ruby-identifier">transform_lists</span>( <span class="ruby-identifier">outdent</span>(<span class="ruby-identifier">item</span>), <span class="ruby-identifier">rs</span> ).<span class="ruby-identifier">chomp</span>
+                                <span class="ruby-identifier">item</span> = <span class="ruby-identifier">apply_span_transforms</span>( <span class="ruby-identifier">item</span>, <span class="ruby-identifier">rs</span> )
+                        <span class="ruby-keyword kw">end</span>
+
+                        <span class="ruby-value str">%{&lt;li&gt;%s&lt;/li&gt;\n}</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">item</span>
+                }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

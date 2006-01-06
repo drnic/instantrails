@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transform_auto_links (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 615</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transform_auto_links</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Transforming auto-links&quot;</span>
+                <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub</span>( <span class="ruby-constant">AutoAnchorURLRegexp</span>, <span class="ruby-value str">%{&lt;a href=&quot;\\1&quot;&gt;\\1&lt;/a&gt;}</span>).
+                        <span class="ruby-identifier">gsub</span>( <span class="ruby-constant">AutoAnchorEmailRegexp</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">addr</span><span class="ruby-operator">|</span>
+                        <span class="ruby-identifier">encode_email_address</span>( <span class="ruby-identifier">unescape_special_chars</span>(<span class="ruby-identifier">$1</span>) )
+                }
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

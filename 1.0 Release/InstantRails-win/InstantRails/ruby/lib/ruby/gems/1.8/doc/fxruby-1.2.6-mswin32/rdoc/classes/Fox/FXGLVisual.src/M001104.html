@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Fox::FXGLVisual)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File rdoc-sources/FXGLVisual.rb, line 70</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">app</span>, <span class="ruby-identifier">flags</span>) <span class="ruby-comment cmt"># :yields: theGLVisual</span>
+
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-comment cmt"># Test if OpenGL is possible, and what level is supported.</span>
+    <span class="ruby-comment cmt"># Because of remote display capability, the display server may</span>
+    <span class="ruby-comment cmt"># support a different level of OpenGL than the client; it may</span>
+    <span class="ruby-comment cmt"># even support no OpenGL at all!  This function returns the lesser</span>
+    <span class="ruby-comment cmt"># of the client support level and the display server support level.</span>
+    <span class="ruby-comment cmt">#</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-constant">FXGLVisual</span>.<span class="ruby-identifier">supported?</span>(<span class="ruby-identifier">app</span>); <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return +true+ if double-buffered</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">doubleBuffered?</span>; <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># Return +true+ if stereo</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stereo?</span>; <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return +true+ if hardware-accelerated</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accelerated?</span>; <span class="ruby-keyword kw">end</span>
+    
+    <span class="ruby-comment cmt"># Return +true+ if this visual &quot;swaps&quot; by copying instead of flipping buffers.</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bufferSwapCopy?</span>; <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

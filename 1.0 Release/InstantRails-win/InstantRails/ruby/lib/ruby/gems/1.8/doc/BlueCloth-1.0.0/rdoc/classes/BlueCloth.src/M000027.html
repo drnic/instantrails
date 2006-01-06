@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>tokenize_html (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 1063</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tokenize_html</span>( <span class="ruby-identifier">str</span> )
+                <span class="ruby-identifier">depth</span> = <span class="ruby-value">0</span>
+                <span class="ruby-identifier">tokens</span> = []
+                <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">string</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">dup</span>
+                <span class="ruby-identifier">type</span>, <span class="ruby-identifier">token</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-keyword kw">nil</span>
+
+                <span class="ruby-keyword kw">until</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">empty?</span>
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Scanning from %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">rest</span>
+
+                        <span class="ruby-comment cmt"># Match comments and PIs without nesting</span>
+                        <span class="ruby-keyword kw">if</span> (( <span class="ruby-identifier">token</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">MetaTag</span>) ))
+                                <span class="ruby-identifier">type</span> = <span class="ruby-identifier">:tag</span>
+
+                        <span class="ruby-comment cmt"># Do nested matching for HTML tags</span>
+                        <span class="ruby-keyword kw">elsif</span> (( <span class="ruby-identifier">token</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-constant">HTMLTagOpenRegexp</span>) ))
+                                <span class="ruby-identifier">tagstart</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">pos</span>
+                                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Found the start of a plain tag at %d&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">tagstart</span>
+
+                                <span class="ruby-comment cmt"># Start the token with the opening angle</span>
+                                <span class="ruby-identifier">depth</span> = <span class="ruby-value">1</span>
+                                <span class="ruby-identifier">type</span> = <span class="ruby-identifier">:tag</span>
+
+                                <span class="ruby-comment cmt"># Scan the rest of the tag, allowing unlimited nested &lt;&gt;s. If</span>
+                                <span class="ruby-comment cmt"># the scanner runs out of text before the tag is closed, raise</span>
+                                <span class="ruby-comment cmt"># an error.</span>
+                                <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">depth</span>.<span class="ruby-identifier">nonzero?</span>
+
+                                        <span class="ruby-comment cmt"># Scan either an opener or a closer</span>
+                                        <span class="ruby-identifier">chunk</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan</span>( <span class="ruby-constant">HTMLTagPart</span> ) <span class="ruby-keyword kw">or</span>
+                                                <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Malformed tag at character %d: %p&quot;</span> <span class="ruby-operator">%</span> 
+                                                        [ <span class="ruby-identifier">tagstart</span>, <span class="ruby-identifier">token</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">rest</span> ]
+                                                
+                                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;  Found another part of the tag at depth %d: %p&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">depth</span>, <span class="ruby-identifier">chunk</span> ]
+
+                                        <span class="ruby-identifier">token</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">chunk</span>
+
+                                        <span class="ruby-comment cmt"># If the last character of the token so far is a closing</span>
+                                        <span class="ruby-comment cmt"># angle bracket, decrement the depth. Otherwise increment</span>
+                                        <span class="ruby-comment cmt"># it for a nested tag.</span>
+                                        <span class="ruby-identifier">depth</span> <span class="ruby-operator">+=</span> ( <span class="ruby-identifier">token</span>[<span class="ruby-value">-1</span>, <span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'&gt;'</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span> )
+                                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;  Depth is now #{depth}&quot;</span>
+                                <span class="ruby-keyword kw">end</span>
+
+                        <span class="ruby-comment cmt"># Match text segments</span>
+                        <span class="ruby-keyword kw">else</span>
+                                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Looking for a chunk of text&quot;</span>
+                                <span class="ruby-identifier">type</span> = <span class="ruby-identifier">:text</span>
+
+                                <span class="ruby-comment cmt"># Scan forward, always matching at least one character to move</span>
+                                <span class="ruby-comment cmt"># the pointer beyond any non-tag '&lt;'.</span>
+                                <span class="ruby-identifier">token</span> = <span class="ruby-ivar">@scanner</span>.<span class="ruby-identifier">scan_until</span>( <span class="ruby-regexp re">/[^&lt;]+/</span><span class="ruby-identifier">m</span> )
+                        <span class="ruby-keyword kw">end</span>
+
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; type: %p, token: %p&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">type</span>, <span class="ruby-identifier">token</span> ]
+
+                        <span class="ruby-comment cmt"># If a block is given, feed it one token at a time. Add the token to</span>
+                        <span class="ruby-comment cmt"># the token list to be returned regardless.</span>
+                        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+                                <span class="ruby-keyword kw">yield</span>( <span class="ruby-identifier">type</span>, <span class="ruby-identifier">token</span> )
+                        <span class="ruby-keyword kw">end</span>
+                        <span class="ruby-identifier">tokens</span> <span class="ruby-operator">&lt;&lt;</span> [ <span class="ruby-identifier">type</span>, <span class="ruby-identifier">token</span> ]
+                <span class="ruby-keyword kw">end</span>
+
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">tokens</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

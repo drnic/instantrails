@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cache_page (ActionController::Caching::Pages::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/caching.rb, line 84</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_page</span>(<span class="ruby-identifier">content</span>, <span class="ruby-identifier">path</span>)
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">perform_caching</span>
+
+          <span class="ruby-identifier">benchmark</span> <span class="ruby-node">&quot;Cached page: #{page_cache_file(path)}&quot;</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-constant">FileUtils</span>.<span class="ruby-identifier">makedirs</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">page_cache_path</span>(<span class="ruby-identifier">path</span>)))
+            <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">page_cache_path</span>(<span class="ruby-identifier">path</span>), <span class="ruby-value str">&quot;wb+&quot;</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">f</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">content</span>) }
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

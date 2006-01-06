@@ -1,0 +1,31 @@
+ <form action="../update/<%= @recipe.id %>" method="POST">
+  <input id="recipe_id" name="recipe[id]" size="30"
+         type="hidden" value="<%= @recipe.id %>" />
+  <p><b>Title</b><br>
+  <input id="recipe_title" name="recipe[title]" size="30"
+         type="text" value="<%= @recipe.title %>" />
+  </p>
+  <p><b>Description</b><br>
+  <input id="recipe_description" name="recipe[description]"
+         size="30" type="text"
+         value="<%= @recipe.description %>" />
+  </p>
+  <p><b>Category:</b><br>
+
+  <select name="recipe[category_id]">
+   <% @categories.each do |category| %>
+       <option value="<%= category.id %>"
+         <%= ' selected' if category.id == @recipe.category_id %>>
+         <%= category.name %>
+       </option>
+   <% end %>
+  </select></p>
+
+  <p><b>Instructions</b><br>
+  <textarea cols="40" id="recipe_instructions"
+            name="recipe[instructions]"
+            rows="20" wrap="virtual">
+    <%= @recipe.instructions %>
+  </textarea> </p>
+  <input type="submit" value="Update" />
+ </form>

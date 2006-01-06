@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>apply_span_transforms (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 261</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">apply_span_transforms</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Applying span transforms to:\n  %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">str</span>
+
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">transform_code_spans</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">encode_html</span>( <span class="ruby-identifier">str</span> )
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">transform_images</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">transform_anchors</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-identifier">str</span> = <span class="ruby-identifier">transform_italic_and_bold</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+
+                <span class="ruby-comment cmt"># Hard breaks</span>
+                <span class="ruby-identifier">str</span>.<span class="ruby-identifier">gsub!</span>( <span class="ruby-regexp re">/ {2,}\n/</span>, <span class="ruby-node">&quot;&lt;br#{EmptyElementSuffix}\n&quot;</span> )
+
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;Done with span transforms:\n  %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">str</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">str</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

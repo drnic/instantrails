@@ -1,0 +1,81 @@
+How To Upgrade
+==============
+
+The goal of upgrading, obviously, is to install a new version of
+Instant Rails without losing any of your data or customizations.
+Through this howto I will use '...' in directory paths represent
+the base installation path for both the old and new versions of
+Instant Rails.
+
+
+Installing the New Instant Rails
+================================
+
+    * Unzip the new Instant Rails archive into a *new* directory.
+      Do not overwrite your existing installation.
+
+    * Copy your database files to the new installation by copying
+      the entire contents of "...\mysql\data".
+
+    * If you have may have modified a number of configuration files,
+      so you'll want to copy those to the new installation:
+
+          o Apache -- copy "...\conf_files\httpd.conf"
+          o MySQL? -- copy "...\conf_files\my.ini"
+          o PHP -- copy "...\conf_files\php.ini"
+
+    * Copy your Rails web applications to the new installation by
+      copying the entire contents of "...\rails_apps".
+
+    * Start up Instant Rails to force the configuration files to be
+      updated with the correct paths.
+
+
+Updating Your Rails Applications
+================================
+
+The way SCGI_Rails is implemented has changed. In Instant Rails preview2,
+the SCGI Rails Runner ("scgi_rails") was physically placed in your app's
+"public" subdirectory, and a startup cmd file ("start_scgi.cmd") was placed
+in your app's root directory.
+
+Starting with preview3 all SCGI Rails Runner code is in "...\ruby\bin"
+and there is no longer a "start_scgi.cmd" file. Instead, there is an
+"scgi.yaml" configuration file in you app's "config" subdirectory. The
+configuration file contains all the infomrtaion that SCGI Rails Runner
+needs to serve up your app (like the port number to use, and whether to
+run in development, production, or test mode).
+
+You must create this SCGI configuration file for each of your Rails
+apps since it won't already exist:
+
+    * Select the menu command
+      "Rails Applications >> Manage Rails Applications..."
+
+    * For each Rails application, select it and press the button
+      "Configure SCGI Settings..."
+
+          o This will popup a dialog that will let you set the
+            runtime mode (development, production, test) and the
+            SCGI port number.
+
+Instant Rails preview3 uses Ruby on Rails 1.0 Release Candidate 3 (aka 0.14.2).
+If your Rails app was created with Rails 0.13.1, then you'll need to update the
+Rails files in each of you apps:
+
+    * Select the menu command "Rails Applications >> Open Ruby Console Window".
+      One at a time, move into the base directory for each of your Rails apps,
+      and then follow the upgrade instratuctions here:
+      http://documentation.rubyonrails.com/release_notes/upgrading_from_0131_to_10.html
+
+    * While you are in each of your app's base directory, you can also delete
+      the obsolete SCGI files:
+
+          o delete "...\rails_apps\your-app-name\start_scgi.cmd"
+          o delete "...\rails_apps\your-app-name\public\scgi_rails"
+
+
+You're Done!
+============
+
+That's it. You can move your new Instant Rails directory anywhere you'd like it to be. I would recomment keeping your old Instant Rails installation around until you are sure that everything is working correctly.

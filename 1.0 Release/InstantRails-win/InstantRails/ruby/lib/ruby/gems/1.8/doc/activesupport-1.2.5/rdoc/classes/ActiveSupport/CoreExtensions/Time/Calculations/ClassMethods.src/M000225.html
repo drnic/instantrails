@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>days_in_month (ActiveSupport::CoreExtensions::Time::Calculations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/time/calculations.rb, line 16</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">days_in_month</span>(<span class="ruby-identifier">month</span>, <span class="ruby-identifier">year</span>=<span class="ruby-keyword kw">nil</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">month</span> <span class="ruby-operator">==</span> <span class="ruby-value">2</span>
+              <span class="ruby-operator">!</span><span class="ruby-identifier">year</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> (<span class="ruby-identifier">year</span> <span class="ruby-operator">%</span> <span class="ruby-value">4</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>) <span class="ruby-operator">&amp;&amp;</span> ((<span class="ruby-identifier">year</span> <span class="ruby-operator">%</span> <span class="ruby-value">100</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>) <span class="ruby-operator">||</span> (<span class="ruby-identifier">year</span> <span class="ruby-operator">%</span> <span class="ruby-value">400</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>)) <span class="ruby-operator">?</span>  <span class="ruby-value">29</span> <span class="ruby-operator">:</span> <span class="ruby-value">28</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">month</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">7</span>
+              <span class="ruby-identifier">month</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">30</span> <span class="ruby-operator">:</span> <span class="ruby-value">31</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">month</span> <span class="ruby-operator">%</span> <span class="ruby-value">2</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-value">31</span> <span class="ruby-operator">:</span> <span class="ruby-value">30</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>escape_special_chars (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 395</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">escape_special_chars</span>( <span class="ruby-identifier">str</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;  Escaping special characters&quot;</span>
+                <span class="ruby-identifier">text</span> = <span class="ruby-value str">''</span>
+
+                <span class="ruby-comment cmt"># The original Markdown source has something called '$tags_to_skip'</span>
+                <span class="ruby-comment cmt"># declared here, but it's never used, so I don't define it.</span>
+
+                <span class="ruby-identifier">tokenize_html</span>( <span class="ruby-identifier">str</span> ) {<span class="ruby-operator">|</span><span class="ruby-identifier">token</span>, <span class="ruby-identifier">str</span><span class="ruby-operator">|</span>
+                        <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;   Adding %p token %p&quot;</span> <span class="ruby-operator">%</span> [ <span class="ruby-identifier">token</span>, <span class="ruby-identifier">str</span> ]
+                        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">token</span>
+
+                        <span class="ruby-comment cmt"># Within tags, encode * and _</span>
+                        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:tag</span>
+                                <span class="ruby-identifier">text</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">str</span>.
+                                        <span class="ruby-identifier">gsub</span>( <span class="ruby-regexp re">/\*/</span>, <span class="ruby-constant">EscapeTable</span>[<span class="ruby-value str">'*'</span>][<span class="ruby-identifier">:md5</span>] ).
+                                        <span class="ruby-identifier">gsub</span>( <span class="ruby-regexp re">/_/</span>, <span class="ruby-constant">EscapeTable</span>[<span class="ruby-value str">'_'</span>][<span class="ruby-identifier">:md5</span>] )
+
+                        <span class="ruby-comment cmt"># Encode backslashed stuff in regular text</span>
+                        <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:text</span>
+                                <span class="ruby-identifier">text</span> <span class="ruby-operator">+=</span> <span class="ruby-identifier">encode_backslash_escapes</span>( <span class="ruby-identifier">str</span> )
+                        <span class="ruby-keyword kw">else</span>
+                                <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-value str">&quot;Unknown token type %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">token</span>
+                        <span class="ruby-keyword kw">end</span>
+                }
+
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;  Text with escapes is now: %p&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">text</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">text</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

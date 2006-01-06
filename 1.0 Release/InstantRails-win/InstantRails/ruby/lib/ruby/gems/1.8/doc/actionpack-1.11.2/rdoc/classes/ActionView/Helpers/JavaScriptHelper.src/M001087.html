@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remote_function (ActionView::Helpers::JavaScriptHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/javascript_helper.rb, line 262</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remote_function</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">javascript_options</span> = <span class="ruby-identifier">options_for_ajax</span>(<span class="ruby-identifier">options</span>)
+
+        <span class="ruby-identifier">update</span> = <span class="ruby-value str">''</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>].<span class="ruby-identifier">is_a?</span><span class="ruby-constant">Hash</span>
+          <span class="ruby-identifier">update</span>  = []
+          <span class="ruby-identifier">update</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;success:'#{options[:update][:success]}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>][<span class="ruby-identifier">:success</span>]
+          <span class="ruby-identifier">update</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;failure:'#{options[:update][:failure]}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>][<span class="ruby-identifier">:failure</span>]
+          <span class="ruby-identifier">update</span>  = <span class="ruby-value str">'{'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">update</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'}'</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>]
+          <span class="ruby-identifier">update</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{options[:update]}'&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">function</span> = <span class="ruby-identifier">update</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-value">? </span>
+          <span class="ruby-value str">&quot;new Ajax.Request(&quot;</span> <span class="ruby-operator">:</span>
+          <span class="ruby-node">&quot;new Ajax.Updater(#{update}, &quot;</span>
+
+        <span class="ruby-identifier">function</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;'#{url_for(options[:url])}'&quot;</span>
+        <span class="ruby-identifier">function</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, #{javascript_options})&quot;</span>
+
+        <span class="ruby-identifier">function</span> = <span class="ruby-node">&quot;#{options[:before]}; #{function}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:before</span>]
+        <span class="ruby-identifier">function</span> = <span class="ruby-node">&quot;#{function}; #{options[:after]}&quot;</span>  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:after</span>]
+        <span class="ruby-identifier">function</span> = <span class="ruby-node">&quot;if (#{options[:condition]}) { #{function}; }&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:condition</span>]
+        <span class="ruby-identifier">function</span> = <span class="ruby-node">&quot;if (confirm('#{escape_javascript(options[:confirm])}')) { #{function}; }&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:confirm</span>]
+
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">function</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

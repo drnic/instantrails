@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse (CmdParse::CommandParser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/cmdparse.rb, line 384</span>
+384:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse</span>( <span class="ruby-identifier">argv</span> = <span class="ruby-constant">ARGV</span> ) <span class="ruby-comment cmt"># :yields: level, commandName</span>
+385:       <span class="ruby-identifier">level</span> = <span class="ruby-value">0</span>
+386:       <span class="ruby-identifier">command</span> = <span class="ruby-ivar">@main_command</span>
+387: 
+388:       <span class="ruby-keyword kw">while</span> <span class="ruby-operator">!</span><span class="ruby-identifier">command</span>.<span class="ruby-identifier">nil?</span>
+389:         <span class="ruby-identifier">argv</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">has_commands?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">ENV</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-value str">'POSIXLY_CORRECT'</span> )
+390:                  <span class="ruby-identifier">command</span>.<span class="ruby-identifier">options</span>.<span class="ruby-identifier">order</span>( <span class="ruby-identifier">argv</span> )
+391:                <span class="ruby-keyword kw">else</span>
+392:                  <span class="ruby-identifier">command</span>.<span class="ruby-identifier">options</span>.<span class="ruby-identifier">permute</span>( <span class="ruby-identifier">argv</span> )
+393:                <span class="ruby-keyword kw">end</span>
+394:         <span class="ruby-keyword kw">yield</span>( <span class="ruby-identifier">level</span>, <span class="ruby-identifier">command</span>.<span class="ruby-identifier">name</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+395: 
+396:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">has_commands?</span>
+397:           <span class="ruby-identifier">cmdName</span>, <span class="ruby-identifier">argv</span> = <span class="ruby-identifier">argv</span>[<span class="ruby-value">0</span>], <span class="ruby-identifier">argv</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] <span class="ruby-operator">||</span> []
+398: 
+399:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">cmdName</span>.<span class="ruby-identifier">nil?</span>
+400:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">default_command</span>.<span class="ruby-identifier">nil?</span>
+401:               <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoCommandGivenError</span>
+402:             <span class="ruby-keyword kw">else</span>
+403:               <span class="ruby-identifier">cmdName</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">default_command</span>
+404:             <span class="ruby-keyword kw">end</span>
+405:           <span class="ruby-keyword kw">else</span>
+406:             <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidCommandError</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">cmdName</span> ) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">command</span>.<span class="ruby-identifier">commands</span>.<span class="ruby-identifier">include?</span>( <span class="ruby-identifier">cmdName</span> )
+407:           <span class="ruby-keyword kw">end</span>
+408: 
+409:           <span class="ruby-identifier">command</span> = <span class="ruby-identifier">command</span>.<span class="ruby-identifier">commands</span>[<span class="ruby-identifier">cmdName</span>]
+410:           <span class="ruby-identifier">level</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+411:         <span class="ruby-keyword kw">else</span>
+412:           <span class="ruby-identifier">command</span>.<span class="ruby-identifier">execute</span>( <span class="ruby-identifier">argv</span> )
+413:           <span class="ruby-identifier">command</span> = <span class="ruby-keyword kw">nil</span>
+414:         <span class="ruby-keyword kw">end</span>
+415:       <span class="ruby-keyword kw">end</span>
+416:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ParseError</span>, <span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">ParseError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+417:       <span class="ruby-identifier">raise</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-ivar">@handle_exceptions</span>
+418:       <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Error while parsing command line:\n    &quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">e</span>.<span class="ruby-identifier">message</span>
+419:       <span class="ruby-identifier">puts</span>
+420:       <span class="ruby-ivar">@main_command</span>.<span class="ruby-identifier">commands</span>[<span class="ruby-value str">'help'</span>].<span class="ruby-identifier">execute</span>( <span class="ruby-identifier">command</span>.<span class="ruby-identifier">super_commands</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>} ) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@main_command</span>.<span class="ruby-identifier">commands</span>[<span class="ruby-value str">'help'</span>]
+421:       <span class="ruby-identifier">exit</span>
+422:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

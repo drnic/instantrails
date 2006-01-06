@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>handle_client (SCGI::Processor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/scgi.rb, line 232</span>
+232:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">handle_client</span>(<span class="ruby-identifier">socket</span>)
+233:             <span class="ruby-comment cmt"># ruby's GC seems to do weird things if we don't assign the thread to a local variable</span>
+234:             <span class="ruby-ivar">@threads</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span>
+235:                 <span class="ruby-keyword kw">begin</span>
+236:                     <span class="ruby-identifier">len</span> = <span class="ruby-value str">&quot;&quot;</span>
+237:                     <span class="ruby-comment cmt"># we only read 10 bytes of the length.  any request longer than this is invalid</span>
+238:                     <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">len</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">10</span>
+239:                         <span class="ruby-identifier">c</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>)
+240:                         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span> <span class="ruby-operator">==</span> <span class="ruby-value str">':'</span>
+241:                             <span class="ruby-comment cmt"># found the terminal, len now has a length in it so read the payload</span>
+242:                             <span class="ruby-keyword kw">break</span>
+243:                         <span class="ruby-keyword kw">else</span>
+244:                             <span class="ruby-identifier">len</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>
+245:                         <span class="ruby-keyword kw">end</span>
+246:                     <span class="ruby-keyword kw">end</span>
+247:                     
+248:                     <span class="ruby-comment cmt"># we should now either have a payload length to get</span>
+249:                     <span class="ruby-identifier">payload</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">len</span>.<span class="ruby-identifier">to_i</span>)
+250:                     <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">c</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">1</span>)) <span class="ruby-operator">!=</span> <span class="ruby-value str">','</span>
+251:                         <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">error</span>(<span class="ruby-value str">&quot;Malformed request, does not end with ','&quot;</span>)
+252:                     <span class="ruby-keyword kw">else</span>
+253:                         <span class="ruby-identifier">read_header</span>(<span class="ruby-identifier">socket</span>, <span class="ruby-identifier">payload</span>)
+254:                     <span class="ruby-keyword kw">end</span>
+255:                 <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span>
+256:                     <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">error</span>(<span class="ruby-value str">&quot;Handling client&quot;</span>, <span class="ruby-identifier">$!</span>)
+257:                 <span class="ruby-keyword kw">ensure</span>
+258:                     <span class="ruby-comment cmt"># no matter what we have to put this thread on the bad list</span>
+259:                     <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">closed?</span>
+260:                 <span class="ruby-keyword kw">end</span>
+261:             <span class="ruby-keyword kw">end</span>
+262:         <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

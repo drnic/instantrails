@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>transform_italic_and_bold (BlueCloth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/bluecloth.rb, line 873</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">transform_italic_and_bold</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">rs</span> )
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot; Transforming italic and bold&quot;</span>
+
+                <span class="ruby-identifier">str</span>.
+                        <span class="ruby-identifier">gsub</span>( <span class="ruby-constant">BoldRegexp</span>, <span class="ruby-value str">%{&lt;strong&gt;\\2&lt;/strong&gt;}</span> ).
+                        <span class="ruby-identifier">gsub</span>( <span class="ruby-constant">ItalicRegexp</span>, <span class="ruby-value str">%{&lt;em&gt;\\2&lt;/em&gt;}</span> )
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

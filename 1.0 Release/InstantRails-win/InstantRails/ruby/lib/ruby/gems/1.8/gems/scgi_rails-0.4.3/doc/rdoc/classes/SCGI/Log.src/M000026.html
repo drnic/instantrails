@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SCGI::Log)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/scgi.rb, line 45</span>
+45:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">file</span>)
+46:             <span class="ruby-keyword kw">super</span>()
+47:             <span class="ruby-ivar">@out</span> = <span class="ruby-identifier">open</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value str">&quot;a+&quot;</span>)
+48:             <span class="ruby-ivar">@out</span>.<span class="ruby-identifier">sync</span> = <span class="ruby-keyword kw">true</span>
+49:             <span class="ruby-ivar">@pid</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">pid</span>
+50:             <span class="ruby-ivar">@info</span> = <span class="ruby-node">&quot;[INF][#{Process.pid}] &quot;</span>
+51:             <span class="ruby-ivar">@error</span> = <span class="ruby-node">&quot;[ERR][#{Process.pid}] &quot;</span>
+52:         <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

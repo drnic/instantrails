@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Fox::FXColor</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Fox::FXColor</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/fox12/colors_rb.html">
+                lib/fox12/colors.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GhostWhite</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(248, 248, 255)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Colors from X Windows (Contributed by Jeff Heard)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WhiteSmoke</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(245, 245, 245)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FloralWhite</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 250, 240)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OldLace</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(253, 245, 230)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AntiqueWhite</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(250, 235, 215)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PapayaWhip</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 239, 213)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BlanchedAlmond</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 235, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PeachPuff</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 218, 185)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavajoWhite</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 222, 173)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LemonChiffon</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 250, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MintCream</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(245, 255, 250)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AliceBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(240, 248, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LavenderBlush</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 240, 245)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MistyRose</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 228, 225)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 47,  79,  79)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 47,  79,  79)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DimGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(105, 105, 105)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DimGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(105, 105, 105)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(112, 128, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(112, 128, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSlateGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(119, 136, 153)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSlateGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(119, 136, 153)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(211, 211, 211)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(211, 211, 211)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MidnightBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 25,  25, 112)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavyBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0,   0, 128)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CornflowerBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(100, 149, 237)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 72,  61, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(106,  90, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumSlateBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(123, 104, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSlateBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(132, 112, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0,   0, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RoyalBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 65, 105, 225)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DodgerBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 30, 144, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepSkyBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 191, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SkyBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(135, 206, 235)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSkyBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(135, 206, 250)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SteelBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 70, 130, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSteelBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(176, 196, 222)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(173, 216, 230)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PowderBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(176, 224, 230)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleTurquoise</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(175, 238, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkTurquoise</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 206, 209)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumTurquoise</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 72, 209, 204)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCyan</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(224, 255, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CadetBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 95, 158, 160)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumAquamarine</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(102, 205, 170)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 100,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOliveGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 85, 107,  47)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSeaGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(143, 188, 143)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SeaGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 46, 139,  87)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumSeaGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 60, 179, 113)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSeaGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 32, 178, 170)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(152, 251, 152)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SpringGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 255, 127)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LawnGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(124, 252,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumSpringGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 250, 154)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GreenYellow</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(173, 255,  47)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LimeGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 50, 205,  50)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">YellowGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(154, 205,  50)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ForestGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 34, 139,  34)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OliveDrab</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(107, 142,  35)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkKhaki</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(189, 183, 107)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGoldenrod</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 232, 170)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrodYellow</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(250, 250, 210)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightYellow</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 255, 224)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrod</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 221, 130)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGoldenrod</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(184, 134,  11)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RosyBrown</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(188, 143, 143)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IndianRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  92,  92)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SaddleBrown</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  69,  19)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SandyBrown</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(244, 164,  96)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSalmon</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(233, 150, 122)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSalmon</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 160, 122)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrange</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 140,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCoral</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(240, 128, 128)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OrangeRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255,  69,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HotPink</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 105, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepPink</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255,  20, 147)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightPink</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 182, 193)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleVioletRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(219, 112, 147)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumVioletRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(199,  21, 133)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VioletRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(208,  32, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumOrchid</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(186,  85, 211)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrchid</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(153,  50, 204)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkViolet</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(148,   0, 211)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BlueViolet</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(138,  43, 226)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumPurple</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(147, 112, 219)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AntiqueWhite1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 239, 219)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AntiqueWhite2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 223, 204)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AntiqueWhite3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 192, 176)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AntiqueWhite4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 131, 120)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PeachPuff1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 218, 185)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PeachPuff2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 203, 173)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PeachPuff3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 175, 149)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PeachPuff4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 119, 101)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavajoWhite1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 222, 173)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavajoWhite2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 207, 161)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavajoWhite3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 179, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NavajoWhite4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 121,  94)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LemonChiffon1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 250, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LemonChiffon2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 233, 191)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LemonChiffon3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 201, 165)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LemonChiffon4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 137, 112)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LavenderBlush1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 240, 245)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LavenderBlush2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 224, 229)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LavenderBlush3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 193, 197)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LavenderBlush4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 131, 134)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MistyRose1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 228, 225)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MistyRose2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 213, 210)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MistyRose3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 183, 181)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MistyRose4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 125, 123)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(131, 111, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(122, 103, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(105,  89, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 71,  60, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RoyalBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 72, 118, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RoyalBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 67, 110, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RoyalBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 58,  95, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RoyalBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 39,  64, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DodgerBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 30, 144, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DodgerBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 28, 134, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DodgerBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 24, 116, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DodgerBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 16,  78, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SteelBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 99, 184, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SteelBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 92, 172, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SteelBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 79, 148, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SteelBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 54, 100, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepSkyBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 191, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepSkyBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 178, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepSkyBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 154, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepSkyBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 104, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SkyBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(135, 206, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SkyBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(126, 192, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SkyBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(108, 166, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SkyBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 74, 112, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSkyBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(176, 226, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSkyBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(164, 211, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSkyBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(141, 182, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSkyBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 96, 123, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGray1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(198, 226, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGray2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(185, 211, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGray3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(159, 182, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SlateGray4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(108, 123, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSteelBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(202, 225, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSteelBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(188, 210, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSteelBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(162, 181, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSteelBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(110, 123, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(191, 239, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(178, 223, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(154, 192, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(104, 131, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCyan1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(224, 255, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCyan2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(209, 238, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCyan3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(180, 205, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightCyan4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(122, 139, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleTurquoise1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(187, 255, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleTurquoise2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(174, 238, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleTurquoise3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(150, 205, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleTurquoise4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(102, 139, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CadetBlue1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(152, 245, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CadetBlue2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(142, 229, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CadetBlue3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(122, 197, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CadetBlue4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 83, 134, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGray1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(151, 255, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGray2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(141, 238, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGray3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(121, 205, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSlateGray4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 82, 139, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSeaGreen1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(193, 255, 193)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSeaGreen2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(180, 238, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSeaGreen3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(155, 205, 155)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkSeaGreen4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(105, 139, 105)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SeaGreen1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 84, 255, 159)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SeaGreen2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 78, 238, 148)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SeaGreen3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 67, 205, 128)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SeaGreen4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 46, 139,  87)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGreen1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(154, 255, 154)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGreen2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(144, 238, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGreen3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(124, 205, 124)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleGreen4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 84, 139,  84)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SpringGreen1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 255, 127)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SpringGreen2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 238, 118)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SpringGreen3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 205, 102)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SpringGreen4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(  0, 139,  69)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OliveDrab1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(192, 255,  62)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OliveDrab2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(179, 238,  58)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OliveDrab3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(154, 205,  50)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OliveDrab4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(105, 139,  34)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOliveGreen1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(202, 255, 112)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOliveGreen2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(188, 238, 104)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOliveGreen3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(162, 205,  90)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOliveGreen4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(110, 139,  61)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrod1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 236, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrod2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 220, 130)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrod3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 190, 112)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGoldenrod4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 129,  76)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightYellow1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 255, 224)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightYellow2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 238, 209)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightYellow3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 205, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightYellow4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 139, 122)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGoldenrod1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 185,  15)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGoldenrod2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 173,  14)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGoldenrod3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 149,  12)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGoldenrod4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 101,   8)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RosyBrown1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 193, 193)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RosyBrown2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 180, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RosyBrown3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 155, 155)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RosyBrown4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139, 105, 105)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IndianRed1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 106, 106)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IndianRed2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238,  99,  99)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IndianRed3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  85,  85)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IndianRed4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  58,  58)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSalmon1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 160, 122)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSalmon2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 149, 114)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSalmon3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 129,  98)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightSalmon4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  87,  66)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrange1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 127,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrange2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 118,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrange3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 102,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrange4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  69,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OrangeRed1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255,  69,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OrangeRed2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238,  64,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OrangeRed3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  55,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OrangeRed4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  37,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepPink1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255,  20, 147)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepPink2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238,  18, 137)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepPink3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  16, 118)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeepPink4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  10,  80)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HotPink1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 110, 180)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HotPink2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 106, 167)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HotPink3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  96, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HotPink4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  58,  98)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightPink1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 174, 185)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightPink2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 162, 173)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightPink3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 140, 149)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightPink4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  95, 101)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleVioletRed1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 130, 171)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleVioletRed2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238, 121, 159)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleVioletRed3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205, 104, 137)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PaleVioletRed4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  71,  93)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VioletRed1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255,  62, 150)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VioletRed2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(238,  58, 140)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VioletRed3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(205,  50, 120)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VioletRed4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,  34,  82)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumOrchid1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(224, 102, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumOrchid2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(209,  95, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumOrchid3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(180,  82, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumOrchid4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(122,  55, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrchid1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(191,  62, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrchid2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(178,  58, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrchid3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(154,  50, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkOrchid4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(104,  34, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumPurple1</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(171, 130, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumPurple2</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(159, 121, 238)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumPurple3</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(137, 104, 205)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MediumPurple4</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB( 93,  71, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGrey</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(169, 169, 169)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkGray</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(169, 169, 169)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkBlue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0  ,   0, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkCyan</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0  , 139, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkMagenta</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,   0, 139)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DarkRed</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(139,   0,   0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LightGreen</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(144, 238, 144)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">White</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 255, 255)</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Other basic colors
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Black</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0, 0, 0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Red</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 0, 0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Pink</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 175, 175)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Orange</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 200, 0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Yellow</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 255, 0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Green</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0, 255, 0)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Magenta</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(255, 0, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Cyan</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0, 255, 255)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Blue</td>
+          <td>=</td>
+          <td class="context-item-value">Fox.FXRGB(0, 0, 255)</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+[Beta 1.7b2]
+Installation:
+- pas de lancement automatique du manager.
+- Entrée dans ajout/suppression de programme -> EasyPHP 1.6
+- www\index.php a l'attribut lecture seule
+- Ne pas mettre d'ExpertMode dans easyphp.ini
+
+Upgrade:
+- foire si easyphp est deja lancé.
+=> Afficher un message d'erreur pour dire commenr upgrader
+	- arreter les serveur
+	- quitter le manager
+	- desinstaller la 1.6
+	peut-etre lister les fichiers dans les rep. systemes qui peuvent foutre
+	la merde ,php4ts.dll php.ini entre autres...
+	A priori la desinstallation de la 1.6 devrait laisser les fichiers persos.
+	- peut-etre suggerer d'installer dans un repertoire different de la 1.6
+
+Desinstallation:
+- il reste les fichiers generes par les applis:
+	- \apache\logs\access.log
+	- \apache\logs\error.log
+	- \mysql\data\mysql.err
+	- \EasyPHP.log
+	Il faudrait peut-etre que l'installation cree ces fichiers pour que la desinstallation les 
+	supprime automatiquement.
+Pas contre il faudrait pas effacer les fichiers crées par les utilisateurs, que ce soit les data MySql 
+ou les scripts dans www (c'est peut-etre pour cette raison que index.php a l'attribut, pour ne pas 
+supprimer ce fichier qui peut etre remplacé par l'utilisateur).
+- si les serveurs sont utilisés en "service" il restera des traces dans la BDR.
+Pas vraiment de solution a part forcer l'utilisateur a passer en mode non service si
+y'a le flag dans easyphp.ini
+- meilleure mise en page pour la licence
+
+Fonctionnement:
+- Erreur InnoDB dans le mysql.err
+- bug : generer les path dans my.ini avec des / au lieu des \.
+E:\MySql marche
+E:\thierry ne marche pas parce qu'il interprete \t comme une tabulation.
+- datadir marche pas : il continue d'aller chercher les bases mysql\data
+   -> Manager : impossible de faire prendre en compte --defaults-file a Mysql....
+- Le message en rouge dans phpMyAdmin risque de faire peur pour rien...
+- Utiliser IndexOptions FancyIndexing ?
+
+Securite:
+- mettre ServerSignature a off
++ rajouter bind-address=127.0.0.1 dans le my.ini ?
+Comme ça  MySql n'acepterait les connexions que de localhost. Interet : pas besoin de 
+patcher si y'a une faille de MySql puisqu'il n'y aura même pas connexion TCP/IP.
+- mettre Listen 127.0.0.1 dans httpd.conf.
+-> Web local pointer vers localhost
+- virer les utilisateurs inutiles de la base MySql.
+
+Manager:
+- MySql ne s'installe pas en service.
+Corrigé: lancer mysqld.exe --install au lieu de mysqld-nt.exe
+Même erreur a la desinstallation du service, corrigée aussi.
+- MySql ne se lance pas en service
+Ca marche en copiant le my.ini dans le rep. de Windows.
+J'ai recherché un peu sur Internet et apparement il doit être absolument 
+dans le rep. de Windows...
+- correction: sauvegarde des parametres dès le "appliquer"
+- prise en compte des changements sans appliquer quand on quitte l'appli
+-> corrigé
+
+Extensions:
+- domxml foire : manque des dependances : iconv.dll, php4ts.dll
+- fbsql : l'extension n'est pas la, ne pas la mettre dans le php.ini
+- fdf fait planter Apache.
+- gettext: dependances foireuses
+- ifx: idem
+- iisfunc -> fait planter Apache
+- mcrypt : dependances foireuses
+- mhash : dependances foireuses
+- oci8 : dependances foireuses
+- oracle : dependances foireuses
+- sybase_ct: dependances foireuses
+- xmlrpc: dependances foireuses
+- xslt: dependances foireuses
+- yaz: dependances foireuses
+
+Doc:
+- peut-etre un example avec 2 VH dans le httpd.conf...
+- preciser dans un changelog que le register_global a changé
+
+A tester:
+- Utilisation avec plein d'applis PHP et utilisant les differentes extensions
+- XP/9x/NT

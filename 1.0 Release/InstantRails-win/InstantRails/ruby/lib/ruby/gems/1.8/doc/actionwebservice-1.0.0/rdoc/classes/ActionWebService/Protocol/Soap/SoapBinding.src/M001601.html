@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>qualified_type_name (ActionWebService::Protocol::Soap::SoapBinding)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_web_service/protocol/soap_protocol/marshaler.rb, line 150</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qualified_type_name</span>(<span class="ruby-identifier">ns</span>=<span class="ruby-keyword kw">nil</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@type</span>.<span class="ruby-identifier">custom?</span>
+            <span class="ruby-node">&quot;#{ns ? ns : @qname.namespace}:#{@qname.name}&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">ns</span> = <span class="ruby-constant">XSD</span><span class="ruby-operator">::</span><span class="ruby-constant">NS</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">assign</span>(<span class="ruby-constant">XSD</span><span class="ruby-operator">::</span><span class="ruby-constant">Namespace</span>, <span class="ruby-constant">SOAP</span><span class="ruby-operator">::</span><span class="ruby-constant">XSDNamespaceTag</span>)
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">assign</span>(<span class="ruby-constant">SOAP</span><span class="ruby-operator">::</span><span class="ruby-constant">EncodingNamespace</span>, <span class="ruby-value str">&quot;soapenc&quot;</span>)
+            <span class="ruby-identifier">xsd_klass</span> = <span class="ruby-identifier">mapping</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">ancestors</span>.<span class="ruby-identifier">find</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">const_defined?</span>(<span class="ruby-value str">'Type'</span>)}
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">name</span>(<span class="ruby-constant">XSD</span><span class="ruby-operator">::</span><span class="ruby-constant">AnyTypeName</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">xsd_klass</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">name</span>(<span class="ruby-identifier">xsd_klass</span>.<span class="ruby-identifier">const_get</span>(<span class="ruby-value str">'Type'</span>))
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
