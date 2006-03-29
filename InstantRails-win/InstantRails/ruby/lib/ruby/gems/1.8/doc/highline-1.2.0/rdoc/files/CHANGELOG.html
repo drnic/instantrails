@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGELOG</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGELOG</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGELOG
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Wed Mar 29 14:34:44 Central Standard Time 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Change Log</h1>
+<p>
+Below is a complete listing of changes for each revision of <a
+href="../classes/HighLine.html">HighLine</a>.
+</p>
+<h2>1.2.0</h2>
+<ul>
+<li>Improved RubyForge and gem spec project descriptions.
+
+</li>
+<li>Added basic examples to README.
+
+</li>
+<li>Added a VERSION constant.
+
+</li>
+<li>Added support for hidden menu commands.
+
+</li>
+<li>Added <a href="../classes/Object.html#M000036">Object.or_ask</a>() when
+using highline/import.
+
+</li>
+</ul>
+<h2>1.0.4</h2>
+<ul>
+<li>Moved the <a href="../classes/HighLine.html">HighLine</a> project to
+Subversion.
+
+</li>
+<li><a href="../classes/HighLine.html">HighLine</a>&#8217;s color escapes can
+now be disabled.
+
+</li>
+<li>Fixed EOF bug introduced in the last release.
+
+</li>
+<li>Updated <a href="../classes/HighLine.html">HighLine</a> web page.
+
+</li>
+<li>Moved to a forked development/stable version numbering.
+
+</li>
+</ul>
+<h2>1.0.2</h2>
+<ul>
+<li>Removed old and broken help tests.
+
+</li>
+<li>Fixed test case typo found by David A. Black.
+
+</li>
+<li>Added ERb escapes processing to lists, for coloring list items. Color
+escapes do not add to list element size.
+
+</li>
+<li><a href="../classes/HighLine.html">HighLine</a> now throws EOFError when
+input is exhausted.
+
+</li>
+</ul>
+<h2>1.0.1</h2>
+<ul>
+<li>Minor bug fix: Moved help initialization to before response building, so
+help would show up in the default responses.
+
+</li>
+</ul>
+<h2>1.0.0</h2>
+<ul>
+<li>Fixed documentation typo pointed out by Gavin Kistner.
+
+</li>
+<li>Added <tt>gather = &#8230;</tt> option to question for fetching entire
+Arrays or Hashes filled with answers. You can set <tt>gather</tt> to a
+count of answers to collect, a String or Regexp matching the end of input,
+or a Hash where each key can be used in a new question.
+
+</li>
+<li>Added File support to <a
+href="../classes/HighLine.html#M000005">HighLine.ask</a>(). You can specify
+a <em>directory</em> and a <em>glob</em> pattern that combine into a list
+of file choices the user can select from. You can choose to receive the
+user&#8217;s answer as an open filehandle or as a Pathname object.
+
+</li>
+<li>Added Readline support for history and editing.
+
+</li>
+<li>Added tab completion for menu and file selection selection (requires
+Readline).
+
+</li>
+<li>Added an optional character limit for input.
+
+</li>
+<li>Added a complete help system to <a
+href="../classes/HighLine.html">HighLine</a>&#8217;s shell menu creation
+tools.
+
+</li>
+</ul>
+<h2>0.6.1</h2>
+<ul>
+<li>Removed termios dependancy in gem, to fix Windows&#8217; install.
+
+</li>
+</ul>
+<h2>0.6.0</h2>
+<ul>
+<li>Implemented <a
+href="../classes/HighLine.html#M000006">HighLine.choose</a>() for menu
+handling.
+
+<ul>
+<li>Provided shortcut <tt>choose(item1, item2, &#8230;)</tt> for simple menus.
+
+</li>
+<li>Allowed Ruby code to be attached to each menu item, to create a complete
+menu solution.
+
+</li>
+<li>Provided for total customization of the menu layout.
+
+</li>
+<li>Allowed for menu selection by index, name or both.
+
+</li>
+<li>Added a <em>shell</em> mode to allow menu selection with additional details
+following the name.
+
+</li>
+</ul>
+</li>
+<li>Added a list() utility method that can be invoked just like color(). It can
+layout Arrays for you in any output in the modes <tt>:columns_across</tt>,
+<tt>:columns_down</tt>, <tt>:inline</tt> and <tt>:rows</tt>
+
+</li>
+<li>Added support for <tt>echo = &quot;*&quot;</tt> style settings. User code
+can now choose the echo character this way.
+
+</li>
+<li>Modified <a href="../classes/HighLine.html">HighLine</a> to user the
+&quot;termios&quot; library for character input, if available. Will return
+to old behavior (using &quot;stty&quot;), if &quot;termios&quot; cannot be
+loaded.
+
+</li>
+<li>Improved &quot;stty&quot; state restoring code.
+
+</li>
+<li>Fixed &quot;stty&quot; code to handle interrupt signals.
+
+</li>
+<li>Improved the default auto-complete error message and exposed this message
+through the <tt>responses</tt> interface as <tt>:no_completion</tt>.
+
+</li>
+</ul>
+<h2>0.5.0</h2>
+<ul>
+<li>Implemented <tt>echo = false</tt> for <a
+href="../classes/HighLine/Question.html">HighLine::Question</a> objects,
+primarily to make fetching passwords trivial.
+
+</li>
+<li>Fixed an auto-complete bug that could cause a crash when the user gave an
+answer that didn&#8217;t complete to any valid choice.
+
+</li>
+<li>Implemented <tt>case</tt> for <a
+href="../classes/HighLine/Question.html">HighLine::Question</a> objects to
+provide character case conversions on given answers. Can be set to
+<tt>:up</tt>, <tt>:down</tt>, or <tt>:capitalize</tt>.
+
+</li>
+<li>Exposed <tt>@answer</tt> to the response system, to allow response that are
+aware of incorrect input.
+
+</li>
+<li>Implemented <tt>confirm</tt> for <a
+href="../classes/HighLine/Question.html">HighLine::Question</a> objects to
+allow for verification for sensitive user choices. If set to <tt>true</tt>,
+user will have to answer an &quot;Are you sure? &quot; question. Can also
+be set to the question to confirm with the user.
+
+</li>
+</ul>
+<h2>0.4.0</h2>
+<ul>
+<li>Added <tt>@wrap_at</tt> and <tt>@page_at</tt> settings and accessors to <a
+href="../classes/HighLine.html">HighLine</a>, to control text flow.
+
+</li>
+<li>Implemented line wrapping with adjustable limit.
+
+</li>
+<li>Implemented paged printing with adjustable limit.
+
+</li>
+</ul>
+<h2>0.3.0</h2>
+<ul>
+<li>Added support for installing with setup.rb.
+
+</li>
+<li>All output is now treated as an ERb sequence, allowing Ruby code to be
+embedded in output strings.
+
+</li>
+<li>Added support for ANSI color sequences in say(). (And everything else by
+extension.)
+
+</li>
+<li>Added whitespace handling for answers. Can be set to <tt>:strip</tt>,
+<tt>:chomp</tt>, <tt>:collapse</tt>, <tt>:strip_and_collapse</tt>,
+<tt>:chomp_and_collapse</tt>, <tt>:remove</tt>, or <tt>:none</tt>.
+
+</li>
+<li>Exposed question details to ERb completion through @question, to allow for
+intelligent responses.
+
+</li>
+<li>Simplified <a href="../classes/HighLine.html">HighLine</a> internals using
+@question.
+
+</li>
+<li>Added support for fetching single character input either with getc() or <a
+href="../classes/HighLine.html">HighLine</a>&#8217;s own cross-platform
+terminal input routine.
+
+</li>
+<li>Improved type conversion to handle user defined classes.
+
+</li>
+</ul>
+<h2>0.2.0</h2>
+<ul>
+<li>Added Unit Tests to cover an already fixed output bug in the future.
+
+</li>
+<li>Added Rakefile and setup test action (default).
+
+</li>
+<li>Renamed HighLine::Answer to <a
+href="../classes/HighLine/Question.html">HighLine::Question</a> to better
+illustrate its role.
+
+</li>
+<li>Renamed fetch_line() to get_response() to better define its goal.
+
+</li>
+<li>Simplified explain_error in terms of the Question object.
+
+</li>
+<li>Renamed accept?() to in_range?() to better define purpose.
+
+</li>
+<li>Reworked valid?() into valid_answer?() to better fit Question object.
+
+</li>
+<li>Reworked <tt>@member</tt> into <tt>@in</tt>, to make it easier to remember
+and switched implementation to include?().
+
+</li>
+<li>Added range checks for @above and @below.
+
+</li>
+<li>Fixed the bug causing ask() to swallow NoMethodErrors.
+
+</li>
+<li>Rolled ask_on_error() into responses.
+
+</li>
+<li>Redirected imports to <a href="../classes/Kernel.html">Kernel</a> from <a
+href="../classes/Object.html">Object</a>.
+
+</li>
+<li>Added support for <tt>validate = lambda { &#8230; }</tt>.
+
+</li>
+<li>Added default answer support.
+
+</li>
+<li>Fixed bug that caused ask() to die with an empty question.
+
+</li>
+<li>Added complete documentation.
+
+</li>
+<li>Improve the implemetation of agree() to be the intended &quot;yes&quot; or
+&quot;no&quot; only question.
+
+</li>
+<li>Added Rake tasks for documentation and packaging.
+
+</li>
+<li>Moved project to RubyForge.
+
+</li>
+</ul>
+<h2>0.1.0</h2>
+<ul>
+<li>Initial release as the solution to <a
+href="http://www.rubyquiz.com/quiz29.html">Ruby Quiz #29</a>.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

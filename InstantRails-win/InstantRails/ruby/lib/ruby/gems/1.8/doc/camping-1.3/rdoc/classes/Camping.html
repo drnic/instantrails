@@ -1,0 +1,367 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Camping</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Camping</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../files/lib/camping-unabridged_rb.html" value="File: camping-unabridged.rb">lib/camping-unabridged.rb</a>
+<a href="../files/README.html" value="File: README">README</a>
+<a href="../files/CHANGELOG.html" value="File: CHANGELOG">CHANGELOG</a>
+|
+<strong>classes:</strong>
+<a href="../classes/Camping.html" title="Module: Camping">Camping</a>
+<a href="../classes/Camping/Views.html" title="Module: Camping::Views">Camping::Views</a>
+<a href="../classes/Camping/Controllers.html" title="Module: Camping::Controllers">Camping::Controllers</a>
+<a href="../classes/Camping/Controllers/Base.html" title="Module: Camping::Controllers::Base">Camping::Controllers::Base</a>
+<a href="../classes/Camping/Controllers/ServerError.html" title="Class: Camping::Controllers::ServerError">Camping::Controllers::ServerError</a>
+<a href="../classes/Camping/Controllers/R.html" title="Class: Camping::Controllers::R">Camping::Controllers::R</a>
+<a href="../classes/Camping/Controllers/NotFound.html" title="Class: Camping::Controllers::NotFound">Camping::Controllers::NotFound</a>
+<a href="../classes/Camping/Helpers.html" title="Module: Camping::Helpers">Camping::Helpers</a>
+<a href="../classes/Camping/Models.html" title="Module: Camping::Models">Camping::Models</a>
+<a href="../classes/Camping/Models/Base.html" title="Module: Camping::Models::Base">Camping::Models::Base</a>
+<a href="../classes/Camping/Mab.html" title="Class: Camping::Mab">Camping::Mab</a>
+<a href="../classes/Camping/H.html" title="Class: Camping::H">Camping::H</a>
+</ul>
+</div>
+
+    
+<div id="Camping" class="page_shade">
+<div class="page">
+<h3>Module Camping</h3>
+
+(in files
+<a href="../files/lib/camping-unabridged_rb.html">lib/camping-unabridged.rb</a>
+)
+
+<h2><a href="Camping.html">Camping</a></h2>
+<p>
+The camping module contains three modules for separating your application:
+</p>
+<ul>
+<li><a href="Camping/Models.html">Camping::Models</a> for your database
+interaction classes, all derived from ActiveRecord::Base.
+
+</li>
+<li><a href="Camping/Controllers.html">Camping::Controllers</a> for storing
+controller classes, which map URLs to code.
+
+</li>
+<li><a href="Camping/Views.html">Camping::Views</a> for storing methods which
+generate HTML.
+
+</li>
+</ul>
+<p>
+Of use to you is also one module for storing helpful additional methods:
+</p>
+<ul>
+<li><a href="Camping/Helpers.html">Camping::Helpers</a> which can be used in
+controllers and views.
+
+</li>
+</ul>
+<h2>The postamble</h2>
+<p>
+Most <a href="Camping.html">Camping</a> applications contain the entire
+application in a single script. The script begins by requiring <a
+href="Camping.html">Camping</a>, then fills each of the three modules
+described above with classes and methods. Finally, a postamble puts the
+wheels in motion.
+</p>
+<pre>
+  if __FILE__ == $0
+    Camping::Models::Base.establish_connection :adapter =&gt; 'sqlite3',
+        :database =&gt; 'blog3.db'
+    Camping::Models::Base.logger = Logger.new('camping.log')
+    Camping.create if Camping.respond_to? :create
+    puts Camping.run
+  end
+</pre>
+<p>
+In the postamble, your job is to setup <a
+href="Camping/Models/Base.html">Camping::Models::Base</a> (see:
+ActiveRecord::Base) and call Camping::run in a request loop. The above
+postamble is for a standard CGI setup, where the web server manages the
+request loop and calls the script once for every request.
+</p>
+<p>
+For other configurations, see <a
+href="http://code.whytheluckystiff.net/camping/wiki/PostAmbles">code.whytheluckystiff.net/camping/wiki/PostAmbles</a>
+</p>
+<h2>The <tt>create</tt> method</h2>
+<p>
+Many postambles will check for your application&#8217;s <tt>create</tt>
+method and will run it when the web server starts up. This is a good place
+to check for database tables and create those tables to save users of your
+application from needing to manually set them up.
+</p>
+<pre>
+  def Blog.create
+    unless Blog::Models::Post.table_exists?
+      ActiveRecord::Schema.define do
+        create_table :blog_posts, :force =&gt; true do |t|
+          t.column :id,       :integer, :null =&gt; false
+          t.column :user_id,  :integer, :null =&gt; false
+          t.column :title,    :string,  :limit =&gt; 255
+          t.column :body,     :text
+        end
+      end
+    end
+  end
+</pre>
+<p>
+For more tips, see <a
+href="http://code.whytheluckystiff.net/camping/wiki/GiveUsTheCreateMethod">code.whytheluckystiff.net/camping/wiki/GiveUsTheCreateMethod</a>.
+</p>
+
+
+
+
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000045">escape(s)</a></strong></h4>
+
+<p>
+URL escapes a string.
+</p>
+<pre>
+  Camping.escape(&quot;I'd go to the museum straightway!&quot;)
+    #=&gt; &quot;I%27d+go+to+the+museum+straightway%21&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000045_source')" id="l_M000045_source">show source</a> ]</p>
+  <div id="M000045_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 464</span>
+464:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">escape</span>(<span class="ruby-identifier">s</span>); <span class="ruby-identifier">s</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/([^ a-zA-Z0-9_.-]+)/n</span>){<span class="ruby-value str">'%'</span><span class="ruby-operator">+</span><span class="ruby-identifier">$1</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'H2'</span><span class="ruby-operator">*</span><span class="ruby-identifier">$1</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">join</span>(<span class="ruby-value str">'%'</span>).<span class="ruby-identifier">upcase</span>}.<span class="ruby-identifier">tr</span>(<span class="ruby-value str">' '</span>, <span class="ruby-value str">'+'</span>) <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000044">goes(m)</a></strong></h4>
+
+<p>
+When you are running many applications, you may want to create independent
+modules for each <a href="Camping.html">Camping</a> application. Namespaces
+for each. Camping::goes defines a toplevel constant with the whole MVC rack
+inside.
+</p>
+<pre>
+  require 'camping'
+  Camping.goes :Blog
+
+  module Blog::Controllers; ... end
+  module Blog::Models;      ... end
+  module Blog::Views;       ... end
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000044_source')" id="l_M000044_source">show source</a> ]</p>
+  <div id="M000044_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 454</span>
+454:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">goes</span>(<span class="ruby-identifier">m</span>)
+455:         <span class="ruby-identifier">eval</span>(<span class="ruby-constant">S</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/Camping/</span>,<span class="ruby-identifier">m</span>.<span class="ruby-identifier">to_s</span>),<span class="ruby-constant">TOPLEVEL_BINDING</span>)
+456:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000048">kp(s)</a></strong></h4>
+
+<p>
+Parses a string of cookies from the <tt>Cookie</tt> header.
+</p>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000048_source')" id="l_M000048_source">show source</a> ]</p>
+  <div id="M000048_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 495</span>
+495:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">kp</span>(<span class="ruby-identifier">s</span>); <span class="ruby-identifier">c</span> = <span class="ruby-identifier">qs_parse</span>(<span class="ruby-identifier">s</span>, <span class="ruby-value str">';,'</span>); <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000047">qs_parse(qs, d = '&amp;;')</a></strong></h4>
+
+<p>
+Parses a query string into an <a href="Camping/H.html">Camping::H</a>
+object.
+</p>
+<pre>
+  input = Camping.qs_parse(&quot;name=Philarp+Tremain&amp;hair=sandy+blonde&quot;)
+  input.name
+    #=&gt; &quot;Philarp Tremaine&quot;
+</pre>
+<p>
+Also parses out the Hash-like syntax used in PHP and Rails and builds
+nested hashes from it.
+</p>
+<pre>
+  input = Camping.qs_parse(&quot;post[id]=1&amp;post[user]=_why&quot;)
+    #=&gt; {'post' =&gt; {'id' =&gt; '1', 'user' =&gt; '_why'}}
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000047_source')" id="l_M000047_source">show source</a> ]</p>
+  <div id="M000047_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 484</span>
+484:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">qs_parse</span>(<span class="ruby-identifier">qs</span>, <span class="ruby-identifier">d</span> = <span class="ruby-value str">'&amp;;'</span>)
+485:         <span class="ruby-identifier">m</span> = <span class="ruby-identifier">proc</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">o</span>,<span class="ruby-identifier">n</span><span class="ruby-operator">|</span><span class="ruby-identifier">o</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">n</span>,<span class="ruby-operator">&amp;</span><span class="ruby-identifier">m</span>)<span class="ruby-keyword kw">rescue</span>([<span class="ruby-operator">*</span><span class="ruby-identifier">o</span>]<span class="ruby-operator">&lt;&lt;</span><span class="ruby-identifier">n</span>)}
+486:         (<span class="ruby-identifier">qs</span><span class="ruby-operator">||</span><span class="ruby-value str">''</span>).
+487:             <span class="ruby-identifier">split</span>(<span class="ruby-node">/[#{d}] */n</span>).
+488:             <span class="ruby-identifier">inject</span>(<span class="ruby-constant">H</span>[]) { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span>=<span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">p</span>).<span class="ruby-identifier">split</span>(<span class="ruby-value str">'='</span>,<span class="ruby-value">2</span>)
+489:                 <span class="ruby-identifier">h</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">k</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/[\]\[]+/</span>).<span class="ruby-identifier">reverse</span>.
+490:                     <span class="ruby-identifier">inject</span>(<span class="ruby-identifier">v</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-constant">H</span>[<span class="ruby-identifier">i</span>,<span class="ruby-identifier">x</span>] },<span class="ruby-operator">&amp;</span><span class="ruby-identifier">m</span>)
+491:             } 
+492:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000049">run(r=$stdin)</a></strong></h4>
+
+<p>
+Fields a request through <a href="Camping.html">Camping</a>. For
+traditional CGI applications, the method can be executed without arguments.
+</p>
+<pre>
+  if __FILE__ == $0
+    Camping::Models::Base.establish_connection :adapter =&gt; 'sqlite3',
+        :database =&gt; 'blog3.db'
+    Camping::Models::Base.logger = Logger.new('camping.log')
+    puts Camping.run
+  end
+</pre>
+<p>
+The <a href="Camping.html">Camping</a> controller returned from
+<tt>run</tt> has a <tt>to_s</tt> method in case you are running from CGI or
+want to output the full HTTP output. In the above example, <tt>puts</tt>
+will call <tt>to_s</tt> for you.
+</p>
+<p>
+For FastCGI and Webrick-loaded applications, you will need to use a request
+loop, with <tt>run</tt> at the center, passing in the read <tt>r</tt> and
+write <tt>w</tt> streams. You will also need to mimick or pass in the
+<tt>ENV</tt> replacement as part of your wrapper.
+</p>
+<pre>
+  if __FILE__ == $0
+    require 'fcgi'
+      Camping::Models::Base.establish_connection :adapter =&gt; 'sqlite3',
+          :database =&gt; 'blog3.db'
+      Camping::Models::Base.logger = Logger.new('camping.log')
+      FCGI.each do |req|
+        req.out &lt;&lt; Camping.run req.in, req.env
+        req.finish
+      end
+    end
+  end
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000049_source')" id="l_M000049_source">show source</a> ]</p>
+  <div id="M000049_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 527</span>
+527:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>(<span class="ruby-identifier">r</span>=<span class="ruby-identifier">$stdin</span>)
+528:       <span class="ruby-keyword kw">begin</span>
+529:         <span class="ruby-identifier">k</span>, <span class="ruby-identifier">a</span> = <span class="ruby-constant">Controllers</span>.<span class="ruby-constant">D</span> <span class="ruby-node">&quot;/#{e['PATH_INFO']}&quot;</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">%r!/+!</span>,<span class="ruby-value str">'/'</span>)
+530:         <span class="ruby-identifier">m</span> = <span class="ruby-identifier">e</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>]<span class="ruby-operator">||</span><span class="ruby-value str">&quot;GET&quot;</span>
+531:         <span class="ruby-identifier">k</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:include</span>, <span class="ruby-constant">C</span>, <span class="ruby-constant">Controllers</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>, <span class="ruby-constant">Models</span>
+532:         <span class="ruby-identifier">o</span> = <span class="ruby-identifier">k</span>.<span class="ruby-identifier">new</span>
+533:         <span class="ruby-identifier">o</span>.<span class="ruby-identifier">service</span>(<span class="ruby-identifier">r</span>, <span class="ruby-identifier">e</span>, <span class="ruby-identifier">m</span>.<span class="ruby-identifier">downcase</span>, <span class="ruby-identifier">a</span>)
+534:       <span class="ruby-keyword kw">rescue</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">x</span>
+535:         <span class="ruby-constant">Controllers</span><span class="ruby-operator">::</span><span class="ruby-constant">ServerError</span>.<span class="ruby-identifier">new</span>.<span class="ruby-identifier">service</span>(<span class="ruby-identifier">r</span>, <span class="ruby-identifier">e</span>, <span class="ruby-value str">&quot;get&quot;</span>, [<span class="ruby-identifier">k</span>,<span class="ruby-identifier">m</span>,<span class="ruby-identifier">x</span>])
+536:       <span class="ruby-keyword kw">end</span>
+537:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000046">unescape(s)</a></strong></h4>
+
+<p>
+Unescapes a URL-encoded string.
+</p>
+<pre>
+  Camping.unescape(&quot;I%27d+go+to+the+museum+straightway%21&quot;)
+    #=&gt; &quot;I'd go to the museum straightway!&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000046_source')" id="l_M000046_source">show source</a> ]</p>
+  <div id="M000046_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 470</span>
+470:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unescape</span>(<span class="ruby-identifier">s</span>); <span class="ruby-identifier">s</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-value str">'+'</span>, <span class="ruby-value str">' '</span>).<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/((?:%[0-9a-fA-F]{2})+)/n</span>){[<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'%'</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'H*'</span>)} <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

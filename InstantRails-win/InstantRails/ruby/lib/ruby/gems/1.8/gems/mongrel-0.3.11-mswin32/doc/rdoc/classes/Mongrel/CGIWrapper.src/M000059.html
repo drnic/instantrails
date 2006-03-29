@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>send_cookies (Mongrel::CGIWrapper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 89</span>
+ 89:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_cookies</span>(<span class="ruby-identifier">to</span>)
+ 90:       <span class="ruby-comment cmt"># convert the cookies based on the myriad of possible ways to set a cookie</span>
+ 91:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+ 92:         <span class="ruby-identifier">cookie</span> = <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'cookie'</span>]
+ 93:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">cookie</span>
+ 94:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+ 95:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> }
+ 96:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+ 97:           <span class="ruby-identifier">cookie</span>.<span class="ruby-identifier">each_value</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span>}
+ 98:         <span class="ruby-keyword kw">else</span>
+ 99:           <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'cookie'</span>].<span class="ruby-identifier">to_s</span>
+100:         <span class="ruby-keyword kw">end</span>
+101:         
+102:         <span class="ruby-ivar">@head</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">'cookie'</span>)
+103: 
+104:         <span class="ruby-comment cmt"># @output_cookies seems to never be used, but we'll process it just in case</span>
+105:         <span class="ruby-ivar">@output_cookies</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">to</span>[<span class="ruby-value str">'Set-Cookie'</span>] = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">to_s</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@output_cookies</span>
+106:       <span class="ruby-keyword kw">end</span>
+107:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

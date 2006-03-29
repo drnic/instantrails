@@ -1,0 +1,363 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Class: Builder::XmlMarkup</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Class: Builder::XmlMarkup</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../files/lib/builder/blankslate_rb.html" value="File: blankslate.rb">lib/builder/blankslate.rb</a>
+<a href="../../files/lib/builder/xchar_rb.html" value="File: xchar.rb">lib/builder/xchar.rb</a>
+<a href="../../files/lib/builder/xmlbase_rb.html" value="File: xmlbase.rb">lib/builder/xmlbase.rb</a>
+<a href="../../files/lib/builder/xmlevents_rb.html" value="File: xmlevents.rb">lib/builder/xmlevents.rb</a>
+<a href="../../files/lib/builder/xmlmarkup_rb.html" value="File: xmlmarkup.rb">lib/builder/xmlmarkup.rb</a>
+<a href="../../files/lib/builder_rb.html" value="File: builder.rb">lib/builder.rb</a>
+<a href="../../files/README.html" value="File: README">README</a>
+<a href="../../files/Rakefile.html" value="File: Rakefile">Rakefile</a>
+<a href="../../files/CHANGES.html" value="File: CHANGES">CHANGES</a>
+<a href="../../files/doc/releases/builder-1_2_4_rdoc.html" value="File: builder-1.2.4.rdoc">doc/releases/builder-1.2.4.rdoc</a>
+<a href="../../files/doc/releases/builder-2_0_0_rdoc.html" value="File: builder-2.0.0.rdoc">doc/releases/builder-2.0.0.rdoc</a>
+|
+<strong>classes:</strong>
+<a href="../../classes/Object.html" title="Class: Object">Object</a>
+<a href="../../classes/String.html" title="Class: String">String</a>
+<a href="../../classes/Fixnum.html" title="Class: Fixnum">Fixnum</a>
+<a href="../../classes/Builder.html" title="Module: Builder">Builder</a>
+<a href="../../classes/Builder/XChar.html" title="Module: Builder::XChar">Builder::XChar</a>
+<a href="../../classes/Builder/XmlBase.html" title="Class: Builder::XmlBase">Builder::XmlBase</a>
+<a href="../../classes/Builder/XmlMarkup.html" title="Class: Builder::XmlMarkup">Builder::XmlMarkup</a>
+<a href="../../classes/Builder/XmlEvents.html" title="Class: Builder::XmlEvents">Builder::XmlEvents</a>
+<a href="../../classes/Builder/BlankSlate.html" title="Class: Builder::BlankSlate">Builder::BlankSlate</a>
+<a href="../../classes/Builder/IllegalBlockError.html" title="Class: Builder::IllegalBlockError">Builder::IllegalBlockError</a>
+<a href="../../classes/Kernel.html" title="Module: Kernel">Kernel</a>
+</ul>
+</div>
+
+    
+<div id="Builder::XmlMarkup" class="page_shade">
+<div class="page">
+<h3>Class Builder::XmlMarkup &lt; <a href="XmlBase.html">XmlBase</a></h3>
+
+(in files
+<a href="../../files/lib/builder/xmlmarkup_rb.html">lib/builder/xmlmarkup.rb</a>
+)
+
+<p>
+Create XML markup easily. All (well, almost all) methods sent to an <a
+href="XmlMarkup.html">XmlMarkup</a> object will be translated to the
+equivalent XML markup. Any method with a block will be treated as an XML
+markup tag with nested markup in the block.
+</p>
+<p>
+Examples will demonstrate this easier than words. In the following,
+<tt>xm</tt> is an <tt><a href="XmlMarkup.html">XmlMarkup</a></tt> object.
+</p>
+<pre>
+  xm.em(&quot;emphasized&quot;)             # =&gt; &lt;em&gt;emphasized&lt;/em&gt;
+  xm.em { xmm.b(&quot;emp &amp; bold&quot;) }   # =&gt; &lt;em&gt;&lt;b&gt;emph &amp;amp; bold&lt;/b&gt;&lt;/em&gt;
+  xm.a(&quot;A Link&quot;, &quot;href&quot;=&gt;&quot;http://onestepback.org&quot;)
+                                  # =&gt; &lt;a href=&quot;http://onestepback.org&quot;&gt;A Link&lt;/a&gt;
+  xm.div { br }                    # =&gt; &lt;div&gt;&lt;br/&gt;&lt;/div&gt;
+  xm.target(&quot;name&quot;=&gt;&quot;compile&quot;, &quot;option&quot;=&gt;&quot;fast&quot;)
+                                  # =&gt; &lt;target option=&quot;fast&quot; name=&quot;compile&quot;\&gt;
+                                  # NOTE: order of attributes is not specified.
+
+  xm.instruct!                   # &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  xm.html {                      # &lt;html&gt;
+    xm.head {                    #   &lt;head&gt;
+      xm.title(&quot;History&quot;)        #     &lt;title&gt;History&lt;/title&gt;
+    }                            #   &lt;/head&gt;
+    xm.body {                    #   &lt;body&gt;
+      xm.comment! &quot;HI&quot;           #     &lt;!-- HI --&gt;
+      xm.h1(&quot;Header&quot;)            #     &lt;h1&gt;Header&lt;/h1&gt;
+      xm.p(&quot;paragraph&quot;)          #     &lt;p&gt;paragraph&lt;/p&gt;
+    }                            #   &lt;/body&gt;
+  }                              # &lt;/html&gt;
+</pre>
+<h2>Notes:</h2>
+<ul>
+<li>The order that attributes are inserted in markup tags is undefined.
+
+</li>
+<li>Sometimes you wish to insert text without enclosing tags. Use the
+<tt>text!</tt> method to accomplish this.
+
+<p>
+Example:
+</p>
+<pre>
+  xm.div {                          # &lt;div&gt;
+    xm.text! &quot;line&quot;; xm.br          #   line&lt;br/&gt;
+    xm.text! &quot;another line&quot;; xmbr   #    another line&lt;br/&gt;
+  }                                 # &lt;/div&gt;
+</pre>
+</li>
+<li>The special XML characters &lt;, &gt;, and &amp; are converted to &amp;lt;,
+&amp;gt; and &amp;amp; automatically. Use the <tt>&lt;&lt;</tt> operation
+to insert text without modification.
+
+</li>
+<li>Sometimes tags use special characters not allowed in ruby identifiers. Use
+the <tt>tag!</tt> method to handle these cases.
+
+<p>
+Example:
+</p>
+<pre>
+  xml.tag!(&quot;SOAP:Envelope&quot;) { ... }
+</pre>
+<p>
+will produce &#8230;
+</p>
+<pre>
+  &lt;SOAP:Envelope&gt; ... &lt;/SOAP:Envelope&gt;&quot;
+</pre>
+<p>
+<tt>tag!</tt> will also take text and attribute arguments (after the tag
+name) like normal markup methods. (But see the next bullet item for a
+better way to handle XML namespaces).
+</p>
+</li>
+<li>Direct support for XML namespaces is now available. If the first argument
+to a tag call is a symbol, it will be joined to the tag to produce a
+namespace:tag combination. It is easier to show this than describe it.
+
+<pre>
+  xml.SOAP :Envelope do ... end
+</pre>
+<p>
+Just put a space before the colon in a namespace to produce the right form
+for builder (e.g. &quot;<tt>SOAP:Envelope</tt>&quot; =&gt;
+&quot;<tt>xml.SOAP :Envelope</tt>&quot;)
+</p>
+</li>
+<li><a href="XmlMarkup.html">XmlMarkup</a> builds the markup in any object
+(called a <em>target</em>) that accepts the <tt>&lt;&lt;</tt> method. If no
+target is given, then <a href="XmlMarkup.html">XmlMarkup</a> defaults to a
+string target.
+
+<p>
+Examples:
+</p>
+<pre>
+  xm = Builder::XmlMarkup.new
+  result = xm.title(&quot;yada&quot;)
+  # result is a string containing the markup.
+
+  buffer = &quot;&quot;
+  xm = Builder::XmlMarkup.new(buffer)
+  # The markup is appended to buffer (using &lt;&lt;)
+
+  xm = Builder::XmlMarkup.new(STDOUT)
+  # The markup is written to STDOUT (using &lt;&lt;)
+
+  xm = Builder::XmlMarkup.new
+  x2 = Builder::XmlMarkup.new(:target=&gt;xm)
+  # Markup written to +x2+ will be send to +xm+.
+</pre>
+</li>
+<li>Indentation is enabled by providing the number of spaces to indent for each
+level as a second argument to XmlBuilder.new. Initial indentation may be
+specified using a third parameter.
+
+<p>
+Example:
+</p>
+<pre>
+  xm = Builder.new(:ident=&gt;2)
+  # xm will produce nicely formatted and indented XML.
+
+  xm = Builder.new(:indent=&gt;2, :margin=&gt;4)
+  # xm will produce nicely formatted and indented XML with 2
+  # spaces per indent and an over all indentation level of 4.
+
+  builder = Builder::XmlMarkup.new(:target=&gt;$stdout, :indent=&gt;2)
+  builder.name { |b| b.first(&quot;Jim&quot;); b.last(&quot;Weirich) }
+  # prints:
+  #     &lt;name&gt;
+  #       &lt;first&gt;Jim&lt;/first&gt;
+  #       &lt;last&gt;Weirich&lt;/last&gt;
+  #     &lt;/name&gt;
+</pre>
+</li>
+<li>The instance_eval implementation which forces self to refer to the message
+receiver as self is now obsolete. We now use normal block calls to execute
+the markup block. This means that all markup methods must now be explicitly
+send to the xml builder. For instance, instead of
+
+<pre>
+   xml.div { strong(&quot;text&quot;) }
+</pre>
+<p>
+you need to write:
+</p>
+<pre>
+   xml.div { xml.strong(&quot;text&quot;) }
+</pre>
+<p>
+Although more verbose, the subtle change in semantics within the block was
+found to be prone to error. To make this change a little less cumbersome,
+the markup block now gets the markup object sent as an argument, allowing
+you to use a shorter alias within the block.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  xml_builder = Builder::XmlMarkup.new
+  xml_builder.div { |xml|
+    xml.stong(&quot;text&quot;)
+  }
+</pre>
+</li>
+</ul>
+
+
+
+
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000099">new(options={})</a></strong></h4>
+
+<p>
+Create an XML markup builder. Parameters are specified by an option hash.
+</p>
+<table>
+<tr><td valign="top">:target=&gt;<em>target_object</em>:</td><td><a href="../Object.html">Object</a> receiving the markup. <tt>out</tt> must
+respond to the <tt>&lt;&lt;</tt> operator. The default is a plain string
+target.
+
+</td></tr>
+<tr><td valign="top">:indent=&gt;<em>indentation</em>:</td><td>Number of spaces used for indentation. The default is no indentation and no
+line breaks.
+
+</td></tr>
+<tr><td valign="top">:margin=&gt;<em>initial_indentation_level</em>:</td><td>Amount of initial indentation (specified in levels, not spaces).
+
+</td></tr>
+<tr><td valign="top">:escape_attrs=&gt;&lt;b&gt;OBSOLETE&lt;/em&gt;:</td><td>The :escape_attrs option is no longer supported by builder (and will be
+quietly ignored). <a href="../String.html">String</a> attribute values are
+now automatically escaped. If you need unescaped attribute values (perhaps
+you are using entities in the attribute values), then give the value as a
+Symbol. This allows much finer control over escaping attribute values.
+
+</td></tr>
+</table>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000104">cdata!(text)</a></strong></h4>
+
+<p>
+Insert a CDATA section into the XML markup.
+</p>
+<p>
+For example:
+</p>
+<pre>
+   xml.cdata!(&quot;text to be included in cdata&quot;)
+       #=&gt; &lt;![CDATA[text to be included in cdata]]&gt;
+</pre>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000101">comment!(comment_text)</a></strong></h4>
+
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000102">declare!(inst, *args, &amp;block)</a></strong></h4>
+
+<p>
+Insert an XML declaration into the XML markup.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  xml.declare! :ELEMENT, :blah, &quot;yada&quot;
+      # =&gt; &lt;!ELEMENT blah &quot;yada&quot;&gt;
+</pre>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000103">instruct!(directive_tag=:xml, attrs={})</a></strong></h4>
+
+<p>
+Insert a processing instruction into the XML markup. E.g.
+</p>
+<p>
+For example:
+</p>
+<pre>
+   xml.instruct!
+       #=&gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+   xml.instruct! :aaa, :bbb=&gt;&quot;ccc&quot;
+       #=&gt; &lt;?aaa bbb=&quot;ccc&quot;?&gt;
+</pre>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000100">target!()</a></strong></h4>
+
+<p>
+Return the target of the builder.
+</p>
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

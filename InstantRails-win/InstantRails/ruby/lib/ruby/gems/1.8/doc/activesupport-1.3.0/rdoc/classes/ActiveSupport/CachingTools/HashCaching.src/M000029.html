@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>hash_cache (ActiveSupport::CachingTools::HashCaching)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/caching_tools.rb, line 31</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hash_cache</span>(<span class="ruby-identifier">method_name</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">selector</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>] <span class="ruby-operator">||</span> <span class="ruby-node">&quot;#{method_name}_cache&quot;</span>
+        <span class="ruby-identifier">method</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">instance_method</span>(<span class="ruby-identifier">method_name</span>)
+        
+        <span class="ruby-identifier">args</span> = []
+        <span class="ruby-identifier">code</span> = <span class="ruby-node">&quot;def #{selector}(); @#{selector} ||= &quot;</span>
+        
+        (<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">method</span>.<span class="ruby-identifier">arity</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;v#{n}&quot;</span>
+          <span class="ruby-identifier">code</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;Hash.new {|h#{n}, v#{n}| h#{n}[v#{n}] = &quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-comment cmt"># Add the method call with arguments, followed by closing braces and end.</span>
+        <span class="ruby-identifier">code</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{method_name}(#{args * ', '}) #{'}' * method.arity} end&quot;</span>
+        
+        <span class="ruby-comment cmt"># Extract the line number information from the caller. Exceptions arising</span>
+        <span class="ruby-comment cmt"># in the generated code should point to the +hash_cache :...+ line.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">caller</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-regexp re">/^(.*):(\d+)$/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">caller</span>[<span class="ruby-value">0</span>]
+          <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line_number</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span>
+        <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># We can't give good trackback info; fallback to this line:</span>
+          <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line_number</span> = <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-comment cmt"># We use eval rather than building proc's because it allows us to avoid</span>
+        <span class="ruby-comment cmt"># linking the Hash's to this method's binding. Experience has shown that</span>
+        <span class="ruby-comment cmt"># doing so can cause obtuse memory leaks.</span>
+        <span class="ruby-identifier">class_eval</span> <span class="ruby-identifier">code</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line_number</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

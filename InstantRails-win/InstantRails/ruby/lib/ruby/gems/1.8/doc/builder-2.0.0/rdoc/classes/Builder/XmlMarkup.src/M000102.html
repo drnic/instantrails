@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>declare! (Builder::XmlMarkup)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/builder/xmlmarkup.rb, line 208</span>
+208:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">declare!</span>(<span class="ruby-identifier">inst</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+209:       <span class="ruby-identifier">_indent</span>
+210:       <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;&lt;!#{inst}&quot;</span>
+211:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+212:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+213:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+214:           <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%{ &quot;#{arg}&quot;}</span>
+215:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>
+216:           <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{arg}&quot;</span>
+217:         <span class="ruby-keyword kw">end</span>
+218:       <span class="ruby-keyword kw">end</span>
+219:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+220:         <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; [&quot;</span>
+221:         <span class="ruby-identifier">_newline</span>
+222:         <span class="ruby-identifier">_nested_structures</span>(<span class="ruby-identifier">block</span>)
+223:         <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;]&quot;</span>
+224:       <span class="ruby-keyword kw">end</span>
+225:       <span class="ruby-ivar">@target</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;&gt;&quot;</span>
+226:       <span class="ruby-identifier">_newline</span>
+227:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

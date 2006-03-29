@@ -1,0 +1,288 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">File: README</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../files/lib/camping-unabridged_rb.html" value="File: camping-unabridged.rb">lib/camping-unabridged.rb</a>
+<a href="../files/README.html" value="File: README">README</a>
+<a href="../files/CHANGELOG.html" value="File: CHANGELOG">CHANGELOG</a>
+|
+<strong>classes:</strong>
+<a href="../classes/Camping.html" title="Module: Camping">Camping</a>
+<a href="../classes/Camping/Views.html" title="Module: Camping::Views">Camping::Views</a>
+<a href="../classes/Camping/Controllers.html" title="Module: Camping::Controllers">Camping::Controllers</a>
+<a href="../classes/Camping/Controllers/Base.html" title="Module: Camping::Controllers::Base">Camping::Controllers::Base</a>
+<a href="../classes/Camping/Controllers/ServerError.html" title="Class: Camping::Controllers::ServerError">Camping::Controllers::ServerError</a>
+<a href="../classes/Camping/Controllers/R.html" title="Class: Camping::Controllers::R">Camping::Controllers::R</a>
+<a href="../classes/Camping/Controllers/NotFound.html" title="Class: Camping::Controllers::NotFound">Camping::Controllers::NotFound</a>
+<a href="../classes/Camping/Helpers.html" title="Module: Camping::Helpers">Camping::Helpers</a>
+<a href="../classes/Camping/Models.html" title="Module: Camping::Models">Camping::Models</a>
+<a href="../classes/Camping/Models/Base.html" title="Module: Camping::Models::Base">Camping::Models::Base</a>
+<a href="../classes/Camping/Mab.html" title="Class: Camping::Mab">Camping::Mab</a>
+<a href="../classes/Camping/H.html" title="Class: Camping::H">Camping::H</a>
+</ul>
+</div>
+
+    <div id="README" class="page_shade">
+<div class="page">
+<div class="header">
+  <div class="path">README / Wed Mar 29 14:31:20 Central Standard Time 2006</div>
+</div>
+
+<h2><a href="../classes/Camping.html">Camping</a>, a Microframework</h2>
+<p>
+<a href="../classes/Camping.html">Camping</a> is a web framework which
+consistently stays at less than 4kb of code. You can probably view the
+complete source code on a single page. But, you know, it&#8217;s so small
+that, if you think about it, what can it really do?
+</p>
+<p>
+The idea here is to store a complete fledgling web application in a single
+file like many small CGIs. But to organize it as a Model-View-Controller
+application like Rails does. You can then easily move it to Rails once
+you&#8217;ve got it going.
+</p>
+<h2>A <a href="../classes/Camping.html">Camping</a> Skeleton</h2>
+<p>
+A skeletal <a href="../classes/Camping.html">Camping</a> blog could look
+like this:
+</p>
+<pre>
+  require 'camping'
+
+  Camping.goes :Blog
+
+  module Blog::Models
+    class Post &lt; Base; belongs_to :user; end
+    class Comment &lt; Base; belongs_to :user; end
+    class User &lt; Base; end
+  end
+
+  module Blog::Controllers
+    class Index &lt; R '/'
+      def get
+        @posts = Post.find :all
+        render :index
+      end
+    end
+  end
+
+  module Blog::Views
+    def layout
+      html do
+        body do
+          self &lt;&lt; yield
+        end
+      end
+    end
+
+    def index
+      for post in @posts
+        h1 post.title
+      end
+    end
+  end
+
+  if __FILE__ == $0
+    Blog::Models::Base.establish_connection :adapter =&gt; 'sqlite3',
+        :database =&gt; 'blog3.db'
+    Blog::Models::Base.logger = Logger.new('camping.log')
+    puts Blog.run
+  end
+</pre>
+<p>
+Some things you might have noticed:
+</p>
+<ul>
+<li><a href="../classes/Camping/Models.html">Camping::Models</a> uses
+ActiveRecord to do its work. We love ActiveRecord!
+
+</li>
+<li><a href="../classes/Camping/Controllers.html">Camping::Controllers</a> can
+be assigned URLs in the class definition. Neat?
+
+</li>
+<li><a href="../classes/Camping/Views.html">Camping::Views</a> describes HTML
+using pure Ruby. Markup as Ruby, which we call Markaby.
+
+</li>
+<li>You use Camping::goes to make a copy of the <a
+href="../classes/Camping.html">Camping</a> framework under your own module
+name (in this case: <tt>Blog</tt>.)
+
+</li>
+</ul>
+<p>
+<b>NOTE:</b> <a href="../classes/Camping.html">Camping</a> auto-prefixes
+table names. If your class is named <tt>Blog::Models::Post</tt>, your table
+will be called <b>blog_posts</b>. Since many <a
+href="../classes/Camping.html">Camping</a> apps can be attached to a
+database at once, this helps prevent name clash.
+</p>
+<p>
+(If you want to see the full blog example, check out
+<tt>examples/blog/blog.rb</tt> for the complete code.)
+</p>
+<p>
+If you want to write larger applications with <a
+href="../classes/Camping.html">Camping</a>, you are encouraged to split the
+application into distinct parts which can be mounted at URLs on your web
+server. You might have a blog at /blog and a wiki at /wiki. Each
+self-contained. But you can certainly share layouts and models by storing
+them in plain Ruby scripts.
+</p>
+<p>
+Interested yet? Okay, okay, one step at a time.
+</p>
+<h2>Installation</h2>
+<ul>
+<li><tt>gem install camping</tt>
+
+</li>
+</ul>
+<p>
+Or for the bleeding edge:
+</p>
+<ul>
+<li><tt>gem install camping &#8212;source code.whytheluckystiff.net</tt>
+
+</li>
+</ul>
+<p>
+You are encourage to install <a href="../classes/Camping.html">Camping</a>
+and SQLite3, since it is a small database which fits perfectly with our
+compact bylaws, works well with the examples.
+</p>
+<ul>
+<li>See <a
+href="http://code.whytheluckystiff.net/camping/wiki/BeAlertWhenOnSqlite3">code.whytheluckystiff.net/camping/wiki/BeAlertWhenOnSqlite3</a>
+for instructions.
+
+</li>
+</ul>
+<h2>Running <a href="../classes/Camping.html">Camping</a> Apps</h2>
+<p>
+The blog example above and most <a
+href="../classes/Camping.html">Camping</a> applications look a lot like CGI
+scripts. If you run them from the commandline, you&#8217;ll probably just
+see a pile of HTML.
+</p>
+<p>
+<a href="../classes/Camping.html">Camping</a> comes with an tool for
+launching apps from the commandline:
+</p>
+<ul>
+<li>Run: <tt>camping blog.rb</tt>
+
+</li>
+<li>Visit <a href="http://localhost:3301">localhost:3301</a>/ to use the app.
+
+</li>
+</ul>
+<h2>Debugging <a href="../classes/Camping.html">Camping</a> Apps</h2>
+<p>
+If your application isn&#8217;t working with the <tt>camping</tt> tool,
+keep in mind that the tool expects the following conventions to be used:
+</p>
+<ol>
+<li>You must have SQLite3 and SQLite3-ruby installed. (Once again, please see
+<a
+href="http://code.whytheluckystiff.net/camping/wiki/BeAlertWhenOnSqlite3">code.whytheluckystiff.net/camping/wiki/BeAlertWhenOnSqlite3</a>
+for instructions.)
+
+</li>
+<li>If your script is called <tt>test.rb</tt>, <a
+href="../classes/Camping.html">Camping</a> expects your application to be
+stored in a module called <tt>Test</tt>. Case is not imporant, though. The
+module can be called <tt>TeSt</tt> or any other permuation.
+
+</li>
+<li>Your script&#8217;s postamble (anything enclosed in <tt>if <em>FILE</em> ==
+$0</tt>) will be ignored by the tool, since the tool will create an SQLite3
+database at <tt>~/.camping.db</tt>. Or, on Windows, <tt>$USER/Application
+Data/Camping.db</tt>.
+
+</li>
+<li>If your application&#8217;s module has a <tt>create</tt> method, it will be
+executed before the web server starts up.
+
+</li>
+</ol>
+<h2>The Rules of Thumb</h2>
+<p>
+Once you&#8217;ve started writing your own <a
+href="../classes/Camping.html">Camping</a> app, I&#8217;d highly recommend
+becoming familiar with the <a href="../classes/Camping.html">Camping</a>
+Rules of Thumb which are listed on the wiki: <a
+href="http://code.whytheluckystiff.net/camping/wiki/CampingRulesOfThumb">code.whytheluckystiff.net/camping/wiki/CampingRulesOfThumb</a>
+</p>
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Markaby</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Markaby</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/markaby_rb.html">
+                lib/markaby.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/tags_rb.html">
+                lib/markaby/tags.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/builder_rb.html">
+                lib/markaby/builder.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/cssproxy_rb.html">
+                lib/markaby/cssproxy.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/view_rb.html">
+                lib/markaby/view.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/template_rb.html">
+                lib/markaby/template.rb
+                </a>
+        <br />
+                <a href="../files/lib/markaby/helper_rb.html">
+                lib/markaby/helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Markaby.html">Markaby</a> is a module containing all of the great
+<a href="Markaby.html">Markaby</a> classes that do such an excellent job.
+</p>
+<ul>
+<li><a href="Markaby/Builder.html">Markaby::Builder</a>: the class for actually
+calling the Ruby methods which write the HTML.
+
+</li>
+<li>Markaby::CSSProxy: a class which adds element classes and IDs to elements
+when used within <a href="Markaby/Builder.html">Markaby::Builder</a>.
+
+</li>
+<li>Markaby::MetAid: metaprogramming helper methods.
+
+</li>
+<li>Markaby::Tags: lists the roles of various XHTML tags to help <a
+href="Markaby/Builder.html">Builder</a> use these tags as they are
+intended.
+
+</li>
+<li><a href="Markaby/Template.html">Markaby::Template</a>: a class for hooking
+<a href="Markaby.html">Markaby</a> into Rails as a proper templating
+language.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Markaby/ActionControllerHelper.html" class="link">Markaby::ActionControllerHelper</a><br />
+Class <a href="Markaby/Builder.html" class="link">Markaby::Builder</a><br />
+Class <a href="Markaby/CssProxy.html" class="link">Markaby::CssProxy</a><br />
+Class <a href="Markaby/Template.html" class="link">Markaby::Template</a><br />
+Class <a href="Markaby/View.html" class="link">Markaby::View</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.3'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">[     :a, :abbr, :acronym, :span, :b, :caption, :del, :cite, :code, :col,     :colgroup, :dd, :dfn, :dt, :em, :fieldset, :i, :img, :ins, :kbd, :p,     :label, :legend, :li, :optgroup, :option, :select, :small, :span, :strong,     :sub, :sup,  :tbody, :td, :textarea, :thead, :title, :th, :tr, :tfoot,     :tt, :address, :blockquote, :body, :div, :dl, :form, :h1, :h2, :h3, :head,     :noscript, :object, :ol, :pre, :q, :samp, :script, :style, :table, :ul</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SELF_CLOSING_TAGS</td>
+          <td>=</td>
+          <td class="context-item-value">[ :hr, :br, :link, :meta, :input ]</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

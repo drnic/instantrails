@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_missing (Markaby::Builder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/markaby/builder.rb, line 138</span>
+138:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+139:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+140:         <span class="ruby-ivar">@stream</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span> <span class="ruby-identifier">x</span>.<span class="ruby-identifier">object_id</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">object_id</span> }
+141:       <span class="ruby-keyword kw">end</span>
+142:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">TAGS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">sym</span>)
+143:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">nil?</span>
+144:           <span class="ruby-keyword kw">return</span> <span class="ruby-constant">CssProxy</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">args</span>, <span class="ruby-identifier">block</span><span class="ruby-operator">|</span>
+145:             <span class="ruby-identifier">tag!</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+146:           <span class="ruby-keyword kw">end</span>
+147:         <span class="ruby-keyword kw">end</span>
+148:         <span class="ruby-identifier">tag!</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+149:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">SELF_CLOSING_TAGS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">sym</span>)
+150:         <span class="ruby-identifier">tag!</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+151:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{sym}&quot;</span>)
+152:         <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{sym}&quot;</span>)
+153:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@helpers</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">sym</span>)
+154:         <span class="ruby-identifier">r</span> = <span class="ruby-ivar">@helpers</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+155:         <span class="ruby-ivar">@builder</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">r</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@output_helpers</span>
+156:         <span class="ruby-identifier">r</span>
+157:       <span class="ruby-keyword kw">else</span>
+158:         <span class="ruby-identifier">tag!</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+159:       <span class="ruby-keyword kw">end</span>
+160:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>layout (ActionController::Layout::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/layout.rb, line 167</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">layout</span>(<span class="ruby-identifier">template_name</span>, <span class="ruby-identifier">conditions</span> = {})
+        <span class="ruby-identifier">add_layout_conditions</span>(<span class="ruby-identifier">conditions</span>)
+        <span class="ruby-identifier">write_inheritable_attribute</span> <span class="ruby-value str">&quot;layout&quot;</span>, <span class="ruby-identifier">template_name</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

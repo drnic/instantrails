@@ -1,0 +1,138 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Markaby</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Markaby</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../files/lib/markaby/builder_rb.html" value="File: builder.rb">lib/markaby/builder.rb</a>
+<a href="../files/lib/markaby/cssproxy_rb.html" value="File: cssproxy.rb">lib/markaby/cssproxy.rb</a>
+<a href="../files/lib/markaby/helper_rb.html" value="File: helper.rb">lib/markaby/helper.rb</a>
+<a href="../files/lib/markaby/metaid_rb.html" value="File: metaid.rb">lib/markaby/metaid.rb</a>
+<a href="../files/lib/markaby/tags_rb.html" value="File: tags.rb">lib/markaby/tags.rb</a>
+<a href="../files/lib/markaby/template_rb.html" value="File: template.rb">lib/markaby/template.rb</a>
+<a href="../files/lib/markaby/view_rb.html" value="File: view.rb">lib/markaby/view.rb</a>
+<a href="../files/lib/markaby_rb.html" value="File: markaby.rb">lib/markaby.rb</a>
+<a href="../files/README.html" value="File: README">README</a>
+|
+<strong>classes:</strong>
+<a href="../classes/Object.html" title="Class: Object">Object</a>
+<a href="../classes/Markaby.html" title="Module: Markaby">Markaby</a>
+<a href="../classes/Markaby/ActionControllerHelper.html" title="Module: Markaby::ActionControllerHelper">Markaby::ActionControllerHelper</a>
+<a href="../classes/Markaby/CssProxy.html" title="Class: Markaby::CssProxy">Markaby::CssProxy</a>
+<a href="../classes/Markaby/Builder.html" title="Class: Markaby::Builder">Markaby::Builder</a>
+<a href="../classes/Markaby/Template.html" title="Class: Markaby::Template">Markaby::Template</a>
+<a href="../classes/Markaby/View.html" title="Class: Markaby::View">Markaby::View</a>
+</ul>
+</div>
+
+    
+<div id="Markaby" class="page_shade">
+<div class="page">
+<h3>Module Markaby &lt; <a href="Object.html">Object</a></h3>
+
+(in files
+<a href="../files/lib/markaby/builder_rb.html">lib/markaby/builder.rb</a>
+<a href="../files/lib/markaby/cssproxy_rb.html">lib/markaby/cssproxy.rb</a>
+<a href="../files/lib/markaby/helper_rb.html">lib/markaby/helper.rb</a>
+<a href="../files/lib/markaby/tags_rb.html">lib/markaby/tags.rb</a>
+<a href="../files/lib/markaby/template_rb.html">lib/markaby/template.rb</a>
+<a href="../files/lib/markaby/view_rb.html">lib/markaby/view.rb</a>
+<a href="../files/lib/markaby_rb.html">lib/markaby.rb</a>
+)
+
+<p>
+<a href="Markaby.html">Markaby</a> is a module containing all of the great
+<a href="Markaby.html">Markaby</a> classes that do such an excellent job.
+</p>
+<ul>
+<li><a href="Markaby/Builder.html">Markaby::Builder</a>: the class for actually
+calling the Ruby methods which write the HTML.
+
+</li>
+<li>Markaby::CSSProxy: a class which adds element classes and IDs to elements
+when used within <a href="Markaby/Builder.html">Markaby::Builder</a>.
+
+</li>
+<li>Markaby::MetAid: metaprogramming helper methods.
+
+</li>
+<li>Markaby::Tags: lists the roles of various XHTML tags to help <a
+href="Markaby/Builder.html">Builder</a> use these tags as they are
+intended.
+
+</li>
+<li><a href="Markaby/Template.html">Markaby::Template</a>: a class for hooking
+<a href="Markaby.html">Markaby</a> into Rails as a proper templating
+language.
+
+</li>
+</ul>
+
+
+
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,295 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Class: Markaby::Builder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Class: Markaby::Builder</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../files/lib/markaby/builder_rb.html" value="File: builder.rb">lib/markaby/builder.rb</a>
+<a href="../../files/lib/markaby/cssproxy_rb.html" value="File: cssproxy.rb">lib/markaby/cssproxy.rb</a>
+<a href="../../files/lib/markaby/helper_rb.html" value="File: helper.rb">lib/markaby/helper.rb</a>
+<a href="../../files/lib/markaby/metaid_rb.html" value="File: metaid.rb">lib/markaby/metaid.rb</a>
+<a href="../../files/lib/markaby/tags_rb.html" value="File: tags.rb">lib/markaby/tags.rb</a>
+<a href="../../files/lib/markaby/template_rb.html" value="File: template.rb">lib/markaby/template.rb</a>
+<a href="../../files/lib/markaby/view_rb.html" value="File: view.rb">lib/markaby/view.rb</a>
+<a href="../../files/lib/markaby_rb.html" value="File: markaby.rb">lib/markaby.rb</a>
+<a href="../../files/README.html" value="File: README">README</a>
+|
+<strong>classes:</strong>
+<a href="../../classes/Object.html" title="Class: Object">Object</a>
+<a href="../../classes/Markaby.html" title="Module: Markaby">Markaby</a>
+<a href="../../classes/Markaby/ActionControllerHelper.html" title="Module: Markaby::ActionControllerHelper">Markaby::ActionControllerHelper</a>
+<a href="../../classes/Markaby/CssProxy.html" title="Class: Markaby::CssProxy">Markaby::CssProxy</a>
+<a href="../../classes/Markaby/Builder.html" title="Class: Markaby::Builder">Markaby::Builder</a>
+<a href="../../classes/Markaby/Template.html" title="Class: Markaby::Template">Markaby::Template</a>
+<a href="../../classes/Markaby/View.html" title="Class: Markaby::View">Markaby::View</a>
+</ul>
+</div>
+
+    
+<div id="Markaby::Builder" class="page_shade">
+<div class="page">
+<h3>Class Markaby::Builder &lt; <a href="../Object.html">Object</a></h3>
+
+(in files
+<a href="../../files/lib/markaby/builder_rb.html">lib/markaby/builder.rb</a>
+)
+
+<p>
+The <a href="Builder.html">Markaby::Builder</a> class is the central gear
+in the system. When using from Ruby code, this is the only class you need
+to instantiate directly.
+</p>
+<pre>
+  mab = Markaby::Builder.new
+  mab.html do
+    head { title &quot;Boats.com&quot; }
+    body do
+      h1 &quot;Boats.com has great deals&quot;
+      ul do
+        li &quot;$49 for a canoe&quot;
+        li &quot;$39 for a raft&quot;
+        li &quot;$29 for a huge boot that floats and can fit 5 people&quot;
+      end
+    end
+  end
+  puts mab.to_s
+</pre>
+
+
+
+
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000071">new(assigns = {}, helpers = nil, &amp;block)</a></strong></h4>
+
+<p>
+Create a <a href="../Markaby.html">Markaby</a> builder object. Pass in a
+hash of variable assignments to <tt>assigns</tt> which will be available as
+instance variables inside tag construction blocks. If an object is passed
+in to <tt>helpers</tt>, its methods will be available from those same
+blocks.
+</p>
+<p>
+Pass in a <tt>block</tt> to new and the block will be evaluated.
+</p>
+<pre>
+  mab = Markaby::Builder.new {
+    html do
+      body do
+        h1 &quot;Matching Mole&quot;
+      end
+    end
+  }
+</pre>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000074">&lt;&lt;(string)</a></strong></h4>
+
+<p>
+Alias for <a href="Builder.html#M000073">text</a>
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000075">capture(&amp;block)</a></strong></h4>
+
+<p>
+Captures the HTML code built inside the <tt>block</tt>. This is done by
+creating a new builder object, running the block and passing back its
+stream as a string.
+</p>
+<pre>
+  &gt;&gt; Markaby::Builder.new.capture { h1 &quot;TEST&quot;; h2 &quot;CAPTURE ME&quot; }
+  =&gt; &quot;&lt;h1&gt;TITLE&lt;/h1&gt;\n&lt;h2&gt;CAPTURE ME&lt;/h2&gt;\n&quot;
+</pre>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000076">content_for(name, &amp;block)</a></strong></h4>
+
+<p>
+Content_for will store the given block in an instance variable for later
+use in another template or in the layout.
+</p>
+<p>
+The name of the instance variable is content_for_&lt;name&gt; to stay
+consistent with @content_for_layout which is used by ActionView&#8217;s
+layouts.
+</p>
+<p>
+Example:
+</p>
+<pre>
+  content_for(&quot;header&quot;) do
+    h1 &quot;Half Shark and Half Lion&quot;
+  end
+</pre>
+<p>
+If used several times, the variable will contain all the parts
+concatenated.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000081">head(*args, &amp;block)</a></strong></h4>
+
+<p>
+Builds a head tag. Adds a <tt>meta</tt> tag inside with Content-Type set to
+<tt>text/html; charset=utf-8</tt>.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000082">html(*args, &amp;block)</a></strong></h4>
+
+<p>
+Builds an html tag. An XML 1.0 instruction and an XHTML 1.0 Transitional
+doctype are prepended. Also assumes <tt>:xmlns =&gt; &quot;<a
+href="http://www.w3.org/1999/xhtml">www.w3.org/1999/xhtml</a>&quot;,
+&quot;xml:lang&quot; =&gt; &quot;en&quot;, :lang =&gt; &quot;en&quot;</tt>.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000080">img(opts = {})</a></strong></h4>
+
+<p>
+Builds a image tag. Assumes <tt>:border =&gt; &#8216;0&#8217;, :alt =&gt;
+&#8217;&#8217;</tt>.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000078">method_missing(sym, *args, &amp;block)</a></strong></h4>
+
+<p>
+Create XML markup based on the name of the method <tt>sym</tt>. This method
+is never invoked directly, but is called for each markup method in the
+markup block.
+</p>
+<p>
+This method is also used to intercept calls to helper methods and instance
+variables. Here is the order of interception:
+</p>
+<ul>
+<li>If <tt>sym</tt> is a recognized HTML tag, the tag is output or a <a
+href="CssProxy.html">CssProxy</a> is returned if no arguments are given.
+
+</li>
+<li>If <tt>sym</tt> appears to be a self-closing tag, its block is ignored,
+thus outputting a valid self-closing tag.
+
+</li>
+<li>If <tt>sym</tt> is also the name of an instance variable, the value of the
+instance variable is returned.
+
+</li>
+<li>If <tt>sym</tt> is a helper method, the helper method is called and output
+to the stream.
+
+</li>
+<li>Otherwise, <tt>sym</tt> and its arguments are passed to tag!
+
+</li>
+</ul>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000079">p(*args, &amp;block)</a></strong></h4>
+
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000077">tag!(tag, *args, &amp;block)</a></strong></h4>
+
+<p>
+Create a tag named <tt>tag</tt>. Other than the first argument which is the
+tag name, the arguments are the same as the tags implemented via <a
+href="Builder.html#M000078">method_missing</a>.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000073">text(string)</a></strong></h4>
+
+<p>
+Write a <tt>string</tt> to the HTML stream without escaping it.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000072">to_s()</a></strong></h4>
+
+<p>
+Returns a string containing the HTML stream. Internally, the stream is
+stored as an Array.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000084">xhtml_strict(&amp;block)</a></strong></h4>
+
+<p>
+Builds an html tag with XHTML 1.0 Strict doctype instead.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000083">xhtml_transitional(*args, &amp;block)</a></strong></h4>
+
+<p>
+Alias for <a href="Builder.html#M000082">html</a>
+</p>
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

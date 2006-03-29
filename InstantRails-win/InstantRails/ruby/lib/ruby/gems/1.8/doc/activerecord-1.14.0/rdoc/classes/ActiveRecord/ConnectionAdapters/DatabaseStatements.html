@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::ConnectionAdapters::DatabaseStatements</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::DatabaseStatements</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/abstract/database_statements_rb.html">
+                lib/active_record/connection_adapters/abstract/database_statements.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000388">add_limit!</a>&nbsp;&nbsp;
+      <a href="#M000389">add_limit_offset!</a>&nbsp;&nbsp;
+      <a href="#M000385">begin_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000386">commit_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000390">default_sequence_name</a>&nbsp;&nbsp;
+      <a href="#M000383">delete</a>&nbsp;&nbsp;
+      <a href="#M000380">execute</a>&nbsp;&nbsp;
+      <a href="#M000381">insert</a>&nbsp;&nbsp;
+      <a href="#M000391">reset_sequence!</a>&nbsp;&nbsp;
+      <a href="#M000387">rollback_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000376">select_all</a>&nbsp;&nbsp;
+      <a href="#M000377">select_one</a>&nbsp;&nbsp;
+      <a href="#M000378">select_value</a>&nbsp;&nbsp;
+      <a href="#M000379">select_values</a>&nbsp;&nbsp;
+      <a href="#M000384">transaction</a>&nbsp;&nbsp;
+      <a href="#M000382">update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000388" class="method-detail">
+        <a name="M000388"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000388.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000388.html');return false;">
+          <span class="method-name">add_limit!</span><span class="method-args">(sql, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DatabaseStatements.html#M000389">add_limit_offset!</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000389" class="method-detail">
+        <a name="M000389"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000389.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000389.html');return false;">
+          <span class="method-name">add_limit_offset!</span><span class="method-args">(sql, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Appends <tt>LIMIT</tt> and <tt>OFFSET</tt> options to a SQL statement. This
+method <b>modifies</b> the <tt>sql</tt> parameter.
+</p>
+<h5>Examples</h5>
+<pre>
+ add_limit_offset!('SELECT * FROM suppliers', {:limit =&gt; 10, :offset =&gt; 50})
+</pre>
+<p>
+generates
+</p>
+<pre>
+ SELECT * FROM suppliers LIMIT 10 OFFSET 50
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000385" class="method-detail">
+        <a name="M000385"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000385.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000385.html');return false;">
+          <span class="method-name">begin_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Begins the transaction (and turns off auto-committing).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000386" class="method-detail">
+        <a name="M000386"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000386.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000386.html');return false;">
+          <span class="method-name">commit_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Commits the transaction (and turns on auto-committing).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000390" class="method-detail">
+        <a name="M000390"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000390.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000390.html');return false;">
+          <span class="method-name">default_sequence_name</span><span class="method-args">(table, column)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000383.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000383.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes the delete statement and returns the number of rows affected.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000380.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000380.html');return false;">
+          <span class="method-name">execute</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes the SQL statement in the context of this connection. This abstract
+method raises a NotImplementedError.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000381" class="method-detail">
+        <a name="M000381"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000381.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000381.html');return false;">
+          <span class="method-name">insert</span><span class="method-args">(sql, name = nil, pk = nil, id_value = nil, sequence_name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the last auto-generated ID from the affected table.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000391" class="method-detail">
+        <a name="M000391"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000391.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000391.html');return false;">
+          <span class="method-name">reset_sequence!</span><span class="method-args">(table, column, sequence = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the sequence to the max value of the table&#8217;s column.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000387" class="method-detail">
+        <a name="M000387"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000387.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000387.html');return false;">
+          <span class="method-name">rollback_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Rolls back the transaction (and turns on auto-committing). Must be done if
+the transaction block raises an exception or returns false.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000376.html');return false;">
+          <span class="method-name">select_all</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of record hashes with the column names as keys and column
+values as values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000377.html');return false;">
+          <span class="method-name">select_one</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a record hash with the column names as keys and column values as
+values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000378.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000378.html');return false;">
+          <span class="method-name">select_value</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a single value from a record
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000379.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000379.html');return false;">
+          <span class="method-name">select_values</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of the values of the first column in a select:
+</p>
+<pre>
+  select_values(&quot;SELECT id FROM companies LIMIT 3&quot;) =&gt; [1,2,3]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000384.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000384.html');return false;">
+          <span class="method-name">transaction</span><span class="method-args">(start_db_transaction = true) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Wrap a block in a transaction. Returns result of block.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="DatabaseStatements.src/M000382.html" target="Code" class="method-signature"
+            onclick="popupCode('DatabaseStatements.src/M000382.html');return false;">
+          <span class="method-name">update</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes the update statement and returns the number of rows affected.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

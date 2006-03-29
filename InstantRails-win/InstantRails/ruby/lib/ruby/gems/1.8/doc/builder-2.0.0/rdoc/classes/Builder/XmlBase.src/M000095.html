@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_missing (Builder::XmlBase)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/builder/xmlbase.rb, line 37</span>
+37:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+38:       <span class="ruby-identifier">text</span> = <span class="ruby-keyword kw">nil</span>
+39:       <span class="ruby-identifier">attrs</span> = <span class="ruby-keyword kw">nil</span>
+40:       <span class="ruby-identifier">sym</span> = <span class="ruby-node">&quot;#{sym}:#{args.shift}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Symbol</span>)
+41:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+42:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+43:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+44:           <span class="ruby-identifier">attrs</span> <span class="ruby-operator">||=</span> {}
+45:           <span class="ruby-identifier">attrs</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">arg</span>)
+46:         <span class="ruby-keyword kw">else</span>
+47:           <span class="ruby-identifier">text</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
+48:           <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">to_s</span>
+49:         <span class="ruby-keyword kw">end</span>
+50:       <span class="ruby-keyword kw">end</span>
+51:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+52:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+53:           <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;XmlMarkup cannot mix a text argument with a block&quot;</span>
+54:         <span class="ruby-keyword kw">end</span>
+55:         <span class="ruby-identifier">_capture_outer_self</span>(<span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@self</span>.<span class="ruby-identifier">nil?</span>
+56:         <span class="ruby-identifier">_indent</span>
+57:         <span class="ruby-identifier">_start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>)
+58:         <span class="ruby-identifier">_newline</span>
+59:         <span class="ruby-identifier">_nested_structures</span>(<span class="ruby-identifier">block</span>)
+60:         <span class="ruby-identifier">_indent</span>
+61:         <span class="ruby-identifier">_end_tag</span>(<span class="ruby-identifier">sym</span>)
+62:         <span class="ruby-identifier">_newline</span>
+63:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">text</span>.<span class="ruby-identifier">nil?</span>
+64:         <span class="ruby-identifier">_indent</span>
+65:         <span class="ruby-identifier">_start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>, <span class="ruby-keyword kw">true</span>)
+66:         <span class="ruby-identifier">_newline</span>
+67:       <span class="ruby-keyword kw">else</span>
+68:         <span class="ruby-identifier">_indent</span>
+69:         <span class="ruby-identifier">_start_tag</span>(<span class="ruby-identifier">sym</span>, <span class="ruby-identifier">attrs</span>)
+70:         <span class="ruby-identifier">text!</span> <span class="ruby-identifier">text</span>
+71:         <span class="ruby-identifier">_end_tag</span>(<span class="ruby-identifier">sym</span>)
+72:         <span class="ruby-identifier">_newline</span>
+73:       <span class="ruby-keyword kw">end</span>
+74:       <span class="ruby-ivar">@target</span>
+75:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
