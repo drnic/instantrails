@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>display_tasks_and_comments (Rake::Application)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/rake.rb, line 1536</span>
+1536:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">display_tasks_and_comments</span>
+1537:       <span class="ruby-identifier">width</span> = <span class="ruby-constant">Rake</span><span class="ruby-operator">::</span><span class="ruby-constant">Task</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+1538:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">comment</span>
+1539:       }.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+1540:         <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">length</span>
+1541:       }.<span class="ruby-identifier">max</span>
+1542:       <span class="ruby-constant">Rake</span><span class="ruby-operator">::</span><span class="ruby-constant">Task</span>.<span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+1543:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span>.<span class="ruby-identifier">comment</span>
+1544:           <span class="ruby-identifier">printf</span> <span class="ruby-node">&quot;rake %-#{width}s  # %s\n&quot;</span>, <span class="ruby-identifier">t</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">t</span>.<span class="ruby-identifier">comment</span>
+1545:         <span class="ruby-keyword kw">end</span>
+1546:       <span class="ruby-keyword kw">end</span>
+1547:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

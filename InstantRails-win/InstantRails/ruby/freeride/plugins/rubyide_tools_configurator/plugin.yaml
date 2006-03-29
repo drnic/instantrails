@@ -1,0 +1,11 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_configurator
+version: 1.0
+autoload: true
+require_path: rubyide_tools_configurator/configurator.rb
+startup_module: FreeRIDE::GUI::Configurator
+properties_path: properties.yaml
+load_dependencies: 
+  rubyide_fox_gui: "*"
+start_dependencies: 
+  rubyide_fox_gui: "*"

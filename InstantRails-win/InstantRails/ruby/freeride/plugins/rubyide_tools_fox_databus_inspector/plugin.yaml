@@ -1,0 +1,10 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_databus_inspector
+version: 1.0
+autoload: true
+require_path: rubyide_tools_fox_databus_inspector/databus_inspector
+startup_module: FreeRIDE::FoxRenderer::DatabusInspector
+load_dependencies: 
+  rubyide_fox_gui: "*"
+start_dependencies: 
+  rubyide_fox_gui: "*"

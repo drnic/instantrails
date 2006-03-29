@@ -1,0 +1,135 @@
+#### Properties: rubyide_gui-component_manager - Version: 1.0
+properties: ~
+"|": 
+  - AppFrame: ''
+    "|": 
+      - Attributes: ''
+        "|": 
+          - text: "FreeRIDE - The Free Ruby IDE"
+          - visible: true
+      - DockBars: ''
+        "|":
+          - "west": ''
+          - "south": ''
+      - ToolBar: ''
+        "|": 
+          - "01": File
+            "|": 
+              - "01": App/File/New
+              - "02": App/File/Open
+              - "03": App/File/Close
+              - "04": App/File/Save
+              - "05": App/File/SaveAs
+              - "06": App/File/SaveAll
+          - "02": Edit
+            "|": 
+              - "01": App/Edit/Undo
+              - "02": App/Edit/Redo
+              - "03": App/Edit/Copy
+              - "04": App/Edit/Paste
+              - "05": App/Edit/Cut
+          - "03": View
+          - "04": Goto
+          - "05": Run
+          - "06": Tools
+          - "07": Help
+      - MenuBar: ''
+        "|": 
+          - Attributes: ''
+            "|": 
+              - visible: true
+          - MenuPanes: ''
+            "|": 
+              - "1": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: File_menu
+                      - text: "&File"
+                      - visible: true
+                  - Commands: ''
+                    "|": 
+                      - "11": SUBMENU
+                        "|":
+                          - Text: Project
+                          - Commands: ''
+                            "|":
+                              - "1": App/Project/New
+                              - "2": App/Project/Open
+                      - "12": SEPARATOR
+                      - "13": App/File/New
+                      - "14": App/File/Open
+                      - "15": App/File/Close
+                      - "16": App/File/CloseAll
+                      - "17": App/File/Save
+                      - "18": App/File/SaveAs
+                      - "19": App/File/SaveAll
+                      - "20": SEPARATOR
+                      - "21": App/Exit
+              - "2": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Edit_menu
+                      - text: "&Edit"
+                      - visible: true
+                  - Commands: ''
+                    "|": 
+                      - "1": App/Edit/Undo
+                      - "2": App/Edit/Redo
+                      - "3": SEPARATOR
+                      - "4": App/Edit/Cut
+                      - "5": App/Edit/Copy
+                      - "6": App/Edit/Paste
+              - "3": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Search_menu
+                      - text: "&Search"
+                      - visible: true
+              - "4": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: View_menu
+                      - text: "&View"
+                      - visible: true
+                  - Commands: ''
+                    "|": 
+                      - "1": App/View/LineNumbers
+                      - "2": App/View/EndOfLine
+                      - "3": App/View/Whitespace
+                      - "4": SEPARATOR
+              - "5": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Goto_menu
+                      - text: "&Goto"
+                      - visible: true
+              - "6": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Run_menu
+                      - text: "&Run"
+                      - visible: true
+              - "7": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Tools_menu
+                      - text: "&Tools"
+                      - visible: true
+              - "8": ''
+                "|": 
+                  - Attributes: ''
+                    "|": 
+                      - id: Help_menu
+                      - text: "&Help"
+                      - visible: true
+                  - Commands: ''
+                    "|": 
+                      - "1": App/Help
+                      - "2": App/About

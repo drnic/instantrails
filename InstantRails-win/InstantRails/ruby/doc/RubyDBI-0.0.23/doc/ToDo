@@ -1,0 +1,33 @@
+=begin
+= ToDo
+
+* num_rows, which returns the number of rows in a result-set.
+* SQL statement parser like Perl's SQL::Statement 
+* LDAP DBD
+* column_info: precision == column_size or == column_size - scale ??? 
+* fetch_many callable as iterator
+* make SQL::bind preparable (parse SQL statement before)
+* columns / column_info with more DBDs (DB2, Oracle, Interbase, ODBC)
+* Tainting
+* table_info
+* bind_param_inout
+* type_info / type_info_all
+* bind_col ?
+* Rewrite DBI-dispatching in C?
+* warn if commit/rollback and AutoCommit is on
+* bind_out_param/bind_inout_param
+* tracing/logging for DBDs by calling log(...)
+* define exact behaviour of fetch_scroll
+* define exact behaviour of exception classes
+* do not pass *args paramters to DBD (it's harder for C-extensions to handle them)
+* thead safety ?
+* asynchronous execution
+
+= Done
+
+* version.rb; don't update everytime dbi.rb when version changes
+* fetch_all should always return an array, as well as select_all etc., fetch_many always []
+* get a Driver object, call methods on it
+* blob_import etc. for DBD::Pg
+* parameter markers in DB2
+=end

@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ToDo List for DBI</title>
+<link href="rubyStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label-0" id="label-0">ToDo</a></h1><!-- RDLabel: "ToDo" -->
+<ul>
+<li>num_rows, which returns the number of rows in a result-set.</li>
+<li>SQL statement parser like Perl's SQL::Statement </li>
+<li>LDAP DBD</li>
+<li>column_info: precision == column_size or == column_size - scale ??? </li>
+<li>fetch_many callable as iterator</li>
+<li>make SQL::bind preparable (parse SQL statement before)</li>
+<li>columns / column_info with more DBDs (DB2, Oracle, Interbase, ODBC)</li>
+<li>Tainting</li>
+<li>table_info</li>
+<li>bind_param_inout</li>
+<li>type_info / type_info_all</li>
+<li>bind_col ?</li>
+<li>Rewrite DBI-dispatching in C?</li>
+<li>warn if commit/rollback and AutoCommit is on</li>
+<li>bind_out_param/bind_inout_param</li>
+<li>tracing/logging for DBDs by calling log(...)</li>
+<li>define exact behaviour of fetch_scroll</li>
+<li>define exact behaviour of exception classes</li>
+<li>do not pass *args paramters to DBD (it's harder for C-extensions to handle them)</li>
+<li>thead safety ?</li>
+<li>asynchronous execution</li>
+</ul>
+<h1><a name="label-1" id="label-1">Done</a></h1><!-- RDLabel: "Done" -->
+<ul>
+<li>version.rb; don't update everytime dbi.rb when version changes</li>
+<li>fetch_all should always return an array, as well as select_all etc., fetch_many always []</li>
+<li>get a Driver object, call methods on it</li>
+<li>blob_import etc. for DBD::Pg</li>
+<li>parameter markers in DB2</li>
+</ul>
+
+</body>
+</html>

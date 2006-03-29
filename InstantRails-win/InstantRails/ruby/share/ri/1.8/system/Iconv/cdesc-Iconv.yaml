@@ -1,0 +1,82 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: charset_map
+- !ruby/object:RI::MethodSummary 
+  name: conv
+- !ruby/object:RI::MethodSummary 
+  name: iconv
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: open
+comment: 
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Summary
+- !ruby/struct:SM::Flow::P 
+  body: Ruby extension for charset conversion.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Abstract
+- !ruby/struct:SM::Flow::P 
+  body: Iconv is a wrapper class for the UNIX 95 <tt>iconv()</tt> function family, which translates string between various encoding systems.
+- !ruby/struct:SM::Flow::P 
+  body: See Open Group's on-line documents for more details.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>iconv.h</tt>: http://www.opengroup.org/onlinepubs/007908799/xsh/iconv.h.html"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>iconv_open()</tt>: http://www.opengroup.org/onlinepubs/007908799/xsh/iconv_open.html"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>iconv()</tt>: http://www.opengroup.org/onlinepubs/007908799/xsh/iconv.html"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>iconv_close()</tt>: http://www.opengroup.org/onlinepubs/007908799/xsh/iconv_close.html"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Which coding systems are available is platform-dependent.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Examples
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "1."
+    body: Instantiate a new Iconv and use method Iconv#iconv.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  cd = Iconv.new(to, from)\n  begin\n    input.each { |s| output &lt;&lt; cd.iconv(s) }\n    output &lt;&lt; cd.iconv(nil)                   # Don't forget this!\n  ensure\n    cd.close\n  end\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "2."
+    body: Invoke Iconv.open with a block.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  Iconv.open(to, from) do |cd|\n    input.each { |s| output &lt;&lt; cd.iconv(s) }\n    output &lt;&lt; cd.iconv(nil)\n  end\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "3."
+    body: Shorthand for (2).
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  Iconv.iconv(to, from, *input.to_a)\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "4."
+    body: Simple conversion between two charsets.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  converted_text = Iconv.new('iso-8859-15', 'utf-8').iconv(text)\n"
+  type: :NUMBER
+constants: []
+
+full_name: Iconv
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: iconv
+name: Iconv
+superclass: Data

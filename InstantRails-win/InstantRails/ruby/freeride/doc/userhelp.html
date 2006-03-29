@@ -1,0 +1,492 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html><head><title>FreeRIDE: UserDoc</title>
+
+<link rel="stylesheet" href="userhelp_files/wiki.css"></head><body bgcolor="white">
+<table align="center" border="0" cellpadding="0" cellspacing="0" height="55" width="100%"><tbody><tr><td align="right" bgcolor="#cccccc" height="45" valign="top" width="100%"><img src="userhelp_files/oul_grey.gif" align="left" border="0" hspace="0" vspace="0"><img src="userhelp_files/freeride.jpg" align="right" border="0" height="45" hspace="0" vspace="0" width="315"></td><td align="right" bgcolor="#993300" valign="top" width="8"><img src="userhelp_files/our.gif" align="right" border="0" height="8" hspace="0" vspace="0" width="8"></td></tr><tr><td colspan="2" bgcolor="#404040" height="5"><img src="userhelp_files/line.gif" height="1" width="1"></td></tr><tr><td colspan="2" bgcolor="#f2e3b7"><table border="0" width="100%"><tbody><tr><td rowspan="2" nowrap="nowrap" width="100%">
+<h1><a href="http://freeride.rubyforge.org/wiki/wiki.pl?search=UserDoc">UserDoc</a></h1><a href="http://freeride.rubyforge.org/wiki/wiki.pl?HomePage">HomePage</a> | <a href="http://freeride.rubyforge.org/wiki/wiki.pl?Recent_Changes">Recent Changes</a> | <a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a> | <a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=index">Index</a>
+</td><td align="right" nowrap="nowrap" valign="top"><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
+Search: <input name="search" size="20" type="text"><input name="dosearch" value="1" type="hidden"><div></div>
+</form></td></tr><tr><td align="right" nowrap="nowrap" valign="bottom">
+<a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=UserDoc">Edit</a> | <a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=history&amp;id=UserDoc">Revisions</a> | Last edited January 15, 2006 4:38 am <a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=browse&amp;diff=1&amp;id=UserDoc">(diff)</a></td></tr></tbody></table></td></tr></tbody></table><br>
+<h1><a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> User Documentation (version 0.9.5 and above)</h1>
+
+<p>
+(Do not update. Use CVS repository instead)
+</p><p>
+</p><h2>Introduction</h2>
+
+<p>
+The goal of <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> is simple, yet ambitious: to become THE cross-platform IDE of choice for the Ruby community. We want <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> to be a first-class IDE on par with those available for other languages. These goals include:
+</p><p>
+</p><ul>
+<li> <strong>Cross-Platform</strong> -- <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> will run on as many platforms as possible (currently runs on Linux, Windows and Mac OS X).
+</li><li> <strong>International</strong> -- <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+will be easily translated into other languages and will include
+features that make it easier to develop Ruby applications that can be
+internationalized. (to be done)
+</li><li> <strong>Plugin Architecture</strong> -- <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>'s plugin architecture will make it easy for any developer to extend the features of <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+</li><li> <strong>Extreme Programming</strong> -- <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+will include features that make it easy to use many practices that have
+been popularized by the Extreme Programming method. This will include
+collaboration support for remote pair programming, unit testing support
+for test-first coding, refactoring support, and more.
+</li><li> <strong>Code Editing &amp; Navigation</strong> -- All the
+now-standard code editing and navigation features you would find in any
+high-end IDE, including syntax highlighting, code completion, template
+expansion, class browsing, etc.
+</li></ul>
+<p>
+Please realize that this is an early release of <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> and we still have some work to do before we realize all of these goals. However <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> is already used by many users on a daily basis and the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> uses it to develop <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+of course. This release already includes some interesting
+functionalities (see details below) and an extremely flexible plugin
+architecture that makes it easy to add new extensions.
+</p><p>
+</p><h2>Overview</h2>
+
+<p>This user documentation is fairly minimal. But it doesn't need to be
+extensive (at least not yet), because what has been implemented so far
+is very straightforward and operates pretty much like any other
+GUI-based IDE or code editor. You should find its use to be familiar
+and comfortable (if not, then please let us know).
+</p><p>
+<a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> is built on a very flexible plugin architecture called <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeBASE">FreeBASE</a> that allows it to be easily extended. In fact, except for the code that implements the plugin system, the entire <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> IDE is implemented as a set of plugins. If you are interested in creating your own plugins to add new capabilities to <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>, or if you want to join the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> project, please read the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?DeveloperDocumentation">DeveloperDocumentation</a>.
+</p><p>
+The following features have been implemented in this release of <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> (0.9.5):
+</p><ul>
+<li> Edit multiple files in a tabbed edit panel with Ruby syntax highlighting and auto-indenting.
+</li><li> Navigate within a source file using the Source Browser (a
+tree-style parsing of your code showing all modules, classes, methods,
+etc.).
+</li><li> Run and/or Debug your code using the integrated debugger.
+</li><li> File browsing
+</li><li> Online Ruby documentation for Ruby standard libraries
+</li><li> Embedded Interactive shell
+</li><li> Code Refactoring (experimental)
+</li><li> Basic project support
+</li><li> Preferences settings for the debugger, the script runner and the editor
+</li><li> For <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> developers: visually inspect the state of the internal <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeBASE">FreeBASE</a> databus (plugin architecture) 
+</li></ul>
+<p>
+The code editing panel is implemented using <a href="http://www.scintilla.org/">[Scintilla]</a>
+and should be familiar to anyone who has used Scite or any other
+Scintilla-based code editor. It includes basic code-editing features
+like syntax highlighting, auto-indenting, code(un)folding and the
+expected basic navigation (Ctrl-tab to move by word, shift-key to
+extend selections, tab-key to indent selections, etc.).
+</p><p>
+</p><h2>Installing <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a></h2>
+
+<p>
+</p><h3>Using the installer</h3>
+
+<p>
+The prefered way for installing <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> is to use the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> installers that we built for you. <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> installers are currently available for Windows and Linux. A <a href="http://freeride.rubyforge.org/wiki/wiki.pl?MacOS">MacOS</a> X installer is in preparation. There are many advantages to using the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> installers:
+</p><ul>
+<li> You don't have to download, compile and install all the components needed by <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> (Fox, FXRuby, FXscintilla...)
+</li><li> The Linux installer should work on every fairly recent Linux distro (Mandrake 9/10, <a href="http://freeride.rubyforge.org/wiki/wiki.pl?SuSE">SuSE</a> 9, Fedora Core...). The Windows installer is known to work on Win 2K and XP.
+</li><li> You always have the most up to date versions of these components and/or those supported by the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> team (it also makes support easier for us)
+</li><li> The installers come with its own version of Ruby so you don't have to install one if you don't want to.
+</li></ul>
+<p>
+The <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> installers are available in the <a href="http://rubyforge.org/frs/?group_id=31">[Download]</a> section of <a href="http://freeride.rubyforge.org/wiki/wiki.pl?RubyForge">RubyForge</a>.
+Please note if you are a Windows users new to Ruby and don't have Ruby
+installed on your machine you may want to want to install <a href="http://rubyforge.org/projects/rubyinstaller/">[one-click Ruby installer for Windows]</a> which a comes with Ruby and many additional packages including <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+</p><p>
+</p><h3>Do it yourself (are you sure?...)</h3>
+
+Really want to do it all by yourself? Then follow the instructions below. To run properly run <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> you need to have Ruby 1.8.x installed. In addition, <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> also requires 3 external software components:
+<p>
+</p><ul>
+<li> <a href="http://www.fox-toolkit.org/">[FOX]</a>, a cross-platform C/C++ GUI Toolkit that is now gaining a wide acceptance in the Ruby community (version 1.2.x)
+</li><li> <a href="http://www.fxruby.org/">[FXRuby]</a>, the ruby interface to the FOX library (version 1.2.x)
+</li><li> <a href="http://www.nongnu.org/fxscintilla/">[FXScintilla]</a>, a FOX port of the <a href="http://www.scintilla.org/">[Scintilla]</a> widget editor (version 1.59 or above)
+</li></ul>
+<p>
+For Windows users, the easiest way is to install the Ruby one-click
+installer for Windows (see in the previous section). It includes <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> and it is quite easy to update only the Ruby source code without changing your Ruby installer.
+</p><p>
+For Linux users it is very likely that your favorite distro comes with
+the FOX toolkit either already installed or available as a contributed
+package. FXRuby and FXscintilla are available on their respective
+projects web site (see hyperlinks above).
+</p><p>
+If <a href="http://www.fox-toolkit.org/">[Fox]</a>, <a href="http://www.nongnu.org/fxscintilla/">[fxscintilla]</a> or <a href="http://www.fxruby.org/">[FXRuby]</a> rpms are not available for your distribution, you'll need to build them from source. <a href="http://www.fox-toolkit.org/">[Fox]</a> is normally installed as would be expected:
+</p><p>
+</p><pre>        tar xzf fox-1.2.x.tar.gz
+	cd fox-1.2.x
+	./configure 
+	make
+	make install
+</pre>
+<p>Gentoo users: You need to emerge fxscintilla before fxruby. Or, if
+you already have fxruby installed, you have to re-emerge fxruby after
+emerging fxscintilla. The reason is, the emerge (or the ./configure
+itself?) autodetects the presence of fxscintilla when doing the fxruby
+build. If it's not there, your fxruby build won't have fxscintilla "in
+it", and <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> will crash when trying to open/edit files.
+</p><p>
+The rest of the installation is as per a normal linux install, firstly <a href="http://www.nongnu.org/fxscintilla/">[fxscintilla]</a>:
+</p><p>
+</p><pre>	tar xzf fxscintilla-1.62.tar.gz
+	cd fxscintilla-1.62
+	./configure
+	make
+	make install
+</pre>
+<p>
+then <a href="http://www.fxruby.org/">[FXRuby]</a>:
+</p><p>
+</p><pre>	tar xzf FXRuby-1.2.4.tar.gz
+	cd FXRuby-1.2.4
+	ruby install.rb config -- --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib
+	ruby install.rb setup
+	ruby install.rb install
+</pre>
+<p>
+</p><ul>
+<li>CAUTION!!* If you leave out the '--with-fxscintilla-xxx' options it
+will *not* build FXScintilla support into FXRuby and as a result <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> will not work.
+</li></ul>
+<p>
+<a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> also relies on a number of other Ruby packages but they come with the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> software (redist directory). The reason why we did that is:
+</p><ul>
+<li> to make installation easier
+</li><li> to make sure that <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> uses the right version of the package
+</li><li> minize <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> impact on your Ruby installation.
+</li></ul>
+<p>
+</p><p>
+</p><h2>Running <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a></h2>
+
+<p>
+</p><h3>Starting <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a></h3>
+
+<p>
+The directory in which you installed <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> contains a system script named "run.bat" that will start <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+In Linux you would use 'sh run.bat' and in Windows you can simply
+execute this script directly. If you used the Windows installer click
+on the bulleye icon to start <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+If you used the Linux installer the command to run is given at the end
+of the installation script. If you use a KDE or Gnome compliant window
+manager the bulleye icon will also appear on your desktop.
+</p><p>
+<a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> is entirely written in Ruby so, depending on the speed of your computer, it may take a while for <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> to start up. Once <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> has started, however, performance should be good.
+</p><p>
+</p><h3><a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> Layout</h3>
+
+<p>
+The first time <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+is launched, a window will pop up with a menu bar at the top and the
+tool ber right below. At the bottom of the screen is a status where you
+will see status messages displayed in the course of your work session.
+These can be information, warning or error messages. So keep an eye on
+it!
+</p><p>At the center of the page is an empty grey zone where editor
+windows will appear when you create or open ruby files. On the borders
+of the editor zones are three areas called 'dockpanes'. They are
+initially invisible but they will show up as soon as you launch new
+services. There are 3 dockbars: one on the left called the West
+dockbar, one on the right called the East dockbar and one at the botton
+called the South dockbar. (see illustration below)
+</p><p>
+</p><pre> +-------------------------------------------------------------------+
+ |             Menu Bar (menu entries and commands)                  |
+ +-------------------------------------------------------------------+
+ |             Tool bar (icons shortcut to commands)                 |
+ +-------------------------------------------------------------------+
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |   West     |                                         |   East     |
+ |            |             Editor pane                 |            |
+ |  Dockbar   |                                         |  Dockbar   |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ +-------------------------------------------------------------------+
+ |                                                                   |
+ |                                                                   |
+ |                      South Dockbar                                |
+ |                                                                   |
+ |                                                                   |
+ +-------------------------------------------------------------------+
+ |                        Status bar (messages)                      |
+ +-------------------------------------------------------------------+
+</pre>
+<p>As you run new services (file browser, source browser, IRB...) they
+will show up in the form of 'dockpanes' that docks into one of the 3
+dockbars. As an example you may click on View -&gt; File List or type
+the Ctrl-L shortcut. The File browser will pop up and immediatyely dock
+into the West dockbar. A dockpane can be undocked and redocked at any
+time. To play with this feature you can click on the leftmost icon in
+the title bar of the file browser. The File browser will become an
+independent window that you can move and resize at will. Similarly you
+can redock it by clicking again on the same icon.
+</p><p>
+<a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+remembers the position and size of all the undocked dockpanes. So the
+next time you undock the same service it will take the excat same
+geometry as before. Similarly when restarting <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> all undocked services will automatically place themselves where they where when you stopped <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+</p><p>
+</p><h2>A sample <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> session</h2>
+
+<p>
+Before we go into more details about the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> features, let's go through a sample coding session to give you a flavor a what <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> can do for you:
+</p><p>
+</p><h3>Creating a new file</h3>
+
+<p>
+The first thing you'll want to do is to create a new file. Click on
+File -&gt; New: a new empty editor window named 'Untitled 1' is
+created. Type the following code in the empty editor window:
+</p><p>
+</p><p>Click on File -&gt; Save and navigate in a working directory of
+your choice where you'll save the file with the name 'buffer.rb'.
+</p><p>
+</p><p>
+</p><p>
+</p><h3>Navigating the source code</h3>
+
+<p>
+</p><h3>Using the Ruby documentation</h3>
+
+<p>
+</p><h3>Running the script</h3>
+
+<p>
+</p><h3>Debugging the script</h3>
+
+<p>
+</p><h3>Customizing the editor</h3>
+
+<p>
+</p><p>
+</p><p>
+</p><p>
+</p><h2>Menu Commands Overview</h2>
+
+<p>
+For the most part, the menu commands should be familiar and obvious.
+</p><p>
+</p><h3>The File Menu</h3>
+
+<p>
+</p><ul>
+<li> <em>Project</em> -- Create or open a project.
+</li><li> <em>New</em> -- Opens a new, empty edit window.
+</li><li> <em>Open</em> -- Opens an existing file for editing.
+</li><li> <em>Close</em> -- Closes the currently active edit window.
+</li><li> <em>Save</em> -- Saves the changes in the currently active edit window.
+</li><li> <em>Save As</em> -- Saves the currently active edit window under a new filename.
+</li><li> <em>Exit</em> -- Terminates <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+</li></ul>
+<p>
+</p><h3>The Edit Menu</h3>
+
+<p>
+</p><ul>
+<li> <em>Undo</em> -- Undoes the last editing operation.
+</li><li> <em>Redo</em> -- Reapplies the last editing operation that was removed by the Undo command.
+</li><li> <em>Cut</em> -- Cuts the selected text to the clipboard.
+</li><li> <em>Copy</em> -- Copies the selected text to the clipboard.
+</li><li> <em>Paste</em> -- Pastes the contents of the clipboard at the current location (or replacing the current selection) in the edited file.
+</li><li> <em>Code Templates...</em> -- Quick insert of most frequently used pieces of Ruby code.
+</li><li> <em>Preferences</em> -- Opens a dialog box that gives access to <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> settings (font,colors, debugger configuration...)
+</li></ul>
+<p>
+</p><h3>The Refactor Menu</h3>
+
+<p>
+</p><ul>
+<li>NOTE* As stated at the top of the menu, the refactoring
+capabilities are highly experimental. They need thorough testing and
+your help is really appreciated.
+</li></ul>
+<p>
+</p><ul>
+<li> <em>Rename Local Variable</em> -- Rename the local variable on
+which the cursor was placed or that was selected with the mouse. The
+renaming takes place in the entire scope of the variable (e.g. the code
+block) whether before or after the cursor position.
+</li><li> <em>Rename Instance Variable</em> -- Rename the instance
+variable on which the cursor was placed or that was selected with the
+mouse. The renaming takes place in the entire scope of the variable
+(e.g. the class) whether before or after the cursor position.
+</li><li> <em>Rename Class Variable</em> -- Rename the class variable
+on which the cursor was placed or that was selected with the mouse. The
+renaming takes place in the entire scope of the variable (e.g. the
+class) whether before or after the cursor position.
+</li><li> <em>Rename Global Variable</em> -- Rename the global
+variable on which the cursor was placed or that was selected with the
+mouse. The renaming takes place in all the files currently open editor
+windows.
+</li><li> <em>Rename Method</em> -- Rename the method on which the
+cursor was placed or that was selected with the mouse. The renaming
+takes place in in the entire scope of the scope (e.g. the class)
+whether before or after the cursor position.
+</li><li> <em>Rename Constant</em> -- Rename the constant on which the
+cursor was placed or that was selected with the mouse. The renaming
+takes place in all the files currently open editor windows.
+</li><li> <em>Extract method</em> -- Create a method definition from
+the block of code that was selected and place the method definition
+right after the class definition
+</li><li> <em>Pull Down Method</em> -- Move a method down the class
+hierarchy. A method can be moved in any of the subclass of the class
+the method currently belongs to.
+</li><li> <em>Pull Up Method</em> -- Move a method up the class
+hierarchy. A method can be moved in any of the subclass of the class
+the method currently belongs to.
+</li></ul>
+<p>
+</p><h3>The View Menu</h3>
+
+<p>SOme items of the View menu may be greyed meaning that the
+corresponding service can not be viewed. In most cases this is because
+the service has not been yet started. To start it you must use the
+appropriate menu entry in the Tool menu or in the Tool bar.
+</p><p>
+</p><ul>
+<li> <em>Line Numbers</em> -- Toggle the display of line numbers in the
+left margin of the editor window. This is a short to the the editor
+preference dialog box (see the Edit -&gt; Preferences -&gt; Editor)
+</li><li> <em>End of Line</em> -- Toggle the display of end of line
+markers in the editor windows. This is a short to the the editor
+preference dialog box (see the Edit -&gt; Preferences -&gt; Editor)
+</li><li> <em>White spaces</em> -- Toggle the display of white space
+markers in the editor windows. This is a short to the the editor
+preference dialog box (see the Edit -&gt; Preferences -&gt; Editor)
+</li><li> <em>Output Window</em> -- Toggles the display of the Output Window. (e.g. the script runner output)
+</li><li> <em>Debugger</em> -- Toggles the display of the Debugger Window
+</li><li> <em>IRB</em> -- Toggles the display of the Interactive Ruby shell window
+</li><li> <em>Ruby Doc</em> -- Toggles the display of the Ruby online help window
+</li><li> <em>File List</em> -- Toggles the display of the File-List pane.
+</li><li> <em>Source Browser</em> -- Toggles the display of the Source-Browser pane.
+</li></ul>
+<p>
+</p><h3>The Run Menu</h3>
+
+<p>
+</p><ul>
+<li> <em>Debugger</em> -- Starts the debugger and executes the Ruby program in the current edit window.
+</li><li> <em>IRB</em> -- Starts the Interactive Ruby shell window
+</li><li> <em>Ruby Doc</em> -- Starts the Ruby online help window
+</li><li> <em>Run</em> -- Executes the Ruby program in the current edit
+window, displaying its output in the Output Window or in a separate
+console window if the debugger preferences has been configured so.
+</li><li> <em>Stop</em> -- Interrupt the script launched by the Run command.
+</li><li> <em>Clear Output</em> -- Clears all text in the Output Window or the Debugger console window
+</li></ul>
+<p>
+</p><h3>The Tools Menu</h3>
+
+<p>
+</p><ul>
+<li> <em>Databus Inspector</em> -- Opens the Databus Inspector window (used to debug <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> plugins).
+</li></ul>
+<p>
+</p><h3>The Help Menu</h3>
+
+<p>
+</p><ul>
+<li> <em>Help</em> -- Displays help on using <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>.
+</li><li> <em>About</em> -- The standard, obligatory about box.
+</li></ul>
+<p>
+</p><h3>The Default Keyboard Shortcuts</h3>
+
+<p>
+</p><pre> Ctrl+C        Copy  
+ Ctrl+D        Debug
+ Ctrl+F        Find
+ Ctrl+G        Goto line
+ Ctrl+J        Code Templates...
+ Ctrl+L        File Browser  
+ Ctrl+N        New File  
+ Ctrl+O        Open File
+ Ctrl+Q        Quit
+ Ctrl+R        Replace
+ Ctrl+S        Save  
+ Ctrl+Shift+S  Save As  
+ Ctrl+V        Paste  
+ Ctrl+W        Close File  
+ Ctrl+X        Cut
+ Ctrl+Y        Redo
+ Ctrl+Z        Undo
+ F1            Ruby Documentation
+ Ctrl+F2
+ F3            Find Next
+ Shift+F3      Find Previous
+ F5            Run
+ Ctrl+F5       Clear Output Window
+ F6            IRB
+ F7            Source Navigator
+ F8            Debug
+</pre>
+<p>
+</p><h2>The Source Browser</h2>
+
+<p>The Source Browser helps shows you the structure of your source code
+and lets you jump directly to differently parts of your source code. It
+does this by parsing your source code and displaying an outline of the
+contents of your source code as hierarchical tree. Clicking on an item
+in the tree (like a method name or a class name) will cause the editing
+pane to jump directly to that item in your source code.
+</p><p>
+The Source Browser occupies a docked window pane the runs down the left side of the <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a>
+window (if the Source Browser is not visible, you may need to use you
+mouse to grab the splitter bar at the left of the editing pane and drag
+it to the right).
+</p><p>Currently, you must manually force the Source Browser to
+refresh (reparse the source code) after you have made changes to your
+source code. This is a temporary measure that was needed to maintain
+adequate performance. The long term goal is to make this completely
+automatic.
+</p><p>
+</p><h2>Debugging</h2>
+
+<p>
+(to be written) ? Note: shift-click left button mouse in the margin of the editor to set or clear a breakpoint.
+</p><p>
+</p><h2>The Databus Inspector</h2>
+
+<p>The Databus Inspector is a GUI tool for interactively exploring the
+current state of the internal Databus that is the central
+communications hub for all <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> plugins. This will only be of interest to developers who are creating and debugging <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> plugins.
+</p><p>
+Please see the developer documentation (<a href="http://freeride.rubyforge.org/wiki/wiki.pl?DevDoc">DevDoc</a>) for more details about the Databus.
+</p><p>
+</p><h2>Project support</h2>
+
+<p>
+New in version 0.95 is basic support for projects. To create a project
+select Project -&gt; New project.
+Every project requires a base-directory. This directory is the default
+working directory for the project. Each project has two types of
+directories the user can specify: source and required directories.
+Adding a directory to either list will cause <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> to search the directory (and subdirectories) for existing Ruby-files and parses them.
+</p><p>
+</p><pre>  Note: Due to a bug in Ripper it is currently NOT possible to use the Ruby-distribution directory as either source- or required-directory. 
+  <a href="http://freeride.rubyforge.org/wiki/wiki.pl?FreeRIDE">FreeRIDE</a> will segfault with the message: [BUG] cannot convert system ID to string: 337
+  Hopefully this bug will be fixed for the next release.
+</pre>
+<p>
+After succesfully creating a project the ProjectExplorer<a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=ProjectExplorer">?</a> will be openened in the left dockpane (press F8 to toggle the ProjectExplorer<a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=ProjectExplorer">?</a>)
+and it will show all opened projects in the tree. All Ruby-files that
+have been successfully parsed will also show their internal structure
+just like the SourceBrowser<a href="http://freeride.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=SourceBrowser">?</a> would do. The Explorer has a right-click-menu with the following options:
+</p><ul>
+<li> <em>Expand subtree</em> -- Fully expands all item below the currently selected
+</li><li> <em>Refresh</em> -- Refreshes the currently selected item (and all below)
+</li><li> <em>Add directory</em> -- Add a directory to the list of source or required directories
+</li><li> <em>Remove directory</em> -- Remove the selected directory from the list
+</li><li> <em>Set as default script</em> -- Set the currently selected Ruby-script as the script to run when executing the project
+</li><li> <em>Run file</em> -- Open and run the selected Ruby-script using the run-settings provided for the project
+</li><li> <em>Close project</em> -- Closes the selected project and all files opened using the project
+</li><li> <em>Properties</em> -- Show the properties of the selected item (also allows the user to change file-permissions)
+</li></ul>
+<p>
+Version: $Id: userhelp.html,v 1.6 2006/01/16 03:04:17 curthibbs Exp $
+</p><center><hr width="200">Copyright © rubyide.org</center></body></html>

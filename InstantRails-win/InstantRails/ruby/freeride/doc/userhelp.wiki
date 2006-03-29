@@ -1,0 +1,301 @@
+= FreeRIDE User Documentation (version 0.9.5 and above) =
+
+(Do not update. Use CVS repository instead)
+
+== Introduction ==
+
+The goal of FreeRIDE is simple, yet ambitious: to become THE cross-platform IDE of choice for the Ruby community. We want FreeRIDE to be a first-class IDE on par with those available for other languages. These goals include:
+
+* '''Cross-Platform''' -- FreeRIDE will run on as many platforms as possible (currently runs on Linux, Windows and Mac OS X).
+* '''International''' -- FreeRIDE will be easily translated into other languages and will include features that make it easier to develop Ruby applications that can be internationalized. (to be done)
+* '''Plugin Architecture''' -- FreeRIDE's plugin architecture will make it easy for any developer to extend the features of FreeRIDE.
+* '''Extreme Programming''' -- FreeRIDE will include features that make it easy to use many practices that have been popularized by the Extreme Programming method. This will include collaboration support for remote pair programming, unit testing support for test-first coding, refactoring support, and more.
+* '''Code Editing & Navigation''' -- All the now-standard code editing and navigation features you would find in any high-end IDE, including syntax highlighting, code completion, template expansion, class browsing, etc.
+
+Please realize that this is an early release of FreeRIDE and we still have some work to do before we realize all of these goals. However FreeRIDE is already used by many users on a daily basis and the FreeRIDE uses it to develop FreeRIDE of course. This release already includes some interesting functionalities (see details below) and an extremely flexible plugin architecture that makes it easy to add new extensions.
+
+== Overview ==
+
+This user documentation is fairly minimal. But it doesn't need to be extensive (at least not yet), because what has been implemented so far is very straightforward and operates pretty much like any other GUI-based IDE or code editor. You should find its use to be familiar and comfortable (if not, then please let us know).
+
+FreeRIDE is built on a very flexible plugin architecture called FreeBASE that allows it to be easily extended. In fact, except for the code that implements the plugin system, the entire FreeRIDE IDE is implemented as a set of plugins. If you are interested in creating your own plugins to add new capabilities to FreeRIDE, or if you want to join the FreeRIDE project, please read the DeveloperDocumentation.
+
+The following features have been implemented in this release of FreeRIDE (0.9.5):
+* Edit multiple files in a tabbed edit panel with Ruby syntax highlighting and auto-indenting.
+* Navigate within a source file using the Source Browser (a tree-style parsing of your code showing all modules, classes, methods, etc.).
+* Run and/or Debug your code using the integrated debugger.
+* File browsing
+* Online Ruby documentation for Ruby standard libraries
+* Embedded Interactive shell
+* Code Refactoring (experimental)
+* Basic project support
+* Preferences settings for the debugger, the script runner and the editor
+* For FreeRIDE developers: visually inspect the state of the internal FreeBASE databus (plugin architecture) 
+
+The code editing panel is implemented using [HTTP://www.scintilla.org/ Scintilla] and should be familiar to anyone who has used Scite or any other Scintilla-based code editor. It includes basic code-editing features like syntax highlighting, auto-indenting, code(un)folding and the expected basic navigation (Ctrl-tab to move by word, shift-key to extend selections, tab-key to indent selections, etc.).
+
+== Installing FreeRIDE ==
+
+=== Using the installer ===
+
+The prefered way for installing FreeRIDE is to use the FreeRIDE installers that we built for you. FreeRIDE installers are currently available for Windows and Linux. A MacOS X installer is in preparation. There are many advantages to using the FreeRIDE installers:
+* You don't have to download, compile and install all the components needed by FreeRIDE (Fox, FXRuby, FXscintilla...)
+* The Linux installer should work on every fairly recent Linux distro (Mandrake 9/10, SuSE 9, Fedora Core...). The Windows installer is known to work on Win 2K and XP.
+* You always have the most up to date versions of these components and/or those supported by the FreeRIDE team (it also makes support easier for us)
+* The installers come with its own version of Ruby so you don't have to install one if you don't want to.
+
+The FreeRIDE installers are available in the [HTTP://rubyforge.org/frs/?group_id=31 Download] section of RubyForge. Please note if you are a Windows users new to Ruby and don't have Ruby installed on your machine you may want to want to install [HTTP://rubyforge.org/projects/rubyinstaller/ one-click Ruby installer for Windows] which a comes with Ruby and many additional packages including FreeRIDE.
+
+=== Do it yourself (are you sure?...) ===
+Really want to do it all by yourself? Then follow the instructions below. To run properly run FreeRIDE you need to have Ruby 1.8.x installed. In addition, FreeRIDE also requires 3 external software components:
+
+* [HTTP://www.fox-toolkit.org FOX], a cross-platform C/C++ GUI Toolkit that is now gaining a wide acceptance in the Ruby community (version 1.2.x)
+* [HTTP://www.fxruby.org FXRuby], the ruby interface to the FOX library (version 1.2.x)
+* [HTTP://www.nongnu.org/fxscintilla/ FXScintilla], a FOX port of the [HTTP://www.scintilla.org/ Scintilla] widget editor (version 1.59 or above)
+
+For Windows users, the easiest way is to install the Ruby one-click installer for Windows (see in the previous section). It includes FreeRIDE and it is quite easy to update only the Ruby source code without changing your Ruby installer.
+
+For Linux users it is very likely that your favorite distro comes with the FOX toolkit either already installed or available as a contributed package. FXRuby and FXscintilla are available on their respective projects web site (see hyperlinks above).
+
+If [HTTP://www.fox-toolkit.org/ Fox], [HTTP://www.nongnu.org/fxscintilla/ fxscintilla] or [HTTP://www.fxruby.org/ FXRuby] rpms are not available for your distribution, you'll need to build them from source. [HTTP://www.fox-toolkit.org/ Fox] is normally installed as would be expected:
+
+        tar xzf fox-1.2.x.tar.gz
+	cd fox-1.2.x
+	./configure 
+	make
+	make install
+
+Gentoo users: You need to emerge fxscintilla before fxruby.  Or, if you already have fxruby installed, you have to re-emerge fxruby after emerging fxscintilla.  The reason is, the emerge (or the ./configure itself?) autodetects the presence of fxscintilla when doing the fxruby build.  If it's not there, your fxruby build won't have fxscintilla "in it", and FreeRIDE will crash when trying to open/edit files.
+
+The rest of the installation is as per a normal linux install, firstly [HTTP://www.nongnu.org/fxscintilla/ fxscintilla]:
+
+	tar xzf fxscintilla-1.62.tar.gz
+	cd fxscintilla-1.62
+	./configure
+	make
+	make install
+
+then [HTTP://www.fxruby.org/ FXRuby]:
+
+	tar xzf FXRuby-1.2.4.tar.gz
+	cd FXRuby-1.2.4
+	ruby install.rb config -- --with-fxscintilla-include=/usr/local/include/fxscintilla --with-fxscintilla-lib=/usr/local/lib
+	ruby install.rb setup
+	ruby install.rb install
+
+*CAUTION!!* If you leave out the '--with-fxscintilla-xxx' options it will *not* build FXScintilla support into FXRuby and as a result FreeRIDE will not work.
+
+FreeRIDE also relies on a number of other Ruby packages but they come with the FreeRIDE software (redist directory). The reason why we did that is:
+* to make installation easier
+* to make sure that FreeRIDE uses the right version of the package
+* minize FreeRIDE impact on your Ruby installation.
+
+
+== Running FreeRIDE ==
+
+=== Starting FreeRIDE ===
+
+The directory in which you installed FreeRIDE contains a system script named "run.bat" that will start FreeRIDE. In Linux you would use 'sh run.bat' and in Windows you can simply execute this script directly. If you used the Windows installer click on the bulleye icon to start FreeRIDE. If you used the Linux installer the command to run is given at the end of the installation script. If you use a KDE or Gnome compliant window manager the bulleye icon will also appear on your desktop.
+
+FreeRIDE is entirely written in Ruby so, depending on the speed of your computer, it may take a while for FreeRIDE to start up. Once FreeRIDE has started, however, performance should be good.
+
+=== FreeRIDE Layout ===
+
+The first time FreeRIDE is launched, a window will pop up with a menu bar at the top and the tool ber right below. At the bottom of the screen is  a status where you will see status messages displayed in the course of your work session. These can be information, warning or error messages. So keep an eye on it!
+
+At the center of the page is an empty grey zone where editor windows will appear when you create or open ruby files. On the borders of the editor zones are three areas called 'dockpanes'. They are initially invisible but they will show up as soon as you launch new services. There are 3 dockbars: one on the left called the West dockbar, one on the right called the East dockbar and one at the botton called the South dockbar. (see illustration below)
+
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ |             Menu Bar (menu entries and commands)                  |
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ |             Tool bar (icons shortcut to commands)                 |
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |   West     |                                         |   East     |
+ |            |             Editor pane                 |            |
+ |  Dockbar   |                                         |  Dockbar   |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ |            |                                         |            |
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ |                                                                   |
+ |                                                                   |
+ |                      South Dockbar                                |
+ |                                                                   |
+ |                                                                   |
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ |                        Status bar (messages)                      |
+ +<nowiki>-------------------------------------------------------------------</nowiki>+
+ 
+As you run new services (file browser, source browser, IRB...) they will show up in the form of 'dockpanes' that docks into one of the 3 dockbars. As an example you may click on View -> File List or type the Ctrl-L shortcut. The File browser will pop up and immediatyely dock into the West dockbar. A dockpane can be undocked and redocked at any time. To play with this feature you can click on the leftmost icon in the title bar of the file browser. The File browser will become an independent window that you can move and resize at will. Similarly you can redock it by clicking again on the same icon.
+
+FreeRIDE remembers the position and size of all the undocked dockpanes. So the next time you undock the same service it will take the excat same geometry as before. Similarly when restarting FreeRIDE all undocked services will automatically place themselves where they where when you stopped FreeRIDE.
+
+== A sample FreeRIDE session ==
+
+Before we go into more details about the FreeRIDE features, let's go through a sample coding session to give you a flavor a what FreeRIDE can do for you:
+
+=== Creating a new file ===
+
+The first thing you'll want to do is to create a new file. Click on File -> New: a new empty editor window named 'Untitled 1' is created. Type the following code in the empty editor window:
+
+
+Click on File -> Save and navigate in a working directory of your choice where you'll save the file with the name 'buffer.rb'.
+
+
+
+=== Navigating the source code ===
+
+=== Using the Ruby documentation ===
+
+=== Running the script ===
+
+=== Debugging the script ===
+
+=== Customizing the editor ===
+
+
+
+
+== Menu Commands Overview ==
+
+For the most part, the menu commands should be familiar and obvious.
+
+=== The File Menu ===
+
+* ''Project'' -- Create or open a project.
+* ''New'' -- Opens a new, empty edit window.
+* ''Open'' -- Opens an existing file for editing.
+* ''Close'' -- Closes the currently active edit window.
+* ''Save'' -- Saves the changes in the currently active edit window.
+* ''Save As'' -- Saves the currently active edit window under a new filename.
+* ''Exit'' -- Terminates FreeRIDE.
+
+=== The Edit Menu ===
+
+* ''Undo'' -- Undoes the last editing operation.
+* ''Redo'' -- Reapplies the last editing operation that was removed by the Undo command.
+* ''Cut'' -- Cuts the selected text to the clipboard.
+* ''Copy'' -- Copies the selected text to the clipboard.
+* ''Paste'' -- Pastes the contents of the clipboard at the current location (or replacing the current selection) in the edited file.
+* ''Code Templates...'' -- Quick insert of most frequently used pieces of Ruby code.
+* ''Preferences'' -- Opens a dialog box that gives access to FreeRIDE settings (font,colors, debugger configuration...)
+
+=== The Refactor Menu ===
+
+*NOTE* As stated at the top of the menu, the refactoring capabilities are highly experimental. They need thorough testing and your help is really appreciated.
+
+* ''Rename Local Variable'' -- Rename the local variable on which the cursor was placed or that was selected with the mouse. The renaming takes place in the entire scope of the variable (e.g. the code block) whether before or after the cursor position.
+* ''Rename Instance Variable'' -- Rename the instance variable on which the cursor was placed or that was selected with the mouse. The renaming takes place in the entire scope of the variable (e.g. the class) whether before or after the cursor position.
+* ''Rename Class Variable'' -- Rename the class variable on which the cursor was placed or that was selected with the mouse. The renaming takes place in the entire scope of the variable (e.g. the class) whether before or after the cursor position.
+* ''Rename Global Variable'' -- Rename the global variable on which the cursor was placed or that was selected with the mouse. The renaming takes place in all the files currently open editor windows.
+* ''Rename Method'' -- Rename the method on which the cursor was placed or that was selected with the mouse. The renaming takes place in in the entire scope of the scope (e.g. the class) whether before or after the cursor position.
+* ''Rename Constant'' -- Rename the constant on which the cursor was placed or that was selected with the mouse. The renaming takes place in all the files currently open editor windows.
+* ''Extract method'' -- Create a method definition from the block of code that was selected and place the method definition right after the class definition
+* ''Pull Down Method'' -- Move a method down the class hierarchy. A method can be moved in any of the subclass of the class the method currently belongs to.
+* ''Pull Up Method'' -- Move a method up the class hierarchy. A method can be moved in any of the subclass of the class the method currently belongs to.
+
+=== The View Menu ===
+
+SOme items of the View menu may be greyed meaning that the corresponding service can not be viewed. In most cases this is because the service has not been yet started. To start it you must use the appropriate menu entry in the Tool menu or in the Tool bar.
+
+* ''Line Numbers'' -- Toggle the display of line numbers in the left margin of the editor window. This is a short to the the editor preference dialog box (see the Edit -> Preferences -> Editor)
+* ''End of Line'' -- Toggle the display of end of line markers in the editor windows. This is a short to the the editor preference dialog box (see the Edit -> Preferences -> Editor)
+* ''White spaces'' -- Toggle the display of white space markers in the editor windows. This is a short to the the editor preference dialog box (see the Edit -> Preferences -> Editor)
+* ''Output Window'' -- Toggles the display of the Output Window. (e.g. the script runner output)
+* ''Debugger'' -- Toggles the display of the Debugger Window
+* ''IRB'' -- Toggles the display of the Interactive Ruby shell window
+* ''Ruby Doc'' -- Toggles the display of the Ruby online help window
+* ''File List'' -- Toggles the display of the File-List pane.
+* ''Source Browser'' -- Toggles the display of the Source-Browser pane.
+
+=== The Run Menu ===
+
+* ''Debugger'' -- Starts the debugger and executes the Ruby program in the current edit window.
+* ''IRB'' -- Starts the Interactive Ruby shell window
+* ''Ruby Doc'' -- Starts the Ruby online help window
+* ''Run'' -- Executes the Ruby program in the current edit window, displaying its output in the Output Window or in a separate console window if the debugger preferences has been configured so.
+* ''Stop'' -- Interrupt the script launched by the Run command.
+* ''Clear Output'' -- Clears all text in the Output Window or the Debugger console window
+
+=== The Tools Menu ===
+
+* ''Databus Inspector'' -- Opens the Databus Inspector window (used to debug FreeRIDE plugins).
+
+=== The Help Menu ===
+
+* ''Help'' -- Displays help on using FreeRIDE.
+* ''About'' -- The standard, obligatory about box.
+
+=== The Default Keyboard Shortcuts ===
+
+ Ctrl+C        Copy  
+ Ctrl+D        Debug
+ Ctrl+F        Find
+ Ctrl+G        Goto line
+ Ctrl+J        Code Templates...
+ Ctrl+L        File Browser  
+ Ctrl+N        New File  
+ Ctrl+O        Open File
+ Ctrl+Q        Quit
+ Ctrl+R        Replace
+ Ctrl+S        Save  
+ Ctrl+Shift+S  Save As  
+ Ctrl+V        Paste  
+ Ctrl+W        Close File  
+ Ctrl+X        Cut
+ Ctrl+Y        Redo
+ Ctrl+Z        Undo
+ F1            Ruby Documentation
+ Ctrl+F2
+ F3            Find Next
+ Shift+F3      Find Previous
+ F5            Run
+ Ctrl+F5       Clear Output Window
+ F6            IRB
+ F7            Source Navigator
+ F8            Debug
+
+== The Source Browser ==
+
+The Source Browser helps shows you the structure of your source code and lets you jump directly to differently parts of your source code. It does this by parsing your source code and displaying an outline of the contents of your source code as hierarchical tree. Clicking on an item in the tree (like a method name or a class name) will cause the editing pane to jump directly to that item in your source code.
+
+The Source Browser occupies a docked window pane the runs down the left side of the FreeRIDE window (if the Source Browser is not visible, you may need to use you mouse to grab the splitter bar at the left of the editing pane and drag it to the right).
+
+Currently, you must manually force the Source Browser to refresh (reparse the source code) after you have made changes to your source code. This is a temporary measure that was needed to maintain adequate performance. The long term goal is to make this completely automatic.
+
+== Debugging ==
+
+(to be written) ? Note: shift-click left button mouse in the margin of the editor to set or clear a breakpoint.
+
+== The Databus Inspector ==
+
+The Databus Inspector is a GUI tool for interactively exploring the current state of the internal Databus that is the central communications hub for all FreeRIDE plugins. This will only be of interest to developers who are creating and debugging FreeRIDE plugins.
+
+Please see the developer documentation (DevDoc) for more details about the Databus.
+
+== Project support ==
+
+New in version 0.95 is basic support for projects. To create a project select Project -> New project.
+Every project requires a base-directory. This directory is the default working directory for the project. Each project has two types of directories the user can specify: source and required directories. Adding a directory to either list will cause FreeRIDE to search the directory (and subdirectories) for existing Ruby-files and parses them.
+
+  Note: Due to a bug in Ripper it is currently NOT possible to use the Ruby-distribution directory as either source- or required-directory. 
+  FreeRIDE will segfault with the message: [BUG] cannot convert system ID to string: 337
+  Hopefully this bug will be fixed for the next release.
+
+After succesfully creating a project the ProjectExplorer will be openened in the left dockpane (press F8 to toggle the ProjectExplorer) and it will show all opened projects in the tree. All Ruby-files that have been successfully parsed will also show their internal structure just like the SourceBrowser would do. The Explorer has a right-click-menu with the following options:
+* ''Expand subtree'' -- Fully expands all item below the currently selected
+* ''Refresh'' -- Refreshes the currently selected item (and all below)
+* ''Add directory'' -- Add a directory to the list of source or required directories
+* ''Remove directory'' -- Remove the selected directory from the list
+* ''Set as default script'' -- Set the currently selected Ruby-script as the script to run when executing the project
+* ''Run file'' -- Open and run the selected Ruby-script using the run-settings provided for the project
+* ''Close project'' -- Closes the selected project and all files opened using the project
+* ''Properties'' -- Show the properties of the selected item (also allows the user to change file-permissions)
+
+Version: $Id: userhelp.wiki,v 1.3 2006/01/15 09:37:15 jonathanm Exp $

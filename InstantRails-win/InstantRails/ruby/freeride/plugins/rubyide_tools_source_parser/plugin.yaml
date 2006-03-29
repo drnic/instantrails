@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_source_parser
+version: 1.0
+autoload: true
+require_path: rubyide_tools_source_parser/source_parser.rb
+startup_module: FreeRIDE::Tools::SourceParser
+start_dependencies: 
+  rubyide_gui: "*"

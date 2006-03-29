@@ -1,0 +1,39 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Virtual Functions</title><meta name="generator" content="DocBook XSL Stylesheets V1.61.2"><link rel="home" href="book.html" title="Developing Graphical User Interfaces with FXRuby"><link rel="up" href="implementation.html" title="Appendix&nbsp;E.&nbsp;Implementation"><link rel="previous" href="apes02.html" title="Object Life Cycles and Garbage Collection"><link rel="next" href="cvs.html" title="Appendix&nbsp;F.&nbsp;Getting the Sources from CVS"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Virtual Functions</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="apes02.html">Prev</a>&nbsp;</td><th width="60%" align="center">Appendix&nbsp;E.&nbsp;Implementation</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="cvs.html">Next</a></td></tr></table><hr></div><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e4386"></a>Virtual Functions</h2></div></div><div></div></div><p>
+One of the design requirements for FXRuby was to ensure that any
+virtual function call made on a FOX object (from the C++ library
+layer) is routed to the proper Ruby instance method, even if that
+method has been overridden in a derived class.
+</p><p>
+For example, many of the FXRuby example programs are structured with a
+main window class that subclasses <tt class="classname">FXMainWindow</tt>
+and then overrides its <tt class="methodname">create</tt> instance method:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">class MyMainWindow &lt; Fox::FXMainWindow
+  # overrides the base class version, FXMainWindow#create
+  def create
+  end
+end</pre></td></tr></table><p>This <tt class="methodname">create</tt> method isn't called directly from Ruby code, however; it's called as a side effect of calling <tt class="methodname">FXApp#create</tt>. Inside the C++ FOX library, the <tt class="methodname">FXApp::create()</tt> member function recursively calls <tt class="methodname">create()</tt> on all of the application's windows and eventually calls the virtual <tt class="methodname">FXMainWindow::create()</tt> member function as well:
+</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/call-chain-example.png" align="middle"></div></div><p>
+To ensure that our main window's overridden <tt class="methodname">create
+</tt> method is invoked instead of the base class implementation,
+we need some special machinery in place.
+</p><p>
+For every C++ class that declares virtual member functions, we derive
+a new C++ class that overrides all of those virtual functions with special
+stubs that know how to make method calls on Ruby instances. The naming
+convention for these classes is that the "FX" prefix is replaced with
+"FXRb"; for example, our <tt class="classname">FXRbButton</tt> C++ class is
+derived from FOX's <tt class="classname">FXButton</tt>:
+</p><div class="screenshot"><div class="mediaobject" align="center"><img src="images/inheritance.png" align="middle"></div></div><p>
+Although the implementation of these "stubs" varies from function to function, the
+basic requirements are always the same:
+</p><div class="orderedlist"><ol type="1"><li><p>Look up the Ruby object associated with this C++ object.</p></li><li><p>Convert each of the function's arguments to their Ruby
+    representation. For example, arguments of type <span class="type">FXint</span> are
+    converted to Ruby <tt class="classname">Fixnum</tt>s.</p></li><li><p>Call the Ruby object's method, using the <tt class="function">
+    rb_funcall()</tt> function from Ruby's C API, and capture its
+    result (which is itself a Ruby object).</p></li><li><p>Convert the method call's result back to the virtual
+    function's C++ return type, and then return that result from the C++
+    function. For example, if the C++ function has a <span class="type"> FXbool</span>
+    return type, we would expect the corresponding Ruby method to return
+    either <tt class="constant">Qtrue</tt> or <tt class="constant">Qfalse</tt>.</p></li></ol></div><p>
+</p></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="apes02.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="implementation.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="cvs.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Object Life Cycles and Garbage Collection&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="book.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Appendix&nbsp;F.&nbsp;Getting the Sources from CVS</td></tr></table></div></body></html>

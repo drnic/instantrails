@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE test [
+<!ELEMENT test (aa)*>
+<!ATTLIST test xmlns CDATA #IMPLIED>
+<!ELEMENT aa (bb)*>
+<!ELEMENT bb (cc)*>
+<!ELEMENT cc EMPTY>
+]>
+
+<test xmlns="http://www.yoshidam.net/ns/hoge/">
+  <aa><bb><cc/></bb></aa>
+</test>

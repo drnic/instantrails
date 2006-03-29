@@ -1,0 +1,2495 @@
+<html>
+<head>
+<title>~/Dev/ruby-dbi/src/build/work/src/ChangeLog.html</title>
+<meta name="Generator" content="Vim/6.2">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+</head>
+<body bgcolor="#ffffff" text="#000000">
+<pre>
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-23</font>
+
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/version.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        increased version
+
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">33</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                build/README (<font color="#ff00ff">1.1</font>)
+
+        initial creation
+
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/USER (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        added whole name of user andreas (for CVS changelog)
+
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        modified email and copyright
+
+<font color="#ff00ff">2004-05-20</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">20</font> <font color="#ff00ff">-3</font>
+
+        Implemented DNS-less connections, see [ruby-talk:<font color="#ff00ff">67352</font>] and [ruby-talk:<font color="#ff00ff">100837</font>]
+
+<font color="#ff00ff">2004-05-19</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/sql.rb (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-2</font>
+
+        Fixed problems with quoting Time's in Postgres (and probably some other
+        databases). Time's are now represented as RFC<font color="#ff00ff">-2822</font> strings, with numeric
+        timezones and not timezone abbreviations (e.g. now +<font color="#ff00ff">0200</font> instead CEST).
+        According to Brad Hilton, there are problems with e.g. the IDT timezone which
+        is used in different timezones.
+
+<font color="#ff00ff">2004-05-19</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-0</font>
+
+        added testcase for quoting of Dates
+
+<font color="#ff00ff">2004-05-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  Andreas Schwarz</b></font>
+
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        return number of changed rows in do(); closes #<font color="#ff00ff">558</font>
+
+<font color="#ff00ff">2004-05-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-3</font>
+
+        Database#tables now returns tables AND views
+
+<font color="#ff00ff">2004-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">29</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.42</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-1</font>
+                lib/dbi/sql.rb (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+                lib/dbi/test/testsqlcoerce.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-0</font>
+
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">added comparison method DBI</font><font color="#2e8b57"><b>:</b></font>:Timestamp#==
+
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">DBI</font><font color="#2e8b57"><b>:</b></font>:SQL::BasicQuote::Coerce#as_timestampe: fixed conversion of timestamps when
+          timezones like &quot;+<font color="#ff00ff">08</font>:<font color="#ff00ff">00</font>&quot; are given (instead &quot;+<font color="#ff00ff">08</font>&quot;). (Marek Janukowicz)
+
+<font color="#ff00ff">2004-04-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">12</font> <font color="#ff00ff">-2</font>
+
+        raise exception if sql statement contains NUL characters (patch by Shirai,Kaoru)
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/package.sh (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-5</font>
+
+        *
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-22</font>
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/version.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                setup.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbd_pg/test/testdbipg.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+                lib/dbi/test/testsqlcoerce.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        removed &quot;don't put space before argument parentheses&quot; warnings (ruby<font color="#ff00ff">18</font>)
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                build/DBI-VERSIONS (<font color="#ff00ff">1.7</font>)
+                build/create_changelog.rb (<font color="#ff00ff">1.3</font>)
+                build/cvs<font color="#ff00ff">2</font>cl (<font color="#ff00ff">1.2</font>)
+                doc/sf_logo.html (<font color="#ff00ff">1.2</font>)
+        Added:
+                build/cvs<font color="#ff00ff">2</font>cl.pl (<font color="#ff00ff">1.1</font>)
+        Changed:
+                build/Makefile (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+                build/package.sh (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-14</font>
+                doc/ToDo (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+                doc/index.rd (<font color="#ff00ff">1.34</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-3</font>
+
+        moved to rubyforge. modified changelog generation.
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">57</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_frontbase/FrontBase.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbd_frontbase/README (<font color="#ff00ff">1.1</font>)
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        imported FrontBase DBD (from Cail Borrell)
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.33</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">18</font> <font color="#ff00ff">-8</font>
+
+        moved to rubyforge
+
+<font color="#ff00ff">2004-04-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                setup.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        remove parens warning
+
+<font color="#ff00ff">2003-11-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.41</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        StatementHandle#execute returns nil instead for internal use intended DBI::Row object
+
+<font color="#ff00ff">2003-09-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.33</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-2</font>
+
+        added methods Database#__set_notice_processor, Database#as_timestamp
+        fixed unneeded overhead in Database#fill_array
+<font color="#0000ff">        </font><font color="#0000ff">(submitted by Dennis Vshivkov)</font>
+<font color="#0000ff">        </font>
+<font color="#0000ff">2003-09-14 09</font><font color="#2e8b57"><b>:</b></font>35  Michael Neumann &lt;mneumann@ntecs.de&gt;
+
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        add timezone UTC to format (MoonWolf)
+
+<font color="#ff00ff">2003-09-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">57</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.40</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        fixed warning (due to method redefinition)
+
+<font color="#ff00ff">2003-09-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.32</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+
+        added contributor
+
+<font color="#ff00ff">2003-09-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">90</font> <font color="#ff00ff">-41</font>
+
+        added Database#columns method (by S. Veit)
+
+<font color="#ff00ff">2003-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-21</font>
+
+<font color="#ff00ff">2003-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/USER (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        modified email address
+
+<font color="#ff00ff">2003-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">41</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/version.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                build/DBI-VERSIONS (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        new version
+
+<font color="#ff00ff">2003-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/package.sh (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">7</font> <font color="#ff00ff">-0</font>
+
+        added further dialog
+
+<font color="#ff00ff">2003-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                build/test.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbi/test/require_dispatch.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-0</font>
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">21</font> <font color="#ff00ff">-2</font>
+                lib/dbi/test/testsqlcoerce.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">fixed DBI</font><font color="#2e8b57"><b>:</b></font>:Row.dup bug that occures in Ruby 1.8.
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">added tests for this and the SQL parse bug </font><font color="#0000ff">(/)</font>
+<font color="#0000ff">        </font>
+<font color="#0000ff">2003-06-10 21</font><font color="#2e8b57"><b>:</b></font>40  Michael Neumann &lt;mneumann@ntecs.de&gt;
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">7</font> <font color="#ff00ff">-0</font>
+
+        fixed SQL tokenizer bug: single slashes are preserved
+
+<font color="#ff00ff">2003-06-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-20</font>
+
+<font color="#ff00ff">2003-06-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/DBI-VERSIONS (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+                lib/dbi/version.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2003-06-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">48</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.31</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-2</font>
+
+        contributors added
+
+<font color="#ff00ff">2003-06-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-3</font>
+
+        TableFormatter: convert false to &quot;false&quot;, not &quot;NULL&quot; (MoonWolf)
+
+<font color="#ff00ff">2003-06-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">42</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">62</font> <font color="#ff00ff">-1</font>
+
+        Database#columns method added (MoonWolf)
+
+<font color="#ff00ff">2003-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed quoting bug ('\&quot;' should be '&quot;') in textconv (Brian Candler)
+
+<font color="#ff00ff">2003-05-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.32</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">141</font> <font color="#ff00ff">-24</font>
+
+        applied array patches by Oliver M. Bolzer (DBD::Pg can now handle Postgres arrays)
+
+<font color="#ff00ff">2003-05-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">50</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.30</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">12</font> <font color="#ff00ff">-2</font>
+
+        new contributors; link to OCI<font color="#ff00ff">8</font> DBD
+
+<font color="#ff00ff">2003-05-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">12</font> <font color="#ff00ff">-1</font>
+
+        added new test cases for &quot;-&quot; bug
+
+<font color="#ff00ff">2003-05-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlcoerce.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        verbose mode
+
+<font color="#ff00ff">2003-05-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        bug fixed: &quot;SELECT <font color="#ff00ff">1</font> - <font color="#ff00ff">3</font>&quot; was incorrectly transformed into &quot;SELECT <font color="#ff00ff">1</font> <font color="#ff00ff">3</font>&quot;
+
+<font color="#ff00ff">2003-05-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                ext/dbd_sqlite/test/segfault-bug.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed bug: Prepared statement is executed twice: once with no match, once with
+        a match. The second case fails and segfaults.
+
+<font color="#ff00ff">2003-05-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                ext/dbd_sqlite/test/test.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">33</font> <font color="#ff00ff">-6</font>
+
+        Patch by <font color="#6a5acd">&lt;moonwolf@moonwolf.com&gt;</font>:
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">fix Row Processed Count</font><font color="#0000ff">(sqlite_changes()</font><font color="#0000ff"> function)</font>
+<font color="#2e8b57"><b>        * </b></font><font color="#0000ff">fix DBI</font><font color="#2e8b57"><b>:</b></font>:Timestamp quote format for Timestamp sorting
+         before '<font color="#ff00ff">2003-2-13</font> <font color="#ff00ff">1.2.3.0</font>' =&gt; after '<font color="#ff00ff">2003-02-13</font> <font color="#ff00ff">01</font>:<font color="#ff00ff">02</font>:<font color="#ff00ff">03</font>'
+
+<font color="#ff00ff">2003-05-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">29</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.31</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">25</font> <font color="#ff00ff">-18</font>
+
+        added NonBlocking execution mode
+
+<font color="#ff00ff">2003-05-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.39</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-5</font>
+
+        class Timestamp:
+          - fraction nil by default
+          - fractions <font color="#ff00ff">may</font> be of type float (as well as integer)
+          - #to_s do not show fraction if it's nil
+
+<font color="#ff00ff">2003-05-09</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.38</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-5</font>
+
+        zero-pad date/time/timestamps (classes Date/Time/Timestamp method to_s)
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/package.sh (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        fixed RAA entry update address
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-19</font>
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/DBI-VERSIONS (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+                build/USER (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+                lib/dbi/version.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">42</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.37</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        bug fix in class DBI::Time (wrong named variable)
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.29</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-1</font>
+
+        new contributor
+
+<font color="#ff00ff">2003-04-27</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+
+        Fixed bug in DBI::SQL::BasicQuote::Coerce#as_time
+        Mysql time columns (like &quot;<font color="#ff00ff">13</font>:<font color="#ff00ff">32</font>:<font color="#ff00ff">33</font>&quot;) could not be converted into DBI::Time objects
+<font color="#0000ff">        </font><font color="#0000ff">(thanks to Tim Bates)</font>
+<font color="#0000ff">        </font>
+<font color="#0000ff">2003-04-21 18</font><font color="#2e8b57"><b>:</b></font>09  eliask
+
+        Changed:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.6.4.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">34</font> <font color="#ff00ff">-3</font>
+
+        DB<font color="#ff00ff">2</font> driver support for columns(table)
+
+<font color="#ff00ff">2003-04-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">42</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.21</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+
+
+        Modify transaction support to use self.do rather than @handler.query
+        so that query execution is routed through the mutex.
+
+<font color="#ff00ff">2003-02-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">02</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.36</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">19</font> <font color="#ff00ff">-2</font>
+
+        Fix bug in case insensitive driver name lookup on case insensitive filesystems
+
+<font color="#ff00ff">2003-02-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">02</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">03</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.20</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">40</font> <font color="#ff00ff">-3</font>
+
+        Add transaction support: commit and rollback methods, AutoCommit database handle attribute
+
+<font color="#ff00ff">2003-02-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.19</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-10</font>
+
+        return MySQL error number on exceptions, not just error message
+
+<font color="#ff00ff">2003-02-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-1</font>
+
+        port and flag connection parameters must be passed as numbers
+
+<font color="#ff00ff">2003-02-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Paul Dubois</b></font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+
+        Do not force user to provide database name when connecting
+
+<font color="#ff00ff">2003-02-01</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-0</font>
+
+        added comment test
+
+<font color="#ff00ff">2003-02-01</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">20</font> <font color="#ff00ff">-5</font>
+
+        method BasicBind#tokens: added support for C-style (non-nesting) and Ada/SQL<font color="#ff00ff">92</font>-style comments
+
+<font color="#ff00ff">2003-01-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">55</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.27</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-1</font>
+
+        added contributor, added Articles section
+
+<font color="#ff00ff">2003-01-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/DBD_SPEC (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                doc/DBI_SPEC (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed wrong email address
+
+<font color="#ff00ff">2003-01-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/DBD_SPEC (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">107</font> <font color="#ff00ff">-103</font>
+                doc/DBI_SPEC (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">95</font> <font color="#ff00ff">-92</font>
+
+        Fix typos and formatting (by Paul DuBois).
+
+<font color="#ff00ff">2002-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  eliask</b></font>
+
+        Changed:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.6.4.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">216</font> <font color="#ff00ff">-55</font>
+
+        experimental support for BLOBs via SQLBindParameter
+
+<font color="#ff00ff">2002-10-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/package.sh (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-3</font>
+
+        # Removed the removing of empty dirs. Use cvs -P option (implicit) instead.
+
+<font color="#ff00ff">2002-10-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/Makefile (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                build/package.sh (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        *
+
+<font color="#ff00ff">2002-10-25</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">48</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.30</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        rollback transactions on disconnect
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-18</font>
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/DBI-VERSIONS (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        *
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.26</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+
+        contributor added
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/trace.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        remove warnings
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.35</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">21</font> <font color="#ff00ff">-12</font>
+
+        Driver URLs are now case-sensitive when in SAFE mode &gt;= <font color="#ff00ff">1</font>. This prevent a security error.
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.29</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">70</font> <font color="#ff00ff">-10</font>
+
+        reverted to old transaction handling schema; removed usage of SET AUTOCOMMIT TO ON|OFF.
+
+<font color="#ff00ff">2002-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.28</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">32</font> <font color="#ff00ff">-6</font>
+
+        Use PostgreSQL specific quoting function (PGconn.quote) instead of default if available.
+        Use PGconn.escape_bytea instead of own __escape_bytea function if available.
+
+<font color="#ff00ff">2002-10-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                build/package.sh (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed bug
+
+<font color="#ff00ff">2002-10-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-17</font>
+
+<font color="#ff00ff">2002-10-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/version.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2002-10-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">49</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                build/package.sh (<font color="#ff00ff">1.1</font>)
+
+        initial creation; handles all release steps
+
+<font color="#ff00ff">2002-10-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">56</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                doc/create_html (<font color="#ff00ff">1.2</font>)
+
+        removed
+
+<font color="#ff00ff">2002-10-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                doc/html/index.html (<font color="#ff00ff">1.26</font>)
+
+        removed
+
+<font color="#ff00ff">2002-10-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                doc/DBD_SPEC (<font color="#ff00ff">1.1</font>)
+                doc/DBI_SPEC (<font color="#ff00ff">1.1</font>)
+                doc/ToDo (<font color="#ff00ff">1.1</font>)
+
+        moved from ../lib/dbi/doc
+
+<font color="#ff00ff">2002-10-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                build/DBI-VERSIONS (<font color="#ff00ff">1.1</font>)
+                build/Makefile (<font color="#ff00ff">1.1</font>)
+                build/USER (<font color="#ff00ff">1.1</font>)
+                build/cl<font color="#ff00ff">2</font>html.sh (<font color="#ff00ff">1.1</font>)
+                build/create_changelog.rb (<font color="#ff00ff">1.1</font>)
+                build/cvs<font color="#ff00ff">2</font>cl (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2002-10-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                setup.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">7</font> <font color="#ff00ff">-2</font>
+
+        install on debian-unstable into /usr/local/lib/site_ruby/&lt;version&gt; (by Brad Hilton)
+
+<font color="#ff00ff">2002-09-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">41</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.24</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+
+        *
+
+<font color="#ff00ff">2002-09-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">40</font> <font color="#ff00ff">-8</font>
+
+        add support for coercing column values (patch by Brad Hilton)
+
+<font color="#ff00ff">2002-09-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.27</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-14</font>
+
+        removed method send_sql and inlined it's code instead (little speed improvement)
+
+<font color="#ff00ff">2002-09-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">32</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.26</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">196</font> <font color="#ff00ff">-196</font>
+
+        converted tabs to spaces
+
+<font color="#ff00ff">2002-09-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.25</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">22</font> <font color="#ff00ff">-55</font>
+
+        rewritten transaction handling (uses now Postgres' &quot;SET AUTOCOMMIT ON|OFF&quot;)
+
+<font color="#ff00ff">2002-09-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.24</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-5</font>
+
+        fix quoting backslashes bug (Brad Hilton)
+
+<font color="#ff00ff">2002-08-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                contrib/dbrc/dbrc.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">18</font> <font color="#ff00ff">-1</font>
+
+        added dsn method, minor doc additions
+
+<font color="#ff00ff">2002-08-01</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.34</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">37</font> <font color="#ff00ff">-16</font>
+
+        added Date#to_time/to_date/mday/mday= Time#to_time Timestamp#mday/mday= (Dave Thomas)
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.33</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        Time/Date =&gt; ::Time/::Date
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">41</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                setup.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        skip CVS directories (Dave Thomas)
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.25</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">23</font> <font color="#ff00ff">-15</font>
+
+        *
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.23</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-1</font>
+
+        added contributors
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                contrib/dbrc/README (<font color="#ff00ff">1.1</font>)
+                contrib/dbrc/dbrc.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">56</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.23</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">15</font> <font color="#ff00ff">-11</font>
+
+        enhanced conversion: default is to_str, added timestamp (with/without timezone)
+
+<font color="#ff00ff">2002-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.32</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">18</font> <font color="#ff00ff">-4</font>
+
+        added methods Timestamp#to_time/to_date (Dave Thomas)
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-16</font>
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/version.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.24</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">19</font> <font color="#ff00ff">-15</font>
+
+        *
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.22</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        added contributor
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">56</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.22</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">37</font> <font color="#ff00ff">-8</font>
+
+        added Statement#fetch_scroll (patch by Stephen Davies)
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.31</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-1</font>
+
+        Added StatementHandle#[] and #[]=. Updated DBI and DBD specs.
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.21</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">20</font> <font color="#ff00ff">-2</font>
+
+        Fixed semantic of method Statement#rows (affects also Database#do):
+        Now returns the Row Processed Count instead of the number of rows in the result.
+        The old behaviour is still available through method Statement#['pg_row_count'].
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.23</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        *
+
+<font color="#ff00ff">2002-07-03</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">48</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                bin/commandline/sqlsh.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-2</font>
+                bin/proxyserver/proxyserver.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">28</font> <font color="#ff00ff">-2</font>
+                doc/index.rd (<font color="#ff00ff">1.21</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">29</font> <font color="#ff00ff">-18</font>
+                doc/html/index.html (<font color="#ff00ff">1.22</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">46</font> <font color="#ff00ff">-28</font>
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">28</font> <font color="#ff00ff">-7</font>
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-20</font>
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-10</font>
+                lib/dbd_interbase/InterBase.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-20</font>
+                lib/dbd_msql/Msql.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-18</font>
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-18</font>
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-20</font>
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">29</font> <font color="#ff00ff">-23</font>
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.20</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">29</font> <font color="#ff00ff">-1</font>
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-19</font>
+                lib/dbd_sqlrelay/SQLRelay.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">27</font> <font color="#ff00ff">-19</font>
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.30</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">28</font> <font color="#ff00ff">-18</font>
+                LICENSE (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">22</font> <font color="#ff00ff">-339</font>
+
+        license changed from GNU GPL to BSD
+
+<font color="#ff00ff">2002-06-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/test/test_bytea.rb (<font color="#ff00ff">1.1</font>)
+
+        initial creation
+
+<font color="#ff00ff">2002-06-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.19</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">35</font> <font color="#ff00ff">-4</font>
+
+        added method Database#__encode_bytea; decode values of type bytea to string
+
+<font color="#ff00ff">2002-05-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-15</font>
+
+<font color="#ff00ff">2002-05-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-4</font>
+
+        added driver specific method Database#__insert_id
+
+<font color="#ff00ff">2002-05-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">41</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.29</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        explicitly initialize @trace_mode and @trace_output in Handle#initialize (omits disturbing warning messages)
+
+<font color="#ff00ff">2002-05-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                examples/trace_test.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2002-05-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">33</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/version.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.28</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-5</font>
+
+        moved VERSION from dbi.rb to version.rb
+
+<font color="#ff00ff">2002-05-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-14</font>
+
+<font color="#ff00ff">2002-05-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.27</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        updated version
+
+<font color="#ff00ff">2002-05-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">03</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">24</font> <font color="#ff00ff">-14</font>
+
+        fixed bug: method #do and #execute both set query_with_result of the same
+        underlying database object. This results in errors if you mix both method
+        calls (not neccessarily called concurrently). Solution: Mutex.
+
+<font color="#ff00ff">2002-04-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.20</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-2</font>
+
+        added contributor
+
+<font color="#ff00ff">2002-04-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-3</font>
+
+        cache calls to PGResult#result in class Tuples (by James F.Hranicky); which increases performance around factor <font color="#ff00ff">100</font>.
+
+<font color="#ff00ff">2002-04-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-13</font>
+
+<font color="#ff00ff">2002-04-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.19</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-2</font>
+                doc/html/index.html (<font color="#ff00ff">1.21</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">20</font> <font color="#ff00ff">-16</font>
+
+        *
+
+<font color="#ff00ff">2002-04-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.20</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">40</font> <font color="#ff00ff">-99</font>
+
+        *
+
+<font color="#ff00ff">2002-04-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">16</font> <font color="#ff00ff">-44</font>
+
+        updates links to sf.net
+
+<font color="#ff00ff">2002-04-16</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                doc/sf_logo.html (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2002-02-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-4</font>
+
+        fixed bug in method columns
+
+<font color="#ff00ff">2002-02-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                bin/proxyserver/proxyserver.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-5</font>
+
+        upgraded to DBD API <font color="#ff00ff">0.2</font>
+        fixed bug (checking version numbers)
+
+<font color="#ff00ff">2002-02-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-7</font>
+
+        upgraded to DBD API <font color="#ff00ff">0.2</font>
+
+<font color="#ff00ff">2002-02-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        method SQL::BasicQuote::Coerce::as_timestamp: return nil if str is empty (Sean Chittenden)
+
+<font color="#ff00ff">2002-01-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.26</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        new version
+
+<font color="#ff00ff">2002-01-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-5</font>
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-6</font>
+
+        fixed bind_param bug by removing method bind_params
+
+<font color="#ff00ff">2002-01-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                test/testdbi.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-1</font>
+
+        added test-case for bind_param bug (only in Mysql and Pg driver)
+
+<font color="#ff00ff">2002-01-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-5</font>
+
+        removed duplicate definition for the [] accessor method (Sean Chittenden)
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-12</font>
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                examples/xmlgen.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_sqlrelay/SQLRelay.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">128</font> <font color="#ff00ff">-45</font>
+
+        updated version by David Muse <font color="#6a5acd">&lt;david.muse@zapmedia.com&gt;</font>
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/test/testsqlcoerce.rb (<font color="#ff00ff">1.1</font>)
+
+        initial creation
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.19</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">45</font> <font color="#ff00ff">-24</font>
+
+        *
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed doc
+
+<font color="#ff00ff">2001-12-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-1</font>
+
+        DBI::SQL::BasicQuote::Coerce: don't try to convert nil; instead return nil in this case
+
+<font color="#ff00ff">2001-12-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-4</font>
+
+        fixed doc-bug
+
+<font color="#ff00ff">2001-12-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-4</font>
+
+        fixed bug (displayed wrong default values) in method columns
+
+<font color="#ff00ff">2001-11-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">95</font> <font color="#ff00ff">-7</font>
+
+        included Jim Menards columns methods
+
+<font color="#ff00ff">2001-11-25</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-3</font>
+
+        implemented ?-style parameter markers
+
+<font color="#ff00ff">2001-11-25</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-2</font>
+
+        added attribute accessor for unbound in class PreparedStatement
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">16</font> <font color="#ff00ff">-8</font>
+
+        added method bind_params
+        do no more call commit/rollback if not in transaction
+        use class SQL::PreparedStatement
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sqlite/README (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">48</font> <font color="#ff00ff">-38</font>
+                ext/dbd_sqlite/extconf.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-1</font>
+
+        added type conversion
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                bin/PATHCONV (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        added proxyserver
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">11</font> <font color="#ff00ff">-11</font>
+                ext/dbd_sqlite/extconf.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-4</font>
+
+        *
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">54</font> <font color="#ff00ff">-0</font>
+
+        added test for class PreparedStatement
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.25</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">31</font> <font color="#ff00ff">-8</font>
+
+        added constant SQL_TYPE_NAMES, for SQL_XXX constant to SQL type name mapping
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">60</font> <font color="#ff00ff">-2</font>
+
+        added class PreparedStatement
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">48</font> <font color="#ff00ff">-32</font>
+
+        fixed tables
+        added ping, columns
+        extended column_info
+
+<font color="#ff00ff">2001-11-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-19</font>
+
+        use SQL::PreparedStatement to improve speed
+
+<font color="#ff00ff">2001-11-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">03</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">219</font> <font color="#ff00ff">-18</font>
+
+        added conversion routine
+
+<font color="#ff00ff">2001-11-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                test/michael/sqlite.cfg (<font color="#ff00ff">1.1</font>)
+                test/michael/sqlite/config.sh (<font color="#ff00ff">1.1</font>)
+                test/michael/sqlite/setup.sh (<font color="#ff00ff">1.1</font>)
+                test/michael/sqlite/teardown.sh (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sqlite/README (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                bin/proxyserver/proxyserver.rb (<font color="#ff00ff">1.1</font>)
+
+        moved from examples/
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                examples/proxyserver.rb (<font color="#ff00ff">1.6</font>)
+
+        moved to bin/proxyserver
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                bin/commandline/sqlsh.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">41</font> <font color="#ff00ff">-20</font>
+
+        command-line option --file
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">55</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                bin/PATHCONV (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                bin/commandline/sqlsh.rb (<font color="#ff00ff">1.1</font>)
+
+        refactored code; new feature irb/rb; moved from examples dir
+
+<font color="#ff00ff">2001-11-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                examples/sqlsh.rb (<font color="#ff00ff">1.11</font>)
+
+        moved to bin/commandline
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-11</font>
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/test/test_blob.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">37</font> <font color="#ff00ff">-4</font>
+
+        improved blob test
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sqlite/extconf.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        *
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-1</font>
+                doc/html/index.html (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+                doc/index.rd (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        *
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">41</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.24</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        DatabaseError.new without arguments
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/PATHCONV (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        new dbd
+
+<font color="#ff00ff">2001-11-14</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                ext/dbd_sqlite/SQLite.c (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sqlite/extconf.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        abort table output with &quot;a&quot;
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+
+        *
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">18</font> <font color="#ff00ff">-8</font>
+
+        fixed quote
+        fixed finish (method do =&gt; no result handle =&gt; nil.free =&gt; exception)
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-10</font>
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_mysql/test/blob_test.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        small fix
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">29</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">36</font> <font color="#ff00ff">-20</font>
+
+        *
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">29</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">16</font> <font color="#ff00ff">-1</font>
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.23</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        new version
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-4</font>
+
+        improved Database#ping
+
+<font color="#ff00ff">2001-11-13</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/test/test_ping.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-12</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        added SQLRelay
+
+<font color="#ff00ff">2001-11-12</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_sqlrelay/SQLRelay.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">69</font> <font color="#ff00ff">-22</font>
+
+        added AutoCommit, added fetch_scroll...
+
+<font color="#ff00ff">2001-11-12</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/test/test_blob.rb (<font color="#ff00ff">1.1</font>)
+
+        initial creation
+
+<font color="#ff00ff">2001-11-12</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">87</font> <font color="#ff00ff">-2</font>
+
+        added Databaseattribute: pg_client_encoding
+        added driver specific functions in Database: blob_import, blob_export, blob_create, blob_open, blob_unlink and blob_read
+        convert DBI::Binary objects to OID's and insert the content as BLOB
+
+<font color="#ff00ff">2001-11-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">57</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_sqlrelay/SQLRelay.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-09</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        modified method column_info
+
+<font color="#ff00ff">2001-11-09</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">32</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">59</font> <font color="#ff00ff">-30</font>
+
+        fixed several bugs
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                test/michael/pg.cfg (<font color="#ff00ff">1.1</font>)
+                test/michael/pg/config.sh (<font color="#ff00ff">1.1</font>)
+                test/michael/pg/setup.sh (<font color="#ff00ff">1.1</font>)
+                test/michael/pg/teardown.sh (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                test/testdbi.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        fixed bug (skaro)
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        corrected type prefix (DBI::)
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        fixed require (dbi instead of just sql)
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">39</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-3</font>
+
+        TableFormatter#ascii modified
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">38</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">21</font> <font color="#ff00ff">-7</font>
+
+        method columns: extract default value
+
+<font color="#ff00ff">2001-11-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">66</font> <font color="#ff00ff">-12</font>
+
+        added commands \dt (describe table), \s (short select) and \pl (page length)
+
+<font color="#ff00ff">2001-10-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        *
+
+<font color="#ff00ff">2001-10-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed typo
+
+<font color="#ff00ff">2001-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">08</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">21</font> <font color="#ff00ff">-15</font>
+
+        *
+
+<font color="#ff00ff">2001-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-2</font>
+
+        new release
+
+<font color="#ff00ff">2001-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.22</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-3</font>
+
+        preced driver specific functions with __
+
+<font color="#ff00ff">2001-10-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-3</font>
+
+        added odbc_ignorecase option (submitted by Sean O'Halpin)
+
+<font color="#ff00ff">2001-10-10</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">33</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">130</font> <font color="#ff00ff">-7</font>
+
+        added method StatementHandle#fetch_scroll
+        added createdb, dropdb, reload, shutdown
+
+<font color="#ff00ff">2001-10-10</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">47</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.21</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">47</font> <font color="#ff00ff">-40</font>
+
+        method DBI.get_driver renamed to DBI._get_full_driver
+        new method DBI.get_driver now returns only  DriverHandle object
+        added attribute reader for DBI::Handle
+
+<font color="#ff00ff">2001-10-10</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">39</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/proxyserver.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        DBI.get_driver =&gt; DBI._get_full_driver
+
+<font color="#ff00ff">2001-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">39</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-9</font>
+
+<font color="#ff00ff">2001-09-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">39</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-1</font>
+                doc/html/index.html (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">19</font> <font color="#ff00ff">-13</font>
+
+        *
+
+<font color="#ff00ff">2001-09-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">56</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed bug in &quot;quote&quot; (found by Steven Davies)
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">34</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-5</font>
+
+        columns: size=&gt;precision; decimal_digits=&gt;scale
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.20</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-17</font>
+
+        changed SQL_type constants
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">59</font> <font color="#ff00ff">-10</font>
+
+        column_info returns more info's
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/proxyserver.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        changed DBD version checking
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-2</font>
+
+        changed version checking
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-4</font>
+
+        removed patch required for Ruby/ODBC <font color="#ff00ff">0.4</font>
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">02</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">77</font> <font color="#ff00ff">-23</font>
+
+        *
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">44</font> <font color="#ff00ff">-8</font>
+
+        added more contributors; new example; updated dbd_odbc (required newer version)
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">34</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.19</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-47</font>
+
+        moved DBI::ColumnInfo to own file columninfo.rb
+        removed DBD::COMPATIBLE_API_VERSIONS (now use major/minor)
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-0</font>
+
+        *
+
+<font color="#ff00ff">2001-08-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">31</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/columninfo.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import (moved from dbi.rb)
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.18</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        added DBI::DBD::COMPATIBLE_API_VERSIONS
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed DBD problems
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/proxyserver.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed DBD version problems
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        fixed problems with different DBD version on the server side
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">105</font> <font color="#ff00ff">-4</font>
+
+        added Database#columns; by Eli Green
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">47</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">107</font> <font color="#ff00ff">-2</font>
+
+        added Database#columns from Eli Green
+
+<font color="#ff00ff">2001-08-23</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.17</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">107</font> <font color="#ff00ff">-11</font>
+
+        StatementHandle#column_info returns now array of DBI::ColumnInfo
+        added class DBI::ColumnInfo
+        added method DatabaseHandle#columns(table) and BaseDatabase#columns(table)
+
+<font color="#ff00ff">2001-08-21</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">01</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+
+        fixed bug in XMLFormatter.table (found by Jim Menard)
+
+<font color="#ff00ff">2001-07-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-8</font>
+
+<font color="#ff00ff">2001-07-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                examples/persistence.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">90</font> <font color="#ff00ff">-183</font>
+
+        *
+
+<font color="#ff00ff">2001-07-28</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">58</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-1</font>
+
+        new version
+
+<font color="#ff00ff">2001-07-26</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">56</font><font color="#a52a2a"><b>  jweirich</b></font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-0</font>
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">28</font> <font color="#ff00ff">-16</font>
+
+        Fixed row.rb so that dup and clone work
+
+<font color="#ff00ff">2001-07-19</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.16</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-3</font>
+
+        fixed bug in load_driver (thanks to John Gorman)
+
+<font color="#ff00ff">2001-07-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">57</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        corrected quoting for Time, Date and DateTime
+
+<font color="#ff00ff">2001-07-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-1</font>
+                doc/html/index.html (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-3</font>
+
+        *
+
+<font color="#ff00ff">2001-07-10</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-7</font>
+
+<font color="#ff00ff">2001-07-10</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.15</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-1</font>
+
+        fixed bug; missing else-branch and return
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-6</font>
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-3</font>
+
+        *
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">35</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.14</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        fixed bug in load_driver (added return found)
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-2</font>
+
+        new release
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-2</font>
+
+        added DBI URI parameter database additionally to dbname
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-4</font>
+
+        rewritten DBI URI parser (due to dsn=...;...;)
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">11</font> <font color="#ff00ff">-3</font>
+
+        added patch by John Gorman for Utils.parse_params to allow database:host instead of database=...;host=...
+
+<font color="#ff00ff">2001-07-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.13</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">35</font> <font color="#ff00ff">-6</font>
+
+        added case-insensitive DBD name patch by John Gorman (e.g. dbi:Mysql:... and dbi:mysql:... should both work)
+
+<font color="#ff00ff">2001-06-29</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.12</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+                lib/dbi/sql.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-2</font>
+                lib/dbi/utils.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+
+        removed some warnings
+
+<font color="#ff00ff">2001-06-29</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">03</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  jweirich</b></font>
+
+        Changed:
+                test/testdbi.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-17</font>
+
+        Removed spaces before arg lists (warnings using -w)
+
+<font color="#ff00ff">2001-06-22</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  jweirich</b></font>
+
+        Deleted:
+                lib/dbi/test/testdbi.rb (<font color="#ff00ff">1.3</font>)
+        Added:
+                test/README (<font color="#ff00ff">1.1</font>)
+                test/testdbi.rb (<font color="#ff00ff">1.1</font>)
+                test/example/config.sh (<font color="#ff00ff">1.1</font>)
+                test/example/example.cfg (<font color="#ff00ff">1.1</font>)
+                test/example/setup.sh (<font color="#ff00ff">1.1</font>)
+                test/example/teardown.sh (<font color="#ff00ff">1.1</font>)
+
+        Moved testdbi.rb to toplevel test dir.  Added configurability
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">76</font> <font color="#ff00ff">-6</font>
+
+        added input/output support
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">49</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-1</font>
+
+        added conv_param to convert Date/Time arguments to DBI::Date/Time
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">48</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">65</font> <font color="#ff00ff">-1</font>
+
+        added Masatoshi SEKI's Coerce class
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">47</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.11</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">44</font> <font color="#ff00ff">-9</font>
+
+        improved DBI:: Date/Time/Timestamp classes, added automatic coercion from Date/automatic Time to DBI::Date/Time in parmeters
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-19</font>
+
+        added coercing from Masatoshi SEKI
+
+<font color="#ff00ff">2001-06-18</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">02</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">16</font> <font color="#ff00ff">-23</font>
+
+
+        connection changed to &quot;dbi:Pg:dbname=..;host=...;port=...;tty=;options=&quot;
+
+<font color="#ff00ff">2001-06-17</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  jweirich</b></font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">41</font> <font color="#ff00ff">-21</font>
+                lib/dbi/test/testdbi.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">71</font> <font color="#ff00ff">-0</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        Updated the sql binding methods to correctly ignore ? in a string. Tests also updated.
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        output available DBDs (call sqlsh.rb without params) even if an error occured
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">58</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/trace.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-1</font>
+
+        added require &quot;dbi&quot; to work as &quot;ruby -r dbi/trace myprog.rb&quot;
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">46</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">22</font> <font color="#ff00ff">-14</font>
+
+        *
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">45</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-5</font>
+
+        ChangeLog and ToDo section
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.10</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-21</font>
+
+        version =&gt; <font color="#ff00ff">0.0.6</font>, moved ToDo's into file doc/ToDo
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">19</font> <font color="#ff00ff">-11</font>
+
+        fixed bug found by Masatoshi SEKI in bind(self, &quot;WHERE a=?&quot;, [&quot;connected?&quot;])
+
+<font color="#ff00ff">2001-06-11</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">00</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-1</font>
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        require files in the directory below instead of installed (e.g. ../sql instead of dbi/sql)
+        extended testsqlbind.rb (to check for a bug occured in <font color="#ff00ff">0.0.5</font>)
+
+<font color="#ff00ff">2001-06-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-5</font>
+
+<font color="#ff00ff">2001-06-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                doc/html/index.html (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        changed downloads
+
+<font color="#ff00ff">2001-06-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        corrected data_sources (&quot;dbi:ODBC:&quot; + ...)
+
+<font color="#ff00ff">2001-06-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/trace.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">36</font> <font color="#ff00ff">-3</font>
+
+        added tracing to DBI
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-4</font>
+
+        added resuce when showing the available DSN
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-1</font>
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">40</font> <font color="#ff00ff">-13</font>
+
+        added fetch_scroll as well as Date/Time convertion for DB<font color="#ff00ff">2</font>
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">6</font> <font color="#ff00ff">-1</font>
+
+        added ODBC
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">29</font> <font color="#ff00ff">-3</font>
+
+        added classes Date and Time
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_odbc/ODBC.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.9</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        initial import
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_msql/Msql.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-1</font>
+                lib/PATHCONV (<font color="#ff00ff">1.8</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">14</font> <font color="#ff00ff">-5</font>
+
+        added method do in Mysql
+        initial import of Msql
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/index.rd (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-1</font>
+
+        mSQL added
+
+<font color="#ff00ff">2001-06-07</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">42</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">12</font> <font color="#ff00ff">-13</font>
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+                lib/dbd_interbase/InterBase.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">30</font> <font color="#ff00ff">-13</font>
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">13</font> <font color="#ff00ff">-16</font>
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">38</font> <font color="#ff00ff">-16</font>
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-3</font>
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">21</font> <font color="#ff00ff">-2</font>
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        changed raising DBI::Error to DBI::DatabaseError
+        changed method DBI::DatabaseError.new
+
+<font color="#ff00ff">2001-06-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">32</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-5</font>
+
+        extended XMLFormatter methods row and table
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">33</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/doc/README (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-8</font>
+
+        adapted towards new version <font color="#ff00ff">0.0.5</font>
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">30</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                ext/dbd_sybase/doc/README (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-1</font>
+
+        outdated
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                doc/html/index.html (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">196</font> <font color="#ff00ff">-1</font>
+
+        added content
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                doc/create_html (<font color="#ff00ff">1.1</font>)
+                doc/index.rd (<font color="#ff00ff">1.1</font>)
+                doc/html/rubyStyle.css (<font color="#ff00ff">1.1</font>)
+
+        new README file
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                README (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-92</font>
+
+        removed content, forward to doc/index.rd
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/proxyserver.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">14</font> <font color="#ff00ff">-5</font>
+
+        improved some code
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_interbase/InterBase.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">20</font> <font color="#ff00ff">-4</font>
+
+        added error handling =&gt; DBI::Error
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">07</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-4</font>
+
+        changed $! (.dup) to $!.type.to_s (to fix the DRbUnknown DBD::Proxy bug)
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">48</font> <font color="#ff00ff">-12</font>
+
+        added error handling -&gt; DBI::Error
+        added ?-parameter markers binding
+        removed ::Mysql.quote because it didn't worked as expected
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-3</font>
+
+        fixed misbehaviour in #finish. now supports parameter markers
+
+<font color="#ff00ff">2001-06-05</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">09</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">44</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+        fixed bug (one parenthese too much)
+
+<font color="#ff00ff">2001-06-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">24</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.7</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        added Proxy
+
+<font color="#ff00ff">2001-06-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_proxy/Proxy.rb (<font color="#ff00ff">1.1</font>)
+                examples/proxyserver.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import
+
+<font color="#ff00ff">2001-06-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">25</font> <font color="#ff00ff">-6</font>
+
+        added DBI.get_driver (to access the underlying DBD-Driver), needed by ProxyServer
+        @@driver_map contains now arrays of DBI::DriverHandle and DBD::Driver -&gt; modified all methods which use it
+        added checks in DatabaseHandle select_one, select_all, [], []= if it is already closed -&gt; raise exemption
+
+<font color="#ff00ff">2001-06-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">15</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-1</font>
+
+        added methods to_h, field_names (alias to column_names) and fixed typo-bug
+
+<font color="#ff00ff">2001-06-04</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">10</font> <font color="#ff00ff">-0</font>
+
+        added method DatabaseHandle#tables and modified load_type_map to return CHAR's
+
+<font color="#ff00ff">2001-06-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>  Rainer Perl</b></font>
+
+        Changed:
+                ext/dbd_sybase/extconf.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-6</font>
+
+        applied patch from Akinori MUSHA
+
+<font color="#ff00ff">2001-06-02</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">06</font><font color="#a52a2a"><b>  Rainer Perl</b></font>
+
+        Added:
+                doc/html/index.html (<font color="#ff00ff">1.1</font>)
+
+        added example web-index
+
+<font color="#ff00ff">2001-06-01</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">04</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">117</font> <font color="#ff00ff">-43</font>
+
+        improved speed, fixed some bugs
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">34</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-2</font>
+
+        fixed bug (rescue instead ensure), which had the consequence readline was never used
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        changed in datasource, mysql to Mysql
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-0</font>
+
+
+        added &quot;include Enumerable&quot;
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.6</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        install wrapper together with dbi
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">54</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-2</font>
+
+        fixed bug, so size_or_arr can now be nil, which creates an Array of size col_names.size
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/wrapper/dbi.rb (<font color="#ff00ff">1.1</font>)
+
+        initial creation
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">53</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+        add directory wrapper which installs directly into site-ruby
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">52</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-1</font>
+
+        removed double :: in DSN output
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">28</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/test/testdbi.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbi/test/testrow.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbi/test/testsqlbind.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbi/test/testsqlquote.rb (<font color="#ff00ff">1.1</font>)
+
+        initial import of test-cases, from Jim Weirichs Postgesql DBD
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">27</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/utils.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">47</font> <font color="#ff00ff">-1</font>
+
+
+        move some methods from dbi/dbi into this file
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">26</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/sql.rb (<font color="#ff00ff">1.1</font>)
+
+        initial creation.
+        extracted from Jim Weirichs basicquote.rb, basicbind.rb and Postgresql.rb (query?)
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">25</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/row.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">120</font> <font color="#ff00ff">-83</font>
+
+        use delegator to Array
+        many features added, e.g dbrow[&quot;firstname&quot;, &quot;lastname&quot;, ...] =&gt; ['Michael', 'Neumann', ...]
+        passed Jims testcase
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">23</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.5</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">8</font> <font color="#ff00ff">-42</font>
+
+        moved module Utils into file dbi/utils.rb
+        use Jim Weirichs SQL::BasicQuote
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">19</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+
+        use SQL.query? instead of own version
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/test/testdbipg.rb (<font color="#ff00ff">1.1</font>)
+
+
+        initial import from Jim Weirichs ruby-dbi-postgresql<font color="#ff00ff">-28.05.2001.7</font>.tgz
+        changed Postgres to Pg
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/doc/README (<font color="#ff00ff">1.1</font>)
+
+
+        initial import from Jim Weirichs ruby-dbi-postgresql<font color="#ff00ff">-28.05.2001.7</font>.tgz
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-12</font>
+
+
+        extracted some goodies to dbi/sql.rb
+        changed Postgresql to Pg
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_pg/Pg.rb (<font color="#ff00ff">1.1</font>)
+
+
+        initial import from Jim Weirichs ruby-dbi-postgesql<font color="#ff00ff">-28.05.2001.7</font>.tgz
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">13</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+
+        added dbd_pg
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">21</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">94</font> <font color="#ff00ff">-12</font>
+
+
+        fixed several bugs in fetch/fetch_scroll, now has more functionality
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">20</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.4</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-5</font>
+
+
+        fixed constant multiple-assignment bug, (<font color="#ff00ff">1..6</font>) -&gt; (<font color="#ff00ff">1..6</font>).to_a
+        fixed exception-raising bug, parameters in DBI::Error now all optional
+        fixed bug in fetch_scroll (rows -&gt; row)
+
+<font color="#ff00ff">2001-05-31</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">10</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">64</font> <font color="#ff00ff">-10</font>
+
+
+        added new commands (commit, rollback, autocommit)
+        fixed readline-bug, readline -&gt; $stdin.readline
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-5</font>
+
+
+        added StatementHandle#finished?
+        added check in DatabaseHandle#execute/#prepare in block-form, if finished? before calling #finish
+        changed require &quot;x&quot; -&gt; require &quot;dbi/x&quot;
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_ado/ADO.rb (<font color="#ff00ff">1.1</font>)
+
+
+        initial import
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.3</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">1</font> <font color="#ff00ff">-0</font>
+
+
+        added ADO entry
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">18</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">37</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                examples/sqlsh.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">17</font> <font color="#ff00ff">-3</font>
+
+
+        don't rely on &quot;readline&quot;, works now without
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">51</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                examples/sqlsh.rb (<font color="#ff00ff">1.1</font>)
+                examples/sqlsh.rb.new (<font color="#ff00ff">1.1</font>)
+                examples/test<font color="#ff00ff">1</font>.pl (<font color="#ff00ff">1.1</font>)
+                examples/test_blob.rb (<font color="#ff00ff">1.1</font>)
+                examples/xmltest.rb (<font color="#ff00ff">1.1</font>)
+        Changed:
+                examples/test<font color="#ff00ff">1</font>.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">9</font> <font color="#ff00ff">-22</font>
+
+
+        initial import
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">43</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbd_mysql/doc/HISTORY (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-1</font>
+                lib/dbd_mysql/doc/README (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">2</font> <font color="#ff00ff">-2</font>
+
+
+        new entry
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_oracle/Oracle.rb (<font color="#ff00ff">1.1</font>)
+
+
+        initial import
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_interbase/InterBase.rb (<font color="#ff00ff">1.1</font>)
+
+
+        added new DBDs
+        initial import
+        initial import
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbd_db<font color="#ff00ff">2</font>/DB<font color="#ff00ff">2</font>.rb (<font color="#ff00ff">1.1</font>)
+
+
+        added new DBDs
+        initial import
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">40</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/PATHCONV (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">5</font> <font color="#ff00ff">-2</font>
+
+
+        added new DBDs
+
+<font color="#ff00ff">2001-05-30</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">12</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">36</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Deleted:
+                lib/dbd_mysql/dbd_mysql.rb (<font color="#ff00ff">1.2</font>)
+        Added:
+                lib/dbd_mysql/Mysql.rb (<font color="#ff00ff">1.1</font>)
+
+
+        upgraded to new version <font color="#ff00ff">0.5</font>
+
+<font color="#ff00ff">2001-05-29</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">22</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Changed:
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">852</font> <font color="#ff00ff">-138</font>
+
+
+        almost complete rewrite of DBI by Michael Neumann
+
+<font color="#ff00ff">2001-05-29</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">11</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">16</font><font color="#a52a2a"><b>  Michael Neumann </b></font><font color="#6a5acd">&lt;mneumann@ntecs.de&gt;</font>
+
+        Added:
+                lib/dbi/row.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbi/utils.rb (<font color="#ff00ff">1.1</font>)
+
+
+        initial import
+
+<font color="#ff00ff">2001-05-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  tag dbd_sybase</b></font><font color="#ff00ff">-0-0-3</font>
+
+<font color="#ff00ff">2001-05-08</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">14</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">05</font><font color="#a52a2a"><b>  Rainer Perl</b></font>
+
+        Changed:
+                ext/dbd_sybase/dbd_sybase.c (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">34</font> <font color="#ff00ff">-39</font>
+                ext/dbd_sybase/doc/HISTORY (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">3</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sybase/doc/README (<font color="#ff00ff">1.2</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">4</font> <font color="#ff00ff">-21</font>
+
+        Updated dbd_sybase (now <font color="#ff00ff">0.0.3</font>)
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  tag dbd_mysql</b></font><font color="#ff00ff">-0-0-4</font>
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  tag dbd_sybase</b></font><font color="#ff00ff">-0-0-2</font>
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  tag dbi</b></font><font color="#ff00ff">-0-0-4</font>
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  tag start</b></font>
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Rainer Perl</b></font>
+
+        Changed:
+                LICENSE (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                README (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                setup.rb (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                examples/test<font color="#ff00ff">1</font>.rb (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                ext/PATHCONV (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sybase/dbd_sybase.c (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sybase/extconf.rb (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sybase/doc/HISTORY (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                ext/dbd_sybase/doc/README (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                lib/PATHCONV (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                lib/dbd_mysql/dbd_mysql.rb (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                lib/dbd_mysql/doc/HISTORY (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                lib/dbd_mysql/doc/README (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.1.1.1</font>), &quot;Exp&quot;, lines: +<font color="#ff00ff">0</font> <font color="#ff00ff">-0</font>
+
+        Imported sources
+
+<font color="#ff00ff">2001-05-06</font><font color="#a52a2a"><b> </b></font><font color="#ff00ff">17</font><font color="#a52a2a"><b>:</b></font><font color="#ff00ff">59</font><font color="#a52a2a"><b>  Rainer Perl</b></font>
+
+        Added:
+                LICENSE (<font color="#ff00ff">1.1</font>)
+                README (<font color="#ff00ff">1.1</font>)
+                setup.rb (<font color="#ff00ff">1.1</font>)
+                examples/test<font color="#ff00ff">1</font>.rb (<font color="#ff00ff">1.1</font>)
+                ext/PATHCONV (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sybase/dbd_sybase.c (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sybase/extconf.rb (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sybase/doc/HISTORY (<font color="#ff00ff">1.1</font>)
+                ext/dbd_sybase/doc/README (<font color="#ff00ff">1.1</font>)
+                lib/PATHCONV (<font color="#ff00ff">1.1</font>)
+                lib/dbd_mysql/dbd_mysql.rb (<font color="#ff00ff">1.1</font>)
+                lib/dbd_mysql/doc/HISTORY (<font color="#ff00ff">1.1</font>)
+                lib/dbd_mysql/doc/README (<font color="#ff00ff">1.1</font>)
+                lib/dbi/dbi.rb (<font color="#ff00ff">1.1</font>)
+
+        Initial revision
+
+</pre>
+</body>
+</html>
