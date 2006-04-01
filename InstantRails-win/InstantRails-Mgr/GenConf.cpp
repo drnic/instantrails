@@ -38,9 +38,9 @@ DWORD RegenerateConfFiles(HWND parent_window)
 		szRubyBinUpdate_rubygemsSrc[MAX_PATH] = {0},
 		szRubyBinUpdate_rubygemsDest[MAX_PATH] = {0},
 		szUseRubySrc[MAX_PATH] = {0},
-		szUseRubyDest[MAX_PATH] = {0},
-		szFxriSrc[MAX_PATH] = {0},
-		szFxriDest[MAX_PATH] = {0};
+		szUseRubyDest[MAX_PATH] = {0};//,
+		//szFxriSrc[MAX_PATH] = {0},
+		//szFxriDest[MAX_PATH] = {0};
 
 	GetModuleFileName(NULL, szCurrentPath, sizeof(szCurrentPath));
 	strcpy(strrchr(szCurrentPath, '\\'), "");
@@ -106,8 +106,8 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	_snprintf(szUseRubySrc,  sizeof(szUseRubySrc),   "%s\\conf_files\\use_ruby.cmd", szCurrentPath2);
 	_snprintf(szUseRubyDest, sizeof(szUseRubyDest),  "%s\\use_ruby.cmd", szCurrentPath2);
 
-	_snprintf(szFxriSrc,  sizeof(szFxriSrc),   "%s\\conf_files\\fxri.cmd", szCurrentPath2);
-	_snprintf(szFxriDest, sizeof(szFxriDest),  "%s\\ruby\\bin\\fxri.cmd", szCurrentPath2);
+	//_snprintf(szFxriSrc,  sizeof(szFxriSrc),   "%s\\conf_files\\fxri.cmd", szCurrentPath2);
+	//_snprintf(szFxriDest, sizeof(szFxriDest),  "%s\\ruby\\bin\\fxri.cmd", szCurrentPath2);
 
 
 	GenerateConfFile(szCurrentPath, szApacheConfSrc, szApacheConfDest, '#');
@@ -126,7 +126,7 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
 	GenerateConfFile(szCurrentPath2, szUseRubySrc, szUseRubyDest, ':');
-	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
+//	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
 
 	return 0;
 }
