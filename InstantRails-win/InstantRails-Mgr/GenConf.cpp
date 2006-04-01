@@ -35,8 +35,12 @@ DWORD RegenerateConfFiles(HWND parent_window)
 		szRubyBinRailsDest[MAX_PATH] = {0},
 		szRubyBinRakeSrc[MAX_PATH] = {0},
 		szRubyBinRakeDest[MAX_PATH] = {0},
-		szRubyBinUpdate_rubygemsSrc[MAX_PATH] = {0},
-		szRubyBinUpdate_rubygemsDest[MAX_PATH] = {0},
+		//szRubyBinUpdate_rubygemsSrc[MAX_PATH] = {0},
+		//szRubyBinUpdate_rubygemsDest[MAX_PATH] = {0},
+		szRubyBinMongrelRailsSrc[MAX_PATH] = {0},
+		szRubyBinMongrelRailsDest[MAX_PATH] = {0},
+		szRubyBinMongrelRailsSvcSrc[MAX_PATH] = {0},
+		szRubyBinMongrelRailsSvcDest[MAX_PATH] = {0},
 		szUseRubySrc[MAX_PATH] = {0},
 		szUseRubyDest[MAX_PATH] = {0};//,
 		//szFxriSrc[MAX_PATH] = {0},
@@ -100,8 +104,14 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	_snprintf(szRubyBinRakeSrc,  sizeof(szRubyBinRakeSrc),   "%s\\conf_files\\rake.cmd", szCurrentPath2);
 	_snprintf(szRubyBinRakeDest, sizeof(szRubyBinRakeDest),  "%s\\ruby\\bin\\rake.cmd", szCurrentPath2);
 
-	_snprintf(szRubyBinUpdate_rubygemsSrc,  sizeof(szRubyBinUpdate_rubygemsSrc),   "%s\\conf_files\\update_rubygems.cmd", szCurrentPath2);
-	_snprintf(szRubyBinUpdate_rubygemsDest, sizeof(szRubyBinUpdate_rubygemsDest),  "%s\\ruby\\bin\\update_rubygems.cmd", szCurrentPath2);
+	//_snprintf(szRubyBinUpdate_rubygemsSrc,  sizeof(szRubyBinUpdate_rubygemsSrc),   "%s\\conf_files\\update_rubygems.cmd", szCurrentPath2);
+	//_snprintf(szRubyBinUpdate_rubygemsDest, sizeof(szRubyBinUpdate_rubygemsDest),  "%s\\ruby\\bin\\update_rubygems.cmd", szCurrentPath2);
+
+	_snprintf(szRubyBinMongrelRailsSrc,  sizeof(szRubyBinMongrelRailsSrc),   "%s\\conf_files\\mongrel_rails.cmd", szCurrentPath2);
+	_snprintf(szRubyBinMongrelRailsDest, sizeof(szRubyBinMongrelRailsDest),  "%s\\ruby\\bin\\mongrel_rails.cmd", szCurrentPath2);
+
+	_snprintf(szRubyBinMongrelRailsSvcSrc,  sizeof(szRubyBinMongrelRailsSvcSrc),   "%s\\conf_files\\mongrel_rails_service.cmd", szCurrentPath2);
+	_snprintf(szRubyBinMongrelRailsSvcDest, sizeof(szRubyBinMongrelRailsSvcDest),  "%s\\ruby\\bin\\mongrel_rails_service.cmd", szCurrentPath2);
 
 	_snprintf(szUseRubySrc,  sizeof(szUseRubySrc),   "%s\\conf_files\\use_ruby.cmd", szCurrentPath2);
 	_snprintf(szUseRubyDest, sizeof(szUseRubyDest),  "%s\\use_ruby.cmd", szCurrentPath2);
@@ -124,7 +134,9 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	GenerateConfFile(szCurrentPath2, szRubyBinGemwhichSrc, szRubyBinGemwhichDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinRailsSrc, szRubyBinRailsDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
+	//GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
+	GenerateConfFile(szCurrentPath2, szRubyBinMongrelRailsSrc, szRubyBinMongrelRailsDest, ':');
+	GenerateConfFile(szCurrentPath2, szRubyBinMongrelRailsSvcSrc, szRubyBinMongrelRailsSvcDest, ':');
 	GenerateConfFile(szCurrentPath2, szUseRubySrc, szUseRubyDest, ':');
 //	GenerateConfFile(szCurrentPath2, szFxriSrc, szFxriDest, ':');
 
