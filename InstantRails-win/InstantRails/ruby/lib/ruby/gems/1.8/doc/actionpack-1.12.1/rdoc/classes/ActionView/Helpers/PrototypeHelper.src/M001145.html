@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build_observer (ActionView::Helpers::PrototypeHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/prototype_helper.rb, line 703</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build_observer</span>(<span class="ruby-identifier">klass</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>] <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;=&quot;</span>)
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>] = <span class="ruby-node">&quot;'#{options[:with]}=' + value&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>] <span class="ruby-operator">||=</span> <span class="ruby-value str">'value'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">callback</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:function</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">remote_function</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">javascript</span>  = <span class="ruby-node">&quot;new #{klass}('#{name}', &quot;</span>
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{options[:frequency]}, &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:frequency</span>]
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;function(element, value) {&quot;</span>
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{callback}}&quot;</span>
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;, '#{options[:on]}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:on</span>]
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;)&quot;</span>
+        <span class="ruby-identifier">javascript_tag</span>(<span class="ruby-identifier">javascript</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

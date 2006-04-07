@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>assert_generates (Test::Unit::Assertions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/assertions.rb, line 145</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_generates</span>(<span class="ruby-identifier">expected_path</span>, <span class="ruby-identifier">options</span>, <span class="ruby-identifier">defaults</span>={}, <span class="ruby-identifier">extras</span> = {}, <span class="ruby-identifier">message</span>=<span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">clean_backtrace</span> <span class="ruby-keyword kw">do</span> 
+          <span class="ruby-identifier">expected_path</span> = <span class="ruby-node">&quot;/#{expected_path}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">expected_path</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?/</span>
+          <span class="ruby-comment cmt"># Load routes.rb if it hasn't been loaded.</span>
+          <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">Routes</span>.<span class="ruby-identifier">reload</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">Routes</span>.<span class="ruby-identifier">empty?</span> 
+      
+          <span class="ruby-identifier">generated_path</span>, <span class="ruby-identifier">extra_keys</span> = <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">Routes</span>.<span class="ruby-identifier">generate</span>(<span class="ruby-identifier">options</span>, <span class="ruby-identifier">extras</span>)
+          <span class="ruby-identifier">found_extras</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reject</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">extra_keys</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">k</span>}
+
+          <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;found extras &lt;?&gt;, not &lt;?&gt;&quot;</span>, <span class="ruby-identifier">found_extras</span>, <span class="ruby-identifier">extras</span>)
+          <span class="ruby-identifier">assert_block</span>(<span class="ruby-identifier">msg</span>) { <span class="ruby-identifier">found_extras</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">extras</span> }
+      
+          <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;The generated path &lt;?&gt; did not match &lt;?&gt;&quot;</span>, <span class="ruby-identifier">generated_path</span>, 
+              <span class="ruby-identifier">expected_path</span>)
+          <span class="ruby-identifier">assert_block</span>(<span class="ruby-identifier">msg</span>) { <span class="ruby-identifier">expected_path</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">generated_path</span> }
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
