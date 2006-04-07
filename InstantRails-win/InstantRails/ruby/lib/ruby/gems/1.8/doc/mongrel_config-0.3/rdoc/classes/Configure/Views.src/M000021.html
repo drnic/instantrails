@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>list (Configure::Views)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel_config/win32_app.rb, line 146</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list</span>
+      <span class="ruby-identifier">div</span> <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;viewport&quot;</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">table</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">tr</span> { <span class="ruby-identifier">th</span> { <span class="ruby-value str">&quot;Service&quot;</span>}; <span class="ruby-identifier">th</span> { <span class="ruby-value str">&quot;Status&quot;</span>}; <span class="ruby-identifier">th</span> { <span class="ruby-value str">&quot;Control&quot;</span> }; <span class="ruby-identifier">th</span> { <span class="ruby-value str">&quot;Delete&quot;</span> } }
+          <span class="ruby-ivar">@services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">status</span> = <span class="ruby-constant">W32Support</span>.<span class="ruby-identifier">status</span>(<span class="ruby-identifier">s</span>.<span class="ruby-identifier">service_name</span>)
+            <span class="ruby-identifier">tr</span> { 
+              <span class="ruby-identifier">td</span> { <span class="ruby-identifier">a</span>(<span class="ruby-identifier">s</span>.<span class="ruby-identifier">service_name</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/info/#{s.service_name}&quot;</span>) }
+              <span class="ruby-identifier">td</span> { <span class="ruby-identifier">status</span>.<span class="ruby-identifier">capitalize</span> }
+              <span class="ruby-identifier">td</span> { 
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/stopped/</span>
+                  <span class="ruby-identifier">a</span>(<span class="ruby-value str">&quot;start&quot;</span>,<span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/start/#{s.service_name}&quot;</span>)
+                <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">status</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/running/</span>
+                  <span class="ruby-identifier">a</span>(<span class="ruby-value str">&quot;stop&quot;</span>,<span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/stop/#{s.service_name}&quot;</span>) 
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">b</span> { <span class="ruby-value str">&quot;in progress&quot;</span> }
+                <span class="ruby-keyword kw">end</span>
+              }
+              <span class="ruby-identifier">td</span> {
+                <span class="ruby-identifier">a</span>(<span class="ruby-value str">&quot;delete!&quot;</span>,<span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;/delete/#{s.service_name}&quot;</span>, 
+                  <span class="ruby-identifier">:onclick=</span><span class="ruby-operator">&gt;</span><span class="ruby-node">&quot;return confirm('Delete #{s.service_name}?') == '1'&quot;</span>)
+              }
+            }
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

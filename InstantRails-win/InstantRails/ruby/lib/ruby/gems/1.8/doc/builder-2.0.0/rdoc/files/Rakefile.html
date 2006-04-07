@@ -1,0 +1,418 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>File: Rakefile</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">File: Rakefile</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../files/lib/builder/blankslate_rb.html" value="File: blankslate.rb">lib/builder/blankslate.rb</a>
+<a href="../files/lib/builder/xchar_rb.html" value="File: xchar.rb">lib/builder/xchar.rb</a>
+<a href="../files/lib/builder/xmlbase_rb.html" value="File: xmlbase.rb">lib/builder/xmlbase.rb</a>
+<a href="../files/lib/builder/xmlevents_rb.html" value="File: xmlevents.rb">lib/builder/xmlevents.rb</a>
+<a href="../files/lib/builder/xmlmarkup_rb.html" value="File: xmlmarkup.rb">lib/builder/xmlmarkup.rb</a>
+<a href="../files/lib/builder_rb.html" value="File: builder.rb">lib/builder.rb</a>
+<a href="../files/README.html" value="File: README">README</a>
+<a href="../files/Rakefile.html" value="File: Rakefile">Rakefile</a>
+<a href="../files/CHANGES.html" value="File: CHANGES">CHANGES</a>
+<a href="../files/doc/releases/builder-1_2_4_rdoc.html" value="File: builder-1.2.4.rdoc">doc/releases/builder-1.2.4.rdoc</a>
+<a href="../files/doc/releases/builder-2_0_0_rdoc.html" value="File: builder-2.0.0.rdoc">doc/releases/builder-2.0.0.rdoc</a>
+|
+<strong>classes:</strong>
+<a href="../classes/Object.html" title="Class: Object">Object</a>
+<a href="../classes/String.html" title="Class: String">String</a>
+<a href="../classes/Fixnum.html" title="Class: Fixnum">Fixnum</a>
+<a href="../classes/Builder.html" title="Module: Builder">Builder</a>
+<a href="../classes/Builder/XChar.html" title="Module: Builder::XChar">Builder::XChar</a>
+<a href="../classes/Builder/XmlBase.html" title="Class: Builder::XmlBase">Builder::XmlBase</a>
+<a href="../classes/Builder/XmlMarkup.html" title="Class: Builder::XmlMarkup">Builder::XmlMarkup</a>
+<a href="../classes/Builder/XmlEvents.html" title="Class: Builder::XmlEvents">Builder::XmlEvents</a>
+<a href="../classes/Builder/BlankSlate.html" title="Class: Builder::BlankSlate">Builder::BlankSlate</a>
+<a href="../classes/Builder/IllegalBlockError.html" title="Class: Builder::IllegalBlockError">Builder::IllegalBlockError</a>
+<a href="../classes/Kernel.html" title="Module: Kernel">Kernel</a>
+</ul>
+</div>
+
+    <div id="Rakefile" class="page_shade">
+<div class="page">
+<div class="header">
+  <div class="path">Rakefile / Wed Mar 29 14:31:13 Central Standard Time 2006</div>
+</div>
+
+<p>
+# Rakefile for rake -*- ruby -*-
+</p>
+<p>
+# Copyright 2004, 2005, 2006 by Jim Weirich (jim@weirichhouse.org). # All
+rights reserved.
+</p>
+<p>
+# Permission is granted for use, copying, modification, distribution, # and
+distribution of modified versions of this work as long as the # above
+copyright notice is included.
+</p>
+<p>
+require &#8216;rake/clean&#8217; require &#8216;rake/testtask&#8217;
+require &#8216;rake/rdoctask&#8217; begin
+</p>
+<pre>
+  require 'rubygems'
+  require 'rake/gempackagetask'
+</pre>
+<p>
+rescue Exception
+</p>
+<pre>
+  nil
+</pre>
+<p>
+end
+</p>
+<p>
+# Determine the current version of the software
+</p>
+<p>
+CURRENT_VERSION = &#8216;2.0.0&#8217; PKG_VERSION = ENV[&#8216;REL&#8217;]
+? ENV[&#8216;REL&#8217;] : CURRENT_VERSION
+</p>
+<p>
+SRC_RB = <a href="http://'lib/**/*.rb'">FileList</a>
+</p>
+<p>
+# The default task is run if rake is given no explicit arguments.
+</p>
+<p>
+desc &quot;Default Task&quot; task :default =&gt; :test_all
+</p>
+<p>
+# Test Tasks
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+</p>
+<p>
+desc &quot;Run all tests&quot; task :test_all =&gt; [:test_units] task :ta
+=&gt; [:test_all]
+</p>
+<p>
+task :tu =&gt; [:test_units]
+</p>
+<p>
+Rake::TestTask.new(&quot;test_units&quot;) do |t|
+</p>
+<pre>
+  t.test_files = FileList['test/test*.rb']
+  t.verbose = false
+</pre>
+<p>
+end
+</p>
+<p>
+# Create a task to build the RDOC documentation tree.
+</p>
+<p>
+rd = Rake::RDocTask.new(&quot;rdoc&quot;) { |rdoc|
+</p>
+<pre>
+  rdoc.rdoc_dir = 'html'
+  rdoc.title    = &quot;Builder for Markup&quot;
+  rdoc.options &lt;&lt; '--line-numbers' &lt;&lt; '--inline-source' &lt;&lt; '--main' &lt;&lt; 'README'
+  rdoc.rdoc_files.include('lib/**/*.rb', '[A-Z]*', 'doc/**/*.rdoc')
+  rdoc.template = 'doc/jamis.rb'
+</pre>
+<p>
+}
+</p>
+<p>
+# ==================================================================== #
+Create a task that will package the Rake software into distributable # gem
+files.
+</p>
+<p>
+PKG_FILES = FileList[
+</p>
+<pre>
+  'lib/**/*.rb',
+  'test/**/*.rb',
+  'scripts/**/*.rb'
+</pre>
+<p>
+] PKG_FILES.exclude(&#8216;test/testcssbuilder.rb&#8217;)
+PKG_FILES.exclude(&#8216;lib/builder/css.rb&#8217;)
+</p>
+<p>
+if ! defined?(Gem)
+</p>
+<pre>
+  puts &quot;Package Target requires RubyGEMs&quot;
+</pre>
+<p>
+else
+</p>
+<pre>
+  spec = Gem::Specification.new do |s|
+
+    #### Basic information.
+
+    s.name = 'builder'
+    s.version = PKG_VERSION
+    s.summary = &quot;Builders for MarkUp.&quot;
+    s.description = &lt;&lt;EOS
+</pre>
+<p>
+<a href="../classes/Builder.html">Builder</a> provides a number of builder
+objects that make creating structured data simple to do. Currently the
+following builder objects are supported:
+</p>
+<ul>
+<li>XML Markup
+
+</li>
+<li>XML Events
+
+</li>
+</ul>
+<p>
+EOS
+</p>
+<pre>
+    s.files = PKG_FILES.to_a
+    s.require_path = 'lib'
+    s.autorequire = 'builder'
+
+    s.test_files = PKG_FILES.select { |fn| fn =~ /^test\/test/ }
+
+    s.has_rdoc = true
+    s.extra_rdoc_files = rd.rdoc_files.reject { |fn| fn =~ /\.rb$/ }.to_a
+    s.rdoc_options &lt;&lt;
+      '--title' &lt;&lt;  'Builder -- Easy XML Building' &lt;&lt;
+      '--main' &lt;&lt; 'README' &lt;&lt;
+      '--line-numbers'
+
+    s.author = &quot;Jim Weirich&quot;
+    s.email = &quot;jim@weirichhouse.org&quot;
+    s.homepage = &quot;http://onestepback.org&quot;
+  end
+
+    Rake::GemPackageTask.new(spec) do |t|
+      t.need_tar = true
+    end
+</pre>
+<p>
+end
+</p>
+<p>
+desc &quot;Look for Debugging print lines&quot; task :dbg do
+</p>
+<pre>
+  FileList['**/*.rb'].egrep /\bDBG|\bbreakpoint\b/
+</pre>
+<p>
+end
+</p>
+<p>
+#
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;
+# Creating a release
+</p>
+<p>
+def announce(msg=&#8217;&#8217;)
+</p>
+<pre>
+  STDERR.puts msg
+</pre>
+<p>
+end
+</p>
+<p>
+desc &quot;Make a new release&quot; task :release =&gt; [
+</p>
+<pre>
+  :prerelease,
+  :clobber,
+  :test_all,
+  :update_version,
+  :package,
+  :tag] do
+
+  announce
+  announce &quot;**************************************************************&quot;
+  announce &quot;* Release #{PKG_VERSION} Complete.&quot;
+  announce &quot;* Packages ready to upload.&quot;
+  announce &quot;**************************************************************&quot;
+  announce
+</pre>
+<p>
+end
+</p>
+<p>
+# Validate that everything is ready to go for a release. task :prerelease
+do
+</p>
+<pre>
+  announce
+  announce &quot;**************************************************************&quot;
+  announce &quot;* Making RubyGem Release #{PKG_VERSION}&quot;
+  announce &quot;* (current version #{CURRENT_VERSION})&quot;
+  announce &quot;**************************************************************&quot;
+  announce
+
+  # Is a release number supplied?
+  unless ENV['REL']
+    fail &quot;Usage: rake release REL=x.y.z [REUSE=tag_suffix]&quot;
+  end
+
+  # Is the release different than the current release.
+  # (or is REUSE set?)
+  if PKG_VERSION == CURRENT_VERSION &amp;&amp; ! ENV['REUSE']
+    fail &quot;Current version is #{PKG_VERSION}, must specify REUSE=tag_suffix to reuse version&quot;
+  end
+
+  # Are all source files checked in?
+  if ENV['RELTEST']
+    announce &quot;Release Task Testing, skipping checked-in file test&quot;
+  else
+    announce &quot;Checking for unchecked-in files...&quot;
+    data = `cvs -q update`
+    unless data =~ /^$/
+      fail &quot;CVS update is not clean ... do you have unchecked-in files?&quot;
+    end
+    announce &quot;No outstanding checkins found ... OK&quot;
+  end
+</pre>
+<p>
+end
+</p>
+<p>
+task :update_version =&gt; [:prerelease] do
+</p>
+<pre>
+  if PKG_VERSION == CURRENT_VERSION
+    announce &quot;No version change ... skipping version update&quot;
+  else
+    announce &quot;Updating Builder version to #{PKG_VERSION}&quot;
+    open(&quot;Rakefile&quot;) do |rakein|
+      open(&quot;Rakefile.new&quot;, &quot;w&quot;) do |rakeout|
+        rakein.each do |line|
+          if line =~ /^CURRENT_VERSION\s*=\s*/
+            rakeout.puts &quot;CURRENT_VERSION = '#{PKG_VERSION}'&quot;
+          else
+            rakeout.puts line
+          end
+        end
+      end
+    end
+    mv &quot;Rakefile.new&quot;, &quot;Rakefile&quot;
+    if ENV['RELTEST']
+      announce &quot;Release Task Testing, skipping commiting of new version&quot;
+    else
+      sh %{cvs commit -m &quot;Updated to version #{PKG_VERSION}&quot; Rakefile}
+    end
+  end
+</pre>
+<p>
+end
+</p>
+<p>
+desc &quot;Tag all the CVS files with the latest release number
+(REL=x.y.z)&quot; task :tag =&gt; [:prerelease] do
+</p>
+<pre>
+  reltag = &quot;REL_#{PKG_VERSION.gsub(/\./, '_')}&quot;
+  reltag &lt;&lt; ENV['REUSE'].gsub(/\./, '_') if ENV['REUSE']
+  announce &quot;Tagging CVS with [#{reltag}]&quot;
+  if ENV['RELTEST']
+    announce &quot;Release Task Testing, skipping CVS tagging&quot;
+  else
+    sh %{cvs tag #{reltag}}
+  end
+</pre>
+<p>
+end
+</p>
+<p>
+desc &quot;Install the jamis RDoc template&quot; task
+:install_jamis_template do
+</p>
+<pre>
+  require 'rbconfig'
+  dest_dir = File.join(Config::CONFIG['rubylibdir'], &quot;rdoc/generators/template/html&quot;)
+  fail &quot;Unabled to write to #{dest_dir}&quot; unless File.writable?(dest_dir)
+  install &quot;doc/jamis.rb&quot;, dest_dir, :verbose =&gt; true
+</pre>
+<p>
+end
+</p>
+<p>
+require &#8216;scripts/publish&#8216;
+</p>
+
+
+<h4>Requires:</h4>
+<ul>
+<li>builder/xmlmarkup</li>
+<li>builder/xmlevents</li>
+</ul>
+
+
+
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stop (Configure::Views)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel_config/app.rb, line 121</span>
+121:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stop</span>
+122:     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_running?</span>
+123:       <span class="ruby-identifier">ul</span> <span class="ruby-keyword kw">do</span>
+124:         <span class="ruby-identifier">li</span> { <span class="ruby-identifier">a</span> <span class="ruby-value str">&quot;Stop (TERM)&quot;</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/kill/term&quot;</span> }
+125:         <span class="ruby-identifier">li</span> { <span class="ruby-identifier">a</span> <span class="ruby-value str">&quot;Reload (HUP)&quot;</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/kill/hup&quot;</span> }
+126:         <span class="ruby-identifier">li</span> { <span class="ruby-identifier">a</span> <span class="ruby-value str">&quot;Restart (USR2)&quot;</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/kill/usr2&quot;</span> }
+127:         <span class="ruby-identifier">li</span> { <span class="ruby-identifier">a</span> <span class="ruby-value str">&quot;Kill (KILL)&quot;</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/kill/kill&quot;</span> }
+128:       <span class="ruby-keyword kw">end</span>
+129:     <span class="ruby-keyword kw">else</span>
+130:       <span class="ruby-identifier">p</span> { <span class="ruby-value str">&quot;Mongrel does not appear to be running (no PID file at #$PID_FILE).&quot;</span> }
+131:     <span class="ruby-keyword kw">end</span>
+132:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

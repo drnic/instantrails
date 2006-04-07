@@ -1,0 +1,266 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Camping::Controllers::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Camping::Controllers::Base</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../../files/lib/camping-unabridged_rb.html" value="File: camping-unabridged.rb">lib/camping-unabridged.rb</a>
+<a href="../../../files/README.html" value="File: README">README</a>
+<a href="../../../files/CHANGELOG.html" value="File: CHANGELOG">CHANGELOG</a>
+|
+<strong>classes:</strong>
+<a href="../../../classes/Camping.html" title="Module: Camping">Camping</a>
+<a href="../../../classes/Camping/Views.html" title="Module: Camping::Views">Camping::Views</a>
+<a href="../../../classes/Camping/Controllers.html" title="Module: Camping::Controllers">Camping::Controllers</a>
+<a href="../../../classes/Camping/Controllers/Base.html" title="Module: Camping::Controllers::Base">Camping::Controllers::Base</a>
+<a href="../../../classes/Camping/Controllers/ServerError.html" title="Class: Camping::Controllers::ServerError">Camping::Controllers::ServerError</a>
+<a href="../../../classes/Camping/Controllers/R.html" title="Class: Camping::Controllers::R">Camping::Controllers::R</a>
+<a href="../../../classes/Camping/Controllers/NotFound.html" title="Class: Camping::Controllers::NotFound">Camping::Controllers::NotFound</a>
+<a href="../../../classes/Camping/Helpers.html" title="Module: Camping::Helpers">Camping::Helpers</a>
+<a href="../../../classes/Camping/Models.html" title="Module: Camping::Models">Camping::Models</a>
+<a href="../../../classes/Camping/Models/Base.html" title="Module: Camping::Models::Base">Camping::Models::Base</a>
+<a href="../../../classes/Camping/Mab.html" title="Class: Camping::Mab">Camping::Mab</a>
+<a href="../../../classes/Camping/H.html" title="Class: Camping::H">Camping::H</a>
+</ul>
+</div>
+
+    
+<div id="Camping::Controllers::Base" class="page_shade">
+<div class="page">
+<h3>Module Camping::Controllers::Base</h3>
+
+(in files
+<a href="../../../files/lib/camping-unabridged_rb.html">lib/camping-unabridged.rb</a>
+)
+
+<p>
+<a href="Base.html">Controllers::Base</a> is built into each controller by
+way of the generic routing class <a href="R.html">Controllers::R</a>. In
+some ways, this class is trying to do too much, but it saves code for all
+the glue to stay in one place.
+</p>
+<p>
+Forgivable, considering that it&#8217;s only really a handful of methods
+and accessors.
+</p>
+<h2>Treating controller methods like Response objects</h2>
+<p>
+<a href="../../Camping.html">Camping</a> originally came with a barebones
+Response object, but it&#8217;s often much more readable to just use your
+controller as the response.
+</p>
+<p>
+Go ahead and alter the status, cookies, headers and body instance variables
+as you see fit in order to customize the response.
+</p>
+<pre>
+  module Camping::Controllers
+    class SoftLink
+      def get
+        redirect &quot;/&quot;
+      end
+    end
+  end
+</pre>
+<p>
+Is equivalent to:
+</p>
+<pre>
+  module Camping::Controllers
+    class SoftLink
+      def get
+        @status = 302
+        @headers['Location'] = &quot;/&quot;
+      end
+    end
+  end
+</pre>
+
+
+
+
+<h4>Includes</h4>
+<ul>
+<li><a href="../Helpers.html">Helpers</a></li>
+</ul>
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000053">method_missing(m, *a, &amp;b)</a></strong></h4>
+
+<p>
+Any stray method calls will be passed to Markaby. This means you can reply
+with HTML directly from your controller for quick debugging.
+</p>
+<pre>
+  module Camping::Controllers
+    class Info
+      def get; code @env.inspect end
+    end
+  end
+</pre>
+<p>
+If you have a <tt>layout</tt> method in <a
+href="../Views.html">Camping::Views</a>, it will be used to wrap the HTML.
+</p>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000053_source')" id="l_M000053_source">show source</a> ]</p>
+  <div id="M000053_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 283</span>
+283:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>(<span class="ruby-identifier">m</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)
+284:         <span class="ruby-identifier">str</span> = <span class="ruby-identifier">m</span><span class="ruby-operator">==</span><span class="ruby-identifier">:render</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">markaview</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">a</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">b</span>)<span class="ruby-operator">:</span><span class="ruby-identifier">eval</span>(<span class="ruby-node">&quot;markaby.#{m}(*a, &amp;b)&quot;</span>)
+285:         <span class="ruby-identifier">str</span> = <span class="ruby-identifier">markaview</span>(<span class="ruby-identifier">:layout</span>) { <span class="ruby-identifier">str</span> } <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Views</span>.<span class="ruby-identifier">method_defined?</span> <span class="ruby-identifier">:layout</span>
+286:         <span class="ruby-identifier">r</span>(<span class="ruby-value">200</span>, <span class="ruby-identifier">str</span>.<span class="ruby-identifier">to_s</span>)
+287:       <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000055">r(s, b, h = {})</a></strong></h4>
+
+<p>
+A quick means of setting this controller&#8217;s status, body and headers.
+Used internally by <a href="../../Camping.html">Camping</a>, but&#8230; by
+all means&#8230;
+</p>
+<pre>
+  r(302, '', 'Location' =&gt; self / &quot;/view/12&quot;)
+</pre>
+<p>
+Is equivalent to:
+</p>
+<pre>
+  redirect &quot;/view/12&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000055_source')" id="l_M000055_source">show source</a> ]</p>
+  <div id="M000055_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 313</span>
+313:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">r</span>(<span class="ruby-identifier">s</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">h</span> = {}); <span class="ruby-ivar">@status</span> = <span class="ruby-identifier">s</span>; <span class="ruby-ivar">@headers</span>.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">h</span>); <span class="ruby-ivar">@body</span> = <span class="ruby-identifier">b</span>; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000054">redirect(c, *args)</a></strong></h4>
+
+<p>
+Formulate a redirect response: a 302 status with <tt>Location</tt> header
+and a blank body. If <tt>c</tt> is a string, the root path will be added.
+If <tt>c</tt> is a controller class, Helpers::R will be used to route the
+redirect and the root path will be added.
+</p>
+<p>
+So, given a root of <tt>/articles</tt>:
+</p>
+<pre>
+  redirect &quot;view/12&quot;    # redirects to &quot;/articles/view/12&quot;
+  redirect View, 12     # redirects to &quot;/articles/view/12&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000054_source')" id="l_M000054_source">show source</a> ]</p>
+  <div id="M000054_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 299</span>
+299:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">redirect</span>(<span class="ruby-identifier">c</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+300:         <span class="ruby-identifier">c</span> = <span class="ruby-constant">R</span>(<span class="ruby-identifier">c</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:urls</span>
+301:         <span class="ruby-identifier">r</span>(<span class="ruby-value">302</span>, <span class="ruby-value str">''</span>, <span class="ruby-value str">'Location'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">self</span><span class="ruby-operator">/</span><span class="ruby-identifier">c</span>)
+302:       <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000052">render(m)</a></strong></h4>
+
+<p>
+Display a view, calling it by its method name <tt>m</tt>. If a
+<tt>layout</tt> method is found in <a
+href="../Views.html">Camping::Views</a>, it will be used to wrap the HTML.
+</p>
+<pre>
+  module Camping::Controllers
+    class Show
+      def get
+        @posts = Post.find :all
+        render :index
+      end
+    end
+  end
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000052_source')" id="l_M000052_source">show source</a> ]</p>
+  <div id="M000052_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 270</span>
+270:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render</span>(<span class="ruby-identifier">m</span>); <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

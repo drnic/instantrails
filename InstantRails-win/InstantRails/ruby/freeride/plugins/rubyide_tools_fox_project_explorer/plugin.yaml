@@ -1,0 +1,11 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_project_explorer
+version: 1.0
+autoload: (true)
+require_path: rubyide_tools_fox_project_explorer/fox_project_explorer.rb
+startup_module: FreeRIDE::Tools::FoxProjectExplorer
+properties_path: projects.yaml
+start_dependencies: 
+  rubyide_fox_gui: "*"
+  rubyide_project: "*"
+  rubyide_tools_fox_source_browser: "*"

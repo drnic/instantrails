@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>validate (Status)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel_status/init.rb, line 14</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">validate</span>
+    <span class="ruby-ivar">@cwd</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-ivar">@cwd</span>)
+    <span class="ruby-identifier">valid_dir?</span> <span class="ruby-ivar">@cwd</span>, <span class="ruby-value str">&quot;Invalid path to change to during daemon mode: #@cwd&quot;</span>
+
+    <span class="ruby-ivar">@pid_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@cwd</span>,<span class="ruby-ivar">@pid_file</span>)
+    <span class="ruby-identifier">valid_exists?</span> <span class="ruby-ivar">@pid_file</span>, <span class="ruby-value str">&quot;PID file #@pid_file does not exist. Not running?&quot;</span> 
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@valid</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

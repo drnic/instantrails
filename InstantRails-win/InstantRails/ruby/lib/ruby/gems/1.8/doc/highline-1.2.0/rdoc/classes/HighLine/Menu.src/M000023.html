@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (HighLine::Menu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/highline/menu.rb, line 26</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(  )
+      <span class="ruby-comment cmt">#</span>
+      <span class="ruby-comment cmt"># Initialize Question objects with ignored values, we'll</span>
+      <span class="ruby-comment cmt"># adjust ours as needed.</span>
+      <span class="ruby-comment cmt"># </span>
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-value str">&quot;Ignored&quot;</span>, [ ], <span class="ruby-operator">&amp;</span><span class="ruby-keyword kw">nil</span>)    <span class="ruby-comment cmt"># avoiding passing the block along</span>
+      
+      <span class="ruby-ivar">@items</span>           = [ ]
+      <span class="ruby-ivar">@hidden_items</span>    = [ ]
+      <span class="ruby-ivar">@help</span>            = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;There's no help for that topic.&quot;</span>)
+
+      <span class="ruby-ivar">@index</span>           = <span class="ruby-identifier">:number</span>
+      <span class="ruby-ivar">@index_suffix</span>    = <span class="ruby-value str">&quot;. &quot;</span>
+      <span class="ruby-ivar">@select_by</span>       = <span class="ruby-identifier">:index_or_name</span>
+      <span class="ruby-ivar">@flow</span>            = <span class="ruby-identifier">:rows</span>
+      <span class="ruby-ivar">@list_option</span>     = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@header</span>          = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@prompt</span>          = <span class="ruby-value str">&quot;?  &quot;</span>
+      <span class="ruby-ivar">@layout</span>          = <span class="ruby-identifier">:list</span>
+      <span class="ruby-ivar">@shell</span>           = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@nil_on_handled</span>  = <span class="ruby-keyword kw">false</span>
+      
+      <span class="ruby-comment cmt"># Override Questions responses, we'll set our own.</span>
+      <span class="ruby-ivar">@responses</span>       = { }
+      <span class="ruby-comment cmt"># Context for action code.</span>
+      <span class="ruby-ivar">@highline</span>        = <span class="ruby-keyword kw">nil</span>
+      
+      <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+
+      <span class="ruby-identifier">init_help</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@shell</span> <span class="ruby-keyword kw">and</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@help</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">update_responses</span>     <span class="ruby-comment cmt"># rebuild responses based on our settings</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

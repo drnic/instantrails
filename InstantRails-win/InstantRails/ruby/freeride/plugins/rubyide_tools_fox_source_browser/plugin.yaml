@@ -1,0 +1,12 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_source_browser
+version: 1.0
+autoload: true
+require_path: rubyide_tools_fox_source_browser/source_browser
+startup_module: FreeRIDE::FoxRenderer::SourceBrowser
+properties_path: properties.yaml
+start_dependencies: 
+  rubyide_fox_gui: "*"
+  rubyide_tools_fox_file_browser: "*"
+load_dependencies:
+  rubyide_tools_fox_file_browser: "*"

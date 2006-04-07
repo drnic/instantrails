@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Markaby::Builder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/markaby/builder.rb, line 38</span>
+38:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">assigns</span> = {}, <span class="ruby-identifier">helpers</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+39:       <span class="ruby-ivar">@stream</span> = []
+40:       <span class="ruby-ivar">@assigns</span> = <span class="ruby-identifier">assigns</span>
+41:       <span class="ruby-ivar">@builder</span> = <span class="ruby-operator">::</span><span class="ruby-constant">Builder</span><span class="ruby-operator">::</span><span class="ruby-constant">XmlMarkup</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:indent</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">2</span>, <span class="ruby-identifier">:target</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@stream</span>)
+42:       <span class="ruby-ivar">@output_helpers</span> = <span class="ruby-keyword kw">true</span>
+43: 
+44:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">helpers</span>.<span class="ruby-identifier">nil?</span>
+45:         <span class="ruby-ivar">@helpers</span> = <span class="ruby-keyword kw">nil</span>
+46:       <span class="ruby-keyword kw">else</span>
+47:         <span class="ruby-ivar">@helpers</span> = <span class="ruby-identifier">helpers</span>.<span class="ruby-identifier">dup</span>
+48:         <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">iv</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">helpers</span>.<span class="ruby-identifier">instance_variables</span>
+49:           <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-identifier">iv</span>, <span class="ruby-identifier">helpers</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">iv</span>))
+50:         <span class="ruby-keyword kw">end</span>
+51:       <span class="ruby-keyword kw">end</span>
+52: 
+53:       <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">assigns</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">assigns</span>.<span class="ruby-identifier">empty?</span>
+54:         <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">iv</span>, <span class="ruby-identifier">val</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">assigns</span>
+55:           <span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{iv}&quot;</span>, <span class="ruby-identifier">val</span>)
+56:           <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@helpers</span>.<span class="ruby-identifier">nil?</span>
+57:             <span class="ruby-ivar">@helpers</span>.<span class="ruby-identifier">instance_variable_set</span>(<span class="ruby-node">&quot;@#{iv}&quot;</span>, <span class="ruby-identifier">val</span>)
+58:           <span class="ruby-keyword kw">end</span>
+59:         <span class="ruby-keyword kw">end</span>
+60:       <span class="ruby-keyword kw">end</span>
+61: 
+62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block</span>
+63:         <span class="ruby-identifier">r</span> = <span class="ruby-identifier">instance_eval</span> <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+64:         <span class="ruby-identifier">text</span>(<span class="ruby-identifier">r</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">empty?</span>
+65:       <span class="ruby-keyword kw">end</span>
+66:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,124 @@
+--- !ruby/object:FreeBASE::SubsystemConfiguration 
+name: rubyide_fox_gui
+version: 1.0
+plugins: 
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-appframe
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/appframe
+    startup_module: FreeRIDE::FoxRenderer::AppFrame
+    properties_path: appframe.yaml
+    start_dependencies: 
+      rubyide_gui: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-editpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/editpane
+    startup_module: FreeRIDE::FoxRenderer::EditPane
+    properties_path: editpane.yaml
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+      rubyide_fox_gui-fox_services: "*"
+
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-menupane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/menupane
+    startup_module: FreeRIDE::FoxRenderer::MenuPane
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-menubar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/menubar
+    startup_module: FreeRIDE::FoxRenderer::MenuBar
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+      rubyide_fox_gui-menupane: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-dockpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/dockpane
+    startup_module: FreeRIDE::FoxRenderer::DockPane
+    properties_path: dockpane.yaml
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-dockbar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/dockbar
+    startup_module: FreeRIDE::FoxRenderer::DockBar
+    properties_path: dockbar.yaml
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+      rubyide_fox_gui-dockpane: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-outputpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/outputpane
+    startup_module: FreeRIDE::FoxRenderer::OutputPane
+    properties_path: outputpane.yaml
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+      rubyide_fox_gui-dockpane: "*"
+      rubyide_fox_gui-dockbar: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-toolbar
+    version: 1.0
+    autoload: true
+    properties_path: toolbar.yaml
+    require_path: rubyide_fox_gui/toolbar
+    startup_module: FreeRIDE::FoxRenderer::ToolBar
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-fox_services
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/fox_services
+    startup_module: FreeRIDE::FoxRenderer::Services
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_fox_gui-statusbar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_fox_gui/statusbar
+    startup_module: FreeRIDE::FoxRenderer::StatusBar
+    load_dependencies: 
+      rubyide_fox_gui-appframe: "*"
+    start_dependencies: 
+      rubyide_fox_gui-appframe: "*"

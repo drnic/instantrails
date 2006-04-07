@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the process group ID for this process. Not available on all platforms.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   Process.getpgid(0)   #=&gt; 25527\n   Process.getpgrp      #=&gt; 25527\n"
+full_name: Process#getpgrp
+is_singleton: false
+name: getpgrp
+params: |
+  Process.getpgrp   => integer
+
+visibility: public

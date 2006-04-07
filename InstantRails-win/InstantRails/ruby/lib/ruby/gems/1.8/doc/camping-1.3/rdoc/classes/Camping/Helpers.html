@@ -1,0 +1,242 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Camping::Helpers</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Camping::Helpers</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../files/lib/camping-unabridged_rb.html" value="File: camping-unabridged.rb">lib/camping-unabridged.rb</a>
+<a href="../../files/README.html" value="File: README">README</a>
+<a href="../../files/CHANGELOG.html" value="File: CHANGELOG">CHANGELOG</a>
+|
+<strong>classes:</strong>
+<a href="../../classes/Camping.html" title="Module: Camping">Camping</a>
+<a href="../../classes/Camping/Views.html" title="Module: Camping::Views">Camping::Views</a>
+<a href="../../classes/Camping/Controllers.html" title="Module: Camping::Controllers">Camping::Controllers</a>
+<a href="../../classes/Camping/Controllers/Base.html" title="Module: Camping::Controllers::Base">Camping::Controllers::Base</a>
+<a href="../../classes/Camping/Controllers/ServerError.html" title="Class: Camping::Controllers::ServerError">Camping::Controllers::ServerError</a>
+<a href="../../classes/Camping/Controllers/R.html" title="Class: Camping::Controllers::R">Camping::Controllers::R</a>
+<a href="../../classes/Camping/Controllers/NotFound.html" title="Class: Camping::Controllers::NotFound">Camping::Controllers::NotFound</a>
+<a href="../../classes/Camping/Helpers.html" title="Module: Camping::Helpers">Camping::Helpers</a>
+<a href="../../classes/Camping/Models.html" title="Module: Camping::Models">Camping::Models</a>
+<a href="../../classes/Camping/Models/Base.html" title="Module: Camping::Models::Base">Camping::Models::Base</a>
+<a href="../../classes/Camping/Mab.html" title="Class: Camping::Mab">Camping::Mab</a>
+<a href="../../classes/Camping/H.html" title="Class: Camping::H">Camping::H</a>
+</ul>
+</div>
+
+    
+<div id="Camping::Helpers" class="page_shade">
+<div class="page">
+<h3>Module Camping::Helpers &lt; Object</h3>
+
+(in files
+<a href="../../files/lib/camping-unabridged_rb.html">lib/camping-unabridged.rb</a>
+)
+
+<p>
+<a href="Helpers.html">Helpers</a> contains methods available in your
+controllers and views. You may add methods of your own to this module,
+including many helper methods from Rails. This is analogous to Rails&#8217;
+<tt>ApplicationHelper</tt> module.
+</p>
+<h2>Using ActionPack <a href="Helpers.html">Helpers</a></h2>
+<p>
+If you&#8217;d like to include helpers from Rails&#8217; modules,
+you&#8217;ll need to look up the helper module in the Rails documentation
+at <a href="http://api.rubyonrails.org">api.rubyonrails.org</a>/.
+</p>
+<p>
+For example, if you look up the <tt>ActionView::Helpers::FormHelper</tt>
+class, you&#8217;ll find that it&#8217;s loaded from the
+<tt>action_view/helpers/form_helper.rb</tt> file. You&#8216;ll need to have
+the ActionPack gem installed for this to work.
+</p>
+<pre>
+  require 'action_view/helpers/form_helper.rb'
+
+  # This example is unfinished.. soon..
+</pre>
+
+
+
+
+<h4>Includes</h4>
+<ul>
+<li><a href="Base.html">Base</a></li>
+</ul>
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000060">/(p)</a></strong></h4>
+
+<p>
+Simply builds the complete URL from a relative or absolute path <tt>p</tt>.
+If your application is running from <tt>/blog</tt>:
+</p>
+<pre>
+  self / &quot;/view/1&quot;    #=&gt; &quot;/blog/view/1&quot;
+  self / &quot;styles.css&quot; #=&gt; &quot;styles.css&quot;
+  self / R(Edit, 1)   #=&gt; &quot;/blog/edit/1&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000060_source')" id="l_M000060_source">show source</a> ]</p>
+  <div id="M000060_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 199</span>
+199:     <span class="ruby-keyword kw">def</span> <span class="ruby-operator">/</span>(<span class="ruby-identifier">p</span>); <span class="ruby-identifier">p</span>[<span class="ruby-regexp re">/^\//</span>]<span class="ruby-operator">?</span><span class="ruby-ivar">@root</span><span class="ruby-operator">+</span><span class="ruby-identifier">p</span><span class="ruby-identifier">:p</span> <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000058">R(c,*args)</a></strong></h4>
+
+<p>
+From inside your controllers and views, you will often need to figure out
+the route used to get to a certain controller <tt>c</tt>. Pass the
+controller class and any arguments into the R method, a string containing
+the route will be returned to you.
+</p>
+<p>
+Assuming you have a specific route in an edit controller:
+</p>
+<pre>
+  class Edit &lt; R '/edit/(\d+)'
+</pre>
+<p>
+A specific route to the Edit controller can be built with:
+</p>
+<pre>
+  R(Edit, 1)
+</pre>
+<p>
+Which outputs: <tt>/edit/1</tt>.
+</p>
+<p>
+You may also pass in a model object and the ID of the object will be used.
+</p>
+<p>
+If a controller has many routes, the route will be selected if it is the
+first in the routing list to have the right number of arguments.
+</p>
+<p>
+Keep in mind that this route doesn&#8217;t include the root path.
+Occassionally you will need to use <tt>/</tt> (the slash method above).
+</p>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000058_source')" id="l_M000058_source">show source</a> ]</p>
+  <div id="M000058_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 167</span>
+167:     <span class="ruby-keyword kw">def</span> <span class="ruby-constant">R</span>(<span class="ruby-identifier">c</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+168:       <span class="ruby-identifier">p</span> = <span class="ruby-regexp re">/\(.+?\)/</span>
+169:       <span class="ruby-identifier">args</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">c</span>.<span class="ruby-identifier">urls</span>.<span class="ruby-identifier">find</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">x</span><span class="ruby-operator">|</span><span class="ruby-identifier">x</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-identifier">p</span>).<span class="ruby-identifier">size</span><span class="ruby-operator">==</span><span class="ruby-identifier">args</span>.<span class="ruby-identifier">size</span>}.<span class="ruby-identifier">dup</span>){<span class="ruby-operator">|</span><span class="ruby-identifier">str</span>,<span class="ruby-identifier">a</span><span class="ruby-operator">|</span>
+170:         <span class="ruby-identifier">str</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-identifier">p</span>,(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">__send__</span>(<span class="ruby-identifier">a</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">primary_key</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-identifier">a</span>).<span class="ruby-identifier">to_s</span>)
+171:       }
+172:     <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000059">errors_for(o)</a></strong></h4>
+
+<p>
+Shows AR validation errors for the object passed. There is no output if
+there are no errors.
+</p>
+<p>
+An example might look like:
+</p>
+<pre>
+  errors_for @post
+</pre>
+<p>
+Might (depending on actual data) render something like this in Markaby:
+</p>
+<pre>
+  ul.errors do
+    li &quot;Body can't be empty&quot;
+    li &quot;Title must be unique&quot;
+  end
+</pre>
+<p>
+Add a simple ul.errors {color:red; font-weight:bold;} CSS rule and you have
+built-in, usable error checking in only one line of code. :-)
+</p>
+<p>
+See AR validation documentation for details on validations.
+</p>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000059_source')" id="l_M000059_source">show source</a> ]</p>
+  <div id="M000059_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 191</span>
+191:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">errors_for</span>(<span class="ruby-identifier">o</span>); <span class="ruby-identifier">ul</span>.<span class="ruby-identifier">errors</span> { <span class="ruby-identifier">o</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">each_full</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">er</span><span class="ruby-operator">|</span> <span class="ruby-identifier">li</span> <span class="ruby-identifier">er</span> } } <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">empty?</span>; <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (Rake::Application)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/rake.rb, line 1710</span>
+1710:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+1711:       <span class="ruby-identifier">handle_options</span>
+1712:       <span class="ruby-keyword kw">begin</span>
+1713:         <span class="ruby-identifier">tasks</span> = <span class="ruby-identifier">collect_tasks</span>
+1714:         <span class="ruby-identifier">load_rakefile</span>
+1715:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">show_tasks</span>
+1716:           <span class="ruby-identifier">display_tasks_and_comments</span>
+1717:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">show_prereqs</span>
+1718:           <span class="ruby-identifier">display_prerequisites</span>
+1719:         <span class="ruby-keyword kw">else</span>
+1720:           <span class="ruby-identifier">tasks</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">task_name</span><span class="ruby-operator">|</span> <span class="ruby-constant">Rake</span><span class="ruby-operator">::</span><span class="ruby-constant">Task</span>[<span class="ruby-identifier">task_name</span>].<span class="ruby-identifier">invoke</span> }
+1721:         <span class="ruby-keyword kw">end</span>
+1722:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ex</span>
+1723:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;rake aborted!&quot;</span>
+1724:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">ex</span>.<span class="ruby-identifier">message</span>
+1725:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">trace</span>
+1726:           <span class="ruby-identifier">puts</span> <span class="ruby-identifier">ex</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+1727:         <span class="ruby-keyword kw">else</span>
+1728:           <span class="ruby-identifier">puts</span> <span class="ruby-identifier">ex</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">find</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">str</span><span class="ruby-operator">|</span> <span class="ruby-identifier">str</span> <span class="ruby-operator">=~</span> <span class="ruby-node">/#{@rakefile}/</span> } <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+1729:           <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;(See full trace by running task with --trace)&quot;</span>
+1730:         <span class="ruby-keyword kw">end</span>
+1731:         <span class="ruby-identifier">exit</span>(<span class="ruby-value">1</span>)
+1732:       <span class="ruby-keyword kw">end</span>    
+1733:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

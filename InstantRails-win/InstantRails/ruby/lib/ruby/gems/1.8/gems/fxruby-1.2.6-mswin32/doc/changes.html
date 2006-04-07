@@ -1,0 +1,266 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Chapter&nbsp;10.&nbsp;Change History</title><meta name="generator" content="DocBook XSL Stylesheets V1.61.2"><link rel="home" href="book.html" title="Developing Graphical User Interfaces with FXRuby"><link rel="up" href="pt01.html" title="Part&nbsp;I.&nbsp;The Basics"><link rel="previous" href="infosources.html" title="Chapter&nbsp;9.&nbsp;Other Sources of Information"><link rel="next" href="pt02.html" title="Part&nbsp;II.&nbsp;Appendices"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter&nbsp;10.&nbsp;Change History</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="infosources.html">Prev</a>&nbsp;</td><th width="60%" align="center">Part&nbsp;I.&nbsp;The Basics</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="pt02.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="changes"></a>Chapter&nbsp;10.&nbsp;Change History</h2></div></div><div></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2403"></a>Changes For Version 1.2.6 (April 15, 2005)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>Some additional problems related to calling the
+        <tt class="methodname">setTableSize</tt> method for an
+        <tt class="classname">FXTable</tt> were discovered (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1597&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1597</a>). This problem has been corrected. Thanks to Joel
+        VanderWerf for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="filename">iconlist.rb</tt> example program had a
+        "Sort" pulldown menu filled with a number of commands that didn't
+        really do anything, including sorting the items (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1654&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1654</a>). This pulldown menu has been removed from that
+        example.</p></li><li style="list-style-type: disc"><p>The API documentation for the <tt class="classname">FXDC</tt> class
+        erroneously referred to the <tt class="methodname">font</tt> attribute as
+        <tt class="methodname">textFont</tt> (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1667&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1667</a>). This problem has been corrected. Thanks to Meinrad
+        Recheis for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">checked?</tt>,
+        <tt class="methodname">unchecked?</tt> and
+        <tt class="methodname">maybe?</tt> methods for the
+        <tt class="classname">FXMenuCheck</tt> class were missing (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1677&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1677</a>). This problem has been corrected. Thanks to Oliver
+        Smith for reporting this problem.</p></li><li style="list-style-type: disc"><p>The API documentation for the
+        <tt class="classname">FXScrollArea</tt> class incorrectly spelled the
+        names of the <tt class="methodname">horizontalScrollBar</tt> and
+        <tt class="methodname">verticalScrollBar</tt> methods as
+        <tt class="methodname">horizontalScrollbar</tt> and
+        <tt class="methodname">verticalScrollbar</tt> (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1678&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1678</a>). The documentation has been corrected. Thanks to
+        Jannis Pohlmann for reporting this mistake.</p></li><li style="list-style-type: disc"><p>Some code in the <tt class="filename">groupbox.rb</tt> example
+        program was calling the <tt class="methodname">getRootWindow</tt> method,
+        but that method has been renamed to <tt class="methodname">getRoot</tt>
+        (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1692&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1692</a>). This problem has been corrected. Thanks to
+        Jaroslav Stika for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">hasChar?</tt> method for the
+        <tt class="classname">FXFont</tt> class was spelled without a trailing
+        question mark, but it seems more Ruby-like that it should, so we've
+        added an alias for that (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1714&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1714</a>). This method also now accepts a string of size 1
+        (i.e. a single character) as its input, as an alternative to an
+        ordinal value. Thanks to Meinrad Recheis for these suggestions.</p></li><li style="list-style-type: disc"><p>The API documentation for the <tt class="classname">FXImage</tt>
+        class mistakenly listed <tt class="constant">IMAGE_ALPHA</tt> as a valid
+        image rendering hint, but this flag is no longer needed since FOX
+        images now always contain an alpha channel (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1715&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1715</a>). The documentation has been corrected. Thanks to
+        Meinrad Recheis for reporting this mistake.</p></li><li style="list-style-type: disc"><p>Due to an error in the SWIG interface files, the
+        <tt class="methodname">data</tt> method for the
+        <tt class="classname">FXSettings</tt> class was not being wrapped
+        properly. As a result, this method was unavailable and in turn led to
+        other dependent methods (like <tt class="methodname">each_section</tt>)
+        to be unavailable as well (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1771&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1771</a>). This error has been corrected. Thanks to Jannis
+        Pohlmann for reporting this problem.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.16 and
+        FXScintilla version 1.62.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2539"></a>Changes For Version 1.2.5 (March 1, 2005)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>The change made for FXRuby version 1.2.4 regarding garbage
+        collection for table items corrected only one of the problems
+        described in <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1445&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1445</a>; There was still a problem related to the
+        "destructive" effects of the <tt class="methodname">setTableSize</tt>
+        method for the <tt class="classname">FXTable</tt> class. This problem has
+        now been corrected as well. Thanks to David Peoples, Jamey Cribbs and
+        Joel VanderWerf for their assistance in helping me to track down this
+        problem.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">extractText</tt> and
+        <tt class="methodname">overlayText</tt> methods for the
+        <tt class="classname">FXTable</tt> class were implemented incorrectly and
+        weren't listed in the API documentation. These problems have been
+        corrected.</p></li><li style="list-style-type: disc"><p>The checks for out-of-bounds indices in the
+        <tt class="methodname">getColumnX</tt>,
+        <tt class="methodname">setColumnX</tt>, <tt class="methodname">getRowY</tt>,
+        <tt class="methodname">setRowY</tt> and
+        <tt class="methodname">updateRange</tt> methods for the
+        <tt class="classname">FXTable</tt> class were incorrect. These have been
+        fixed.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">setTableSize</tt> method for the
+        <tt class="classname">FXTable</tt> class now raises
+        <tt class="classname">ArgError</tt> if either the number of rows or
+        columns passed in as arguments is less than zero.</p></li><li style="list-style-type: disc"><p>A typo in one of the source files was causing the build to fail
+        when compiled against Ruby versions 1.8.1 or earlier (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1551&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1551</a>). This error has been corrected. Thanks to Alex
+        McGuire for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">selectItem</tt> method for the
+        <tt class="classname">FXTable</tt> class was removed in FOX 1.2, so we've
+        added a convenience method for this that just calls the
+        <tt class="methodname">selectRange</tt> method under the hood (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1562&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1562</a>). Thanks to Joel VanderWerf for this
+        suggestion.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2624"></a>Changes For Version 1.2.4 (February 23, 2005)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>Due to a change in some of the internal Ruby C APIs, a
+        compile-time error for FXRuby was introduced in some of the Ruby 1.8.2
+        preview releases (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1039&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1039</a>). One should not see any compile-time errors when
+        compiling FXRuby (versions 1.2.3 or later) against the Ruby 1.8.2
+        final release, but I've neverthless made a change to how those
+        internal APIs are used, to avoid any potential problems. Thanks to the
+        many users who pointed out this problem.</p></li><li style="list-style-type: disc"><p>Joel VanderWerf suggested some enhancements to the
+        <tt class="filename">image.rb</tt> example program in order to improve its
+        startup time (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1281&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1281</a>). Those changes have been incorporated. Thanks to
+        Joel for this suggestion.</p></li><li style="list-style-type: disc"><p>One change for the <tt class="classname">FXImage</tt> class between
+        FOX versions 1.0 and 1.2 is the nature of the pixel buffer that's
+        passed to the <tt class="classname">FXImage</tt> constructor. Previously,
+        this pixel buffer was expected to be a string of bytes; now it's
+        expected to be an array of <span class="type">FXColor</span> values. This
+        modification was not implemented correctly for FXRuby versions 1.2.3
+        and earlier (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1427&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1427</a>). This bug has been corrected, and the example
+        program (<tt class="filename">image.rb</tt>) and test cases have been
+        updated as well. Thanks to Oliver Smith and others for reporting this
+        problem.</p></li><li style="list-style-type: disc"><p>A couple of different problems, reported by Patrick Fernie and
+        David Peoples, exposed a flaw in how FXRuby manages the links between
+        FOX objects and their Ruby peers when the FOX objects are destroyed
+        (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1445&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1445</a>). Without going into all the gory details, let's
+        just say that since we have no explicit control over when Ruby's
+        garbage collector decides to "collect" those Ruby peers that point to
+        C++ objects that have been destroyed, we need to take steps to
+        neutralize those Ruby peer objects so that they can't cause your
+        application to crash in the meantime; I've implemented a fix to take
+        care of this situation. Thanks to Patrick and David for reporting
+        these problems.</p></li><li style="list-style-type: disc"><p>The API documentation for FXRuby 1.2 still contained references
+        to the old "spellings" of the <tt class="methodname">fxparseAccel</tt>
+        and <tt class="methodname">fxparseHotKey</tt> method names, which were
+        all lowercase (i.e. <tt class="methodname">fxparseaccel</tt> and
+        <tt class="methodname">fxparsehotkey</tt>). (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1470&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1470</a>). These errors have been corrected.</p></li><li style="list-style-type: disc"><p>Added the <tt class="methodname">FXScrollArea#scrollCorner</tt>
+        method, which returns a reference to the scroll corner for any window
+        derived from <tt class="classname">FXScrollArea</tt> (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=843&amp;group_id=300&amp;atid=1226" target="_top">RubyForge
+        Feature Request #1226</a>). Thanks to Brian Sheehan for this
+        suggestion.</p></li><li style="list-style-type: disc"><p>Added the <tt class="methodname">FXMemoryBuffer#to_a</tt> method,
+        which is just an alias for the <tt class="methodname">data</tt> accessor
+        method that returns a copy of the data buffer as an array (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1295&amp;group_id=300&amp;atid=1226" target="_top">RubyForge
+        Feature Request #1295</a>). Thanks to Meinrad Recheis for this
+        suggestion.</p></li><li style="list-style-type: disc"><p>Added the <tt class="methodname">appendRows</tt> and
+        <tt class="methodname">appendColumns</tt> methods to the
+        <tt class="classname">FXTable</tt> class (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1426&amp;group_id=300&amp;atid=1226" target="_top">RubyForge
+        Feature Request #1295</a>). Thanks to Brett Hallett for this
+        suggestion.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2727"></a>Changes For Version 1.2.3 (January 22, 2005)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>Since group boxes containing radio buttons no longer enforce the
+        radio behavior of radio buttons (i.e. keeping only one radio button
+        selected at a time), some of the example programs were no longer
+        working as desired (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=751&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #751</a> and <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1280&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1280</a>). This problem has been corrected. Thanks to Yuri
+        Leikind and Barry DeZonia for reporting this problem.</p></li><li style="list-style-type: disc"><p>Bob Sidebotham reported a little typo in the
+        <tt class="filename">table.rb</tt> example program (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=990&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #990</a>). This has been corrected.</p></li><li style="list-style-type: disc"><p>The API documentation for <tt class="classname">FXList</tt> did not
+        reflect the changes for FOX 1.2; the
+        <tt class="methodname">retrieveItem()</tt> has been renamed to
+        <tt class="methodname">getItem()</tt> and
+        <tt class="methodname">insertItem()</tt> has been renamed to
+        <tt class="methodname">setItem()</tt> (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1037&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1037</a> and <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1257&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1257</a>). This has been corrected. Thanks to Remy Drouilhet
+        and Stephan Kamper for reporting this problem.</p></li><li style="list-style-type: disc"><p>The Windows installer was missing some of the documentation
+        files (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1139&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1139</a>). This has been corrected. Thanks to Curt Hibbs and
+        Mark Smith for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="filename">browser.rb</tt> example program was broken
+        (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1146&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1146</a>). This has been corrected. Thanks to Stefan Lang for
+        reporting this problem.</p></li><li style="list-style-type: disc"><p>The attribute setter for
+        <tt class="methodname">FXHeaderItem#justification</tt> was defined
+        incorrectly (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1276&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1276</a>). This has been corrected. Thanks to Joel VanderWerf
+        for reporting this problem (and providing a patch to fix it).</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">filenames</tt> alias for the
+        <tt class="methodname">FXFileDialog#getFilenames()</tt> instance method
+        was missing (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1277&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1277</a>). This error has been corrected. Thanks to Barry
+        DeZonia for reporting this problem.</p></li><li style="list-style-type: disc"><p>The API documentation for the
+        <tt class="classname">FXFileDialog</tt> class methods
+        <tt class="methodname">getOpenFilenames()</tt>,
+        <tt class="methodname">getOpenDirectory()</tt>,
+        <tt class="methodname">getOpenFilename()</tt> and
+        <tt class="methodname">getSaveFilename()</tt> was extremely inadequate
+        (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1279&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1279</a>). This documentation has been improved. Thanks to
+        Barry DeZonia for reporting this problem.</p></li><li style="list-style-type: disc"><p>Brett Hallett contributed a Ruby port of the "ratio" example
+        program from the regular FOX distribution, for demonstrating the use
+        of the new <tt class="classname">FXSpring</tt> layout manager (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1282&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1282</a>). Many thanks to Brett for this addition!</p></li><li style="list-style-type: disc"><p>Joel VanderWerf contributed code to simplify how programs
+        interact with modal and non-modal dialog boxes (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1283&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1283</a>). See the API documentation for the new
+        <tt class="methodname">FXDialogBox#execute_modal</tt> and
+        <tt class="methodname">FXDialogBox#execute_nonmodal</tt> methods for
+        examples of their use.</p></li><li style="list-style-type: disc"><p>The attribute setters for
+        <tt class="methodname">FXRealSpinner#selBackColor</tt> and
+        <tt class="methodname">FXSpinner#selBackColor</tt> were defined
+        incorrectly (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1297&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1297</a>). These have been corrected. Thanks to Meinrad
+        Recheis for reporting this problem.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">tooltipPause</tt> attribute reader for
+        the <tt class="classname">FXApp</tt> class was missing (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1306&amp;group_id=300&amp;atid=1225" target="_top">RubyForge
+        Patch #1306</a>). Thanks to Joel VanderWerf for reporting this
+        omission and providing a patch to fix it.</p></li><li style="list-style-type: disc"><p>The API documentation for the
+        <tt class="classname">FXToolBarTab</tt> class was missing (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1322&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1322</a>). Thanks to Joel VanderWerf for reporting this
+        omission.</p></li><li style="list-style-type: disc"><p>The attribute accessors for
+        <tt class="methodname">FXText#visibleRows</tt> and
+        <tt class="methodname">FXText#visibleColumns</tt> were defined and
+        documented incorrectly (see <a href="http://rubyforge.org/tracker/index.php?func=detail&amp;aid=1325&amp;group_id=300&amp;atid=1223" target="_top">RubyForge
+        Bug #1325</a>). These have been corrected. Thanks to Karl El-Koura
+        for reporting this problem.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.13 and
+        FXScintilla version 1.62.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2899"></a>Changes For Version 1.2.2 (October 1, 2004)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>In order to avoid versioning problems when dealing with a mix of
+        applications based on either FXRuby 1.0 or 1.2, the feature name for
+        FXRuby has been changed from "fox" to "fox12". For most application
+        developers, this means that you will need to modify the source code
+        for applications targeted at FXRuby 1.2 to begin with the line</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'fox12'</pre></td></tr></table><p>Note that no
+        changes should be required for legacy applications targeted at FXRuby
+        1.0.</p></li><li style="list-style-type: disc"><p>Made a number of updates to the documentation, to reflect API
+        changes for FXRuby 1.2.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.9 and
+        FXScintilla version 1.61.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e2916"></a>Changes For Version 1.2a2 (July 10, 2004)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>This is the second "alpha" release of FXRuby 1.2. This release
+        should be compatible with any FOX library version 1.2; it is not
+        compatible with any previous FOX library versions. As this is an alpha
+        release, users should expect a certain amount of instability, bugs,
+        etc.</p></li><li style="list-style-type: disc"><p>For this release, all of the FOX 1.2 classes are available with
+        the exception of the <tt class="classname">FXBitmapView</tt> class. There
+        is a small problem with how the <tt class="classname">FXBitmapView</tt>
+        class is declared in the FOX 1.2 header files, and I'm trying to
+        decide how best to resolve that problem. The goal is to have this
+        problem resolved by the next alpha release of FXRuby.</p></li><li style="list-style-type: disc"><p>For this release, all of the RDoc-based online documentation has
+        been brought up to date with the new APIs.</p></li><li style="list-style-type: disc"><p>Portions of the FXRuby User's Guide were still out of date with
+        respect to the new APIs (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=988623&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #988623</a>). This has been fixed.</p></li><li style="list-style-type: disc"><p>The <tt class="filename">mditest.rb</tt> example program was not up
+        to date with the new APIs. This has been fixed.</p></li><li style="list-style-type: disc"><p>The <tt class="filename">glviewer.rb</tt> example program was not up
+        to date with the new APIs (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986479&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #986479</a>). This has been fixed. Thanks to Remy Drouilhet
+        for reporting this problem and suggesting the fixes.</p></li><li style="list-style-type: disc"><p>The <tt class="methodname">FXGLGroup#bounds</tt> method was defined
+        incorrectly (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986476&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #986476</a>). This has been fixed. Thanks to Remy Drouilhet
+        for reporting this problem and suggesting the fix.</p></li><li style="list-style-type: disc"><p>The <tt class="filename">scintilla-test.rb</tt> example program was
+        not up to date with the new APIs (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986172&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #986172</a>). This has been fixed. Thanks to Peter Watkins for
+        reporting this problem and submitting a corrected version of the
+        program.</p></li><li style="list-style-type: disc"><p>There was a small typo in the table.rb example program (see
+        <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=988152&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #988152</a>). This has been fixed. Thanks to Jamey Cribbs for
+        reporting this problem and suggesting the fix.</p></li><li style="list-style-type: disc"><p>Due to an oversight on my part, one of the overloaded
+        constructors for the <tt class="classname">FXRegion</tt> class wasn't
+        wrapped properly (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986181&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #986181</a>). This has been fixed. Thanks to Bil Bas for
+        reporting this problem.</p></li><li style="list-style-type: disc"><p>Removed some obsolete aliases for the old leading and trailing
+        rows and columns for the <tt class="classname">FXTable</tt> class (see
+        <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986181&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #988038</a>). Thanks to Yuri Leikind for reporting this
+        problem.</p></li><li style="list-style-type: disc"><p>Added <tt class="classname">FXTable</tt> instance methods
+        <tt class="methodname">horizontalGridShown=()</tt> and
+        <tt class="methodname">verticalGridShown=()</tt> to complement the
+        already available <tt class="methodname">horizontalGridShown?</tt> and
+        <tt class="methodname">verticalGridShown?</tt> methods.</p></li><li style="list-style-type: disc"><p>The binary gem for the 1.2a1 release on Windows didn't have PNG
+        or JPEG image support built-in (see <a href="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=986180&amp;group_id=20243&amp;atid=120243" target="_top">SourceForge
+        Bug #986180</a>). This has been fixed. Thanks to Bil Bas for
+        reporting this problem.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.7 and
+        FXScintilla version 1.61.</p></li></ul></div></div><div class="simplesect" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e3025"></a>Changes For Version 1.2a1 (June 28, 2004)</h2></div></div><div></div></div><div class="itemizedlist"><ul type="bullet"><li style="list-style-type: disc"><p>This is the first "alpha" release of FXRuby 1.2. This release
+        should be compatible with any FOX library version 1.2; it is not
+        compatible with any previous FOX library versions. As this is an alpha
+        release, users should expect a certain amount of instability, bugs,
+        etc.</p><p>The intent of this first alpha release is twofold. The primary
+        intent is allow application developers who have current projects based
+        on FXRuby 1.0 to begin the process of updating their applications for
+        compatibility with FXRuby 1.2. For this release, all of the classes
+        that existed in FXRuby 1.0 have been updated for compatibility with
+        FOX 1.2, and so developers should at least be able to begin to "port"
+        their applications forward now. Note that there have been a number of
+        changes for FOX 1.2 and FXRuby 1.2, both in terms of API changes and
+        less obvious "behavioral" changes. For a detailed summary of these
+        changes, please see <a href="http://www.knology.net/~lyle/fox/1.2/WhatsNew.html" target="_top">"What's New
+        in FOX 1.2"</a> (also available as a <a href="http://www.knology.net/~lyle/fox/1.2/WhatsNew.pdf" target="_top">PDF</a>).
+        Note that few, if any, of the new classes introduced in FOX 1.2 are
+        available in this first alpha release of FXRuby 1.2. Support for those
+        new classes should come along quickly in subsequent alpha releases of
+        FXRuby 1.2.</p><p>The secondary intent of this first alpha release is to introduce
+        the new <a href="http://rubygems.rubyforge.org" target="_top">RubyGems</a>-based packaging
+        of FXRuby and to begin to work out the inevitable kinks in that
+        system.</p></li><li style="list-style-type: disc"><p>The binary gem for Windows was built with FOX version 1.2.4 and
+        FXScintilla version 1.57.</p></li></ul></div></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="infosources.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="pt01.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="pt02.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Chapter&nbsp;9.&nbsp;Other Sources of Information&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="book.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Part&nbsp;II.&nbsp;Appendices</td></tr></table></div></body></html>

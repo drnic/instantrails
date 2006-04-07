@@ -1,0 +1,1420 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Text::Format</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Text::Format</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/action_mailer/vendor/text/format_rb.html">
+                lib/action_mailer/vendor/text/format.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Format.html">Text::Format</a> for Ruby is copyright 2002 - 2005 by
+Austin Ziegler. It is available under Ruby&#8217;s licence, the Perl
+Artistic licence, or the GNU GPL version 2 (or at your option, any later
+version). As a special exception, for use with official Rails (provided by
+the rubyonrails.org development team) and any project created with official
+Rails, the following alternative MIT-style licence may be used:
+</p>
+<h2><a href="Format.html">Text::Format</a> Licence for Rails and Rails Applications</h2>
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the
+&quot;Software&quot;), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to the
+following conditions:
+</p>
+<ul>
+<li>The names of its contributors may not be used to endorse or promote
+products derived from this software without specific prior written
+permission.
+
+</li>
+</ul>
+<p>
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+</p>
+<p>
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001493">==</a>&nbsp;&nbsp;
+      <a href="#M001498">body_indent=</a>&nbsp;&nbsp;
+      <a href="#M001510">center</a>&nbsp;&nbsp;
+      <a href="#M001494">columns=</a>&nbsp;&nbsp;
+      <a href="#M001511">expand</a>&nbsp;&nbsp;
+      <a href="#M001497">first_indent=</a>&nbsp;&nbsp;
+      <a href="#M001508">format</a>&nbsp;&nbsp;
+      <a href="#M001502">format_style=</a>&nbsp;&nbsp;
+      <a href="#M001507">hyphenate_to</a>&nbsp;&nbsp;
+      <a href="#M001499">hyphenator=</a>&nbsp;&nbsp;
+      <a href="#M001506">justify?</a>&nbsp;&nbsp;
+      <a href="#M001503">left_align?</a>&nbsp;&nbsp;
+      <a href="#M001495">left_margin=</a>&nbsp;&nbsp;
+      <a href="#M001513">new</a>&nbsp;&nbsp;
+      <a href="#M001509">paragraphs</a>&nbsp;&nbsp;
+      <a href="#M001504">right_align?</a>&nbsp;&nbsp;
+      <a href="#M001505">right_fill?</a>&nbsp;&nbsp;
+      <a href="#M001496">right_margin=</a>&nbsp;&nbsp;
+      <a href="#M001500">split_rules=</a>&nbsp;&nbsp;
+      <a href="#M001501">tabstop=</a>&nbsp;&nbsp;
+      <a href="#M001512">unexpand</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Format/SplitWord.html" class="link">Text::Format::SplitWord</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.63'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ABBREV</td>
+          <td>=</td>
+          <td class="context-item-value">[ 'Mr', 'Mrs', 'Ms', 'Jr', 'Sr' ]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Local abbreviations. More can be added with Text::Format.abbreviations
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LEFT_ALIGN</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Formatting values
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RIGHT_ALIGN</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RIGHT_FILL</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">JUSTIFY</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_FIXED</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Word split modes (only applies when hard_margins is true).
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_CONTINUATION</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_HYPHENATION</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_CONTINUATION_FIXED</td>
+          <td>=</td>
+          <td class="context-item-value">SPLIT_CONTINUATION | SPLIT_FIXED</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_HYPHENATION_FIXED</td>
+          <td>=</td>
+          <td class="context-item-value">SPLIT_HYPHENATION | SPLIT_FIXED</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_HYPHENATION_CONTINUATION</td>
+          <td>=</td>
+          <td class="context-item-value">SPLIT_HYPHENATION | SPLIT_CONTINUATION</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPLIT_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">SPLIT_HYPHENATION | SPLIT_CONTINUATION | SPLIT_FIXED</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LEQ_RE</td>
+          <td>=</td>
+          <td class="context-item-value">/[.?!]['&quot;]?$/</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">abbreviations</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Defines the current abbreviations as an array. This is only used if
+extra_space is turned on.
+
+<p>
+If one is abbreviating &quot;President&quot; as &quot;Pres.&quot;
+(abbreviations = [&quot;Pres&quot;]), then the results of formatting will
+be as illustrated in the table below:
+</p>
+<pre>
+      extra_space  |  include?        |  !include?
+        true       |  Pres. Lincoln   |  Pres.  Lincoln
+        false      |  Pres. Lincoln   |  Pres. Lincoln
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>{}</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body_indent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of spaces to indent all lines after the first line of a
+paragraph.
+
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  INDENT  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">columns</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The total width of the format area. The margins, indentation, and text are
+formatted into this space.
+
+<pre>
+                            COLUMNS
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  indent  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>72</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">extra_space</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Indicates whether sentence terminators should be followed by a single space
+(<tt>false</tt>), or two spaces (<tt>true</tt>).
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">first_indent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of spaces to indent the first line of a paragraph.
+
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  INDENT  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>4</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">format_style</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Specifies the format style. Allowable values are:
+
+<dl>
+<dt><tt>LEFT_ALIGN</tt></dt><dd>Left justified, ragged right.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |left aligned.|
+</pre>
+<dl>
+<dt><tt>RIGHT_ALIGN</tt></dt><dd>Right justified, ragged left.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |     right aligned.|
+</pre>
+<dl>
+<dt><tt>RIGHT_FILL</tt></dt><dd>Left justified, right ragged, filled to width by spaces. (Essentially the
+same as <tt>LEFT_ALIGN</tt> except that lines are padded on the right.)
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |left aligned.      |
+</pre>
+<dl>
+<dt><tt>JUSTIFY</tt></dt><dd>Fully justified, words filled to width by spaces, except the last line.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph  that|
+     |is     justified.|
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>Text::Format::LEFT_ALIGN</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hard_margins</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Normally, words larger than the format area will be placed on a line by
+themselves. Setting this to <tt>true</tt> will force words larger than the
+format area to be split into one or more &quot;words&quot; each at most the
+size of the format area. The first line and the original word will be
+placed into <tt>split_words</tt>. Note that this will cause the output to
+look <b>similar</b> to a format_style of JUSTIFY. (Lines will be filled as
+much as possible.)
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hyphenator</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The object responsible for hyphenating. It must respond to <a
+href="Format.html#M001507">hyphenate_to</a>(word, size) or <a
+href="Format.html#M001507">hyphenate_to</a>(word, size, formatter) and
+return an array of the word split into two parts; if there is a hyphenation
+mark to be applied, responsibility belongs to the hyphenator object. The
+size is the MAXIMUM size permitted, including any hyphenation marks. If the
+<a href="Format.html#M001507">hyphenate_to</a> method has an arity of 3,
+the formatter will be provided to the method. This allows the hyphenator to
+make decisions about the hyphenation based on the formatting rules.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>nil</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">left_margin</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of spaces used for the left margin.
+
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  LEFT MARGIN  indent  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">nobreak</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Indicates whether or not the non-breaking space feature should be used.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">nobreak_regex</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+A hash which holds the regular expressions on which spaces should not be
+broken. The hash is set up such that the key is the first word and the
+value is the second word.
+
+<p>
+For example, if <tt>nobreak_regex</tt> contains the following hash:
+</p>
+<pre>
+  { '^Mrs?\.$' =&gt; '\S+$', '^\S+$' =&gt; '^(?:S|J)r\.$'}
+</pre>
+<p>
+Then &quot;Mr. Jones&quot;, &quot;Mrs. Jones&quot;, and &quot;Jones
+Jr.&quot; would not be broken. If this simple matching algorithm indicates
+that there should not be a break at the current end of line, then a
+backtrack is done until there are two words on which line breaking is
+permitted. If two such words are not found, then the end of the line will
+be broken <b>regardless</b>. If there is a single word on the current line,
+then no backtrack is done and the word is stuck on the end.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>{}</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">right_margin</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of spaces used for the right margin.
+
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  indent  text is formatted into here  RIGHT MARGIN
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">split_rules</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Specifies the split mode; used only when hard_margins is set to
+<tt>true</tt>. Allowable values are:
+
+<dl>
+<dt><tt>SPLIT_FIXED</tt></dt><dd>The word will be split at the number of characters needed, with no marking
+at all.
+
+</dd>
+</dl>
+<pre>
+     repre
+     senta
+     ion
+</pre>
+<dl>
+<dt><tt>SPLIT_CONTINUATION</tt></dt><dd>The word will be split at the number of characters needed, with a C-style
+continuation character. If a word is the only item on a line and it cannot
+be split into an appropriate size, SPLIT_FIXED will be used.
+
+</dd>
+</dl>
+<pre>
+      repr       #       esen       #       tati       #       on
+</pre>
+<dl>
+<dt><tt>SPLIT_HYPHENATION</tt></dt><dd>The word will be split according to the hyphenator specified in hyphenator.
+If there is no hyphenator specified, works like SPLIT_CONTINUATION. The
+example is using TeX::Hyphen. If a word is the only item on a line and it
+cannot be split into an appropriate size, SPLIT_CONTINUATION mode will be
+used.
+
+</dd>
+</dl>
+<pre>
+      rep-
+      re-
+      sen-
+      ta-
+      tion
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>Text::Format::SPLIT_FIXED</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">split_words</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+An array of words split during formatting if hard_margins is set to
+<tt>true</tt>.
+
+<pre>
+  #split_words &lt;&lt; Text::Format::SplitWord.new(word, first, rest)
+</pre>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tabstop</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Indicates the number of spaces that a single tab represents.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>8</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001511">expand</a></tt>, <tt><a
+href="Format.html#M001512">unexpand</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tag_paragraph</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+Indicates whether the formatting of paragraphs should be done with tagged
+paragraphs. Useful only with <tt>tag_text</tt>.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">tag_text</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The array of text to be placed before each paragraph when
+<tt>tag_paragraph</tt> is <tt>true</tt>. When <tt><a
+href="Format.html#M001508">format</a>()</tt> is called, only the first
+element of the array is used. When <tt><a
+href="Format.html#M001509">paragraphs</a></tt> is called, then each entry
+in the array will be used once, with corresponding paragraphs. If the tag
+elements are exhausted before the text is exhausted, then the remaining
+paragraphs will not be tagged. Regardless of indentation settings, a blank
+line will be inserted between all paragraphs when <tt>tag_paragraph</tt> is
+<tt>true</tt>.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>[]</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">text</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The text to be manipulated. Note that value is optional, but if the
+formatting functions are called without values, this text is what will be
+formatted.
+
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>[]</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td>All methods
+
+</td></tr>
+</table>
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001513" class="method-detail">
+        <a name="M001513"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001513.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001513.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(arg = nil, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This constructor takes advantage of a technique for Ruby object
+construction introduced by Andy Hunt and Dave Thomas (see reference), where
+optional values are set using commands in a block.
+</p>
+<pre>
+  Text::Format.new {
+      columns         = 72
+      left_margin     = 0
+      right_margin    = 0
+      first_indent    = 4
+      body_indent     = 0
+      format_style    = Text::Format::LEFT_ALIGN
+      extra_space     = false
+      abbreviations   = {}
+      tag_paragraph   = false
+      tag_text        = []
+      nobreak         = false
+      nobreak_regex   = {}
+      tabstop         = 8
+      text            = nil
+  }
+</pre>
+<p>
+As shown above, <tt>arg</tt> is optional. If <tt>arg</tt> is specified and
+is a <tt>String</tt>, then arg is used as the default value of
+<tt>text</tt>. Alternately, an existing <a
+href="Format.html">Text::Format</a> object can be used or a Hash can be
+used. With all forms, a block can be specified.
+</p>
+<table>
+<tr><td valign="top"><b>Reference</b>:</td><td>&quot;Object Construction and Blocks&quot; &lt;<a
+href="http://www.pragmaticprogrammer.com/ruby/articles/insteval.html">www.pragmaticprogrammer.com/ruby/articles/insteval.html</a>&gt;
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001493" class="method-detail">
+        <a name="M001493"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001493.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001493.html');return false;">
+          <span class="method-name">==</span><span class="method-args">(o)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Compares two <a href="Format.html">Text::Format</a> objects. All settings
+of the objects are compared <b>except</b> hyphenator. Generated results
+(e.g., split_words) are not compared, either.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001498" class="method-detail">
+        <a name="M001498"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001498.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001498.html');return false;">
+          <span class="method-name">body_indent=</span><span class="method-args">(b)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The number of spaces to indent all lines after the first line of a
+paragraph. The value provided is silently converted to a positive integer
+value.
+</p>
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  INDENT  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001510" class="method-detail">
+        <a name="M001510"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001510.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001510.html');return false;">
+          <span class="method-name">center</span><span class="method-args">(to_center = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Centers the text, preserving empty lines and tabs.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001494" class="method-detail">
+        <a name="M001494"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001494.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001494.html');return false;">
+          <span class="method-name">columns=</span><span class="method-args">(c)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The total width of the format area. The margins, indentation, and text are
+formatted into this space. The value provided is silently converted to a
+positive integer.
+</p>
+<pre>
+                            COLUMNS
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  indent  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>72</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001511" class="method-detail">
+        <a name="M001511"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001511.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001511.html');return false;">
+          <span class="method-name">expand</span><span class="method-args">(to_expand = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces all tab characters in the text with <tt>tabstop</tt> spaces.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001497" class="method-detail">
+        <a name="M001497"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001497.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001497.html');return false;">
+          <span class="method-name">first_indent=</span><span class="method-args">(f)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The number of spaces to indent the first line of a paragraph. The value
+provided is silently converted to a positive integer value.
+</p>
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  INDENT  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>4</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001508" class="method-detail">
+        <a name="M001508"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001508.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001508.html');return false;">
+          <span class="method-name">format</span><span class="method-args">(to_wrap = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Formats text into a nice paragraph format. The text is separated into words
+and then reassembled a word at a time using the settings of this <a
+href="Format.html">Format</a> object. If a word is larger than the number
+of columns available for formatting, then that word will appear on the line
+by itself.
+</p>
+<p>
+If <tt>to_wrap</tt> is <tt>nil</tt>, then the value of <tt>text</tt> will
+be worked on.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001502" class="method-detail">
+        <a name="M001502"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001502.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001502.html');return false;">
+          <span class="method-name">format_style=</span><span class="method-args">(fs)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies the format style. Allowable values are:
+</p>
+<dl>
+<dt><tt>LEFT_ALIGN</tt></dt><dd>Left justified, ragged right.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |left aligned.|
+</pre>
+<dl>
+<dt><tt>RIGHT_ALIGN</tt></dt><dd>Right justified, ragged left.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |     right aligned.|
+</pre>
+<dl>
+<dt><tt>RIGHT_FILL</tt></dt><dd>Left justified, right ragged, filled to width by spaces. (Essentially the
+same as <tt>LEFT_ALIGN</tt> except that lines are padded on the right.)
+
+</dd>
+</dl>
+<pre>
+     |A paragraph that is|
+     |left aligned.      |
+</pre>
+<dl>
+<dt><tt>JUSTIFY</tt></dt><dd>Fully justified, words filled to width by spaces.
+
+</dd>
+</dl>
+<pre>
+     |A paragraph  that|
+     |is     justified.|
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>Text::Format::LEFT_ALIGN</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001507" class="method-detail">
+        <a name="M001507"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001507.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001507.html');return false;">
+          <span class="method-name">hyphenate_to</span><span class="method-args">(word, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The default implementation of <a
+href="Format.html#M001507">hyphenate_to</a> implements SPLIT_CONTINUATION.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001499" class="method-detail">
+        <a name="M001499"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001499.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001499.html');return false;">
+          <span class="method-name">hyphenator=</span><span class="method-args">(h)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The object responsible for hyphenating. It must respond to <a
+href="Format.html#M001507">hyphenate_to</a>(word, size) and return an array
+of the word hyphenated into two parts. The size is the MAXIMUM size
+permitted, including any hyphenation marks.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>nil</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001506" class="method-detail">
+        <a name="M001506"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001506.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001506.html');return false;">
+          <span class="method-name">justify?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates that the format style is full justification.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001503" class="method-detail">
+        <a name="M001503"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001503.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001503.html');return false;">
+          <span class="method-name">left_align?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates that the format style is left alignment.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>true</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001495" class="method-detail">
+        <a name="M001495"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001495.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001495.html');return false;">
+          <span class="method-name">left_margin=</span><span class="method-args">(left)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The number of spaces used for the left margin. The value provided is
+silently converted to a positive integer value.
+</p>
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  LEFT MARGIN  indent  text is formatted into here  right margin
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001509" class="method-detail">
+        <a name="M001509"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001509.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001509.html');return false;">
+          <span class="method-name">paragraphs</span><span class="method-args">(to_wrap = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Considers each element of text (provided or internal) as a paragraph. If
+<tt>first_indent</tt> is the same as <tt>body_indent</tt>, then paragraphs
+will be separated by a single empty line in the result; otherwise, the
+paragraphs will follow immediately after each other. Uses <tt><a
+href="Format.html#M001508">format</a></tt> to do the heavy lifting.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001504" class="method-detail">
+        <a name="M001504"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001504.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001504.html');return false;">
+          <span class="method-name">right_align?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates that the format style is right alignment.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001505" class="method-detail">
+        <a name="M001505"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001505.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001505.html');return false;">
+          <span class="method-name">right_fill?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates that the format style is right fill.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>false</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001496" class="method-detail">
+        <a name="M001496"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001496.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001496.html');return false;">
+          <span class="method-name">right_margin=</span><span class="method-args">(r)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The number of spaces used for the right margin. The value provided is
+silently converted to a positive integer value.
+</p>
+<pre>
+                            columns
+ &lt;--------------------------------------------------------------&gt;
+ &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;
+  left margin  indent  text is formatted into here  RIGHT MARGIN
+</pre>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>0</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>, <tt><a
+href="Format.html#M001510">center</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001500" class="method-detail">
+        <a name="M001500"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001500.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001500.html');return false;">
+          <span class="method-name">split_rules=</span><span class="method-args">(s)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies the split mode; used only when hard_margins is set to
+<tt>true</tt>. Allowable values are:
+</p>
+<dl>
+<dt><tt>SPLIT_FIXED</tt></dt><dd>The word will be split at the number of characters needed, with no marking
+at all.
+
+</dd>
+</dl>
+<pre>
+     repre
+     senta
+     ion
+</pre>
+<dl>
+<dt><tt>SPLIT_CONTINUATION</tt></dt><dd>The word will be split at the number of characters needed, with a C-style
+continuation character.
+
+</dd>
+</dl>
+<pre>
+      repr       #       esen       #       tati       #       on
+</pre>
+<dl>
+<dt><tt>SPLIT_HYPHENATION</tt></dt><dd>The word will be split according to the hyphenator specified in hyphenator.
+If there is no hyphenator specified, works like SPLIT_CONTINUATION. The
+example is using TeX::Hyphen as the hyphenator.
+
+</dd>
+</dl>
+<pre>
+      rep-
+      re-
+      sen-
+      ta-
+      tion
+</pre>
+<p>
+These values can be bitwise ORed together (e.g., <tt>SPLIT_FIXED |
+SPLIT_CONTINUATION</tt>) to provide fallback split methods. In the example
+given, an attempt will be made to split the word using the rules of
+SPLIT_CONTINUATION; if there is not enough room, the word will be split
+with the rules of SPLIT_FIXED. These combinations are also available as the
+following values:
+</p>
+<ul>
+<li><tt>SPLIT_CONTINUATION_FIXED</tt>
+
+</li>
+<li><tt>SPLIT_HYPHENATION_FIXED</tt>
+
+</li>
+<li><tt>SPLIT_HYPHENATION_CONTINUATION</tt>
+
+</li>
+<li><tt>SPLIT_ALL</tt>
+
+</li>
+</ul>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>Text::Format::SPLIT_FIXED</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001508">format</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001501" class="method-detail">
+        <a name="M001501"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001501.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001501.html');return false;">
+          <span class="method-name">tabstop=</span><span class="method-args">(t)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates the number of spaces that a single tab represents.
+</p>
+<table>
+<tr><td valign="top"><b>Default</b>:</td><td><tt>8</tt>
+
+</td></tr>
+<tr><td valign="top"><b>Used in</b>:</td><td><tt><a href="Format.html#M001511">expand</a></tt>, <tt><a
+href="Format.html#M001512">unexpand</a></tt>, <tt><a
+href="Format.html#M001509">paragraphs</a></tt>
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M001512" class="method-detail">
+        <a name="M001512"></a>
+
+        <div class="method-heading">
+          <a href="Format.src/M001512.html" target="Code" class="method-signature"
+            onclick="popupCode('Format.src/M001512.html');return false;">
+          <span class="method-name">unexpand</span><span class="method-args">(to_unexpand = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces all occurrences of <tt>tabstop</tt> consecutive spaces with a tab
+character.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

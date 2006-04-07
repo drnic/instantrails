@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (ConfigTool)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel_config/init.rb, line 43</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+    <span class="ruby-comment cmt"># must require this here since rails and camping don't like eachother</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/mswin/</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'mongrel_config/win32_app'</span>
+      <span class="ruby-identifier">$mongrel_rails_service</span> = <span class="ruby-ivar">@mongrel_script</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'mongrel_config/app'</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">resources</span> = <span class="ruby-constant">GemPlugin</span><span class="ruby-operator">::</span><span class="ruby-constant">Manager</span>.<span class="ruby-identifier">instance</span>.<span class="ruby-identifier">resource</span> <span class="ruby-value str">&quot;mongrel_config&quot;</span>, <span class="ruby-value str">&quot;/&quot;</span>
+    <span class="ruby-identifier">$PID_FILE</span> = <span class="ruby-ivar">@pid_file</span>
+
+    <span class="ruby-identifier">$server</span> = <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Camping</span><span class="ruby-operator">::</span><span class="ruby-identifier">start</span>(<span class="ruby-ivar">@host</span>,<span class="ruby-ivar">@port</span>,<span class="ruby-ivar">@uri</span>,<span class="ruby-constant">Configure</span>)
+
+    <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;** Configure is running at http://#{@host}:#{@port}#{@uri}&quot;</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/mswin/</span>
+      <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;INT&quot;</span>) { 
+        <span class="ruby-identifier">$server</span>.<span class="ruby-identifier">stop</span> 
+      }
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Use CTRL-C to quit.&quot;</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;Use CTRL-Pause/Break to quit.&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-comment cmt"># add our log directory</span>
+    <span class="ruby-identifier">$server</span>.<span class="ruby-identifier">register</span>(<span class="ruby-value str">&quot;/log&quot;</span>, <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">DirHandler</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;log&quot;</span>))
+    <span class="ruby-identifier">$server</span>.<span class="ruby-identifier">register</span>(<span class="ruby-value str">&quot;/config/resources&quot;</span>, <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">DirHandler</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">resources</span>))
+
+    <span class="ruby-identifier">$server</span>.<span class="ruby-identifier">acceptor</span>.<span class="ruby-identifier">join</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

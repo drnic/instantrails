@@ -1,0 +1,126 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Kernel</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Kernel</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../files/lib/builder/blankslate_rb.html" value="File: blankslate.rb">lib/builder/blankslate.rb</a>
+<a href="../files/lib/builder/xchar_rb.html" value="File: xchar.rb">lib/builder/xchar.rb</a>
+<a href="../files/lib/builder/xmlbase_rb.html" value="File: xmlbase.rb">lib/builder/xmlbase.rb</a>
+<a href="../files/lib/builder/xmlevents_rb.html" value="File: xmlevents.rb">lib/builder/xmlevents.rb</a>
+<a href="../files/lib/builder/xmlmarkup_rb.html" value="File: xmlmarkup.rb">lib/builder/xmlmarkup.rb</a>
+<a href="../files/lib/builder_rb.html" value="File: builder.rb">lib/builder.rb</a>
+<a href="../files/README.html" value="File: README">README</a>
+<a href="../files/Rakefile.html" value="File: Rakefile">Rakefile</a>
+<a href="../files/CHANGES.html" value="File: CHANGES">CHANGES</a>
+<a href="../files/doc/releases/builder-1_2_4_rdoc.html" value="File: builder-1.2.4.rdoc">doc/releases/builder-1.2.4.rdoc</a>
+<a href="../files/doc/releases/builder-2_0_0_rdoc.html" value="File: builder-2.0.0.rdoc">doc/releases/builder-2.0.0.rdoc</a>
+|
+<strong>classes:</strong>
+<a href="../classes/Object.html" title="Class: Object">Object</a>
+<a href="../classes/String.html" title="Class: String">String</a>
+<a href="../classes/Fixnum.html" title="Class: Fixnum">Fixnum</a>
+<a href="../classes/Builder.html" title="Module: Builder">Builder</a>
+<a href="../classes/Builder/XChar.html" title="Module: Builder::XChar">Builder::XChar</a>
+<a href="../classes/Builder/XmlBase.html" title="Class: Builder::XmlBase">Builder::XmlBase</a>
+<a href="../classes/Builder/XmlMarkup.html" title="Class: Builder::XmlMarkup">Builder::XmlMarkup</a>
+<a href="../classes/Builder/XmlEvents.html" title="Class: Builder::XmlEvents">Builder::XmlEvents</a>
+<a href="../classes/Builder/BlankSlate.html" title="Class: Builder::BlankSlate">Builder::BlankSlate</a>
+<a href="../classes/Builder/IllegalBlockError.html" title="Class: Builder::IllegalBlockError">Builder::IllegalBlockError</a>
+<a href="../classes/Kernel.html" title="Module: Kernel">Kernel</a>
+</ul>
+</div>
+
+    
+<div id="Kernel" class="page_shade">
+<div class="page">
+<h3>Module Kernel &lt; <a href="../Object.html">RuntimeError</a></h3>
+
+(in files
+<a href="../files/lib/builder/blankslate_rb.html">lib/builder/blankslate.rb</a>
+)
+
+<p>
+Since Ruby is very dynamic, methods added to the ancestors of BlankSlate
+<em>after BlankSlate is defined</em> will show up in the list of available
+BlankSlate methods. We handle this by defining a hook in the <a
+href="Object.html">Object</a> and <a href="Kernel.html">Kernel</a> classes
+that will hide any defined
+</p>
+
+
+
+
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000109">method_added(name)</a></strong></h4>
+
+<p>
+Detect method additions to <a href="Kernel.html">Kernel</a> and remove them
+in the BlankSlate class.
+</p>
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

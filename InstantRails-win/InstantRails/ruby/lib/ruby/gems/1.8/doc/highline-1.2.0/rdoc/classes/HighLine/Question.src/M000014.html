@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>convert (HighLine::Question)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/highline/question.rb, line 288</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">convert</span>( <span class="ruby-identifier">answer_string</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">answer_string</span>
+      <span class="ruby-keyword kw">elsif</span> [<span class="ruby-constant">Float</span>, <span class="ruby-constant">Integer</span>, <span class="ruby-constant">String</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@answer_type</span>)
+        <span class="ruby-constant">Kernel</span>.<span class="ruby-identifier">send</span>(<span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">to_sym</span>, <span class="ruby-identifier">answer_string</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@answer_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Symbol</span>
+        <span class="ruby-identifier">answer_string</span>.<span class="ruby-identifier">to_sym</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@answer_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Regexp</span>
+        <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">answer_string</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>) <span class="ruby-keyword kw">or</span> [<span class="ruby-constant">File</span>, <span class="ruby-constant">Pathname</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@answer_type</span>)
+        <span class="ruby-comment cmt"># cheating, using OptionParser's Completion module</span>
+        <span class="ruby-identifier">choices</span> = <span class="ruby-identifier">selection</span>
+        <span class="ruby-identifier">choices</span>.<span class="ruby-identifier">extend</span>(<span class="ruby-constant">OptionParser</span><span class="ruby-operator">::</span><span class="ruby-constant">Completion</span>)
+        <span class="ruby-identifier">answer</span> = <span class="ruby-identifier">choices</span>.<span class="ruby-identifier">complete</span>(<span class="ruby-identifier">answer_string</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">NoAutoCompleteMatch</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Array</span>)
+          <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">last</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@answer_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">File</span>
+          <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@directory</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">last</span>))
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-ivar">@directory</span>.<span class="ruby-identifier">to_s</span>, <span class="ruby-identifier">answer</span>.<span class="ruby-identifier">last</span>))
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">elsif</span> [<span class="ruby-constant">Date</span>, <span class="ruby-constant">DateTime</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-ivar">@answer_type</span>) <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Class</span>)
+        <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">answer_string</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@answer_type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Proc</span>)
+        <span class="ruby-ivar">@answer_type</span>[<span class="ruby-identifier">answer_string</span>]
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

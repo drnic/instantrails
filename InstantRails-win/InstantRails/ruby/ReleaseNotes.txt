@@ -1,0 +1,102 @@
+
+                            Ruby Installer for Windows
+                               Ruby Version 1.8.4
+                              Installer Version 184-16
+                         ------------------------------
+                                 RELEASE NOTES
+                         ------------------------------
+    
+                         Contents:           Version:
+                         --------            --------
+    
+                         ruby-mswin32        1.8.4
+                         zlib-lib            1.2.1
+                         ZLib                0.6.0
+                         RubyGems            0.8.11
+                         Rake                0.7.0
+                         RubySrc             1.8.4
+                         FXRuby              1.2.6
+                         FXri                0.3.3
+                         FreeRIDE            0.9.5
+                         SciTE               1.67
+                         FXRuby              1.4.4
+                         OpenGL              0.23b
+                         GLUT                3.7.6
+                         SWin                040314
+                         VRuby               040306
+                         Expat               1.95.8
+                         XMLParser           0.6.8
+                         HTMLParser          19990912p2
+                         RubyDBI             0.0.23
+                         DBD/ODBC            0.997
+                         log4r               1.0.5
+                         Programming Ruby    1st Edition
+                         OpenSSL             0.9.7b-1
+                         Iconv               1.8
+                         readline            4.3-2
+                         PDCurses            2.60-1
+                         GDBM                1.8.3-1
+                         Installer-Patches   1.8.4
+
+
+1. This version was compiled using Microsoft Visual C++, not Cygwin.
+As a result, some I/O functionality -- particularly those involving
+the Unix fork() system call and pipes -- will not work. The benefit
+of using MSVC is to have a more stable and reliable version of Ruby.
+
+2. Previous versions of the One-Click Installer contained an (old)
+version of Tcl/Tk. Now this installer only contains the Ruby bindings
+to whatever version of Tcl/Tk you wish to install. We recommend
+ActiveTcl: http://www.activestate.com/Products/ActiveTcl/
+
+
+Reporting Bugs
+--------------
+
+Bugs in Ruby itself should be e-mailed to ruby-bugs@ruby-lang.org.
+
+Bugs in the installer should be reported at:
+
+   http://rubyforge.org/tracker/?atid=715&group_id=167&func=browse
+
+Make sure your problem has not already been reported, then click
+on "Submit New" to create a new bug report.
+
+
+Disclaimer
+----------
+
+THIS SOFTWARE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR
+IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+PURPOSE.
+
+
+Credits:
+--------
+
+    Yukihiro Matsumoto, a.k.a Matz <matz@netlab.co.jp> created
+    Ruby in the first place.
+
+    Andy Hunt <andy@pragmaticprogrammer.com> did the original packaging
+    of this installer using the Nullsoft installer (www.nullsoft.com).
+
+    Curt Hibbs <curt@hibbs.com> has been maintaining the one-click
+    installer since it moved to RubyForge.org in early 2004.
+
+    Dave Thomas <dave@pragmaticprogrammer.com> translated
+    the original LaTeX of "Programming Ruby" into XML
+    and arranged its release under the Open Publication License.
+
+    Bernard Delmée <bdelmee@advalvas.be> created the Windows Help
+    version of our "Programming Ruby" book.
+
+    Martin Ankerl <martin.ankerl@gmail.com> created fxri, a GUI 
+    interface to the ri documentation database.
+    
+    Martin DeMello <martindemello@yahoo.com> created fxirb, a GUI
+    version of Ruby's console based irb (interactive ruby). fxirb 
+    is incorporated into Martin Ankerl's fxri. 
+
+    Lyle Johnson <ljohnson@resgen.com> ported and provides the
+    FXRuby GUI extension.

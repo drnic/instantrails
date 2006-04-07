@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>info (Configure::Views)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel_config/win32_app.rb, line 175</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">info</span>
+      <span class="ruby-identifier">div</span> <span class="ruby-identifier">:id=</span><span class="ruby-operator">&gt;</span><span class="ruby-value str">&quot;viewport&quot;</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-ivar">@services</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+        
+          <span class="ruby-identifier">h2</span> { <span class="ruby-node">&quot;#{s.service_name} service information&quot;</span> }
+          <span class="ruby-identifier">table</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">tr</span> { <span class="ruby-identifier">th</span> {<span class="ruby-value str">&quot;Attribute&quot;</span>}; <span class="ruby-identifier">th</span> {<span class="ruby-value str">&quot;Value&quot;</span>} }
+            
+            <span class="ruby-identifier">s</span>.<span class="ruby-identifier">each_pair</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">memb</span>,<span class="ruby-identifier">obj</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">name</span> = <span class="ruby-identifier">memb</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">tr</span>(<span class="ruby-value str">&quot;_&quot;</span>,<span class="ruby-value str">&quot; &quot;</span>).<span class="ruby-identifier">capitalize</span>
+              <span class="ruby-identifier">tr</span> { 
+                <span class="ruby-identifier">td</span> { <span class="ruby-identifier">b</span> { <span class="ruby-node">&quot;#{name}: &quot;</span> } }
+                <span class="ruby-identifier">td</span> { <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">inspect</span> }
+              }
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

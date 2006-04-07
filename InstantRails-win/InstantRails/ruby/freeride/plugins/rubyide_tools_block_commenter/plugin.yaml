@@ -1,0 +1,8 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_block_commenter
+version: 1.0
+autoload: true
+require_path: rubyide_tools_block_commenter/block_commenter.rb
+startup_module: FreeRIDE::Tools::BlockCommenter
+start_dependencies: 
+  rubyide_gui: "*"

@@ -1,0 +1,198 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Class: Builder::XmlBase</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Class: Builder::XmlBase</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../files/lib/builder/blankslate_rb.html" value="File: blankslate.rb">lib/builder/blankslate.rb</a>
+<a href="../../files/lib/builder/xchar_rb.html" value="File: xchar.rb">lib/builder/xchar.rb</a>
+<a href="../../files/lib/builder/xmlbase_rb.html" value="File: xmlbase.rb">lib/builder/xmlbase.rb</a>
+<a href="../../files/lib/builder/xmlevents_rb.html" value="File: xmlevents.rb">lib/builder/xmlevents.rb</a>
+<a href="../../files/lib/builder/xmlmarkup_rb.html" value="File: xmlmarkup.rb">lib/builder/xmlmarkup.rb</a>
+<a href="../../files/lib/builder_rb.html" value="File: builder.rb">lib/builder.rb</a>
+<a href="../../files/README.html" value="File: README">README</a>
+<a href="../../files/Rakefile.html" value="File: Rakefile">Rakefile</a>
+<a href="../../files/CHANGES.html" value="File: CHANGES">CHANGES</a>
+<a href="../../files/doc/releases/builder-1_2_4_rdoc.html" value="File: builder-1.2.4.rdoc">doc/releases/builder-1.2.4.rdoc</a>
+<a href="../../files/doc/releases/builder-2_0_0_rdoc.html" value="File: builder-2.0.0.rdoc">doc/releases/builder-2.0.0.rdoc</a>
+|
+<strong>classes:</strong>
+<a href="../../classes/Object.html" title="Class: Object">Object</a>
+<a href="../../classes/String.html" title="Class: String">String</a>
+<a href="../../classes/Fixnum.html" title="Class: Fixnum">Fixnum</a>
+<a href="../../classes/Builder.html" title="Module: Builder">Builder</a>
+<a href="../../classes/Builder/XChar.html" title="Module: Builder::XChar">Builder::XChar</a>
+<a href="../../classes/Builder/XmlBase.html" title="Class: Builder::XmlBase">Builder::XmlBase</a>
+<a href="../../classes/Builder/XmlMarkup.html" title="Class: Builder::XmlMarkup">Builder::XmlMarkup</a>
+<a href="../../classes/Builder/XmlEvents.html" title="Class: Builder::XmlEvents">Builder::XmlEvents</a>
+<a href="../../classes/Builder/BlankSlate.html" title="Class: Builder::BlankSlate">Builder::BlankSlate</a>
+<a href="../../classes/Builder/IllegalBlockError.html" title="Class: Builder::IllegalBlockError">Builder::IllegalBlockError</a>
+<a href="../../classes/Kernel.html" title="Module: Kernel">Kernel</a>
+</ul>
+</div>
+
+    
+<div id="Builder::XmlBase" class="page_shade">
+<div class="page">
+<h3>Class Builder::XmlBase &lt; <a href="BlankSlate.html">BlankSlate</a></h3>
+
+(in files
+<a href="../../files/lib/builder/xmlbase_rb.html">lib/builder/xmlbase.rb</a>
+)
+
+<p>
+<a href="XmlBase.html">XmlBase</a> is a base class for building XML
+builders. See <a href="XmlMarkup.html">Builder::XmlMarkup</a> and <a
+href="XmlEvents.html">Builder::XmlEvents</a> for examples.
+</p>
+
+
+
+
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000093">new(indent=0, initial=0)</a></strong></h4>
+
+<p>
+Create an XML markup builder.
+</p>
+<table>
+<tr><td valign="top">out:</td><td><a href="../Object.html">Object</a> receiving the markup. <tt>out</tt> must
+respond to <tt>&lt;&lt;</tt>.
+
+</td></tr>
+<tr><td valign="top">indent:</td><td>Number of spaces used for indentation (0 implies no indentation and no line
+breaks).
+
+</td></tr>
+<tr><td valign="top">initial:</td><td>Level of initial indentation.
+
+</td></tr>
+</table>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000097">&lt;&lt;(text)</a></strong></h4>
+
+<p>
+Append text to the output target without escaping any markup. May be used
+within the markup brakets as:
+</p>
+<pre>
+  builder.p { |x| x &lt;&lt; &quot;&lt;br/&gt;HI&quot; }   #=&gt;  &lt;p&gt;&lt;br/&gt;HI&lt;/p&gt;
+</pre>
+<p>
+This is useful when using non-builder enabled software that generates
+strings. Just insert the string directly into the builder without changing
+the inserted markup.
+</p>
+<p>
+It is also useful for stacking builder objects. Builders only use
+<tt>&lt;&lt;</tt> to append to the target, so by supporting this
+method/operation builders can use other builders as their targets.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000095">method_missing(sym, *args, &amp;block)</a></strong></h4>
+
+<p>
+Create XML markup based on the name of the method. This method is never
+invoked directly, but is called for each markup method in the markup block.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000098">nil?()</a></strong></h4>
+
+<p>
+For some reason, nil? is sent to the <a href="XmlMarkup.html">XmlMarkup</a>
+object. If nil? is not defined and <a
+href="XmlBase.html#M000095">method_missing</a> is invoked, some strange
+kind of recursion happens. Since nil? won&#8217;t ever be an XML tag, it is
+pretty safe to define it here. (Note: this is an example of cargo cult
+programming, cf. <a
+href="http://fishbowl.pastiche.org/2004/10/13/cargo_cult_programming">fishbowl.pastiche.org/2004/10/13/cargo_cult_programming</a>).
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000094">tag!(sym, *args, &amp;block)</a></strong></h4>
+
+<p>
+Create a tag named <tt>sym</tt>. Other than the first argument which is the
+tag name, the arguements are the same as the tags implemented via <tt><a
+href="XmlBase.html#M000095">method_missing</a></tt>.
+</p>
+
+<h4 class="ruled">Public Instance method: 
+<strong><a name="M000096">text!(text)</a></strong></h4>
+
+<p>
+Append text to the output target. Escape any markup. May be used within the
+markup brakets as:
+</p>
+<pre>
+  builder.p { |b| b.br; b.text! &quot;HI&quot; }   #=&gt;  &lt;p&gt;&lt;br/&gt;HI&lt;/p&gt;
+</pre>
+
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

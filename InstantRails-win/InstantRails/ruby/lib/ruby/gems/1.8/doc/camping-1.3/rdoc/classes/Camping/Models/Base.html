@@ -1,0 +1,163 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <title>Module: Camping::Models::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+    <script language="JavaScript" type="text/javascript">
+    // <![CDATA[
+
+    function toggleSource( id )
+    {
+    var elem
+    var link
+
+    if( document.getElementById )
+    {
+    elem = document.getElementById( id )
+    link = document.getElementById( "l_" + id )
+    }
+    else if ( document.all )
+    {
+    elem = eval( "document.all." + id )
+    link = eval( "document.all.l_" + id )
+    }
+    else
+    return false;
+
+    if( elem.style.display == "block" )
+    {
+    elem.style.display = "none"
+    link.innerHTML = "show source"
+    }
+    else
+    {
+    elem.style.display = "block"
+    link.innerHTML = "hide source"
+    }
+    }
+
+    function openCode( url )
+    {
+    window.open( url, "SOURCE_CODE", "width=400,height=400,scrollbars=yes" )
+    }
+    // ]]>
+    </script>
+</head>
+<body>
+<div id="menu">
+<div id="links">
+    <a href="http://redhanded.hobix.com/bits/campingAMicroframework.html">backstory</a> |
+    <a href="http://code.whytheluckystiff.net/camping/">wiki</a> |
+    <a href="http://code.whytheluckystiff.net/camping/newticket">bugs</a> |
+    <a href="http://code.whytheluckystiff.net/svn/camping/">svn</a>
+</div>
+<h3 class="title">Module: Camping::Models::Base</h3>
+</div>
+<div id="fullpage">
+<div id="logo"><img src="../../../Camping.gif" /></div>
+<div id="pager">
+<strong>Files:</strong>
+<a href="../../../files/lib/camping-unabridged_rb.html" value="File: camping-unabridged.rb">lib/camping-unabridged.rb</a>
+<a href="../../../files/README.html" value="File: README">README</a>
+<a href="../../../files/CHANGELOG.html" value="File: CHANGELOG">CHANGELOG</a>
+|
+<strong>classes:</strong>
+<a href="../../../classes/Camping.html" title="Module: Camping">Camping</a>
+<a href="../../../classes/Camping/Views.html" title="Module: Camping::Views">Camping::Views</a>
+<a href="../../../classes/Camping/Controllers.html" title="Module: Camping::Controllers">Camping::Controllers</a>
+<a href="../../../classes/Camping/Controllers/Base.html" title="Module: Camping::Controllers::Base">Camping::Controllers::Base</a>
+<a href="../../../classes/Camping/Controllers/ServerError.html" title="Class: Camping::Controllers::ServerError">Camping::Controllers::ServerError</a>
+<a href="../../../classes/Camping/Controllers/R.html" title="Class: Camping::Controllers::R">Camping::Controllers::R</a>
+<a href="../../../classes/Camping/Controllers/NotFound.html" title="Class: Camping::Controllers::NotFound">Camping::Controllers::NotFound</a>
+<a href="../../../classes/Camping/Helpers.html" title="Module: Camping::Helpers">Camping::Helpers</a>
+<a href="../../../classes/Camping/Models.html" title="Module: Camping::Models">Camping::Models</a>
+<a href="../../../classes/Camping/Models/Base.html" title="Module: Camping::Models::Base">Camping::Models::Base</a>
+<a href="../../../classes/Camping/Mab.html" title="Class: Camping::Mab">Camping::Mab</a>
+<a href="../../../classes/Camping/H.html" title="Class: Camping::H">Camping::H</a>
+</ul>
+</div>
+
+    
+<div id="Camping::Models::Base" class="page_shade">
+<div class="page">
+<h3>Module Camping::Models::Base &lt; Object</h3>
+
+(in files
+)
+
+<p>
+<a href="Models.html">Models</a> is an empty Ruby module for housing model
+classes derived from ActiveRecord::Base. As a shortcut, you may derive from
+Base which is an alias for ActiveRecord::Base.
+</p>
+<pre>
+  module Camping::Models
+    class Post &lt; Base; belongs_to :user end
+    class User &lt; Base; has_many :posts end
+  end
+</pre>
+<h2>Where <a href="Models.html">Models</a> are Used</h2>
+<p>
+<a href="Models.html">Models</a> are used in your controller classes.
+However, if your model class name conflicts with a controller class name,
+you will need to refer to it using the <a href="Models.html">Models</a>
+module.
+</p>
+<pre>
+  module Camping::Controllers
+    class Post &lt; R '/post/(\d+)'
+      def get(post_id)
+        @post = Models::Post.find post_id
+        render :index
+      end
+    end
+  end
+</pre>
+<p>
+<a href="Models.html">Models</a> cannot be referred to in <a
+href="Views.html">Views</a> at this time.
+</p>
+
+
+
+
+<h4>Includes</h4>
+<ul>
+<li><a href="Base.html">Base</a></li>
+</ul>
+
+<h2 class="ruled">Methods</h2>
+<h4 class="ruled">Public Class method: 
+<strong><a name="M000061">table_name_prefix()</a></strong></h4>
+
+<p>
+The default prefix for <a href="../../Camping.html">Camping</a> model
+classes is the topmost module name lowercase and followed with an
+underscore.
+</p>
+<pre>
+  Tepee::Models::Page.table_name_prefix
+    #=&gt; &quot;tepee_pages&quot;
+</pre>
+
+<div class="sourcecode">
+  <p class="source-link">[ <a href="javascript:toggleSource('M000061_source')" id="l_M000061_source">show source</a> ]</p>
+  <div id="M000061_source" class="dyn-source">
+<pre>
+     <span class="ruby-comment cmt"># File lib/camping-unabridged.rb, line 578</span>
+578:       <span class="ruby-keyword kw">def</span> <span class="ruby-constant">Base</span>.<span class="ruby-identifier">table_name_prefix</span>
+579:           <span class="ruby-node">&quot;#{name[/^(\w+)/,1]}_&quot;</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-node">/^(#{A}|camping)_/i</span>,<span class="ruby-value str">''</span>)
+580:       <span class="ruby-keyword kw">end</span>
+</pre>
+  </div>
+</div>
+
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

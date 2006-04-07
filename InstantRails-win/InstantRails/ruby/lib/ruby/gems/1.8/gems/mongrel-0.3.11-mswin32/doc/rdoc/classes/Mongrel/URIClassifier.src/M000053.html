@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Mongrel::URIClassifier)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/**
+ * call-seq:
+ *    URIClassifier.new -&gt; URIClassifier
+ *
+ * Initializes a new URIClassifier object that you can use to associate URI sequences
+ * with objects.  You can actually use it with any string sequence and any objects,
+ * but it's mostly used with URIs.
+ *
+ * It uses TST from http://www.octavian.org/cs/software.html to build an ternary search
+ * trie to hold all of the URIs.  It uses this to do an initial search for the a URI
+ * prefix, and then to break the URI into SCRIPT_NAME and PATH_INFO portions.  It actually
+ * will do two searches most of the time in order to find the right handler for the
+ * registered prefix portion.
+ *
+ */
+VALUE URIClassifier_init(VALUE self)
+{
+  VALUE hash;
+
+  // we create an internal hash to protect stuff from the GC
+  hash = rb_hash_new();
+  rb_ivar_set(self, id_handler_map, hash);
+
+  return self;
+}</pre>
+</body>
+</html>

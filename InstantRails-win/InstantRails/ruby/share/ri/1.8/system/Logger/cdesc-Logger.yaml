@@ -1,0 +1,84 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Logging formatter. formatter#call is invoked with 4 arguments; severity, time, progname and msg for each log. Bear in mind that time is a Time and msg is an Object that user passed and it could not be a String. It is expected to return a logdev#write-able Object. Default formatter is used when no formatter is set.
+  name: formatter
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Logging severity threshold (e.g. <tt>Logger::INFO</tt>).
+  name: level
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Logging program name.
+  name: progname
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "\"1.2.6\""
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ProgName
+  value: "\"#{$1}/#{$2}\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Severity label for logging. (max 5 char)
+  name: SEV_LABEL
+  value: "%w(DEBUG INFO WARN ERROR FATAL ANY)"
+full_name: Logger
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Severity
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: datetime_format
+- !ruby/object:RI::MethodSummary 
+  name: datetime_format=
+- !ruby/object:RI::MethodSummary 
+  name: debug
+- !ruby/object:RI::MethodSummary 
+  name: debug?
+- !ruby/object:RI::MethodSummary 
+  name: error
+- !ruby/object:RI::MethodSummary 
+  name: error?
+- !ruby/object:RI::MethodSummary 
+  name: fatal
+- !ruby/object:RI::MethodSummary 
+  name: fatal?
+- !ruby/object:RI::MethodSummary 
+  name: format_message
+- !ruby/object:RI::MethodSummary 
+  name: format_severity
+- !ruby/object:RI::MethodSummary 
+  name: info
+- !ruby/object:RI::MethodSummary 
+  name: info?
+- !ruby/object:RI::MethodSummary 
+  name: log
+- !ruby/object:RI::MethodSummary 
+  name: unknown
+- !ruby/object:RI::MethodSummary 
+  name: warn
+- !ruby/object:RI::MethodSummary 
+  name: warn?
+name: Logger
+superclass: Object

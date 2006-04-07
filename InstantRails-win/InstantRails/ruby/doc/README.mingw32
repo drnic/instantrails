@@ -1,0 +1,67 @@
+GNU readline library 4.0 port to Mingw32,
+done by Michael Rickmann <mrickma@gwdg.de>
+
+This port is similar to Paul Solokowsky's port of the readline library 2.0.
+http://www.is.lg.ua/~paul/devel/readline/
+
+I have, however, tried to conform a bit more to the overall outlay of the
+original GNU readline-4.0. As a result of this you can use the readline-4.0
+in a cross-compiling environment, and it is immune against autoconf. The
+patch is to be applied against the original GNU readline-4.0 as it is found
+on every GNU mirror. It includes all Mingw32 specific changes and those
+introduced by Cygnus in their gdb-20000204 snapshot.
+
+The key mapping is done the same way as in Paul Solokovky's port. For information
+how to construct an .inputrc file consult Paul's README.win32 file which you find
+in the download under above URL. For a standard US keyboard the built in key
+handling should cover Windows arrows, begin, end and shift-insert keys. In
+examples/Inputrc.kbger I provide a few extras for the German keyboard layout.
+
+Readline-4.0 will look for an INPUTRC environment variable. If not found it will
+use .inputrc as the basename of its initialization file. Readline will look
+for this file in the directory specified by the environment variable HOME or
+if not set in the current directory. If it cannot find the init file and if
+registry access is enabled it will ask for the <inputrc-file> value of the
+<HKEY_CURRENT_USER\Software\Free Software Foundation\libreadline> key.
+For history readline will access the <history-file> value of above registry
+key if the environment variable HOME is not set. On failure it will resort
+to the current directory.
+
+To patch:
+cd readline-4.0
+patch -p1 < "wherever you put the patch"
+
+To set some configuration options edit rlconf:
+At the end you may wish to disable the Mingw32 enhancements:
+-positioning the cursor with mouse
+-querying the registry for the locations of the init files
+ .inputrc, .history
+Enabling HANDLE_SIGNALS is not recommended.
+
+To build in a cross-compiling environment on a pc-linux box:
+mkdir CROSS-WIN32
+cd CROSS-WIN32
+../configure \
+--prefix=/usr/local/cross-tools --target=i386-mingw32 \
+--host=i386-mingw32 --build=i686-pc-linux-gnu -v > config.log 2>&1
+make > make.log 2>&1
+cd examples
+make > make.log 2>&1
+
+To build on a Windows machine:
+cd NATIVE-WIN32
+make
+cd examples
+make
+
+To build dll on a Windows machine:
+cd NATIVE-WIN32\shlib
+make
+cd ..\examples
+make clean
+make -f Makefile_dl
+
+Please help me to improve things.
+Michael Rickmann
+
+
