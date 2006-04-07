@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cltmsgCB (ActiveRecord::ConnectionAdapters::SybaseAdapterContext)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/sybase_adapter.rb, line 634</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cltmsgCB</span>(<span class="ruby-identifier">con</span>, <span class="ruby-identifier">msg</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> <span class="ruby-keyword kw">unless</span> ( <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>) )
+        <span class="ruby-keyword kw">unless</span> ( <span class="ruby-identifier">msg</span>[ <span class="ruby-value str">&quot;severity&quot;</span> ] ) <span class="ruby-keyword kw">then</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;** SybSQLContext Client-Message: **&quot;</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;  Message number: LAYER=#{msg[ 'layer' ]} ORIGIN=#{msg[ 'origin' ]} SEVERITY=#{msg[ 'severity' ]} NUMBER=#{msg[ 'number' ]}&quot;</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;  Message String: #{msg['msgstring']}&quot;</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-node">&quot;  OS Error: #{msg['osstring']}&quot;</span>
+
+          <span class="ruby-ivar">@message</span> = <span class="ruby-identifier">msg</span>[<span class="ruby-value str">'msgstring'</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-ivar">@failed</span> = <span class="ruby-keyword kw">true</span>
+
+        <span class="ruby-comment cmt"># Not retry , CS_CV_RETRY_FAIL( probability TimeOut ) </span>
+        <span class="ruby-keyword kw">if</span>( <span class="ruby-identifier">msg</span>[ <span class="ruby-value str">'severity'</span> ] <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;RETRY_FAIL&quot;</span> ) <span class="ruby-keyword kw">then</span>
+          <span class="ruby-ivar">@timeout_p</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

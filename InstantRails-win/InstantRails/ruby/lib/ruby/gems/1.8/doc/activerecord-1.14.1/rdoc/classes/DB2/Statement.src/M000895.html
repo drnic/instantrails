@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (DB2::Statement)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/vendor/db2.rb, line 148</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">parms</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;The statement was not prepared&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@prepared</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parms</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">parms</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Array</span>
+        <span class="ruby-identifier">parms</span> = <span class="ruby-identifier">parms</span>[<span class="ruby-value">0</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@numParms</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">parms</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Number of parameters supplied does not match with the SQL statement&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@numParms</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>            <span class="ruby-comment cmt">#need to bind parameters</span>
+        <span class="ruby-comment cmt">#--------------------------------------------------------------------</span>
+        <span class="ruby-comment cmt">#calling bindParms may not be safe. Look comment below.</span>
+        <span class="ruby-comment cmt">#--------------------------------------------------------------------</span>
+        <span class="ruby-comment cmt">#bindParms(parms)</span>
+
+        <span class="ruby-identifier">valueArray</span> = []
+        <span class="ruby-value">1</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@numParms</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>  <span class="ruby-comment cmt"># parameter number starts from 1</span>
+          <span class="ruby-identifier">type</span> = <span class="ruby-ivar">@parmArray</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">class</span>
+          <span class="ruby-identifier">size</span> = <span class="ruby-ivar">@parmArray</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">size</span>
+          <span class="ruby-identifier">decimalDigits</span> = <span class="ruby-ivar">@parmArray</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">decimalDigits</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">parms</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
+            <span class="ruby-identifier">valueArray</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parms</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>]
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">valueArray</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">parms</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>].<span class="ruby-identifier">to_s</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">rc</span> = <span class="ruby-constant">SQLBindParameter</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">i</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">decimalDigits</span>, <span class="ruby-identifier">valueArray</span>[<span class="ruby-identifier">i</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>])
+          <span class="ruby-identifier">check_rc</span>(<span class="ruby-identifier">rc</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">check_rc</span>(<span class="ruby-constant">SQLExecute</span>(<span class="ruby-ivar">@handle</span>))
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@numParms</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">check_rc</span>(<span class="ruby-constant">SQLFreeStmt</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-constant">SQL_RESET_PARAMS</span>)) <span class="ruby-comment cmt"># Reset parameters</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">self</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

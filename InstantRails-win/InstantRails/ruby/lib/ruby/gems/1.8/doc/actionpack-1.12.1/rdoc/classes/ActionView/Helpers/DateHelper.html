@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActionView::Helpers::DateHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActionView::Helpers::DateHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/action_view/helpers/date_helper_rb.html">
+                lib/action_view/helpers/date_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The Date Helper primarily creates select/option tags for different kinds of
+dates and date elements. All of the select-type methods share a number of
+common options that are as follows:
+</p>
+<ul>
+<li><tt>:prefix</tt> - overwrites the default prefix of &quot;date&quot; used
+for the select names. So specifying &quot;birthday&quot; would give
+birthday[month] instead of date[month] if passed to the <a
+href="DateHelper.html#M001196">select_month</a> method.
+
+</li>
+<li><tt>:include_blank</tt> - set to true if it should be possible to set an
+empty date.
+
+</li>
+<li><tt>:discard_type</tt> - set to true if you want to discard the type part
+of the select name. If set to true, the <a
+href="DateHelper.html#M001196">select_month</a> method would use simply
+&quot;date&quot; (which can be overwritten using <tt>:prefix</tt>) instead
+of &quot;date[month]&quot;.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001187">date_select</a>&nbsp;&nbsp;
+      <a href="#M001188">datetime_select</a>&nbsp;&nbsp;
+      <a href="#M001184">distance_of_time_in_words</a>&nbsp;&nbsp;
+      <a href="#M001186">distance_of_time_in_words_to_now</a>&nbsp;&nbsp;
+      <a href="#M001189">select_date</a>&nbsp;&nbsp;
+      <a href="#M001190">select_datetime</a>&nbsp;&nbsp;
+      <a href="#M001195">select_day</a>&nbsp;&nbsp;
+      <a href="#M001194">select_hour</a>&nbsp;&nbsp;
+      <a href="#M001193">select_minute</a>&nbsp;&nbsp;
+      <a href="#M001196">select_month</a>&nbsp;&nbsp;
+      <a href="#M001192">select_second</a>&nbsp;&nbsp;
+      <a href="#M001191">select_time</a>&nbsp;&nbsp;
+      <a href="#M001197">select_year</a>&nbsp;&nbsp;
+      <a href="#M001185">time_ago_in_words</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_PREFIX</td>
+          <td>=</td>
+          <td class="context-item-value">'date' unless const_defined?('DEFAULT_PREFIX')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001187" class="method-detail">
+        <a name="M001187"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001187.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001187.html');return false;">
+          <span class="method-name">date_select</span><span class="method-args">(object_name, method, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a set of select tags (one for year, month, and day) pre-selected
+for accessing a specified date-based attribute (identified by
+<tt>method</tt>) on an object assigned to the template (identified by
+<tt>object</tt>). It&#8217;s possible to tailor the selects through the
+<tt>options</tt> hash, which accepts all the keys that each of the
+individual select builders do (like :use_month_numbers for <a
+href="DateHelper.html#M001196">select_month</a>) as well as a range of
+discard options. The discard options are <tt>:discard_year</tt>,
+<tt>:discard_month</tt> and <tt>:discard_day</tt>. Set to true,
+they&#8217;ll drop the respective select. Discarding the month select will
+also automatically discard the day select. It&#8217;s also possible to
+explicitly set the order of the tags using the <tt>:order</tt> option with
+an array of symbols <tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in
+the desired order. Symbols may be omitted and the respective select is not
+included.
+</p>
+<p>
+Passing :disabled =&gt; true as part of the <tt>options</tt> will make
+elements inaccessible for change.
+</p>
+<p>
+NOTE: Discarded selects will default to 1. So if no month select is
+available, January will be assumed.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  date_select(&quot;post&quot;, &quot;written_on&quot;)
+  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)
+  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995, :use_month_numbers =&gt; true,
+                                    :discard_day =&gt; true, :include_blank =&gt; true)
+  date_select(&quot;post&quot;, &quot;written_on&quot;, :order =&gt; [:day, :month, :year])
+  date_select(&quot;user&quot;, &quot;birthday&quot;,   :order =&gt; [:month, :day])
+</pre>
+<p>
+The selects are prepared for multi-parameter assignment to an Active Record
+object.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001188" class="method-detail">
+        <a name="M001188"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001188.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001188.html');return false;">
+          <span class="method-name">datetime_select</span><span class="method-args">(object_name, method, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a set of select tags (one for year, month, day, hour, and minute)
+pre-selected for accessing a specified datetime-based attribute (identified
+by <tt>method</tt>) on an object assigned to the template (identified by
+<tt>object</tt>). Examples:
+</p>
+<pre>
+  datetime_select(&quot;post&quot;, &quot;written_on&quot;)
+  datetime_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)
+</pre>
+<p>
+The selects are prepared for multi-parameter assignment to an Active Record
+object.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001184" class="method-detail">
+        <a name="M001184"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001184.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001184.html');return false;">
+          <span class="method-name">distance_of_time_in_words</span><span class="method-args">(from_time, to_time = 0, include_seconds = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reports the approximate distance in time between two Time objects or
+integers. For example, if the distance is 47 minutes, it&#8217;ll return
+&quot;about 1 hour&quot;. See the source for the complete wording list.
+</p>
+<p>
+Integers are interpreted as seconds. So, <tt><a
+href="DateHelper.html#M001184">distance_of_time_in_words</a>(50)</tt>
+returns &quot;less than a minute&quot;.
+</p>
+<p>
+Set <tt>include_seconds</tt> to true if you want more detailed
+approximations if distance &lt; 1 minute
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001186" class="method-detail">
+        <a name="M001186"></a>
+
+        <div class="method-heading">
+          <span class="method-name">distance_of_time_in_words_to_now</span><span class="method-args">(from_time, include_seconds = false)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DateHelper.html#M001185">time_ago_in_words</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001189" class="method-detail">
+        <a name="M001189"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001189.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001189.html');return false;">
+          <span class="method-name">select_date</span><span class="method-args">(date = Date.today, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a set of html select-tags (one for year, month, and day)
+pre-selected with the <tt>date</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001190" class="method-detail">
+        <a name="M001190"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001190.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001190.html');return false;">
+          <span class="method-name">select_datetime</span><span class="method-args">(datetime = Time.now, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a set of html select-tags (one for year, month, day, hour, and
+minute) pre-selected with the <tt>datetime</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001195" class="method-detail">
+        <a name="M001195"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001195.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001195.html');return false;">
+          <span class="method-name">select_day</span><span class="method-args">(date, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the days 1 through 31 with
+the current day selected. The <tt>date</tt> can also be substituted for a
+hour number. Override the field name using the <tt>:field_name</tt> option,
+&#8216;day&#8217; by default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001194" class="method-detail">
+        <a name="M001194"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001194.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001194.html');return false;">
+          <span class="method-name">select_hour</span><span class="method-args">(datetime, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the hours 0 through 23 with
+the current hour selected. The <tt>hour</tt> can also be substituted for a
+hour number. Override the field name using the <tt>:field_name</tt> option,
+&#8216;hour&#8217; by default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001193" class="method-detail">
+        <a name="M001193"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001193.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001193.html');return false;">
+          <span class="method-name">select_minute</span><span class="method-args">(datetime, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the minutes 0 through 59 with
+the current minute selected. Also can return a select tag with options by
+<tt>minute_step</tt> from 0 through 59 with the 00 minute selected The
+<tt>minute</tt> can also be substituted for a minute number. Override the
+field name using the <tt>:field_name</tt> option, &#8216;minute&#8217; by
+default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001196" class="method-detail">
+        <a name="M001196"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001196.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001196.html');return false;">
+          <span class="method-name">select_month</span><span class="method-args">(date, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the months January through
+December with the current month selected. The month names are presented as
+keys (what&#8217;s shown to the user) and the month numbers (1-12) are used
+as values (what&#8217;s submitted to the server). It&#8217;s also possible
+to use month numbers for the presentation instead of names &#8212; set the
+<tt>:use_month_numbers</tt> key in <tt>options</tt> to true for this to
+happen. If you want both numbers and names, set the
+<tt>:add_month_numbers</tt> key in <tt>options</tt> to true. Examples:
+</p>
+<pre>
+  select_month(Date.today)                             # Will use keys like &quot;January&quot;, &quot;March&quot;
+  select_month(Date.today, :use_month_numbers =&gt; true) # Will use keys like &quot;1&quot;, &quot;3&quot;
+  select_month(Date.today, :add_month_numbers =&gt; true) # Will use keys like &quot;1 - January&quot;, &quot;3 - March&quot;
+</pre>
+<p>
+Override the field name using the <tt>:field_name</tt> option,
+&#8216;month&#8217; by default.
+</p>
+<p>
+If you would prefer to show month names as abbreviations, set the
+<tt>:use_short_month</tt> key in <tt>options</tt> to true.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001192" class="method-detail">
+        <a name="M001192"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001192.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001192.html');return false;">
+          <span class="method-name">select_second</span><span class="method-args">(datetime, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the seconds 0 through 59 with
+the current second selected. The <tt>second</tt> can also be substituted
+for a second number. Override the field name using the <tt>:field_name</tt>
+option, &#8216;second&#8217; by default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001191" class="method-detail">
+        <a name="M001191"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001191.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001191.html');return false;">
+          <span class="method-name">select_time</span><span class="method-args">(datetime = Time.now, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a set of html select-tags (one for hour and minute)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001197" class="method-detail">
+        <a name="M001197"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001197.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001197.html');return false;">
+          <span class="method-name">select_year</span><span class="method-args">(date, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a select tag with options for each of the five years on each side
+of the current, which is selected. The five year radius can be changed
+using the <tt>:start_year</tt> and <tt>:end_year</tt> keys in the
+<tt>options</tt>. Both ascending and descending year lists are supported by
+making <tt>:start_year</tt> less than or greater than <tt>:end_year</tt>.
+The <tt>date</tt> can also be substituted for a year given as a number.
+Example:
+</p>
+<pre>
+  select_year(Date.today, :start_year =&gt; 1992, :end_year =&gt; 2007)  # ascending year values
+  select_year(Date.today, :start_year =&gt; 2005, :end_year =&gt; 1900)  # descending year values
+</pre>
+<p>
+Override the field name using the <tt>:field_name</tt> option,
+&#8216;year&#8217; by default.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001185" class="method-detail">
+        <a name="M001185"></a>
+
+        <div class="method-heading">
+          <a href="DateHelper.src/M001185.html" target="Code" class="method-signature"
+            onclick="popupCode('DateHelper.src/M001185.html');return false;">
+          <span class="method-name">time_ago_in_words</span><span class="method-args">(from_time, include_seconds = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Like <a href="DateHelper.html#M001184">distance_of_time_in_words</a>, but
+where <tt>to_time</tt> is fixed to <tt>Time.now</tt>.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>scaffold (ActionController::Scaffolding::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/scaffolding.rb, line 87</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">scaffold</span>(<span class="ruby-identifier">model_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">options</span>.<span class="ruby-identifier">assert_valid_keys</span>(<span class="ruby-identifier">:class_name</span>, <span class="ruby-identifier">:suffix</span>)
+
+        <span class="ruby-identifier">singular_name</span> = <span class="ruby-identifier">model_id</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">class_name</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:class_name</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">singular_name</span>.<span class="ruby-identifier">camelize</span>
+        <span class="ruby-identifier">plural_name</span>   = <span class="ruby-identifier">singular_name</span>.<span class="ruby-identifier">pluralize</span>
+        <span class="ruby-identifier">suffix</span>        = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:suffix</span>] <span class="ruby-operator">?</span> <span class="ruby-node">&quot;_#{singular_name}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:suffix</span>]
+          <span class="ruby-identifier">module_eval</span> <span class="ruby-value str">&quot;def index\nlist\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-identifier">module_eval</span> <span class="ruby-value str">&quot;\nverify :method =&gt; :post, :only =&gt; [ :destroy\#{suffix}, :create\#{suffix}, :update\#{suffix} ],\n:redirect_to =&gt; { :action =&gt; :list\#{suffix} }\n\n\ndef list\#{suffix}\n@\#{singular_name}_pages, @\#{plural_name} = paginate :\#{plural_name}, :per_page =&gt; 10\nrender\#{suffix}_scaffold \&quot;list\#{suffix}\&quot;\nend\n\ndef show\#{suffix}\n@\#{singular_name} = \#{class_name}.find(params[:id])\nrender\#{suffix}_scaffold\nend\n\ndef destroy\#{suffix}\n\#{class_name}.find(params[:id]).destroy\nredirect_to :action =&gt; \&quot;list\#{suffix}\&quot;\nend\n\ndef new\#{suffix}\n@\#{singular_name} = \#{class_name}.new\nrender\#{suffix}_scaffold\nend\n\ndef create\#{suffix}\n@\#{singular_name} = \#{class_name}.new(params[:\#{singular_name}])\nif @\#{singular_name}.save\nflash[:notice] = \&quot;\#{class_name} was successfully created\&quot;\nredirect_to :action =&gt; \&quot;list\#{suffix}\&quot;\nelse\nrender\#{suffix}_scaffold('new')\nend\nend\n\ndef edit\#{suffix}\n@\#{singular_name} = \#{class_name}.find(params[:id])\nrender\#{suffix}_scaffold\nend\n\ndef update\#{suffix}\n@\#{singular_name} = \#{class_name}.find(params[:id])\n@\#{singular_name}.attributes = params[:\#{singular_name}]\n\nif @\#{singular_name}.save\nflash[:notice] = \&quot;\#{class_name} was successfully updated\&quot;\nredirect_to :action =&gt; \&quot;show\#{suffix}\&quot;, :id =&gt; @\#{singular_name}\nelse\nrender\#{suffix}_scaffold('edit')\nend\nend\n\nprivate\ndef render\#{suffix}_scaffold(action=nil)\naction ||= caller_method_name(caller)\n# logger.info (\&quot;testing template:\&quot; + \&quot;\\\#{self.class.controller_path}/\\\#{action}\&quot;) if logger\n\nif template_exists?(\&quot;\\\#{self.class.controller_path}/\\\#{action}\&quot;)\nrender_action(action)\nelse\n@scaffold_class = \#{class_name}\n@scaffold_singular_name, @scaffold_plural_name = \&quot;\#{singular_name}\&quot;, \&quot;\#{plural_name}\&quot;\n@scaffold_suffix = \&quot;\#{suffix}\&quot;\nadd_instance_variables_to_assigns\n\n@template.instance_variable_set(\&quot;@content_for_layout\&quot;, @template.render_file(scaffold_path(action.sub(/\#{suffix}$/, \&quot;\&quot;)), false))\n\nif !active_layout.nil?\nrender_file(active_layout, nil, true)\nelse\nrender_file(scaffold_path(\&quot;layout\&quot;))\nend\nend\nend\n\ndef scaffold_path(template_name)\nFile.dirname(__FILE__) + \&quot;/templates/scaffolds/\&quot; + template_name + \&quot;.rhtml\&quot;\nend\n\ndef caller_method_name(caller)\ncaller.first.scan(/`(.*)'/).first.first # ' ruby-mode\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

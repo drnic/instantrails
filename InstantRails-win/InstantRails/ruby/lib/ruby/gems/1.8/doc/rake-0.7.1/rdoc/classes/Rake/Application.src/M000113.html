@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load_rakefile (Rake::Application)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/rake.rb, line 1818</span>
+1818:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_rakefile</span>
+1819:       <span class="ruby-identifier">here</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>
+1820:       <span class="ruby-keyword kw">while</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">have_rakefile</span>
+1821:         <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-value str">&quot;..&quot;</span>)
+1822:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">here</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">nosearch</span>
+1823:           <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;No Rakefile found (looking for: #{RAKEFILES.join(', ')})&quot;</span>
+1824:         <span class="ruby-keyword kw">end</span>
+1825:         <span class="ruby-identifier">here</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">pwd</span>
+1826:       <span class="ruby-keyword kw">end</span>
+1827:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;(in #{Dir.pwd})&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">silent</span>
+1828:       <span class="ruby-identifier">$rakefile</span> = <span class="ruby-ivar">@rakefile</span>
+1829:       <span class="ruby-identifier">load</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-ivar">@rakefile</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@rakefile</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">''</span>
+1830:       <span class="ruby-identifier">options</span>.<span class="ruby-identifier">rakelib</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">rlib</span><span class="ruby-operator">|</span>
+1831:         <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{rlib}/*.rake&quot;</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">add_import</span> <span class="ruby-identifier">name</span> <span class="ruby-keyword kw">end</span>
+1832:       <span class="ruby-keyword kw">end</span>
+1833:       <span class="ruby-identifier">load_imports</span>
+1834:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

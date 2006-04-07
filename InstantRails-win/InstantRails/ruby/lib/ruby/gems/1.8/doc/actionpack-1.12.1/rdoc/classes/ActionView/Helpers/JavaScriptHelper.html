@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActionView::Helpers::JavaScriptHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActionView::Helpers::JavaScriptHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/action_view/helpers/javascript_helper_rb.html">
+                lib/action_view/helpers/javascript_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Provides functionality for working with JavaScript in your views.
+</p>
+<h2>Ajax, controls and visual effects</h2>
+<ul>
+<li>For information on using Ajax, see <a
+href="PrototypeHelper.html">ActionView::Helpers::PrototypeHelper</a>.
+
+</li>
+<li>For information on using controls and visual effects, see <a
+href="ScriptaculousHelper.html">ActionView::Helpers::ScriptaculousHelper</a>.
+
+</li>
+</ul>
+<h2>Including the JavaScript libraries into your pages</h2>
+<p>
+Rails includes the Prototype JavaScript framework and the Scriptaculous
+JavaScript controls and visual effects library. If you wish to use these
+libraries and their helpers (<a
+href="PrototypeHelper.html">ActionView::Helpers::PrototypeHelper</a> and <a
+href="ScriptaculousHelper.html">ActionView::Helpers::ScriptaculousHelper</a>),
+you must do one of the following:
+</p>
+<ul>
+<li>Use <tt>&lt;%= javascript_include_tag :defaults %&gt;</tt> in the HEAD
+section of your page (recommended): This function will return references to
+the JavaScript files created by the <tt>rails</tt> command in your
+<tt>public/javascripts</tt> directory. Using it is recommended as the
+browser can then cache the libraries instead of fetching all the functions
+anew on every request.
+
+</li>
+<li>Use <tt>&lt;%= javascript_include_tag &#8216;prototype&#8217; %&gt;</tt>:
+As above, but will only include the Prototype core library, which means you
+are able to use all basic AJAX functionality. For the Scriptaculous-based
+JavaScript helpers, like visual effects, autocompletion, drag and drop and
+so on, you should use the method described above.
+
+</li>
+<li>Use <tt>&lt;%= <a
+href="JavaScriptHelper.html#M001240">define_javascript_functions</a>
+%&gt;</tt>: this will copy all the JavaScript support functions within a
+single script block. Not recommended.
+
+</li>
+</ul>
+<p>
+For documentation on <tt>javascript_include_tag</tt> see <a
+href="AssetTagHelper.html">ActionView::Helpers::AssetTagHelper</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001244">array_or_string_for_javascript</a>&nbsp;&nbsp;
+      <a href="#M001239">button_to_function</a>&nbsp;&nbsp;
+      <a href="#M001240">define_javascript_functions</a>&nbsp;&nbsp;
+      <a href="#M001241">escape_javascript</a>&nbsp;&nbsp;
+      <a href="#M001242">javascript_tag</a>&nbsp;&nbsp;
+      <a href="#M001238">link_to_function</a>&nbsp;&nbsp;
+      <a href="#M001243">options_for_javascript</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">JAVASCRIPT_PATH</td>
+          <td>=</td>
+          <td class="context-item-value">File.join(File.dirname(__FILE__), 'javascripts')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001239" class="method-detail">
+        <a name="M001239"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001239.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001239.html');return false;">
+          <span class="method-name">button_to_function</span><span class="method-args">(name, function, html_options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a link that&#8217;ll trigger a JavaScript <tt>function</tt> using
+the onclick handler.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  button_to_function &quot;Greeting&quot;, &quot;alert('Hello world!')&quot;
+  button_to_function &quot;Delete&quot;, &quot;if confirm('Really?'){ do_delete(); }&quot;)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M001240" class="method-detail">
+        <a name="M001240"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001240.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001240.html');return false;">
+          <span class="method-name">define_javascript_functions</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Includes the Action Pack JavaScript libraries inside a single
+&lt;script&gt; tag. The function first includes prototype.js and then its
+core extensions, (determined by filenames starting with
+&quot;prototype&quot;). Afterwards, any additional scripts will be included
+in undefined order.
+</p>
+<p>
+Note: The recommended approach is to copy the contents of
+lib/action_view/helpers/javascripts/ into your application&#8217;s
+public/javascripts/ directory, and use <tt>javascript_include_tag</tt> to
+create remote &lt;script&gt; links.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001241" class="method-detail">
+        <a name="M001241"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001241.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001241.html');return false;">
+          <span class="method-name">escape_javascript</span><span class="method-args">(javascript)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Escape carrier returns and single and double quotes for JavaScript
+segments.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001242" class="method-detail">
+        <a name="M001242"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001242.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001242.html');return false;">
+          <span class="method-name">javascript_tag</span><span class="method-args">(content)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a JavaScript tag with the <tt>content</tt> inside. Example:
+</p>
+<pre>
+  javascript_tag &quot;alert('All is good')&quot; # =&gt; &lt;script type=&quot;text/javascript&quot;&gt;alert('All is good')&lt;/script&gt;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M001238" class="method-detail">
+        <a name="M001238"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001238.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001238.html');return false;">
+          <span class="method-name">link_to_function</span><span class="method-args">(name, function, html_options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a link that&#8217;ll trigger a JavaScript <tt>function</tt> using
+the onclick handler and return false after the fact.
+</p>
+<p>
+Examples:
+</p>
+<pre>
+  link_to_function &quot;Greeting&quot;, &quot;alert('Hello world!')&quot;
+  link_to_function(image_tag(&quot;delete&quot;), &quot;if confirm('Really?'){ do_delete(); }&quot;)
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M001244" class="method-detail">
+        <a name="M001244"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001244.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001244.html');return false;">
+          <span class="method-name">array_or_string_for_javascript</span><span class="method-args">(option)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001243" class="method-detail">
+        <a name="M001243"></a>
+
+        <div class="method-heading">
+          <a href="JavaScriptHelper.src/M001243.html" target="Code" class="method-signature"
+            onclick="popupCode('JavaScriptHelper.src/M001243.html');return false;">
+          <span class="method-name">options_for_javascript</span><span class="method-args">(options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

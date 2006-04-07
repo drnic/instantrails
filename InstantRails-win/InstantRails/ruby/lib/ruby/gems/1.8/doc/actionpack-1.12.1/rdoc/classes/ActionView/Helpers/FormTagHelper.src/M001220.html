@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>submit_tag (ActionView::Helpers::FormTagHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/form_tag_helper.rb, line 120</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">submit_tag</span>(<span class="ruby-identifier">value</span> = <span class="ruby-value str">&quot;Save changes&quot;</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys!</span>
+        
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">disable_with</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;disable_with&quot;</span>)
+          <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;onclick&quot;</span>] = <span class="ruby-node">&quot;this.disabled=true;this.value='#{disable_with}';this.form.submit();#{options[&quot;onclick&quot;]}&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+          
+        <span class="ruby-identifier">tag</span> <span class="ruby-identifier">:input</span>, { <span class="ruby-value str">&quot;type&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;submit&quot;</span>, <span class="ruby-value str">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;commit&quot;</span>, <span class="ruby-value str">&quot;value&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">value</span> }.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>indexes (ActiveRecord::ConnectionAdapters::DB2Adapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/db2_adapter.rb, line 122</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">indexes</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+          <span class="ruby-identifier">tmp</span> = {}
+          <span class="ruby-identifier">schema</span> = <span class="ruby-ivar">@connection_options</span>[<span class="ruby-identifier">:schema</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>
+          <span class="ruby-identifier">with_statement</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stmt</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">indexes</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">schema</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">t</span>[<span class="ruby-value">5</span>]
+              <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">t</span>[<span class="ruby-value">4</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'SYSIBM'</span> <span class="ruby-comment cmt"># Skip system indexes.</span>
+              <span class="ruby-identifier">idx_name</span> = <span class="ruby-identifier">t</span>[<span class="ruby-value">5</span>].<span class="ruby-identifier">downcase</span>
+              <span class="ruby-identifier">col_name</span> = <span class="ruby-identifier">t</span>[<span class="ruby-value">8</span>].<span class="ruby-identifier">downcase</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">idx_name</span>)
+                <span class="ruby-identifier">tmp</span>[<span class="ruby-identifier">idx_name</span>].<span class="ruby-identifier">columns</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">col_name</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">is_unique</span> = <span class="ruby-identifier">t</span>[<span class="ruby-value">3</span>] <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">tmp</span>[<span class="ruby-identifier">idx_name</span>] = <span class="ruby-constant">IndexDefinition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">idx_name</span>, <span class="ruby-identifier">is_unique</span>, [<span class="ruby-identifier">col_name</span>])
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">tmp</span>.<span class="ruby-identifier">values</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
