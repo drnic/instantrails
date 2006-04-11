@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: TMail::Maildir</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">TMail::Maildir</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/action_mailer/vendor/tmail/mailbox_rb.html">
+                lib/action_mailer/vendor/tmail/mailbox.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail/obsolete_rb.html">
+                lib/action_mailer/vendor/tmail/obsolete.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001504">check_tmp</a>&nbsp;&nbsp;
+      <a href="#M001497">close</a>&nbsp;&nbsp;
+      <a href="#M001495">directory</a>&nbsp;&nbsp;
+      <a href="#M001499">each</a>&nbsp;&nbsp;
+      <a href="#M001506">each_mail</a>&nbsp;&nbsp;
+      <a href="#M001503">each_new_port</a>&nbsp;&nbsp;
+      <a href="#M001507">each_newmail</a>&nbsp;&nbsp;
+      <a href="#M001498">each_port</a>&nbsp;&nbsp;
+      <a href="#M001496">inspect</a>&nbsp;&nbsp;
+      <a href="#M001494">new</a>&nbsp;&nbsp;
+      <a href="#M001505">new_mail</a>&nbsp;&nbsp;
+      <a href="#M001502">new_port</a>&nbsp;&nbsp;
+      <a href="#M001501">reverse_each</a>&nbsp;&nbsp;
+      <a href="#M001500">reverse_each_port</a>&nbsp;&nbsp;
+      <a href="#M001493">unique_number</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PORT_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">MaildirPort</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TOO_OLD</td>
+          <td>=</td>
+          <td class="context-item-value">60 * 60 * 36</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001494" class="method-detail">
+        <a name="M001494"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001494.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001494.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( dir = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001493" class="method-detail">
+        <a name="M001493"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001493.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001493.html');return false;">
+          <span class="method-name">unique_number</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001504" class="method-detail">
+        <a name="M001504"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001504.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001504.html');return false;">
+          <span class="method-name">check_tmp</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001497" class="method-detail">
+        <a name="M001497"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001497.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001497.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001495" class="method-detail">
+        <a name="M001495"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001495.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001495.html');return false;">
+          <span class="method-name">directory</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001499" class="method-detail">
+        <a name="M001499"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Maildir.html#M001498">each_port</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001506" class="method-detail">
+        <a name="M001506"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_mail</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Maildir.html#M001498">each_port</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001503" class="method-detail">
+        <a name="M001503"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001503.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001503.html');return false;">
+          <span class="method-name">each_new_port</span><span class="method-args">() {|PORT_CLASS.new(dest)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001507" class="method-detail">
+        <a name="M001507"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_newmail</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Maildir.html#M001503">each_new_port</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001498" class="method-detail">
+        <a name="M001498"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001498.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001498.html');return false;">
+          <span class="method-name">each_port</span><span class="method-args">() {|PORT_CLASS.new(path)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001496" class="method-detail">
+        <a name="M001496"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001496.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001496.html');return false;">
+          <span class="method-name">inspect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001505" class="method-detail">
+        <a name="M001505"></a>
+
+        <div class="method-heading">
+          <span class="method-name">new_mail</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Maildir.html#M001502">new_port</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001502" class="method-detail">
+        <a name="M001502"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001502.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001502.html');return false;">
+          <span class="method-name">new_port</span><span class="method-args">() {|f| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001501" class="method-detail">
+        <a name="M001501"></a>
+
+        <div class="method-heading">
+          <span class="method-name">reverse_each</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Maildir.html#M001500">reverse_each_port</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001500" class="method-detail">
+        <a name="M001500"></a>
+
+        <div class="method-heading">
+          <a href="Maildir.src/M001500.html" target="Code" class="method-signature"
+            onclick="popupCode('Maildir.src/M001500.html');return false;">
+          <span class="method-name">reverse_each_port</span><span class="method-args">() {|PORT_CLASS.new(path)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
