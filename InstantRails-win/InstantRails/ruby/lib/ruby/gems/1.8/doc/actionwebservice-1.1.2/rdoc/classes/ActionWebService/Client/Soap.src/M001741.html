@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (ActionWebService::Client::Soap)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_web_service/client/soap_client.rb, line 44</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">api</span>, <span class="ruby-identifier">endpoint_uri</span>, <span class="ruby-identifier">options</span>={})
+        <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">api</span>, <span class="ruby-identifier">endpoint_uri</span>)
+        <span class="ruby-ivar">@namespace</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:namespace</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'urn:ActionWebService'</span>
+        <span class="ruby-ivar">@driver_options</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:driver_options</span>] <span class="ruby-operator">||</span> {}
+        <span class="ruby-ivar">@protocol</span> = <span class="ruby-constant">ActionWebService</span><span class="ruby-operator">::</span><span class="ruby-constant">Protocol</span><span class="ruby-operator">::</span><span class="ruby-constant">Soap</span><span class="ruby-operator">::</span><span class="ruby-constant">SoapProtocol</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@namespace</span>
+        <span class="ruby-ivar">@soap_action_base</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:soap_action_base</span>]
+        <span class="ruby-ivar">@soap_action_base</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">URI</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-identifier">endpoint_uri</span>).<span class="ruby-identifier">path</span>
+        <span class="ruby-ivar">@driver</span> = <span class="ruby-identifier">create_soap_rpc_driver</span>(<span class="ruby-identifier">api</span>, <span class="ruby-identifier">endpoint_uri</span>)
+        <span class="ruby-ivar">@driver_options</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+          <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>] = <span class="ruby-identifier">value</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
