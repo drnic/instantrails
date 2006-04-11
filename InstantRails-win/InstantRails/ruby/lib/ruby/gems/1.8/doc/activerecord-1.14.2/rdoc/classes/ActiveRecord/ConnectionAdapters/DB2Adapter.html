@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::ConnectionAdapters::DB2Adapter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::DB2Adapter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/db2_adapter_rb.html">
+                lib/active_record/connection_adapters/db2_adapter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="AbstractAdapter.html">
+                AbstractAdapter
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The <a href="../../DB2.html">DB2</a> adapter works with the C-based CLI
+driver (<a
+href="http://rubyforge.org/projects/ruby-dbi">rubyforge.org/projects/ruby-dbi</a>/)
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li><tt>:username</tt> &#8212; Defaults to nothing
+
+</li>
+<li><tt>:password</tt> &#8212; Defaults to nothing
+
+</li>
+<li><tt>:database</tt> &#8212; The name of the database. No default, must be
+provided.
+
+</li>
+<li><tt>:schema</tt> &#8212; Database schema to be set initially.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000723">active?</a>&nbsp;&nbsp;
+      <a href="#M000714">adapter_name</a>&nbsp;&nbsp;
+      <a href="#M000716">add_limit_offset!</a>&nbsp;&nbsp;
+      <a href="#M000710">begin_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000719">columns</a>&nbsp;&nbsp;
+      <a href="#M000711">commit_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000709">delete</a>&nbsp;&nbsp;
+      <a href="#M000707">execute</a>&nbsp;&nbsp;
+      <a href="#M000718">indexes</a>&nbsp;&nbsp;
+      <a href="#M000706">insert</a>&nbsp;&nbsp;
+      <a href="#M000720">native_database_types</a>&nbsp;&nbsp;
+      <a href="#M000703">new</a>&nbsp;&nbsp;
+      <a href="#M000713">quote_column_name</a>&nbsp;&nbsp;
+      <a href="#M000715">quote_string</a>&nbsp;&nbsp;
+      <a href="#M000722">quoted_false</a>&nbsp;&nbsp;
+      <a href="#M000721">quoted_true</a>&nbsp;&nbsp;
+      <a href="#M000724">reconnect!</a>&nbsp;&nbsp;
+      <a href="#M000712">rollback_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M000704">select_all</a>&nbsp;&nbsp;
+      <a href="#M000705">select_one</a>&nbsp;&nbsp;
+      <a href="#M000725">table_alias_length</a>&nbsp;&nbsp;
+      <a href="#M000717">tables</a>&nbsp;&nbsp;
+      <a href="#M000708">update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000703" class="method-detail">
+        <a name="M000703"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000703.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000703.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(connection, logger, connection_options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000723" class="method-detail">
+        <a name="M000723"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000723.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000723.html');return false;">
+          <span class="method-name">active?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000714" class="method-detail">
+        <a name="M000714"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000714.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000714.html');return false;">
+          <span class="method-name">adapter_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000716" class="method-detail">
+        <a name="M000716"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000716.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000716.html');return false;">
+          <span class="method-name">add_limit_offset!</span><span class="method-args">(sql, options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000710" class="method-detail">
+        <a name="M000710"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000710.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000710.html');return false;">
+          <span class="method-name">begin_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000719" class="method-detail">
+        <a name="M000719"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000719.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000719.html');return false;">
+          <span class="method-name">columns</span><span class="method-args">(table_name, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000711" class="method-detail">
+        <a name="M000711"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000711.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000711.html');return false;">
+          <span class="method-name">commit_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000709" class="method-detail">
+        <a name="M000709"></a>
+
+        <div class="method-heading">
+          <span class="method-name">delete</span><span class="method-args">(sql, name = nil)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DB2Adapter.html#M000707">execute</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000707" class="method-detail">
+        <a name="M000707"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000707.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000707.html');return false;">
+          <span class="method-name">execute</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000718" class="method-detail">
+        <a name="M000718"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000718.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000718.html');return false;">
+          <span class="method-name">indexes</span><span class="method-args">(table_name, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000706" class="method-detail">
+        <a name="M000706"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000706.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000706.html');return false;">
+          <span class="method-name">insert</span><span class="method-args">(sql, name = nil, pk = nil, id_value = nil, sequence_name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000720" class="method-detail">
+        <a name="M000720"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000720.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000720.html');return false;">
+          <span class="method-name">native_database_types</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000713" class="method-detail">
+        <a name="M000713"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000713.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000713.html');return false;">
+          <span class="method-name">quote_column_name</span><span class="method-args">(column_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000715" class="method-detail">
+        <a name="M000715"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000715.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000715.html');return false;">
+          <span class="method-name">quote_string</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000722" class="method-detail">
+        <a name="M000722"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000722.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000722.html');return false;">
+          <span class="method-name">quoted_false</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000721" class="method-detail">
+        <a name="M000721"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000721.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000721.html');return false;">
+          <span class="method-name">quoted_true</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000724" class="method-detail">
+        <a name="M000724"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000724.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000724.html');return false;">
+          <span class="method-name">reconnect!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000712" class="method-detail">
+        <a name="M000712"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000712.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000712.html');return false;">
+          <span class="method-name">rollback_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000704" class="method-detail">
+        <a name="M000704"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000704.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000704.html');return false;">
+          <span class="method-name">select_all</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000705" class="method-detail">
+        <a name="M000705"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000705.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000705.html');return false;">
+          <span class="method-name">select_one</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000725" class="method-detail">
+        <a name="M000725"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000725.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000725.html');return false;">
+          <span class="method-name">table_alias_length</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000717" class="method-detail">
+        <a name="M000717"></a>
+
+        <div class="method-heading">
+          <a href="DB2Adapter.src/M000717.html" target="Code" class="method-signature"
+            onclick="popupCode('DB2Adapter.src/M000717.html');return false;">
+          <span class="method-name">tables</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000708" class="method-detail">
+        <a name="M000708"></a>
+
+        <div class="method-heading">
+          <span class="method-name">update</span><span class="method-args">(sql, name = nil)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DB2Adapter.html#M000707">execute</a>
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
