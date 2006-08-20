@@ -1,1 +1,0 @@
-start rubyw freeride.rb
