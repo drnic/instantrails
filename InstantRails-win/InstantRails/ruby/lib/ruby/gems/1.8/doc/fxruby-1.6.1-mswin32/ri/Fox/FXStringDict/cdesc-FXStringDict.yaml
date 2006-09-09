@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXStringDict (string dictionary) object maps one string to another string. The inserted strings are copied when they're inserted.
+constants: []
+
+full_name: Fox::FXStringDict
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: data
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: replace
+name: FXStringDict
+superclass: FXDict

@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: position
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: open
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A FXMemoryStream is a stream that reads from (or writes to) a buffer of bytes in memory. That buffer may &quot;owned&quot; by either the application code or by the stream object itself. In the latter case, the stream object will dispose of the buffer contents when the stream is closed.
+constants: []
+
+full_name: Fox::FXMemoryStream
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: giveBuffer
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: takeBuffer
+name: FXMemoryStream
+superclass: Object

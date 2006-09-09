@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the blend mode for segments <em>sglo</em> through <em>sghi</em> to <em>blend</em>, where <em>blend</em> is one of <tt>GRADIENT_BLEND_LINEAR</tt>, <tt>GRADIENT_BLEND_POWER</tt>, <tt>GRADIENT_BLEND_SINE</tt>, <tt>GRADIENT_BLEND_INCREASING</tt> or <tt>GRADIENT_BLEND_DECREASING</tt>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the gradient bar's message target after this change is completed.
+full_name: Fox::FXGradientBar#blendSegments
+is_singleton: false
+name: blendSegments
+params: (sglo, sghi, blend=GRADIENT_BLEND_LINEAR, notify=false)
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Modify cell icon, deleting the old icon if it was owned. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_REPLACED</tt> message is sent to the table's message target before the item's icon is changed.. Raises IndexError if either <em>row</em> or <em>col</em> is out of bounds.
+full_name: Fox::FXTable#setItemIcon
+is_singleton: false
+name: setItemIcon
+params: (row, col, icon, notify=false)
+visibility: public

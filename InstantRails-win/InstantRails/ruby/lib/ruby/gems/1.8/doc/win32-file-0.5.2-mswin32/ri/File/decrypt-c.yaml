@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Decrypts an encrypted file or directory.
+- !ruby/struct:SM::Flow::P 
+  body: The caller must have the FILE_READ_DATA, FILE_WRITE_DATA, FILE_READ_ATTRIBUTES, FILE_WRITE_ATTRIBUTES, and SYNCHRONIZE access rights.
+- !ruby/struct:SM::Flow::P 
+  body: Requires exclusive access to the file being decrypted, and will fail if another process is using the file. If the file is not encrypted an error is NOT raised.
+- !ruby/struct:SM::Flow::P 
+  body: Windows 2000 or later only.
+full_name: File::decrypt
+is_singleton: true
+name: decrypt
+params: (file)
+visibility: public

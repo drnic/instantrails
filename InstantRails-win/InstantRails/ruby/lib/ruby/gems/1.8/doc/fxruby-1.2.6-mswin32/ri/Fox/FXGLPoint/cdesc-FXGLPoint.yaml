@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Point position, in model coordinates (a 3-element array)
+  name: pos
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: OpenGL point object
+constants: []
+
+full_name: Fox::FXGLPoint
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bounds
+- !ruby/object:RI::MethodSummary 
+  name: draw
+- !ruby/object:RI::MethodSummary 
+  name: hit
+name: FXGLPoint
+superclass: FXGLObject

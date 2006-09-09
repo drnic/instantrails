@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sent by the drop target in response to <tt>SEL_DND_DROP</tt>. The drag action should be the same as the action the drop target reported to the drag source in reponse to the <tt>SEL_DND_MOTION</tt> message. This function notifies the drag source that its part of the drop transaction is finished, and that it is free to release any resources involved in the drag operation. Calling #dropFinished is advisable in cases where the drop target needs to perform complex processing on the data received from the drag source, prior to returning from the <tt>SEL_DND_DROP</tt> message handler."
+full_name: Fox::FXWindow#dropFinished
+is_singleton: false
+name: dropFinished
+params: (action=DRAG_REJECT)
+visibility: public

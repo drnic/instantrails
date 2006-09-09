@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Test if OpenGL is possible, and what level is supported. Because of remote display capability, the display server may support a different level of OpenGL than the client; it may even support no OpenGL at all! This function returns the lesser of the client support level and the display server support level.
+full_name: Fox::FXGLVisual::supported?
+is_singleton: true
+name: supported?
+params: (app)
+visibility: public

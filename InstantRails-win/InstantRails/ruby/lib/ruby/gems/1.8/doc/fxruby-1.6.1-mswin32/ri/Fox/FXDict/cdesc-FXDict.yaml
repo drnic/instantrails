@@ -1,0 +1,62 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Position of first filled slot, or &gt;= total [Integer]
+  name: first
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Position of last filled slot, or -1 [Integer]
+  name: last
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Total number of entries in the table [Integer]
+  name: length
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The dictionary class maintains a fast-access hash table of entities indexed by a character string. It is typically used to map strings to pointers; however, overloading the #createData and #deleteData members allows any type of data to be indexed by strings."
+constants: []
+
+full_name: Fox::FXDict
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: each_key
+- !ruby/object:RI::MethodSummary 
+  name: each_key
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: has_key?
+- !ruby/object:RI::MethodSummary 
+  name: include?
+- !ruby/object:RI::MethodSummary 
+  name: key
+- !ruby/object:RI::MethodSummary 
+  name: keys
+- !ruby/object:RI::MethodSummary 
+  name: keys
+- !ruby/object:RI::MethodSummary 
+  name: marked?
+- !ruby/object:RI::MethodSummary 
+  name: member?
+- !ruby/object:RI::MethodSummary 
+  name: next
+- !ruby/object:RI::MethodSummary 
+  name: prev
+name: FXDict
+superclass: Object

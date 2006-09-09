@@ -1,0 +1,173 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom margin [Float]
+  name: bottommargin
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current page to print [Integer]
+  name: currentpage
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First page that can be printed [Integer]
+  name: firstpage
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Flags [Integer]
+  name: flags
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: On output, this is the first page to print [Integer]
+  name: frompage
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Last page that can be printed [Integer]
+  name: lastpage
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left margin [Float]
+  name: leftmargin
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height of paper in points [Float]
+  name: mediaheight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Media size index, one of <tt>MEDIA_CUSTOM</tt>, <tt>MEDIA_USLETTER</tt>, <tt>MEDIA_LEGAL</tt>, +MEDIA_A4+ or <tt>MEDIA_ENVELOPE</tt> [Integer]
+  name: mediasize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width of paper in points (1/72 of an inch) [Float]
+  name: mediawidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Printer name [String]
+  name: name
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of copies [Integer]
+  name: numcopies
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right margin [Float]
+  name: rightmargin
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: On output, last page to print [Integer]
+  name: topage
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top margin [Float]
+  name: topmargin
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Describes printer
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Printer flags
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_DEST_PAPER+:"
+    body: Send print to paper
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_DEST_FILE+:"
+    body: Send print to file
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_PAGES_ALL+:"
+    body: Print all pages
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_PAGES_EVEN+:"
+    body: Print even pages only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_PAGES_ODD+:"
+    body: Print odd pages only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_PAGES_RANGE+:"
+    body: Print range of pages
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_COLLATE_NORMAL+:"
+    body: Normal collate order
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_COLLATE_REVERSED+:"
+    body: Reversed collate order
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_PORTRAIT+:"
+    body: Portrait orientation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_LANDSCAPE+:"
+    body: Landscape orientation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_BLACKANDWHITE+:"
+    body: Black and white output
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_COLOR+:"
+    body: Color output
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRINT_NOBOUNDS+:"
+    body: Must determine bounding box
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Printer media size
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MEDIA_CUSTOM+:"
+    body: Custom paper size
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MEDIA_USLETTER+:"
+    body: US Letter size
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MEDIA_LEGAL+:"
+    body: US Legal size
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MEDIA_A4+:"
+    body: A4
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MEDIA_ENVELOPE+:"
+    body: "#10 Envelope"
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXPrinter
+includes: []
+
+instance_methods: []
+
+name: FXPrinter
+superclass: Object

@@ -1,0 +1,100 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Docking side, one of <tt>LAYOUT_SIDE_LEFT</tt>, <tt>LAYOUT_SIDE_RIGHT</tt>, <tt>LAYOUT_SIDE_TOP</tt> or <tt>LAYOUT_SIDE_BOTTOM</tt> [Integer]
+  name: dockingSide
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A dock bar widget can be docked inside a dock site widget, or floated around freely. Users can move, undock, and dock the dock bar widget by means of a handle such as a tool bar grip. When docking, the dock bar sends a <tt>SEL_DOCKED</tt> message to its target; when undocking, it sends a <tt>SEL_FLOATED</tt> message. In either case the dock site involved is passed as the message data.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXDockBar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DOCKED+:"
+    body: sent when the dock bar is docked; the message data is a reference to the new dock site (an FXDockSite instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_FLOATED+:"
+    body: sent when the dock bar is undocked; the message data is a reference to the previous dock site.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Dock Bar Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_NOWHERE+:"
+    body: Don't allow docking anywhere
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_TOP+:"
+    body: Docking at the top only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_BOTTOM+:"
+    body: Docking at the bottom only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_LEFT+:"
+    body: Docking at the left only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_RIGHT+:"
+    body: Docking at the right only
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_HORIZONTAL+:"
+    body: Docking at the top and bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_VERTICAL+:"
+    body: Docking at the left and right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ALLOW_EVERYWHERE+:"
+    body: Docking can be everywhere
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDockBar
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: allowSide
+- !ruby/object:RI::MethodSummary 
+  name: allowedSide?
+- !ruby/object:RI::MethodSummary 
+  name: allowedSides
+- !ruby/object:RI::MethodSummary 
+  name: allowedSides=
+- !ruby/object:RI::MethodSummary 
+  name: disallowSide
+- !ruby/object:RI::MethodSummary 
+  name: dock
+- !ruby/object:RI::MethodSummary 
+  name: dock
+- !ruby/object:RI::MethodSummary 
+  name: docked?
+- !ruby/object:RI::MethodSummary 
+  name: dryDock
+- !ruby/object:RI::MethodSummary 
+  name: dryDock=
+- !ruby/object:RI::MethodSummary 
+  name: findDockAtSide
+- !ruby/object:RI::MethodSummary 
+  name: findDockNear
+- !ruby/object:RI::MethodSummary 
+  name: insideDock?
+- !ruby/object:RI::MethodSummary 
+  name: undock
+- !ruby/object:RI::MethodSummary 
+  name: wetDock
+- !ruby/object:RI::MethodSummary 
+  name: wetDock=
+name: FXDockBar
+superclass: Object

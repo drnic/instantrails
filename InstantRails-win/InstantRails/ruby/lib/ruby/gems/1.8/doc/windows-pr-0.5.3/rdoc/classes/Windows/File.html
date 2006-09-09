@@ -1,0 +1,1529 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::File</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::File</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/file_rb.html">
+                lib/windows/file.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000357">CopyFile</a>&nbsp;&nbsp;
+      <a href="#M000358">CopyFileEx</a>&nbsp;&nbsp;
+      <a href="#M000359">CreateFile</a>&nbsp;&nbsp;
+      <a href="#M000360">CreateFileMapping</a>&nbsp;&nbsp;
+      <a href="#M000361">CreateHardLink</a>&nbsp;&nbsp;
+      <a href="#M000362">DecryptFile</a>&nbsp;&nbsp;
+      <a href="#M000363">DeleteFile</a>&nbsp;&nbsp;
+      <a href="#M000364">EncryptFile</a>&nbsp;&nbsp;
+      <a href="#M000365">FlushViewOfFile</a>&nbsp;&nbsp;
+      <a href="#M000366">GetBinaryType</a>&nbsp;&nbsp;
+      <a href="#M000367">GetFileAttributes</a>&nbsp;&nbsp;
+      <a href="#M000368">GetFileAttributesEx</a>&nbsp;&nbsp;
+      <a href="#M000369">GetFileSize</a>&nbsp;&nbsp;
+      <a href="#M000370">GetFileSizeEx</a>&nbsp;&nbsp;
+      <a href="#M000371">GetFileType</a>&nbsp;&nbsp;
+      <a href="#M000372">GetFullPathName</a>&nbsp;&nbsp;
+      <a href="#M000373">GetLongPathName</a>&nbsp;&nbsp;
+      <a href="#M000374">GetShortPathName</a>&nbsp;&nbsp;
+      <a href="#M000375">LockFile</a>&nbsp;&nbsp;
+      <a href="#M000376">LockFileEx</a>&nbsp;&nbsp;
+      <a href="#M000377">MapViewOfFile</a>&nbsp;&nbsp;
+      <a href="#M000378">MapViewOfFileEx</a>&nbsp;&nbsp;
+      <a href="#M000379">OpenFileMapping</a>&nbsp;&nbsp;
+      <a href="#M000380">ReadFile</a>&nbsp;&nbsp;
+      <a href="#M000381">ReadFileEx</a>&nbsp;&nbsp;
+      <a href="#M000382">SetFileAttributes</a>&nbsp;&nbsp;
+      <a href="#M000383">UnlockFile</a>&nbsp;&nbsp;
+      <a href="#M000384">UnlockFileEx</a>&nbsp;&nbsp;
+      <a href="#M000385">UnmapViewOfFile</a>&nbsp;&nbsp;
+      <a href="#M000386">WriteFile</a>&nbsp;&nbsp;
+      <a href="#M000387">WriteFileEx</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_READONLY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> Attributes
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_HIDDEN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_DIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_ARCHIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_ENCRYPTED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_NORMAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_TEMPORARY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_SPARSE_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_REPARSE_POINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_COMPRESSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_OFFLINE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00001000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00002000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_UNKNOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_CHAR</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_PIPE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_REMOTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">APPLICATION_ERROR_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> security and access rights
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_SUCCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_INFORMATIONAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_WARNING</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_ERROR</td>
+          <td>=</td>
+          <td class="context-item-value">0xc0000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_NONE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_DEFAULT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_LZNT1</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_ENGINE_STANDARD</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_ENGINE_MAXIMUM</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_ALLOWED_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_DENIED_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANYSIZE_ARRAY</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYSTEM_AUDIT_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYSTEM_ALARM_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OBJECT_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTAINER_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NO_PROPAGATE_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INHERIT_ONLY_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VALID_INHERIT_FLAGS</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUCCESSFUL_ACCESS_ACE_FLAG</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FAILED_ACCESS_ACE_FLAG</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DELETE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00010000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">READ_CONTROL</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WRITE_DAC</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WRITE_OWNER</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYNCHRONIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x100000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_REQUIRED</td>
+          <td>=</td>
+          <td class="context-item-value">0xf0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x1f0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPECIFIC_RIGHTS_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0xffff</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_SYSTEM_SECURITY</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAXIMUM_ALLOWED</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_LIST_DIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ADD_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_APPEND_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ADD_SUBDIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CREATE_PIPE_INSTANCE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_EA</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_PROPERTIES</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_EA</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_PROPERTIES</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TRAVERSE</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DELETE_CHILD</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_REQUIRED|SYNCHRONIZE|0x1ff)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_READ</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_READ|FILE_READ_DATA|          FILE_READ_ATTRIBUTES|FILE_READ_EA|SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_WRITE|FILE_WRITE_DATA|          FILE_WRITE_ATTRIBUTES|FILE_WRITE_EA|FILE_APPEND_DATA|SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_EXECUTE|FILE_READ_ATTRIBUTES|          FILE_EXECUTE|SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_READ</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_DELETE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_FILE_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_DIR_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_LAST_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_LAST_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_CREATION</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_SECURITY</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAILSLOT_NO_MESSAGE</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAILSLOT_WAIT_FOREVER</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CASE_SENSITIVE_SEARCH</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CASE_PRESERVED_NAMES</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_UNICODE_ON_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_PERSISTENT_ACLS</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FILE_COMPRESSION</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_VOLUME_QUOTAS</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_SPARSE_FILES</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_REPARSE_POINTS</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_REMOTE_STORAGE</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_VOLUME_IS_COMPRESSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_OBJECT_IDS</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_ENCRYPTION</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_WRITE_THROUGH</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OVERLAPPED</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_NO_BUFFERING</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_RANDOM_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_SEQUENTIAL_SCAN</td>
+          <td>=</td>
+          <td class="context-item-value">0x08000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_DELETE_ON_CLOSE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_BACKUP_SEMANTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x02000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_POSIX_SEMANTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x01000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OPEN_REPARSE_POINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00200000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OPEN_NO_RECALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00100000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_FIRST_PIPE_INSTANCE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00080000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> creation disposition
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_ALWAYS</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPEN_EXISTING</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPEN_ALWAYS</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TRUNCATE_EXISTING</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_NOACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x01</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Page file access
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_READONLY</td>
+          <td>=</td>
+          <td class="context-item-value">0x02</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_READWRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_WRITECOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x08</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x20</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_READWRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x40</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_WRITECOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x80</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_GUARD</td>
+          <td>=</td>
+          <td class="context-item-value">0x100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_NOCACHE</td>
+          <td>=</td>
+          <td class="context-item-value">0x200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_WRITECOMBINE</td>
+          <td>=</td>
+          <td class="context-item-value">0x400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x800000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_IMAGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_VLM</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_RESERVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x4000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_COMMIT</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_NOCACHE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_QUERY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_EXTEND_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_REQUIRED | SECTION_QUERY |          SECTION_MAP_WRITE | SECTION_MAP_READ | SECTION_MAP_EXECUTE |          SECTION_EXTEND_SIZE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_MAP_COPY</td>
+          <td>=</td>
+          <td class="context-item-value">SECTION_QUERY</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_MAP_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">SECTION_MAP_WRITE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_MAP_READ</td>
+          <td>=</td>
+          <td class="context-item-value">SECTION_MAP_READ</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_MAP_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">SECTION_ALL_ACCESS</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_FILE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Errors
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_HANDLE_VALUE</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_FILE_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0xFFFFFFFF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CopyFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CopyFile', 'PPI', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CopyFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CopyFileEx', 'PPPPPL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateFile', 'PLLPLLL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateFileW</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateFileW', 'PLLPLLL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateFileMapping</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateFileMapping', 'LPLLLP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateHardLink</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateHardLink', 'PPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DecryptFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('advapi32', 'DecryptFile', 'PL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DeleteFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'DeleteFile', 'P', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EncryptFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('advapi32', 'EncryptFile', 'P', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FlushViewOfFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'FlushViewOfFile', 'PL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetBinaryType</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetBinaryType', 'PP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFileAttributes</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFileAttributes', 'P', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFileAttributesEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFileAttributesEx', 'PPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFileSize</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFileSize', 'LP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFileSizeEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFileSizeEx', 'LP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFileType</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFileType', 'L', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFullPathName</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFullPathName', 'PLPP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetFullPathNameW</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetFullPathNameW', 'PLPP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetLongPathName</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetLongPathName', 'PPL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetShortPathName</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetShortPathName', 'PPL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LockFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'LockFile', 'LLLLL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LockFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'LockFileEx', 'LLLLLL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MapViewOfFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'MapViewOfFile', 'LLLLL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MapViewOfFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'MapViewOfFileEx', 'LLLLLL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OpenFileMapping</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'OpenFileMapping', 'LIP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ReadFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'ReadFile', 'LPLPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ReadFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'ReadFileEx', 'LPLPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SetFileAttributes</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'SetFileAttributes', 'PL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UnlockFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'UnlockFile', 'LLLLL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UnlockFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'UnlockFileEx', 'LLLLL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UnmapViewOfFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'UnmapViewOfFile', 'P', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WriteFile</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'WriteFile', 'LPLPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WriteFileEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'WriteFileEx', 'LPLPP', 'I')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000357" class="method-detail">
+        <a name="M000357"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000357.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000357.html');return false;">
+          <span class="method-name">CopyFile</span><span class="method-args">(curr_file, new_file, bail)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000358" class="method-detail">
+        <a name="M000358"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000358.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000358.html');return false;">
+          <span class="method-name">CopyFileEx</span><span class="method-args">(curr_file, new_file, routine, data, cancel, flags)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000359" class="method-detail">
+        <a name="M000359"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000359.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000359.html');return false;">
+          <span class="method-name">CreateFile</span><span class="method-args">(file, access, share, sec, disp, flags, template)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000360" class="method-detail">
+        <a name="M000360"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000360.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000360.html');return false;">
+          <span class="method-name">CreateFileMapping</span><span class="method-args">(handle, security, protect, high, low, name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000361" class="method-detail">
+        <a name="M000361"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000361.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000361.html');return false;">
+          <span class="method-name">CreateHardLink</span><span class="method-args">(new_file, old_file, attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000362" class="method-detail">
+        <a name="M000362"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000362.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000362.html');return false;">
+          <span class="method-name">DecryptFile</span><span class="method-args">(file, res = 0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000363" class="method-detail">
+        <a name="M000363"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000363.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000363.html');return false;">
+          <span class="method-name">DeleteFile</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000364" class="method-detail">
+        <a name="M000364"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000364.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000364.html');return false;">
+          <span class="method-name">EncryptFile</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000365.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000365.html');return false;">
+          <span class="method-name">FlushViewOfFile</span><span class="method-args">(address, bytes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000366.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000366.html');return false;">
+          <span class="method-name">GetBinaryType</span><span class="method-args">(file, type)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000367.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000367.html');return false;">
+          <span class="method-name">GetFileAttributes</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000368.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000368.html');return false;">
+          <span class="method-name">GetFileAttributesEx</span><span class="method-args">(file, level_id, info)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000369.html');return false;">
+          <span class="method-name">GetFileSize</span><span class="method-args">(handle, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000370.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000370.html');return false;">
+          <span class="method-name">GetFileSizeEx</span><span class="method-args">(handle, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000371.html');return false;">
+          <span class="method-name">GetFileType</span><span class="method-args">(handle)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000372.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000372.html');return false;">
+          <span class="method-name">GetFullPathName</span><span class="method-args">(file, buf, buf_size, part)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000373.html');return false;">
+          <span class="method-name">GetLongPathName</span><span class="method-args">(short, buf, buf_size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000374.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000374.html');return false;">
+          <span class="method-name">GetShortPathName</span><span class="method-args">(long, buf, buf_size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000375.html');return false;">
+          <span class="method-name">LockFile</span><span class="method-args">(handle, off_low, off_high, lock_low, lock_high)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000376.html');return false;">
+          <span class="method-name">LockFileEx</span><span class="method-args">(handle, flags, res, low, high, overlapped)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000377.html');return false;">
+          <span class="method-name">MapViewOfFile</span><span class="method-args">(handle, access, high, low, bytes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000378.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000378.html');return false;">
+          <span class="method-name">MapViewOfFileEx</span><span class="method-args">(handle, access, high, low, bytes, address)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000379.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000379.html');return false;">
+          <span class="method-name">OpenFileMapping</span><span class="method-args">(access, inherit, name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000380.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000380.html');return false;">
+          <span class="method-name">ReadFile</span><span class="method-args">(file, buf, bytes, bytes_read, overlapped)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000381" class="method-detail">
+        <a name="M000381"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000381.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000381.html');return false;">
+          <span class="method-name">ReadFileEx</span><span class="method-args">(file, buf, bytes, overlapped, routine)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000382.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000382.html');return false;">
+          <span class="method-name">SetFileAttributes</span><span class="method-args">(file, attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000383.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000383.html');return false;">
+          <span class="method-name">UnlockFile</span><span class="method-args">(handle, off_low, off_high, bytes_low, bytes_high)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000384.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000384.html');return false;">
+          <span class="method-name">UnlockFileEx</span><span class="method-args">(handle, res, low, high, overlapped)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000385" class="method-detail">
+        <a name="M000385"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000385.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000385.html');return false;">
+          <span class="method-name">UnmapViewOfFile</span><span class="method-args">(address)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000386" class="method-detail">
+        <a name="M000386"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000386.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000386.html');return false;">
+          <span class="method-name">WriteFile</span><span class="method-args">(handle, buf, bytes, overlapped)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000387" class="method-detail">
+        <a name="M000387"></a>
+
+        <div class="method-heading">
+          <a href="File.src/M000387.html" target="Code" class="method-signature"
+            onclick="popupCode('File.src/M000387.html');return false;">
+          <span class="method-name">WriteFileEx</span><span class="method-args">(handle, buf, bytes, overlapped, routine)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

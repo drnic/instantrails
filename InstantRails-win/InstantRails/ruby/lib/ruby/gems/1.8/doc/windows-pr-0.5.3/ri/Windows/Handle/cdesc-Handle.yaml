@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INVALID_HANDLE_VALUE
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANDLE_FLAG_INHERIT
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANDLE_FLAG_PROTECT_FROM_CLOSE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CloseHandle
+  value: Win32API.new('kernel32', 'CloseHandle', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DuplicateHandle
+  value: Win32API.new('kernel32', 'DuplicateHandle', 'LLLLLIL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetHandleInformation
+  value: Win32API.new('kernel32', 'GetHandleInformation', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetHandleInformation
+  value: Win32API.new('kernel32', 'SetHandleInformation', 'LLL', 'I')
+full_name: Windows::Handle
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: CloseHandle
+- !ruby/object:RI::MethodSummary 
+  name: DuplicateHandle
+- !ruby/object:RI::MethodSummary 
+  name: GetHandleInformation
+- !ruby/object:RI::MethodSummary 
+  name: SetHandleInformation
+name: Handle
+superclass: 

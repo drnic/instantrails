@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application [FXApp]
+  name: app
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current icon search path [String]
+  name: iconPath
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: defaultDirBinding
+- !ruby/object:RI::MethodSummary 
+  name: defaultExecBinding
+- !ruby/object:RI::MethodSummary 
+  name: defaultFileBinding
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: File association dictionary
+constants: []
+
+full_name: Fox::FXFileDict
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: associate
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: findDirBinding
+- !ruby/object:RI::MethodSummary 
+  name: findExecBinding
+- !ruby/object:RI::MethodSummary 
+  name: findFileBinding
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: replace
+name: FXFileDict
+superclass: FXDict

@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Library</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Library</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/library_rb.html">
+                lib/windows/library.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000274">DisableThreadLibraryCalls</a>&nbsp;&nbsp;
+      <a href="#M000275">FreeLibrary</a>&nbsp;&nbsp;
+      <a href="#M000276">GetDllDirectory</a>&nbsp;&nbsp;
+      <a href="#M000277">GetModuleFileName</a>&nbsp;&nbsp;
+      <a href="#M000278">GetModuleHandle</a>&nbsp;&nbsp;
+      <a href="#M000279">GetModuleHandleEx</a>&nbsp;&nbsp;
+      <a href="#M000280">GetProcAddress</a>&nbsp;&nbsp;
+      <a href="#M000281">LoadLibrary</a>&nbsp;&nbsp;
+      <a href="#M000282">LoadLibraryEx</a>&nbsp;&nbsp;
+      <a href="#M000283">LoadModule</a>&nbsp;&nbsp;
+      <a href="#M000284">SetDllDirectory</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DLL_PROCESS_DETACH</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DLL_PROCESS_ATTACH</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DLL_THREAD_ATTACH</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DLL_THREAD_DETACH</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GET_MODULE_HANDLE_EX_FLAG_PIN</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DONT_RESOLVE_DLL_REFERENCES</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOAD_LIBRARY_AS_DATAFILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOAD_WITH_ALTERED_SEARCH_PATH</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOAD_IGNORE_CODE_AUTHZ_LEVEL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DisableThreadLibraryCalls</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'DisableThreadLibraryCalls', 'L', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FreeLibrary</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'FreeLibrary', 'L', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FreeLibraryAndExitThread</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'FreeLibraryAndExitThread', 'LL', 'V')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetDllDirectory</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetDllDirectory', 'LP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetModuleFileName</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetModuleFileName', 'LPL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetModuleHandle</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetModuleHandle', 'P', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetModuleHandleEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetModuleHandleEx', 'LPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetProcAddress</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetProcAddress', 'LP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LoadLibrary</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'LoadLibrary', 'P', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LoadLibraryEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'LoadLibraryEx', 'PLL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LoadModule</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'LoadModule', 'PP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SetDllDirectory</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'SetDllDirectory', 'P', 'I')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000274" class="method-detail">
+        <a name="M000274"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000274.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000274.html');return false;">
+          <span class="method-name">DisableThreadLibraryCalls</span><span class="method-args">(hmodule)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000275" class="method-detail">
+        <a name="M000275"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000275.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000275.html');return false;">
+          <span class="method-name">FreeLibrary</span><span class="method-args">(hmodule)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000276" class="method-detail">
+        <a name="M000276"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000276.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000276.html');return false;">
+          <span class="method-name">GetDllDirectory</span><span class="method-args">(length, buffer)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000277" class="method-detail">
+        <a name="M000277"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000277.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000277.html');return false;">
+          <span class="method-name">GetModuleFileName</span><span class="method-args">(hmodule, file, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000278" class="method-detail">
+        <a name="M000278"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000278.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000278.html');return false;">
+          <span class="method-name">GetModuleHandle</span><span class="method-args">(module_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000279" class="method-detail">
+        <a name="M000279"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000279.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000279.html');return false;">
+          <span class="method-name">GetModuleHandleEx</span><span class="method-args">(flags, module_name, hmodule)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000280" class="method-detail">
+        <a name="M000280"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000280.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000280.html');return false;">
+          <span class="method-name">GetProcAddress</span><span class="method-args">(hmodule, proc_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000281" class="method-detail">
+        <a name="M000281"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000281.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000281.html');return false;">
+          <span class="method-name">LoadLibrary</span><span class="method-args">(library)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000282" class="method-detail">
+        <a name="M000282"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000282.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000282.html');return false;">
+          <span class="method-name">LoadLibraryEx</span><span class="method-args">(library, file, flags)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000283" class="method-detail">
+        <a name="M000283"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000283.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000283.html');return false;">
+          <span class="method-name">LoadModule</span><span class="method-args">(hmodule, param_block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000284" class="method-detail">
+        <a name="M000284"></a>
+
+        <div class="method-heading">
+          <a href="Library.src/M000284.html" target="Code" class="method-signature"
+            onclick="popupCode('Library.src/M000284.html');return false;">
+          <span class="method-name">SetDllDirectory</span><span class="method-args">(path)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,540 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The active top-level window, if any [FXWindow]
+  name: activeWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Animation speed, in milliseconds [Integer]
+  name: animSpeed
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application name [String]
+  name: appName
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Argument count [Integer]
+  name: argc
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Argument vector [Array]
+  name: argv
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default background color [FXColor]
+  name: backColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Background color of GUI controls [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Blink speed, in milliseconds [Integer]
+  name: blinkSpeed
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Click speed, in milliseconds [Integer]
+  name: clickSpeed
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The window under the cursor, if any [FXWindow]
+  name: cursorWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default visual [FXVisual]
+  name: defaultVisual
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Display [Integer]
+  name: display
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Drag delta, in pixels [Integer]
+  name: dragDelta
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The window at the end of the focus chain, if any [FXWindow]
+  name: focusWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default foreground color [FXColor]
+  name: foreColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hilite color of GUI controls [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The main window, if any [FXWindow]
+  name: mainWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Menu pause, in milliseconds [Integer]
+  name: menuPause
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Mode of current modal loop [Integer]
+  name: modalModality
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The window of the current modal loop [FXWindow]
+  name: modalWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Monochrome visual [FXVisual]
+  name: monoVisual
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default font [FXFont]
+  name: normalFont
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window [FXRootWindow]
+  name: rootWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll bar size [Integer]
+  name: scrollBarSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll delay time, in milliseconds [Integer]
+  name: scrollDelay
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll speed, in milliseconds [Integer]
+  name: scrollSpeed
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default background color for selected menu items [FXColor]
+  name: selMenuBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default text color for selected menu items [FXColor]
+  name: selMenuTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default background color for selected objects [FXColor]
+  name: selbackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default foreground color for selected objects [FXColor]
+  name: selforeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color of GUI controls [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Amount of time (in milliseconds) to yield to Ruby's thread scheduler [Integer]
+  name: sleepTime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default background color for tooltips [FXColor]
+  name: tipbackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default foreground color for tooltips [FXColor]
+  name: tipforeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tooltip pause, in milliseconds [Integer]
+  name: tooltipPause
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tooltip time, in milliseconds [Integer]
+  name: tooltipTime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Message translator [FXTranslator]
+  name: translator
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Typing speed used for the FXIconList, FXList and FXTreeList widgets' lookup features, in milliseconds. Default value is 1000 milliseconds.
+  name: typingSpeed
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vendor name [String]
+  name: vendorName
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wait cursor [FXCursor]
+  name: waitCursor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of wheel lines [Integer]
+  name: wheelLines
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: copyright
+- !ruby/object:RI::MethodSummary 
+  name: instance
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Application Object
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: The FXApp object itself doesn't have a designated message target like other FOX objects, but it can send messages to objects for a few special events.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Timers*"
+    body: When a timeout event is registered with the application using the addTimeout method, a <tt>SEL_TIMEOUT</tt> message is sent to the message target.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Chores*"
+    body: When a chore event is registered with the application using the addChore method, a <tt>SEL_CHORE</tt> message is sent to the message target.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Inputs*"
+    body: When an input event is registered with the application using the addInput method, a <tt>SEL_IO_READ</tt>, <tt>SEL_IO_WRITE</tt> or <tt>SEL_IO_EXCEPT</tt> message may be sent to the message target.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Signals*"
+    body: When a signal handler object is registered with the application using the addSignal method, a <tt>SEL_SIGNAL</tt> message may be sent to the message target.
+  type: :LABELED
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "File input modes for #addInput"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUT_NONE+:"
+    body: inactive
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUT_READ+:"
+    body: read input fd
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUT_WRITE+:"
+    body: write input fd
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUT_EXCEPT+:"
+    body: except input fd
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: All ways of being modal
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MODAL_FOR_NONE+:"
+    body: Non modal event loop (dispatch normally)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MODAL_FOR_WINDOW+:"
+    body: Modal dialog (beep if outside of modal dialog)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MODAL_FOR_POPUP+:"
+    body: Modal for popup (always dispatch to popup)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Default cursors provided by the application
+- !ruby/struct:SM::Flow::P 
+  body: "These constants symbolically represent the different cursor shapes used in FOX applications, and can be used as the <em>which</em> arguments for #getDefaultCursor and #setDefaultCursor."
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_ARROW_CURSOR+:"
+    body: Arrow cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_RARROW_CURSOR+:"
+    body: Reverse arrow cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_TEXT_CURSOR+:"
+    body: Text cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_HSPLIT_CURSOR+:"
+    body: Horizontal split cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_VSPLIT_CURSOR+:"
+    body: Vertical split cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_XSPLIT_CURSOR+:"
+    body: Cross split cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_SWATCH_CURSOR+:"
+    body: Color swatch drag cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_MOVE_CURSOR+:"
+    body: Move cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGH_CURSOR+:"
+    body: Resize horizontal edge
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGV_CURSOR+:"
+    body: Resize vertical edge
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGTL_CURSOR+:"
+    body: Resize upper-leftcorner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGBR_CURSOR+:"
+    body: Resize bottom-right corner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGTR_CURSOR+:"
+    body: Resize upper-right corner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DRAGBL_CURSOR+:"
+    body: Resize bottom-left corner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DNDSTOP_CURSOR+:"
+    body: Drag and drop stop
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DNDCOPY_CURSOR+:"
+    body: Drag and drop copy
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DNDMOVE_CURSOR+:"
+    body: Drag and drop move
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_DNDLINK_CURSOR+:"
+    body: Drag and drop link
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_CROSSHAIR_CURSOR+:"
+    body: Cross hair cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_CORNERNE_CURSOR+:"
+    body: North-east cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_CORNERNW_CURSOR+:"
+    body: North-west cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_CORNERSE_CURSOR+:"
+    body: South-east cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_CORNERSW_CURSOR+:"
+    body: South-west cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_HELP_CURSOR+:"
+    body: Help arrow cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_HAND_CURSOR+:"
+    body: Hand cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_ROTATE_CURSOR+:"
+    body: Rotate cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEF_WAIT_CURSOR+:"
+    body: Wait cursor
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Messages identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_QUIT+:"
+    body: Terminate the application normally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DUMP+:"
+    body: Dump the current widget tree
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXApp
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: addChore
+- !ruby/object:RI::MethodSummary 
+  name: addInput
+- !ruby/object:RI::MethodSummary 
+  name: addSignal
+- !ruby/object:RI::MethodSummary 
+  name: addSignal
+- !ruby/object:RI::MethodSummary 
+  name: addTimeout
+- !ruby/object:RI::MethodSummary 
+  name: beep
+- !ruby/object:RI::MethodSummary 
+  name: beginWaitCursor
+- !ruby/object:RI::MethodSummary 
+  name: closeDisplay
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: detach
+- !ruby/object:RI::MethodSummary 
+  name: disableThreads
+- !ruby/object:RI::MethodSummary 
+  name: dumpWidgets
+- !ruby/object:RI::MethodSummary 
+  name: enableThreads
+- !ruby/object:RI::MethodSummary 
+  name: endWaitCursor
+- !ruby/object:RI::MethodSummary 
+  name: exit
+- !ruby/object:RI::MethodSummary 
+  name: flush
+- !ruby/object:RI::MethodSummary 
+  name: forceRefresh
+- !ruby/object:RI::MethodSummary 
+  name: getDefaultCursor
+- !ruby/object:RI::MethodSummary 
+  name: getDragTypeName
+- !ruby/object:RI::MethodSummary 
+  name: getKeyState
+- !ruby/object:RI::MethodSummary 
+  name: handleTimeouts
+- !ruby/object:RI::MethodSummary 
+  name: hasChore?
+- !ruby/object:RI::MethodSummary 
+  name: hasInputMethod?
+- !ruby/object:RI::MethodSummary 
+  name: hasTimeout?
+- !ruby/object:RI::MethodSummary 
+  name: init
+- !ruby/object:RI::MethodSummary 
+  name: initialized?
+- !ruby/object:RI::MethodSummary 
+  name: modal?
+- !ruby/object:RI::MethodSummary 
+  name: mutex
+- !ruby/object:RI::MethodSummary 
+  name: openDisplay
+- !ruby/object:RI::MethodSummary 
+  name: peekEvent
+- !ruby/object:RI::MethodSummary 
+  name: readWindow
+- !ruby/object:RI::MethodSummary 
+  name: refresh
+- !ruby/object:RI::MethodSummary 
+  name: reg
+- !ruby/object:RI::MethodSummary 
+  name: registerDragType
+- !ruby/object:RI::MethodSummary 
+  name: remainingTimeout
+- !ruby/object:RI::MethodSummary 
+  name: removeChore
+- !ruby/object:RI::MethodSummary 
+  name: removeInput
+- !ruby/object:RI::MethodSummary 
+  name: removeSignal
+- !ruby/object:RI::MethodSummary 
+  name: removeTimeout
+- !ruby/object:RI::MethodSummary 
+  name: repaint
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: runModal
+- !ruby/object:RI::MethodSummary 
+  name: runModalFor
+- !ruby/object:RI::MethodSummary 
+  name: runModalWhileEvents
+- !ruby/object:RI::MethodSummary 
+  name: runModalWhileShown
+- !ruby/object:RI::MethodSummary 
+  name: runOneEvent
+- !ruby/object:RI::MethodSummary 
+  name: runPopup
+- !ruby/object:RI::MethodSummary 
+  name: runUntil
+- !ruby/object:RI::MethodSummary 
+  name: runWhileEvents
+- !ruby/object:RI::MethodSummary 
+  name: setDefaultCursor
+- !ruby/object:RI::MethodSummary 
+  name: stop
+- !ruby/object:RI::MethodSummary 
+  name: stopModal
+- !ruby/object:RI::MethodSummary 
+  name: stopModal
+- !ruby/object:RI::MethodSummary 
+  name: threadsEnabled?
+- !ruby/object:RI::MethodSummary 
+  name: windowCount
+- !ruby/object:RI::MethodSummary 
+  name: writeWindow
+name: FXApp
+superclass: Object

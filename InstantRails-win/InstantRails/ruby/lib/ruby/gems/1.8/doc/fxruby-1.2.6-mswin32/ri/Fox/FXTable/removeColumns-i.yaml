@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove the <em>nc</em> columns starting at the specified <em>column</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DELETED</tt> message is sent to the table's message target for each cell that is removed. Raises IndexError if <em>column</em> is less than zero, or if <em>column</em> + <em>nc</em> is greater than the current number of table columns.
+full_name: Fox::FXTable#removeColumns
+is_singleton: false
+name: removeColumns
+params: (column, nc=1, notify=false)
+visibility: public

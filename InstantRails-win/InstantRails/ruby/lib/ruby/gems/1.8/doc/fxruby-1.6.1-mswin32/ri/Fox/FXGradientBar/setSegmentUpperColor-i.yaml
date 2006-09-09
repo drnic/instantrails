@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set upper color of the segment with index <em>seg</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the gradient bar's message target after the segment's upper color is changed. Raises IndexError if <em>seg</em> is out of bounds.
+full_name: Fox::FXGradientBar#setSegmentUpperColor
+is_singleton: false
+name: setSegmentUpperColor
+params: (seg, clr, notify=false)
+visibility: public

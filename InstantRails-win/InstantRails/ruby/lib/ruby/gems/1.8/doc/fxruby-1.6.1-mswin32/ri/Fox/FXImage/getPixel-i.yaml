@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the color of the pixel at (<em>x</em>, <em>y</em>).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate of the pixel of interest [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate of the pixel of interest [Integer]
+  type: :NOTE
+full_name: Fox::FXImage#getPixel
+is_singleton: false
+name: getPixel
+params: (x, y)
+visibility: public

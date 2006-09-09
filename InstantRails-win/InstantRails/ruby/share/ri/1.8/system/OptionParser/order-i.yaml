@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Parses command line arguments <tt>argv</tt> in order. When a block is given, each non-option argument is yielded.
+- !ruby/struct:SM::Flow::P 
+  body: Returns the rest of <tt>argv</tt> left unparsed.
+full_name: OptionParser#order
+is_singleton: false
+name: order
+params: (*argv, &block)
+visibility: public

@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Puts option summary into <tt>to</tt> and returns <tt>to</tt>. Yields each line if a block is given.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+to+:"
+    body: Output destination, which must have method &lt;&lt;. Defaults to [].
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: Width of left side, defaults to @summary_width.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+max+:"
+    body: Maximum length allowed for left side, defaults to <tt>width</tt> - 1.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+indent+:"
+    body: Indentation, defaults to @summary_indent.
+  type: :NOTE
+full_name: OptionParser#summarize
+is_singleton: false
+name: summarize
+params: (to = [], width = @summary_width, max = width - 1, indent = @summary_indent, &blk)
+visibility: public

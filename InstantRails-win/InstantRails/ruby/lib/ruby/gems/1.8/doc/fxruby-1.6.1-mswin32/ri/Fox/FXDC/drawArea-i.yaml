@@ -1,0 +1,45 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Copy some rectangular area from <em>source</em> into the drawable attached to this device context, stretching it to width <em>dw</em> and height <em>dh</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+source+:"
+    body: the source drawable from which to copy [FXDrawable]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+sx+:"
+    body: x-coordinate of the upper left corner of the source rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+sy+:"
+    body: y-coordinate of the upper left corner of the source rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+sw+:"
+    body: width of the source rectangle, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+sh+:"
+    body: height of the source rectangle, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dx+:"
+    body: x-coordinate of the the destination point in this drawable [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dy+:"
+    body: y-coordinate of the the destination point in this drawable [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dw+:"
+    body: destination width, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dh+:"
+    body: destination height, in pixels [Integer]
+  type: :NOTE
+full_name: Fox::FXDC#drawArea
+is_singleton: false
+name: drawArea
+params: (source, sx, sy, sw, sh, dx, dy, dw, dh)
+visibility: public

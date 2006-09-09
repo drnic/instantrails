@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change current cell. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the table's message target after the current item changes. Raises IndexError if either <em>row</em> or <em>column</em> is out of bounds.
+full_name: Fox::FXTable#setCurrentItem
+is_singleton: false
+name: setCurrentItem
+params: (row, column, notify=false)
+visibility: public

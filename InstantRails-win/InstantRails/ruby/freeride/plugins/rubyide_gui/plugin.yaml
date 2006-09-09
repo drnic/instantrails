@@ -1,0 +1,95 @@
+--- !ruby/object:FreeBASE::SubsystemConfiguration 
+name: rubyide_gui
+version: 1.0
+plugins: 
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-component_manager
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/component_manager
+    startup_module: FreeRIDE::GUI::ComponentManager
+    properties_path: component_layout.yaml
+    start_dependencies: 
+      rubyide_gui-appframe: "*"
+      rubyide_gui-menubar: "*"
+      rubyide_gui-menupane: "*"
+      rubyide_gui-editpane: "*"
+      rubyide_gui-dockbar: "*"
+      rubyide_gui-dockpane: "*"
+            
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-appframe
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/appframe
+    startup_module: FreeRIDE::GUI::AppFrame
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-menubar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/menubar
+    startup_module: FreeRIDE::GUI::MenuBar
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-menupane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/menupane
+    startup_module: FreeRIDE::GUI::MenuPane
+    start_dependencies: 
+      rubyide_commands: "*"
+      rubyide_gui-editpane: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-editpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/editpane
+    properties_path: editpane.yaml
+    startup_module: FreeRIDE::GUI::EditPane
+    start_dependencies: 
+      rubyide_commands: "*"
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-dockbar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/dockbar
+    startup_module: FreeRIDE::GUI::DockBar
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-dockpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/dockpane
+    startup_module: FreeRIDE::GUI::DockPane
+
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-outputpane
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/outputpane
+    properties_path: outputpane.yaml
+    startup_module: FreeRIDE::GUI::OutputPane
+    start_dependencies: 
+      rubyide_gui-component_manager: "*"
+      
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-toolbar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/toolbar
+    startup_module: FreeRIDE::GUI::ToolBar
+    start_dependencies: 
+      rubyide_gui-component_manager: "*"
+      
+  - !ruby/object:FreeBASE::PluginConfiguration 
+    name: rubyide_gui-statusbar
+    version: 1.0
+    autoload: true
+    require_path: rubyide_gui/statusbar
+    startup_module: FreeRIDE::GUI::StatusBar
+    start_dependencies: 
+      rubyide_gui-component_manager: "*"

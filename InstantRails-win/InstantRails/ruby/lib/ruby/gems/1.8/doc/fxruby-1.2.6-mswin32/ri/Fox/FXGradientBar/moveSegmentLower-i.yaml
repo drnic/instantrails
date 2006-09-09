@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Move lower point of segment <em>seg</em> to <em>val</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the gradient bar's message target after the segment's lower value is changed. Raises IndexError if <em>seg</em> is out of bounds.
+full_name: Fox::FXGradientBar#moveSegmentLower
+is_singleton: false
+name: moveSegmentLower
+params: (seg, val, notify=false)
+visibility: public

@@ -1,0 +1,5937 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FXScintilla is a FOX widget, developed by Gilles Filippini, that provides an interface to Neil Hodgson's Scintilla (http://www.scintilla.org) source code editing component. The Scintilla component is a very complicated beast, and for best results you should read the very fine documentation at http://www.scintilla.org/ScintillaDoc.html.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXScintilla to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the Scintilla component calls NotifyParent to signal some event. The message data is an SCNotification instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the Scintilla component calls NotifyChange to signal some event.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  type: :NOTE
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Basics
+  name: INVALID_POSITION
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Define start of Scintilla messages to be greater than all Windows edit (EM_*) messages as many EM_ messages can be used although that use is deprecated.
+  name: SCI_START
+  value: "2000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCI_OPTIONAL_START
+  value: "3000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCI_LEXER_START
+  value: "4000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCWS_INVISIBLE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCWS_VISIBLEALWAYS
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCWS_VISIBLEAFTERINDENT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_EOL_CRLF
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_EOL_CR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_EOL_LF
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The SC_CP_UTF8 value can be used to enter Unicode mode. This is the same value as CP_UTF8 in Windows
+  name: SC_CP_UTF8
+  value: "65001"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The SC_CP_DBCS value can be used to indicate a DBCS mode for GTK+.
+  name: SC_CP_DBCS
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MARKER_MAX
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CIRCLE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_ROUNDRECT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_ARROW
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_SMALLRECT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_SHORTARROW
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_EMPTY
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_ARROWDOWN
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_MINUS
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_PLUS
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shapes used for outlining column.
+  name: SC_MARK_VLINE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_LCORNER
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_TCORNER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_BOXPLUS
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_BOXPLUSCONNECTED
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_BOXMINUS
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_BOXMINUSCONNECTED
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_LCORNERCURVE
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_TCORNERCURVE
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CIRCLEPLUS
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CIRCLEPLUSCONNECTED
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CIRCLEMINUS
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CIRCLEMINUSCONNECTED
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Invisible mark that only sets the line background color.
+  name: SC_MARK_BACKGROUND
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_DOTDOTDOT
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_ARROWS
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_PIXMAP
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_FULLRECT
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARK_CHARACTER
+  value: "10000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Markers used for outlining column.
+  name: SC_MARKNUM_FOLDEREND
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDEROPENMID
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDERMIDTAIL
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDERTAIL
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDERSUB
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDER
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARKNUM_FOLDEROPEN
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MASK_FOLDERS
+  value: "0xFE000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARGIN_SYMBOL
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MARGIN_NUMBER
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Styles in range 32..37 are predefined for parts of the UI and are not used as normal styles. Styles 38 and 39 are for future use.
+  name: STYLE_DEFAULT
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_LINENUMBER
+  value: "33"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_BRACELIGHT
+  value: "34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_BRACEBAD
+  value: "35"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_CONTROLCHAR
+  value: "36"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_INDENTGUIDE
+  value: "37"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_LASTPREDEFINED
+  value: "39"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STYLE_MAX
+  value: "127"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Character set identifiers are used in StyleSetCharacterSet. The values are the same as the Windows *_CHARSET values.
+  name: SC_CHARSET_ANSI
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_DEFAULT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_BALTIC
+  value: "186"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_CHINESEBIG5
+  value: "136"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_EASTEUROPE
+  value: "238"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_GB2312
+  value: "134"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_GREEK
+  value: "161"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_HANGUL
+  value: "129"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_MAC
+  value: "77"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_OEM
+  value: "255"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_RUSSIAN
+  value: "204"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_CYRILLIC
+  value: "1251"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_SHIFTJIS
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_SYMBOL
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_TURKISH
+  value: "162"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_JOHAB
+  value: "130"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_HEBREW
+  value: "177"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_ARABIC
+  value: "178"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_VIETNAMESE
+  value: "163"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_THAI
+  value: "222"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CHARSET_8859_15
+  value: "1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CASE_MIXED
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CASE_UPPER
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CASE_LOWER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_MAX
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_PLAIN
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_SQUIGGLE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_TT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_DIAGONAL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_STRIKE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_HIDDEN
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC_BOX
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC0_MASK
+  value: "0x20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC1_MASK
+  value: "0x40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDIC2_MASK
+  value: "0x80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDICS_MASK
+  value: "0xE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PrintColourMode - use same colours as screen.
+  name: SC_PRINT_NORMAL
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PrintColourMode - invert the light value of each style for printing.
+  name: SC_PRINT_INVERTLIGHT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PrintColourMode - force black text on white background for printing.
+  name: SC_PRINT_BLACKONWHITE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PrintColourMode - text stays coloured, but all background is forced to be white for printing.
+  name: SC_PRINT_COLOURONWHITE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PrintColourMode - only the default-background is forced to be white for printing.
+  name: SC_PRINT_COLOURONWHITEDEFAULTBG
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCFIND_WHOLEWORD
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCFIND_MATCHCASE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCFIND_WORDSTART
+  value: "0x00100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCFIND_REGEXP
+  value: "0x00200000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCFIND_POSIX
+  value: "0x00400000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELBASE
+  value: "0x400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELWHITEFLAG
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELHEADERFLAG
+  value: "0x2000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELBOXHEADERFLAG
+  value: "0x4000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELBOXFOOTERFLAG
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELCONTRACTED
+  value: "0x10000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELUNINDENT
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDLEVELNUMBERMASK
+  value: "0x0FFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_LINEBEFORE_EXPANDED
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_LINEBEFORE_CONTRACTED
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_LINEAFTER_EXPANDED
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_LINEAFTER_CONTRACTED
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_LEVELNUMBERS
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_FOLDFLAG_BOX
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_TIME_FOREVER
+  value: "10000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAP_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAP_WORD
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAP_CHAR
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAG_NONE
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAG_END
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAG_START
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAGLOC_DEFAULT
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAGLOC_END_BY_TEXT
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_WRAPVISUALFLAGLOC_START_BY_TEXT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CACHE_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CACHE_CARET
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CACHE_PAGE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CACHE_DOCUMENT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_LINE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_BACKGROUND
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CURSORNORMAL
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_CURSORWAIT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Constants for use with SetVisiblePolicy, similar to SetCaretPolicy.
+  name: VISIBLE_SLOP
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VISIBLE_STRICT
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Caret policy, used by SetXCaretPolicy and SetYCaretPolicy. If CARET_SLOP is set, we can define a slop value: caretSlop. This value defines an unwanted zone (UZ) where the caret is... unwanted. This zone is defined as a number of pixels near the vertical margins, and as a number of lines near the horizontal margins. By keeping the caret away from the edges, it is seen within its context, so it is likely that the identifier that the caret is on can be completely seen, and that the current line is seen with some of the lines following it which are often dependent on that line."
+  name: CARET_SLOP
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: If CARET_STRICT is set, the policy is enforced... strictly. The caret is centred on the display if slop is not set, and cannot go in the UZ if slop is set.
+  name: CARET_STRICT
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: If CARET_JUMPS is set, the display is moved more energetically so the caret can move in the same direction longer before the policy is applied again.
+  name: CARET_JUMPS
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "If CARET_EVEN is not set, instead of having symmetrical UZs, the left and bottom UZs are extended up to right and top UZs respectively. This way, we favour the displaying of useful information: the begining of lines, where most code reside, and the lines after the caret, eg. the body of a function."
+  name: CARET_EVEN
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_SEL_STREAM
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_SEL_RECTANGLE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_SEL_LINES
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum value of keywordSet parameter of SetKeyWords.
+  name: KEYWORDSET_MAX
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Notifications Type of modification and the action which caused the modification. These are defined as a bit mask to make it easy to specify which notifications are wanted. One bit is set from each of SC_MOD_* and SC_PERFORMED_*.
+  name: SC_MOD_INSERTTEXT
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_DELETETEXT
+  value: "0x2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_CHANGESTYLE
+  value: "0x4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_CHANGEFOLD
+  value: "0x8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_PERFORMED_USER
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_PERFORMED_UNDO
+  value: "0x20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_PERFORMED_REDO
+  value: "0x40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MULTISTEPUNDOREDO
+  value: "0x80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_LASTSTEPINUNDOREDO
+  value: "0x100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_CHANGEMARKER
+  value: "0x200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_BEFOREINSERT
+  value: "0x400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MOD_BEFOREDELETE
+  value: "0x800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MULTILINEUNDOREDO
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MODEVENTMASKALL
+  value: "0x1FFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: For compatibility, these go through the COMMAND notification rather than NOTIFY and should have had exactly the same values as the EN_* constants. Unfortunately the SETFOCUS and KILLFOCUS are flipped over from EN_* As clients depend on these constants, this will not be changed.
+  name: SCEN_CHANGE
+  value: "768"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCEN_SETFOCUS
+  value: "512"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCEN_KILLFOCUS
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Symbolic key codes and modifier flags. ASCII and other printable characters below 256. Extended keys above 300.
+  name: SCK_DOWN
+  value: "300"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_UP
+  value: "301"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_LEFT
+  value: "302"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_RIGHT
+  value: "303"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_HOME
+  value: "304"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_END
+  value: "305"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_PRIOR
+  value: "306"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_NEXT
+  value: "307"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_DELETE
+  value: "308"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_INSERT
+  value: "309"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_ESCAPE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_BACK
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_TAB
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_RETURN
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_ADD
+  value: "310"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_SUBTRACT
+  value: "311"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCK_DIVIDE
+  value: "312"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCMOD_NORM
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCMOD_SHIFT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCMOD_CTRL
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCMOD_ALT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: For SciLexer.h
+  name: SCLEX_CONTAINER
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_NULL
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PYTHON
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CPP
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_HTML
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_XML
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PERL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_SQL
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_VB
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PROPERTIES
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ERRORLIST
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_MAKEFILE
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_BATCH
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_XCODE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_LATEX
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_LUA
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_DIFF
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CONF
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PASCAL
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_AVE
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ADA
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_LISP
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_RUBY
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_EIFFEL
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_EIFFELKW
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_TCL
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_NNCRONTAB
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_BULLANT
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_VBSCRIPT
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_BAAN
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_MATLAB
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_SCRIPTOL
+  value: "33"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ASM
+  value: "34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CPPNOCASE
+  value: "35"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_FORTRAN
+  value: "36"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_F77
+  value: "37"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CSS
+  value: "38"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_POV
+  value: "39"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_LOUT
+  value: "40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ESCRIPT
+  value: "41"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PS
+  value: "42"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_NSIS
+  value: "43"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_MMIXAL
+  value: "44"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CLW
+  value: "45"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CLWNOCASE
+  value: "46"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_LOT
+  value: "47"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_YAML
+  value: "48"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_TEX
+  value: "49"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_METAPOST
+  value: "50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_POWERBASIC
+  value: "51"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_FORTH
+  value: "52"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ERLANG
+  value: "53"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_OCTAVE
+  value: "54"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_MSSQL
+  value: "55"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_VERILOG
+  value: "56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_KIX
+  value: "57"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_GUI4CLI
+  value: "58"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_SPECMAN
+  value: "59"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_AU3
+  value: "60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_APDL
+  value: "61"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_BASH
+  value: "62"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_ASN1
+  value: "63"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_VHDL
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CAML
+  value: "65"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_BLITZBASIC
+  value: "66"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PUREBASIC
+  value: "67"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_HASKELL
+  value: "68"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PHPSCRIPT
+  value: "69"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_TADS3
+  value: "70"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_REBOL
+  value: "71"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_SMALLTALK
+  value: "72"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_FLAGSHIP
+  value: "73"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_CSOUND
+  value: "74"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_FREEBASIC
+  value: "75"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When a lexer specifies its language as SCLEX_AUTOMATIC it receives a value assigned in sequence from SCLEX_AUTOMATIC+1.
+  name: SCLEX_AUTOMATIC
+  value: "1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_PYTHON
+  name: SCE_P_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_COMMENTLINE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_STRING
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_CHARACTER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_TRIPLE
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_TRIPLEDOUBLE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_CLASSNAME
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_DEFNAME
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_COMMENTBLOCK
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_STRINGEOL
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_WORD2
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_P_DECORATOR
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CPP
+  name: SCE_C_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENTDOC
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_CHARACTER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_UUID
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_PREPROCESSOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_STRINGEOL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_VERBATIM
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_REGEX
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENTLINEDOC
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_WORD2
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENTDOCKEYWORD
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_COMMENTDOCKEYWORDERROR
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_C_GLOBALCLASS
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_HTML, SCLEX_XML
+  name: SCE_H_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_TAG
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_TAGUNKNOWN
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_ATTRIBUTE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_ATTRIBUTEUNKNOWN
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_NUMBER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_DOUBLESTRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SINGLESTRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_OTHER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_COMMENT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_ENTITY
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: XML and ASP
+  name: SCE_H_TAGEND
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_XMLSTART
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_XMLEND
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SCRIPT
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_ASP
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_ASPAT
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_CDATA
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_QUESTION
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: More HTML
+  name: SCE_H_VALUE
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: X-Code
+  name: SCE_H_XCCOMMENT
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: SGML
+  name: SCE_H_SGML_DEFAULT
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_COMMAND
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_1ST_PARAM
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_DOUBLESTRING
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_SIMPLESTRING
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_ERROR
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_SPECIAL
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_ENTITY
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_COMMENT
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_1ST_PARAM_COMMENT
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_H_SGML_BLOCK_DEFAULT
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Embedded Javascript
+  name: SCE_HJ_START
+  value: "40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_DEFAULT
+  value: "41"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_COMMENT
+  value: "42"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_COMMENTLINE
+  value: "43"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_COMMENTDOC
+  value: "44"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_NUMBER
+  value: "45"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_WORD
+  value: "46"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_KEYWORD
+  value: "47"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_DOUBLESTRING
+  value: "48"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_SINGLESTRING
+  value: "49"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_SYMBOLS
+  value: "50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_STRINGEOL
+  value: "51"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJ_REGEX
+  value: "52"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ASP Javascript
+  name: SCE_HJA_START
+  value: "55"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_DEFAULT
+  value: "56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_COMMENT
+  value: "57"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_COMMENTLINE
+  value: "58"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_COMMENTDOC
+  value: "59"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_NUMBER
+  value: "60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_WORD
+  value: "61"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_KEYWORD
+  value: "62"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_DOUBLESTRING
+  value: "63"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_SINGLESTRING
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_SYMBOLS
+  value: "65"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_STRINGEOL
+  value: "66"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HJA_REGEX
+  value: "67"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Embedded VBScript
+  name: SCE_HB_START
+  value: "70"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_DEFAULT
+  value: "71"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_COMMENTLINE
+  value: "72"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_NUMBER
+  value: "73"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_WORD
+  value: "74"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_STRING
+  value: "75"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_IDENTIFIER
+  value: "76"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HB_STRINGEOL
+  value: "77"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ASP VBScript
+  name: SCE_HBA_START
+  value: "80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_DEFAULT
+  value: "81"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_COMMENTLINE
+  value: "82"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_NUMBER
+  value: "83"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_WORD
+  value: "84"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_STRING
+  value: "85"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_IDENTIFIER
+  value: "86"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HBA_STRINGEOL
+  value: "87"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Embedded Python
+  name: SCE_HP_START
+  value: "90"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_DEFAULT
+  value: "91"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_COMMENTLINE
+  value: "92"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_NUMBER
+  value: "93"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_STRING
+  value: "94"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_CHARACTER
+  value: "95"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_WORD
+  value: "96"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_TRIPLE
+  value: "97"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_TRIPLEDOUBLE
+  value: "98"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_CLASSNAME
+  value: "99"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_DEFNAME
+  value: "100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_OPERATOR
+  value: "101"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HP_IDENTIFIER
+  value: "102"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PHP
+  name: SCE_HPHP_COMPLEX_VARIABLE
+  value: "104"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ASP Python
+  name: SCE_HPA_START
+  value: "105"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_DEFAULT
+  value: "106"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_COMMENTLINE
+  value: "107"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_NUMBER
+  value: "108"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_STRING
+  value: "109"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_CHARACTER
+  value: "110"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_WORD
+  value: "111"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_TRIPLE
+  value: "112"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_TRIPLEDOUBLE
+  value: "113"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_CLASSNAME
+  value: "114"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_DEFNAME
+  value: "115"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_OPERATOR
+  value: "116"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPA_IDENTIFIER
+  value: "117"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: PHP
+  name: SCE_HPHP_DEFAULT
+  value: "118"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_HSTRING
+  value: "119"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_SIMPLESTRING
+  value: "120"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_WORD
+  value: "121"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_NUMBER
+  value: "122"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_VARIABLE
+  value: "123"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_COMMENT
+  value: "124"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_COMMENTLINE
+  value: "125"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_HSTRING_VARIABLE
+  value: "126"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HPHP_OPERATOR
+  value: "127"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_PERL
+  name: SCE_PL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_ERROR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_POD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_CHARACTER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_PUNCTUATION
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_PREPROCESSOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_SCALAR
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_ARRAY
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_HASH
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_SYMBOLTABLE
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_VARIABLE_INDEXER
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_REGEX
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_REGSUBST
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_LONGQUOTE
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_BACKTICKS
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_DATASECTION
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_HERE_DELIM
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_HERE_Q
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_HERE_QQ
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_HERE_QX
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING_Q
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING_QQ
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING_QX
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING_QR
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_STRING_QW
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PL_POD_VERB
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_RUBY
+  name: SCE_RB_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_ERROR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_POD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_CHARACTER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_CLASSNAME
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_DEFNAME
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_REGEX
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_GLOBAL
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_SYMBOL
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_MODULE_NAME
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_INSTANCE_VAR
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_CLASS_VAR
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_BACKTICKS
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_DATASECTION
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_HERE_DELIM
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_HERE_Q
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_HERE_QQ
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_HERE_QX
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING_Q
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING_QQ
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING_QX
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING_QR
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STRING_QW
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_WORD_DEMOTED
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STDIN
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STDOUT
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_STDERR
+  value: "40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_RB_UPPER_BOUND
+  value: "41"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_VB, SCLEX_VBSCRIPT, SCLEX_POWERBASIC
+  name: SCE_B_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_KEYWORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_PREPROCESSOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_OPERATOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_IDENTIFIER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_DATE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_STRINGEOL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_KEYWORD2
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_KEYWORD3
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_KEYWORD4
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_CONSTANT
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_ASM
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_LABEL
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_ERROR
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_HEXNUMBER
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_B_BINNUMBER
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_PROPERTIES
+  name: SCE_PROPS_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PROPS_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PROPS_SECTION
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PROPS_ASSIGNMENT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PROPS_DEFVAL
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_LATEX
+  name: SCE_L_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_L_COMMAND
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_L_TAG
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_L_MATH
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_L_COMMENT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_LUA
+  name: SCE_LUA_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_COMMENTDOC
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_CHARACTER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_LITERALSTRING
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_PREPROCESSOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_STRINGEOL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD2
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD3
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD4
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD5
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD6
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD7
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LUA_WORD8
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ERRORLIST
+  name: SCE_ERR_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_PYTHON
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_GCC
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_MS
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_CMD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_BORLAND
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_PERL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_NET
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_LUA
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_CTAG
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_DIFF_CHANGED
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_DIFF_ADDITION
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_DIFF_DELETION
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_DIFF_MESSAGE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_PHP
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_ELF
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_IFC
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_IFORT
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_ABSF
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_TIDY
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERR_JAVA_STACK
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_BATCH
+  name: SCE_BAT_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_WORD
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_LABEL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_HIDE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_COMMAND
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_IDENTIFIER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAT_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_MAKEFILE
+  name: SCE_MAKE_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_PREPROCESSOR
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_IDENTIFIER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_OPERATOR
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_TARGET
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MAKE_IDEOL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_DIFF
+  name: SCE_DIFF_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_COMMAND
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_HEADER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_POSITION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_DELETED
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_DIFF_ADDED
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CONF (Apache Configuration Files Lexer)
+  name: SCE_CONF_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_IDENTIFIER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_EXTENSION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_PARAMETER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_IP
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CONF_DIRECTIVE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_AVE, Avenue
+  name: SCE_AVE_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_ENUM
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_STRINGEOL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_IDENTIFIER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD1
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD2
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD3
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD4
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD5
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AVE_WORD6
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ADA
+  name: SCE_ADA_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_WORD
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_IDENTIFIER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_DELIMITER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_CHARACTER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_CHARACTEREOL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_STRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_STRINGEOL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_LABEL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_COMMENTLINE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ADA_ILLEGAL
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_BAAN
+  name: SCE_BAAN_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_COMMENTDOC
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_WORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_STRING
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_PREPROCESSOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_IDENTIFIER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_STRINGEOL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_BAAN_WORD2
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_LISP
+  name: SCE_LISP_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_KEYWORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_KEYWORD_KW
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_SYMBOL
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_STRINGEOL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_IDENTIFIER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_SPECIAL
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LISP_MULTI_COMMENT
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_EIFFEL and SCLEX_EIFFELKW
+  name: SCE_EIFFEL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_COMMENTLINE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_WORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_CHARACTER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_OPERATOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_IDENTIFIER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_EIFFEL_STRINGEOL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_NNCRONTAB (nnCron crontab Lexer)
+  name: SCE_NNCRONTAB_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_TASK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_SECTION
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_KEYWORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_MODIFIER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_ASTERISK
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_NUMBER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_STRING
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_ENVIRONMENT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NNCRONTAB_IDENTIFIER
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_FORTH (Forth Lexer)
+  name: SCE_FORTH_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_COMMENT_ML
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_IDENTIFIER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_CONTROL
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_KEYWORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_DEFWORD
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_PREWORD1
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_PREWORD2
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_NUMBER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_STRING
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FORTH_LOCALE
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_MATLAB
+  name: SCE_MATLAB_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_COMMAND
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_KEYWORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: single quoted string
+  name: SCE_MATLAB_STRING
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_OPERATOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_IDENTIFIER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MATLAB_DOUBLEQUOTESTRING
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_SCRIPTOL
+  name: SCE_SCRIPTOL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_WHITE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_PERSISTENT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_CSTYLE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_COMMENTBLOCK
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_NUMBER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_STRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_CHARACTER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_STRINGEOL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_KEYWORD
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_OPERATOR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_IDENTIFIER
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_TRIPLE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_CLASSNAME
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SCRIPTOL_PREPROCESSOR
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ASM
+  name: SCE_ASM_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_STRING
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_OPERATOR
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_IDENTIFIER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_CPUINSTRUCTION
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_MATHINSTRUCTION
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_REGISTER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_DIRECTIVE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_DIRECTIVEOPERAND
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_COMMENTBLOCK
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_CHARACTER
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_STRINGEOL
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASM_EXTINSTRUCTION
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_FORTRAN
+  name: SCE_F_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_STRING1
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_STRING2
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_STRINGEOL
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_OPERATOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_IDENTIFIER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_WORD
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_WORD2
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_WORD3
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_PREPROCESSOR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_OPERATOR2
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_LABEL
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_F_CONTINUATION
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CSS
+  name: SCE_CSS_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_TAG
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_CLASS
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_PSEUDOCLASS
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_UNKNOWN_PSEUDOCLASS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_OPERATOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_IDENTIFIER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_UNKNOWN_IDENTIFIER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_VALUE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_COMMENT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_ID
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_IMPORTANT
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_DIRECTIVE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_DOUBLESTRING
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_SINGLESTRING
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_IDENTIFIER2
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSS_ATTRIBUTE
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_POV
+  name: SCE_POV_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_OPERATOR
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_IDENTIFIER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_STRINGEOL
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_DIRECTIVE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_BADDIRECTIVE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD2
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD3
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD4
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD5
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD6
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD7
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_POV_WORD8
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_LOUT
+  name: SCE_LOUT_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_WORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_WORD2
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_WORD3
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_WORD4
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_STRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_OPERATOR
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_IDENTIFIER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOUT_STRINGEOL
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ESCRIPT
+  name: SCE_ESCRIPT_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_COMMENTDOC
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_IDENTIFIER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_BRACE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_WORD2
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ESCRIPT_WORD3
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_PS
+  name: SCE_PS_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_DSC_COMMENT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_DSC_VALUE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_NAME
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_KEYWORD
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_LITERAL
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_IMMEVAL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_PAREN_ARRAY
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_PAREN_DICT
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_PAREN_PROC
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_TEXT
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_HEXSTRING
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_BASE85STRING
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_PS_BADSTRINGCHAR
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_NSIS
+  name: SCE_NSIS_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_STRINGDQ
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_STRINGLQ
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_STRINGRQ
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_FUNCTION
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_VARIABLE
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_LABEL
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_USERDEFINED
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_SECTIONDEF
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_SUBSECTIONDEF
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_IFDEFINEDEF
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_MACRODEF
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_STRINGVAR
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_NUMBER
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_SECTIONGROUP
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_PAGEEX
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_FUNCTIONDEF
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_NSIS_COMMENTBOX
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_MMIXAL
+  name: SCE_MMIXAL_LEADWS
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_LABEL
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPCODE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPCODE_PRE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPCODE_VALID
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPCODE_UNKNOWN
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPCODE_POST
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPERANDS
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_NUMBER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_REF
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_CHAR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_STRING
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_REGISTER
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_HEX
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_OPERATOR
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_SYMBOL
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MMIXAL_INCLUDE
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CLW
+  name: SCE_CLW_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_LABEL
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_COMMENT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_STRING
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_USER_IDENTIFIER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_INTEGER_CONSTANT
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_REAL_CONSTANT
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_PICTURE_STRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_KEYWORD
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_COMPILER_DIRECTIVE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_RUNTIME_EXPRESSIONS
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_BUILTIN_PROCEDURES_FUNCTION
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_STRUCTURE_DATA_TYPE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_ATTRIBUTE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_STANDARD_EQUATE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_ERROR
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CLW_DEPRECATED
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_LOT
+  name: SCE_LOT_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_HEADER
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_BREAK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_SET
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_PASS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_FAIL
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_LOT_ABORT
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_YAML
+  name: SCE_YAML_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_IDENTIFIER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_KEYWORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_REFERENCE
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_DOCUMENT
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_TEXT
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_YAML_ERROR
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_TEX
+  name: SCE_TEX_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_TEX_SPECIAL
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_TEX_GROUP
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_TEX_SYMBOL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_TEX_COMMAND
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_TEX_TEXT
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_SPECIAL
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_GROUP
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_SYMBOL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_COMMAND
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_TEXT
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_METAPOST_EXTRA
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ERLANG
+  name: SCE_ERLANG_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_VARIABLE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_KEYWORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_STRING
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_OPERATOR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_ATOM
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_FUNCTION_NAME
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_CHARACTER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_MACRO
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_RECORD
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_SEPARATOR
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_NODE_NAME
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ERLANG_UNKNOWN
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_OCTAVE are identical to MatLab Lexical states for SCLEX_MSSQL
+  name: SCE_MSSQL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_LINE_COMMENT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_OPERATOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_IDENTIFIER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_VARIABLE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_COLUMN_NAME
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_STATEMENT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_DATATYPE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_SYSTABLE
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_GLOBAL_VARIABLE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_FUNCTION
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_STORED_PROCEDURE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_DEFAULT_PREF_DATATYPE
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_MSSQL_COLUMN_NAME_2
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_VERILOG
+  name: SCE_V_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_COMMENTLINEBANG
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_WORD2
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_WORD3
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_PREPROCESSOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_STRINGEOL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_V_USER
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_KIX
+  name: SCE_KIX_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_STRING1
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_STRING2
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_VAR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_MACRO
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_KEYWORD
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_FUNCTIONS
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_OPERATOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_KIX_IDENTIFIER
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_GUI4CLI
+  name: SCE_GC_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_COMMENTLINE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_COMMENTBLOCK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_GLOBAL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_EVENT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_ATTRIBUTE
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_CONTROL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_COMMAND
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_STRING
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_GC_OPERATOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_SPECMAN
+  name: SCE_SN_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_CODE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_COMMENTLINEBANG
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_WORD2
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_WORD3
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_PREPROCESSOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_STRINGEOL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_REGEXTAG
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_SIGNAL
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SN_USER
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_AU3
+  name: SCE_AU3_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_COMMENTBLOCK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_FUNCTION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_KEYWORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_MACRO
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_STRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_OPERATOR
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_VARIABLE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_SENT
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_PREPROCESSOR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_SPECIAL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_EXPAND
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_AU3_COMOBJ
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_APDL
+  name: SCE_APDL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_COMMENTBLOCK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_OPERATOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_WORD
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_PROCESSOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_COMMAND
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_SLASHCOMMAND
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_STARCOMMAND
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_ARGUMENT
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_APDL_FUNCTION
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_BASH
+  name: SCE_SH_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_ERROR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_WORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_STRING
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_CHARACTER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_IDENTIFIER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_SCALAR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_PARAM
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_BACKTICKS
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_HERE_DELIM
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SH_HERE_Q
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_ASN1
+  name: SCE_ASN1_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_IDENTIFIER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_STRING
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_OID
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_SCALAR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_KEYWORD
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_ATTRIBUTE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_DESCRIPTOR
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_TYPE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ASN1_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_VHDL
+  name: SCE_VHDL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_COMMENTLINEBANG
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_OPERATOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_IDENTIFIER
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STRINGEOL
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_KEYWORD
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STDOPERATOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_ATTRIBUTE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STDFUNCTION
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STDPACKAGE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_STDTYPE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_VHDL_USERWORD
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CAML
+  name: SCE_CAML_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_IDENTIFIER
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_TAGNAME
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_KEYWORD
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_KEYWORD2
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_KEYWORD3
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_LINENUM
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_OPERATOR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_NUMBER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_CHAR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_STRING
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_COMMENT
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_COMMENT1
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_COMMENT2
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CAML_COMMENT3
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_HASKELL
+  name: SCE_HA_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_IDENTIFIER
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_KEYWORD
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_NUMBER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_STRING
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_CHARACTER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_CLASS
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_MODULE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_CAPITAL
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_DATA
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_IMPORT
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_OPERATOR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_INSTANCE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_COMMENTLINE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_COMMENTBLOCK
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_COMMENTBLOCK2
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_HA_COMMENTBLOCK3
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states of SCLEX_TADS3
+  name: SCE_T3_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_X_DEFAULT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_PREPROCESSOR
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_BLOCK_COMMENT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_LINE_COMMENT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_OPERATOR
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_KEYWORD
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_NUMBER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_IDENTIFIER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_S_STRING
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_D_STRING
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_X_STRING
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_LIB_DIRECTIVE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_MSG_PARAM
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_HTML_TAG
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_HTML_DEFAULT
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_HTML_STRING
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_USER1
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_USER2
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_T3_USER3
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_REBOL
+  name: SCE_REBOL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_COMMENTLINE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_COMMENTBLOCK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_PREFACE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_OPERATOR
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_CHARACTER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_QUOTEDSTRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_BRACEDSTRING
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_NUMBER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_PAIR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_TUPLE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_BINARY
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_MONEY
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_ISSUE
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_TAG
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_FILE
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_EMAIL
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_URL
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_DATE
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_TIME
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_IDENTIFIER
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD2
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD3
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD4
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD5
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD6
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD7
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_REBOL_WORD8
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_SQL
+  name: SCE_SQL_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENTDOC
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_NUMBER
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_WORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_STRING
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_CHARACTER
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_SQLPLUS
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_SQLPLUS_PROMPT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_OPERATOR
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_IDENTIFIER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_SQLPLUS_COMMENT
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENTLINEDOC
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_WORD2
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENTDOCKEYWORD
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_COMMENTDOCKEYWORDERROR
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_USER1
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_USER2
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_USER3
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_USER4
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_SQL_QUOTEDIDENTIFIER
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_SMALLTALK
+  name: SCE_ST_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_STRING
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_COMMENT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_SYMBOL
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_BINARY
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_BOOL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_SELF
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_SUPER
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_NIL
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_GLOBAL
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_RETURN
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_SPECIAL
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_KWSEND
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_ASSIGN
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_CHARACTER
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_ST_SPEC_SEL
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_FLAGSHIP (clipper)
+  name: SCE_FS_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENTLINE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENTDOC
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENTLINEDOC
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENTDOCKEYWORD
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_COMMENTDOCKEYWORDERROR
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_KEYWORD
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_KEYWORD2
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_KEYWORD3
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_KEYWORD4
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_NUMBER
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_STRING
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_PREPROCESSOR
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_OPERATOR
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_IDENTIFIER
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_DATE
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_STRINGEOL
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_CONSTANT
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_ASM
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_LABEL
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_ERROR
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_HEXNUMBER
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_FS_BINNUMBER
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lexical states for SCLEX_CSOUND
+  name: SCE_CSOUND_DEFAULT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_COMMENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_NUMBER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_OPERATOR
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_INSTR
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_IDENTIFIER
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_OPCODE
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_HEADERSTMT
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_USERKEYWORD
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_COMMENTBLOCK
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_PARAM
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_ARATE_VAR
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_KRATE_VAR
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_IRATE_VAR
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_GLOBAL_VAR
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCE_CSOUND_STRINGEOL
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Events
+  name: SCN_STYLENEEDED
+  value: "2000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_CHARADDED
+  value: "2001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_SAVEPOINTREACHED
+  value: "2002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_SAVEPOINTLEFT
+  value: "2003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_MODIFYATTEMPTRO
+  value: "2004"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "GTK+ Specific to work around focus and accelerator problems:"
+  name: SCN_KEY
+  value: "2005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_DOUBLECLICK
+  value: "2006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_UPDATEUI
+  value: "2007"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_MODIFIED
+  value: "2008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_MACRORECORD
+  value: "2009"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_MARGINCLICK
+  value: "2010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_NEEDSHOWN
+  value: "2011"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_PAINTED
+  value: "2013"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_USERLISTSELECTION
+  value: "2014"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_URIDROPPED
+  value: "2015"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_DWELLSTART
+  value: "2016"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_DWELLEND
+  value: "2017"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_ZOOM
+  value: "2018"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_HOTSPOTCLICK
+  value: "2019"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_HOTSPOTDOUBLECLICK
+  value: "2020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_CALLTIPCLICK
+  value: "2021"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_AUTOCSELECTION
+  value: "2022"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CARET_CENTER
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CARET_XEVEN
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CARET_XJUMPS
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The old name for SCN_UPDATEUI
+  name: SCN_CHECKBRACE
+  value: "2007"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCN_POSCHANGED
+  value: "2012"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: SCLEX_HTML should be used in preference to these.
+  name: SCLEX_ASP
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCLEX_PHP
+  value: "30"
+full_name: Fox::FXScintilla
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: addRefDocument
+- !ruby/object:RI::MethodSummary 
+  name: addStyledText
+- !ruby/object:RI::MethodSummary 
+  name: addText
+- !ruby/object:RI::MethodSummary 
+  name: allocate
+- !ruby/object:RI::MethodSummary 
+  name: appendText
+- !ruby/object:RI::MethodSummary 
+  name: assignCmdKey
+- !ruby/object:RI::MethodSummary 
+  name: autoCActive
+- !ruby/object:RI::MethodSummary 
+  name: autoCCancel
+- !ruby/object:RI::MethodSummary 
+  name: autoCComplete
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetAutoHide
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetCancelAtStart
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetChooseSingle
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetCurrent
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetDropRestOfWord
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetIgnoreCase
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetMaxHeight
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetMaxWidth
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetSeparator
+- !ruby/object:RI::MethodSummary 
+  name: autoCGetTypeSeparator
+- !ruby/object:RI::MethodSummary 
+  name: autoCPosStart
+- !ruby/object:RI::MethodSummary 
+  name: autoCSelect
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetAutoHide
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetCancelAtStart
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetChooseSingle
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetDropRestOfWord
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetFillUps
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetIgnoreCase
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetMaxHeight
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetMaxWidth
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetSeparator
+- !ruby/object:RI::MethodSummary 
+  name: autoCSetTypeSeparator
+- !ruby/object:RI::MethodSummary 
+  name: autoCShow
+- !ruby/object:RI::MethodSummary 
+  name: autoCStops
+- !ruby/object:RI::MethodSummary 
+  name: backTab
+- !ruby/object:RI::MethodSummary 
+  name: beginUndoAction
+- !ruby/object:RI::MethodSummary 
+  name: braceBadLight
+- !ruby/object:RI::MethodSummary 
+  name: braceHighlight
+- !ruby/object:RI::MethodSummary 
+  name: braceMatch
+- !ruby/object:RI::MethodSummary 
+  name: callTipActive
+- !ruby/object:RI::MethodSummary 
+  name: callTipCancel
+- !ruby/object:RI::MethodSummary 
+  name: callTipPosStart
+- !ruby/object:RI::MethodSummary 
+  name: callTipSetBack
+- !ruby/object:RI::MethodSummary 
+  name: callTipSetFore
+- !ruby/object:RI::MethodSummary 
+  name: callTipSetForeHlt
+- !ruby/object:RI::MethodSummary 
+  name: callTipSetHlt
+- !ruby/object:RI::MethodSummary 
+  name: callTipShow
+- !ruby/object:RI::MethodSummary 
+  name: canPaste
+- !ruby/object:RI::MethodSummary 
+  name: canRedo
+- !ruby/object:RI::MethodSummary 
+  name: canUndo
+- !ruby/object:RI::MethodSummary 
+  name: cancel
+- !ruby/object:RI::MethodSummary 
+  name: charLeft
+- !ruby/object:RI::MethodSummary 
+  name: charLeftExtend
+- !ruby/object:RI::MethodSummary 
+  name: charLeftRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: charRight
+- !ruby/object:RI::MethodSummary 
+  name: charRightExtend
+- !ruby/object:RI::MethodSummary 
+  name: charRightRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: chooseCaretX
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: clearAll
+- !ruby/object:RI::MethodSummary 
+  name: clearAllCmdKeys
+- !ruby/object:RI::MethodSummary 
+  name: clearCmdKey
+- !ruby/object:RI::MethodSummary 
+  name: clearDocumentStyle
+- !ruby/object:RI::MethodSummary 
+  name: clearRegisteredImages
+- !ruby/object:RI::MethodSummary 
+  name: colourise
+- !ruby/object:RI::MethodSummary 
+  name: convertEOLs
+- !ruby/object:RI::MethodSummary 
+  name: copy
+- !ruby/object:RI::MethodSummary 
+  name: copyRange
+- !ruby/object:RI::MethodSummary 
+  name: copyText
+- !ruby/object:RI::MethodSummary 
+  name: createDocument
+- !ruby/object:RI::MethodSummary 
+  name: cut
+- !ruby/object:RI::MethodSummary 
+  name: delLineLeft
+- !ruby/object:RI::MethodSummary 
+  name: delLineRight
+- !ruby/object:RI::MethodSummary 
+  name: delWordLeft
+- !ruby/object:RI::MethodSummary 
+  name: delWordRight
+- !ruby/object:RI::MethodSummary 
+  name: deleteBack
+- !ruby/object:RI::MethodSummary 
+  name: deleteBackNotLine
+- !ruby/object:RI::MethodSummary 
+  name: docLineFromVisible
+- !ruby/object:RI::MethodSummary 
+  name: documentEnd
+- !ruby/object:RI::MethodSummary 
+  name: documentEndExtend
+- !ruby/object:RI::MethodSummary 
+  name: documentStart
+- !ruby/object:RI::MethodSummary 
+  name: documentStartExtend
+- !ruby/object:RI::MethodSummary 
+  name: editToggleOvertype
+- !ruby/object:RI::MethodSummary 
+  name: emptyUndoBuffer
+- !ruby/object:RI::MethodSummary 
+  name: encodedFromUTF8
+- !ruby/object:RI::MethodSummary 
+  name: endUndoAction
+- !ruby/object:RI::MethodSummary 
+  name: ensureVisible
+- !ruby/object:RI::MethodSummary 
+  name: ensureVisibleEnforcePolicy
+- !ruby/object:RI::MethodSummary 
+  name: findColumn
+- !ruby/object:RI::MethodSummary 
+  name: findText
+- !ruby/object:RI::MethodSummary 
+  name: formFeed
+- !ruby/object:RI::MethodSummary 
+  name: formatRange
+- !ruby/object:RI::MethodSummary 
+  name: getAnchor
+- !ruby/object:RI::MethodSummary 
+  name: getBackSpaceUnIndents
+- !ruby/object:RI::MethodSummary 
+  name: getBufferedDraw
+- !ruby/object:RI::MethodSummary 
+  name: getCaretFore
+- !ruby/object:RI::MethodSummary 
+  name: getCaretLineBack
+- !ruby/object:RI::MethodSummary 
+  name: getCaretLineVisible
+- !ruby/object:RI::MethodSummary 
+  name: getCaretPeriod
+- !ruby/object:RI::MethodSummary 
+  name: getCaretSticky
+- !ruby/object:RI::MethodSummary 
+  name: getCaretWidth
+- !ruby/object:RI::MethodSummary 
+  name: getCharAt
+- !ruby/object:RI::MethodSummary 
+  name: getCodePage
+- !ruby/object:RI::MethodSummary 
+  name: getColumn
+- !ruby/object:RI::MethodSummary 
+  name: getControlCharSymbol
+- !ruby/object:RI::MethodSummary 
+  name: getCurLine
+- !ruby/object:RI::MethodSummary 
+  name: getCurrentPos
+- !ruby/object:RI::MethodSummary 
+  name: getCursor
+- !ruby/object:RI::MethodSummary 
+  name: getDirectFunction
+- !ruby/object:RI::MethodSummary 
+  name: getDirectPointer
+- !ruby/object:RI::MethodSummary 
+  name: getDocPointer
+- !ruby/object:RI::MethodSummary 
+  name: getEOLMode
+- !ruby/object:RI::MethodSummary 
+  name: getEdgeColour
+- !ruby/object:RI::MethodSummary 
+  name: getEdgeColumn
+- !ruby/object:RI::MethodSummary 
+  name: getEdgeMode
+- !ruby/object:RI::MethodSummary 
+  name: getEndAtLastLine
+- !ruby/object:RI::MethodSummary 
+  name: getEndStyled
+- !ruby/object:RI::MethodSummary 
+  name: getFirstVisibleLine
+- !ruby/object:RI::MethodSummary 
+  name: getFocus
+- !ruby/object:RI::MethodSummary 
+  name: getFoldExpanded
+- !ruby/object:RI::MethodSummary 
+  name: getFoldLevel
+- !ruby/object:RI::MethodSummary 
+  name: getFoldParent
+- !ruby/object:RI::MethodSummary 
+  name: getHScrollBar
+- !ruby/object:RI::MethodSummary 
+  name: getHighlightGuide
+- !ruby/object:RI::MethodSummary 
+  name: getIndent
+- !ruby/object:RI::MethodSummary 
+  name: getIndentationGuides
+- !ruby/object:RI::MethodSummary 
+  name: getLastChild
+- !ruby/object:RI::MethodSummary 
+  name: getLayoutCache
+- !ruby/object:RI::MethodSummary 
+  name: getLength
+- !ruby/object:RI::MethodSummary 
+  name: getLexer
+- !ruby/object:RI::MethodSummary 
+  name: getLine
+- !ruby/object:RI::MethodSummary 
+  name: getLineCount
+- !ruby/object:RI::MethodSummary 
+  name: getLineEndPosition
+- !ruby/object:RI::MethodSummary 
+  name: getLineIndentPosition
+- !ruby/object:RI::MethodSummary 
+  name: getLineIndentation
+- !ruby/object:RI::MethodSummary 
+  name: getLineSelEndPosition
+- !ruby/object:RI::MethodSummary 
+  name: getLineSelStartPosition
+- !ruby/object:RI::MethodSummary 
+  name: getLineState
+- !ruby/object:RI::MethodSummary 
+  name: getLineVisible
+- !ruby/object:RI::MethodSummary 
+  name: getMarginLeft
+- !ruby/object:RI::MethodSummary 
+  name: getMarginMaskN
+- !ruby/object:RI::MethodSummary 
+  name: getMarginRight
+- !ruby/object:RI::MethodSummary 
+  name: getMarginSensitiveN
+- !ruby/object:RI::MethodSummary 
+  name: getMarginTypeN
+- !ruby/object:RI::MethodSummary 
+  name: getMarginWidthN
+- !ruby/object:RI::MethodSummary 
+  name: getMaxLineState
+- !ruby/object:RI::MethodSummary 
+  name: getModEventMask
+- !ruby/object:RI::MethodSummary 
+  name: getModify
+- !ruby/object:RI::MethodSummary 
+  name: getMouseDownCaptures
+- !ruby/object:RI::MethodSummary 
+  name: getMouseDwellTime
+- !ruby/object:RI::MethodSummary 
+  name: getOvertype
+- !ruby/object:RI::MethodSummary 
+  name: getPasteConvertEndings
+- !ruby/object:RI::MethodSummary 
+  name: getPrintColourMode
+- !ruby/object:RI::MethodSummary 
+  name: getPrintMagnification
+- !ruby/object:RI::MethodSummary 
+  name: getPrintWrapMode
+- !ruby/object:RI::MethodSummary 
+  name: getProperty
+- !ruby/object:RI::MethodSummary 
+  name: getPropertyExpanded
+- !ruby/object:RI::MethodSummary 
+  name: getPropertyInt
+- !ruby/object:RI::MethodSummary 
+  name: getReadOnly
+- !ruby/object:RI::MethodSummary 
+  name: getScrollWidth
+- !ruby/object:RI::MethodSummary 
+  name: getSearchFlags
+- !ruby/object:RI::MethodSummary 
+  name: getSelText
+- !ruby/object:RI::MethodSummary 
+  name: getSelectionEnd
+- !ruby/object:RI::MethodSummary 
+  name: getSelectionMode
+- !ruby/object:RI::MethodSummary 
+  name: getSelectionStart
+- !ruby/object:RI::MethodSummary 
+  name: getStatus
+- !ruby/object:RI::MethodSummary 
+  name: getStyleAt
+- !ruby/object:RI::MethodSummary 
+  name: getStyleBits
+- !ruby/object:RI::MethodSummary 
+  name: getStyleBitsNeeded
+- !ruby/object:RI::MethodSummary 
+  name: getStyledText
+- !ruby/object:RI::MethodSummary 
+  name: getTabIndents
+- !ruby/object:RI::MethodSummary 
+  name: getTabWidth
+- !ruby/object:RI::MethodSummary 
+  name: getTargetEnd
+- !ruby/object:RI::MethodSummary 
+  name: getTargetStart
+- !ruby/object:RI::MethodSummary 
+  name: getText
+- !ruby/object:RI::MethodSummary 
+  name: getTextLength
+- !ruby/object:RI::MethodSummary 
+  name: getTextRange
+- !ruby/object:RI::MethodSummary 
+  name: getTwoPhaseDraw
+- !ruby/object:RI::MethodSummary 
+  name: getUndoCollection
+- !ruby/object:RI::MethodSummary 
+  name: getUsePalette
+- !ruby/object:RI::MethodSummary 
+  name: getUseTabs
+- !ruby/object:RI::MethodSummary 
+  name: getVScrollBar
+- !ruby/object:RI::MethodSummary 
+  name: getViewEOL
+- !ruby/object:RI::MethodSummary 
+  name: getViewWS
+- !ruby/object:RI::MethodSummary 
+  name: getWrapMode
+- !ruby/object:RI::MethodSummary 
+  name: getWrapStartIndent
+- !ruby/object:RI::MethodSummary 
+  name: getWrapVisualFlags
+- !ruby/object:RI::MethodSummary 
+  name: getWrapVisualFlagsLocation
+- !ruby/object:RI::MethodSummary 
+  name: getXOffset
+- !ruby/object:RI::MethodSummary 
+  name: getZoom
+- !ruby/object:RI::MethodSummary 
+  name: gotoLine
+- !ruby/object:RI::MethodSummary 
+  name: gotoPos
+- !ruby/object:RI::MethodSummary 
+  name: grabFocus
+- !ruby/object:RI::MethodSummary 
+  name: hideLines
+- !ruby/object:RI::MethodSummary 
+  name: hideSelection
+- !ruby/object:RI::MethodSummary 
+  name: home
+- !ruby/object:RI::MethodSummary 
+  name: homeDisplay
+- !ruby/object:RI::MethodSummary 
+  name: homeDisplayExtend
+- !ruby/object:RI::MethodSummary 
+  name: homeExtend
+- !ruby/object:RI::MethodSummary 
+  name: homeRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: homeWrap
+- !ruby/object:RI::MethodSummary 
+  name: homeWrapExtend
+- !ruby/object:RI::MethodSummary 
+  name: indicGetFore
+- !ruby/object:RI::MethodSummary 
+  name: indicGetStyle
+- !ruby/object:RI::MethodSummary 
+  name: indicSetFore
+- !ruby/object:RI::MethodSummary 
+  name: indicSetStyle
+- !ruby/object:RI::MethodSummary 
+  name: insertText
+- !ruby/object:RI::MethodSummary 
+  name: lineCopy
+- !ruby/object:RI::MethodSummary 
+  name: lineCut
+- !ruby/object:RI::MethodSummary 
+  name: lineDelete
+- !ruby/object:RI::MethodSummary 
+  name: lineDown
+- !ruby/object:RI::MethodSummary 
+  name: lineDownExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineDownRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineDuplicate
+- !ruby/object:RI::MethodSummary 
+  name: lineEnd
+- !ruby/object:RI::MethodSummary 
+  name: lineEndDisplay
+- !ruby/object:RI::MethodSummary 
+  name: lineEndDisplayExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineEndExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineEndRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineEndWrap
+- !ruby/object:RI::MethodSummary 
+  name: lineEndWrapExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineFromPosition
+- !ruby/object:RI::MethodSummary 
+  name: lineLength
+- !ruby/object:RI::MethodSummary 
+  name: lineScroll
+- !ruby/object:RI::MethodSummary 
+  name: lineScrollDown
+- !ruby/object:RI::MethodSummary 
+  name: lineScrollUp
+- !ruby/object:RI::MethodSummary 
+  name: lineTranspose
+- !ruby/object:RI::MethodSummary 
+  name: lineUp
+- !ruby/object:RI::MethodSummary 
+  name: lineUpExtend
+- !ruby/object:RI::MethodSummary 
+  name: lineUpRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: linesJoin
+- !ruby/object:RI::MethodSummary 
+  name: linesOnScreen
+- !ruby/object:RI::MethodSummary 
+  name: linesSplit
+- !ruby/object:RI::MethodSummary 
+  name: loadLexerLibrary
+- !ruby/object:RI::MethodSummary 
+  name: lowerCase
+- !ruby/object:RI::MethodSummary 
+  name: markerAdd
+- !ruby/object:RI::MethodSummary 
+  name: markerAddSet
+- !ruby/object:RI::MethodSummary 
+  name: markerDefine
+- !ruby/object:RI::MethodSummary 
+  name: markerDefinePixmap
+- !ruby/object:RI::MethodSummary 
+  name: markerDelete
+- !ruby/object:RI::MethodSummary 
+  name: markerDeleteAll
+- !ruby/object:RI::MethodSummary 
+  name: markerDeleteHandle
+- !ruby/object:RI::MethodSummary 
+  name: markerGet
+- !ruby/object:RI::MethodSummary 
+  name: markerLineFromHandle
+- !ruby/object:RI::MethodSummary 
+  name: markerNext
+- !ruby/object:RI::MethodSummary 
+  name: markerPrevious
+- !ruby/object:RI::MethodSummary 
+  name: markerSetBack
+- !ruby/object:RI::MethodSummary 
+  name: markerSetFore
+- !ruby/object:RI::MethodSummary 
+  name: moveCaretInsideView
+- !ruby/object:RI::MethodSummary 
+  name: newLine
+- !ruby/object:RI::MethodSummary 
+  name: "null"
+- !ruby/object:RI::MethodSummary 
+  name: pageDown
+- !ruby/object:RI::MethodSummary 
+  name: pageDownExtend
+- !ruby/object:RI::MethodSummary 
+  name: pageDownRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: pageUp
+- !ruby/object:RI::MethodSummary 
+  name: pageUpExtend
+- !ruby/object:RI::MethodSummary 
+  name: pageUpRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: paraDown
+- !ruby/object:RI::MethodSummary 
+  name: paraDownExtend
+- !ruby/object:RI::MethodSummary 
+  name: paraUp
+- !ruby/object:RI::MethodSummary 
+  name: paraUpExtend
+- !ruby/object:RI::MethodSummary 
+  name: paste
+- !ruby/object:RI::MethodSummary 
+  name: pointXFromPosition
+- !ruby/object:RI::MethodSummary 
+  name: pointYFromPosition
+- !ruby/object:RI::MethodSummary 
+  name: positionAfter
+- !ruby/object:RI::MethodSummary 
+  name: positionBefore
+- !ruby/object:RI::MethodSummary 
+  name: positionFromLine
+- !ruby/object:RI::MethodSummary 
+  name: positionFromPoint
+- !ruby/object:RI::MethodSummary 
+  name: positionFromPointClose
+- !ruby/object:RI::MethodSummary 
+  name: redo
+- !ruby/object:RI::MethodSummary 
+  name: registerImage
+- !ruby/object:RI::MethodSummary 
+  name: releaseDocument
+- !ruby/object:RI::MethodSummary 
+  name: replaceSel
+- !ruby/object:RI::MethodSummary 
+  name: replaceTarget
+- !ruby/object:RI::MethodSummary 
+  name: replaceTargetRE
+- !ruby/object:RI::MethodSummary 
+  name: scrollCaret
+- !ruby/object:RI::MethodSummary 
+  name: searchAnchor
+- !ruby/object:RI::MethodSummary 
+  name: searchInTarget
+- !ruby/object:RI::MethodSummary 
+  name: searchNext
+- !ruby/object:RI::MethodSummary 
+  name: searchPrev
+- !ruby/object:RI::MethodSummary 
+  name: selectAll
+- !ruby/object:RI::MethodSummary 
+  name: selectionDuplicate
+- !ruby/object:RI::MethodSummary 
+  name: selectionIsRectangle
+- !ruby/object:RI::MethodSummary 
+  name: sendMessage
+- !ruby/object:RI::MethodSummary 
+  name: setAnchor
+- !ruby/object:RI::MethodSummary 
+  name: setBackSpaceUnIndents
+- !ruby/object:RI::MethodSummary 
+  name: setBufferedDraw
+- !ruby/object:RI::MethodSummary 
+  name: setCaretFore
+- !ruby/object:RI::MethodSummary 
+  name: setCaretLineBack
+- !ruby/object:RI::MethodSummary 
+  name: setCaretLineVisible
+- !ruby/object:RI::MethodSummary 
+  name: setCaretPeriod
+- !ruby/object:RI::MethodSummary 
+  name: setCaretPolicy
+- !ruby/object:RI::MethodSummary 
+  name: setCaretSticky
+- !ruby/object:RI::MethodSummary 
+  name: setCaretWidth
+- !ruby/object:RI::MethodSummary 
+  name: setCharsDefault
+- !ruby/object:RI::MethodSummary 
+  name: setCodePage
+- !ruby/object:RI::MethodSummary 
+  name: setControlCharSymbol
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentPos
+- !ruby/object:RI::MethodSummary 
+  name: setCursor
+- !ruby/object:RI::MethodSummary 
+  name: setDocPointer
+- !ruby/object:RI::MethodSummary 
+  name: setEOLMode
+- !ruby/object:RI::MethodSummary 
+  name: setEdgeColour
+- !ruby/object:RI::MethodSummary 
+  name: setEdgeColumn
+- !ruby/object:RI::MethodSummary 
+  name: setEdgeMode
+- !ruby/object:RI::MethodSummary 
+  name: setEndAtLastLine
+- !ruby/object:RI::MethodSummary 
+  name: setFocusFlag
+- !ruby/object:RI::MethodSummary 
+  name: setFoldExpanded
+- !ruby/object:RI::MethodSummary 
+  name: setFoldFlags
+- !ruby/object:RI::MethodSummary 
+  name: setFoldLevel
+- !ruby/object:RI::MethodSummary 
+  name: setFoldMarginColour
+- !ruby/object:RI::MethodSummary 
+  name: setFoldMarginHiColour
+- !ruby/object:RI::MethodSummary 
+  name: setHScrollBar
+- !ruby/object:RI::MethodSummary 
+  name: setHighlightGuide
+- !ruby/object:RI::MethodSummary 
+  name: setHotspotActiveBack
+- !ruby/object:RI::MethodSummary 
+  name: setHotspotActiveFore
+- !ruby/object:RI::MethodSummary 
+  name: setHotspotActiveUnderline
+- !ruby/object:RI::MethodSummary 
+  name: setHotspotSingleLine
+- !ruby/object:RI::MethodSummary 
+  name: setIndent
+- !ruby/object:RI::MethodSummary 
+  name: setIndentationGuides
+- !ruby/object:RI::MethodSummary 
+  name: setKeyWords
+- !ruby/object:RI::MethodSummary 
+  name: setLayoutCache
+- !ruby/object:RI::MethodSummary 
+  name: setLengthForEncode
+- !ruby/object:RI::MethodSummary 
+  name: setLexer
+- !ruby/object:RI::MethodSummary 
+  name: setLexerLanguage
+- !ruby/object:RI::MethodSummary 
+  name: setLineIndentation
+- !ruby/object:RI::MethodSummary 
+  name: setLineState
+- !ruby/object:RI::MethodSummary 
+  name: setMarginLeft
+- !ruby/object:RI::MethodSummary 
+  name: setMarginMaskN
+- !ruby/object:RI::MethodSummary 
+  name: setMarginRight
+- !ruby/object:RI::MethodSummary 
+  name: setMarginSensitiveN
+- !ruby/object:RI::MethodSummary 
+  name: setMarginTypeN
+- !ruby/object:RI::MethodSummary 
+  name: setMarginWidthN
+- !ruby/object:RI::MethodSummary 
+  name: setModEventMask
+- !ruby/object:RI::MethodSummary 
+  name: setMouseDownCaptures
+- !ruby/object:RI::MethodSummary 
+  name: setMouseDwellTime
+- !ruby/object:RI::MethodSummary 
+  name: setOvertype
+- !ruby/object:RI::MethodSummary 
+  name: setPasteConvertEndings
+- !ruby/object:RI::MethodSummary 
+  name: setPrintColourMode
+- !ruby/object:RI::MethodSummary 
+  name: setPrintMagnification
+- !ruby/object:RI::MethodSummary 
+  name: setPrintWrapMode
+- !ruby/object:RI::MethodSummary 
+  name: setProperty
+- !ruby/object:RI::MethodSummary 
+  name: setReadOnly
+- !ruby/object:RI::MethodSummary 
+  name: setSavePoint
+- !ruby/object:RI::MethodSummary 
+  name: setScintillaID
+- !ruby/object:RI::MethodSummary 
+  name: setScrollWidth
+- !ruby/object:RI::MethodSummary 
+  name: setSearchFlags
+- !ruby/object:RI::MethodSummary 
+  name: setSel
+- !ruby/object:RI::MethodSummary 
+  name: setSelBack
+- !ruby/object:RI::MethodSummary 
+  name: setSelFore
+- !ruby/object:RI::MethodSummary 
+  name: setSelectionEnd
+- !ruby/object:RI::MethodSummary 
+  name: setSelectionMode
+- !ruby/object:RI::MethodSummary 
+  name: setSelectionStart
+- !ruby/object:RI::MethodSummary 
+  name: setStatus
+- !ruby/object:RI::MethodSummary 
+  name: setStyleBits
+- !ruby/object:RI::MethodSummary 
+  name: setStyling
+- !ruby/object:RI::MethodSummary 
+  name: setStylingEx
+- !ruby/object:RI::MethodSummary 
+  name: setTabIndents
+- !ruby/object:RI::MethodSummary 
+  name: setTabWidth
+- !ruby/object:RI::MethodSummary 
+  name: setTargetEnd
+- !ruby/object:RI::MethodSummary 
+  name: setTargetStart
+- !ruby/object:RI::MethodSummary 
+  name: setText
+- !ruby/object:RI::MethodSummary 
+  name: setTwoPhaseDraw
+- !ruby/object:RI::MethodSummary 
+  name: setUndoCollection
+- !ruby/object:RI::MethodSummary 
+  name: setUsePalette
+- !ruby/object:RI::MethodSummary 
+  name: setUseTabs
+- !ruby/object:RI::MethodSummary 
+  name: setVScrollBar
+- !ruby/object:RI::MethodSummary 
+  name: setViewEOL
+- !ruby/object:RI::MethodSummary 
+  name: setViewWS
+- !ruby/object:RI::MethodSummary 
+  name: setVisiblePolicy
+- !ruby/object:RI::MethodSummary 
+  name: setWhitespaceBack
+- !ruby/object:RI::MethodSummary 
+  name: setWhitespaceChars
+- !ruby/object:RI::MethodSummary 
+  name: setWhitespaceFore
+- !ruby/object:RI::MethodSummary 
+  name: setWordChars
+- !ruby/object:RI::MethodSummary 
+  name: setWrapMode
+- !ruby/object:RI::MethodSummary 
+  name: setWrapStartIndent
+- !ruby/object:RI::MethodSummary 
+  name: setWrapVisualFlags
+- !ruby/object:RI::MethodSummary 
+  name: setWrapVisualFlagsLocation
+- !ruby/object:RI::MethodSummary 
+  name: setXCaretPolicy
+- !ruby/object:RI::MethodSummary 
+  name: setXOffset
+- !ruby/object:RI::MethodSummary 
+  name: setYCaretPolicy
+- !ruby/object:RI::MethodSummary 
+  name: setZoom
+- !ruby/object:RI::MethodSummary 
+  name: showLines
+- !ruby/object:RI::MethodSummary 
+  name: startRecord
+- !ruby/object:RI::MethodSummary 
+  name: startStyling
+- !ruby/object:RI::MethodSummary 
+  name: stopRecord
+- !ruby/object:RI::MethodSummary 
+  name: stutteredPageDown
+- !ruby/object:RI::MethodSummary 
+  name: stutteredPageDownExtend
+- !ruby/object:RI::MethodSummary 
+  name: stutteredPageUp
+- !ruby/object:RI::MethodSummary 
+  name: stutteredPageUpExtend
+- !ruby/object:RI::MethodSummary 
+  name: styleClearAll
+- !ruby/object:RI::MethodSummary 
+  name: styleResetDefault
+- !ruby/object:RI::MethodSummary 
+  name: styleSetBack
+- !ruby/object:RI::MethodSummary 
+  name: styleSetBold
+- !ruby/object:RI::MethodSummary 
+  name: styleSetCase
+- !ruby/object:RI::MethodSummary 
+  name: styleSetChangeable
+- !ruby/object:RI::MethodSummary 
+  name: styleSetCharacterSet
+- !ruby/object:RI::MethodSummary 
+  name: styleSetEOLFilled
+- !ruby/object:RI::MethodSummary 
+  name: styleSetFont
+- !ruby/object:RI::MethodSummary 
+  name: styleSetFore
+- !ruby/object:RI::MethodSummary 
+  name: styleSetHotSpot
+- !ruby/object:RI::MethodSummary 
+  name: styleSetItalic
+- !ruby/object:RI::MethodSummary 
+  name: styleSetSize
+- !ruby/object:RI::MethodSummary 
+  name: styleSetUnderline
+- !ruby/object:RI::MethodSummary 
+  name: styleSetVisible
+- !ruby/object:RI::MethodSummary 
+  name: tab
+- !ruby/object:RI::MethodSummary 
+  name: targetAsUTF8
+- !ruby/object:RI::MethodSummary 
+  name: targetFromSelection
+- !ruby/object:RI::MethodSummary 
+  name: textHeight
+- !ruby/object:RI::MethodSummary 
+  name: textWidth
+- !ruby/object:RI::MethodSummary 
+  name: toggleCaretSticky
+- !ruby/object:RI::MethodSummary 
+  name: toggleFold
+- !ruby/object:RI::MethodSummary 
+  name: undo
+- !ruby/object:RI::MethodSummary 
+  name: upperCase
+- !ruby/object:RI::MethodSummary 
+  name: usePopUp
+- !ruby/object:RI::MethodSummary 
+  name: userListShow
+- !ruby/object:RI::MethodSummary 
+  name: vCHome
+- !ruby/object:RI::MethodSummary 
+  name: vCHomeExtend
+- !ruby/object:RI::MethodSummary 
+  name: vCHomeRectExtend
+- !ruby/object:RI::MethodSummary 
+  name: vCHomeWrap
+- !ruby/object:RI::MethodSummary 
+  name: vCHomeWrapExtend
+- !ruby/object:RI::MethodSummary 
+  name: visibleFromDocLine
+- !ruby/object:RI::MethodSummary 
+  name: wordEndPosition
+- !ruby/object:RI::MethodSummary 
+  name: wordLeft
+- !ruby/object:RI::MethodSummary 
+  name: wordLeftEnd
+- !ruby/object:RI::MethodSummary 
+  name: wordLeftEndExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordLeftExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordPartLeft
+- !ruby/object:RI::MethodSummary 
+  name: wordPartLeftExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordPartRight
+- !ruby/object:RI::MethodSummary 
+  name: wordPartRightExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordRight
+- !ruby/object:RI::MethodSummary 
+  name: wordRightEnd
+- !ruby/object:RI::MethodSummary 
+  name: wordRightEndExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordRightExtend
+- !ruby/object:RI::MethodSummary 
+  name: wordStartPosition
+- !ruby/object:RI::MethodSummary 
+  name: wrapCount
+- !ruby/object:RI::MethodSummary 
+  name: zoomIn
+- !ruby/object:RI::MethodSummary 
+  name: zoomOut
+name: FXScintilla
+superclass: Object

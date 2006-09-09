@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Start input mode for the cell at the given position. An input control is created which is used to edit the cell; it is filled by the original item's contents if the cell contained an item. You can enter input mode also by sending the table an <tt>ID_START_INPUT</tt> message.
+full_name: Fox::FXTable#startInput
+is_singleton: false
+name: startInput
+params: (row, col)
+visibility: public

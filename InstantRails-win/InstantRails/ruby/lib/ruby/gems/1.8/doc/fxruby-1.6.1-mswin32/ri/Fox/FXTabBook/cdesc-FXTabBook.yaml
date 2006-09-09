@@ -1,0 +1,18 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The tab book layout manager arranges pairs of children; the even numbered children (0,2,4,...) are usually tab items, and are placed on the top. The odd numbered children are usually layout managers, and are placed below; all the odd numbered children are placed on top of each other, similar to the switcher widget. When the user presses one of the tab items, the tab item is raised above the neighboring tabs, and the corresponding panel is raised to the top. Thus, a tab book can be used to present many GUI controls in a small space by placing several panels on top of each other and using tab items to select the desired panel. When one of the tab items is pressed, the tab book's #setCurrent method is called with _notify+=true. This causes the tab book to send a <tt>SEL_COMMAND</tt> message to its target."
+constants: []
+
+full_name: Fox::FXTabBook
+includes: []
+
+instance_methods: []
+
+name: FXTabBook
+superclass: FXTabBar

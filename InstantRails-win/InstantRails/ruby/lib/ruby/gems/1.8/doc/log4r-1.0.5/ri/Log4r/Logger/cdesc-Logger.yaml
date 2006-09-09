@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: additive
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: fullname
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: level
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: outputters
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: parent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: path
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: trace
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_logger
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: global
+- !ruby/object:RI::MethodSummary 
+  name: log_internal
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: root
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: See log4r/logger.rb
+constants: []
+
+full_name: Log4r::Logger
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: additive=
+- !ruby/object:RI::MethodSummary 
+  name: is_root?
+- !ruby/object:RI::MethodSummary 
+  name: level=
+- !ruby/object:RI::MethodSummary 
+  name: outputters=
+- !ruby/object:RI::MethodSummary 
+  name: parent=
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: trace=
+name: Logger
+superclass: Object

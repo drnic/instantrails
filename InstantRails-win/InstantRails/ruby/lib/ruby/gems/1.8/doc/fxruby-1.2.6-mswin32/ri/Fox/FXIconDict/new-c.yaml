@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXIconDict instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: the application [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the search path used to find named icons [String]. If no path is specified, the default icon path is used.
+  type: :NOTE
+full_name: Fox::FXIconDict::new
+is_singleton: true
+name: new
+params: (a, p=defaultIconPath)
+visibility: public

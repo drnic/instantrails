@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Change the list of file patterns shown in the file selector. The <em>patterns</em> argument is an array of strings, and each string represents a different file pattern. A pattern consists of an optional name, followed by a pattern in parentheses. For example, this code:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  patterns = [ &quot;*&quot;, &quot;*.cpp,*.cc&quot;, &quot;*.hpp,*.hh,*.h&quot; ]\n  aFileSelector.setPatternList(patterns)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "and this code:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  patterns = [ &quot;All Files (*)&quot;, &quot;C++ Sources (*.cpp,*.cc)&quot;, &quot;C++ Headers (*.hpp,*.hh,*.h)&quot; ]\n  aFileSelector.setPatternList(patterns)\n"
+- !ruby/struct:SM::Flow::P 
+  body: will both set the same three patterns, but the former shows no pattern names.
+- !ruby/struct:SM::Flow::P 
+  body: "For compatibility with the FOX C++ library API of the same name, #setPatternList also accepts a <em>patterns</em> value that is a single string, with each pattern separated by newline characters, e.g."
+- !ruby/struct:SM::Flow::VERB 
+  body: "  patterns = &quot;All Files (*)\\nC++ Sources (*.cpp,*.cc)\\nC++ Headers (*.hpp,*.hh,*.h)&quot;\n  aFileSelector.setPatternList(patterns)\n"
+full_name: Fox::FXFileSelector#setPatternList
+is_singleton: false
+name: setPatternList
+params: (patterns)
+visibility: public

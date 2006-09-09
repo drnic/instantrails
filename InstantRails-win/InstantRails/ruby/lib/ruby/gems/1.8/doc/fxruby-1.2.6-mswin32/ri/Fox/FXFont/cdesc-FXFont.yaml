@@ -1,0 +1,551 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual encoding [Integer]
+  name: actualEncoding
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual font family name [String]
+  name: actualName
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual set width [Integer]
+  name: actualSetWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual size in deci-points [Integer]
+  name: actualSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual slant [Integer]
+  name: actualSlant
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual font weight [Integer]
+  name: actualWeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Encoding [Integer]
+  name: encoding
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Ascent from baseline [Integer]
+  name: fontAscent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font description [FXFontDesc]
+  name: fontDesc
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Descent from baseline [Integer]
+  name: fontDescent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height of tallest character in font [Integer]
+  name: fontHeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font leading [Integer]
+  name: fontLeading
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font line spacing [Integer]
+  name: fontSpacing
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width of widest character in font [Integer]
+  name: fontWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hints [Integer]
+  name: hints
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Last character glyph in font [Integer]
+  name: maxChar
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First character glyph in font [Integer]
+  name: minChar
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font family name [String]
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Set width [Integer]
+  name: setWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Size in decipoints [Integer]
+  name: size
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Slant [Integer]
+  name: slant
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font weight [Integer]
+  name: weight
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: listFonts
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Font class
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Font style hints which influence the matcher
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTPITCH_DEFAULT</tt>:"
+    body: Default pitch
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTPITCH_FIXED</tt>:"
+    body: Fixed pitch, mono-spaced
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTPITCH_VARIABLE</tt>:"
+    body: Variable pitch, proportional spacing
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_DONTCARE</tt>:"
+    body: Don't care which font
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_DECORATIVE</tt>:"
+    body: Fancy fonts
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_MODERN</tt>:"
+    body: Monospace typewriter font
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_ROMAN</tt>:"
+    body: Variable width times-like font, serif
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_SCRIPT</tt>:"
+    body: Script or cursive
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_SWISS</tt>:"
+    body: Helvetica/swiss type font, sans-serif
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_SYSTEM</tt>:"
+    body: System font
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_X11</tt>:"
+    body: X11 Font string
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_SCALABLE</tt>:"
+    body: Scalable fonts
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTHINT_POLYMORPHIC</tt>:"
+    body: Polymorphic fonts
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Font slant
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_DONTCARE+:"
+    body: Don't care about slant
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_REGULAR+:"
+    body: Regular straight up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_ITALIC+:"
+    body: Italics
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_OBLIQUE+:"
+    body: Oblique slant
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_REVERSE_ITALIC+:"
+    body: Reversed italic
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSLANT_REVERSE_OBLIQUE+:"
+    body: Reversed oblique
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Font character set encoding
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_DEFAULT</tt>:"
+    body: Don't care character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_1</tt>:"
+    body: West European (Latin1)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_2</tt>:"
+    body: Central and East European (Latin2)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_3</tt>:"
+    body: Esperanto (Latin3)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_4</tt>:"
+    body: ISO-8859-4 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_5</tt>:"
+    body: Cyrillic (almost obsolete)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_6</tt>:"
+    body: Arabic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_7</tt>:"
+    body: Greek
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_8</tt>:"
+    body: Hebrew
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_9</tt>:"
+    body: Turkish (Latin5)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_10</tt>:"
+    body: ISO-8859-10 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_11</tt>:"
+    body: Thai
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_13</tt>:"
+    body: Baltic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_14</tt>:"
+    body: ISO-8859-14 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_15</tt>:"
+    body: ISO-8859-15 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ISO_8859_16</tt>:"
+    body: ISO-8859-16 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_KOI8</tt>:"
+    body: KOI-8 character encoding
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_KOI8_R</tt>:"
+    body: Russian
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_KOI8_U</tt>:"
+    body: Ukrainian
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_KOI8_UNIFIED</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP437</tt>:"
+    body: IBM-PC code page
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP850</tt>:"
+    body: IBM-PC Multilingual
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP851</tt>:"
+    body: IBM-PC Greek
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP852</tt>:"
+    body: IBM-PC Latin2
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP855</tt>:"
+    body: IBM-PC Cyrillic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP856</tt>:"
+    body: IBM-PC Hebrew
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP857</tt>:"
+    body: IBM-PC Turkish
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP860</tt>:"
+    body: IBM-PC Portugese
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP861</tt>:"
+    body: IBM-PC Iceland
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP862</tt>:"
+    body: IBM-PC Israel
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP863</tt>:"
+    body: IBM-PC Canadian/French
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP864</tt>:"
+    body: IBM-PC Arabic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP865</tt>:"
+    body: IBM-PC Nordic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP866</tt>:"
+    body: "IBM-PC Cyrillic #2"
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP869</tt>:"
+    body: "IBM-PC Greek #2"
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP870</tt>:"
+    body: Latin-2 Multilingual
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1250</tt>:"
+    body: Windows Central European
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1251</tt>:"
+    body: Windows Russian
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1252</tt>:"
+    body: Windows Latin1
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1253</tt>:"
+    body: Windows Greek
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1254</tt>:"
+    body: Windows Turkish
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1255</tt>:"
+    body: Windows Hebrew
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1256</tt>:"
+    body: Windows Arabic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1257</tt>:"
+    body: Windows Baltic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP1258</tt>:"
+    body: Windows Vietnam
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CP874</tt>:"
+    body: Windows Thai
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN1</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1 (West European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN2</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_2</tt>, Latin 2 (East European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN3</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_3</tt>, Latin 3 (South European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN4</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_4</tt>, Latin 4 (North European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN5</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_9</tt>, Latin 5 (Turkish)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN6</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_10</tt>, Latin 6 (Nordic)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN7</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_13</tt>, Latin 7 (Baltic Rim)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN8</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_14</tt>, Latin 8 (Celtic)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN9</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_15</tt>, Latin 9 (a.k.a. Latin 0)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_LATIN10</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_16</tt>, Latin 10
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_USASCII</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_WESTEUROPE</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_1</tt>, Latin 1 (West European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_EASTEUROPE</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_2</tt>, Latin 2 (East European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_SOUTHEUROPE</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_3</tt>, Latin 3 (South European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_NORTHEUROPE</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_4</tt>, Latin 4 (North European)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CYRILLIC</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_5</tt>, Cyrillic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_RUSSIAN</tt>:"
+    body: same as <tt>FONTENCODING_KOI8</tt>, Cyrillic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_ARABIC</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_6</tt>, Arabic
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_GREEK</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_7</tt>, Greek
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_HEBREW</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_8</tt>, Hebrew
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_TURKISH</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_9</tt>, Latin 5 (Turkish)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_NORDIC</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_10</tt>, Latin 6 (Nordic)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_THAI</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_11</tt>, Thai
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_BALTIC</tt>:"
+    body: same as <tt>FONTENCODING_ISO_8859_13</tt>, Latin 7 (Baltic Rim)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>FONTENCODING_CELTIC</tt>:"
+    body: same as &lt;tt&gt;FONTENCODING_ISO_8859_14, Latin 8 (Celtic)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Font weight
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_DONTCARE+:"
+    body: Don't care about weight
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_THIN+:"
+    body: Thin
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_EXTRALIGHT+:"
+    body: Extra light
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_LIGHT+:"
+    body: Light
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_NORMAL+:"
+    body: Normal or regular weight
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_REGULAR+:"
+    body: Normal or regular weight
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_MEDIUM+:"
+    body: Medium bold face
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_DEMIBOLD+:"
+    body: Demi bold face
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_BOLD+:"
+    body: Bold face
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_EXTRABOLD+:"
+    body: Extra
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_HEAVY+:"
+    body: Heavy
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTWEIGHT_BLACK+:"
+    body: Black
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Font relative setwidth
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_DONTCARE+:"
+    body: Don't care about set width
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_ULTRACONDENSED+:"
+    body: Ultra condensed printing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_EXTRACONDENSED+:"
+    body: Extra condensed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_CONDENSED+:"
+    body: Condensed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_NARROW+:"
+    body: Narrow
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_COMPRESSED+:"
+    body: Compressed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_SEMICONDENSED+:"
+    body: Semi-condensed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_MEDIUM+:"
+    body: Medium printing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_NORMAL+:"
+    body: Normal printing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_REGULAR+:"
+    body: Regular printing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_SEMIEXPANDED+:"
+    body: Semi expanded
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_EXPANDED+:"
+    body: Expanded
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_WIDE+:"
+    body: Wide
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_EXTRAEXPANDED+:"
+    body: Extra expanded
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FONTSETWIDTH_ULTRAEXPANDED+:"
+    body: Ultra expanded
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXFont
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fontMono?
+- !ruby/object:RI::MethodSummary 
+  name: getFont
+- !ruby/object:RI::MethodSummary 
+  name: getTextHeight
+- !ruby/object:RI::MethodSummary 
+  name: getTextWidth
+- !ruby/object:RI::MethodSummary 
+  name: hasChar?
+- !ruby/object:RI::MethodSummary 
+  name: leftBearing
+- !ruby/object:RI::MethodSummary 
+  name: rightBearing
+- !ruby/object:RI::MethodSummary 
+  name: setFont
+name: FXFont
+superclass: Object

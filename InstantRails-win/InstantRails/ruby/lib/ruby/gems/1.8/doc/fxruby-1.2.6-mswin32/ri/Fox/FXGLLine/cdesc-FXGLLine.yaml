@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Starting point for line [FXGLPoint]
+  name: fm
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: End point for line [FXGLPoint]
+  name: to
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: OpenGL line object
+constants: []
+
+full_name: Fox::FXGLLine
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bounds
+- !ruby/object:RI::MethodSummary 
+  name: draw
+- !ruby/object:RI::MethodSummary 
+  name: hit
+name: FXGLLine
+superclass: FXGLObject

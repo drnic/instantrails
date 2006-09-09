@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a idle processing message to be sent to target object when the system becomes idle, i.e. there are no events to be processed. The void* ptr is user data which will be passed into the void* ptr of the message handler. If a chore with the same target and message already exists, it will be rescheduled.
+full_name: Fox::FXApp#addChore
+is_singleton: false
+name: addChore
+params: (tgt, sel, ptr=nil)
+visibility: public

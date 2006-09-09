@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert item at <em>index</em> with given <em>text</em>, <em>icon</em>, and user <em>data</em>, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  list.insertItem(1, &quot;blinky&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the list's message target after the item is inserted. Raises IndexError if <em>index</em> is out of bounds. Returns the integer index of the inserted item.
+full_name: Fox::FXList#insertItem
+is_singleton: false
+name: insertItem
+params: (index, text, icon=nil, data=nil, notify=false)
+visibility: public

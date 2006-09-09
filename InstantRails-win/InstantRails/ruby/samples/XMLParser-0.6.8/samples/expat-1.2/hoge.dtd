@@ -1,0 +1,7 @@
+<!ELEMENT test (#PCDATA|aaaa)*>
+<!ATTLIST test hoge ID #IMPLIED
+          b    CDATA #REQUIRED
+          moke CDATA "MOKE">
+<!ELEMENT aaaa (#PCDATA)>
+<!ATTLIST aaaa a ID #IMPLIED
+               b CDATA #IMPLIED>

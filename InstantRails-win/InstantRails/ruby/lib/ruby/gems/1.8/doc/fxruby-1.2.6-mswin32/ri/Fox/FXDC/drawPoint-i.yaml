@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw a point at (<em>x</em>, <em>y</em>) in the current foreground drawing color.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate of the point [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate of the point [Integer]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawPoints and #drawPointsRel."
+full_name: Fox::FXDC#drawPoint
+is_singleton: false
+name: drawPoint
+params: (x, y)
+visibility: public

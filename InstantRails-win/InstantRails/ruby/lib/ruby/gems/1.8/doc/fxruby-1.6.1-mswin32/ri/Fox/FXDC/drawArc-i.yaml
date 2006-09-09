@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw an arc. The argument <em>start</em> specifies the start of the arc relative to the three-o'clock position from the center, in units of degrees*64. The argument <em>extent</em> specifies the path and extent of the arc, relative to the start of the arc (also in units of degrees*64). The arguments <em>x</em>, <em>y</em>, <em>w</em>, and <em>h</em> specify the bounding rectangle of the arc.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>x</tt>:"
+    body: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>y</tt>:"
+    body: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>w</tt>:"
+    body: width of the bounding rectangle, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>h</tt>:"
+    body: height of the bounding rectangle, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>start</tt>:"
+    body: starting angle of the arc, in 64ths of a degree [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>extent</tt>:"
+    body: the path and extent of the arc, relative to the start of the arc (in 64ths of a degree) [Integer]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawArcs, #fillArc and #fillArcs."
+full_name: Fox::FXDC#drawArc
+is_singleton: false
+name: drawArc
+params: (x, y, w, h, start, extent)
+visibility: public

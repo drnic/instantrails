@@ -1,0 +1,11 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_fox_irb
+version: 1.0
+autoload: true
+require_path: rubyide_tools_fox_irb/fox_irb
+startup_module: FreeRIDE::GUI::IRB
+properties_path: properties.yaml
+load_dependencies: 
+  rubyide_fox_gui: "*"
+start_dependencies: 
+  rubyide_fox_gui: "*"

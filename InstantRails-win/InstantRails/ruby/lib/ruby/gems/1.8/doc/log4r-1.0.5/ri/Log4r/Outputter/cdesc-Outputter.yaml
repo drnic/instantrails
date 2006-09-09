@@ -1,0 +1,48 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: formatter
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: level
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: name
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_outputter
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: stderr
+- !ruby/object:RI::MethodSummary 
+  name: stdout
+comment: 
+constants: []
+
+full_name: Log4r::Outputter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: flush
+- !ruby/object:RI::MethodSummary 
+  name: formatter=
+- !ruby/object:RI::MethodSummary 
+  name: level=
+- !ruby/object:RI::MethodSummary 
+  name: only_at
+- !ruby/object:RI::MethodSummary 
+  name: validate_hash
+name: Outputter
+superclass: Object

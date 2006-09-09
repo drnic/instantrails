@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Register a drag type with the given name and return the drag drag type. If this drag type has already been registered, this method will return the previously returned drag type. For example,
+- !ruby/struct:SM::Flow::VERB 
+  body: "  yamlDragType = app.registerDragType(&quot;application/x-yaml&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "See also #getDragTypeName."
+full_name: Fox::FXApp#registerDragType
+is_singleton: false
+name: registerDragType
+params: (name)
+visibility: public

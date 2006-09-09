@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Log4r::DateFileOutputter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File src/log4r/outputter/datefileoutputter.rb, line 47</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>={})
+      <span class="ruby-ivar">@DatePattern</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:date_pattern</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'date_pattern'</span>] <span class="ruby-keyword kw">or</span>
+                      <span class="ruby-constant">DEFAULT_DATE_FMT</span>)
+      <span class="ruby-ivar">@DateStamp</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>.<span class="ruby-identifier">strftime</span>( <span class="ruby-ivar">@DatePattern</span>);
+      <span class="ruby-identifier">_dirname</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:dirname</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'dirname'</span>])
+      <span class="ruby-comment cmt"># hash[:dirname] masks hash[:filename]</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_dirname</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">directory?</span>( <span class="ruby-identifier">_dirname</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-node">&quot;'#{_dirname}' must be a valid directory&quot;</span>, <span class="ruby-identifier">caller</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@filebase</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>( <span class="ruby-identifier">$0</span>, <span class="ruby-value str">'.rb'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.log&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@filebase</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>((<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:filename</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'filename'</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-value str">&quot;&quot;</span>))
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'filename'</span>] = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">_dirname</span>,
+                    <span class="ruby-ivar">@filebase</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/(\.\w*)$/</span>, <span class="ruby-node">&quot;_#{@DateStamp}&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'\1'</span>))
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

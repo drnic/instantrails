@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns all components of the filename given in <tt>filename</tt> except the last one.
+- !ruby/struct:SM::Flow::P 
+  body: This was reimplemented because the current version does not handle UNC paths properly, i.e. it should not return anything less than the root. In all other respects it is identical to the current implementation.
+- !ruby/struct:SM::Flow::P 
+  body: File.dirname(&quot;C:\foo\bar\baz.txt&quot;) -&gt; &quot;C:\foo\bar&quot; File.dirname(&quot;\\foo\bar&quot;) -&gt; &quot;\\foo\bar&quot;
+full_name: File::dirname
+is_singleton: true
+name: dirname
+params: (file)
+visibility: public

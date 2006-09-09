@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Prepend item with given text and optional icons, and user-data pointer as first child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the list's message target after the item is added.
+full_name: Fox::FXTreeList#prependItem
+is_singleton: false
+name: prependItem
+params: (father, text, oi=nil, ci=nil, ptr=nil, notify=false)
+visibility: public

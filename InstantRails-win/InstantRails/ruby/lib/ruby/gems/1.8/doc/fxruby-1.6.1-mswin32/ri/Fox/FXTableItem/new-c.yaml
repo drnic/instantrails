@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXTableItem instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+text+:"
+    body: the text for this table item [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+icon+:"
+    body: the icon, if any, for this table item [FXIcon]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+data+:"
+    body: the user data for this table item [Object]
+  type: :NOTE
+full_name: Fox::FXTableItem::new
+is_singleton: true
+name: new
+params: (text, icon=nil, data=nil)
+visibility: public

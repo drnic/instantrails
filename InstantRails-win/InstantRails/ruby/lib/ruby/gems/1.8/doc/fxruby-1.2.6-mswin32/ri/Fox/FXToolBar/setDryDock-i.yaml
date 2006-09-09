@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set parent when docked. If it was already docked, reparent under the new docking window.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: new &quot;dry dock&quot; parent window for this tool bar [FXComposite]
+  type: :NOTE
+full_name: Fox::FXToolBar#setDryDock
+is_singleton: false
+name: setDryDock
+params: (p)
+visibility: public

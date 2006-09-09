@@ -1,0 +1,56 @@
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+   <title>Chapter&nbsp;6.&nbsp;Unicode and FXRuby</title><meta name="generator" content="DocBook XSL Stylesheets V1.61.2"><link rel="home" href="book.html" title="Developing Graphical User Interfaces with FXRuby"><link rel="up" href="pt01.html" title="Part&nbsp;I.&nbsp;The Basics"><link rel="previous" href="ch05s03.html" title="Putting It All Together"><link rel="next" href="examples.html" title="Chapter&nbsp;7.&nbsp;Examples"></head><body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF"><div class="navheader"><table width="100%" summary="Navigation header"><tr><th colspan="3" align="center">Chapter&nbsp;6.&nbsp;Unicode and FXRuby</th></tr><tr><td width="20%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a>&nbsp;</td><th width="60%" align="center">Part&nbsp;I.&nbsp;The Basics</th><td width="20%" align="right">&nbsp;<a accesskey="n" href="examples.html">Next</a></td></tr></table><hr></div><div class="chapter" lang="en"><div class="titlepage"><div><div><h2 class="title"><a name="clipboardtut"></a>Chapter&nbsp;6.&nbsp;Unicode and FXRuby</h2></div></div><div></div></div><div class="toc"><p><b>Table of Contents</b></p><dl><dt><a href="clipboardtut.html#d0e1608">Basic Application</a></dt></dl></div><p>Beginning with version 1.6, FOX and FXRuby provide support for the
+  display of Unicode strings in FOX widgets. For some excellent discussion
+  about how to use Unicode in Ruby, I recommend Patrick Hall's article, <a href="http://ruphus.com/blog/2005/06/11/ruby-and-unicode/" target="_top">"Ruby and
+  Unicode"</a> and why the lucky stiff's follow-up article, <a href="http://redhanded.hobix.com/inspect/closingInOnUnicodeWithJcode.html" target="_top">"Closing
+  in on Unicode with Jcode"</a>. Here, we're going to make use of the
+  ideas in those articles to give a quick demonstration of how to use FXRuby's
+  support for Unicode.</p><div class="section" lang="en"><div class="titlepage"><div><div><h2 class="title" style="clear: both"><a name="d0e1608"></a>Basic Application</h2></div></div><div></div></div><p>Here's the original version of our "Hello, World!" program:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'fox16'
+
+include Fox
+
+application = FXApp.new("Hello", "FoxTest")
+main = FXMainWindow.new(application, "Hello", nil, nil, DECOR_ALL)
+FXButton.new(main, "&amp;Hello, World!", nil, application, FXApp::ID_QUIT)
+application.create()
+main.show(PLACEMENT_SCREEN)
+application.run()
+</pre></td></tr></table><p>and here's the modified version:</p><table border="0" bgcolor="#E0E0E0" width="100%"><tr><td><pre class="programlisting">require 'fox16'
+<span class="bold"><b>require 'jcode'</b></span>
+
+<span class="bold"><b>$KCODE = 'u'</b></span>
+
+<span class="bold"><b>class UString &lt; String
+  # Show u-prefix as in Python
+  def inspect; "u#{ super }" end
+
+  # Count multibyte characters
+  def length; self.scan(/./).length end
+
+  # Reverse the string
+  def reverse; self.scan(/./).reverse.join end
+end
+
+module Kernel
+  def u( str )
+    UString.new str.gsub(/U\+([0-9a-fA-F]{4,4})/u){["#$1".hex ].pack('U*')}
+  end
+end</b></span> 
+
+include Fox
+
+<span class="bold"><b>question = u'U+00bfHabla espaU+00f1ol?'</b></span>
+
+application = FXApp.new("Hello", "FoxTest")
+main = FXMainWindow.new(application, "Hello", nil, nil, DECOR_ALL)
+FXButton.new(main, <span class="bold"><b>question</b></span>, nil, application, FXApp::ID_QUIT)
+application.create()
+main.show(PLACEMENT_SCREEN)
+application.run()
+</pre></td></tr></table><p>The <span class="bold"><b>jcode</b></span> library (part of the
+    standard Ruby library) provides a number of extensions to Ruby's
+    <tt class="classname">String</tt> class, to ensure that its methods work
+    properly for non-ASCII character encodings. By setting the
+    <tt class="varname">$KCODE</tt> global variable to "u", we're telling Ruby which
+    character encoding it is that we're using (UTF-8).</p></div></div><div class="navfooter"><hr><table width="100%" summary="Navigation footer"><tr><td width="40%" align="left"><a accesskey="p" href="ch05s03.html">Prev</a>&nbsp;</td><td width="20%" align="center"><a accesskey="u" href="pt01.html">Up</a></td><td width="40%" align="right">&nbsp;<a accesskey="n" href="examples.html">Next</a></td></tr><tr><td width="40%" align="left" valign="top">Putting It All Together&nbsp;</td><td width="20%" align="center"><a accesskey="h" href="book.html">Home</a></td><td width="40%" align="right" valign="top">&nbsp;Chapter&nbsp;7.&nbsp;Examples</td></tr></table></div></body></html>

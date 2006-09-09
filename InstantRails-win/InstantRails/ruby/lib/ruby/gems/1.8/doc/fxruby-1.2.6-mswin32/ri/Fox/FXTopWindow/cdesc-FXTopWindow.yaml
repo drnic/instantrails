@@ -1,0 +1,174 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title and border decorations (see above) [Integer]
+  name: decorations
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal spacing between child widgets, in pixels [Integer]
+  name: hSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window icon [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window mini (title) icon [FXIcon]
+  name: miniIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Packing hints for child widgets [Integer]
+  name: packingHints
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom padding, in pixels [Integer]
+  name: padBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left padding, in pixels [Integer]
+  name: padLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right padding, in pixels [Integer]
+  name: padRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top padding, in pixels [Integer]
+  name: padTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window title [String]
+  name: title
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical spacing between child widgets, in pixels [Integer]
+  name: vSpacing
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Abstract base class for all top-level windows
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTopWindow to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLOSE+:"
+    body: sent when the user clicks the close button in the upper right-hand corner of the top-level window.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Title and border decorations
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_NONE+:"
+    body: Borderless window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_TITLE+:"
+    body: Window title
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MINIMIZE+:"
+    body: Minimize button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MAXIMIZE+:"
+    body: Maximize button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_CLOSE+:"
+    body: Close button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_BORDER+:"
+    body: Border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_RESIZE+:"
+    body: Resize handles
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MENU+:"
+    body: Window menu
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_ALL+:"
+    body: All of the above
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Initial window placement
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_DEFAULT+:"
+    body: Place it at the default size and location
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_VISIBLE+:"
+    body: Place window to be fully visible
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_CURSOR+:"
+    body: Place it under the cursor position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_OWNER+:"
+    body: Place it centered on its owner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_SCREEN+:"
+    body: Place it centered on the screen
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_MAXIMIZED+:"
+    body: Place it maximized to the screen size
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ICONIFY+:"
+    body: Iconify the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DEICONIFY+:"
+    body: Deiconify the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_QUERY_DOCK+:"
+    body: Toolbar asks to dock
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTopWindow
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: deiconify
+- !ruby/object:RI::MethodSummary 
+  name: iconified?
+- !ruby/object:RI::MethodSummary 
+  name: iconify
+- !ruby/object:RI::MethodSummary 
+  name: place
+- !ruby/object:RI::MethodSummary 
+  name: show
+name: FXTopWindow
+superclass: Object

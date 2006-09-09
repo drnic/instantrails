@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: dc
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Construct for painting in response to expose; this sets the clip rectangle to the exposed rectangle. If an optional code block is provided, the new device context will be passed into the block as an argument and #end will be called automatically when the block terminates."
+full_name: Fox::FXDCWindow::new
+is_singleton: true
+name: new
+params: (drawable, event) {|dc| ...}
+visibility: public

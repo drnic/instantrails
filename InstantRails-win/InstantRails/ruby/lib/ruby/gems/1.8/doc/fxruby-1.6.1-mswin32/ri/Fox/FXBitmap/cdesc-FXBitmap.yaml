@@ -1,0 +1,71 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A bitmap is a rectangular array of pixels. It supports two representations of these pixels: a client-side pixel buffer, and a server-side pixmap which is stored in an organization directly compatible with the screen, for fast drawing onto the device. The server-side representation is not directly accessible from the current process at it lives in the process of the X server or GDI (on Microsoft Windows). The client-side pixel array is of size height x (width+7)/8 bytes; in other words, 8 pixels packed into a single byte, starting with bit zero on the left."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Image rendering hints
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAP_KEEP+:"
+    body: Keep pixel data in client
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAP_OWNED+:"
+    body: Pixel data is owned by image
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAP_SHMI+:"
+    body: Using shared memory image
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAP_SHMP+:"
+    body: Using shared memory pixmap
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXBitmap
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: crop
+- !ruby/object:RI::MethodSummary 
+  name: fill
+- !ruby/object:RI::MethodSummary 
+  name: getData
+- !ruby/object:RI::MethodSummary 
+  name: getPixel
+- !ruby/object:RI::MethodSummary 
+  name: loadPixels
+- !ruby/object:RI::MethodSummary 
+  name: mirror
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: options=
+- !ruby/object:RI::MethodSummary 
+  name: release
+- !ruby/object:RI::MethodSummary 
+  name: render
+- !ruby/object:RI::MethodSummary 
+  name: resize
+- !ruby/object:RI::MethodSummary 
+  name: restore
+- !ruby/object:RI::MethodSummary 
+  name: rotate
+- !ruby/object:RI::MethodSummary 
+  name: savePixels
+- !ruby/object:RI::MethodSummary 
+  name: scale
+- !ruby/object:RI::MethodSummary 
+  name: setData
+- !ruby/object:RI::MethodSummary 
+  name: setData
+- !ruby/object:RI::MethodSummary 
+  name: setPixel
+name: FXBitmap
+superclass: FXDrawable

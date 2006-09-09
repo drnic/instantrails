@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Select a row of cells. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DESELECTED</tt> message is sent to the table's message target for each previously selected cell that becomes deselected as a result of this operation. Likewise, a <tt>SEL_SELECTED</tt> message is sent to the table's message target for each newly-selected cell. Raises IndexError if <em>row</em> is out of bounds.
+full_name: Fox::FXTable#selectRow
+is_singleton: false
+name: selectRow
+params: (row, notify=false)
+visibility: public

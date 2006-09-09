@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw a sunken version of an icon into the drawable attached to this device context.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+icon+:"
+    body: icon to draw [FXIcon]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dx+:"
+    body: x-coordinate of the the destination point in this drawable [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dy+:"
+    body: y-coordinate of the the destination point in this drawable [Integer]
+  type: :NOTE
+full_name: Fox::FXDC#drawIconSunken
+is_singleton: false
+name: drawIconSunken
+params: (icon, dx, dy)
+visibility: public

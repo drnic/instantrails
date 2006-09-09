@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw filled rectangles, where <em>rectangles</em> is an array of FXRectangle instances.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+rectangles+:"
+    body: an array of FXRectangle instances [Array]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawRectangle, #drawRectangles and #fillRectangle."
+full_name: Fox::FXDC#fillRectangles
+is_singleton: false
+name: fillRectangles
+params: (rectangles)
+visibility: public

@@ -1,0 +1,119 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content height, in pixels [Integer]
+  name: contentHeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content width, in pixels [Integer]
+  name: contentWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal scrollbar [FXScrollBar]
+  name: horizontalScrollBar
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll style [Integer]
+  name: scrollStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical scrollbar [FXScrollBar]
+  name: verticalScrollBar
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Viewport height, in pixels [Integer]
+  name: viewportHeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Viewport width, in pixels [Integer]
+  name: viewportWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current x-position [Integer]
+  name: xPosition
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current y-position [Integer]
+  name: yPosition
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The scroll area widget manages a content area and a viewport area through which the content is viewed. When the content area becomes larger than the viewport area, scrollbars are placed to permit viewing of the entire content by scrolling the content. Depending on the mode, scrollbars may be displayed on an as-needed basis, always, or never. Normally, the scroll area's size and the content's size are independent; however, it is possible to disable scrolling in the horizontal (vertical) direction. In this case, the content width (height) will influence the width (height) of the scroll area widget. For content which is time-consuming to repaint, continuous scrolling may be turned off.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Scrollbar options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SCROLLERS_NORMAL+:"
+    body: Show the scrollbars when needed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HSCROLLER_ALWAYS+:"
+    body: Always show horizontal scrollers
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HSCROLLER_NEVER+:"
+    body: Never show horizontal scrollers
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VSCROLLER_ALWAYS+:"
+    body: Always show vertical scrollers
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VSCROLLER_NEVER+:"
+    body: Never show vertical scrollers
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HSCROLLING_ON+:"
+    body: Horizontal scrolling turned on (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HSCROLLING_OFF+:"
+    body: Horizontal scrolling turned off
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VSCROLLING_ON+:"
+    body: Vertical scrolling turned on (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VSCROLLING_OFF+:"
+    body: Vertical scrolling turned off
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SCROLLERS_TRACK+:"
+    body: Scrollers track continuously for smooth scrolling
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SCROLLERS_DONT_TRACK+:"
+    body: Scrollers don't track continuously
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXScrollArea
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: horizontalScrollable?
+- !ruby/object:RI::MethodSummary 
+  name: position
+- !ruby/object:RI::MethodSummary 
+  name: scrollCorner
+- !ruby/object:RI::MethodSummary 
+  name: setPosition
+- !ruby/object:RI::MethodSummary 
+  name: verticalScrollable?
+name: FXScrollArea
+superclass: Object

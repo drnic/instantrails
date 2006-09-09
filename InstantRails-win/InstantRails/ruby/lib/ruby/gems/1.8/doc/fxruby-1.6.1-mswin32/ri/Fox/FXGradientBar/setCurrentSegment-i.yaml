@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change current segment to <em>index</em>. Use an <em>index</em> of -1 to indicate that there is no current segment. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the gradient bar's message target after the current segment is changed. Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXGradientBar#setCurrentSegment
+is_singleton: false
+name: setCurrentSegment
+params: (index, notify=false)
+visibility: public

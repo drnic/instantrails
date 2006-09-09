@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Log4r::EmailOutputter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File src/log4r/outputter/emailoutputter.rb, line 12</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>={})
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>)
+      <span class="ruby-identifier">validate</span>(<span class="ruby-identifier">hash</span>)
+      <span class="ruby-ivar">@buff</span> = []
+      <span class="ruby-keyword kw">begin</span> 
+        <span class="ruby-ivar">@smtp</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SMTP</span>.<span class="ruby-identifier">start</span>(<span class="ruby-operator">*</span><span class="ruby-ivar">@params</span>)
+        <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">log_internal</span> {
+          <span class="ruby-node">&quot;EmailOutputter '#{@name}' running SMTP client on #{@server}:#{@port}&quot;</span>
+        }
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+        <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">log_internal</span>(<span class="ruby-value">-2</span>) {
+          <span class="ruby-node">&quot;EmailOutputter '#{@name}' failed to start SMTP client!&quot;</span>
+        }
+        <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">log_internal</span> {<span class="ruby-identifier">e</span>}
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">level</span> = <span class="ruby-constant">OFF</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

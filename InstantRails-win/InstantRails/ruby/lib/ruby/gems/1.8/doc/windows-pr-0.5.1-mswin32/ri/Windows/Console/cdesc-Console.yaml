@@ -1,0 +1,485 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CTRL_C_EVENT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CTRL_BREAK_EVENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CTRL_LOGOFF_EVENT
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CTRL_SHUTDOWN_EVENT
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_PROCESSED_INPUT
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_LINE_INPUT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_WRAP_AT_EOL_OUTPUT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_ECHO_INPUT
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_WINDOW_INPUT
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_MOUSE_INPUT
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_INSERT_MODE
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENABLE_QUICK_EDIT_MODE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STD_INPUT_HANDLE
+  value: "-10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STD_OUTPUT_HANDLE
+  value: "-11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STD_ERROR_HANDLE
+  value: "-12"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Console window constants
+  name: FOREGROUND_BLUE
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FOREGROUND_GREEN
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FOREGROUND_RED
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FOREGROUND_INTENSITY
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BACKGROUND_BLUE
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BACKGROUND_GREEN
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BACKGROUND_RED
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BACKGROUND_INTENSITY
+  value: "0x0080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_LEADING_BYTE
+  value: "0x0100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_TRAILING_BYTE
+  value: "0x0200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_GRID_HORIZONTAL
+  value: "0x0400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_GRID_LVERTICAL
+  value: "0x0800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_GRID_RVERTICAL
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_REVERSE_VIDEO
+  value: "0x4000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_UNDERSCORE
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMMON_LVB_SBCSDBCS
+  value: "0x0300"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONSOLE_FULLSCREEN
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONSOLE_OVERSTRIKE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONSOLE_FULLSCREEN_HARDWARE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AddConsoleAlias
+  value: Win32API.new('kernel32', 'AddConsoleAlias', 'PPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AllocConsole
+  value: Win32API.new('kernel32', 'AllocConsole', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttachConsole
+  value: Win32API.new('kernel32', 'AttachConsole', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CreateConsoleScreenBuffer
+  value: Win32API.new('kernel32', 'CreateConsoleScreenBuffer', 'LLPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FillConsoleOutputAttribute
+  value: Win32API.new('kernel32', 'FillConsoleOutputAttribute', 'LILLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FillConsoleOutputCharacter
+  value: Win32API.new('kernel32', 'FillConsoleOutputCharacter', 'LILLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FlushConsoleInputBuffer
+  value: Win32API.new('kernel32', 'FlushConsoleInputBuffer', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FreeConsole
+  value: Win32API.new('kernel32', 'FreeConsole', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GenerateConsoleCtrlEvent
+  value: Win32API.new('kernel32', 'GenerateConsoleCtrlEvent', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleAlias
+  value: Win32API.new('kernel32', 'GetConsoleAlias', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleAliases
+  value: Win32API.new('kernel32', 'GetConsoleAliases', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleAliasesLength
+  value: Win32API.new('kernel32', 'GetConsoleAliasesLength', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleAliasExes
+  value: Win32API.new('kernel32', 'GetConsoleAliasExes', 'PL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleAliasExesLength
+  value: Win32API.new('kernel32', 'GetConsoleAliasExesLength', 'V', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleCP
+  value: Win32API.new('kernel32', 'GetConsoleCP', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleCursorInfo
+  value: Win32API.new('kernel32', 'GetConsoleCursorInfo', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleDisplayMode
+  value: Win32API.new('kernel32', 'GetConsoleDisplayMode', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleFontSize
+  value: Win32API.new('kernel32', 'GetConsoleFontSize', 'LL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleMode
+  value: Win32API.new('kernel32', 'GetConsoleMode', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleOutputCP
+  value: Win32API.new('kernel32', 'GetConsoleOutputCP', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleProcessList
+  value: Win32API.new('kernel32', 'GetConsoleProcessList', 'PL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleScreenBufferInfo
+  value: Win32API.new('kernel32', 'GetConsoleScreenBufferInfo', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleSelectionInfo
+  value: Win32API.new('kernel32', 'GetConsoleSelectionInfo', 'P', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleTitle
+  value: Win32API.new('kernel32', 'GetConsoleTitle', 'PL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetConsoleWindow
+  value: Win32API.new('kernel32', 'GetConsoleWindow', 'V', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetCurrentConsoleFont
+  value: Win32API.new('kernel32', 'GetCurrentConsoleFont' , 'LIP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetLargestConsoleWindowSize
+  value: Win32API.new('kernel32', 'GetLargestConsoleWindowSize', 'L', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetNumberOfConsoleInputEvents
+  value: Win32API.new('kernel32', 'GetNumberOfConsoleInputEvents', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetNumberOfConsoleMouseButtons
+  value: Win32API.new('kernel32', 'GetNumberOfConsoleMouseButtons', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetStdHandle
+  value: Win32API.new('kernel32', 'GetStdHandle', 'L', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PeekConsoleInput
+  value: Win32API.new('kernel32', 'PeekConsoleInput', 'LPLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ReadConsole
+  value: Win32API.new('kernel32', 'ReadConsole', 'LPLPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ReadConsoleInput
+  value: Win32API.new('kernel32', 'ReadConsoleInput', 'LPLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ReadConsoleOutput
+  value: Win32API.new('kernel32', 'ReadConsoleOutput', 'LPLLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ReadConsoleOutputAttribute
+  value: Win32API.new('kernel32', 'ReadConsoleOutputAttribute', 'LPLLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ReadConsoleOutputCharacter
+  value: Win32API.new('kernel32', 'ReadConsoleOutputCharacter', 'LPLLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ScrollConsoleScreenBuffer
+  value: Win32API.new('kernel32', 'ScrollConsoleScreenBuffer', 'LPPLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleActiveScreenBuffer
+  value: Win32API.new('kernel32', 'SetConsoleActiveScreenBuffer', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleCommandHistoryMode
+  value: Win32API.new('kernel32', 'SetConsoleCommandHistoryMode', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleCP
+  value: Win32API.new('kernel32', 'SetConsoleCP', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleCtrlHandler
+  value: Win32API.new('kernel32', 'SetConsoleCtrlHandler', 'PI', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleCursorInfo
+  value: Win32API.new('kernel32', 'SetConsoleCursorInfo', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleCursorPosition
+  value: Win32API.new('kernel32', 'SetConsoleCursorPosition', 'LP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleDisplayMode
+  value: Win32API.new('kernel32', 'SetConsoleDisplayMode', 'LLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleMode
+  value: Win32API.new('kernel32', 'SetConsoleMode', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleOutputCP
+  value: Win32API.new('kernel32', 'SetConsoleOutputCP', 'I', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleScreenBufferSize
+  value: Win32API.new('kernel32', 'SetConsoleScreenBufferSize', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleTextAttribute
+  value: Win32API.new('kernel32', 'SetConsoleTextAttribute', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleTitle
+  value: Win32API.new('kernel32', 'SetConsoleTitle', 'P', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetConsoleWindowInfo
+  value: Win32API.new('kernel32', 'SetConsoleWindowInfo', 'LIP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetStdHandle
+  value: Win32API.new('kernel32', 'SetStdHandle', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WriteConsole
+  value: Win32API.new('kernel32', 'WriteConsole', 'LPLPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WriteConsoleInput
+  value: Win32API.new('kernel32', 'WriteConsoleInput', 'LPLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WriteConsoleOutput
+  value: Win32API.new('kernel32', 'WriteConsoleOutput', 'LPLLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WriteConsoleOutputAttribute
+  value: Win32API.new('kernel32', 'WriteConsoleOutputAttribute', 'LPLLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WriteConsoleOutputCharacter
+  value: Win32API.new('kernel32', 'WriteConsoleOutputCharacter', 'LPLLP', 'I')
+full_name: Windows::Console
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: AddConsoleAlias
+- !ruby/object:RI::MethodSummary 
+  name: AllocConsole
+- !ruby/object:RI::MethodSummary 
+  name: AttachConsole
+- !ruby/object:RI::MethodSummary 
+  name: CreateConsoleScreenBuffer
+- !ruby/object:RI::MethodSummary 
+  name: FillConsoleOutputAttribute
+- !ruby/object:RI::MethodSummary 
+  name: FlushConsoleInputBuffer
+- !ruby/object:RI::MethodSummary 
+  name: FreeConsole
+- !ruby/object:RI::MethodSummary 
+  name: GenerateConsoleCtrlEvent
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleAliasExes
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleAliasExesLength
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleAliases
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleAliasesLength
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleCP
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleCursorInfo
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleDisplayMode
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleFontSize
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleMode
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleOutputCP
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleProcessList
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleScreenBufferInfo
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleSelectionInfo
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleTitle
+- !ruby/object:RI::MethodSummary 
+  name: GetConsoleWindow
+- !ruby/object:RI::MethodSummary 
+  name: GetCurrentConsoleFont
+- !ruby/object:RI::MethodSummary 
+  name: GetLargestConsoleWindowSize
+- !ruby/object:RI::MethodSummary 
+  name: GetNumberOfConsoleInputEvents
+- !ruby/object:RI::MethodSummary 
+  name: GetNumberOfConsoleMouseButtons
+- !ruby/object:RI::MethodSummary 
+  name: GetStdHandle
+- !ruby/object:RI::MethodSummary 
+  name: PeekConsoleInput
+- !ruby/object:RI::MethodSummary 
+  name: ReadConsole
+- !ruby/object:RI::MethodSummary 
+  name: ReadConsoleInput
+- !ruby/object:RI::MethodSummary 
+  name: ReadConsoleOutput
+- !ruby/object:RI::MethodSummary 
+  name: ReadConsoleOutputAttribute
+- !ruby/object:RI::MethodSummary 
+  name: ReadConsoleOutputCharacter
+- !ruby/object:RI::MethodSummary 
+  name: ScrollConsoleScreenBuffer
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleActiveScreenBuffer
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleCP
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleCommandHistoryMode
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleCtrlHandler
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleCursorInfo
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleCursorPosition
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleDisplayMode
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleHistoryInfo
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleMode
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleOutputCP
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleScreenBufferSize
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleTextAttribute
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleTitle
+- !ruby/object:RI::MethodSummary 
+  name: SetConsoleWindowInfo
+- !ruby/object:RI::MethodSummary 
+  name: SetStdHandle
+- !ruby/object:RI::MethodSummary 
+  name: WriteConsole
+- !ruby/object:RI::MethodSummary 
+  name: WriteConsoleInput
+- !ruby/object:RI::MethodSummary 
+  name: WriteConsoleOutput
+- !ruby/object:RI::MethodSummary 
+  name: WriteConsoleOutputAttribute
+- !ruby/object:RI::MethodSummary 
+  name: WriteConsoleOutputCharacter
+name: Console
+superclass: 

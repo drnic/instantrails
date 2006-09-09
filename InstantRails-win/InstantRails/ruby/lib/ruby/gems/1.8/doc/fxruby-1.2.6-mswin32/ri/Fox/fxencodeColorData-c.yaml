@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The drag-and-drop data used for colors is a sequence of unsigned short integers, in native byte ordering. Here, we use the 'S' directive for Array#pack (which treats two successive characters as an unsigned short in native byte order) to encode the R, G, B and A values.
+full_name: Fox::fxencodeColorData
+is_singleton: true
+name: fxencodeColorData
+params: (rgba)
+visibility: public

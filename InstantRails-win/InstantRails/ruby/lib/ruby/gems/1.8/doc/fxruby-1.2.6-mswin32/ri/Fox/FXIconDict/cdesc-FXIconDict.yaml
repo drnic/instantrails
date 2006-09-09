@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Associated application [FXApp]
+  name: app
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current icon search path [String]
+  name: iconPath
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: defaultIconPath
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXIconDict instance stores a mapping between the file names for icon files and FXIcon instances built from those icon files. Unlike a regular &quot;dictionary&quot; or hash-like object, the FXIconDict constructs and owns its own data (the FXIcon instances).
+- !ruby/struct:SM::Flow::P 
+  body: If no icon path is specified at construction time, a default icon path of &quot;~/.foxicons:/usr/local/share/icons:/usr/share/icons&quot; is used.
+- !ruby/struct:SM::Flow::P 
+  body: The particular subclass of FXIcon used for a given icon file is deduced from the file extension.
+constants: []
+
+full_name: Fox::FXIconDict
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: remove
+name: FXIconDict
+superclass: Object

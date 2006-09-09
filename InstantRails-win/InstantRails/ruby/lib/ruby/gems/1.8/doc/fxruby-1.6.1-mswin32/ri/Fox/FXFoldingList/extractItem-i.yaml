@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extract item and return a reference to it (without destroying it). If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message may be sent to the folding list's message target if the current item changes. If the selection changes, <tt>SEL_SELECTED</tt> and <tt>SEL_DESELECTED</tt> messages may also be sent to the message target.
+full_name: Fox::FXFoldingList#extractItem
+is_singleton: false
+name: extractItem
+params: (item, notify=false)
+visibility: public

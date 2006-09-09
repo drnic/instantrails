@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Save an XPM image to <em>store</em> (an FXStream instance). Returns <tt>true</tt> on success, <tt>false</tt> on failure.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+store+:"
+    body: stream to which to write the file data [FXStream]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+data+:"
+    body: the image pixel data, an array of FXColor values
+  - !ruby/struct:SM::Flow::LI 
+    label: "+transp+:"
+    body: transparency color [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+fast+:"
+    body: if <tt>true</tt>, use fast something
+  type: :NOTE
+full_name: Fox#fxsaveXPM
+is_singleton: false
+name: fxsaveXPM
+params: (store, data, transp, width, height, fast=true)
+visibility: public

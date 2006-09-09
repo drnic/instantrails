@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove the <em>nr</em> rows starting at the specified <em>row</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DELETED</tt> message is sent to the table's message target for each cell that is removed. Raises IndexError if <em>row</em> is less than zero, or if <em>row</em> + <em>nr</em> is greater than the current number of table rows.
+full_name: Fox::FXTable#removeRows
+is_singleton: false
+name: removeRows
+params: (row, nr=1, notify=false)
+visibility: public

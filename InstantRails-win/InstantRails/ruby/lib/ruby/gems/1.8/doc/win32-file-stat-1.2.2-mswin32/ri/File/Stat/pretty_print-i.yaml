@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A custom pretty print method. This was necessary not only to handle the additional attributes, but to work around an error caused by the builtin method for the current File::Stat class (see pp.rb).
+full_name: File::Stat#pretty_print
+is_singleton: false
+name: pretty_print
+params: (q)
+visibility: public

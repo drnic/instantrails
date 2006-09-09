@@ -1,0 +1,67 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: date_method
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: date_pattern
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: pattern
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: See log4r/formatter/patternformatter.rb
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Arguments to sprintf keyed to directive letters
+  name: DirectiveTable
+  value: "{       \"c\" => 'event.name',       \"C\" => 'event.fullname',       \"d\" => 'format_date',       \"t\" => 'event.tracer[0]',       \"m\" => 'event.data',       \"M\" => 'format_object(event.data)',       \"l\" => 'LNAMES[event.level]',       \"%\" => '\"%\"'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Matches the first directive encountered and the stuff around it.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $1 is the stuff before directive or &quot;&quot; if not applicable
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $2 is the directive group or nil if there's none
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $3 is the %#.# match within directive group
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $4 is the .# match which we don't use (it's there to match properly)
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $5 is the directive letter
+    - !ruby/struct:SM::Flow::LI 
+      label: "*"
+      body: $6 is the stuff after the directive or &quot;&quot; if not applicable
+    type: :BULLET
+  name: DirectiveRegexp
+  value: /([^%]*)((%-?\d*(\.\d+)?)([cCdtmMl%]))?(.*)/
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: default date format
+  name: ISO8601
+  value: "\"%Y-%m-%d %H:%M:%S\""
+full_name: Log4r::PatternFormatter
+includes: []
+
+instance_methods: []
+
+name: PatternFormatter
+superclass: BasicFormatter

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convenience method that wraps FormatMessage with some sane defaults and returns a human readable string.
+full_name: Windows::Error#get_last_error
+is_singleton: false
+name: get_last_error
+params: (err_num = GetLastError.call)
+visibility: public

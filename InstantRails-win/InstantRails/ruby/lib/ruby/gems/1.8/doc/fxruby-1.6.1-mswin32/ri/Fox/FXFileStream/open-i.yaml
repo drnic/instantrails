@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open binary data file stream; allocate a buffer of the given <em>size</em> for the file I/O; the buffer must be at least 16 bytes. Returns <tt>true</tt> on success, <tt>false</tt> on failure.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+filename+:"
+    body: name of the file to open [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+save_or_load+:"
+    body: access mode, either <tt>FXStreamSave</tt> or <tt>FXStreamLoad</tt> [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+size+:"
+    body: buffer size [Integer]
+  type: :NOTE
+full_name: Fox::FXFileStream#open
+is_singleton: false
+name: open
+params: (filename, save_or_load, size=8192)
+visibility: public

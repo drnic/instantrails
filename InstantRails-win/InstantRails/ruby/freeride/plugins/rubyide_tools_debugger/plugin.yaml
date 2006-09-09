@@ -1,0 +1,10 @@
+--- !ruby/object:FreeBASE::PluginConfiguration 
+name: rubyide_tools_debugger
+version: 1.0
+autoload: true
+require_path: rubyide_tools_debugger/debugger
+startup_module: FreeRIDE::GUI::Debugger
+properties_path: properties.yaml
+start_dependencies: 
+  rubyide_gui: "*"
+  rubyide_project: "*"

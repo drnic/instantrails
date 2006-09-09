@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open stream for reading or for writing. An initial buffer size may be given, which must be at least 16 bytes. If <em>data</em> is not <tt>nil</tt>, it is expected to point to an external data buffer of length <em>size</em>; otherwise the stream will use an internally managed buffer. Returns <tt>true</tt> on success, <tt>false</tt> otherwise.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+save_or_load+:"
+    body: access mode, either <tt>FXStreamSave</tt> or <tt>FXStreamLoad</tt> [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+size+:"
+    body: initial buffer size [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+data+:"
+    body: external data buffer (if any) [String]
+  type: :NOTE
+full_name: Fox::FXStream#open
+is_singleton: false
+name: open
+params: (save_or_load, size=8192, data=nil)
+visibility: public

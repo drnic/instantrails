@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Append a new (possibly subclassed) <em>item</em> as last child of <em>father</em>. Returns a reference to the newly added item (an FXTreeItem instance). If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the list's message target after the item is added.
+full_name: Fox::FXTreeList#appendItem
+is_singleton: false
+name: appendItem
+params: (father, item, notify=false)
+visibility: public

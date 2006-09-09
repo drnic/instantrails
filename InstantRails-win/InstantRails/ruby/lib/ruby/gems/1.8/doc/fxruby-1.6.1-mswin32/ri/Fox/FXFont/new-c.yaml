@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theFont
+comment: 
+- !ruby/struct:SM::Flow::VERB 
+  body: " Construct a font with given font description of the form:\n\n     fontname [ &quot;[&quot; foundry &quot;]&quot; ] [&quot;,&quot; size [&quot;,&quot; weight [&quot;,&quot; slant [&quot;,&quot; setwidth [&quot;,&quot; encoding [&quot;,&quot; hints]]]]]]\n\n For example:\n\n     &quot;helvetica [bitstream],120,bold,italic,normal,iso8859-1,0&quot;\n\n Typically, at least the font name, and size must be given for\n normal font matching.  As a special case, raw X11 fonts can also be\n passed, for example:\n\n     &quot;9x15bold&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Note: use of the raw X11 fonts is stronly discouraged."
+full_name: Fox::FXFont::new
+is_singleton: true
+name: new
+params: (a, string) {|theFont| ...}
+visibility: public

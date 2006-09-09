@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extend selection from anchor index to <em>index</em>. If <em>notify</em> is <tt>true</tt>, a series of <tt>SEL_SELECTED</tt> and <tt>SEL_DESELECTED</tt> messages are sent to the list's message target as the selected-state of different items changes. Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXIconList#extendSelection
+is_singleton: false
+name: extendSelection
+params: (index, notify=false)
+visibility: public

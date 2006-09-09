@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the number of blocks used by the file, where a block is defined as size divided by blksize, rounded up.
+- !ruby/struct:SM::Flow::P 
+  body: ":no-doc: This is a fudge. A search of the internet reveals different ways people have defined st_blocks on MS Windows."
+full_name: File::Stat#blocks
+is_singleton: false
+name: blocks
+params: ()
+visibility: public

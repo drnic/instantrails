@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strcpy
+  value: Win32API.new('msvcrt', 'strcpy', 'PL', 'l')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strrev
+  value: Win32API.new('msvcrt', '_strrev', 'P', 'P')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbscpy
+  value: Win32API.new('msvcrt', '_mbscpy', 'PL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbsrev
+  value: Win32API.new('msvcrt', '_mbsrev', 'P', 'P')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcscpy
+  value: Win32API.new('msvcrt', 'wcscpy', 'PL', 'l')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcsrev
+  value: Win32API.new('msvcrt', '_wcsrev', 'P', 'P')
+full_name: Windows::MSVCRT::String
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: mbscpy
+- !ruby/object:RI::MethodSummary 
+  name: mbsrev
+- !ruby/object:RI::MethodSummary 
+  name: strcpy
+- !ruby/object:RI::MethodSummary 
+  name: strrev
+- !ruby/object:RI::MethodSummary 
+  name: wcscpy
+- !ruby/object:RI::MethodSummary 
+  name: wcsrev
+name: String
+superclass: 

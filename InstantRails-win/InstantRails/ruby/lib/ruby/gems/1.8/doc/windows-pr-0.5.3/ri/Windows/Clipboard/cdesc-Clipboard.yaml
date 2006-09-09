@@ -1,0 +1,129 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_TEXT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_BITMAP
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_METAFILEPICT
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_SYLK
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_DIF
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_TIFF
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_OEMTEXT
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_DIB
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_PALETTE
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_PENDATA
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_RIFF
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_WAVE
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_UNICODETEXT
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CF_ENHMETAFILE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OpenClipboard
+  value: Win32API.new('user32', 'OpenClipboard', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CloseClipboard
+  value: Win32API.new('user32', 'CloseClipboard', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetClipboardData
+  value: Win32API.new('user32', 'GetClipboardData', 'I', 'P')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EmptyClipboard
+  value: Win32API.new('user32', 'EmptyClipboard', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetClipboardData
+  value: Win32API.new('user32', 'SetClipboardData', 'II', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CountClipboardFormats
+  value: Win32API.new('user32', 'CountClipboardFormats', 'V', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: IsClipboardFormatAvailable
+  value: Win32API.new('user32', 'IsClipboardFormatAvailable', 'I', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetClipboardFormatName
+  value: Win32API.new('user32', 'GetClipboardFormatName', 'IPI', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EnumClipboardFormats
+  value: Win32API.new('user32', 'EnumClipboardFormats', 'I', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RegisterClipboardFormat
+  value: Win32API.new('user32', 'RegisterClipboardFormat', 'P', 'I')
+full_name: Windows::Clipboard
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: CloseClipboard
+- !ruby/object:RI::MethodSummary 
+  name: CountClipboardFormats
+- !ruby/object:RI::MethodSummary 
+  name: EmptyClipboard
+- !ruby/object:RI::MethodSummary 
+  name: EnumClipboardFormats
+- !ruby/object:RI::MethodSummary 
+  name: GetClipboardData
+- !ruby/object:RI::MethodSummary 
+  name: GetClipboardFormatName
+- !ruby/object:RI::MethodSummary 
+  name: IsClipboardFormatAvailable
+- !ruby/object:RI::MethodSummary 
+  name: OpenClipboard
+- !ruby/object:RI::MethodSummary 
+  name: RegisterClipboardFormat
+- !ruby/object:RI::MethodSummary 
+  name: SetClipboardData
+name: Clipboard
+superclass: 

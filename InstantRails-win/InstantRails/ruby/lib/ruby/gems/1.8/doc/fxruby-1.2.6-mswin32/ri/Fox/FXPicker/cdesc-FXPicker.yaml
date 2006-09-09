@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A picker button allows you to identify an arbitrary location on the screen.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXPicker to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously while the position is changing; the message data is an FXPoint instance indicating the current root window position of the mouse pointer.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the left mouse button is clicked the second time (i.e. to &quot;pick&quot; a position); the message data is an FXPoint instance indicating the picked position in root window coordinates.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXPicker
+includes: []
+
+instance_methods: []
+
+name: FXPicker
+superclass: FXButton

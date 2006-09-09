@@ -1,0 +1,3185 @@
+2006-06-04 13:50 ljulliar
+
+	* Changelog, config/default.yaml, freeride.rb: tagging the
+	repository to release version 0.9.6
+	
+2006-06-04 12:05  jonathanm
+
+	* plugins/rubyide_project/project.rb,
+	plugins/rubyide_project/project_manager.rb,
+	plugins/rubyide_tools_debugger/plugin.yaml,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_project_explorer/prop_view_helpers.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	freebase/lib/freebase/readers.rb:
+	Fixed the problem of the terminal not coming up under Windows,
+	however it currently causes an onPipeExcept which I haven't been
+	able to track down.  In the process of fixing this bug I moved a
+	large part of the initialize code to a new method in order to
+	improve readability.  Added a step in the loading of a project
+	where all listed files are checked, files that no longer exist are
+	removed from the properties list.  Made sure that the
+	project-plugin is loaded before the rubyide_tools_debugger plugin
+	Fixed a bug on Windows when creating a new directory.  On Windows
+	systems without a Userprofile the default userdirectory is now set
+	to be "C:\My Documents\.freeride\"
+
+2006-05-27 17:16  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/fxirb.rb,
+	plugins/rubyide_tools_fox_irb/fox_irb.rb: when IRB exits either on
+	normal exit or after a syntax error or other automatically restart
+	IRB instead of badly crashing FR (bug #4574)
+
+2006-05-25 09:41  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb: print the nil string
+	if evaluation expression is nil to prevent crash (bug #4334)
+
+2006-05-25 08:22  ljulliar
+
+	* plugins/rubyide_commands/core_commands.rb:
+	use project manager open_file so that the loaded file is registered in
+        project properties and reopened at the next session
+
+2006-02-26 15:38 jonathanm
+	* plugins/rubyide_project/project.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb,
+	plugins/rubyide_tools_fox_project_explorer/property_viewer.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_source_browser/directory_source_tree.rb,
+	plugins/rubyide_tools_source_parser/source_parser.rb:
+	Fixed several small bugs with the new project code. Refresh now works
+	correctly, as does the RunProject command. Also updated the
+	SourceParser so it now caches source-structures based on
+	modification-times.
+	
+2006-02-14 08:22  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fxri/lib/FoxTextFormatter.rb:
+	fixing incomplete fix that we did for bug #2634. We made a fix to
+	generate the headre preperly but not using it in the Fox formatter
+	of the doc :-(
+
+2006-01-20 08:45 ljulliar
+
+	*  Changelog: tagging the repository to release version 0.9.5
+
+2006-01-15 22:04 jonathanm
+
+	*  doc/userhelp.wiki, doc/userhelp_files : Modified documentation to
+	reflect project support. Also changed all version references to 0.9.5
+
+2006-01-06 11:19 curthibbs
+
+	*  freeride.rb: bumped the version number to 0.9.5
+	
+2006-01-06 11:19 jonathanm
+
+	*  plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb,
+	plugins/rubyide_tools_fox_source_browser/source_tree.rb:
+	Changed the project_explorer enabling the user to open every file
+	visible, not just Ruby-files.
+
+2005-12-21 10:50 jonathanm
+
+	* plugins/rubyide_project/project_manager.rb,
+	plugins/rubyide_tools_fox_project_explorer/prop_view_helpers.rb,
+	plugins/rubyide_tools_fox_project_explorer/property_viewer.rb: 
+	Added the Windows-filepermission renderer to the property_viewer.
+	Changed the height of the property-viewer dialog to be platform-dependent, 
+	on Windows the height is 500, on all other platforms the viewer has a height of 600.
+	Fixed a small bug concerning the absence of an 'active' property of the
+	project-plugin.
+
+2005-12-16 12:30 jonathanm
+	
+	* plugins/rubyide_commands/core_commands.rb,
+	plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_project/project.rb,
+	plugins/rubyide_project/project_manager.rb,
+	plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb:
+	Added the methods attach_editpane and detach_editpane to project.rb.
+	Every new editpane created now will be attached to a project. This
+	fixes several bugs concerning new files not closing properly.
+
+2005-12-10 11:00 jonathanm
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb:
+	Added a space before the "-I" parameter to the ruby-command. Running a
+	project with multiple source or required directories now works
+	correctly.
+
+2005-12-08 13:03 jonathanm
+
+	* plugins/rubyide_tools_fox_project_explorer/property_viewer.rb,
+	plugins/rubyide_tools_fox_project_explorer/prop_view_helpers.rb:
+	
+	Forgot to execute the cvs 'add' command. Added the new property-viewer
+	files.
+	
+2005-12-08 13:02 jonathanm
+
+	* plugins/rubyide_commands/core_commands.rb, plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_project/new_project_dialog.rb,
+	plugins/rubyide_project/project.rb,
+	plugins/rubyide_project/project_manager.rb,
+	plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_source_browser/directory_source_tree.rb,
+	plugins/rubyide_tools_source_parser/simple_parser.rb,
+	plugins/rubyide_tools_source_parser/source_structures.rb :
+
+	Added new files property_viewer.rb and prop_view_helpers.rb
+	Fixed several bugs concerning new files and project-support
+	Reordered the project_explorer menu-options
+	All items in the project_explorer-tree now have a Hash as its userData with a key "type" which indicates the type of item.
+	Fixed a bug with running a new (unsaved) file. (thanks Laurent) 
+	Redesigned the new_project_dialog.rb and moved most of the UI-code to
+	the new prop_view_helpers.rb file so that viewing the properties of a project
+	gives the same view as does creating a new project.
+	Added comment and whitespace lines accessor methods to source-structures and 
+	edited the parser so it generates the information used by the property-viewer
+
+2005-11-25 18:34  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fxri/lib/FoxTextFormatter.rb :
+	fixing bug #2634. ri H element returned as string instead of Array
+	in 1.8.3 in some cases
+
+2005-11-24 19:08  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/fox_services.rb : for new files (file name
+	Untitled?) the Save As... dialog box opens up in the Home
+	directory.
+
+2005-11-21 13:50 jonathanm
+	* plugins/rubyide_project/new_project_dialog.rb,
+	plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb,
+	plugins/rubyide_tools_fox_source_browser/icons/project.png:
+	Added checkbox to new_project_dialog for creating the basedirectory.
+	Also changed the behaviour of the explorer a bit. Only if the
+	basedirectory is added to the list of source_directories will it be
+	shown as a source-directory. After the name of the project the
+	basedirectory is added in braces.
+	Created a real project_icon.
+	
+2005-11-18 02:43 jonathanm
+	* plugins/rubyide_tools_fox_file_browser/file_browser.rb:
+	file_browser now subscribes to the filetypes property and updates
+	the file-tree when the property changes.
+
+2005-11-14 04:26 jonathanm
+	* freebase/plugins/raa_xmlrpc4r/rpcd.rb,
+	plugins/rubyide_commands/core_commands.rb,
+	plugins/rubyide_fox_gui/fox_services.rb,
+	plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_source_browser/plugin.yaml,
+	plugins/rubyide_tools_fox_source_browser/source_browser.rb,
+	plugins/rubyide_tools_fox_source_browser/source_tree.rb,
+	plugins/rubyide_tools_source_parser/simple_parser.rb,
+	plugins/rubyide_tools_source_parser/source_parser.rb,
+	plugins/rubyide_project/project.rb,
+	plugins/rubyide_project/project_manager.rb,
+	plugins/rubyide_project/new_project_dialog.rb,
+	plugins/rubyide_tools_fox_project_explorer/fox_project_explorer.rb,
+	plugins/rubyide_tools_fox_source_browser/icons/document.png,
+	plugins/rubyide_tools_fox_source_browser/icons/folder.png,
+	plugins/rubyide_tools_fox_source_browser/icons/project.png:
+	
+	The big project commit. plugins/rubyide_project/* has been rewritten.
+	plugins/rubyide_tools_fox_project_explorer has been added as well as
+	some new icons for the source_browser.
+	Fixed rpcd.rb, was missing an end and wouldn't ever run.
+	Added project commands to core_commands
+	Added the command App/Services/DirDialog to fox_services.
+	Removed the last reference to the old open-file list implementation
+	from edit_pane.
+	Changed the filebrowser so it adapts to user-changes in the filetypes property
+	Updated the scriptrunner so projects can be run as well
+	Changed the source_browser load dependency to depend on the file_browser
+	Changed the source_browser and moved the update_tree method to the
+	source_tree component
+	Updated the simple_parser so it correctly reports the last character
+	read. This was needed in order to correctly set the endpoint of a
+	script.
+	Changed the source_parser plugin so that each instance of a
+	sourceParser creates a new slot under /system/tools/SourceParser.
+	A special parser named 'unbound' is created on startup. This parser
+	instance is used by the project-explorer. All other parsers are
+	attached to editpanes.
+
+2005-11-03 19:00 martinleech
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb:
+	Removed view menu refresh (again) to prevent FR from crashing when 
+	setting Editors preferences. 
+	The View menu keeps updating gracefully anyway.
+	This change was made before, but got overwritten when file was next
+	checked in.
+
+2005-11-03 12:50 martinleech
+
+	* plugins/rubyide_commands/core_commands.rb:
+	Changed the All Files filter in the file open dialog from (*.*) to (*)
+	This allows files with no extension to appear. (Fix for bug #899)
+
+2005-11-03 12:40 martinleech
+
+	* plugins/rubyide_tools_block_commenter/block_commenter.rb:
+	Some minor refactoring, and put the comment/uncomment action in an
+	undo action.
+
+2005-10-30 13:16 martinleech
+  * plugins/rubyide_tools_block_commenter/block_commenter.rb,
+	plugins/rubyide_tools_block_commenter/plugin.yaml:
+  Added plugin to allow commenting/uncommenting of selected blocks of code.
+  Accessable via the edit menu, or press Ctrl-K to comment, Shift-Ctrl-K to uncomment.
+  (Fix for bug #1630)
+  
+
+2005-10-21 13:36 jonathanm
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla_wrapper.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Empty_Text_Field_Handler.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/FoxDisplayer.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/FoxTextFormatter.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Globals.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Icon_Loader.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Packet_Item.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Packet_List.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Recursive_Open_Struct.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/RiManager.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Search_Engine.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/fxirb.rb,
+	plugins/rubyide_tools_fox_source_browser/source_tree.rb,
+	plugins/rubyide_tools_source_parser/basic_parser.rb,
+	plugins/rubyide_tools_source_parser/basic_source_parser.rb,
+	plugins/rubyide_tools_source_parser/simple_parser.rb,
+	plugins/rubyide_tools_source_parser/source_parser.rb,
+	plugins/rubyide_tools_source_parser/source_structures.rb:
+	Added copyright and license statements to files without.
+
+2005-10-21 13:29 jonathanm
+
+	* plugins/rubyide_fox_gui/editpane.rb: Commented out the last reference to
+	the Code Assist command.
+	
+2005-10-21 12:51 jonathanm
+
+	* plugins/rubyide_fox_gui/editpane.rb: Removed the unfinished Code
+	Assist option from the Edit menu.
+
+2005-10-20 16:39 jonathanm
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb,
+	plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb:
+	Removed a couple lines of testing-code from fox_debugger_configurator.
+	Increased the width of the configuration-dialog. The Editor subpanel
+	now fits nicely.
+	Added a log statement showing when the file_browser plugin has been
+	started.
+	Added a textfield to the Editor-config subpanel for the
+	file_browser FileTypes property. file_browser now subscribes to the
+	property-slot and reflects change to the property immediately in the 
+	tree.
+
+2005-10-17 08:54  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb : removing view
+	menu refresh to prevent FR from crashing when setting Editors
+	preferences. The View menu keeps updating gracefully anyway,
+	so... (patch by Martin Leech, fixing bug 2640).
+
+2005-10-17 08:44  ljulliar
+
+	* plugins/rubyide_gui/component_layout.yaml,
+	plugins/rubyide_fox_gui/toolbar.yaml : inserting the Save All menu
+	entry in the File menu (patch by Martin Leech, final touch for bug
+	#1555 fixing)
+
+2005-10-14 10:30  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: patch by Martin leech
+	fixing the Find/Replace dialog box slowness due to too many
+	savings in the property file. Martin also reworked the layour of
+	the dialog box (see bug #1556)
+
+2005-10-09 21:19  ljulliar
+
+	*
+	plugins/rubyide_tools_fox_databus_inspector/databus_inspector.rb,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb: fixing
+	dialog box placement problem on Windows (patch by Martin Leech)
+
+2005-09-16 14:55  ljulliar
+
+	* plugins/rubyide_fox_gui/menupane.rb: small fix (with major
+	effects!) on the submenu patch from Jonathan Maaslan.
+
+2005-09-16 10:00  ljulliar
+
+	* plugins/rubyide_fox_gui/appframe.rb : patch by Roy Sutton until
+	FreeRIDE works with FOX 1.4.x. Doing it here is enough as appframe
+	is the first file to require fxruby when FR is launched.
+
+2005-09-16 09:53  ljulliard
+
+	* plugins/rubyide_gui/menupane.rb,
+	plugins/rubyide_gui/component_manager.rb,
+	plugins/rubyide_gui/component_layout.yaml,
+	plugins/rubyide_fox_gui/menupane.rb: integrate the submenu patch
+	from Jonathan Maaslan. This was introduced for the project
+	management submenu primarily.
+
+2005-09-16 09:36  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_ruby_configurator.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb :
+	Some more modifications from Jonathan Maasland so that the Ruby
+	interpretor to use for Debugger/Script runner is taken from the
+	list of targets configured in the interpreters configuration
+	panel.
+
+2005-09-14 08:35  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb
+	(Message),
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_debugger/fox_ruby_configurator.rb,
+	plugins/rubyide_tools_debugger/debugger.rb: preferences dialog box
+	added to manage several ruby interpretors. For now the target named
+	default is used (thanks to Jonathan Maasland for the patch)
+
+2005-09-02 10:46  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb : confirmation is
+	now requested when you leave a preference panel that was modified
+	but not saved (thanks to Jonathan Maasland for the patch)
+
+2005-08-31 22:33 ljulliar
+
+	* plugins/rubyide_commands/core_commands.rb,
+	plugins/rubyide_gui/component_layout.yaml,
+	plugins/rubyide_project/project.rb : added the Close All action to
+	the File menu (thanks to Jonathan Maasland for the patch)
+	
+2005-04-17 18:23  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fxri/lib/fxirb.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Search_Engine.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Packet_List.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Globals.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.gemspec : fxri upgraded to
+	0.3.2 with some changes to re-apply because they were
+	lost. Patches sent to Martin Ankerl.
+
+2005-04-16 18:10  ljulliar
+
+	* plugins/rubyide_tools_source_parser/plugin.yaml,
+	plugins/rubyide_tools_fox_source_browser/plugin.yaml : reverting
+	to the ripper based Ruby parser. Seems to be working fine after
+	all at least on Linux. Testing required on Windows.
+
+2005-04-11 22:23  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/fox_irb.rb,
+	plugins/rubyide_tools_fox_irb/fxirb.rb : upgrading to fxirb 0.2.0
+	and creating an exit block but it doesn't work for now.
+
+2005-04-11 08:23  ljulliar
+
+	* plugins/rubyide_tools_fox_file_browser/file_browser.rb : adding
+	rhtml files (rails view files) to the list of files displayed by
+	the file browser and tagging for release 0.9.4 again (previous tag
+	deleted)
+
+2005-03-30 16:17  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/source_browser.rb :
+	align the ripper based source browser with the code of the simple
+	browser. Also change the update method calls to update_tree to
+	make it work.
+
+2005-03-30 16:07  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fox_ri.rb : at startup show help
+	message in the ruby documentation plugin instead of doing a lookup
+	which makes the help message disappear before you have a chance to
+	read it.
+
+2005-03-29 23:50  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb : better handling of
+	caught exception, clean up error line marker and debug line when
+	resuming program execution.
+
+2005-03-29 08:25  ljulliar
+
+	* plugins/rubyide_tools_rrb/plugin.yaml : refactoring plugin
+	deactivated because doesn't work well.
+
+2005-03-26 07:39  ljulliar
+
+	* freeride.rb (Repository):  bumping version number to 0.9.4 before tagging and
+	release
+
+2005-03-26 07:31  ljulliar
+
+	* doc/userhelp.wiki, doc/userhelp.html: documentation update before tagging 0.9.4
+
+2005-03-24 12:11  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fxri/lib/Search_Engine.rb,plugins/rubyide_tools_fox_ri/fxri/fxri.rb:
+	some layout modifications by Martin Ankerl to optimize the space
+	usage in the FreeRIDE dockpane.
+
+2005-03-20 09:51  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb
+	: wrong variable name for running source browser causing crash
+	(fixes bug #1647)
+
+2005-03-20 09:42  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: correctly compute the
+	position corresponding to the beginning of the line where to
+	insert (fixes bug #1648).
+
+2005-03-12 22:03  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fox_ri.rb,
+	plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,plugins/rubyide_fox_gui/editpane.rb:
+	Ruby doc now uses F1 instead of CTRL-SPACE because CTRL-SPACE
+	cannot be handled properly by the key manager. F1 is also detected
+	from FreeRIDE itself and not from the scintilla event
+	detector. this is much more consistent with all other plugins
+	behavior. Also the logic of looking up the keywords in Ruby Doc is
+	now in the RI plugin and not in the editor plugin which is more
+	logical.
+
+2005-03-12 00:03  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : place the cursor in the
+	upper left corner to avoid focus out events when the dialog box
+	resizes after the template list has been updated.
+
+2005-03-11 23:14  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : insert a milestone in the
+	undo history after each code template insertion. (rc1)
+
+2005-03-11 23:12  ljulliar
+
+	* plugins/rubyide_gui/code_template.rb : some modifications in the
+	code templates.
+
+2005-03-10 14:24  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb: it's "line
+	wrapping" not "wraping".
+
+2005-03-09 23:20  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb
+	: stop the source browser plugin to wait for the on-going brwoser
+	refresh to finish before halting. Otherwise it may cause FR to
+	core dump while exiting.
+
+2005-03-09 23:19  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_gui/code_template.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb : Added code
+	template management.
+
+2005-03-08 21:40  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb (Repository): 
+
+2005-03-08 21:36  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb : adding cursor
+	color and width settings in the editor preference (bug #1584).
+	
+
+2005-03-08 21:11  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/global_properties.rb :
+	identifier names in Ruby can contain a question mark.
+
+2005-03-02 19:55  ljulliar
+
+	* plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_commands/core_commands.rb: adding rbw files in the
+	list of visible files both in the File Viewver and the File Open
+	dialog box (bug #1570)
+
+2005-03-01 07:24  ljulliar
+
+	* doc/userhelp.wiki: first release of the wiki file for the user
+	help. This is the one that must be modified not userhelp.html.
+
+2005-03-01 07:18  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fox_ri.rb : Changed to shortcut to
+	F9 to start Ruby Doc and put the docpkane to the front whenever
+	the user looks for something.
+
+2005-03-01 06:55  ljulliar
+
+	* plugins/rubyide_fox_gui/dockpane.rb : in show the index of the
+	tab to show was not computed properly causing the wrong dockpane
+	to show.
+
+2005-02-27 19:33  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb : remove some
+	debug printouts.
+
+2005-02-27 11:31  ljulliar
+
+	* plugins/rubyide_tools_fox_file_browser/file_browser.rb ,
+	plugins/rubyide_gui/dockpane.rb,
+	plugins/rubyide_fox_gui/plugin.yaml,plugins/rubyide_fox_gui/dockpane.rb
+	: dockpanes now remember if they were docked or undocked, and if
+	undocked what size/position they had. This will be restored at the
+	next FreeRIDE session.
+
+2005-02-27 11:27  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_starter_with_pause.rb (Message): removed spurious ^M at the end of 2 lines
+
+2005-02-26 21:09  ljulliar
+
+	* freebase/lib/freebase/properties.rb : catch any exception that
+	may occur during plugin properties file loading. If a file happens
+	to be corrupted FreeRIDE won't start.
+
+2005-02-26 20:56  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_starter_with_pause.rb
+	: catch any exception while outputing the exception message. This
+	is mostly when there is no exception at all (like there is no
+	explicit exit in the program) (bug #1550)
+
+2005-02-26 06:46  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/editpane.rb : when asking for help on a
+	keyword in the text editor, the text before and after is also
+	returned to the editpane to do some more advanced search. Right
+	nwe we look at the ext before and of it is a Class or a module
+	name we also include it in the search.
+
+2005-02-23 14:14  ljulliar
+
+	* plugins/rubyide_fox_gui/dockpane.rb : Remove the windows buttons
+	(minimize, maximize, close) so that only those from the dockpane
+	are used.
+
+2005-02-23 13:48  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fox_ri.rb : modify the welcome
+	message to tell about the CRTL-SPACE shorcut to access help.
+
+2005-02-23 12:03  ljulliar
+
+	* plugins/rubyide_tools_fox_ri/fxri/lib/Icon_Loader.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Globals.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.rb: fxri modifications
+	needed to make it work inside FreeRIDE while preserving fxri
+	standalone application.
+
+2005-02-23 10:50  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/fxscintilla/global_properties.rb,
+	plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_tools_fox_ri/icons/ri.png,
+	plugins/rubyide_tools_fox_ri/icons/module.png,
+	plugins/rubyide_tools_fox_ri/icons/method.png,
+	plugins/rubyide_tools_fox_ri/icons/class.png,
+	plugins/rubyide_tools_fox_ri/plugin.yaml,
+	plugins/rubyide_tools_fox_ri/fox_ri.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/icons/module.png,
+	plugins/rubyide_tools_fox_ri/fxri/lib/icons/method.png,
+	plugins/rubyide_tools_fox_ri/fxri/lib/icons/class.png,
+	plugins/rubyide_tools_fox_ri/fxri/lib/fxirb.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Search_Engine.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/RiManager.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Recursive_Open_Struct.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Packet_List.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Packet_Item.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Icon_Loader.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Globals.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/FoxTextFormatter.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/FoxDisplayer.rb,
+	plugins/rubyide_tools_fox_ri/fxri/lib/Empty_Text_Field_Handler.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.rb,
+	plugins/rubyide_tools_fox_ri/fxri/fxri.gemspec : Adding the new
+	Ruby Doc plugin to the CVS repo (based on fxri from Martin
+	Ankerl). Note that in this commit fxri is the pristine version
+	from Martin. The next commit will commit the modified version for
+	FreeRIDE. (this is to be able to keep track of the changes we have
+	made.
+	
+2005-02-20 09:32  ljulliar
+
+	* freeride.rb : bumping version number to 0.9.3 before tagging and
+	release
+
+2005-02-20 09:04  ljulliar
+
+	* plugins/rubyide_tools_rrb/rrb_plugin.rb,
+	plugins/rubyide_tools_fox_irb/fxirb.rb,
+	plugins/rubyide_tools_fox_irb/fox_irb.rb,
+	plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+	plugins/rubyide_tools_fox_databus_inspector/databus_inspector.rb,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb,
+	plugins/rubyide_fox_gui/fxscintilla/fxscintilla_test.rb,
+	plugins/rubyide_fox_gui/statusbar.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb,
+	plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_fox_gui/appframe.rb : require fox/fxruby in such a
+	way that it works both with fxruby gems and a standard require.
+
+2005-02-19 22:20  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/plugin.yaml :  manage the IRB shell
+	as a real FreeRIDE component
+
+2005-02-19 22:00  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/fxirb.rb : upgraded to fxirb 0.1.4
+	(thanks to Martin DeMello.
+
+2005-02-19 21:57  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/fox_irb.rb : manage the IRB shell
+	as a real FreeRIDE component and also manage the availability of
+	the IRB menu entry in the View menu (active only if IRB started)
+
+2005-02-19 15:48  ljulliar
+
+	* plugins/rubyide_fox_gui/menupane.rb : fix a bug causing the menu
+	entries in the view menu pane to be out of sync when corresponding
+	views where visible/invisible or enable/disabled. This was due to
+	the menuCommand or menuCheck object not properly propagated to the
+	subscriber. (bug #1442)
+
+2005-02-19 15:45  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb : remove
+	deprecated fxparsefontdesc and fxunparsefontdesc. Replaced by
+	setFont/getFont methods in FOX 1.2 (bug #1488)
+
+2005-02-19 15:44  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb : remove useless code (hide/show/toggle)
+
+2005-02-19 15:38  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/fox_irb.rb : move the irb icon in the "view" section of the toolbar to be more consistent.
+
+2005-02-19 15:34  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger.rb : Move the
+	debugger icon in the "run" section of the tool bar, remove frame
+	1,2 and thread 1,2 fake entries in the Frames tab and say
+	explicitely that the Thread tab is not yet implemented.
+
+2005-01-08 22:04  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb : some
+	code clean up.
+
+2005-01-08 21:49  ljulliar
+
+	* plugins/rubyide_tools_fox_irb/icons/irb.png,
+	plugins/rubyide_tools_fox_irb/plugin.yaml,
+	plugins/rubyide_tools_fox_irb/fxirb.rb,
+	plugins/rubyide_tools_fox_irb/fox_irb.rb : new IRB plugin based on
+	Martin DeMello fxirb.
+
+2005-01-08 18:42  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb
+	: use a Mutex in source browser to avoid a refresh from two
+	different points at the same time causing a crash.
+
+2005-01-08 18:40  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser : change purpose in
+	file header
+
+2005-01-08 18:35  ljulliar
+
+	* plugins/rubyide_fox_gui/appframe.rb : rearrange the code that
+	starts the FOX application in FreeRIDE it makes the Mac OS X port
+	happier (thanks to Brendan Boesen for the patch) and it looks like
+	it also avoids some occasional SEG FAULT on Linux. Generally
+	speaking I noticed that starting a FOX application in FOX/FXRuby
+	1.2 seems to crash from time to time and it seems to be related to
+	a timing issue (I mean in which order things are made).
+
+2005-01-08 18:25  ljulliar
+
+	* plugins/rubyide_fox_gui/outputpane.rb : removed unused debug
+	print statement.
+
+2004-12-11 16:05  ljulliar
+
+	* freeride.rb: bumped version number to 0.9.2 before
+	tagging and release.
+
+2004-12-11 16:02  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_debugger/debugger.rb: new way of testing
+	whether a Ruby interpreter is in the path. the previous system
+	call was not working fine on Windows.
+
+2004-12-11 15:59  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_starter_with_pause.rb:
+	for some reason on Win32 the exception doesn't show up before
+	the "press ENTER..." message below. So force it.
+
+2004-12-09 22:57  ljulliar
+
+	* freebase/lib/freebase/yaml.rb, freebase/lib/freebase/readers.rb:
+	remove the old and buggy version of yaml from freebase. Use the
+	standard YAML from Ruby instead (fixes bug #1166 where strings with
+	a colon character in it were not properly escaped)
+
+2004-12-09 22:38  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb: rescue
+	a possible Errno::EPIPE (linux) or invalid argument (win32)
+	exception if the pipe was broken while we were buffering keyboard
+	input from FOX
+
+2004-12-09 22:21  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb: synchronize the
+	View menu with the editpane configurator for some of the entries
+	they have in common (Show line number, end of line and White
+	spaces)
+
+2004-12-09 22:16  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: fixed broken code with
+	autosave of the Search/Replace edit box. Also moved the creation
+	of some View commands in order to use the properties of the
+	fox_gui/editpane rather than the gui/editpane plugin.
+
+2004-12-09 22:13  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb: remove
+	unnecessary required thread module.
+
+2004-12-09 22:08  ljulliar
+	
+	* plugins/rubyide_fox_gui/menupane.rb: avoid multiple susbcription
+	to the same command slot when several commands are added one after
+	the other.
+
+2004-12-09 22:04  ljulliar
+
+	* plugins/rubyide_commands/core_commands.rb: simplify the
+	creation/management code of some of the commands in the View menu.
+
+2004-12-09 22:02  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger.rb: remove row
+	and column headers from global variable table in debugger.
+
+2004-12-09 21:59  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb: change the
+	highlighted line in debugger to bright yellow.
+
+2004-12-03 22:20  ljulliar
+
+	* plugins/rubyide_tools_rrb/rrb_plugin.rb,
+	plugins/rubyide_tools_fox_source_browser/source_tree.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_debugger,
+	plugins/rubyide_tools_fox_databus_inspector/databus_inspector.rb,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_gui/menupane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/fxscintilla_test.rb,
+	plugins/rubyide_fox_gui/toolbar.rb,
+	plugins/rubyide_fox_gui/statusbar.rb,
+	plugins/rubyide_fox_gui/outputpane.rb,
+	plugins/rubyide_fox_gui/menupane.rb,
+	plugins/rubyide_fox_gui/menubar.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb,
+	plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_fox_gui/appframe.rb : Migrate FR to FOX and FXRuby
+	1.2.x. Works well on Linux. The tag FR_0_9_1 is positioned just
+	before this commit in case it breaks FR on Linux and we can revert
+	to a previous version.
+
+2004-11-29 12:48  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_starter.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb : Strengthen
+	detection of runtime error in scripts by outputing Exception
+	essage on a fresh line to avoid the mixing with process
+	output. Also fixed the problem of keyboard input in the script
+	runner window for a terminated process that was causing an IO
+	exception (see bug #1133)
+
+2004-11-29 12:07  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner: removing REXML from
+	distribution. It's now in 1.8.x
+
+2004-11-29 10:28  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb: call to
+	setting default style badly written (2 arguments instead of
+	1). See bug #1132
+
+2004-11-26 10:22  ljulliar
+
+	* freeride.rb: bumped version number to 0.9.0 before
+	tagging and release.
+
+2004-11-26 10:18  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb: modify
+	pattern matching to detect error message in script output and
+	create a method so that it can be used both in print_stdout and
+	detach_stdout.
+
+2004-11-26 10:17  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb: using clear_line
+	instead of show_line with nil argument.
+
+2004-11-24 00:40  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb: issue a
+	warnong to Windows users that they should run ruby preocesses in a
+	terminal to see the output.
+
+2004-11-24 00:03  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb: Wait
+	for the ENTER key to be pressed before closing the console on
+	Win32.
+
+2004-11-20 22:10  ljulliar
+
+	*
+	plugins/rubyide_tools_fox_script_runner/script_starter_with_pause.rb
+	,plugins/rubyide_tools_fox_script_runner/script_starter.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb ,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_debugger/debuggee.rb: new strategy for the
+	debugger that is now based on the popen call for Win32 and Linux,
+	waitpid is used to monitor the running process and signals are
+	used to pause the remote process (there is a bug in 1.8.x that
+	causes the kill call to fail on Win32 but at least the debugger
+	now works ok. To work around the stdout capture problem on Win32
+	with FOX, a remote process can now be xecuted in a terminal window
+	to see the output. A new preference has been added in the debugger
+	configurator panel.
+
+2004-11-20 21:51  ljulliar
+
+	* plugins/rubyide_gui/outputpane.rb,
+	plugins/rubyide_fox_gui/outputpane.rb : attach_input method added
+	to outputpane so that any key typed at the keyboard can be caught
+	by plugins if need be. This is the case for the script runner in
+	case the ruby script being ran needs some input from the end user.
+
+2004-10-19 18:07  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/source_browser.rb,
+	plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_gui/outputpane.rb,
+	plugins/rubyide_gui/dockpane.rb,
+	plugins/rubyide_fox_gui/icons/undock_dockpane.png,
+	plugins/rubyide_fox_gui/icons/dock_dockpane.png,
+	plugins/rubyide_fox_gui/icons/close_dockpane.png,
+	plugins/rubyide_fox_gui/plugin.yaml,
+	plugins/rubyide_fox_gui/outputpane.rb,
+	plugins/rubyide_fox_gui/dockpane.rb,
+	plugins/rubyide_fox_gui/dockbar.rb,
+	plugins/rubyide_commands/core_commands.rb: Added the ability to
+	have floating dockpanes that can de docked and undocked at will
+	from their dockbar. Also modified the existing plugins using the
+	dockpanes facility accordingly.
+
+2004-10-19 18:04 ljulliar
+	
+	* ,
+2004-10-14 17:03 ljulliar
+	
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_script_runner/script_starter.rb:
+	redirecting STDERR to STDOUT in the starter script rather than
+	command line to make it portable.
+
+2004-10-14 16:55 ljulliar
+	
+	* plugins/rubyide_tools_debugger/debuggee.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb: added specific
+	printf_xxxx method to inform the FR debugger that an exception has
+	been raised, a watchpoint/breakpoint has been reached, etc... Also
+	fixed the stop and close methods because the remote process kept
+	running after the debugger session was closed. Do some sanity
+	check when launching the remote debuggee process. If it failed
+	report it.
+	
+2004-10-14 16:49 ljulliar
+	
+	* freebase/lib/freebase/core.rb,
+	plugins/rubyide_commands/core_commands.rb: make sure the version
+	number shown in the About dialog box is the one from the FreerRIDE
+	source code and not the property file. Also check the property
+	file to update version number if running a more recent version of
+	FR and display a warning if running an old version of FR against a
+	more recent property file.
+	
+2004-10-14 22:12  ggl
+	
+	* plugins/rubyide_tools_source_parser/basic_parser.rb: Added the
+	"[" and "]" characters to the list of matching chars as method- or
+	singletonMethod-name. (bug #968)
+
+2004-10-06 22:34  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/editpane.rb : fixing script runner and
+	debugger exception when trying to run or debug a file that has
+	just been created in a ne editpane and have no corresponding file
+	on the file system because it has not yet been saved (bug #946,
+	bug #947)
+
+2004-10-06 09:14  ljulliar
+
+	* plugins/rubyide_fox_gui/dockpane.rb: last minute bug fix in the
+	source browser refresh when the source browser dockpane is not yet
+	docked. Goin to retag 0.8.0 before packaging.
+
+2004-10-05 22:39  ljulliar
+	
+	* freeride.rb: bumped version number to 0.8.0 before tagging and
+	release.
+
+2004-10-05 09:56  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb,
+	plugins/rubyide_gui/dockpane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/dockpane.rb: The source browser is now
+	refreshing automatically when the Ruby source code is being
+	edited. (5 second frequency is enough). THe update is only
+	performed when the file has changed and the the source browser is
+	used.(bug #217)
+
+2004-10-04 09:49  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : There was a bug in
+	FXComboBox (up to FOX 1.0.53) which causes setFocus not to work. I
+	work around this by sending a TAB key event to the combo box which
+	shifts the focus and does exactly what we want. And now typing
+	on the Return key does the search as well.
+	(Repository): 
+
+2004-10-03 22:32  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : added a message in the
+	status bar syaing where the search text has been found.
+
+2004-10-03 10:24  ljulliar
+
+	* plugins/rubyide_fox_gui/fox_services.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb : Added a setting
+	in the editor preferences to let the user say whether the
+	directory shown in the Open File dialog box is the last visited or
+	the path of the currently edited file (default).
+
+2004-10-03 10:20  ljulliar
+
+	* plugins/rubyide_tools_fox_configurator/fox_configurator.rb:
+	Added an OK button to the Configurator dialog box that does Apply
+	and close the dialog box at the same time. Also removed the
+	unecessary 'schmuz' that was trying to be smart with the child
+	index of the Configurator and was only causing out of bond
+	exception all the time.
+
+2004-10-02 17:34  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane_configurator.rb: cursor
+	blinking period must be passed as an integer to the scintilla
+	model not a string. Problem was that the cursor was not blinking
+	at all.
+
+2004-09-30 23:18  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/icons/stop.png,
+	plugins/rubyide_tools_fox_script_runner/script_starter.rb,
+	plugins/rubyide_tools_fox_script_runner/script_runner.rb :
+	completely revamped the script runner plugin so that a) running a
+	script is no longer blocking FreeRIDE, b) output of running
+	process is smoothly displayed, c) running script can be
+	interrupted at any time and d) give feedback on the status bar
+	about what's going on.
+
+2004-09-30 23:13  ljulliar
+
+	* plugins/rubyide_tools_fox_configurator/plugin.yaml,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb :
+	changed configurator renderer class name and also moved it one
+	level down. There was a conflict with the same class name being
+	used by the StatusBar plugin causing the status bar to not work
+	properly.
+
+2004-09-30 23:10  ljulliar
+
+	* plugins/rubyide_fox_gui/outputpane.rb : optimize the text area
+	rendering so that only new text lines are displayed and not all
+	lines each time something is appended.
+
+2004-09-30 23:06  ljulliar
+
+	* plugins/rubyide_fox_gui/statusbar.rb : force a real time refresh
+	of the status bar when a message is displayed or some messages may
+	be missed due to the FOX update frequency.
+
+2004-09-25 22:05  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: fixed a performance problem
+	in the search/replace dialog box due to property saving that was
+	done at each search next or search prev. It is still too slow to
+	my liking for it is ok for now.
+
+2004-09-24 23:03  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: return key in search and
+	replace combobox now update the history only if the same string
+	was not yet there, and also triggers a next/prev search. The
+	search/replace history is also limited to 10 elements now.
+
+2004-09-21 22:21  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb: removed a null
+	byte at the end of the editor buffer before saving it to file.
+
+2004-09-20 23:48  ljulliar
+
+	* plugins/rubyide_fox_gui/appframe.rb: changed the unhandled
+	exception dialog box so that the stack trace can be copy/pasted
+	from the widget for easy bug report. (bug #906)
+	
+2004-09-18 11:35  ljulliar
+
+	* plugins/rubyide_fox_gui/plugin.yaml, 
+	plugins/rubyide_fox_gui/editpane_configurator.rb, 
+	plugins/rubyide_fox_gui/editpane.rb, freeride.rb :
+	Several modifications:
+	- Freeride.rb top level script now accepting file names
+	  on the command line that are automatically open.
+	- Text selection in current editpane used as the string to
+	  search for in the Find Dialog box (couldn't do it for Replace
+	  Dialog because the selection is used as the region where to
+	  replace text)
+	- Added some more Ruby code in the scintilla widget used in the
+	  colors and fonts editpane configurator
+
+2004-09-18 11:34  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb : fixed the
+	method that gets the text from a scintilla editor. Text length
+	argument was missing.
+
+2004-09-18 11:31  ljulliar
+
+	* plugins/rubyide_tools_fox_file_browser/file_browser.rb : enable
+	horizontal scrollbar on the Dir list widget for horizontal
+	scrolling when you have to go deep in the folders.
+
+2004-09-18 11:25  ljulliar
+
+	* plugins/rubyide_tools_fox_configurator/fox_configurator.rb :
+	fixed a bug causing the configurator to issue an exception because
+	of an non existing child index. Also changed the layout of the
+	configuration tree so that all nodes are expanded by default.
+
+2004-09-13 17:25  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/style.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/fxscintilla/ruby_colourize.rb,
+	plugins/rubyide_fox_gui/fxscintilla/colour.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb,
+	plugins/rubyide_fox_gui/editpane.rb : First version of the Editor
+	configurator (pheeewww!! not an easy task). It required some
+	significant rework in the Style class which now has also a
+	StyleStore that manages style heritage (e.g. when a style property
+	is not specified it inherits the default style property). For now
+	there is only one font for all styles but in a future version each
+	style will have its font configurable.
+
+2004-09-13 16:50  ljulliar
+
+	* freebase/lib/freebase/properties.rb : added an auto_save
+	accessor. If true then a property is saved to file each time it is
+	set. If false the save to file operation is doen only when the
+	save method is called.
+
+2004-08-22 16:18  ljulliar
+	
+	* plugins/rubyide_fox_gui/icons/styles.png ,
+	plugins/rubyide_fox_gui/icons/palette.png,
+	plugins/rubyide_fox_gui/icons/fonts.png,
+	plugins/rubyide_fox_gui/icons/editor.png,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/fxscintilla/ruby_properties.rb,
+	plugins/rubyide_fox_gui/fxscintilla/ruby_colourize.rb,
+	plugins/rubyide_fox_gui/editpane_configurator.rb,
+	plugins/rubyide_fox_gui/editpane.rb : First implementation of the
+	editor preferences dialog box. More to come.
+
+2004-08-19 23:22  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb : fixed
+	a bug causing the editpane to crash because the path to the faulty
+	file in the script runner was not properly detected by the
+	regex. Also make sure all files are loaded with absolute path
+	names. Also untabified the entire file.
+
+2004-08-18 22:42  ljulliar
+	
+	* freeride.rb : last minute bug fixing before 0.7.0 on the
+	destination properties filename that must not be given as an
+	absolute path name so that it is created in the user home directoy
+	and not in the installation directory which causespermission
+	problems (pb reported by Thomas Andersson on the FR-devel mailing
+	list on May 15, 2004)
+
+2004-08-18 21:41  ljulliar
+
+	* plugins/rubyide_tools_rrb/rrb_plugin.rb : typo fixed in method
+	refactoring description and changing line number where to look for
+	class name to make it consistent with other methods.
+
+2004-08-17 09:54  curthibbs
+	
+  	* Added a marker menu item to the Refcator menu that inficates the
+	refactoring support is experimental.
+	* Bumped the version number to 0.7.0
+  
+2004-08-13 16:57  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb : changing
+	debugger configurator class name to make it consistent with name
+	used in the editor configurator and avoid namespace conflicts with
+	the top level Configurator plugin.
+
+2004-08-13 16:52  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/fox_debugger.rb: make sure
+	remote debugged process stdin is still active before sending
+	keyboard input to it (prevents FreeRIDE from crashing with Broken
+	Pipe exception).
+
+2004-08-09 23:25  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_debugger/debuggee.rb, redist/drb.rb,
+	redist/drb : removed DRb from the redist directory. Ruby 1.8 has
+	it standard. Change debuggee to cope with both DRb 1.3 or DRb
+	2.0. Show/Hide error marker line when an error/exception error
+	occurs in debugger. Fixed spurious debugger crashes when an
+	exception was caught on the remote process. Seems to be much more
+	robust now.
+
+2004-08-06 23:28  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/outputpane.rb,
+	plugins/rubyide_fox_gui/editpane.rb: the script runner plugin now
+	shows with a red arrow marker where a runtime error occured in a
+	file. The debugger also uses the same marker now. Also the output
+	pane is now using the default font size.
+
+2004-08-05 23:24 ljulliar
+
+	* plugins/rubyide_fox_gui/appframe.rb:
+	Catch exception happening in the main FOX event loop and invite
+	users to report the bug.
+	
+2004-07-29 16:50 ljulliar
+
+	* plugins/rubyide_tools_rrb/rrb_plugin.rb, redist/rrb/default.rb:
+	new rrb plugin from YOSHIDA Yuichi plus from LJ: some FXDialog box
+	simplification, report files containing syntax errors that cannot
+	be processed, delimiters for variable names expanded and ruby
+	options must use freeRIDE include path to make sure that the rrb
+	that comes with FreeRIDE is used (see default.rb).
+	
+2004-07-29 16:53  ljulliar
+
+	* plugins/rubyide_commands/core_commands.rb: create CTL-Q shortcut
+	to exit FreeRIDE.
+	
+2004-07-29 15:13  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb: fix exec_dir default
+	value if they are nil. (follow-up of bug #778)
+	
+2004-07-27 16:18  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb: fix
+          ruby_path and exec_dir default value if they are nil. (bug
+          #778)
+
+2004-06-14 00:29  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb:
+	'Save all files before running script or launching debugger'
+	implemented in Debugger/Run preferences.
+
+2004-06-13 23:23  ljulliar
+
+	* plugins/rubyide_tools_fox_debugger/plugin.yaml,
+	plugins/rubyide_tools_fox_debugger/fox_debugger_configurator.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+	plugins/rubyide_tools_fox_configurator/plugin.yaml,
+	plugins/rubyide_tools_fox_configurator/fox_configurator.rb,
+	plugins/rubyide_tools_debugger/plugin.yaml,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_configurator/plugin.yaml,
+	plugins/rubyide_tools_configurator/configurator.rb: new
+	configurator plugin added and debugger configuration pane
+	implemented as an example.
+
+2004-05-24 21:45  ljulliar
+
+	* plugins/rubyide_tools_source_parser/basic_parser.rb : parser
+	must ignore any reserved keywords (def, module, class) appearing
+	in a comment
+
+2004-04-19 22:44  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : when restoring files from
+	previous session make the first file the current editpane.
+
+2003-11-06 20:45  ljulliar
+        
+        * ChangeLog: file updated before final tagging of 0.6.0
+        
+2003-09-01 23:48  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb: when restoring files from
+	previous session load them through the editpane manager to make
+	sure breakpoints are restored visually as well. Some
+	untabification and debug code removed.
+
+2003-09-01 23:45  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb: fix a couple of bugs where file
+	variable was missing in several methods.
+
+2003-09-01 23:42  ljulliar
+
+	* plugins/rubyide_project/project.rb: use File.absolute_path?
+	method instead of adhoc file separator testing.
+
+2003-09-01 23:39  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb: untabify the file 
+
+2003-07-28 06:54  ljulliar
+
+	* plugins/rubyide_tools_source_parser/basic_parser.rb: New
+	strategy adopted to split multiple Ruby statements separated by
+	';' into distinct lines. Line number must not be incremented.
+
+2003-07-23 18:55  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/fxscintilla/global_properties.rb :
+	@eol_mode is now properly setup according to the hosting platform.
+
+2003-07-22 09:11  ljulliar
+
+	* plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb
+	: Line numbers in the source parser are numbered from 1 (not 0)
+	and the set_cursor_line takes this numbering as is.
+
+2003-07-22 09:07 ljulliar
+	
+	* freebase/lib/freebase/databus.rb : dead code reactivated and hash key deletion corrected (thanks to Gabriele Renzi)
+
+2003-07-16 23:15  ljulliar
+
+	* plugins/rubyide_tools_source_parser/basic_parser.rb: applying 2
+	patches from Dmitry Sabanin so that the source parser takes
+	"HERE-text" blocks into account as well as multiple statement
+	separated by semi-colons on a single line.
+
+2003-07-16 23:04  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_tools_debugger/debuggee.rb,
+	plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+	plugins/rubyide_fox_gui/fxscintilla/global_properties.rb,
+	plugins/rubyide_fox_gui/fox_services.rb,
+	plugins/rubyide_commands/core_commands.rb,
+	freebase/lib/freebase/readers.rb,
+	freebase/lib/freebase/freebase.rb : sounds like a few people are
+	trying to run Ruby and FR on MINGW. Hence the test of
+	RUBY_PLATFORM against mingw32 in addition to mswin32
+
+2003-07-04 11:16  ljulliar
+
+	* redist/rexml/xpath.rb, redist/rexml/doctype.rb,
+	plugins/rubyide_tools_debugger/debuggee.rb,
+	freebase/lib/freebase/yaml.rb: Several changes in the syntax to be
+	remove warnings issued by Ruvy 1.8.0 preview3 and above ([ and ]
+	not escaped in regex, Hash must be used instead of
+	Kernel::Hash,etc...). it should remain compatible with 1.6.x
+
+2003-07-02 22:33  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb: make sure a modified
+	file is saved before running it through the debugger.
+
+2003-07-02 22:30  ljulliar
+
+	* plugins/rubyide_gui/editpane.rb,
+	plugins/rubyide_fox_gui/editpane.rb: fix a bug causing the star
+	icon not to show up when a file was modified. The fix was to move
+	the file restore at the end of the start method. Also added a
+	couple published actions to the EditPane object.
+
+2003-07-02 10:50 richkilmer 
+
+  * plugins/rubyide_tools_fox_source_browser/basic_source_browser.rb,
+    plugins/rubyide_tools_fox_source_browser/plugin.yaml,
+    plugins/rubyide_tools_source_parser/basic_parser.rb,
+    plugins/rubyide_tools_source_parser/basic_source_parser.rb,
+    plugins/rubyide_tools_source_parser/plugin.yaml
+    Changed over to new (basic) parser.  Did not (yet) remove old code,
+    just changed the files loaded in the plugin.yaml
+
+2003-07-01 09:33 ljulliar * freebase/lib/freebase/readers.rb,
+	freebase/lib/freebase/properties.rb,
+	freebase/lib/freebase/freebase.rb,
+	freebase/lib/freebase/databus.rb, freebase/lib/freebase/core.rb,
+	freebase/lib/freebase/configuration.rb, freeride.rb : Generalize
+	the test to determine whether a file path is absolute or relative
+	so that it works on all platforms including Windows and modify
+	test in freebase accordingly.
+
+2003-06-24 23:29  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : setting the cursor line
+	now consider that first line is numbered line 1 (only when talking
+	to the scintilla controller do we have to decrement line by 1)
+
+2003-06-24 23:25  ljulliar
+
+	* plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+	plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+	plugins/rubyide_tools_debugger/debugger.rb,
+	plugins/rubyide_fox_gui/editpane.rb,
+	plugins/rubyide_commands/core_commands.rb : The introduction of
+	the new project plugin showed that command availability of various
+	plugins were sensitive to the order in which plugins are
+	started. Command availability is now also testing initial
+	condition and do not only rely on events notification.
+
+2003-06-24 23:17  ljulliar
+
+	* freebase/lib/freebase/databus.rb : has_child? method rewritten
+	to avoid implicit creation of child node that does not
+	exist. Previous version created the non existing nodes just by the
+	simple fact of testing their existence.
+
+2003-06-24 01:43 	richkilmer
+
+  * plugins/rubyide_commands/core_commands.rb : enabled help support 
+  for OS X in swith statement for platforms for App/Help.
+  
+2003-06-24 01:16 	richkilmer
+
+  * plugins/rubyide_commands/core_commands.rb : added project
+  specific commands,
+  plugins/rubyide_tools_fox_file_browser/file_browser.rb : remove puts
+  plugins/rubyide_gui/editpane.rb : removed RestoreFiles command because
+  its now handled by the project instance
+  plugins/rubyide_fox_gui/menubar.rb,
+  plugins/rubyide_fox_gui/menupane.rb,
+  plugins/rubyide_fox_gui/appframe.rb,
+  plugins/rubyide_fox_gui/dockbar.rb,
+  plugins/rubyide_fox_gui/dockpane.rb,
+  plugins/rubyide_fox_gui/fox_services.rb,
+  plugins/rubyide_fox_gui/outputpane.rb,
+  plugins/rubyide_fox_gui/statusbar.rb,
+  plugins/rubyide_fox_gui/toolbar.rb, : normalized the way components are 
+  built.  this will make things easier to maintain.  fixed problems when 
+  an editpane was created before the renderer was installed.  removed 
+  restoring file from editpane (now in project)  
+  
+2003-06-24 01:07 	richkilmer
+
+  * freeride.rb : first parameter is now the project filename
+
+2003-06-24 01:07 	richkilmer
+
+  * plugins/rubyide_project : added initial import of project
+  plugin
+  
+2003-06-24 01:00 	richkilmer
+
+  * freebase/lib/freebase/databus.rb : added Subscription object
+  to allow simplified unsubscription.
+  * freebase/lib/freebase/logger.rb : fixed problem where if the
+  logger dir did not exist, it would raise an exception.  it now
+  recursively creates the logger dir
+
+2003-06-22 17:56  ljulliar
+
+	* plugins/rubyide_tools_debugger/debugger.rb : fixed the
+	run_to_cursor problem. Remote debugger was aborting because the
+	breakpoint is nil when using temporary breakpoints.
+
+2003-06-22 17:53  ljulliar
+
+	* plugins/rubyide_fox_gui/fxscintilla/scintilla.rb : wrong method
+	name fixed (get_current_pos)
+
+2003-06-22 17:51  ljulliar
+
+	* plugins/rubyide_fox_gui/editpane.rb : add or substract one (1)
+	when going from editpane line numbering (starting at 1) to
+	fxscintilla controller line numbering (starting at 0)
+
+2003-06-15 17:04  ljulliar
+
+	* plugins/rubyide_gui/component_layout.yaml,
+	plugins/rubyide_fox_gui/plugin.yaml,
+	plugins/rubyide_fox_gui/editpane.rb : New Search menu
+	added. Find... and Replace... text functions implemented as well
+	as Find Again. The settings of the Find... and Replace... dialog
+	boxes are saved in the newly created Editpane properties file.
+
+2003-06-11 23:22  ljulliar
+
+	* freebase/lib/freebase/plugin.rb : fixed erroneous plugin name in
+	exception error message.
+
+2003-06-11 23:15 ljulliar
+
+	* plugins/rubyide_fox_gui/icons/modified.png : shrink the icon
+	size to 11x11 to prevent the tab from resizing when the file is
+	saved (bug #3924)
+
+2003-05-29 14:45  ljulliar
+
+        * plugins/rubyide_fox_gui/appframe.rb,
+        plugins/rubyide_fox_gui/icons/bullseye.ico: set mini icon and
+        application icon for the FR Main Window. The icon is now the
+        bull's eye that was originally used by Rich and Curt in the
+        Windows installer.
+
+2003-05-23 23:23  ljulliar
+
+        * plugins/rubyide_fox_gui/appframe.rb,
+        plugins/rubyide_fox_gui/icons/fr_icon16.png: set mini icon for FR
+        main window.
+
+2003-05-16 23:18  ljulliar
+
+        * plugins/rubyide_fox_gui/editpane.rb : place goto line dialog box
+        at the center of the main window
+
+2003--5-16 10:38  rich
+
+  * Added the commands to view line numbers, whitespace and end of line 
+    characters. changed .yaml file for editpane from 'editpanes.yaml' to
+    'editpane.yaml' to align with other components.  Added menu items to
+    the 'View' menu to the component_layout.yaml file.
+
+2003-05-15 23:33  ljulliar
+
+        * plugins/rubyide_gui/component_layout.yaml ,
+        plugins/rubyide_fox_gui/editpane.rb : Goto menu created and Goto Line
+        menu item and dialog box added in the EditPane plugin
+
+2003-05-13 20:06  ljulliar
+
+        * plugins/rubyide_fox_gui/fxscintilla/scintilla.rb,
+        plugins/rubyide_fox_gui/fox_services.rb,
+        plugins/rubyide_fox_gui/editpane.rb : Intercept load and save
+        exceptions in the scintilla controller code, pass it to the
+        caller. The editpane plugin now intercepts the exception (file
+        name too long, access denied...) and display an alert message
+        box. Long Messages in message box are also wrapped at 60 chars per
+        line to prevent giant message boxes to display. (bug #3562)
+
+2003-05-10 20:49  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb: English
+        names of Ruby global variables are now shown in the global
+        tab. (bug #3275)
+
+2003-05-10 10:47  Rich Kilmer <rich@infoether.com>
+  * editpane/fox editpane - added get_ext_object method to the 
+  editpane 'actions' api which returns a handle to the 'scintilla model'
+  object instance.  This allows a platform/implementation specific object
+  to be returned which gives a far lower-level api then the editpane api.
+        
+2003-05-10 09:33  Rich Kilmer <rich@infoether.com>
+
+        * enabled code folding (YEAH!!!) and enabled autoindent of at
+        least keeping the current line at the same indent level of the
+        previous line (no autoindent based on keywords). This should
+        prevent exceptions.  Folding only shows plus and minus right now
+        (will be user selectable in the future.  Also, there are now two
+        margins (in addition to line numbers).  The first is the
+        breakpoint margin, the second is the fold margin.  We may want to
+        change the color of these backgrounds to differentiate them.  (bug
+        #3212)
+
+2003-05-06 09:30  Rich Kilmer <rich@infoether.com>
+        
+        * Bug in resizing of dockpanes (in the south region) fixed. (bug
+        #3230)
+
+2003-05-05 19:48  Rich Kilmer <rich@infoether.com>
+
+        * Major update to the Scintilla wrapper/integration. Scintilla
+    now generates wrappers that do not have CamelCase but 
+    underscore_syntax instead.  This is better from a Ruby 
+    perspective and paves the way to expose the entire Scintilla.
+    It also generates code based on scintilla.iface version found 
+    in fxscintilla 1.51. 
+    API for advanced usage in FreeRIDE.
+  * plugins/rubyide_fox_gui/editpane.rb
+    changed to use new event model
+    updated to new method signatures
+  * plugins/rubyide_fox_gui/fxscintilla/fxscintilla_test.rb
+    changed to use new event model
+  * plugins/rubyide_fox_gui/fxscintilla/global_properties.rb
+    (formatting) changed indenting of lines
+  * plugins/rubyide_fox_gui/fxscintilla/ruby_autoindent.rb
+    updated to new method signatures
+  * plugins/rubyide_fox_gui/fxscintilla/ruby_colourize.rb
+    updated to new method signatures
+  * plugins/rubyide_fox_gui/fxscintilla/scintilla.rb
+    updated to new method signatures
+  * plugins/rubyide_fox_gui/fxscintilla/scintilla_wrapper.rb
+    updated to new method signatures
+  * plugins/rubyide_fox_gui/fxscintilla/util/iface_gen.rb
+    updated to new method signatures
+  * plugins/rubyide_gui/editpane.rb
+    updated to new method signatures
+
+2003-05-02 23:14  ljulliar
+
+        * plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+        plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb : the debugger console
+        is now cleared when the script runner clean output button is
+        selected.
+
+2003-05-02 23:10  ljulliar
+
+        * plugins/rubyide_gui/dockbar.rb,
+        plugins/rubyide_fox_gui/dockpane.rb,
+        plugins/rubyide_fox_gui/dockbar.rb : a dockbar has a new action
+        named 'current' which return the dockpane that is currently
+        visible.
+
+2003-05-01 22:16  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb: debugger
+        icons now behave like normal toolbar button (bug #3245)
+
+2003-05-01 21:56  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb : fix the
+        crash when pushing on the Delete button and the watch list is
+        empty (bug #3264)
+
+2003-05-01 14:22  ljulliar
+
+        * plugins/rubyide_tools_fox_source_browser/source_browser.rb,
+        plugins/rubyide_tools_fox_script_runner/script_runner.rb,
+        plugins/rubyide_tools_fox_file_browser/file_browser.rb,
+        plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_fox_gui/editpane.rb,
+        plugins/rubyide_fox_gui/toolbar.rb,
+        freebase/lib/freebase/readers.rb,
+        freebase/lib/freebase/properties.rb,
+        freebase/lib/freebase/core.rb,
+        freebase/lib/freebase/configuration.rb, freeride.rb : make FR code
+        independent from the place it is installed and run. There is now
+        an internal variable which says where FR is installed. This
+        codebase directory is either determined from the path to the
+        freeride.rb script or can also be forced through the command line
+        option --codebase or -b. The codebase directory is available in
+        the global variable $FR_CODEBASE or in the
+        /system/properties/config/codebase slot. One of the reason for
+        this change is that FR makes no assumption about the working
+        directory. The working directory remains the directry where the
+        user is when freeride is started. The script runner and debugger
+        have also been modified to use the script directory as the working
+        directory and the debugger no longer imposes its own -I options to
+        minimize interferences with the debugged process.
+        (See bug #3224)
+
+2003-04-28 23:23  ljulliar
+
+        * plugins/rubyide_tools_debugger/debuggee.rb : Object#type
+        deprecated in 1.8. use Object#class instead. Avoid warnings in the
+        debugger console
+        (Repository): 
+
+2003-04-26 18:37  ljulliar
+        
+        * ChangeLog: file updated before final tagging of 0.5.0 gold
+        
+2003-04-26 07:59  curthibbs
+
+        * plugins/rubyide_commands/core_commands.rb: On startup, FreeRIDE
+        tries to reopen all files that were previously open at loast
+        shutdown, but the code that did this was not checking to see if the
+        file still existed. This caused several plugins to fail to load.
+        This has now been corrected [ Bug #3325 ] .
+
+2003-04-25 19:04  richkilmer
+
+        * plugins/rubyide_fox_gui/fxscintilla/util/: Scintilla.iface,
+        iface_gen.rb, scintilla_wrapper_gen.rb: no longer needed
+
+2003-04-25 10:30  curthibbs
+
+        * freebase/lib/freebase/readers.rb: If a YAML config file was bad,
+        this properties loader simply died and crashed FreeRIDE. In this
+        particular instance, the YAML file existed but had a zero length.
+        This has now been fixed (i.e. we will ignore bad YAML config files
+        and not crash).
+
+2003-04-24 06:16  richkilmer
+
+        * plugins/rubyide_fox_gui/fxscintilla/util/Scintilla.iface.new:
+        removed...preparing for new scintilla.iface from recent release of
+        scintilla
+
+2003-04-23 20:33  richkilmer
+
+        * ChangeLog, freeride.rb, config/default.yaml: Updated version
+        information for 0.5.0 release
+
+2003-04-23 20:30  richkilmer
+
+        * freebase/plugins/: raa_webrick/plugin.yaml,
+        raa_xmlrpc4r/plugin.xml: enable plugins by default when using
+        freebase run.rb script
+
+2003-04-23 20:27  richkilmer
+
+        * freebase/bin/: default.yaml, run.rb: updated version of FreeBASE
+        to 1.2.0
+
+2003-04-15 23:12  ljulliar
+
+        * plugins/rubyide_tools_fox_script_runner/script_runner.rb: run
+        command must be enable at start time if there is an editpane
+        already opened (bug #3215).
+
+2003-03-23 17:34  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_tools_debugger/breakpoint.rb
+        plugins/rubyide_tools_debugger/debuggee.rb: new revision of the
+        debugger with the following features
+        - new breakpoint/watchpoint class in separate file
+        - watchpoints are now working
+        - global variables displayed in the Global tab
+        
+        * plugins/rubyide_tools_debugger/breakpoint.rb (Repository): 
+
+2003-03-23 17:28  ljulliar
+
+        * plugins/rubyide_commands/core_commands.rb,
+        plugins/rubyide_fox_gui/plugin.yaml: Editpane plugin now saves all
+        the open files in its property file and reload the same files when
+        FreeRIDE is restarted.
+
+        * plugins/rubyide_fox_gui/editpane.rb (Repository): 
+
+2003-03-23 17:23  ljulliar
+
+        * plugins/rubyide_gui/statusbar.rb,
+        plugins/rubyide_gui/plugin.yaml,
+        plugins/rubyide_fox_gui/statusbar.rb,
+        plugins/rubyide_fox_gui/plugin.yaml: Initial revision of the
+        Status bar pluign which allows for the display of messages in the
+        FOX status bar at the bottom of th page.
+
+2003-03-09 09:56  ljulliar
+
+        * README,config/default.yaml, freeride.rb : preparing for release
+        0.5.0rc2
+
+2003-03-09 09:51  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_tools_debugger/debuggee.rb: text field added on
+        the debugger console tab to evaluate any expression you type.
+
+2003-03-08 18:48  ljulliar
+
+        * freebase/logger.rb: a typo in the error method (file instead of
+        @file) and file set to sync mode to make sure that the output is
+        immediately sent to the log file (needed on Linux at least).
+
+2003-03-08 18:09  ljulliar
+
+        * redist/yaml.rb, redist/log4r.rb, redist/log4r:Log4R removed
+        because only a few features were used and Rich wrote a minimal
+        replacement for FreeBASE. Yaml.rb is now also part of
+        FreeBASE. This is an attempt to make FreeBASE a self contained
+        library
+ 
+
+2003-03-03 23:32  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_tools_debugger/debuggee.rb: local variables are
+        now displayed in the Frame tab and global variables in the Globals
+        tab
+
+2003-02-17 23:39  ljulliar
+
+        * plugins/rubyide_gui/plugin.yaml: the editpane plugin now
+        requires the command plugin to be loaded first (forgotten in
+        previous commit)
+
+2003-02-14 23:50  ljulliar
+        
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_gui/editpane.rb: move class-type actions of the
+        editpane (FindFile, GetBreakpointsForFile...) from the action slot
+        of each instance into the commands/EditPane slot
+
+2003-02-08 17:58  ljulliar
+
+        * plugins/rubyide_tools_debugger/debuggee.rb: apply patch given by
+        NAKAMURA, Hiroshi (ruby-talk:53333) to avoid following the require
+        statement on 'next' command.
+
+2003-02-08 17:57  ljulliar
+
+        * plugins/rubyide_fox_gui/editpane.rb: action added to clear the
+        debug line
+
+2003-02-08 10:41  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb,
+        plugins/rubyide_tools_debugger/debugger.rb,
+        plugins/rubyide_tools_debugger/debuggee.rb: some more code in the
+        debugger aligned with the new architecture. Commit for Lyle to
+        help me fix a problem with the FXRuby.
+
+2003-02-08 10:37  ljulliar
+
+        * plugins/rubyide_gui/editpane.rb : new functions added for the
+        debugger. Add/Delete breakpoints event sent to the queue and
+        'find_file' action added as well to find the editpane slots that
+        contains a given file.
+
+2003-02-01 17:55  ljulliar
+
+        * plugins/rubyide_tools_fox_debugger/fox_debugger.rb, plugins/rubyide_tools_debugger/debugger.rb : some more changes towards a working debugger.
+
+2003-01-27 15:02  ljulliar
+
+        * plugins/rubyide_tools_debugger/debugger.rb : A few more changes
+        in the debugger towards a working implementation.
+
+2003-01-27 15:00  ljulliar
+
+        * plugins/rubyide_gui/component_manager.rb : A type in the raise message
+
+2003-01-04 20:13  ljulliar
+
+        * plugins/rubyide_tools_debugger/debugger.rb : a few changes to
+        re-order the code in start and make the cmd availability work
+        properly.
+
+2003-01-03  ljulliar
+
+        * freebase/configuration.rb, freebase/readers.rb: replaced
+        hardcoded "/" with File::SEPARATOR and used File.join to build
+        file path. Both are portable across platforms.
+
+2002-12-27 22:36  ljulliar
+
+        * freebase/readers.rb, freebase/properties.rb, freebase/logger.rb,
+        freebase/core.rb : YAML property files are now saved/created in
+        HOME (Linux) or USERPROFILE (Win32) directory and not in the FR
+        directory itself. Nothing should be written in the FR directory.
+
+2002-12-21 16:09  ljulliar
+
+        * config/default.yaml, freeride.rb : version number updated to 0.5.0rc1
+
+2002-12-21 16:06  ljulliar
+
+        * freebase/core.rb : Version number shown in system/properties was
+        the FreeBASE version number. Must the FreeRIDE version number.
+
+2002-12-21 16:05  ljulliar
+
+        * freebase/freebase.rb : indent changed for VERSION constant.
+
+2002-12-20 23:05  ljulliar
+
+        * plugins/rubyide_fox_gui/fxscintilla/global_properties.rb : make
+        default font size larger on Linux. (It's always smaller than
+        Windows). Should probably go in a future yaml file when a
+        preference dialog box will allow for font size configuration
+
+2002-12-20 22:47  ljulliar
+
+        * plugins/rubyide_commands/core_commands.rb :  remove spurious puts that was here for debugging purposes
+
+2002-12-20 22:39  ljulliar
+
+        * config/default.yaml : default plugin path changed to plugins now
+        that the CVS repo is up to date
+
+2002-12-18 10:49  ljulliar
+
+        * plugins/System_Commands/CoreCommands.rb : Help on Linux must be
+        invoked through system (not exec) and open a new Help window.
+
+2002-11-21 14:03  ljulliar
+
+        * doc/userhelp.html : Same version as before but this one was
+        written in the RubyIDE Wiki first and then committed in CVS (Do
+        not edit this file directly)
+
+2002-11-20 21:54  ljulliar
+
+        * INSTALL, doc/userhelp.html : Installation instructions added to
+        the user help file.
+
+2002-11-20 21:18  ljulliar
+
+        * plugins/System_Commands/AppCommands.rb : add help browsing
+        command for none windows platform (Assume netscape for now -
+        should become a configurable property some day)
+
+2002-11-11 23:51  ljulliar
+
+        * freeride/freeride.rb : forgot the redist prefix in include path
+
+2002-11-11 23:04  ljulliar
+
+        * config/.cvsignore : ignore properties.yaml in CVS
+
+2002-11-11 23:01  ljulliar
+
+        * freeride/freeride.rb : FR architecture specific include path
+        appended to the Ruby include path (in preparation of ripper.so
+        delivery)
+
+2002-11-10 14:15  ljulliar
+
+        * freebase/plugin.rb: the puts statement uses an erroneous
+        variable name
+
+2002-11-10 02:54  richkilmer
+  * Yes...its 2:54AM!!!
+  * Checked in the major rewite of FreeBASE.  The plugin system is 
+  completely rewritten. there is a new configuration.rb file with 
+  config classes that manage computing plugin startup and load order/ 
+  dependencies/ resolve circular dependencies.  The plugin format is 
+  now YAML instead of XML.  The readers.rb file contains the readers 
+  for the yaml files.  There is an incomplete reader for reading the 
+  XML formats...this will be  completed so we can switch back if 
+  needed.  core.rb removes a lot of code that is now managed in the 
+  Configuration class.  The plugin.rb file is changed to remove the 
+  parsing of XML and instead leverage the PluginConfiguration class 
+  to hold config data (all dependency management code is also removed 
+  from this class)
+  * Added new plugin.yaml files
+  * Changed all existing plugin.xml files per new format
+  
+2002-11-02 13:19  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb,
+        plugins/System_GuiRenderFox/foxhacks.rb: the 'os_host' config param
+        is actually 'host_os'.
+
+2002-11-01 11:15 richkilmer
+        * made significant cleanup and code changes.  Added two plugins
+        including SourceParser and SourceBrowser.  Fixed debugger (kind
+        of).  Fixed UI elements.
+
+2002-10-26 01:00 richkilmer
+        * plugins/System_Commands/AppCommands.rb Added command
+        'App/File/Load' which is not in the menu but can be called and
+        passed a (fully qualified) file path to load.
+        
+        * plugins/System_GuiCore/ComponentLayout.xml Added View menu
+        
+        * plugins/System_GuiCore/DockPanes.rb Refactored quite a bit.
+        Now, you build docpanes and simply dock them to a (named) docbar
+        (with the dock command) instead of having to use the dockbar
+        attach method.  The data for a dockpane is used by a renderer...it
+        can be whatever the render requires.  In Fox, the is the FX
+        component that will be held within the dockpane
+        
+        * plugins/System_GuiRenderFox/DockBarRenderFox.rb Minor
+        changes...most of the functionality is in DockPane
+        
+        * plugins/System_GuiRenderFox/DockPaneRenderFox.rb Major changes.
+        Implements the dock and undock commands of its DockPane abstract
+        component.  The frame is built by default but not a tab.  The tab
+        is constructing if the dockpane is docked to a bar.  This removed
+        the need for the faketab hack.  This mechnism now fully
+        works...you can create docpanes and dock them to the west and
+        south dockbars.
+        
+        * plugins/System_GuiRenderFox/foxhacks.rb removed the east dock
+        pane (it was causing resize issues.)  tabs are (right now) on the
+        top instead of sideways.  I find it hard to read when stuff is
+        sideways.
+        
+        * plugins/DatabusInspector/DatabusInspector.rb remove the close
+        button since the x is available in the upper right corner.  added
+        the ability to invoke command slots, which can help in debugging
+        commands.
+        
+        * plugins/FileBrowser/* Added file browser plugin which adds
+        itself to the View menu and is a simple example of using the
+        DockPane.
+
+2002-10-23 11:30  richkilmer
+  * plugins/System_Commands/AppCommand.rb
+  updated to prevent opening a file twice
+  * plugins/System_GuiCore/ComponentLayout.xml
+  extended the name of the app
+  * plugins/System_GuiCore/EditPanes.rb
+  enhaced to make use of the new dialogs and solidified
+  the behavior of working with modifed files (save, save as,
+  close, etc)
+  * plugins/System_GuiRenderFox/FoxServices.rb
+  added new service commands including:
+  App/Services/YesNoCancelDialog: params (title, msg) 
+    returns 'yes', 'no', 'cancel'
+  App/Services/YesNoDialog: params (title, msg) 
+    returns 'yes', 'no'
+
+2002-10-23 09:41  ljulliar
+
+        * plugins/System_GuiRenderFox/FoxServices.rb: @@dir class variable
+        must be initialized in the class declaration (Ruby 1.6.6 / Linux)
+
+2002-10-23 1:25 richkilmer
+  * plugins/System_Commands/plugin.xml
+  added new KeyManager plugin and made AppCommands
+  and EditCommands dependant on it.
+  * plugins/System_Commands/KeyManager.rb
+  added key manager to manage (system wide) the
+  mapping of command objects to keys w/modifiers
+  * plugins/System_Commands/AppCommands.rb
+  updated per new key manager architecture
+  * plugins/System_Commands/EditCommands.rb
+  updated per new key manager architecture
+  * plugins/System_Commands/CommandManager.rb
+  updated per new key manager architecture
+  * plugins/System_GuiRenderFox/MenuPaneRenderFox.rb
+  updated per new key manager architecture
+  * plugins/DatabusInspector/DatabusInspector.rb
+  updated per new key manager architecture
+
+2002-10-22 12:50 richkilmer
+  * plugins/System_GuiCore/EditPane.rb
+  changed to standard @component_commands var and fixed open/close
+  behavior
+  * plugins/System_GuiCore/MenuPane.rb
+  created enable/disable(command_path) in menus...not yet enabled in
+  fox
+  * plugins/System_GuiCore/DockPane.rb
+  changed to standard @component_commands var
+  * plugins/System_GuiCore/DockBar.rb
+  changed to standard @component_commands var
+  * plugins/System_GuiCore/Component.rb
+  added reference to  @component_commands var
+
+2002-10-21 01:00 richkilmer
+
+  * plugins/System_GuiRenderFox/FoxServices.rb
+  changed to use the CommandManager to have only one mechanism
+  for implementing callable behavior.  The new commands are in
+  App/Services/...(FileOpen, FileSaveAs, etc)
+  * plugins/System_Commands/AppCommands.rb
+  updated per new service calling convention
+  * plugins/SYstem_GuiCore/Component.rb
+  added reference to @cmd_mgr to all components
+  * plugins/System_GuiCore/EditPanes.rb
+  updated per new service calling convention
+
+2002-10-17 13:30 richkilmer
+
+  * plugins/System_GuiRenderFox/*.rb
+  Moved all components under FreeRIDE/FoxRenderer module and 
+  renamed all components to the name of the component they are rendering
+
+2002-10-17 01:00 richkilmer
+
+  * plugins/Debugger/plugin.xml
+  disabled debugger plugins by setting autoload to 'false'
+
+2002-10-14 11:00 richkilmer
+
+  * plugins/System_GuiRenderFox/*.rb
+  removed Listener inner classes and connected Fox rendering components
+  to new 'pool' component architecture.
+
+2002-10-14 18:00 richkilmer
+
+  * plugins/System_GuiRenderFox/DatabusInspectorRenderFox.rb
+  removed DatabusInspectorRenderFox.rb and
+  moved functionality into DatabusInspector plugin
+
+2002-10-14 00:30 richkilmer
+
+  * plugins/System_GuiCore/NilRenderer.rb
+  removed...no longer needed because of new renderer calling
+  convention
+  
+2002-10-14 00:30 richkilmer
+
+  * plugins/System_GuiCore/...
+  Major changes to the way components work.  Removed reference to
+  the term 'pool' under each component.  Component instances are now
+  directly under the component class in /system/ui/components.  Abstracted
+  renderer code to be hooked on proc slots under component/commands/???
+
+2002-10-14 00:30 richkilmer
+
+  * freebase/databus.rb
+  changed Proc slot to not raise exception if called on a slot
+  when the proc has not been set.
+
+2002-10-14 23:18  ljulliar
+
+        * plugins/Debugger/Debugger.rb : the debugger dockpane must also
+        be created through the new component manager methods introduced by
+        Rich.
+
+2002-10-14 23:12  ljulliar
+
+        * plugins/System_GuiRenderFox/EditPaneRenderFox.rb : edit frame
+        introduced by Rich in the previous version broke the close
+        method. close now removes the edit frame child instead of the
+        scintilla object.
+
+2002-10-13 16:16  richkilmer
+
+        * plugins/System_GuiCore/...
+  Removed GuiSetup.xml...replaced by...
+  Added ComponentLayout.xml
+  Removed GuiSetup.rb...replaced by...
+  Added ComponentManager.rb
+  Added Component.rb (removed class from GuiSetup.rb)
+
+
+2002-10-10 03:16  richkilmer
+
+        * plugins/System_GuiRenderFox/*.rb,
+  cleaned up how initialization occurs and references to pooling
+  
+2002-10-10 03:16  richkilmer
+
+        * plugins/System_GuiCore/*.rb,
+  The components pools are now managed by a ComponentManager which
+  is a new class.  Updated all components to use the new manager in the
+  creation of new components.  The manager has add, remove and each 
+  methods and optionally accepts a parameter to limit the number of 
+  component which solves the hack within the code of AppFrame, etc.
+  
+2002-10-10 03:16  richkilmer
+
+        * plugins/System_GuiRenderFox/plugin.xml,
+  made AppFrameRenderFox dependent on GuiCore
+  
+2002-10-10 12:50  richkilmer
+
+        * plugins/System_GuiRenderFox/EditPaneRenderFox.rb,
+  added a 3d frame around edit controls to enable a raised look within the
+  controls
+
+2002-10-8 12:50  richkilmer
+
+        * plugins/System_GuiRenderFox/*.rb
+  reformatted to have consistent indentation and removed code that checked
+  if something was nil? in an if statement.
+  
+2002-10-04 15:51  ljulliar
+
+        * plugins/Debugger/Render/Fox/DebuggerRenderFox.rb,
+        plugins/Debugger/debuggee.rb, plugins/Debugger/Debugger.rb: start
+        implementing the frame and thread selection in the Frame Tab of
+        the debugger. Only frame selection works for the moment.
+
+2002-10-01 10:16  ljulliar
+
+        * plugins/System_GuiRenderFox/MenuPaneRenderFox.rb : the slot
+        variable doesn't carry the initial slot value because it keeps
+        changing in the while loop. The only thing we can display in the
+        exception message is the command text.
+
+2002-09-27 02:50  richkilmer
+
+  * GuiSetup.xml: now contains the layout of the appframe/menubar/menupanes/menus
+  * GuiSetup.rb: now uses GuiSetup.xml
+  * plugin.xml: correctly references the properties file for GuiSetup.rb plugin
+  * plugin.xml: removed unused properties file references
+  * freebase/properties.rb: added attr_read for base_slot to a properties object        
+  * freebase/databus.rb: added new method has_child? to check if a child slot 
+  exists w/out creating it.     changed each_slot to sort by name
+  
+2002-09-22 16:00  richkilmer
+
+  * plugins/System_Commands/...: Major overhaul of the way commands work.  
+  Added CommandManager plugin and made AppCommands and EditCommands 
+  plugin/dependent on it.  The CommandManager is a now the manager of the slot
+  "/system/ui/commands" and presents an API for adding, removing and 
+  iterating over commands.  CommandBase is no longer needed.  Updated
+  AppCommands and EditCommands to reflect the new API.  Each command has its
+  own manager object to present an API to the specific command.  Commands are
+  now able to be more hierarchical.  Changes Edit and App commands to be under
+  App/File... and App/Edit...
+  * plugins/System_GUI_Core: Updated to work with new System_Command structure
+  Modified MenuPanes' commands= and add_command methods to add the new type
+  of command path. Modified GuiSetup to use the new commands= methos and 
+  command naming structures and added SEPARATOR for menus.
+  * freebase/databus: added ability to recurse child slots with an each_slot
+  call. Added notification for when a slot becomes managed :notify_slot_managed
+  * DatabusInspector.rb: Changed way that commands are build using command manager
+  * Debugger.rb: Changed way that commands are build using command manager
+  * AppFrameRenderFox.rb: Changed the reference to the command manager
+  * MenuPaneRenderFox.rb: Changed to work with new command structure and added
+  ability to insert SEPARATORs in menus.
+  * Removed CommandBase.rb and System_Commands.rb
+
+2002-09-21 21:00  richkilmer
+
+  * freeride/freeride: changed the way freeride is started.  
+  Added logic to catch missing properties files.
+  * run.bat: Changed to just start FreeRIDE/FreeRIDE with a path...
+  all other logic in the FreeRIDE module.
+
+2002-09-11 09:49  ljulliar
+
+        * plugins/Debugger/Debugger.rb (Message): Copyright owner is L. Julliard
+
+2002-09-10 16:20  ljulliar
+
+        * plugins/Debugger/Debugger.rb: Make debugger work on Windows
+        platform. Use threads instead of blocking read on a pipe, popen
+        instead of popen3.
+
+2002-09-10 16:18  ljulliar
+
+        * plugins/Debugger/debuggee.rb: On Win32 (mswin) redirect STDERR to
+        STDOUT because popen3 cannot be used from FreeRIDE debugger
+
+2002-09-10 16:14  ljulliar
+
+        * plugins/Debugger/Render/Fox/DebuggerRenderFox.rb: implement 2
+        possible ways of redirecting debugged process stdout and stderr to
+        FXText console. One is via FOX addInput() and the other one is via
+        Ruby threads.  The ruby approach doesn't work on Windows (why??)
+        and the FOX approach should work (works for Lyle) but not for me.
+
+2002-09-10 15:36  ljulliar
+
+        * plugins/System_GuiRenderFox/DockPaneRenderFox.rb: end method must
+        be called on a drawing context when drawing is done. Also did some
+        code debug code clean-up in refresh_title
+
+2002-09-10 15:12  ljulliar
+
+        * plugins/System_GuiRenderFox/DockPaneRenderFox.rb: now uses FOX
+        default font for title of dock panes.
+
+2002-09-10 11:46  ljulliar
+
+        * plugins/System_GuiRenderFox/FoxServices.rb: Normalize file names
+        from FOX to internal Ruby representation.
+
+2002-09-02 11:48  ljulliar
+
+        * plugins/Debugger/: Debugger.rb, debuggee.rb: A few things changed
+        to run on Windows.
+
+2002-08-30 18:17  ljulliar
+
+        * plugins/Debugger/Render/Fox/DebuggerRenderFox.rb: - Attach/detach
+        stdin of remote process to the renderer - catch keyboard input and
+        send it to remote process stdin - Introduce styled text for STDIN,
+        STDOUT and STDERR in text console - First sketch of Frame Tab
+
+2002-08-30 18:14  ljulliar
+
+        * plugins/Debugger/Debugger.rb: Attach/detach stdin of remote
+        process to the renderer
+
+2002-08-30 07:20  richkilmer
+
+        * plugins/System_GuiRenderFox/DatabusInspectorRenderFox.rb:
+        Modified to remove FXMainWindow and make it FXDialogBox instead.
+        
+        Added a close button to enable closing the box
+        
+        Set the size = 800 x 600
+
+2002-08-30 06:18  richkilmer
+
+        * freebase/core.rb: removed win32 have since threads work now!!!
+        YEAH!!!
+
+2002-08-21 18:35  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla_wrapper.rb:
+        Determine the text length with the standard getLength. Avoid a
+        crash when getting looong text. Bug reported by NISHIO Mizohu.
+
+2002-08-20 18:29  ljulliar
+
+        * plugins/: Debugger/Debugger.rb, Debugger/debuggee.rb,
+        System_GuiCore/EditPanes.rb: Breakpoint management revised.
+        Brkpoints setting for newly loaded files is now triggered from the
+        remote debugger.
+
+2002-08-20 15:32  ljulliar
+
+        * plugins/Debugger/Debugger.rb: Only show the debug line if the
+        file is non nil. It can be nil if the debugger is launched on an
+        empty file or a file with no ruby statement in it.
+
+2002-08-12 10:44  ljulliar
+
+        * plugins/Debugger/debuggee.rb: Mark DRb threads as hidden and
+        don't show them to the end user in the debugging phase. Also catch
+        all exit events with the at_exit function. For this to work in all
+        cases exit! mut be aliased to exit)
+
+2002-08-09 22:48  ljulliar
+
+        * plugins/Debugger/Debugger.rb: Run to cursor requires a temporary
+        breakpoint. Also run_to_cursor does nothing if the current line and
+        the target line are the same.
+
+2002-08-09 22:47  ljulliar
+
+        * plugins/Debugger/debuggee.rb: Temporary breakpoint check and
+        delete fixed (wrong index argument)
+
+2002-08-09 22:27  ljulliar
+
+        * plugins/Debugger/Debugger.rb: No need to mimic a
+        :notify_queue_join on existing slots because breakpoints will be
+        set up when file is first loaded in the debugger.
+
+2002-08-09 22:19  ljulliar
+
+        * plugins/Debugger/: Debugger.rb, Render/Fox/DebuggerRenderFox.rb:
+        Clear console output when starting a new debugging session
+
+2002-08-09 17:45  ljulliar
+
+        * plugins/Debugger/: Debugger.rb, Render/Fox/DebuggerRenderFox.rb:
+        - add/delete breakpoints works ok - debugger icons to drive the
+        debugger enabled/disabled depending on the   context - many
+        commands functional (step in/out, finish, continue, run to cursor, 
+         start/stop, close...)
+
+2002-08-09 17:41  ljulliar
+
+        * plugins/Debugger/debuggee.rb: - redefine exit! as exit to
+        intercept all exit events - DRb server subthreads now ignored by
+        the tracer - method to delete/add breakpoint from the FreeRIDE
+        client added - all file names are now expanded because FreeRIDE
+        need full path names
+
+2002-08-09 17:38  ljulliar
+
+        * plugins/System_GuiRenderFox/EditPaneRenderFox.rb: - Icon loader
+        added.  - 'modified' icon inserted in the tab of editor pane when
+        file has been    modified - reports breakpoint insertion/deletion
+        occuring in scintilla to the   EditPane plugin
+
+2002-08-09 17:35  ljulliar
+
+        * plugins/System_GuiRenderFox/DockPaneRenderFox.rb: Remove the
+        error log just don't do anything if this slot alreadyxists
+
+2002-08-09 17:31  ljulliar
+
+        * plugins/System_GuiRenderFox/AppFrameRenderFox.rb: Activate tool
+        tips.
+
+2002-08-09 17:29  ljulliar
+
+        * plugins/System_GuiRenderFox/FoxServices.rb: Code simplification
+
+2002-08-09 17:28  ljulliar
+
+        * plugins/System_GuiCore/EditPanes.rb: - EditPane::find now returns
+        a slot object instead of an EditPane object - keep track of the
+        breakpoints placed with shift-click in the left margin - Post the
+        add/delete breakpoint event to a breakpoint event queue
+
+2002-08-09 17:23  ljulliar
+
+        * plugins/System_Commands/AppCommands.rb: Code simplification
+
+2002-08-09 17:21  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb: - EOL
+        character depends on the platform if not defined - Breakpoint
+        markers can be added or deleted in the left margin (shift-click) -
+        Markers for breakpoints (red dot) and current line in debugger  
+        (yellow background) created.  - Breakpoint marker switch to green
+        dot with red perimeter when reached - modified file status now sent
+        to edit pane
+
+2002-08-09 15:09  richkilmer
+
+        * freebase/databus.rb, test/utest_databus.rb: Changed the newly
+        added 'hash' slot type to 'map'
+        
+        Using hash created error for Laurent because slot.hash no longer
+        produced the hashcode for the slot (which becomes evident when you
+        put a slot into a Hash object.
+        
+        All methods related to the Hash slot type are now map
+
+2002-08-09 11:43  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla_wrapper.rb:
+        Several missing functions and constant added. This is a merge with
+        the scintilla.rb file from FXRuby. In the future this file should
+        be removed and the one coming with FXScintilla.rb or FXRuby used
+        instead. But our file has some goodies in it that we must keep for
+        the moment.
+
+2002-08-09 11:40  ljulliar
+
+        * plugins/System_GuiRenderFox/icons/modified.png: Icon to mark
+        modified edit panes. Initial revision
+
+2002-08-03 17:00  richkilmer
+
+        * freebase/databus.rb, test/utest_databus.rb: Added the Hash slot
+        type to database and built unit tests
+
+2002-07-30 18:08  ljulliar
+
+        * plugins/Debugger/: Debugger.rb, debuggee.rb,
+        Render/Fox/DebuggerRenderFox.rb: Very preliminary version of the
+        debugger. Next, step, finish and continue working ok. current line
+        highlighted. break point selectable but not working yet. Autoload
+        files as needed by the debugger. STDERR and STDOUT displayed in the
+        text console frame.
+
+2002-07-30 18:06  ljulliar
+
+        * plugins/: System_GuiCore/EditPanes.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb: function added to show
+        the current line in the debugger
+
+2002-07-30 18:04  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb: Various
+        things added for debugger: new markers, show current line in
+        debugger, show break points (activated with shift-click)
+
+2002-07-30 17:23  ljulliar
+
+        * redist/: drb.rb, drb/drb.rb, drb/eq.rb, drb/extserv.rb,
+        drb/extservm.rb, drb/observer.rb, drb/rinda.rb, drb/timeridconv.rb:
+        Initial revision
+
+2002-07-30 17:23  ljulliar
+
+        * redist/: drb.rb, drb/drb.rb, drb/eq.rb, drb/extserv.rb,
+        drb/extservm.rb, drb/observer.rb, drb/rinda.rb, drb/timeridconv.rb:
+        Import of DRb 1.3.6
+
+2002-07-17 14:03  ljulliar
+
+        * plugins/System_GuiRenderFox/EditPaneRenderFox.rb: making an
+        editor pane current also implies to put the focus on it to capture
+        all keys typed on the keyboard
+
+2002-07-15 17:00  curthibbs
+
+        * plugins/System_GuiCore/: DockBars.rb, DockPanes.rb, EditPanes.rb,
+        GuiSetup.rb, MenuPanes.rb: Changed to use a NilRenderer whenever a
+        real renderer has not yet been created.
+
+2002-07-15 16:58  curthibbs
+
+        * plugins/System_GuiCore/NilRenderer.rb: A do-nothing renderer used
+        as a placeholder
+
+2002-07-11 18:51  ljulliar
+
+        * plugins/Debugger/: Debugger.rb, plugin.xml,
+        Render/Fox/DebuggerRenderFox.rb: Very alpha-- version of the
+        debugger plugin. There is no real debugger working behind it. It
+        mostly shows how to insert a plugin in a dockbar/dockpane, insert
+        anew menu item, run a new command from the menu, build the UI of
+        the plugin and hook it to the dockpane. That's not so bad... ;-)
+
+2002-07-11 18:49  ljulliar
+
+        * plugins/System_GuiCore/plugin.xml: DockBars and DockPanes added
+        in the list of plugins to be loaded
+
+2002-07-11 18:48  ljulliar
+
+        * plugins/System_GuiCore/GuiSetup.rb: Run menu added where the
+        debugger menu item will show up when loaded
+
+2002-07-11 18:46  ljulliar
+
+        * plugins/System_GuiRenderFox/plugin.xml: DockBar and DockPane
+        plugins added in the plugin.xml start file.
+
+2002-07-11 18:44  ljulliar
+
+        * plugins/System_GuiRenderFox/foxhacks.rb: Application Frame layout
+        reworked to host the 3 dockbars (east, west, south)
+
+2002-07-11 18:43  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb: Activate
+        Undo collection and tried to insert Undo points each time a new
+        line is created but this one doesn't work yet (why?)
+
+2002-07-11 18:41  ljulliar
+
+        * plugins/: System_GuiCore/DockPanes.rb,
+        System_GuiRenderFox/DockPaneRenderFox.rb: DockPane plugins. Initial
+        Revision.
+
+2002-07-11 18:40  ljulliar
+
+        * plugins/: System_GuiCore/DockBars.rb,
+        System_GuiRenderFox/DockBarRenderFox.rb: DockBar plugins. Initial
+        Revision.
+
+2002-07-11 18:36  ljulliar
+
+        * plugins/Debugger/icons/: cancel.png, help.png, pause.png,
+        resume.png, runToCursor.png, showCurrentFrame.png,
+        startDebugger.png, stepInto.png, stepOut.png, stepOver.png,
+        suspend.png, viewBreakpoints.png: Debugger icons. Borrowed from
+        IntelliJ IDEA. Should probably ask for permission (todo)
+
+2002-07-11 11:32  ljulliar
+
+        * plugins/System_Commands/AppCommands.rb: Don't Save or Save As...
+        if ther is no more EditPane active.
+
+2002-07-11 11:29  ljulliar
+
+        * plugins/System_Commands/AppCommands.rb: Don't close if there is
+        no more EditPane active.
+
+2002-07-09 19:06  ljulliar
+
+        * plugins/: System_Commands/AppCommands.rb,
+        System_GuiCore/EditPanes.rb, System_GuiRenderFox/FoxServices.rb:
+        Now remember the directory from which a file was lost loaded from
+        or saved to and use it for next save as or open
+
+2002-07-09 15:14  ljulliar
+
+        * plugins/: System_Commands/AppCommands.rb,
+        System_Commands/EditCommands.rb, System_GuiCore/EditPanes.rb,
+        System_GuiCore/GuiSetup.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb,
+        System_GuiRenderFox/FoxServices.rb: - Save, Save as, Close, New
+        commands added to the multipane editor - Undo, Redo commands added
+        to the edit menu (undo granularity to be improved) - Modified files
+        taken into account in Save/Exit
+
+2002-07-09 11:44  ljulliar
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb: undo/redo
+        added in the controller and undo buffer reset when file opened
+
+2002-07-08 10:03  ljulliar
+
+        * plugins/System_Commands/AppCommands.rb: FreeRide version number
+        no longer hardcoded. Get it from the /system/properties/version
+        slot.
+
+2002-07-07 23:06  ljulliar
+
+        * plugins/: System_GuiCore/EditPanes.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb: Last minute typo
+        introduced while cleaning the multipane editor code. Fixed
+
+2002-07-07 22:59  ljulliar
+
+        * plugins/: System_Commands/AppCommands.rb,
+        System_GuiCore/EditPanes.rb, System_GuiCore/GuiSetup.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb,
+        System_GuiRenderFox/foxhacks.rb: Multipane editor now available.
+        Several files can be loaded at once and viewed in a FOX tabbook.
+
+2002-07-05 14:47  ljulliar
+
+        * NEWS, freebase/databus.rb, freebase/plugin.rb,
+        plugins/System_GuiCore/MenuBars.rb,
+        plugins/System_GuiCore/MenuPanes.rb, test/utest_databus.rb:
+        replaced 'propogate' by 'propagate' all over the place (typo)
+
+2002-07-03 12:05  ljulliar
+
+        * plugins/DatabusInspector/DatabusInspector.rb: typo in the path to
+        databus inspector command (no 2 at the end)
+
+2002-07-02 17:27  ljulliar
+
+        * plugins/: DatabusInspector/DatabusInspector.rb,
+        System_GuiCore/GuiSetup.rb: Now that we have the dynamic insertion
+        of new menu items working we can remove the hack from Guisetup and
+        do everything from the Databus Inspector start method.
+
+2002-07-02 17:25  ljulliar
+
+        * plugins/System_GuiCore/MenuPanes.rb: Some code re-indented and a
+        new add_command method added to allow for the dynamic insertion a
+        new command in an existing menu
+
+2002-07-02 17:24  ljulliar
+
+        * plugins/System_GuiRenderFox/MenuPaneRenderFox.rb: In update
+        method: - Need to call create method on a new menu pane before it
+        is used - Must assign the new menu pane to the existing menu title
+        if it is a dynamic menu update in the course of using the
+        application (e.g. menu entry created by a plugin loaded on the fly
+        like the Databus Inspector)
+
+2002-07-02 17:21  ljulliar
+
+        * plugins/System_GuiRenderFox/MenuBarRenderFox.rb: Store the FOX
+        menu title a FOX menu pane is associated with so that we can update
+        the menu pane later in the life of the application
+
+2002-07-02 17:15  ljulliar
+
+        * plugins/DatabusInspector/plugin.xml: Now that we have the ability
+        to express dependencies on subsystems and not only individual
+        plugins, make the Databus Inspector start when the GuiCore subsytem
+        is running
+
+2002-07-01 17:19  ljulliar
+
+        * freebase/databus.rb,
+        plugins/System_GuiRenderFox/DatabusInspectorRenderFox.rb: Now
+        showing slot attributes (attr_xxx) in the databus inspector
+
+2002-07-01 13:57  ljulliar
+
+        * freebase/plugin.rb: For the transition log message to appear in
+        the right order, the message must be logged at the very beginning
+        of the transition method
+
+2002-06-30 22:30  ljulliar
+
+        * plugins/logger/logger.rb: change order of statements in start
+        method to something that seems more appropriate.
+
+2002-06-30 22:20  ljulliar
+
+        * plugins/System_GuiRenderFox/: AppFrameRenderFox.rb,
+        EditPaneRenderFox.rb: 'slot' is a local block variable not a
+        instance variable. This error did not appear before because there
+        was a type in the #{...}. See previous commit
+
+2002-06-30 22:00  ljulliar
+
+        * plugins/: System_GuiCore/GuiSetup.rb,
+        System_GuiRenderFox/AppFrameRenderFox.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb,
+        System_GuiRenderFox/MenuBarRenderFox.rb,
+        System_GuiRenderFox/MenuPaneRenderFox.rb: Change GuiSetup and
+        Render plugins state to RUNNING when the plugins are actually
+        started.
+
+2002-06-28 22:08  ljulliar
+
+        * freebase/plugin.rb: Logging all state transition from the
+        transition method rather than from load/start/unload/stop methods.
+
+2002-06-28 21:51  ljulliar
+
+        * freebase/core.rb: Reinserting conditional hack I introduced in
+        1.7 and was overwritten by Rich in 1.8
+
+2002-06-28 21:18  ljulliar
+
+        * plugins/DatabusInspector/plugin.xml: subsystem tag removed
+        because it is not necessary with only one plugin and the name
+        conflicted with plugin name because of Rich's recent changes
+
+2002-06-26 23:44  richkilmer
+
+        * freebase/core.rb, freebase/plugin.rb,
+        plugins/System_Commands/plugin.xml: added the capability to
+        represent a subsystem as a plugin for dependency purposes.  Needed
+        to modify System_Commands subsystem name
+
+2002-06-18 11:59  ljulliar
+
+        * plugins/System_GuiRenderFox/DatabusBrowserRenderFox.rb: Useless
+        file. It's actually called DatabusInpectorRenderFox.rb
+
+2002-06-14 16:49  ljulliar
+
+        * ChangeLog, freebase/plugin.rb,
+        plugins/DatabusInspector/DatabusInspector.rb,
+        plugins/DatabusInspector/plugin.xml,
+        plugins/System_GuiCore/GuiSetup.rb,
+        plugins/System_GuiRenderFox/DatabusBrowserRenderFox.rb,
+        plugins/System_GuiRenderFox/DatabusInspectorRenderFox.rb,
+        plugins/System_GuiRenderFox/plugin.xml: Initial version of the
+        Databus Inspector.
+
+2002-06-14 16:47  ljulliar
+
+        * freebase/databus.rb: Introduced [] method for Stack and Queue to
+        access individual elements (needed by the Databus Inspector).
+
+2002-06-14 16:15  ljulliar
+
+        * freebase/core.rb, plugins/System_GuiRenderFox/foxhacks.rb:
+        Conditional hack introduced based on the host OS. If MSWIN then
+        apply the hack for the greedy UI thread problem. Otherwise start
+        the FOX event loop in a thread as usual. Note: this MSWIN problem
+        is being worked on so this is temporary code.
+
+2002-06-14 16:10  ljulliar
+
+        * ChangeLog, Changelog: Changing change log file name from
+        Changelog to ChangeLog
+
+2002-06-03 22:49  pini
+
+        * plugins/System_GuiRenderFox/fxscintilla/scintilla.rb: Corrected
+        the microscopic font bug (occured undex Linux).
+
+2002-05-30 17:23  ljulliar
+
+        * test/adapter.rb: All core stuff is now in FreeBASE. Used to be in
+        FreeRIDE
+
+2002-05-30 05:48  richkilmer
+
+        * plugins/: System_Commands/AppCommands.rb,
+        System_Commands/EditCommands.rb,
+        System_Commands/System_Commands.rb, System_GuiCore/AppFrames.rb,
+        System_GuiCore/EditPanes.rb, System_GuiCore/GuiSetup.rb,
+        System_GuiCore/MenuBars.rb, System_GuiCore/MenuPanes.rb,
+        System_GuiCore/plugin.xml,
+        System_GuiRenderFox/AppFrameRenderFox.rb,
+        System_GuiRenderFox/EditPaneRenderFox.rb,
+        System_GuiRenderFox/FoxServices.rb,
+        System_GuiRenderFox/MenuBarRenderFox.rb,
+        System_GuiRenderFox/MenuPaneRenderFox.rb, simpletest/test.rb,
+        test1/test.rb: This seems like a major update, but its really
+        rather minor.  I created a new module named
+        'FreeBASE::StandardPlugin' and now extend each of these (modified)
+        plugins with that module to simplify the creation of plugins by
+        having default load/start/stop/unload operations.  The plugins now
+        (usually) only have to implement 'start'.  This does not change any
+        of the behaviors or design that Curt created
+
+2002-05-30 03:59  richkilmer
+
+        * freebase/plugin.rb, freebase/properties.rb,
+        plugins/logger/logger.rb, plugins/test2/test.rb: Added
+        FreeBASE::StandardPlugin module as mixin to simplify creation of
+        plugins, modified logger and test2/test.rb to use new mixin.  Fixed
+        bug in properties.rb that arose under linux when reading a slot
+        with no value
+
+2002-05-30 03:25  richkilmer
+
+        * plugins/: System_Commands/EditCommands.rb, simpletest/plugin.xml,
+        test1/plugin.xml, test2/plugin.xml: Fixed bug in EditCommands,
+        removed autostart of example plugins
+
+2002-05-29 10:24  curthibbs
+
+        * plugins/System_GuiRenderFox/AppFrameRenderFox.rb,
+        plugins/System_GuiRenderFox/EditPaneRenderFox.rb,
+        plugins/System_GuiRenderFox/FoxServices.rb,
+        plugins/System_GuiRenderFox/MenuBarRenderFox.rb,
+        plugins/System_GuiRenderFox/MenuPaneRenderFox.rb,
+        plugins/System_GuiRenderFox/foxhacks.rb,
+        plugins/System_GuiRenderFox/plugin.xml,
+        plugins/System_GuiRenderFox/fxscintilla/fxscintilla_test.rb,
+        plugins/System_GuiRenderFox/fxscintilla/global_properties.rb,
+        plugins/System_GuiRenderFox/fxscintilla/ruby_autoindent.rb,
+        plugins/System_GuiRenderFox/fxscintilla/ruby_colourize.rb,
+        plugins/System_GuiRenderFox/fxscintilla/ruby_properties.rb,
+        plugins/System_GuiRenderFox/fxscintilla/scintilla.rb,
+        plugins/System_GuiRenderFox/fxscintilla/scintilla_wrapper.rb,
+        plugins/System_GuiRenderFox/fxscintilla/util/Scintilla.iface,
+        plugins/System_GuiRenderFox/fxscintilla/util/iface_gen.rb, README:
+        Initial version.
+
+2002-05-29 10:18  curthibbs
+
+        * plugins/: System_Commands/AppCommands.rb,
+        System_Commands/CommandBase.rb, System_Commands/EditCommands.rb,
+        System_Commands/System_Commands.rb, System_Commands/plugin.xml,
+        System_GuiCore/AppFrames.rb, System_GuiCore/EditPanes.rb,
+        System_GuiCore/GuiSetup.rb, System_GuiCore/MenuBars.rb,
+        System_GuiCore/MenuPanes.rb, System_GuiCore/plugin.xml: Initial
+        version.
+
+2002-05-27 10:46  curthibbs
+
+        * freebase/databus.rb: Added some general debugging code that is
+        commented out by default.
+
+2002-05-27 10:44  curthibbs
+
+        * freebase/core.rb: Added a mechanism to tell when all plugins have
+        been loaded.
+
+2002-02-27 04:05  richkilmer
+
+        * freebase/: core.rb, plugin.rb: updated to support multiple plugin
+        definitions in a single xml file.
+        
+        Instead of a single <plugin> you specify:
+        
+        <subsystem>  <plugin...>   ...   </plugin>   <plugin...>    ...  
+        </plugin>  </subsystem>
+
+2002-02-26 23:11  curthibbs
+
+        * freebase/core.rb: Clearly identified my FOX workaround as a
+        temporary hack.
+
+2002-02-23 14:39  curthibbs
+
+        * freebase/core.rb: Added call to GUI message pump
+
+2002-02-13 05:04  richkilmer
+
+        * config/default.xml, freebase/logger.rb: added the ability to set
+        the logging level in the default.xml properties file (0 for all, 6
+        for none).  the logger also mounts a proc slot at:
+        
+        /plugins/Logger/set_level (pass an int 0-6
+
+2002-02-12 04:43  richkilmer
+
+        * freebase/plugin.rb: added the (optional) ability to define a
+        resource_path on a plugin.  This resource path can be used for
+        locating data files, images, etc needed by the plugin for
+        operation.
+        
+        plugin.xml addition:
+        <resourcePath>./plugins/foo/resources</resourcePath>
+        
+        accessing path: @plugin.resource_path #=> path
+
+2002-02-11 03:39  richkilmer
+
+        * config/default.xml: added log name entry
+
+2002-02-11 03:37  richkilmer
+
+        * plugins/logger/plugin.xml: point to the default (log4r) logger in
+        the freebase dir
+
+2002-02-11 03:35  richkilmer
+
+        * freebase/databus.rb: enhanced the exception in the event you try
+        and set a manager on a slot that already has one set.
+
+2002-02-11 03:35  richkilmer
+
+        * freebase/logger.rb: moved the logger plugin to freebase (since
+        all apps will likely have a need for a logger)
+
+2002-02-08 07:16  richkilmer
+
+        * freebase/databus.rb: added notification type for notifying
+        subscribers when a proc is set to a slot:
+        
+        :notify_proc_set
+
+2002-02-07 04:01  richkilmer
+
+        * freebase/core.rb: Modified the way in which plugin.xml files are
+        processed.  The core now also processes ALL .xml files in the
+        ./plugins directory in case the behaviors are located somewhere
+        else (like under site_ruby).
+
+2002-02-06 04:38  richkilmer
+
+        * config/setup.rb: removed functionality of defining default log
+        and shutdown procedure into freebase/core since those are necessary
+        databus slots for the core engine.  reserving setup.rb to specific
+        needs of a freebase project
+
+2002-02-06 04:35  richkilmer
+
+        * config/default.xml: refactored defining setup file in the
+        properties (instead of hard coded)
+
+2002-02-06 04:34  richkilmer
+
+        * freeride/core.rb, freeride/databus.rb, freeride/freeride.rb,
+        freeride/plugin.rb, freeride/properties.rb,
+        plugins/logger/logger.rb, plugins/simpletest/test.rb,
+        plugins/test1/test.rb, plugins/test2/test.rb, test/databus.rb,
+        test/utest_databus.rb: changed for FreeBASE refactoring
+
+2002-02-06 04:33  richkilmer
+
+        * run.bat: changed for freebase and added param for default xml
+        property file
+
+2002-02-06 04:24  richkilmer
+
+        * freebase/: core.rb, databus.rb, freebase.rb, plugin.rb,
+        properties.rb: moved to freebase from freeride to enable reuse of
+        the core (now freebase) in other projects and not just freeride
+
+2002-02-05 05:14  richkilmer
+
+        * config/default.xml, freeride/core.rb: Modified to remove the
+        hard-coded dependency of the plugins to be installed int the
+        ./plugins directory.  Instead, there is a property
+        (config/plugin_path) that contains a concatenated list of
+        directories (defaulting to ./plugins) that is iterated upon.  The
+        separator for directories in the plugin_path is a semicolon.
+
+2002-02-05 04:27  richkilmer
+
+        * NEWS: added comment about slot attributes
+
+2002-02-05 04:15  richkilmer
+
+        * test/test.bat: added paths for redist, and so
+
+2002-02-05 04:14  richkilmer
+
+        * test/utest_databus.rb: Built out initial unit tests for the
+        databus
+
+2002-02-05 04:11  richkilmer
+
+        * freeride/databus.rb: Added the ability to set attributes on a
+        slot:
+        
+        Setting an attriibute slot.attr_<name> = value Getting an attribute
+        value = slot.attr_<name>
+
+2002-02-01 10:19  ljulliar
+
+        * config/setup.rb, freeride/core.rb, freeride/databus.rb,
+        freeride/freeride.rb, freeride/plugin.rb, freeride/properties.rb,
+        plugins/logger/logger.rb, plugins/simpletest/test.rb,
+        plugins/test1/test.rb, plugins/test2/test.rb, test/adapter.rb,
+        test/databus.rb, test/utest_databus.rb: New standard header in
+        place in Ruby files
+
+2002-02-01 10:14  ljulliar
+
+        * plugins/simpletest/.cvsignore: Ignore properties.xml
+
+2002-02-01 04:28  richkilmer
+
+        * freeride/plugin.rb: Updated the parser to handle the changed
+        dependency/plugin element to dependency/when.
+        
+        <when plugin="..." version="*" state="..."/>
+
+2002-02-01 04:26  richkilmer
+
+        * plugins/: simpletest/plugin.xml, test1/plugin.xml,
+        test2/plugin.xml: changed the dependency/plugin element to
+        dependency/when
+        
+        <when plugin="..." version="*" state="..."/>
+
+2002-01-31 10:19  richkilmer
+
+        * test/: adapter.rb, databus.rb, utest_databus.rb: updated w/event
+        vs. message syntax
+
+2002-01-31 10:18  richkilmer
+
+        * freeride/freeride.rb: main file contains FreeRIDE module and all
+        global constants and require(s) all other core files
+
+2002-01-31 10:17  richkilmer
+
+        * plugins/test1/plugin.xml: added autoload, removed plugin type,
+        added dependency for Logger and Test2_Plugin
+
+2002-01-31 10:17  richkilmer
+
+        * plugins/: simpletest/plugin.xml, test2/plugin.xml: added
+        autoload, removed plugin type, added dependency for Logger
+
+2002-01-31 10:16  richkilmer
+
+        * plugins/logger/plugin.xml: added autoload, removed plugin type
+
+2002-01-31 10:15  richkilmer
+
+        * plugins/test1/test.rb: added new lifecycle methods and transition
+        management and removed dependency management from code
+
+2002-01-31 10:15  richkilmer
+
+        * plugins/: logger/logger.rb, simpletest/test.rb, test2/test.rb:
+        added new lifecycle methods and transition management
+
+2002-01-31 10:14  richkilmer
+
+        * freeride/plugin.rb: added transition management (complex, see
+        code and wiki) added load, start, stop, unload methods added
+        autoload attribute added dependency management (complex, see code
+        and wiki)
+
+2002-01-31 10:01  richkilmer
+
+        * freeride/properties.rb: set as manager on slot
+
+2002-01-31 10:00  richkilmer
+
+        * freeride/databus.rb: allow slots to have a manager (OO api to
+        subslots...Properties is one of these)  manager, manager=, managed?
+        added propogate_notifications attribute to block slot message
+        notification to parent slots
+
+2002-01-31 09:58  richkilmer
+
+        * freeride/core.rb: major changes removed global constants to
+        freeride.rb changed plugin loading/unloading support plugin
+        transitions default.xml now contains default properties instead of
+        hard coded
+
+2002-01-31 09:57  richkilmer
+
+        * config/default.xml: default properties
+
+2002-01-31 09:56  richkilmer
+
+        * config/setup.rb: print the shutdown message (instead of logging
+        it)
+
+2002-01-31 09:55  richkilmer
+
+        * run.bat: require freeride.rb instead of core.rb
+
+2002-01-31 09:55  richkilmer
+
+        * NEWS: updated for 0.0.4
+
+2002-01-28 17:59  ljulliar
+
+        * config/.cvsignore: properties.xml is dynamically generated.
+        Ignore it
+
+2002-01-28 17:58  ljulliar
+
+        * config/properties.xml: properties.xml must not be under version
+        control
+
+2002-01-28 17:36  ljulliar
+
+        * config/: .cvsignore, properties.xml: freeride.log must be ignored
+        by CVS
+
+2002-01-28 04:47  richkilmer
+
+        * plugins/logger/logger.rb: Fixed bug when clearing existing queue
+        of logged messages
+
+2002-01-28 04:42  richkilmer
+
+        * freeride/plugin.rb: 1) got rid of CR LF and made LF
+
+2002-01-28 04:38  richkilmer
+
+        * freeride/databus.rb: 1) got rid of CR LF and made LF 2) added the
+        propogate_notifications capability to slots (as well as     the
+        databus itself), 3) added an accessor for the slot's parent 4)
+        added a :notify_slot_add  event during initialize method of slot 5)
+        removed dump_subscribers (hack method) and replaced with     dump
+        which recurses and dumps the slots/subslots
+
+2002-01-28 04:32  richkilmer
+
+        * freeride/core.rb: got rid of CR LF and made LF
+
+2002-01-28 04:14  richkilmer
+
+        * freeride/properties.rb: fixed bug in subsciption to base_slot and
+        got rid of CR LF
+
+2002-01-25 19:13  ljulliar
+
+        * redist/: rubyunit.rb, runit/assert.rb, runit/error.rb,
+        runit/method_mappable.rb, runit/robserver.rb, runit/setuppable.rb,
+        runit/teardownable.rb, runit/testcase.rb, runit/testfailure.rb,
+        runit/testresult.rb, runit/testsuite.rb, runit/topublic.rb,
+        runit/version.rb, runit/cui/testrunner.rb,
+        runit/ext/repeatedtest.rb, runit/ext/testdecorator.rb,
+        runit/ext/testsetup.rb: Import of Runit 0.5.4
+
+2002-01-25 19:12  ljulliar
+
+        * redist/rexml/: attribute.rb, cdata.rb, child.rb, comment.rb,
+        doctype.rb, document.rb, element.rb, functions.rb, GPL.txt,
+        instruction.rb, LICENSE.txt, README, namespace.rb, node.rb,
+        parent.rb, parseexception.rb, rexml.rb, source.rb,
+        streamlistener.rb, text.rb, xmldecl.rb, xpath.rb,
+        dtd/attlistdecl.rb, dtd/dtd.rb, dtd/elementdecl.rb,
+        dtd/entitydecl.rb, dtd/notationdecl.rb: Import of ReXML 1.2.5
+
+2002-01-25 19:11  ljulliar
+
+        * redist/: log4r.rb, log4r/base.rb, log4r/config.rb,
+        log4r/configurator.rb, log4r/formatter.rb, log4r/logger.rb,
+        log4r/loggerfactory.rb, log4r/outputter.rb,
+        log4r/outputterfactory.rb, log4r/outputters.rb,
+        log4r/patternformatter.rb, log4r/repository.rb,
+        log4r/rdoc/configurator, log4r/rdoc/log4r, log4r/rdoc/logger,
+        log4r/rdoc/patternformatter, rexml/attribute.rb, rexml/cdata.rb,
+        rexml/child.rb, rexml/comment.rb, rexml/doctype.rb,
+        rexml/document.rb, rexml/element.rb, rexml/functions.rb,
+        rexml/GPL.txt, rexml/instruction.rb, rexml/LICENSE.txt,
+        rexml/README, rexml/namespace.rb, rexml/node.rb, rexml/parent.rb,
+        rexml/parseexception.rb, rexml/rexml.rb, rexml/source.rb,
+        rexml/streamlistener.rb, rexml/text.rb, rexml/xmldecl.rb,
+        rexml/xpath.rb, rexml/dtd/attlistdecl.rb, rexml/dtd/dtd.rb,
+        rexml/dtd/elementdecl.rb, rexml/dtd/entitydecl.rb,
+        rexml/dtd/notationdecl.rb, rubyunit.rb, runit/assert.rb,
+        runit/error.rb, runit/method_mappable.rb, runit/robserver.rb,
+        runit/setuppable.rb, runit/teardownable.rb, runit/testcase.rb,
+        runit/testfailure.rb, runit/testresult.rb, runit/testsuite.rb,
+        runit/topublic.rb, runit/version.rb, runit/cui/testrunner.rb,
+        runit/ext/repeatedtest.rb, runit/ext/testdecorator.rb,
+        runit/ext/testsetup.rb: Initial revision
+
+2002-01-25 19:11  ljulliar
+
+        * redist/: log4r.rb, log4r/base.rb, log4r/config.rb,
+        log4r/configurator.rb, log4r/formatter.rb, log4r/logger.rb,
+        log4r/loggerfactory.rb, log4r/outputter.rb,
+        log4r/outputterfactory.rb, log4r/outputters.rb,
+        log4r/patternformatter.rb, log4r/repository.rb,
+        log4r/rdoc/configurator, log4r/rdoc/log4r, log4r/rdoc/logger,
+        log4r/rdoc/patternformatter: Import of Log4R 1.0.0
+
+2002-01-25 19:08  ljulliar
+
+        * redist/README: Initial version
+
+2002-01-25 18:58  ljulliar
+
+        * COPYING, Changelog, INSTALL, NEWS, README, run.bat,
+        config/properties.xml, config/setup.rb, doc/core.html,
+        freeride/core.rb, freeride/databus.rb, freeride/plugin.rb,
+        freeride/properties.rb, plugins/logger/logger.rb,
+        plugins/logger/plugin.xml, plugins/simpletest/plugin.xml,
+        plugins/simpletest/test.rb, plugins/test1/plugin.xml,
+        plugins/test1/test.rb, plugins/test2/plugin.xml,
+        plugins/test2/test.rb, so/about.txt, test/adapter.rb,
+        test/databus.rb, test/test.bat, test/utest_databus.rb: Initial
+        revision
+
+2002-01-25 18:58  ljulliar
+
+        * COPYING, Changelog, INSTALL, NEWS, README, run.bat,
+        config/properties.xml, config/setup.rb, doc/core.html,
+        freeride/core.rb, freeride/databus.rb, freeride/plugin.rb,
+        freeride/properties.rb, plugins/logger/logger.rb,
+        plugins/logger/plugin.xml, plugins/simpletest/plugin.xml,
+        plugins/simpletest/test.rb, plugins/test1/plugin.xml,
+        plugins/test1/test.rb, plugins/test2/plugin.xml,
+        plugins/test2/test.rb, so/about.txt, test/adapter.rb,
+        test/databus.rb, test/test.bat, test/utest_databus.rb: First
+        FreeRIDE import
+
+

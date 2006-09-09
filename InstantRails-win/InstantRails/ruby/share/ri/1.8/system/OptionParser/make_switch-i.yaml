@@ -1,0 +1,61 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates an OptionParser::Switch from the parameters. The parsed argument value is passed to the given block, where it can be processed.
+- !ruby/struct:SM::Flow::P 
+  body: See at the beginning of OptionParser for some full examples.
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>opts</tt> can include the following elements:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "Argument style:"
+    body: "One of the following:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  :NONE, :REQUIRED, :OPTIONAL\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Argument pattern:"
+    body: "Acceptable option argument format, must be pre-defined with OptionParser.accept or OptionParser#accept, or Regexp. This can appear once or assigned as String if not present, otherwise causes an ArgumentError. Examples:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  Float, Time, Array\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Possible argument values:"
+    body: Hash or Array.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  [:text, :binary, :auto]\n  %w[iso-2022-jp shift_jis euc-jp utf8 binary]\n  { &quot;jis&quot; =&gt; &quot;iso-2022-jp&quot;, &quot;sjis&quot; =&gt; &quot;shift_jis&quot; }\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Long style switch:"
+    body: "Specifies a long style switch which takes a mandatory, optional or no argument. It's a string of the following form:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &quot;--switch=MANDATORY&quot; or &quot;--switch MANDATORY&quot;\n  &quot;--switch[=OPTIONAL]&quot;\n  &quot;--switch&quot;\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Short style switch:"
+    body: "Specifies short style switch which takes a mandatory, optional or no argument. It's a string of the following form:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &quot;-xMANDATORY&quot;\n  &quot;-x[OPTIONAL]&quot;\n  &quot;-x&quot;\n"
+  - !ruby/struct:SM::Flow::P 
+    body: "There is also a special form which matches character range (not full set of regural expression):"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &quot;-[a-z]MANDATORY&quot;\n  &quot;-[a-z][OPTIONAL]&quot;\n  &quot;-[a-z]&quot;\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Argument style and description:"
+    body: Instead of specifying mandatory or optional orguments directly in the switch parameter, this separate parameter can be used.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &quot;=MANDATORY&quot;\n  &quot;=[OPTIONAL]&quot;\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Description:"
+    body: Description string for the option.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  &quot;Run verbosely&quot;\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "Handler:"
+    body: Handler for the parsed argument value. Either give a block or pass a Proc or Method as an argument.
+  type: :LABELED
+full_name: OptionParser#make_switch
+is_singleton: false
+name: make_switch
+params: (*opts, &block)
+visibility: public

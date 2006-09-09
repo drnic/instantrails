@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theApp
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct application object; the <em>appName</em> and <em>vendorName</em> strings are used as keys into the registry database for this application's settings. Only one single application object can be constructed.
+full_name: Fox::FXApp::new
+is_singleton: true
+name: new
+params: (appName="Application", vendorName="FoxDefault") {|theApp| ...}
+visibility: public

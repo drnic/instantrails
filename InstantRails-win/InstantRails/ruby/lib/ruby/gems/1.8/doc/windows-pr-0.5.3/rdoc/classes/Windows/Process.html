@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Process</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Process</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/process_rb.html">
+                lib/windows/process.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000109">CreateProcess</a>&nbsp;&nbsp;
+      <a href="#M000110">CreateRemoteThread</a>&nbsp;&nbsp;
+      <a href="#M000111">CreateThread</a>&nbsp;&nbsp;
+      <a href="#M000112">ExitProcess</a>&nbsp;&nbsp;
+      <a href="#M000113">GetCommandLine</a>&nbsp;&nbsp;
+      <a href="#M000114">GetCurrentProcess</a>&nbsp;&nbsp;
+      <a href="#M000115">GetCurrentProcessId</a>&nbsp;&nbsp;
+      <a href="#M000116">GetEnvironmentStrings</a>&nbsp;&nbsp;
+      <a href="#M000117">GetEnvironmentVariable</a>&nbsp;&nbsp;
+      <a href="#M000118">GetExitCodeProcess</a>&nbsp;&nbsp;
+      <a href="#M000119">GetPriorityClass</a>&nbsp;&nbsp;
+      <a href="#M000129">GetProcessHandleCount</a>&nbsp;&nbsp;
+      <a href="#M000128">GetProcessId</a>&nbsp;&nbsp;
+      <a href="#M000120">GetProcessTimes</a>&nbsp;&nbsp;
+      <a href="#M000121">GetStartupInfo</a>&nbsp;&nbsp;
+      <a href="#M000122">OpenProcess</a>&nbsp;&nbsp;
+      <a href="#M000123">SetEnvironmentVariable</a>&nbsp;&nbsp;
+      <a href="#M000124">Sleep</a>&nbsp;&nbsp;
+      <a href="#M000125">SleepEx</a>&nbsp;&nbsp;
+      <a href="#M000126">TerminateProcess</a>&nbsp;&nbsp;
+      <a href="#M000127">WaitForInputIdle</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1F0FFF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_CREATE_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_CREATE_THREAD</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_DUP_HANDLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_QUERY_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_QUERY_LIMITED_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SET_QUOTA</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SET_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SUSPEND_RESUME</td>
+          <td>=</td>
+          <td class="context-item-value">0x0800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_TERMINATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_OPERATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYNCHRONIZE</td>
+          <td>=</td>
+          <td class="context-item-value">1048576</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STILL_ACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">259</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ABOVE_NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00008000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BELOW_NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00004000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HIGH_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IDLE_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REALTIME_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_BREAKAWAY_FROM_JOB</td>
+          <td>=</td>
+          <td class="context-item-value">0x01000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Process.html">Process</a> creation flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_DEFAULT_ERROR_MODE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW_CONSOLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW_PROCESS_GROUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NO_WINDOW</td>
+          <td>=</td>
+          <td class="context-item-value">0x08000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_PRESERVE_CODE_AUTHZ_LEVEL</td>
+          <td>=</td>
+          <td class="context-item-value">0x02000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SEPARATE_WOW_VDM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SHARED_WOW_VDM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00001000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SUSPENDED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_UNICODE_ENVIRONMENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEBUG_ONLY_THIS_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEBUG_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DETACHED_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESHOWWINDOW</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEPOSITION</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USECOUNTCHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEFILLATTRIBUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_RUNFULLSCREEN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_FORCEONFEEDBACK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_FORCEOFFFEEDBACK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESTDHANDLES</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEHOTKEY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateProcess', 'LPLLLLLPPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateRemoteThread</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateRemoteThread', 'LPLLPLP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CreateThread</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'CreateThread', 'PLPPLP', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ExitProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'ExitProcess', 'L', 'V')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetCommandLine</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetCommandLine', 'V', 'P')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetCurrentProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetCurrentProcess', 'V', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetCurrentProcessId</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetCurrentProcessId', 'V', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetEnvironmentStrings</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetEnvironmentStrings', 'V', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetEnvironmentVariable</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetEnvironmentVariable', 'PPL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetExitCodeProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetExitCodeProcess', 'LP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetPriorityClass</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetPriorityClass', 'L', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetProcessTimes</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetProcessTimes', 'LPPPP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetStartupInfo</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetStartupInfo', 'P', 'V')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OpenProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'OpenProcess', 'LIL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SetEnvironmentVariable</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'SetEnvironmentVariable', 'PP', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Sleep</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'Sleep', 'L', 'V')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SleepEx</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'SleepEx', 'LI', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TerminateProcess</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'TerminateProcess', 'LL', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WaitForInputIdle</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'WaitForInputIdle', 'LL', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetProcessId</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetProcessId', 'L', 'L')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetProcessHandleCount</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('kernel32', 'GetProcessHandleCount', 'LP', 'I')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000109.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000109.html');return false;">
+          <span class="method-name">CreateProcess</span><span class="method-args">(app, cmd, pattr, tattr, handles, flags, env, dir, sinfo, pinfo)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000110.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000110.html');return false;">
+          <span class="method-name">CreateRemoteThread</span><span class="method-args">(handle, tattr, size, start, param, flags, tid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000111.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000111.html');return false;">
+          <span class="method-name">CreateThread</span><span class="method-args">(attr, size, addr, param, flags, id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000112.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000112.html');return false;">
+          <span class="method-name">ExitProcess</span><span class="method-args">(exit_code)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000113.html');return false;">
+          <span class="method-name">GetCommandLine</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000114.html');return false;">
+          <span class="method-name">GetCurrentProcess</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000115.html');return false;">
+          <span class="method-name">GetCurrentProcessId</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000116.html');return false;">
+          <span class="method-name">GetEnvironmentStrings</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000117.html');return false;">
+          <span class="method-name">GetEnvironmentVariable</span><span class="method-args">(name, buffer, size)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000118.html');return false;">
+          <span class="method-name">GetExitCodeProcess</span><span class="method-args">(handle, exit_code)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000119.html');return false;">
+          <span class="method-name">GetPriorityClass</span><span class="method-args">(handle)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000129.html');return false;">
+          <span class="method-name">GetProcessHandleCount</span><span class="method-args">(handle, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000128.html');return false;">
+          <span class="method-name">GetProcessId</span><span class="method-args">(handle)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000120" class="method-detail">
+        <a name="M000120"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000120.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000120.html');return false;">
+          <span class="method-name">GetProcessTimes</span><span class="method-args">(handle, t_creation, t_exit, t_kernel, t_user)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000121" class="method-detail">
+        <a name="M000121"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000121.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000121.html');return false;">
+          <span class="method-name">GetStartupInfo</span><span class="method-args">(info_struct)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000122" class="method-detail">
+        <a name="M000122"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000122.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000122.html');return false;">
+          <span class="method-name">OpenProcess</span><span class="method-args">(access, handle, pid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000123.html');return false;">
+          <span class="method-name">SetEnvironmentVariable</span><span class="method-args">(name, value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000124.html');return false;">
+          <span class="method-name">Sleep</span><span class="method-args">(milliseconds)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000125.html');return false;">
+          <span class="method-name">SleepEx</span><span class="method-args">(milliseconds, alertable)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000126.html');return false;">
+          <span class="method-name">TerminateProcess</span><span class="method-args">(handle, exit_code)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000127.html');return false;">
+          <span class="method-name">WaitForInputIdle</span><span class="method-args">(handle, milliseconds)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

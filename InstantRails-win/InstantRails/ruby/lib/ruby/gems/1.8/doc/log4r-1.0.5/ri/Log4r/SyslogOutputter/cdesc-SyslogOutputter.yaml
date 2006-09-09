@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: maps log4r levels to syslog priorities (logevents never see ALL and OFF)
+  name: SYSLOG_LEVELS
+  value: "[         nil,          LOG_DEBUG,          LOG_INFO,          LOG_WARNING,          LOG_ERR,          LOG_CRIT,          nil"
+full_name: Log4r::SyslogOutputter
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Syslog::Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: closed?
+name: SyslogOutputter
+superclass: Outputter

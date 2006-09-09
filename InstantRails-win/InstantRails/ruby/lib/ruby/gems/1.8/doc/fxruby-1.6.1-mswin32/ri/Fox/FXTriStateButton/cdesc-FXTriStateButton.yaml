@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maybe status line help text, shown when toggled [String]
+  name: maybeHelpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maybe icon, shown when toggled [FXIcon]
+  name: maybeIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maybe text, shown when toggled [String]
+  name: maybeText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maybe tool tip message, shown when toggled [String]
+  name: maybeTipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The tri-state button provides a three-state button, which toggles between the on and the off state each time it is pressed. Programmatically, it may also be switched into the <tt>MAYBE</tt> state. The <tt>MAYBE</tt> state is useful to signify an &quot;unknown&quot; or &quot;indeterminate&quot; state in the application data.
+constants: []
+
+full_name: Fox::FXTriStateButton
+includes: []
+
+instance_methods: []
+
+name: FXTriStateButton
+superclass: FXToggleButton

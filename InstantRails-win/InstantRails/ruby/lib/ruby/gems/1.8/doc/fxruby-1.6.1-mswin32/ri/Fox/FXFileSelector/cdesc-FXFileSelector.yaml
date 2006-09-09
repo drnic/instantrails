@@ -1,0 +1,226 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Accept&quot; button [FXButton]
+  name: acceptButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Cancel&quot; button [FXButton]
+  name: cancelButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current pattern number [Integer]
+  name: currentPattern
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Directory [String]
+  name: directory
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Change file list style [Integer]
+  name: fileBoxStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File name [String]
+  name: filename
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Image size for preview images [Integer]
+  name: imageSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Inter-item spacing (in pixels) [Integer]
+  name: itemSpace
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard matching mode [Integer]
+  name: matchMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File pattern [String]
+  name: pattern
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Change file selection mode [Integer]
+  name: selectMode
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: extensionFromPattern
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: patternFromText
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: File selection widget
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: File selection modes
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SELECTFILE_ANY+:"
+    body: A single file, existing or not (to save to)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SELECTFILE_EXISTING+:"
+    body: An existing file (to load)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SELECTFILE_MULTIPLE+:"
+    body: Multiple existing files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SELECTFILE_MULTIPLE_ALL+:"
+    body: Multiple existing files or directories, but not '.' and '..'
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SELECTFILE_DIRECTORY+:"
+    body: Existing directory, including '.' or '..'
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Wildcard matching modes
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILEMATCH_FILE_NAME+:"
+    body: No wildcard can ever match &quot;/&quot; (or &quot;\&quot;,&quot;/&quot; under Windows).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILEMATCH_NOESCAPE+:"
+    body: Backslashes don't quote special chars (&quot;\&quot; is treated as &quot;\&quot;).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILEMATCH_PERIOD+:"
+    body: Leading &quot;.&quot; is matched only explicitly (Useful to match hidden files on Unix).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILEMATCH_LEADING_DIR+:"
+    body: Ignore &quot;/...&quot; after a match.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILEMATCH_CASEFOLD+:"
+    body: Compare without regard to case.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: Note that under Windows, <tt>FILEMATCH_NOESCAPE</tt> must be passed.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_FILEFILTER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ACCEPT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_FILELIST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRECTORY_UP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRTREE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NORMAL_SIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MEDIUM_SIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GIANT_SIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HOME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_WORK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BOOKMARK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BOOKMENU+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_VISIT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NEW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COPY+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LINK+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXFileSelector
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: allowNavigation
+- !ruby/object:RI::MethodSummary 
+  name: disallowNavigation
+- !ruby/object:RI::MethodSummary 
+  name: filenames
+- !ruby/object:RI::MethodSummary 
+  name: getPatternList
+- !ruby/object:RI::MethodSummary 
+  name: getPatternText
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown=
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown?
+- !ruby/object:RI::MethodSummary 
+  name: imagesShown=
+- !ruby/object:RI::MethodSummary 
+  name: imagesShown?
+- !ruby/object:RI::MethodSummary 
+  name: navigationAllowed=
+- !ruby/object:RI::MethodSummary 
+  name: navigationAllowed?
+- !ruby/object:RI::MethodSummary 
+  name: numPatterns
+- !ruby/object:RI::MethodSummary 
+  name: readOnly=
+- !ruby/object:RI::MethodSummary 
+  name: readOnly?
+- !ruby/object:RI::MethodSummary 
+  name: readOnlyShown=
+- !ruby/object:RI::MethodSummary 
+  name: readOnlyShown?
+- !ruby/object:RI::MethodSummary 
+  name: setPatternList
+- !ruby/object:RI::MethodSummary 
+  name: setPatternText
+name: FXFileSelector
+superclass: Object

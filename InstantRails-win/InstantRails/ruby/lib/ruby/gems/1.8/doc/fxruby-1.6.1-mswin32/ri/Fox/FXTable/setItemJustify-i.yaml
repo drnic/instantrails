@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change item justification for the cell at (<em>r</em>, <em>c</em>). Horizontal justification is controlled by passing FXTableItem::RIGHT, FXTableItem::LEFT, or FXTableItem::CENTER_X. Vertical justification is controlled by FXTableItem::TOP, FXTableItem::BOTTOM, or FXTableItem::CENTER_Y. The default is a combination of FXTableItem::RIGHT and FXTableItem::CENTER_Y.
+- !ruby/struct:SM::Flow::P 
+  body: Raises IndexError if either <em>r</em> or <em>c</em> is out of bounds.
+full_name: Fox::FXTable#setItemJustify
+is_singleton: false
+name: setItemJustify
+params: (r, c, justify)
+visibility: public

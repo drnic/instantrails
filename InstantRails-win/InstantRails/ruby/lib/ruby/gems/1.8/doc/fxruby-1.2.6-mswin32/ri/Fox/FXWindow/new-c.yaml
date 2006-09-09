@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theWindow
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXWindow instance, for a shell window.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+vis+:"
+    body: the visual to use for this window [FXVisual]
+  type: :NOTE
+full_name: Fox::FXWindow::new
+is_singleton: true
+name: new
+params: (a, vis) {|theWindow| ...}
+visibility: public

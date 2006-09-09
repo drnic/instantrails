@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dock the bar against the given <em>side</em>, after some other widget. However, if <em>after</em> is -1, it will be docked as the innermost toolbar just before the work-area, while if <em>after</em> is 0, if will be docked as the outermost toolbar.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+side+:"
+    body: side of the parent window against which to dock the tool bar, one of <tt>LAYOUT_SIDE_TOP</tt>, <tt>LAYOUT_SIDE_BOTTOM</tt>, <tt>LAYOUT_SIDE_LEFT</tt> or <tt>LAYOUT_SIDE_RIGHT</tt> [Integer].
+  - !ruby/struct:SM::Flow::LI 
+    label: "+after+:"
+    body: sibling window (i.e. inside the parent) after which to dock this tool bar [FXWindow]. Also see exceptions described above for the cases when <em>after</em> is 0 or -1.
+  type: :NOTE
+full_name: Fox::FXToolBar#dock
+is_singleton: false
+name: dock
+params: (side=LAYOUT_SIDE_TOP, after=-1)
+visibility: public

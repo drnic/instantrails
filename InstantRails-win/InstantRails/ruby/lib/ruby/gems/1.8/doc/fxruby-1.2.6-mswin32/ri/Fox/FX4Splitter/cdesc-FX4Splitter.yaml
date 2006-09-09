@@ -1,0 +1,133 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Splitter bar width, in pixels [Integer]
+  name: barSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom left child window, if any [FXWindow]
+  name: bottomLeft
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom right child window, if any [FXWindow]
+  name: bottomRight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Currently expanded child (0, 1, 2 or 3) or -1 if not expanded [Integer]
+  name: expanded
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal split fraction [Integer]
+  name: hSplit
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current splitter style, either <tt>FOURSPLITTER_TRACKING</tt> or <tt>FOURSPLITTER_NORMAL</tt>
+  name: splitterStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top left child window, if any [FXWindow]
+  name: topLeft
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top right child window, if any [FXWindow]
+  name: topRight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical split fraction [Integer]
+  name: vSplit
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The four-way splitter is a layout manager which manages four children like four panes in a window. You can use a four-way splitter for example in a CAD program where you may want to maintain three orthographic views, and one oblique view of a model. The four-way splitter allows interactive repartitioning of the panes by means of moving the central splitter bars. When the four-way splitter is itself resized, each child is proportionally resized, maintaining the same split-percentage.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FX4Splitter to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent at the end of a resize operation, to signal that the resize is complete
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously while a resize operation is occurring
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Splitter options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FOURSPLITTER_TRACKING+:"
+    body: Track continuously during split
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FOURSPLITTER_NORMAL+:"
+    body: Normal mode (no continuous tracking)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXPAND_ALL+:"
+    body: Expand all four panes
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXPAND_TOPLEFT+:"
+    body: Expand the top left pane
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXPAND_TOPRIGHT+:"
+    body: Expand the top right pane
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXPAND_BOTTOMLEFT+:"
+    body: Expand the bottom left pane
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXPAND_BOTTOMRIGHT+:"
+    body: Expand the bottom right pane
+  type: :NOTE
+constants: []
+
+full_name: Fox::FX4Splitter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getHSplit
+- !ruby/object:RI::MethodSummary 
+  name: getVSplit
+- !ruby/object:RI::MethodSummary 
+  name: setHSplit
+- !ruby/object:RI::MethodSummary 
+  name: setVSplit
+name: FX4Splitter
+superclass: Object

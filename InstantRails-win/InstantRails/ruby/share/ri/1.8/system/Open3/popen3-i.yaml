@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: stdin, stdout, stderr
+    body: = popen3(command);
+  type: :LABELED
+full_name: Open3#popen3
+is_singleton: false
+name: popen3
+params: (*cmd) {|| ...}
+visibility: public

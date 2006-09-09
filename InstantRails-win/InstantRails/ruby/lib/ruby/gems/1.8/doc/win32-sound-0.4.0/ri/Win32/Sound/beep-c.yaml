@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generates simple tones on the speaker. The function is synchronous; it does not return control to its caller until the sound finishes.
+- !ruby/struct:SM::Flow::P 
+  body: The frequency (in Hertz) must be between 37 and 32767. The duration is in milliseconds.
+full_name: Win32::Sound::beep
+is_singleton: true
+name: beep
+params: (frequency, duration)
+visibility: public

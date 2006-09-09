@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets whether or not a file is online or not. Setting this to false means that the data of the file is not immediately available. This attribute indicates that the file data has been physically moved to offline storage. This attribute is used by Remote Storage, the hierarchical storage management software.
+- !ruby/struct:SM::Flow::P 
+  body: Applications should not arbitrarily change this attribute.
+full_name: File#offline=
+is_singleton: false
+name: offline=
+params: (bool)
+visibility: public

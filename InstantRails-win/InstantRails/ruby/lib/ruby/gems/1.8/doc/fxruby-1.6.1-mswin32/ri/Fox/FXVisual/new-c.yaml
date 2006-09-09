@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXVisual instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+flgs+:"
+    body: visual construction flags [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+d+:"
+    body: requested visual depth, in bits [Integer]
+  type: :NOTE
+full_name: Fox::FXVisual::new
+is_singleton: true
+name: new
+params: (a, flgs, d=32)
+visibility: public

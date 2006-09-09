@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Big icon [FXIcon]
+  name: bigIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item user data [Object]
+  name: data
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether this item is draggable or not [Boolean]
+  name: draggable
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether this item is enabled or not [Boolean]
+  name: enabled
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Mini icon [FXIcon]
+  name: miniIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether this item is selected or not [Boolean]
+  name: selected
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item text [String]
+  name: text
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Icon list item
+constants: []
+
+full_name: Fox::FXIconItem
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: <=>
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: detach
+- !ruby/object:RI::MethodSummary 
+  name: draggable?
+- !ruby/object:RI::MethodSummary 
+  name: enabled?
+- !ruby/object:RI::MethodSummary 
+  name: getHeight
+- !ruby/object:RI::MethodSummary 
+  name: getWidth
+- !ruby/object:RI::MethodSummary 
+  name: hasFocus?
+- !ruby/object:RI::MethodSummary 
+  name: selected?
+- !ruby/object:RI::MethodSummary 
+  name: setFocus
+name: FXIconItem
+superclass: Object

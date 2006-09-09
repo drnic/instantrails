@@ -1,0 +1,82 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_SYNC
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ASYNC
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NODEFAULT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_MEMORY
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_LOOP
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NOSTOP
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NOWAIT
+  value: "8192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ALIAS
+  value: "65536"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ALIAS_ID
+  value: "1114112"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_FILENAME
+  value: "131072"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_RESOURCE
+  value: "262148"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_PURGE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_APPLICATION
+  value: "0x0080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Beep
+  value: Win32API.new('kernel32', 'Beep', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PlaySound
+  value: Win32API.new('winmm', 'PlaySound', 'PPL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveOutSetVolume
+  value: Win32API.new('winmm', 'waveOutSetVolume', 'PL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveOutGetVolume
+  value: Win32API.new('winmm', 'waveOutGetVolume', 'IP', 'I')
+full_name: Windows::Sound
+includes: []
+
+instance_methods: []
+
+name: Sound
+superclass: 

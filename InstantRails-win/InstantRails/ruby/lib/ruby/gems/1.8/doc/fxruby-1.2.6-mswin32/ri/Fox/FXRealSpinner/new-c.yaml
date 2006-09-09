@@ -1,0 +1,57 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theRealSpinner
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXRealSpinner instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this spinner [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+cols+:"
+    body: number of columns to display in the text field [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+tgt+:"
+    body: the message target, if any, for this spinner [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+sel+:"
+    body: the message identifier for this spinner [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: the options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: initial x-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: initial y-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+w+:"
+    body: initial width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+h+:"
+    body: initial height [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pl+:"
+    body: internal padding on the left side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pr+:"
+    body: internal padding on the right side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pt+:"
+    body: internal padding on the top side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pb+:"
+    body: internal padding on the bottom side, in pixels [Integer]
+  type: :NOTE
+full_name: Fox::FXRealSpinner::new
+is_singleton: true
+name: new
+params: (p, cols, tgt=nil, sel=0, opts=REALSPIN_NORMAL, x=0, y=0, w=0, h=0, pl=DEFAULT_PAD, pr=DEFAULT_PAD, pt=DEFAULT_PAD, pb=DEFAULT_PAD) {|theRealSpinner| ...}
+visibility: public
