@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the beginning of the string up to the <tt>position</tt> treating the string as an array (where 0 is the first character).
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;hello&quot;.to(0)  # =&gt; &quot;h&quot;\n  &quot;hello&quot;.to(2)  # =&gt; &quot;hel&quot;\n  &quot;hello&quot;.to(10) # =&gt; &quot;hello&quot;\n"
+full_name: ActiveSupport::CoreExtensions::String::Access#to
+is_singleton: false
+name: to
+params: (position)
+visibility: public

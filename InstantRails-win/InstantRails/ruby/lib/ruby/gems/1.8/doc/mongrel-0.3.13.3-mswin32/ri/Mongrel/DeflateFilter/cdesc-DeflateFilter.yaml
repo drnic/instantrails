@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: When added to a config script (-S in mongrel_rails) it will look at the client's allowed response types and then gzip compress anything that is going out.
+- !ruby/struct:SM::Flow::P 
+  body: Valid option is :always_deflate =&gt; false which tells the handler to deflate everything even if the client can't handle it.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HTTP_ACCEPT_ENCODING
+  value: "\"HTTP_ACCEPT_ENCODING\""
+full_name: Mongrel::DeflateFilter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+name: DeflateFilter
+superclass: HttpHandler

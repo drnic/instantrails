@@ -1,0 +1,48 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: aliased_join_table_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: aliased_prefix
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: aliased_table_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: parent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: parent_table_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: reflection
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: ActiveRecord::Associations::ClassMethods::JoinDependency::JoinAssociation
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: association_join
+- !ruby/object:RI::MethodSummary 
+  name: interpolate_sql
+- !ruby/object:RI::MethodSummary 
+  name: pluralize
+- !ruby/object:RI::MethodSummary 
+  name: table_alias_for
+- !ruby/object:RI::MethodSummary 
+  name: table_name_and_alias
+name: JoinAssociation
+superclass: JoinBase

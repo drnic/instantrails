@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process (Mongrel::RedirectHandler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 442</span>
+442:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+443:       <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@pattern</span>
+444:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@replacement</span>)
+445:       <span class="ruby-keyword kw">else</span>
+446:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@block</span>
+447:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-operator">&amp;</span><span class="ruby-ivar">@block</span>)
+448:         <span class="ruby-keyword kw">else</span>
+449:           <span class="ruby-identifier">new_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">'REQUEST_URI'</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-ivar">@pattern</span>, <span class="ruby-ivar">@replacement</span>)
+450:         <span class="ruby-keyword kw">end</span>
+451:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">write</span>(<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REDIRECT</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">new_path</span>)
+452:       <span class="ruby-keyword kw">end</span>
+453:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>build (ActiveRecord::Associations::ClassMethods::JoinDependency)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 1294</span>
+            <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">build</span>(<span class="ruby-identifier">associations</span>, <span class="ruby-identifier">parent</span> = <span class="ruby-keyword kw">nil</span>)
+              <span class="ruby-identifier">parent</span> <span class="ruby-operator">||=</span> <span class="ruby-ivar">@joins</span>.<span class="ruby-identifier">last</span>
+              <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">associations</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>, <span class="ruby-constant">String</span>
+                  <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">reflections</span>[<span class="ruby-identifier">associations</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">intern</span>] <span class="ruby-keyword kw">or</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConfigurationError</span>, <span class="ruby-node">&quot;Association named '#{ associations }' was not found; perhaps you misspelled it?&quot;</span>
+                  <span class="ruby-ivar">@reflections</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">reflection</span>
+                  <span class="ruby-ivar">@joins</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">JoinAssociation</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">parent</span>)
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+                  <span class="ruby-identifier">associations</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">association</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">build</span>(<span class="ruby-identifier">association</span>, <span class="ruby-identifier">parent</span>)
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+                  <span class="ruby-identifier">associations</span>.<span class="ruby-identifier">keys</span>.<span class="ruby-identifier">sort</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">a</span>,<span class="ruby-identifier">b</span><span class="ruby-operator">|</span><span class="ruby-identifier">a</span>.<span class="ruby-identifier">to_s</span><span class="ruby-operator">&lt;=&gt;</span><span class="ruby-identifier">b</span>.<span class="ruby-identifier">to_s</span>}.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+                    <span class="ruby-identifier">build</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">parent</span>)
+                    <span class="ruby-identifier">build</span>(<span class="ruby-identifier">associations</span>[<span class="ruby-identifier">name</span>])
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ConfigurationError</span>, <span class="ruby-identifier">associations</span>.<span class="ruby-identifier">inspect</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

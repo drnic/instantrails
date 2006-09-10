@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns the list of commands for this command.
+  name: commands
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Returns the name of the default command.
+  name: default_command
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A detailed description of the command
+  name: description
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the command
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The wrapper for parsing the command line options.
+  name: options
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A short description of the command.
+  name: short_desc
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Sets or returns the super command of this command. The super command is either a <tt>Command</tt> instance for normal commands or a <tt>CommandParser</tt> instance for the root command.
+  name: super_command
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Base class for the commands. This class implements all needed methods so that it can be used by the <tt>CommandParser</tt> class.
+constants: []
+
+full_name: CmdParse::Command
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: <=>
+- !ruby/object:RI::MethodSummary 
+  name: add_command
+- !ruby/object:RI::MethodSummary 
+  name: commandparser
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: has_commands?
+- !ruby/object:RI::MethodSummary 
+  name: init
+- !ruby/object:RI::MethodSummary 
+  name: set_execution_block
+- !ruby/object:RI::MethodSummary 
+  name: show_help
+- !ruby/object:RI::MethodSummary 
+  name: super_commands
+- !ruby/object:RI::MethodSummary 
+  name: usage
+- !ruby/object:RI::MethodSummary 
+  name: use_partial_commands
+name: Command
+superclass: Object

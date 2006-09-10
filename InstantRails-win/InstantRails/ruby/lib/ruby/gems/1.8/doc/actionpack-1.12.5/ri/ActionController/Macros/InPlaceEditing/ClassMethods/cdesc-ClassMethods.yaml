@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Controller\n  class BlogController &lt; ApplicationController\n    in_place_edit_for :post, :title\n  end\n\n  # View\n  &lt;%= in_place_editor_field :post, 'title' %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: For help on defining an in place editor in the browser, see ActionView::Helpers::JavaScriptHelper.
+constants: []
+
+full_name: ActionController::Macros::InPlaceEditing::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: in_place_edit_for
+name: ClassMethods
+superclass: 

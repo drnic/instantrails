@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>rails (Mongrel::Rails::RailsConfigurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/rails.rb, line 129</span>
+129:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rails</span>(<span class="ruby-identifier">options</span>={})
+130: 
+131:         <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@rails_handler</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@rails_handler</span>
+132: 
+133:         <span class="ruby-identifier">ops</span> = <span class="ruby-identifier">resolve_defaults</span>(<span class="ruby-identifier">options</span>)
+134: 
+135:         <span class="ruby-comment cmt"># fix up some defaults</span>
+136:         <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:environment</span>] <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;development&quot;</span>
+137:         <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:docroot</span>] <span class="ruby-operator">||=</span> <span class="ruby-value str">&quot;public&quot;</span>
+138:         <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:mime</span>] <span class="ruby-operator">||=</span> {}
+139: 
+140: 
+141:         <span class="ruby-identifier">$orig_dollar_quote</span> = <span class="ruby-identifier">$&quot;</span>.<span class="ruby-identifier">clone</span>
+142:         <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'RAILS_ENV'</span>] = <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:environment</span>]
+143:         <span class="ruby-identifier">env_location</span> = <span class="ruby-node">&quot;#{ops[:cwd]}/config/environment&quot;</span>
+144:         <span class="ruby-identifier">require</span> <span class="ruby-identifier">env_location</span>
+145:         <span class="ruby-identifier">require</span> <span class="ruby-value str">'dispatcher'</span>
+146:         <span class="ruby-identifier">require</span> <span class="ruby-value str">'mongrel/rails'</span>
+147: 
+148:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">allow_concurrency</span>
+149:           <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;[RAILS] ActionController::Base.allow_concurrency is true.  Wow, you're very brave.&quot;</span>
+150:         <span class="ruby-keyword kw">end</span>
+151:         <span class="ruby-ivar">@rails_handler</span> = <span class="ruby-constant">RailsHandler</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:docroot</span>], <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:mime</span>])
+152:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

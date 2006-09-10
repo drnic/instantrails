@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>run (Mongrel::HttpServer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel.rb, line 622</span>
+622:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">run</span>
+623:       <span class="ruby-constant">BasicSocket</span>.<span class="ruby-identifier">do_not_reverse_lookup</span>=<span class="ruby-keyword kw">true</span>
+624: 
+625:       <span class="ruby-ivar">@acceptor</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span>
+626:         <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">true</span>
+627:           <span class="ruby-keyword kw">begin</span>
+628:             <span class="ruby-identifier">client</span> = <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">accept</span>
+629:             <span class="ruby-identifier">worker_list</span> = <span class="ruby-ivar">@workers</span>.<span class="ruby-identifier">list</span>
+630: 
+631:             <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">worker_list</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-ivar">@num_processors</span>
+632:               <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;Server overloaded with #{worker_list.length} processors (#@num_processors max). Dropping connection.&quot;</span>
+633:               <span class="ruby-identifier">client</span>.<span class="ruby-identifier">close</span>
+634:               <span class="ruby-identifier">reap_dead_workers</span>(<span class="ruby-value str">&quot;max processors&quot;</span>)
+635:             <span class="ruby-keyword kw">else</span>
+636:               <span class="ruby-identifier">thread</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">process_client</span>(<span class="ruby-identifier">client</span>) }
+637:               <span class="ruby-identifier">thread</span>.<span class="ruby-identifier">abort_on_exception</span> = <span class="ruby-keyword kw">true</span>
+638:               <span class="ruby-identifier">thread</span>[<span class="ruby-identifier">:started_on</span>] = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>
+639:               <span class="ruby-ivar">@workers</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">thread</span>)
+640: 
+641:               <span class="ruby-identifier">sleep</span> <span class="ruby-ivar">@timeout</span><span class="ruby-operator">/</span><span class="ruby-value">100</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@timeout</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+642:             <span class="ruby-keyword kw">end</span>
+643:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">StopServer</span>
+644:             <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">closed?</span>
+645:             <span class="ruby-keyword kw">break</span>
+646:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EMFILE</span>
+647:             <span class="ruby-identifier">reap_dead_workers</span>(<span class="ruby-value str">&quot;too many open files&quot;</span>)
+648:             <span class="ruby-identifier">sleep</span> <span class="ruby-value">0</span><span class="ruby-value">.5</span>
+649:           <span class="ruby-keyword kw">end</span>
+650:         <span class="ruby-keyword kw">end</span>
+651: 
+652:         <span class="ruby-identifier">graceful_shutdown</span>
+653:       <span class="ruby-keyword kw">end</span>
+654: 
+655:       <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@acceptor</span>
+656:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

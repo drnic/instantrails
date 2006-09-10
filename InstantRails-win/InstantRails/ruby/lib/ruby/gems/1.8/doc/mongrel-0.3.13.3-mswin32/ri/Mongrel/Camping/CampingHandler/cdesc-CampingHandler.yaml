@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is a specialized handler for Camping applications that has them process the request and then translates the results into something the Mongrel::HttpResponse needs.
+constants: []
+
+full_name: Mongrel::Camping::CampingHandler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+name: CampingHandler
+superclass: Mongrel::HttpHandler

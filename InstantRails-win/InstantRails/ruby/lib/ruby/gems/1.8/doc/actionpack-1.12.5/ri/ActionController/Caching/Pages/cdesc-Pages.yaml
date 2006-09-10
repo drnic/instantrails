@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Page caching is an approach to caching where the entire action output of is stored as a HTML file that the web server can serve without going through the Action Pack. This can be as much as 100 times faster than going through the process of dynamically generating the content. Unfortunately, this incredible speed-up is only available to stateless pages where all visitors are treated the same. Content management systems -- including weblogs and wikis -- have many pages that are a great fit for this approach, but account-based systems where people log in and manipulate their own data are often less likely candidates.
+- !ruby/struct:SM::Flow::P 
+  body: "Specifying which actions to cache is done through the <tt>caches</tt> class method:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class WeblogController &lt; ActionController::Base\n    caches_page :show, :new\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This will generate cache files such as weblog/show/5 and weblog/new, which match the URLs used to trigger the dynamic generation. This is how the web server is able pick up a cache file when it exists and otherwise let the request pass on to the Action Pack to generate it.
+- !ruby/struct:SM::Flow::P 
+  body: "Expiration of the cache is handled by deleting the cached file, which results in a lazy regeneration approach where the cache is not restored before another hit is made against it. The API for doing so mimics the options from url_for and friends:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class WeblogController &lt; ActionController::Base\n    def update\n      List.update(params[:list][:id], params[:list])\n      expire_page :action =&gt; &quot;show&quot;, :id =&gt; params[:list][:id]\n      redirect_to :action =&gt; &quot;show&quot;, :id =&gt; params[:list][:id]\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Additionally, you can expire caches using Sweepers that act on changes in the model to determine when a cache is supposed to be expired.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Setting the cache directory
+- !ruby/struct:SM::Flow::P 
+  body: The cache directory should be the document root for the web server and is set using Base.page_cache_directory = &quot;/document/root&quot;. For Rails, this directory has already been set to RAILS_ROOT + &quot;/public&quot;.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Setting the cache extension
+- !ruby/struct:SM::Flow::P 
+  body: By default, the cache extension is .html, which makes it easy for the cached files to be picked up by the web server. If you want something else, like .php or .shtml, just set Base.page_cache_extension.
+constants: []
+
+full_name: ActionController::Caching::Pages
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cache_page
+- !ruby/object:RI::MethodSummary 
+  name: expire_page
+name: Pages
+superclass: 

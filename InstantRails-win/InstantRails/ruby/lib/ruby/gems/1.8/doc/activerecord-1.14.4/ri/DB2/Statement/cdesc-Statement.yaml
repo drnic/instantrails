@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: DB2::Statement
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: DB2Util
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adjust_content
+- !ruby/object:RI::MethodSummary 
+  name: bind
+- !ruby/object:RI::MethodSummary 
+  name: bindParms
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: exec_direct
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: fetch
+- !ruby/object:RI::MethodSummary 
+  name: fetch_all
+- !ruby/object:RI::MethodSummary 
+  name: fetch_as_hash
+- !ruby/object:RI::MethodSummary 
+  name: get_col_desc
+- !ruby/object:RI::MethodSummary 
+  name: get_cursor_name
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: num_result_cols
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: row_count
+- !ruby/object:RI::MethodSummary 
+  name: set_cursor_name
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: tokens
+name: Statement
+superclass: Object

@@ -1,0 +1,57 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The OpenBase adapter works with the Ruby/Openbase driver by Tetsuya Suzuki. http://www.spice-of-life.net/ruby-openbase/ (needs version 0.7.3+)
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- Defaults to localhost
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:username</tt> -- Defaults to nothing
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Defaults to nothing
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database</tt> -- The name of the database. No default, must be provided.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The OpenBase adapter will make use of OpenBase's ability to generate unique ids for any column with an unique index applied. Thus, if the value of a primary key is not specified at the time an INSERT is performed, the adapter will prefetch a unique id for the primary key. This prefetching is also necessary in order to return the id after an insert.
+- !ruby/struct:SM::Flow::P 
+  body: "Caveat: Operations involving LIMIT and OFFSET do not yet work!"
+- !ruby/struct:SM::Flow::P 
+  body: "Maintainer: derrickspell@cdmplus.com"
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::OpenBaseAdapter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: adapter_name
+- !ruby/object:RI::MethodSummary 
+  name: add_limit_offset!
+- !ruby/object:RI::MethodSummary 
+  name: native_database_types
+- !ruby/object:RI::MethodSummary 
+  name: next_sequence_value
+- !ruby/object:RI::MethodSummary 
+  name: prefetch_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: supports_migrations?
+name: OpenBaseAdapter
+superclass: AbstractAdapter

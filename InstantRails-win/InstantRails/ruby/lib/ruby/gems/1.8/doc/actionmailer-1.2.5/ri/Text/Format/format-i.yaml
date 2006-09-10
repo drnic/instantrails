@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats text into a nice paragraph format. The text is separated into words and then reassembled a word at a time using the settings of this Format object. If a word is larger than the number of columns available for formatting, then that word will appear on the line by itself.
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>to_wrap</tt> is <tt>nil</tt>, then the value of <tt>#text</tt> will be worked on.
+full_name: Text::Format#format
+is_singleton: false
+name: format
+params: (to_wrap = nil)
+visibility: public

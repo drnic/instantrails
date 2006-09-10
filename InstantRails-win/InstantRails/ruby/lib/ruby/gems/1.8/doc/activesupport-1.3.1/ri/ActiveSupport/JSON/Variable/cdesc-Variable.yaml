@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: returns the literal string as its JSON encoded form. Useful for passing javascript variables into functions.
+- !ruby/struct:SM::Flow::P 
+  body: page.call 'Element.show', ActiveSupport::JSON::Variable.new(&quot;$$(#items li)&quot;)
+constants: []
+
+full_name: ActiveSupport::JSON::Variable
+includes: []
+
+instance_methods: []
+
+name: Variable
+superclass: String

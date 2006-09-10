@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This constructor takes advantage of a technique for Ruby object construction introduced by Andy Hunt and Dave Thomas (see reference), where optional values are set using commands in a block.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Text::Format.new {\n      columns         = 72\n      left_margin     = 0\n      right_margin    = 0\n      first_indent    = 4\n      body_indent     = 0\n      format_style    = Text::Format::LEFT_ALIGN\n      extra_space     = false\n      abbreviations   = {}\n      tag_paragraph   = false\n      tag_text        = []\n      nobreak         = false\n      nobreak_regex   = {}\n      tabstop         = 8\n      text            = nil\n  }\n"
+- !ruby/struct:SM::Flow::P 
+  body: As shown above, <tt>arg</tt> is optional. If <tt>arg</tt> is specified and is a <tt>String</tt>, then arg is used as the default value of <tt>#text</tt>. Alternately, an existing Text::Format object can be used or a Hash can be used. With all forms, a block can be specified.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Reference*:"
+    body: "&quot;Object Construction and Blocks&quot; &lt;http://www.pragmaticprogrammer.com/ruby/articles/insteval.html&gt;"
+  type: :NOTE
+full_name: Text::Format::new
+is_singleton: true
+name: new
+params: (arg = nil, &block)
+visibility: public

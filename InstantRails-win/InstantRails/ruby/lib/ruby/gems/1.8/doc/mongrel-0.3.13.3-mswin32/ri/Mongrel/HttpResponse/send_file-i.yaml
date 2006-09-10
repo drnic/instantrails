@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Appends the contents of <tt>path</tt> to the response stream. The file is opened for binary reading and written in chunks to the socket. If the &lt;a href=&quot;http://rubyforge.org/projects/ruby-sendfile&quot;&gt;sendfile&lt;/a&gt; library is found, it is used to send the file, often with greater speed and less memory/cpu usage.
+- !ruby/struct:SM::Flow::P 
+  body: The presence of ruby-sendfile is determined by @socket.response_to? :sendfile, which means that if you have your own sendfile implementation you can use it without changing this function, just make sure it follows the ruby-sendfile signature.
+full_name: Mongrel::HttpResponse#send_file
+is_singleton: false
+name: send_file
+params: (path)
+visibility: public

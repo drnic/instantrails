@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Sat Sep 09 04:27:56 -0500 2006</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>What is it?</h2>
+<p>
+An interface to Win32 services. It also allows you to create an run Ruby
+programs as a Service.
+</p>
+<h2>Installation</h2>
+<p>
+ruby extconf.rb nmake cd test; ruby tc_service.rb; ruby tc_daemon.rb
+(optional) nmake site-install
+</p>
+<h2>Where are the docs?</h2>
+<p>
+In the &#8216;doc&#8217; directory.
+</p>
+<h2>Possible errors</h2>
+<ul>
+<li>Service.delete causes &quot;Unable to delete: The specified service has
+
+</li>
+</ul>
+<p>
+been marked for deletion.&quot;
+</p>
+<p>
+This can be caused by two things. Either you attempted to delete a running
+service without stopping it first, or you have the Services administrative
+tool (GUI) open. The solution is to first stop the service if it&#8216;s
+running and close the Services GUI admin tool before deleting.
+</p>
+<ul>
+<li>Service.start causes, &quot;The service did not respond to the start or
+control
+
+</li>
+</ul>
+<p>
+request in a timely fashion.&quot;
+</p>
+<p>
+There are a few possibilities, but I&#8216;ll just mention the ones I can
+speak of from personal experience. The most likely cause for this error is
+that there is a bug in your Daemon class. Unfortunately, it isn&#8216;t
+stated in the error message or the Event log as to what might be wrong.
+You&#8216;ll have to debug your class separately somehow. One approach
+might be to do STDERR.reopen(&quot;C:\errors.txt&quot;), or something
+similar, at the top of your Daemon code.
+</p>
+<p>
+The other possibility is that your binary path name is incorrect. The
+solution in the latter case is to use an absolute path name for the target
+Ruby script. It might also be a good idea to include the full path name to
+the Ruby interpreter, e.g. &#8216;c:\ruby\bin\ruby&#8217; versus just
+&#8216;ruby&#8217;.
+</p>
+<h2>Possible test failures</h2>
+<p>
+The &#8216;test_start_stop&#8217; test in the tc_service.rb file may fail.
+This is the result of the Network DDE service being disabled in certain
+versions of Windows. You can safely ignore this. That, or you can start the
+Network DDE service manually and re-run the test suite.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

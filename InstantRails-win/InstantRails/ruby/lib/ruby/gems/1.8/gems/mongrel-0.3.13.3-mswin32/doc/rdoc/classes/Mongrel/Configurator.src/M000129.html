@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>setup_signals (Mongrel::Configurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/mongrel.rb, line 1040</span>
+1040:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup_signals</span>(<span class="ruby-identifier">options</span>={})
+1041:       <span class="ruby-identifier">ops</span> = <span class="ruby-identifier">resolve_defaults</span>(<span class="ruby-identifier">options</span>)
+1042: 
+1043:       <span class="ruby-comment cmt"># forced shutdown, even if previously restarted (actually just like TERM but for CTRL-C)</span>
+1044:       <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;INT&quot;</span>) { <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;INT signal received.&quot;</span>; <span class="ruby-identifier">stop</span>(<span class="ruby-identifier">need_restart</span>=<span class="ruby-keyword kw">false</span>) }
+1045: 
+1046:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/mswin/</span>
+1047:         <span class="ruby-comment cmt"># graceful shutdown</span>
+1048:         <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;TERM&quot;</span>) { <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;TERM signal received.&quot;</span>; <span class="ruby-identifier">stop</span> }
+1049: 
+1050:         <span class="ruby-comment cmt"># restart</span>
+1051:         <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;USR2&quot;</span>) { <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;USR2 signal received.&quot;</span>; <span class="ruby-identifier">stop</span>(<span class="ruby-identifier">need_restart</span>=<span class="ruby-keyword kw">true</span>) }
+1052: 
+1053:         <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;Signals ready.  TERM =&gt; stop.  USR2 =&gt; restart.  INT =&gt; stop (no restart).&quot;</span>
+1054:       <span class="ruby-keyword kw">else</span>
+1055:         <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;Signals ready.  INT =&gt; stop (no restart).&quot;</span>
+1056:       <span class="ruby-keyword kw">end</span>
+1057:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

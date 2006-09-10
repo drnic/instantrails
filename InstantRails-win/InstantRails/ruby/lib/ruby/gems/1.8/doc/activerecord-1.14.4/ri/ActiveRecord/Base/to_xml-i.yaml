@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Builds an XML document to represent the model. Some configuration is availble through <tt>options</tt>, however more complicated cases should use Builder.
+- !ruby/struct:SM::Flow::P 
+  body: "By default the generated XML document will include the processing instruction and all object's attributes. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  &lt;topic&gt;\n    &lt;title&gt;The First Topic&lt;/title&gt;\n    &lt;author-name&gt;David&lt;/author-name&gt;\n    &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n    &lt;approved type=&quot;boolean&quot;&gt;false&lt;/approved&gt;\n    &lt;replies-count type=&quot;integer&quot;&gt;0&lt;/replies-count&gt;\n    &lt;bonus-time type=&quot;datetime&quot;&gt;2000-01-01T08:28:00+12:00&lt;/bonus-time&gt;\n    &lt;written-on type=&quot;datetime&quot;&gt;2003-07-16T09:28:00+1200&lt;/written-on&gt;\n    &lt;content&gt;Have a nice day&lt;/content&gt;\n    &lt;author-email-address&gt;david@loudthinking.com&lt;/author-email-address&gt;\n    &lt;parent-id&gt;&lt;/parent-id&gt;\n    &lt;last-read type=&quot;date&quot;&gt;2004-04-15&lt;/last-read&gt;\n  &lt;/topic&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This behaviour can be controlled with :only, :except, and :skip_instruct for instance:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  topic.to_xml(:skip_instruct =&gt; true, :except =&gt; [ :id, bonus_time, :written_on, replies_count ])\n\n  &lt;topic&gt;\n    &lt;title&gt;The First Topic&lt;/title&gt;\n    &lt;author-name&gt;David&lt;/author-name&gt;\n    &lt;approved type=&quot;boolean&quot;&gt;false&lt;/approved&gt;\n    &lt;content&gt;Have a nice day&lt;/content&gt;\n    &lt;author-email-address&gt;david@loudthinking.com&lt;/author-email-address&gt;\n    &lt;parent-id&gt;&lt;/parent-id&gt;\n    &lt;last-read type=&quot;date&quot;&gt;2004-04-15&lt;/last-read&gt;\n  &lt;/topic&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: To include first level associations use :include
+- !ruby/struct:SM::Flow::VERB 
+  body: "  firm.to_xml :include =&gt; [ :account, :clients ]\n\n  &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  &lt;firm&gt;\n    &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n    &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n    &lt;name&gt;37signals&lt;/name&gt;\n    &lt;clients&gt;\n      &lt;client&gt;\n        &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n        &lt;name&gt;Summit&lt;/name&gt;\n      &lt;/client&gt;\n      &lt;client&gt;\n        &lt;rating type=&quot;integer&quot;&gt;1&lt;/rating&gt;\n        &lt;name&gt;Microsoft&lt;/name&gt;\n      &lt;/client&gt;\n    &lt;/clients&gt;\n    &lt;account&gt;\n      &lt;id type=&quot;integer&quot;&gt;1&lt;/id&gt;\n      &lt;credit-limit type=&quot;integer&quot;&gt;50&lt;/credit-limit&gt;\n    &lt;/account&gt;\n  &lt;/firm&gt;\n"
+full_name: ActiveRecord::Base#to_xml
+is_singleton: false
+name: to_xml
+params: (options = {})
+visibility: public

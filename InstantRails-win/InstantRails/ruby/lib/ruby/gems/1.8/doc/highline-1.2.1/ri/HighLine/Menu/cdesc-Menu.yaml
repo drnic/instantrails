@@ -1,0 +1,112 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This attribute is passed directly on as the mode to HighLine.list() by all the preset layouts. See that method for appropriate settings.
+  name: flow
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used by all the preset layouts to display title and/or introductory information, when set. Defaults to <tt>nil</tt>.
+  name: header
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An <em>index</em> to append to each menu item in display. See Menu.index=() for details.
+  name: index
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The String placed between an <em>index</em> and a menu item. Defaults to &quot;. &quot;. Switches to &quot; &quot;, when <em>index</em> is set to a String (like &quot;-&quot;).
+  name: index_suffix
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An ERb <em>layout</em> to use when displaying this Menu object. See Menu.layout=() for details.
+  name: layout
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This setting is passed on as the third parameter to HighLine.list() by all the preset layouts. See that method for details of its effects. Defaults to <tt>nil</tt>.
+  name: list_option
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When <tt>true</tt>, any selected item handled by provided action code, will return <tt>nil</tt>, instead of the results to the action code. This may prove handy when dealing with mixed menus where only the names of items without any code (and <tt>nil</tt>, of course) will be returned. Defaults to <tt>false</tt>.
+  name: nil_on_handled
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used by all the preset layouts to ask the actual question to fetch a menu selection from the user. Defaults to &quot;? &quot;.
+  name: prompt
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The <em>select_by</em> attribute controls how the user is allowed to pick a menu item. The available choices are:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:index</tt>:"
+      body: The user is allowed to type the numerical or alphetical index for their selection.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:index_or_name</tt>:"
+      body: Allows both methods from the <tt>:index</tt> option and the <tt>:name</tt> option.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:name</tt>:"
+      body: Menu items are selected by typing a portion of the item name that will be auto-completed.
+    type: :NOTE
+  name: select_by
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When set to <tt>true</tt>, responses are allowed to be an entire line of input, including details beyond the command itself. Only the first &quot;word&quot; of input will be matched against the menu choices, but both the command selected and the rest of the line will be passed to provided action blocks. Defaults to <tt>false</tt>.
+  name: shell
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Menu objects encapsulate all the details of a call to HighLine.choose(). Using the accessors and Menu.choice() and Menu.choices(), the block passed to HighLine.choose() can detail all aspects of menu display and control.
+constants: []
+
+full_name: HighLine::Menu
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: choice
+- !ruby/object:RI::MethodSummary 
+  name: choices
+- !ruby/object:RI::MethodSummary 
+  name: help
+- !ruby/object:RI::MethodSummary 
+  name: hidden
+- !ruby/object:RI::MethodSummary 
+  name: index=
+- !ruby/object:RI::MethodSummary 
+  name: init_help
+- !ruby/object:RI::MethodSummary 
+  name: layout=
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: to_ary
+- !ruby/object:RI::MethodSummary 
+  name: to_str
+- !ruby/object:RI::MethodSummary 
+  name: update_responses
+name: Menu
+superclass: Question

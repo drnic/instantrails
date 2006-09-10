@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This act provides the capabilities for sorting and reordering a number of objects in a list. The class that has this specified needs to have a &quot;position&quot; column defined as an integer on the mapped database table.
+- !ruby/struct:SM::Flow::P 
+  body: "Todo list example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class TodoList &lt; ActiveRecord::Base\n    has_many :todo_items, :order =&gt; &quot;position&quot;\n  end\n\n  class TodoItem &lt; ActiveRecord::Base\n    belongs_to :todo_list\n    acts_as_list :scope =&gt; :todo_list\n  end\n\n  todo_list.first.move_to_bottom\n  todo_list.last.move_higher\n"
+constants: []
+
+full_name: ActiveRecord::Acts::List::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acts_as_list
+name: ClassMethods
+superclass: 

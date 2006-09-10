@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates whether the value of the specified attribute is of the correct form by matching it against the regular expression provided.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_format_of :email, :with =&gt; /^([^@\\s]+)@((?:[-a-z0-9]+\\.)+[a-z]{2,})$/i, :on =&gt; :create\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: A regular expression must be provided or else an exception will be raised.
+- !ruby/struct:SM::Flow::P 
+  body: "Configuration options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>message</tt> - A custom error message (default is: &quot;is invalid&quot;)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>with</tt> - The regular expression used to validate the format with (note: must be supplied!)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>on</tt> Specifies when this validation is active (default is :save, other options :create, :update)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>if</tt> - Specifies a method, proc or string to call to determine if the validation should
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user| user.signup_step &gt; 2 }). The method, proc or string should return or evaluate to a true or false value.
+full_name: ActiveRecord::Validations::ClassMethods#validates_format_of
+is_singleton: false
+name: validates_format_of
+params: (*attr_names)
+visibility: public

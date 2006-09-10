@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>reload! (Mongrel::Rails::RailsConfigurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/rails.rb, line 158</span>
+158:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reload!</span>
+159:         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-ivar">@rails_handler</span>
+160:           <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Rails was not configured.  Read the docs for RailsConfigurator.&quot;</span>
+161:         <span class="ruby-keyword kw">end</span>
+162: 
+163:         <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;Reloading rails...&quot;</span>
+164:         <span class="ruby-ivar">@rails_handler</span>.<span class="ruby-identifier">reload!</span>
+165:         <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;Done reloading rails.&quot;</span>
+166: 
+167:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

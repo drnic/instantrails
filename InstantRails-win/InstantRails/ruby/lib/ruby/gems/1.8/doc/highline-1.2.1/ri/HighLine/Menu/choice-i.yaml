@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds <em>name</em> to the list of available menu items. Menu items will be displayed in the order they are added.
+- !ruby/struct:SM::Flow::P 
+  body: An optional <em>action</em> can be associated with this name and if provided, it will be called if the item is selected. The result of the method will be returned, unless <em>nil_on_handled</em> is set (when you would get <tt>nil</tt> instead). In <em>shell</em> mode, a provided block will be passed the command chosen and any details that followed the command. Otherwise, just the command is passed. The <tt>@highline</tt> variable is set to the current HighLine context before the action code is called and can thus be used for adding output and the like.
+full_name: HighLine::Menu#choice
+is_singleton: false
+name: choice
+params: ( name, help = nil, &action )
+visibility: public

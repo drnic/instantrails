@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>association_join (ActiveRecord::Associations::ClassMethods::JoinDependency::JoinAssociation)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 1441</span>
+            <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">association_join</span>
+              <span class="ruby-identifier">join</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_and_belongs_to_many</span>
+                  <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [
+                     <span class="ruby-identifier">table_alias_for</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:join_table</span>], <span class="ruby-identifier">aliased_join_table_name</span>),
+                     <span class="ruby-identifier">aliased_join_table_name</span>,
+                     <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">foreign_key</span>,
+                     <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">primary_key</span>] <span class="ruby-operator">+</span>
+                  <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [
+                     <span class="ruby-identifier">table_name_and_alias</span>, <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">primary_key</span>,
+                     <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:association_foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">foreign_key</span>
+                     ]
+                <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_many</span>, <span class="ruby-identifier">:has_one</span>
+                  <span class="ruby-keyword kw">case</span>
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:has_many</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:through</span>]
+                      <span class="ruby-identifier">through_conditions</span> = <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:conditions</span>] <span class="ruby-operator">?</span> <span class="ruby-node">&quot;AND #{interpolate_sql(sanitize_sql(through_reflection.options[:conditions]))}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">''</span>
+                      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>] <span class="ruby-comment cmt"># has_many :through against a polymorphic join</span>
+                        <span class="ruby-identifier">polymorphic_foreign_key</span>  = <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'_id'</span>
+                        <span class="ruby-identifier">polymorphic_foreign_type</span> = <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'_type'</span>
+
+                        <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON (%s.%s = %s.%s AND %s.%s = %s) &quot;</span>  <span class="ruby-operator">%</span> [
+                          <span class="ruby-identifier">table_alias_for</span>(<span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">aliased_join_table_name</span>),
+                          <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">polymorphic_foreign_key</span>,
+                          <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>,
+                          <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">polymorphic_foreign_type</span>, <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>)] <span class="ruby-operator">+</span>
+                        <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">table_name_and_alias</span>,
+                          <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">primary_key</span>, <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">foreign_key</span>
+                        ]
+                      <span class="ruby-keyword kw">else</span>
+                        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">source_reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:has_many</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">source_reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>]
+                          <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span>  <span class="ruby-operator">%</span> [
+                            <span class="ruby-identifier">table_alias_for</span>(<span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">aliased_join_table_name</span>), <span class="ruby-identifier">aliased_join_table_name</span>,
+                            <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">primary_key_name</span>,
+                            <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>] <span class="ruby-operator">+</span>
+                          <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s AND %s.%s = %s &quot;</span> <span class="ruby-operator">%</span> [
+                            <span class="ruby-identifier">table_name_and_alias</span>,
+                            <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{source_reflection.options[:as]}_id&quot;</span>, 
+                            <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">primary_key</span>,
+                            <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{source_reflection.options[:as]}_type&quot;</span>, 
+                            <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">source_reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>)
+                          ]
+                        <span class="ruby-keyword kw">else</span>
+                          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">source_reflection</span>.<span class="ruby-identifier">macro</span>
+                            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:belongs_to</span>
+                              <span class="ruby-identifier">first_key</span>  = <span class="ruby-identifier">primary_key</span>
+                              <span class="ruby-identifier">second_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">foreign_key</span>
+                            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:has_many</span>
+                              <span class="ruby-identifier">first_key</span>  = <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">classify</span>.<span class="ruby-identifier">foreign_key</span>
+                              <span class="ruby-identifier">second_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">primary_key</span>
+                          <span class="ruby-keyword kw">end</span>
+                          
+                          <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span>  <span class="ruby-operator">%</span> [
+                            <span class="ruby-identifier">table_alias_for</span>(<span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">aliased_join_table_name</span>), <span class="ruby-identifier">aliased_join_table_name</span>,
+                            <span class="ruby-identifier">through_reflection</span>.<span class="ruby-identifier">primary_key_name</span>,
+                            <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>] <span class="ruby-operator">+</span>
+                          <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [
+                            <span class="ruby-identifier">table_name_and_alias</span>,
+                            <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">first_key</span>, 
+                            <span class="ruby-identifier">aliased_join_table_name</span>, <span class="ruby-identifier">second_key</span>
+                          ]
+                        <span class="ruby-keyword kw">end</span>
+                      <span class="ruby-keyword kw">end</span>
+                    
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:has_many</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>]
+                      <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s AND %s.%s = %s&quot;</span> <span class="ruby-operator">%</span> [
+                        <span class="ruby-identifier">table_name_and_alias</span>,
+                        <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{reflection.options[:as]}_id&quot;</span>,
+                        <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>,
+                        <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{reflection.options[:as]}_type&quot;</span>,
+                        <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>)
+                      ]
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">macro</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:has_one</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:as</span>]
+                      <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s AND %s.%s = %s &quot;</span> <span class="ruby-operator">%</span> [
+                        <span class="ruby-identifier">table_name_and_alias</span>,
+                        <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{reflection.options[:as]}_id&quot;</span>,
+                        <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>,
+                        <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-node">&quot;#{reflection.options[:as]}_type&quot;</span>,
+                        <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">base_class</span>.<span class="ruby-identifier">name</span>)
+                      ]
+                    <span class="ruby-keyword kw">else</span>
+                      <span class="ruby-identifier">foreign_key</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">name</span>.<span class="ruby-identifier">foreign_key</span>
+                      <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [
+                        <span class="ruby-identifier">table_name_and_alias</span>,
+                        <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">foreign_key</span>,
+                        <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">primary_key</span>
+                      ]
+                  <span class="ruby-keyword kw">end</span>
+                <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:belongs_to</span>
+                  <span class="ruby-value str">&quot; LEFT OUTER JOIN %s ON %s.%s = %s.%s &quot;</span> <span class="ruby-operator">%</span> [
+                     <span class="ruby-identifier">table_name_and_alias</span>, <span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">primary_key</span>,
+                     <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">aliased_table_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:foreign_key</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">foreign_key</span>
+                    ]
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-value str">&quot;&quot;</span>
+              <span class="ruby-keyword kw">end</span> <span class="ruby-operator">||</span> <span class="ruby-value str">''</span>
+              <span class="ruby-identifier">join</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">%(AND %s.%s = %s )</span> <span class="ruby-operator">%</span> [
+                <span class="ruby-identifier">aliased_table_name</span>, 
+                <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">connection</span>.<span class="ruby-identifier">quote_column_name</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">active_record</span>.<span class="ruby-identifier">inheritance_column</span>), 
+                <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">klass</span>.<span class="ruby-identifier">name</span>)] <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">descends_from_active_record?</span>
+              <span class="ruby-identifier">join</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;AND #{interpolate_sql(sanitize_sql(reflection.options[:conditions]))} &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:conditions</span>]
+              <span class="ruby-identifier">join</span>
+            <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

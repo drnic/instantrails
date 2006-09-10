@@ -1,0 +1,44 @@
+require 'rake'
+require 'rake/testtask'
+require 'rake/clean'
+require 'rake/gempackagetask'
+require 'rake/rdoctask'
+require 'tools/rakehelp'
+require 'fileutils'
+include FileUtils
+
+setup_tests
+setup_clean ["ext/service/*.{bundle,so,obj,pdb,lib,def,exp}", "ext/service/Makefile", "pkg", "lib/*.bundle", "*.gem", "doc/site/output", ".config"]
+
+setup_rdoc ['README', 'lib/*.rb', 'doc/**/*.rdoc', 'ext/service/service.c']
+
+desc "Does a full compile, test run"
+task :default => [:compile, :test]
+
+desc "Compiles all extensions"
+task :compile => [:service]
+task :package => [:clean]
+
+setup_extension("service", "service")
+
+version="0.5.0"
+summary = "win32-service for doing services in Ruby"
+test_file = "test/tc_service.rb"
+author="Daniel Berger"
+name="win32-service"
+scripts=[]
+
+setup_gem(name, version,  author, summary, scripts, test_file) do |spec|
+end
+
+desc "Build a binary gem for Win32"
+task :win32_gem => [:clean, :compile, :test, :package_win32]
+
+task :package_win32 do
+  setup_win32_gem(name, version,  version, summary, scripts, test_file) do |spec|
+    spec.files << 'ext/service/service.so'
+    spec.extensions = []
+    spec.platform = Gem::Platform::WIN32
+  end
+end
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Mongrel::StatisticsFilter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 328</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">ops</span>={})
+      <span class="ruby-ivar">@sample_rate</span> = <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:sample_rate</span>] <span class="ruby-operator">||</span> <span class="ruby-value">300</span>
+
+      <span class="ruby-ivar">@processors</span> = <span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;processors&quot;</span>)
+      <span class="ruby-ivar">@reqsize</span> = <span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;request Kb&quot;</span>)
+      <span class="ruby-ivar">@headcount</span> = <span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;req param count&quot;</span>)
+      <span class="ruby-ivar">@respsize</span> = <span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;response Kb&quot;</span>)
+      <span class="ruby-ivar">@interreq</span> = <span class="ruby-constant">Stats</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;inter-request time&quot;</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

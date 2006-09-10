@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Methods for sending files and streams to the browser instead of rendering.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_SEND_FILE_OPTIONS
+  value: "{       :type         => 'application/octet-stream'.freeze,       :disposition  => 'attachment'.freeze,       :stream       => true,        :buffer_size  => 4096"
+full_name: ActionController::Streaming
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+- !ruby/object:RI::MethodSummary 
+  name: send_file
+name: Streaming
+superclass: 

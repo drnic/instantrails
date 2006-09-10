@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Receives a raw email, parses it into an email object, decodes it, instantiates a new mailer, and passes the email object to the mailer object's #receive method. If you want your mailer to be able to process incoming messages, you'll need to implement a #receive method that accepts the email object as a parameter:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class MyMailer &lt; ActionMailer::Base\n    def receive(mail)\n      ...\n    end\n  end\n"
+full_name: ActionMailer::Base::receive
+is_singleton: true
+name: receive
+params: (raw_email)
+visibility: public

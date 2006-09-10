@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>attachments (TMail::Mail)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail/attachments.rb, line 18</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attachments</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">multipart?</span>
+        <span class="ruby-identifier">parts</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">part</span><span class="ruby-operator">|</span> 
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attachment?</span>(<span class="ruby-identifier">part</span>)
+            <span class="ruby-identifier">content</span>   = <span class="ruby-identifier">part</span>.<span class="ruby-identifier">body</span> <span class="ruby-comment cmt"># unquoted automatically by TMail#body</span>
+            <span class="ruby-identifier">file_name</span> = (<span class="ruby-identifier">part</span>[<span class="ruby-value str">'content-location'</span>] <span class="ruby-operator">&amp;&amp;</span>
+                          <span class="ruby-identifier">part</span>[<span class="ruby-value str">'content-location'</span>].<span class="ruby-identifier">body</span>) <span class="ruby-operator">||</span>
+                        <span class="ruby-identifier">part</span>.<span class="ruby-identifier">sub_header</span>(<span class="ruby-value str">&quot;content-type&quot;</span>, <span class="ruby-value str">&quot;name&quot;</span>) <span class="ruby-operator">||</span>
+                        <span class="ruby-identifier">part</span>.<span class="ruby-identifier">sub_header</span>(<span class="ruby-value str">&quot;content-disposition&quot;</span>, <span class="ruby-value str">&quot;filename&quot;</span>)
+            
+            <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file_name</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">blank?</span>
+            
+            <span class="ruby-identifier">attachment</span> = <span class="ruby-constant">Attachment</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">content</span>)
+            <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">original_filename</span> = <span class="ruby-identifier">file_name</span>.<span class="ruby-identifier">strip</span>
+            <span class="ruby-identifier">attachment</span>.<span class="ruby-identifier">content_type</span> = <span class="ruby-identifier">part</span>.<span class="ruby-identifier">content_type</span>
+            <span class="ruby-identifier">attachment</span>
+          <span class="ruby-keyword kw">end</span>
+        }.<span class="ruby-identifier">compact</span>
+      <span class="ruby-keyword kw">end</span>      
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

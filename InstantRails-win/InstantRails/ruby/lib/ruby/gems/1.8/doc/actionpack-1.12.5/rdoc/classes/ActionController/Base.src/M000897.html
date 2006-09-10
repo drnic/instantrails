@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>render (ActionController::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/base.rb, line 640</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render</span>(<span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">deprecated_status</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-comment cmt">#:doc:</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">DoubleRenderError</span>, <span class="ruby-value str">&quot;Can only render or redirect once per action&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">performed?</span>
+
+        <span class="ruby-comment cmt"># Backwards compatibility</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:update</span>
+            <span class="ruby-identifier">options</span> = {<span class="ruby-identifier">:update</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>}
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">render_file</span>(<span class="ruby-identifier">options</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">default_template_name</span>, <span class="ruby-identifier">deprecated_status</span>, <span class="ruby-keyword kw">true</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content_type</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:content_type</span>]
+          <span class="ruby-identifier">headers</span>[<span class="ruby-value str">&quot;Content-Type&quot;</span>] = <span class="ruby-identifier">content_type</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">text</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:text</span>]
+          <span class="ruby-identifier">render_text</span>(<span class="ruby-identifier">text</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>])
+
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:file</span>]
+            <span class="ruby-identifier">render_file</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:use_full_path</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locals</span>] <span class="ruby-operator">||</span> {})
+
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">template</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:template</span>]
+            <span class="ruby-identifier">render_file</span>(<span class="ruby-identifier">template</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>], <span class="ruby-keyword kw">true</span>)
+            
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">inline</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:inline</span>]
+            <span class="ruby-identifier">render_template</span>(<span class="ruby-identifier">inline</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:type</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locals</span>] <span class="ruby-operator">||</span> {})
+            
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">action_name</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:action</span>]
+            <span class="ruby-identifier">render_action</span>(<span class="ruby-identifier">action_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:layout</span>]) 
+
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:xml</span>]
+            <span class="ruby-identifier">render_xml</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>])
+
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">partial</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:partial</span>]
+            <span class="ruby-identifier">partial</span> = <span class="ruby-identifier">default_template_name</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">partial</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">collection</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:collection</span>]
+              <span class="ruby-identifier">render_partial_collection</span>(<span class="ruby-identifier">partial</span>, <span class="ruby-identifier">collection</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:spacer_template</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locals</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>])
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">render_partial</span>(<span class="ruby-identifier">partial</span>, <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span><span class="ruby-operator">::</span><span class="ruby-constant">ObjectWrapper</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:object</span>]), <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:locals</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>])
+            <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:update</span>]
+            <span class="ruby-identifier">add_variables_to_assigns</span>
+            <span class="ruby-ivar">@template</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">:evaluate_assigns</span>
+            
+            <span class="ruby-identifier">generator</span> = <span class="ruby-constant">ActionView</span><span class="ruby-operator">::</span><span class="ruby-constant">Helpers</span><span class="ruby-operator">::</span><span class="ruby-constant">PrototypeHelper</span><span class="ruby-operator">::</span><span class="ruby-constant">JavaScriptGenerator</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@template</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+            <span class="ruby-identifier">render_javascript</span>(<span class="ruby-identifier">generator</span>.<span class="ruby-identifier">to_s</span>)
+
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:nothing</span>]
+            <span class="ruby-comment cmt"># Safari doesn't pass the headers of the return if the response is zero length</span>
+            <span class="ruby-identifier">render_text</span>(<span class="ruby-value str">&quot; &quot;</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>])
+            
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">render_file</span>(<span class="ruby-identifier">default_template_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:status</span>], <span class="ruby-keyword kw">true</span>)
+            
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

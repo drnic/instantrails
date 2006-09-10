@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>reset (Mongrel::HttpResponse)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel.rb, line 360</span>
+360:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reset</span>
+361:       <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body_sent</span>
+362:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request body.&quot;</span>
+363:       <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@header_sent</span>
+364:         <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;You have already sent the request headers.&quot;</span>
+365:       <span class="ruby-keyword kw">else</span>
+366:         <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">out</span>.<span class="ruby-identifier">rewind</span>
+367:         <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">rewind</span>
+368:       <span class="ruby-keyword kw">end</span>
+369:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>
