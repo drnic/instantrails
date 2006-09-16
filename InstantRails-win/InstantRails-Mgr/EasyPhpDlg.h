@@ -65,6 +65,7 @@ protected:
 	void OnHelp();
 	void OnFxri();
 	void OnHelpFAQ();
+	void OnHelpMongrel();
 	void OnHelpDebuter();
 
 	// Menu configuration

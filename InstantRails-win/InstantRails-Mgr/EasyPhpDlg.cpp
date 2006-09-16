@@ -618,6 +618,7 @@ bool CEasyPhpDlg::OnCommand(WPARAM wParam, LPARAM laParam)
 	case ID_AIDE_INTRO:				OnHelp();					break;
 	case ID_AIDE_FAQ:				OnHelpFAQ();				break;
 	case ID_AIDE_DEBUTER:			OnHelpDebuter();			break;
+	case ID_HELP_MONGREL:			OnHelpMongrel();			break;
 	case ID_HELP_FXRI:				OnFxri();					break;
 
 	case ID_APACHE_ERREUR_LOG:		OnApacheErrorLog();			break;
@@ -676,6 +677,11 @@ void CEasyPhpDlg::OnHelp()
 void CEasyPhpDlg::OnHelpFAQ()
 {
 	CUtils::GotoURL("http://instantrails.rubyforge.org/wiki/wiki.pl");
+}
+
+void CEasyPhpDlg::OnHelpMongrel()
+{
+	CUtils::GotoURL("http://mongrel.rubyforge.org/docs/index.html");
 }
 
 void CEasyPhpDlg::OnHelpDebuter()

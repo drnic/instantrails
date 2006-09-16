@@ -88,24 +88,25 @@ BEGIN
     PUSHBUTTON      ">",IDC_EXPAND,265,4,16,14
 END
 
-IDD_PHPEXT DIALOGEX 0, 0, 236, 186
+IDD_PHPEXT DIALOGEX 0, 0, 273, 186
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rails Applications"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "&Close",IDOK,179,165,50,14
+    DEFPUSHBUTTON   "&Close",IDOK,216,165,50,14
     CONTROL         "List1",IDL_RAILS_APPS_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,5,7,120,102
-    LTEXT           "Check one or more Rails applications and then click a button to perform that action on those applications.",
-                    IDC_RA_MESSAGE,17,142,142,29
-    PUSHBUTTON      "&Refresh List",ID_REFRESH_EXTENSION,179,146,50,14
-    PUSHBUTTON      "Start SCGI Server",ID_START_SCGI,137,34,92,14
-    PUSHBUTTON      "Configure SCGI Settings...",ID_CONFIG_SCGI,138,15,91,14
-    PUSHBUTTON      "Open Rails Console...",ID_OPEN_RAILS_CONSOLE,138,87,91,
-                    14
-    PUSHBUTTON      "Start with WEBrick",ID_START_WEBRICK,138,68,91,14
-    PUSHBUTTON      "Create New Rails App (open console window)",
-                    ID_NEW_RAILS_APP,45,115,158,16
+    LTEXT           "Web Servers",IDC_RA_GBOX,134,11,112,10
+    PUSHBUTTON      "&Refresh List",ID_REFRESH_EXTENSION,150,165,50,14
+    PUSHBUTTON      "Start with Mongrel (recommended)",ID_START_MONGREL,142,
+                    31,122,14
+    PUSHBUTTON      "Open a Rails Console...",ID_OPEN_RAILS_CONSOLE,158,89,
+                    91,14
+    PUSHBUTTON      "Start with WEBrick",ID_START_WEBRICK,158,53,91,14
+    PUSHBUTTON      "Create New Rails App...",ID_NEW_RAILS_APP,8,163,94,16
+    GROUPBOX        "",IDC_STATIC,132,17,134,62
+    LTEXT           "Check one or more Rails applications and then click a button above to perform that action on the selected applications.\n\nTo create a new Rails app, click the button below to open a console window where you can run the 'rails' command.",
+                    IDC_RA_MESSAGE2,23,118,227,44
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 282, 137
@@ -212,7 +213,7 @@ BEGIN
     IDD_PHPEXT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 229
+        RIGHTMARGIN, 266
         TOPMARGIN, 7
         BOTTOMMARGIN, 179
     END
@@ -313,6 +314,7 @@ BEGIN
             MENUITEM "Release Notes",               ID_RELEASE_NOTES
             MENUITEM "Instant Rails home page",     ID_AIDE_FAQ
             MENUITEM SEPARATOR
+            MENUITEM "Mongrel documentation",       ID_HELP_MONGREL
             MENUITEM "fxri - Interactive Ruby Help + irb Console", 
                                                     ID_HELP_FXRI
             MENUITEM SEPARATOR

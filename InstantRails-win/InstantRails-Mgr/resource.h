@@ -76,14 +76,16 @@
 #define IDC_STATUS                      1084
 #define IDC_EXT_ERROR_DEPENDANCE        1085
 #define IDC_RA_MESSAGE                  1085
+#define IDC_RA_GBOX                     1085
 #define ID_APPLY_EXTENSIONS             1086
+#define IDC_RA_MESSAGE2                 1086
 #define ID_REFRESH_EXTENSION            1087
 #define IDC_BUTTON1                     1088
 #define ID_PREFERENCES                  1088
 #define ID_DEPENDS                      1088
 #define IDC_EXPAND                      1088
 #define ID_REFRESH_UPDATE               1088
-#define ID_START_SCGI                   1088
+#define ID_START_MONGREL                1088
 #define IDC_PREFERENCES                 1089
 #define ID_AUTOSTART_SCGI               1089
 #define IDCB_APACHE                     1090
@@ -199,6 +201,7 @@
 #define ID_HELP_FXRI                    32831
 #define IDS_MAIN_MYSQL_ARGUMENTS        32832
 #define IDS_MAIN_APPLIQUER              32833
+#define ID_HELP_MONGREL                 32833
 #define IDS_MAIN_FERMER                 32834
 #define IDS_MAIN_ABOUT                  32835
 #define IDS_MENU_HELP                   32836
@@ -249,7 +252,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        197
-#define _APS_NEXT_COMMAND_VALUE         32832
+#define _APS_NEXT_COMMAND_VALUE         32834
 #define _APS_NEXT_CONTROL_VALUE         1103
 #define _APS_NEXT_SYMED_VALUE           102
 #endif

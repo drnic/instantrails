@@ -125,8 +125,8 @@ bool CPHPExtDlg::OnCommand(WPARAM waCommand)
 {
 	switch (waCommand)
 	{
-	case ID_CONFIG_SCGI:
-	case ID_START_SCGI:
+	//case ID_CONFIG_SCGI:
+	case ID_START_MONGREL:
 	case ID_START_WEBRICK:
 	case ID_OPEN_RAILS_CONSOLE:
 		if (GetCheckedItemCount() > 0)
@@ -187,14 +187,14 @@ void CPHPExtDlg::OnNotify(HWND haDlg, WPARAM waParam, LPNMHDR paNMHDR)
 			if (m_bIsInit==false && GetCheckedItemCount() > 0)
 			{
 				EnableWindow(GetDlgItem(ID_CONFIG_SCGI), TRUE);
-				EnableWindow(GetDlgItem(ID_START_SCGI), TRUE);
+				EnableWindow(GetDlgItem(ID_START_MONGREL), TRUE);
 				EnableWindow(GetDlgItem(ID_START_WEBRICK), TRUE);
 				EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), TRUE);
 			}
 			else
 			{
 				EnableWindow(GetDlgItem(ID_CONFIG_SCGI), FALSE);
-				EnableWindow(GetDlgItem(ID_START_SCGI), FALSE);
+				EnableWindow(GetDlgItem(ID_START_MONGREL), FALSE);
 				EnableWindow(GetDlgItem(ID_START_WEBRICK), FALSE);
 				EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), FALSE);
 			}
@@ -220,7 +220,7 @@ void CPHPExtDlg::Refresh()
 	SetCurrentDirectory(szRADir);
 
 	EnableWindow(GetDlgItem(ID_CONFIG_SCGI), FALSE);
-	EnableWindow(GetDlgItem(ID_START_SCGI), FALSE);
+	EnableWindow(GetDlgItem(ID_START_MONGREL), FALSE);
 	EnableWindow(GetDlgItem(ID_START_WEBRICK), FALSE);
 	EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), FALSE);
 	SetCursor(LoadCursor(NULL, IDC_WAIT));
@@ -338,7 +338,7 @@ bool CPHPExtDlg::OnRailsPreCommand(WPARAM waCommand)
 		}
 		break;
 
-	case ID_START_SCGI:
+	case ID_START_MONGREL:
 		break;
 
 	case ID_OPEN_RAILS_CONSOLE:
@@ -355,37 +355,18 @@ void CPHPExtDlg::OnRailsCommand(WPARAM waCommand, LPSTR szAppName, bool firstApp
 
 	switch (waCommand)
 	{
-	case ID_CONFIG_SCGI:
-		{
-				CScgiDlg cScgi(GetHandle(), szAppName);
+	//case ID_CONFIG_SCGI:
+	//	{
+	//			CScgiDlg cScgi(GetHandle(), szAppName);
+	//	}
+	//	break;
 
-//			if (firstApp)
-//			{
-//				CUtils::ViewFile(CEasyPhpDlg::GetApache()->GetTemplateConfFile());
-//				LPCSTR windir = getenv("WINDIR");
-//				_snprintf(src, sizeof(src), "%s\\system32\\drivers\\etc\\hosts", windir);
-//				Sleep(2000);
-//				CUtils::ViewFile(src);
-//			}
-//
-//			_snprintf(src, sizeof(src), "%sconf_files\\scgi_rails", installPath);
-//			_snprintf(dest, sizeof(dest), "%srails_apps\\%s\\script\\scgi_rails", installPath, szAppName);
-//			CopyFile( src, dest, true); // copy file if it does not already exist
-//
-//			_snprintf(src, sizeof(src), "%sconf_files\\start_scgi.cmd", installPath);
-//			_snprintf(dest, sizeof(dest), "%srails_apps\\%s\\start_scgi.cmd", installPath, szAppName);
-//			CopyFile( src, dest, true); // copy file if it does not already exist
-//			Sleep(2000);
-//			CUtils::ViewFile(dest);
-		}
-		break;
-
-	case ID_START_SCGI:
+	case ID_START_MONGREL:
 		{
 			_snprintf(dest, sizeof(dest), "%srails_apps\\%s", installPath, szAppName);
 			SetCurrentDirectory(dest);
-			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\scgi_service", installPath, installPath);
-			WinExec(src, SW_MINIMIZE);
+			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\mongrel_rails start", installPath, installPath);
+			WinExec(src, SW_SHOW);
 		}
 		break;
 
