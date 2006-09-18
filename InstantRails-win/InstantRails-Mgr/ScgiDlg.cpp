@@ -32,63 +32,48 @@ CScgiDlg::~CScgiDlg()
 
 bool CScgiDlg::OnInitDialog()
 {
+	char title[100];
+	_snprintf(title, sizeof(title)-1, "Configure %s", m_szAppName);
+
 	const char* installPath = CEasyPhpDlg::GetInstallPath();
-	char filepath[MAX_PATH+1] = {0};
+	char iniPath[MAX_PATH];
+	_snprintf(iniPath, sizeof(iniPath)-1, "%sInstantRails.ini", installPath);
+	char port[50] = {0};
+	char mode[50] = {0};
 
 	::SendMessage(GetHandle(), WM_SETICON, (WPARAM) ICON_BIG, (LPARAM)::LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_EASYPHP_LOIC)));
 	::SendMessage(GetHandle(), WM_SETICON, (WPARAM) ICON_SMALL, (LPARAM)::LoadIcon(g_hInstance, MAKEINTRESOURCE(IDR_EASYPHP_LOIC)));
 
-	SetDlgItemText(GetHandle(), IDC_RUN_MODE, "development");
-	SetDlgItemText(GetHandle(), IDC_PORT, "9999");
+	GetPrivateProfileString(m_szAppName, "mode", "development", mode, 50, iniPath);
+	GetPrivateProfileString(m_szAppName, "port", "3000", port, 50, iniPath);
 
-	_snprintf(filepath, sizeof(filepath), "%srails_apps\\%s\\config\\scgi.yaml", installPath, m_szAppName);
+	SetDlgItemText(GetHandle(), IDC_RUN_MODE, mode);
+	SetDlgItemText(GetHandle(), IDC_PORT, port);
 
-	string line;
-	size_t index;
-	ifstream scgi_config (filepath);
-	if (scgi_config.is_open())
-	{
-		while (! scgi_config.eof() )
-		{
-			getline (scgi_config,line);
-			index = line.find(":port: ");
-			if (index == 0) {
-				line.erase(index,7);
-				SetDlgItemText(GetHandle(), IDC_PORT, line.c_str());
-			}
-			index = line.find(":env: ");
-			if (index == 0) {
-				line.erase(index,6);
-				SetDlgItemText(GetHandle(), IDC_RUN_MODE, line.c_str());
-			}
-		}
-		scgi_config.close();
-	}
+	SetDlgItemText(GetHandle(), IDC_SCGI_TITLE, title);
 
-
-	SetDlgItemText(GetHandle(), IDC_SCGI_INSTRUCTIONS, 
-"\
-To configure your Rails application to run with SCGI you must pick a port number that SCGI will\n\
-use to communicate between Apache and your application, and a virtual host name that you will\n\
-use (in the URL) to access the Rails application from your browser. If you want to run more\n\
-than one Rails application at the same time, each one will need to use a different port number\n\
-and a different host name.\n\
+	SetDlgItemText(GetHandle(), IDC_SCGI_INSTRUCTIONS2, 
+"\n\
+To configure the startup mode of your Rails application, pick a port number and a runtime\n\
+mode. \"development\" mode will reload your application's classes before each request for\n\
+easy development. \"production\" mode will load your classes only once for better performance.\n\
 \n\
-The values you enter above will be written to your app's 'config\\scgi.yaml' file. You must also\n\
-edit you apache configuration file and specify the same port number in your app's VirtualHost\n\
-directive. The hostname you decide to use must also be in the VirtualHost directrive. If this\n\
-hostname is not a real, existing hostname in the DNS, then you must also edit your Windows\n\
-HOSTS file and fake it by added a line like this:\n\
+If, for example you choose to run you application on port 3001, you could browse to:\n\
+\n\
+   http://127.0.0.1:3000/\n\
+\n\
+You can also set up an Apache virtual host to use mod_proxy to take http requests sent\n\
+to a particular hostname and forward them to this running instance of your Rails app.\n\
+\n\
+You must edit you apache configuration file and specify the same port number in your app's\n\
+VirtualHost directive. The hostname you decide to use must also be in the VirtualHost directrive.\n\
+If this hostname is not a real, existing hostname in the DNS, then you must also edit your\n\
+Windows HOSTS file and fake it by added a line like this:\n\
 \n\
                127.0.0.1   www.my-fake-hostname.com\n\
 \n\
 Fake hostnames are for development purposes only, and can only be accessed from your local\n\
 machine.\n\
-\n\
-WARNING: At the moment, 'Runtime Mode' and 'SCGI Port' items above are always set to the default\n\
-values 'development' and '9999' and this dialog is displayed. In the next Instant Rails release\n\
-the will be initialized to whatever you have previsouly set them. You can see you current settings\n\
-by looking at the file 'rails_apps'\\app-name\\config\\scgi.yaml'.\n\
 "
 		);
 
@@ -130,17 +115,21 @@ bool CScgiDlg::OnCommand(WPARAM waCommand)
 
 	case IDOK:
 		{
-		// -p port - e run-mode -S -P
+			char iniPath[MAX_PATH];
+			_snprintf(iniPath, sizeof(iniPath)-1, "%sInstantRails.ini", installPath);
+
 			char mode[50] = {0};
 			char port[50] = {0};
 
 			GetDlgItemText( GetHandle(), IDC_RUN_MODE, mode, sizeof(mode));
 			GetDlgItemText( GetHandle(), IDC_PORT, port, sizeof(port));
 
-			_snprintf(dest, sizeof(dest), "%srails_apps\\%s", installPath, m_szAppName);
-			SetCurrentDirectory(dest);
-			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\scgi_ctrl config -p %s -e %s -S -P mypass", installPath, installPath, port, mode);
-			WinExec(src, SW_MINIMIZE);
+			WritePrivateProfileString(m_szAppName, "mode", mode, iniPath);
+			WritePrivateProfileString(m_szAppName, "port", port, iniPath);
+
+//			SetCurrentDirectory(dest);
+//			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\mongrel_rails config -p %s -e %s", installPath, installPath, port, mode);
+//			WinExec(src, SW_MINIMIZE);
 
 			EndDialog(GetHandle(), IDOK);
 		}

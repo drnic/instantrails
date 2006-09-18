@@ -88,6 +88,7 @@
 #define ID_START_MONGREL                1088
 #define IDC_PREFERENCES                 1089
 #define ID_AUTOSTART_SCGI               1089
+#define IDC_RA_MESSAGE3                 1089
 #define IDCB_APACHE                     1090
 #define ID_CONFIG_SCGI                  1090
 #define IDCB_MYSQL                      1091
@@ -109,6 +110,9 @@
 #define ID_EDIT_APACHE                  1100
 #define ID_EDIT_HOSTS                   1101
 #define IDC_SCGI_INSTRUCTIONS           1102
+#define IDC_SCGI_TITLE                  1102
+#define ID_CONFIG_MONGREL               1103
+#define IDC_SCGI_INSTRUCTIONS2          1103
 #define ID_START                        32771
 #define IDS_START                       32771
 #define ID_STOP                         32772
@@ -253,7 +257,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        197
 #define _APS_NEXT_COMMAND_VALUE         32834
-#define _APS_NEXT_CONTROL_VALUE         1103
+#define _APS_NEXT_CONTROL_VALUE         1104
 #define _APS_NEXT_SYMED_VALUE           102
 #endif
 #endif

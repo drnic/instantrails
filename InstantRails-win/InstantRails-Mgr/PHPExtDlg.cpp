@@ -125,7 +125,7 @@ bool CPHPExtDlg::OnCommand(WPARAM waCommand)
 {
 	switch (waCommand)
 	{
-	//case ID_CONFIG_SCGI:
+	case ID_CONFIG_MONGREL:
 	case ID_START_MONGREL:
 	case ID_START_WEBRICK:
 	case ID_OPEN_RAILS_CONSOLE:
@@ -186,14 +186,14 @@ void CPHPExtDlg::OnNotify(HWND haDlg, WPARAM waParam, LPNMHDR paNMHDR)
 		case LVN_ITEMCHANGED:
 			if (m_bIsInit==false && GetCheckedItemCount() > 0)
 			{
-				EnableWindow(GetDlgItem(ID_CONFIG_SCGI), TRUE);
+				EnableWindow(GetDlgItem(ID_CONFIG_MONGREL), TRUE);
 				EnableWindow(GetDlgItem(ID_START_MONGREL), TRUE);
 				EnableWindow(GetDlgItem(ID_START_WEBRICK), TRUE);
 				EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), TRUE);
 			}
 			else
 			{
-				EnableWindow(GetDlgItem(ID_CONFIG_SCGI), FALSE);
+				EnableWindow(GetDlgItem(ID_CONFIG_MONGREL), FALSE);
 				EnableWindow(GetDlgItem(ID_START_MONGREL), FALSE);
 				EnableWindow(GetDlgItem(ID_START_WEBRICK), FALSE);
 				EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), FALSE);
@@ -219,7 +219,7 @@ void CPHPExtDlg::Refresh()
 	_snprintf(szRADir, sizeof(szRADir)-1, "%srails_apps\\", CUtils::GetEasyPhpPath());
 	SetCurrentDirectory(szRADir);
 
-	EnableWindow(GetDlgItem(ID_CONFIG_SCGI), FALSE);
+	EnableWindow(GetDlgItem(ID_CONFIG_MONGREL), FALSE);
 	EnableWindow(GetDlgItem(ID_START_MONGREL), FALSE);
 	EnableWindow(GetDlgItem(ID_START_WEBRICK), FALSE);
 	EnableWindow(GetDlgItem(ID_OPEN_RAILS_CONSOLE), FALSE);
@@ -333,7 +333,7 @@ bool CPHPExtDlg::OnRailsPreCommand(WPARAM waCommand)
 {
 	switch (waCommand)
 	{
-	case ID_CONFIG_SCGI:
+	case ID_CONFIG_MONGREL:
 		{
 		}
 		break;
@@ -353,19 +353,28 @@ void CPHPExtDlg::OnRailsCommand(WPARAM waCommand, LPSTR szAppName, bool firstApp
 	char src[MAX_PATH+1] = {0};
 	char dest[MAX_PATH+1] = {0};
 
+	char iniPath[MAX_PATH];
+	_snprintf(iniPath, sizeof(iniPath)-1, "%sInstantRails.ini", installPath);
+
+	char mode[50] = {0};
+	char port[50] = {0};
+
+	GetPrivateProfileString(szAppName, "mode", "development", mode, 50, iniPath);
+	GetPrivateProfileString(szAppName, "port", "3000", port, 50, iniPath);
+
 	switch (waCommand)
 	{
-	//case ID_CONFIG_SCGI:
-	//	{
-	//			CScgiDlg cScgi(GetHandle(), szAppName);
-	//	}
-	//	break;
+	case ID_CONFIG_MONGREL:
+		{
+				CScgiDlg cMongrel(GetHandle(), szAppName);
+		}
+		break;
 
 	case ID_START_MONGREL:
 		{
 			_snprintf(dest, sizeof(dest), "%srails_apps\\%s", installPath, szAppName);
 			SetCurrentDirectory(dest);
-			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\mongrel_rails start", installPath, installPath);
+			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe %sruby\\bin\\mongrel_rails start -e %s -p %s", installPath, installPath, mode, port);
 			WinExec(src, SW_SHOW);
 		}
 		break;
@@ -374,7 +383,7 @@ void CPHPExtDlg::OnRailsCommand(WPARAM waCommand, LPSTR szAppName, bool firstApp
 		{
 			_snprintf(dest, sizeof(dest), "%srails_apps\\%s", installPath, szAppName);
 			SetCurrentDirectory(dest);
-			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe script\\server", installPath);
+			_snprintf(src, sizeof(src), "%sruby\\bin\\ruby.exe script\\server -e %s -p %s", installPath, mode, port);
 			WinExec(src, SW_SHOW);
 		}
 		break;

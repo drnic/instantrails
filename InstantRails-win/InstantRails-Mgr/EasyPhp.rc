@@ -88,25 +88,28 @@ BEGIN
     PUSHBUTTON      ">",IDC_EXPAND,265,4,16,14
 END
 
-IDD_PHPEXT DIALOGEX 0, 0, 273, 186
+IDD_PHPEXT DIALOGEX 0, 0, 257, 269
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Rails Applications"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "&Close",IDOK,216,165,50,14
+    DEFPUSHBUTTON   "&Close",IDOK,200,248,50,14
     CONTROL         "List1",IDL_RAILS_APPS_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SORTASCENDING | WS_BORDER | WS_TABSTOP,5,7,120,102
     LTEXT           "Web Servers",IDC_RA_GBOX,134,11,112,10
-    PUSHBUTTON      "&Refresh List",ID_REFRESH_EXTENSION,150,165,50,14
-    PUSHBUTTON      "Start with Mongrel (recommended)",ID_START_MONGREL,142,
-                    31,122,14
-    PUSHBUTTON      "Open a Rails Console...",ID_OPEN_RAILS_CONSOLE,158,89,
+    PUSHBUTTON      "&Refresh List",ID_REFRESH_EXTENSION,144,248,50,14
+    PUSHBUTTON      "Start with Mongrel",ID_START_MONGREL,142,70,91,14
+    PUSHBUTTON      "Open a Rails Console...",ID_OPEN_RAILS_CONSOLE,20,114,
                     91,14
-    PUSHBUTTON      "Start with WEBrick",ID_START_WEBRICK,158,53,91,14
-    PUSHBUTTON      "Create New Rails App...",ID_NEW_RAILS_APP,8,163,94,16
-    GROUPBOX        "",IDC_STATIC,132,17,134,62
+    PUSHBUTTON      "Start with WEBrick",ID_START_WEBRICK,142,90,91,14
+    PUSHBUTTON      "Create New Rails App...",ID_NEW_RAILS_APP,8,246,94,16
+    GROUPBOX        "",IDC_STATIC,132,17,112,93
+    LTEXT           "Mongrel is the recommended server and is very fast. WEBrick is slower, but can be used to as a check against the behavior under Mongrel.\n\nUnless you configure the startup mode, the default is to start a Rails app in development mode on port 3000.",
+                    IDC_RA_MESSAGE2,12,189,227,46
+    PUSHBUTTON      "Configure Startup Mode...",ID_CONFIG_MONGREL,142,29,91,
+                    14
     LTEXT           "Check one or more Rails applications and then click a button above to perform that action on the selected applications.\n\nTo create a new Rails app, click the button below to open a console window where you can run the 'rails' command.",
-                    IDC_RA_MESSAGE2,23,118,227,44
+                    IDC_RA_MESSAGE3,12,140,227,46
 END
 
 IDD_PREFERENCES DIALOGEX 0, 0, 282, 137
@@ -172,26 +175,24 @@ BEGIN
                     IDC_STATIC,14,83,223,19
 END
 
-IDD_SCGI DIALOGEX 0, 0, 345, 319
+IDD_SCGI DIALOGEX 0, 0, 345, 309
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "Configure SCGI"
+CAPTION "Configure Startup Mode"
 FONT 8, "MS Sans Serif", 0, 0, 0x0
 BEGIN
-    DEFPUSHBUTTON   "Cancel",IDCANCEL,288,298,50,14
-    PUSHBUTTON      "OK",IDOK,232,298,50,14
-    RTEXT           "Runtime Mode:",IDC_STATIC,7,9,54,8
-    LTEXT           "SCGI Port:",IDC_STATIC,7,32,54,8,0,WS_EX_RIGHT
-    EDITTEXT        IDC_PORT,67,29,31,14,ES_AUTOHSCROLL
-    CONTROL         "Auto-Start SCGI (not yet implemented)",IDC_AUTO_START,
-                    "Button",BS_AUTOCHECKBOX | WS_DISABLED | WS_TABSTOP,67,
-                    52,135,10
-    EDITTEXT        IDC_RUN_MODE,67,7,66,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "Cancel",IDCANCEL,288,288,50,14
+    PUSHBUTTON      "OK",IDOK,232,288,50,14
+    RTEXT           "Runtime Mode:",IDC_STATIC,7,34,54,8
+    LTEXT           "Port:",IDC_STATIC,7,57,54,8,0,WS_EX_RIGHT
+    EDITTEXT        IDC_PORT,67,54,31,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RUN_MODE,67,32,66,14,ES_AUTOHSCROLL
     LTEXT           "Normally: development, \nproduction or test",IDC_STATIC,
-                    136,7,84,20
-    GROUPBOX        "",IDC_STATIC,7,78,331,215
-    LTEXT           "",IDC_SCGI_INSTRUCTIONS,14,88,317,199
-    PUSHBUTTON      "Edit Apache config file",ID_EDIT_APACHE,247,7,91,14
-    PUSHBUTTON      "Edit Windows Hosts file",ID_EDIT_HOSTS,247,27,91,14
+                    136,32,84,20
+    GROUPBOX        "",IDC_STATIC,7,73,331,201
+    CTEXT           "Configure xxx",IDC_SCGI_TITLE,7,7,331,14,SS_SUNKEN
+    PUSHBUTTON      "Edit Apache config file",ID_EDIT_APACHE,247,32,91,14
+    PUSHBUTTON      "Edit Windows Hosts file",ID_EDIT_HOSTS,247,52,91,14
+    LTEXT           "",IDC_SCGI_INSTRUCTIONS2,14,82,317,188
 END
 
 
@@ -213,9 +214,9 @@ BEGIN
     IDD_PHPEXT, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 266
+        RIGHTMARGIN, 250
         TOPMARGIN, 7
-        BOTTOMMARGIN, 179
+        BOTTOMMARGIN, 262
     END
 
     IDD_PREFERENCES, DIALOG
@@ -245,7 +246,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 338
         TOPMARGIN, 7
-        BOTTOMMARGIN, 312
+        BOTTOMMARGIN, 302
     END
 END
 #endif    // APSTUDIO_INVOKED
