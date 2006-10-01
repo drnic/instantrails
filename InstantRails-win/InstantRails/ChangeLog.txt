@@ -1,107 +1,113 @@
 Instant Rails -- Change Log
 ===========================
-2009.09.xx Instant Rails 1.4
+2009.10.01 Instant Rails 1.4
 
-* Upgraded Ruby to One-Click Ruby Installer 1.8.5-21
-  (note: this breaks "breakpointer"
-   for a workaround, see: 
-   http://eigenclass.org/hiki.rb?call_stack+0.1.0 )
+ * RadRails support: choose "rails_apps" directory as
+   your workspace and RadRails wil be automatically
+   configured for Instant Rails.
+ * Upgraded Mongrel to 0.3.13.3
+ * Upgraded Rails to 1.1.6
+ * Replaced SCGI with Mongrel
+ * Upgraded Ruby to One-Click Ruby Installer 1.8.5-21
+   (note: this breaks "breakpointer"
+    for a workaround, see: 
+    http://eigenclass.org/hiki.rb?call_stack+0.1.0 )
 
 2006.04.19 Instant Rails 1.3a
 
-* Removed the native C MySQL driver
-  (it was causing segfaults on Win2k)
+ * Removed the native C MySQL driver
+   (it was causing segfaults on Win2k)
 
 2006.04.11 Instant Rails 1.3
 
-* Upgraded Ruby on Rails to version 1.1.2
+ * Upgraded Ruby on Rails to version 1.1.2
 
 2006.04.07 Instant Rails 1.2
 
-* Added MySQLRuby 2.7 (native C driver)
+ * Added MySQLRuby 2.7 (native C driver)
 
 2006.04.06 Instant Rails 1.1.1
 
-* Upgraded Ruby on Rails to 1.1.1
+ * Upgraded Ruby on Rails to 1.1.1
 
 2006.03 Instant Rails 1.1
 
-* Upgraded Ruby on Rails to 1.1
+ * Upgraded Ruby on Rails to 1.1
 
-* Upgraded the Ruby runtime to the One-Click Ruby Installer
-  1.8.4-16 release candidate 1.
+ * Upgraded the Ruby runtime to the One-Click Ruby Installer
+   1.8.4-16 release candidate 1.
 
-* Added Mongrel 0.3.12
+ * Added Mongrel 0.3.12
 
 2006.01.16
 
-* When MySQL port was already in use, Instant Rails said
-  that the Apache port was in use -- bad error message.
-  This has been fixed.
+ * When MySQL port was already in use, Instant Rails said
+   that the Apache port was in use -- bad error message.
+   This has been fixed.
 
 2006.01.05 Instant Rails 1.0 final
 
-* Updated version in Help>>About dialog box to "1.0 final".
+ * Updated version in Help>>About dialog box to "1.0 final".
 
 2006.01.03 Instant Rails 1.0 RC1
 
-* Reverted Instant Rails Manager to use the file extension 
-  associations for editing config and log files and added
-  an Instant Rails preference item to force the use of 
-  Notepad.exe (necessary if you have VMWare installed).
+ * Reverted Instant Rails Manager to use the file extension 
+   associations for editing config and log files and added
+   an Instant Rails preference item to force the use of 
+   Notepad.exe (necessary if you have VMWare installed).
 
-* Configure SCGI now initializes the dialog with the current 
-  settings instead of default values.
+ * Configure SCGI now initializes the dialog with the current 
+   settings instead of default values.
   
-* Replaced One-Click Ruby Installer 1.8.2 with
-  ruby-mswin32 1.8.4 (which is what 1.8.4 of the One-Click
-  one-click installer will be built upon).
+ * Replaced One-Click Ruby Installer 1.8.2 with
+   ruby-mswin32 1.8.4 (which is what 1.8.4 of the One-Click
+   one-click installer will be built upon).
 
 -------------------------------------------------------------------
 
 2005.12.24 Instant Rails 1.0 preview8
 
-* Restored missing log directories in the sample apps.
+ * Restored missing log directories in the sample apps.
 
 -------------------------------------------------------------------
 
 2005.12.13 Instant Rails 1.0 preview7
            (preview6 was a bad release)
 
-* Included Typo 2.6.0 as a sample app
+ * Included Typo 2.6.0 as a sample app
 
-* Included RedCloth 3.0.4, BlueCloth 1.0.0, and RubyPants 0.2.0
+ * Included RedCloth 3.0.4, BlueCloth 1.0.0, and RubyPants 0.2.0
            (used as text formatters by Typo).
 
-* Upgraded Rails to 1.0 final
+ * Upgraded Rails to 1.0 final
 
-* Instant Rails now detects being run from a directory path
-  that containd spaces, issues a warning, and quits.
+ * Instant Rails now detects being run from a directory path
+   that containd spaces, issues a warning, and quits.
 
 -------------------------------------------------------------------
 2005-11-08: Instant Rails 1.0 preview5
 
-* Upgraded Rails to Rails 1.0: The Release Candidate 4 (aka 0.14.3)
+ * Upgraded Rails to Rails 1.0: The Release Candidate 4 (aka 0.14.3)
 
 -------------------------------------------------------------------
 2005-11-01: Instant Rails 1.0 preview4
 
-* Added mysql\bin to the path in console windows.
+ * Added mysql\bin to the path in console windows.
 
 -------------------------------------------------------------------
 2005-10-27: Instant Rails 1.0 preview3
 
-* Upgraded Rails to Rails 1.0: The Release Candidate 3 (aka 0.14.2)
+ * Upgraded Rails to Rails 1.0: The Release Candidate 3 (aka 0.14.2)
 
-* Upgraded to SCGI Rails Runer 0.4.3
+ * Upgraded to SCGI Rails Runer 0.4.3
 
-* Added "fxri" to the help menu.
+ * Added "fxri" to the help menu.
 
-* Fixed a problem where console windows were being opened in the
-  wrong current directory. This meant that ruby\bin wasn't being
-  put on the path which, in turn, meant you couldn't execute the
-  "gem" or "rails" commands.
+ * Fixed a problem where console windows were being opened in the
+   wrong current directory. This meant that ruby\bin wasn't being
+   put on the path which, in turn, meant you couldn't execute the
+   "gem" or "rails" commands.
 
-* Fixed several minor problems.
+ * Fixed several minor problems.
 
-* Created this change log! Also, added a ToDo.txt file.
+ * Created this change log!

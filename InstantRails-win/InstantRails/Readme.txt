@@ -51,12 +51,12 @@ properly:
 
     * Check the checkbox next to the cookbook application.
 
-    * Click on the Start SCGI button.
+    * Click on the "Start with Mongrel" button.
 
-    * Once the SCGI server says that it is listening to 127.0.0.1:9999, open 
+    * Once the Mongrel server says "Mongrel available at 0.0.0.0:3001", open 
       our browser and go to:
 
-      www.mycookbook.com
+      http://www.mycookbook.com/
 
 You should now be using a running Rails application! Poke around in the menus 
 to see what's there.
