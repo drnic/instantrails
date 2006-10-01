@@ -1,146 +1,511 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<HTML><HEAD><TITLE>InstantRailsWiki: Getting Started</TITLE>
-<META NAME='KEYWORDS' CONTENT='Getting_Started'/>
-<LINK REL="stylesheet" HREF="/wiki.css">
-</HEAD><BODY BGCOLOR="white">
-<div class=wikiheader><h1><a href="wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" border=0 align="right"></a><a href="wiki.pl?back=Getting+Started">Getting Started</a></h1><a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
-<hr class=wikilineheader></div><div class=wikitext>Instant Rails is a one-stop Rails runtime solution containing Ruby, Rails, Apache, and MySQL, all preconfigured and ready to run. No installer, you simply drop it into the directory of your choice and run it. It does not modify your system environment.
-<p>
+<html><head><title>InstantRailsWiki: Getting Started</title>
 
-This release of Instant Rails for Windows, but there are plans for ports to Linux, BSD, and OSX. See the <a href="wiki.pl?Release_Notes" class=wikipagelink>Release Notes</a> for a list of everything included in Instant Rails (including their version numbers).
-Install and Verify Instant Rails
+<meta name="KEYWORDS" content="Getting_Started">
+<link rel="stylesheet" href="index_files/wiki.css"></head><body bgcolor="white">
+<div class="wikiheader"><h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails"><img src="index_files/logo50.png" alt="[Home]" align="right" border="0"></a><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?back=Getting+Started">Getting Started</a></h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
+<hr class="wikilineheader"></div><div class="wikitext">Instant Rails is
+a one-stop Rails runtime solution containing Ruby, Rails, Apache, and
+MySQL, all preconfigured and ready to run. No installer, you simply
+drop it into the directory of your choice and run it. It does not
+modify your system environment.
 <p>
-Instant Rails includes the full source code of the cookbook application developed in the <a href="HTTP://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[Rolling with Ruby on Rails]</a> tutorial. Once you have installed Instant Rails, you can verify that everything is working properly by running this cookbook application.
-<p>
+This release of Instant Rails is for Windows, but there are plans for ports to Linux, BSD, and OSX. See the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Release_Notes" class="wikipagelink">Release Notes</a> for a list of everything included in Instant Rails (including their version numbers).
+</p><p>
+Instant Rails includes the full source code of the cookbook application developed in the <a href="http://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[Rolling with Ruby on Rails]</a>
+tutorial. Once you have installed Instant Rails, you can verify that
+everything is working properly by running this cookbook application.
+</p><p>
 Instant Rails also contains the Rails-based blogging software 
-<a href="HTTP://typo.leetsoft.com/trac/">[Typo]</a> as a preinstalled sample web application.
-<p>
-<H2>Upgrading</H2>
+<a href="http://typo.leetsoft.com/trac/">[Typo]</a> as a preinstalled sample web application.
+</p><p>
+</p><h2>Upgrading</h2>
 
 <p>
 If you have installed a previous version of Instant Rails, see
-<a href="wiki.pl?How_To_Upgrade" class=wikipagelink>How To Upgrade</a> for instructions on how to upgrade your installation
+<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?How_To_Upgrade" class="wikipagelink">How To Upgrade</a> for instructions on how to upgrade your installation
 while retaining your data and customizations.
-<p>
-<H2>Install &amp; Verify</H2>
+</p><p>
+</p><h2>Install &amp; Verify</h2>
 
 <p>
 Follow these steps to install Instant Rails and verify that it is working properly:
-<p>
-<UL >
+</p><p>
+</p><ul>
 <li> Download and unzip the Instant Rails zip file.
-
-</UL>
+</li></ul>
 <p>
-<UL >
+</p><ul>
 <li> Make sure the installation path does not contain any space characters, and then start <b>InstantRails.exe.</b>
-</UL>
+</li></ul>
 <p>
-<UL >
-<li> Instant Rails will detect that it is being started from a new directory and ask if you want to have it update the paths in the all of the configuration files... Just say yes.
-</UL>
+</p><ul>
+<li> Instant Rails will detect that it is being started from a new
+directory and ask if you want to have it update the paths in the all of
+the configuration files... Just say yes.
+</li></ul>
 <p>
-<UL >
-<li> The cookbook app is already configured to use SCGI on port 9999, and Typo is already configured to use SCGI on port 9998, but we must tell Windows to fake the domain names that is preconfigured in the Apache configuration file: 
-
-</UL>
+</p><ul>
+<li> The cookbook app is already configured to use Mongrel on port
+3001, and Typo is already configured to run on port 3003, but we must
+tell Windows to fake the domain names that are preconfigured in the
+Apache configuration file: </li></ul>
 <p>
-<UL >
-<UL >
+</p><ul>
+<ul>
 <li>Click on the <b><code>I</code></b> button (or press and release the <code>Alt</code> key twice) to drop down the main menu and select <code>Configure &gt; Windows Hosts file</code>.
-</UL>
-</UL>
-
+</li></ul>
+</ul>
 <p>
-<UL >
-<UL >
+</p><ul>
+<ul>
 <li> In the editor that pops up, add these two lines to the end of the file:
-</UL>
-</UL>
+</li></ul>
+</ul>
 <p>
-<DL >
-<DL >
-<DL >
-<DL >
-<dt><dd><code>127.0.0.1   www.mycookbook.com</code>
-<dt><dd><code>127.0.0.1   typo</code>
-</DL>
-
-</DL>
-</DL>
-</DL>
+</p><dl>
+<dl>
+<dl>
+<dl>
+<dt></dt><dd><code>127.0.0.1   www.mycookbook.com</code>
+</dd><dt></dt><dd><code>127.0.0.1   typo</code>
+</dd></dl>
+</dl>
+</dl>
+</dl>
 <p>
-<UL >
-<UL >
-<li> Save the changes to the file (you must have Administrator privileges to do this), the filename is 'hosts' with no extension. Exit the editor.
-</UL>
-</UL>
+</p><ul>
+<ul>
+<li> Save the changes to the file (you must have Administrator
+privileges to do this), the filename is 'hosts' with no extension. Exit
+the editor.
+</li></ul>
+</ul>
 <p>
-<UL >
+</p><ul>
 <li> In the main menu, select <code>Rails Applications &gt; Manage Rails Applications...</code>
-
-</UL>
+</li></ul>
 <p>
-<UL >
+</p><ul>
 <li> Check the checkbox next to the cookbook application.
-</UL>
+</li></ul>
 <p>
-<UL >
-<li> Click on the <code>Start SCGI</code> button. A minimized console window will appear. This contains the cookbook web app running through an SCGI server.
-</UL>
+</p><ul>
+<li> Click on the <code>Start with Mongrel</code> button. A console window will appear. This contains the cookbook web app beinf served by the Mongrel server..
+</li></ul>
 <p>
-<UL >
-<li> Wait a few seconds to make sure the cookbook web app is fully initialized (nothing is displayed in the console window). Open your browser and go to:
-
-</UL>
+</p><ul>
+<li> Wait a few seconds to make sure the cookbook web app is fully initialized, open your browser and go to:
+</li></ul>
 <p>
-<DL >
-<DL >
-<DL >
-<dt><dd><code>HTTP://www.mycookbook.com</code>
-</DL>
-</DL>
-</DL>
+</p><dl>
+<dl>
+<dl>
+<dt></dt><dd><code>HTTP://www.mycookbook.com</code>
+</dd></dl>
+</dl>
+</dl>
 <p>
 You should now be using a running Rails application! 
-<p>
-If not, perhaps you have an already-running Apache instance. Shut this down, and InstantRails<a href="wiki.pl?action=edit&id=InstantRails" class=wikipageedit>?</a> should magically work.
+</p><p>
+If not, perhaps you have an already-running Apache instance. Shut this down, and <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a> should magically work.
 Poke around in the menus of Instant Rails to see what's there.
+</p><p>
+</p><h2>Running Typo</h2>
 
 <p>
-<H2>Running Typo</H2>
-
-<p>
-<UL >
+</p><ul>
 <li> In the main menu, select <code>Rails Applications &gt; Manage Rails Applications...</code>
-</UL>
+</li></ul>
 <p>
-<UL >
+</p><ul>
 <li> Check the checkbox next to the typo application.
-
-</UL>
+</li></ul>
 <p>
-<UL >
-<li> Click on the <code>Start SCGI</code> button. A minimized console window will appear. This contains the typo web app running through an SCGI server.
-</UL>
+</p><ul>
+<li> Click on the <code>Start with Mongrel</code> button. A console window will appear. This contains the typo web app running through Monrel.
+</li></ul>
 <p>
-<UL >
-<li> Wait a few seconds to make sure the Typo is fully initialized (nothing is displayed in the console window). Open your browser and go to:
-</UL>
+</p><ul>
+<li> Wait a few seconds to make sure the Typo is fully initialized. Open your browser and go to:
+</li></ul>
 <p>
-<DL >
-<DL >
-
-<DL >
-<dt><dd><code>HTTP://typo</code>
-</DL>
-</DL>
-</DL>
+</p><dl>
+<dl>
+<dl>
+<dt></dt><dd><code>HTTP://typo</code>
+</dd></dl>
+</dl>
+</dl>
 <p>
 You should be taken through a series of admin setup screens. 
-</div><hr class=wikilinefooter>
-<div class=wikifooter><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
-<a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
+</p><p>
+</p><h2>Questions and Answers</h2>
 
-<a href="wiki.pl?action=edit&id=Getting_Started" class=wikipageedit>Edit text of this page</a> | <a href="wiki.pl?action=history&id=Getting_Started">View other revisions</a><br>Last edited December 14, 2005 11:01 pm by d3-28.rt-bras.wnvl.centurytel.net <a href="wiki.pl?action=browse&diff=1&id=Getting_Started">(diff)</a><br>Search: <input type="text" name="search"  size="20" /><input type="hidden" name="dosearch" value="1" /><div></div>
-</form></div></body></html>
+<p>
+Users should submit their <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Getting_Started" class="wikipagelink">Getting Started</a> questions below.
+</p><p>
+</p><ul>
+<li> How can I uninstall <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>
+on Win XP? It doesn't appear in the Control Panel "add and remove"
+area, and right-clicking doesn't yield an uninstall option. My reason
+for doing this is that I can't get it to work properly, and having
+exhausted all other options, I just want to try uninstalling and
+reinstalling. I haven't done any projects (because I have yet to get it
+to work), so I wouldn't lose anything. Suggestions are appreciated.
+</li></ul>
+<p>
+</p><ul>
+<li> Can Instant Rails *coexist with IIS*? When installing on a Windows
+XP Professional system with IIS running, the following error occurrs: <code>Apache port (80) is used by "" (inetinfo.exe)</code>
+<ul>
+<li> Yes it can - check that IIS is not running on 127.0.0.1, or else run apache on another port by changing the <code>Listen 80</code> to another port, like <code>Listen 3000</code>.  Both cannot run on the same IP address and port, however. -DGM
+</li><li> Note that the statement above should say "check that IIS is not running on <code>port 80</code>" (instead of ip address 127.0.0.1).  Both servers CAN run on the same ip address, just not the same port number - ssmith.
+</li><li> I ran into this issue and resolved it this way. A Google
+search for "apache port 80 IIS" directed me to a useful Apache FAQ
+entry "How can I run Apache and IIS on the same Windows NT server?" I
+chose to reconfigure IIS by: - Start | Control Panel | Administrative
+Tools | Internet Information Services - Changed the port on the website
+from 80 to 8080 - Restarted IIS. - Click Apache | Start on <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>.exe - Voila Apache started! -Mw
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> When I try to start cookbook or typo by ticking the checkbox and
+clicking on 'Start SCGI Server' the DOS window just closes itself after
+displaying some text which I don't get a chance to read.
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> This was a problem with preview7 because it was missing the Rails
+app's 'log' directory. you should not have this problem in preview8 or
+later.
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> How can I change the port that the WEBrick app runner runs on from
+3000 (default) to something else. I've seen the doc say it's a
+parameter to the ruby start command (was that ruby.exe?) but I don't
+know what to edit to change from 3000 to 8080 say when I'm invoking
+from the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a> "Rails Applications" dialog? 
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> You can do this by starting WEBrick from the command line. To set
+WEBrick to use port 8080 instead of 3000, within the appropriate app
+subdirectory (i.e., the app you intend to run) enter: <code>ruby script\server -port=8080</code>
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<ul>
+<li>A couple of other tips re: things to check if you're having difficulties with WEBrick.
+<ul>
+<li> WEBrick has *nix-style help that's available by starting it with: <code>ruby script\server --help</code>
+</li><li> If you want to start WEBrick on another port, but you're not
+sure what other ports are in use / available, Windows has a utility
+called "netstat" that will tell you what you need to know. At the
+command line, enter: <code>netstat -a</code> to get a list of all the
+active connections and the ports they're using. In the second column,
+titled "Local Address" you'll see a list in the format
+"system_name:port". Pick a port number that's not already in use. You
+can enter <code>netstat help</code> to get a list of all the utility's options. [BW]
+</li></ul>
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> Can someone please answer this? I'm also interested in the answer.
+I'm trying to get a quick and dirty demo running, and Apache is
+returning the File not found when it tries to enter my app. How can we
+configure WEBrick to be accessible from the outside world? I've
+modified \lib\command\servers\webrick.rb (which is where you can change
+the ports, ect. to no avail. This is a great package, btw.
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> Here's a way that works for me. If you don't have a domain address, first set yourself up with a free one from DynDNS<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=DynDNS" class="wikipageedit">?</a> and install the DynDNS<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=DynDNS" class="wikipageedit">?</a>
+updater. Start up WEBrick on port 80 (ruby script/server --p 80). Then,
+just enter your domain name in the browser and you should get to your
+applications homepage. [Rainer]
+</li><li> To access WEBrick from another system, it needs to be bound
+to an IP address that's visible to the other system. 127.0.0.1 is not.
+You can bind WEBrick to any IP address you want using the "--binding"
+option at startup. Having said that, <code>DO NOT DO THIS WITHOUT THE HELP AND PERMISSION OF YOUR NETWORK ADMINISTRATOR !!!</code>
+If you insist on trying this at home, DISCONNECT from the outside
+world. Every computer connected to the Internet MUST HAVE a unique IP
+address. These are assigned by ICANN and you can wreak havoc on those
+around you if you succeed in configuring your web server with an
+address that's already assigned to and in use by another user. [BW]
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> <code>Rails application failed to start properly"</code> -error
+message gets shown for all my own apps - SCGI seems to be working only
+for cookbook and typo. How can I fix this? Obviously I've done the
+SCGI, Apache and Hosts -file configuration steps to get this far but
+that does not seem to be enough. What am I missing?
+<ul>
+<li> I solved the problem this way. In the public directory of your
+rails application, open "dispatch.cgi". Change the first line of the
+file from "#!C:/instantrails/ruby/ruby" (It may be slightly different
+on your install) so that it points to the proper location of ruby.exe
+on your computer. For example, if ruby.exe is in
+"C:\instantrails-1.0\ruby\" then the first line of the dispatch.cgi
+file should be "#!C:/instantrails-1.0/ruby/ruby". -DR
+</li><li> Better solution found by problem submitter: Correct the
+.htaccess to refer to dispatch.fcgi instead of dispatch.cgi - duh!
+Rather essential but noticing that one missing letter is... difficult.
+</li></ul>
+</li></ul>
+<p>
+</p><p>
+</p><ul>
+<li> When I try to start cookbook application or typo application by
+ticking the checkbox and clicking on 'Start SCGI Server' a DOS window
+pops up, but nothing is in it (appears to be normal behavior). I am
+able to start apache from a DOS command box, however trying to run the
+cookbook following the instructions above takes me to an external site.
+Trying to run typo gets me the service unavailable page. I checked in
+the services &amp; I don't think I am running IIS. However, I am behind
+a corporate firewall &amp; I am attached to the corporate network. My
+office computer is a dual processor dell running Windows XP sp2. I
+tried downloading Instant Rails again and reinstalling. I got the same
+problem. Any clues or ideas? Lastly, the instructions seem to work fine
+on my home computer which is not dual processor.
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> I solved this problem by changing the connection settings to "No proxy for www.mycookbook.com &amp; typo".  For <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?FireFox" class="wikipagelink">FireFox</a>, this is set under Tools -&gt; Options -&gt; Connection Settings -&gt; Manual Proxy Configuration -&gt; No proxy for URL
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> Similar to the problem above, I try to start a rails application
+by checking the box and clicking the button. A blank DOS window appears
+and does not go away. While the box is up, if I try to go to typo or
+www.mycookbook.com it gets stuck loading. When I close the DOS window,
+it finishes loading but I only get <code>Application error (Apache) /
+Change this error message for exceptions thrown outside of an action
+(like in Dispatcher setups or broken Ruby code) in public/500.html"</code>. Any help?
+<ul>
+<li> Double-check your .htaccess as above. SCGI likes the dispatch.fcgi more than dispatch.cgi.
+</li><li> If you've already tried the dispatch.fcgi suggestion, and it
+didn't help, you might want to try simply waiting a little longer after
+starting the SCGI server. I was getting the same Apache error with the
+mycookbook example on a slow computer, but if I waited a minute, it
+worked.
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> Also similar, I've done all of the above, but still when I try to
+access www.mycookbook.com or typo, I get a "Cannot find server or DNS
+Error". My .htaccess files (I downloaded <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>
+yesterday) already referred to dispatch.fcgi. I notice that in Task
+Manager there are two processes called Apache.exe, but they both stop
+and start at once when I stop and start Apache frm the main Instant
+Rails window. I'm pretty sure I'm not running IIS (I didn't get the
+"something else is using port 80" message). Any idea how to fix this?
+</li></ul>
+<p>
+</p><ul>
+<li> Is there a way to access the ruby server via localhost/ instead of adding hosts to windows' host file?
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> I was able to solve this problem by modifying the Apache httpd.conf in the following way:
+<ul>
+<li> First I changed the "Listen" port to the ruby development default: <code>Listen 127.0.0.1:3000</code>.  You can use just <code>Listen 3000</code>
+if you are okay with others getting access--the 127.0.0.1 forces Apache
+to only open the connection on the loopback device which means that you
+can only access it from your local computer.
+</li><li> I changed the "<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?DocumentRoot" class="wikipagelink">DocumentRoot</a>" line to launch ruby on the main webserver instead of through a virtual host (copying these lines from the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?VirtualHost" class="wikipagelink">VirtualHost</a> section at the bottom):
+</li></ul><dl>
+<dl>
+<dt></dt><dd><code>SCGIMount /dispatch.fcgi 127.0.0.1:9999</code>
+</dd><dt></dt><dd><code>DocumentRoot "${path}/rails_apps/cookbook/public"</code>
+</dd><dt></dt><dd><code>AddDefaultCharset utf-8</code>
+</dd><dt></dt><dd><code>ErrorDocument 500 /500.html</code>
+</dd><dt></dt><dd><code>ErrorDocument 404 /404.html</code>
+</dd></dl>
+</dl><ul>
+<li> I changed the first "Directory" directive to &lt;Directory "${path}/rails_apps/cookbook/public"&gt;
+</li><li> Finally I commented out the &lt;<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?VirtualHost" class="wikipagelink">VirtualHost</a>&gt; sections at the end of the configuration file.
+</li></ul>
+</li><li> After following these instructions I was able to run the cookbook app from localhost:3000
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> How can i create AND access a new application? Everything just redirects me to the cookbook.
+<ul>
+<li> I got around this by typing ://127.0.0.1:3000 instead of ://localhost:3000, localhost seems to redirect to recipe/list
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> Can Instant Rails *coexist with <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a>*?  Installed on Win2000Server with existing <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> running as service. Starting <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a> gives a *<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a>* error dialog <code>Apache cannot be run: another program is using Apache's port</code>.  But Apache can be started in <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>, and <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> cannot.
+<ul>
+<li>Manually stopping <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> before starting <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a> allows <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>, but is there a way to have both <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> instances?
+<ul>
+<li> Just change the port that your existing <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> server instance uses.. One easy way to do that is using <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> server administrator
+</li></ul>
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> Using Apache/scgi linking to the mycookbook app via index.html is
+quick. Linking to my own app (newcokbook) is very slow. Do I have to
+create a scgi.yml and modify the environment to speed that up? Can
+someone drill down on those if that is what is needed?
+</li></ul>
+<p>
+</p><ul>
+<li> On a virgin install of 1.3a (<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?WinXP/FireFox" class="wikipagelink">WinXP/FireFox</a>
+1.5.0.2), and following the instructions in
+instantrails.rubyforge.org/tutorial/completing_and_verifying.html
+exactly, I get as far as the WEBrick host starting. When I go to load
+127.0.0.1:3000/recipe/list, it just indefinitely keeps trying to load
+it. If I kill WEBrick, restart Apache from IR, and run the cookbook
+scgi server, I get the same problem (both w/ localhost and
+www.mycookbook.com/recipes/list). www.mycookbook.com works as just a
+redirect page. Checked .htaccess; only uncommented line with dispatch.*
+is near the end- "<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RewriteRule" class="wikipagelink">RewriteRule</a> ^(.*)$ dispatch.fcgi [QSA,L]". Suggestions for how to fix? - sai
+<ul>
+<li> I tried the below namechange thing, and as a result get a general
+"Application error (Apache)" page. Killing Apache and starting w/
+WEBrick, I get "unable to connect" after the forward. :-( - Sai
+</li><li> I have exactly the same setup and problems. Switching over
+to Internet Explorer seems to work! I'm not sure what the fix for
+firefox 1.5.x would be...
+<ul>
+<li> Tried that, just got error-500 pages... Also got it when trying to
+access /robots.txt, so it's probably not an issue with Rails per se so
+much as the server setup somewhere. Annoying. - Sai
+<ul>
+<li> I installed Ruby etc the other way (i.e. separately). It still didn't work. On advice from Jamis, I tried uninstalling <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?ZoneAlarm" class="wikipagelink">ZoneAlarm</a>...
+and presto, it worked. Did not work when I just shut ZA down though.
+Have not retried IR since then, but would probably work. Would be good
+to have a list of firewall programs that do and don't mess with the
+Ruby server. - Sai
+</li></ul>
+</li></ul>
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> On a virgin install of 1.3.a, going to www.mycookbook.com took me
+to an external commercial site. Restarting without having my Internet
+cable connected didn't help. Typo would run, however. To fix this
+problem with mycookbook, I stopped the Apache server, searched and
+replaced www.mycookbook.com with www.robcookbook.com in the Apache
+configuration file, replaced www.mycookbook.com with
+www.robcookbook.com in the HOSTS file, and restarted Apache and the
+cookbook rails application. Now going to www.robcookbook.com shows
+displays a basic-looking web page with Online Cookbook at the top and a
+small HTML table with three recipes, not the external commercial site.
+I recommend that the basic installation be changed, as someone else has
+posted this same problem on a blog but hadn't figured out how to get
+around it. Rob Pinion
+<ul>
+<li> This may be due to the name beeing present in the DNS cache. Try running "ipconfig /flushdns"
+</li><li> Also you may not have LMHOSTS Lookup enabled. Check your
+advanced TCP/IP settings under the WINS tab. If you don't have this
+checked, your system will try to resolve everything via DNS.
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> When I try to go to <a href="http://www.mycookbook.com/">http://www.mycookbook.com</a> I am asked for a password.  Any suggestions?
+<ul>
+<li> I had the same issue. In my case it was because I had Apache server running on port 8080 instead of 80. When I went to <a href="http://www.mycookbook.com:8080/">http://www.mycookbook.com:8080</a> the problem went away.
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li> I see lots of install instructions but I have a question that
+supercedes all this (in my mind anyway): I do not have a personal
+server so I am using a public host (currently Y! Small Biz) for my blog
+and a few seperate sites that I routinely access via Filezilla. It
+sounds like all the installs use Apache which gets setup on my local
+machine (I use XP Home and would likely opt for the msi). What would I
+need to do to move any Ruby-related development to my host (besides the
+obvious ftping of files)? Sorry, I'm still not clear on how this works.
+TIA.
+</li></ul>
+<p>
+</p><ul>
+<li> I changed Apache to port 6000 because I have Skype running on this PC, after this <code>127.0.0.1:6000 </code> works fine , I brings me to <code>InstantRails</code> help, then as expected  <code>www.mycookbook.com:6000 </code> brings up the Cooksbook redirect page , however the actual redirection timesout.
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> I had the same issue with skype but there seems to be a simpler
+solution. Skype uses port 80 only as an alternate incoming port. In the
+skype options, in the section for "connections" there is a check box
+where you can turn that off and skype seems to be fine without having
+access to port 80. And this solves the problem (for me) on the Instant
+Rails side.
+</li></ul>
+</ul>
+<p>
+</p><ul>
+<li> I have been following the instructions to the letter, but when I
+click on SCGI with www.mycookbook.com selected, absolutely nothing
+happens. I don't even get a quickly disappearing DOS prompt (unless it
+disappears so quickly I can't see it). One thing I notice is that, most
+likely since I already had ruby installed, there is no ruby.exe file in
+my <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a> directory.  How do I get around this?
+<ul>
+<li> I have the same problem, but I note that there is a ruby.exe under the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>/ruby directory. So it could simply be a path issue (i.e. that the installed ruby path overrides the instantrail path).
+</li></ul>
+</li></ul>
+<p>
+</p><ul>
+<li>When trying to run cookbook I get the following two errors in the
+Instant Rails console: 1. Apache port (80) is used by Skype and 2. <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a>
+port (3306) is used by ""(mysqld-nt.exe). I tried to change the Apache
+listen port to 6000 but firefox won't let me access it (This address
+uses a network port which is normally used for purposes other than Web
+browsing. Firefox has canceled the request for your protection.) and I
+can't see a preference to work around this. I also don't know how to
+change the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?MySQL" class="wikipagelink">MySQL</a> port.
+</li></ul>
+<p>
+</p><ul>
+<li> After install, I clicked to "Start" Apache. I got an alert small
+window saying there was an error in the apache config file. I tracked
+that down to the config file referred to a "www" directory that did not
+get created during installation. Apache was looking for <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?InstantRails" class="wikipagelink">InstantRails</a>/www to be the home directory of html pages.  Create that directory then re-attempt to start Apache.  Then it worked.
+</li></ul>
+<p>
+</p><ul>
+<li>After install, I was successfully able to run both the cookbook and
+the typo apps. However, it won't let me create the demo cookbook2, I
+enter "rails cookbook2' from the command prompt in the ruby console
+window, and it just gives me this error: "ruby: No such file or
+directory -- E:<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Getting_Started/Dev" class="wikipagelink">/Dev</a>/RubyDev<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Getting_Started/RubyDev" class="wikipageedit">?</a>/InstantRails<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Getting_Started/InstantRails" class="wikipageedit">?</a>-Project/InstantRails<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Getting_Started/InstantRails" class="wikipageedit">?</a>-win/InstantRails<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Getting_Started/InstantRails" class="wikipageedit">?</a>/ruby/bin/rails (LoadError<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=LoadError" class="wikipageedit">?</a>)". Anyone know of a fix for this?
+</li></ul>
+<p>
+</p><ul>
+<ul>
+<li> This is because the ruby\bin directory is not on your path. This
+probab;y happenned because you just opened a console window yourself
+instead of opening it through the Instant Rails menus. If you want to
+just be able to open console windows, then add the ruby\bin directory
+to your system path.
+</li></ul>
+</ul>
+</div><hr class="wikilinefooter">
+<div class="wikifooter"><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
+<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
+<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Getting_Started" class="wikipageedit">Edit text of this page</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=history&amp;id=Getting_Started">View other revisions</a><br>Last edited October 1, 2006 5:58 am by <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Curt_Hibbs" title="ID 6483 from 68-188-52-166.dhcp.stls.mo.charter.com">Curt Hibbs</a> <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=browse&amp;diff=1&amp;id=Getting_Started">(diff)</a><br>Search: <input name="search" size="20" type="text"><input name="dosearch" value="1" type="hidden"></form></div>
+</body></html>
