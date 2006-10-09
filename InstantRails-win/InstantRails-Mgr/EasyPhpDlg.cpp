@@ -668,10 +668,10 @@ bool CEasyPhpDlg::OnCommand(WPARAM wParam, LPARAM laParam)
 
 void CEasyPhpDlg::OnHelp()
 {
-	char szHelpPage[MAX_PATH] = {0};
+//	char szHelpPage[MAX_PATH] = {0};
 
-	_snprintf(szHelpPage, sizeof(szHelpPage)-1, "file:///%shelp\\index.html", m_cEasyPHP.InstallPath());
-	CUtils::GotoURL(szHelpPage); 
+//	_snprintf(szHelpPage, sizeof(szHelpPage)-1, "file:///%shelp\\index.html", m_cEasyPHP.InstallPath());
+	CUtils::GotoURL("http://instantrails.rubyforge.org/wiki/wiki.pl?Getting_Started"); 
 }
 
 void CEasyPhpDlg::OnHelpFAQ()
@@ -1077,10 +1077,10 @@ void CEasyPhpDlg::OnInstall()
 
 void CEasyPhpDlg::OnReleaseNotes()
 {
-	char szHelpPage[MAX_PATH] = {0};
+//	char szHelpPage[MAX_PATH] = {0};
 
-	_snprintf(szHelpPage, sizeof(szHelpPage)-1, "file:///%shelp\\releasenotes.html", m_cEasyPHP.InstallPath());
-	CUtils::GotoURL(szHelpPage); 
+//	_snprintf(szHelpPage, sizeof(szHelpPage)-1, "file:///%shelp\\releasenotes.html", m_cEasyPHP.InstallPath());
+	CUtils::GotoURL("http://instantrails.rubyforge.org/wiki/wiki.pl?Release_Notes"); 
 }
 
 void CEasyPhpDlg::OnAbout()
