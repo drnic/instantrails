@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw this object in a viewer.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+viewer+:"
+    body: the viewer window into which we're drawing [FXGLViewer]
+  type: :NOTE
+full_name: Fox::FXGLObject#draw
+is_singleton: false
+name: draw
+params: (viewer)
+visibility: public

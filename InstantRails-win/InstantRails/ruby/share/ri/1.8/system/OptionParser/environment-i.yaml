@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Parses environment variable <tt>env</tt> or its uppercase with splitting like a shell.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>env</tt> defaults to the basename of the program.
+full_name: OptionParser#environment
+is_singleton: false
+name: environment
+params: (env = File.basename($0, '.*'))
+visibility: public

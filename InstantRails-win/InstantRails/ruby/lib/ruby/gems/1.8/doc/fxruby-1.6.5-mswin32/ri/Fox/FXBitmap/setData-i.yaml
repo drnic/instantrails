@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Populate the bitmap with new pixel data of a new size; it will assume ownership of the pixel data if the <tt>BITMAP_OWNED</tt> option is passed in the <em>opts</em>. The size of the server- side representation of the image, if it exists, is adjusted but the contents are not updated; to update the server-side representation, call #render."
+full_name: Fox::FXBitmap#setData
+is_singleton: false
+name: setData
+params: (pix, opts, w, h)
+visibility: public

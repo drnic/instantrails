@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Character set encoding, such as <tt>FONTENCODING_ISO_8859_1</tt> or <tt>FONTENCODING_LATIN1</tt> [Integer]. See FXFont documentation for the complete list of character set encoding values.
+  name: encoding
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Typeface name, such as &quot;helvetica&quot; [String]
+  name: face
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Flags [Integer]
+  name: flags
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font set width, such as <tt>FONTSETWIDTH_CONDENSED</tt> or <tt>FONTSETWIDTH_WIDE</tt> [Integer]. See FXFont documentation for the complete list of font set width values.
+  name: setwidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font size in decipoints [Integer]
+  name: size
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font slant, such as <tt>FONTSLANT_REGULAR</tt> or <tt>FONTSLANT_ITALIC</tt> [Integer]. See FXFont documentation for the complete list of font slant values.
+  name: slant
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font weight, such as <tt>FONTWEIGHT_NORMAL</tt> or <tt>FONTWEIGHT_BOLD</tt> [Integer]. See FXFont documentation for the complete list of font weight values.
+  name: weight
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Font style
+constants: []
+
+full_name: Fox::FXFontDesc
+includes: []
+
+instance_methods: []
+
+name: FXFontDesc
+superclass: Object

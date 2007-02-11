@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove <em>n</em> characters of text at position <em>pos</em> in the buffer If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DELETED</tt> message is sent to the text widget's message target before the text is removed and a <tt>SEL_CHANGED</tt> message is sent after the change occurs.
+full_name: Fox::FXText#removeText
+is_singleton: false
+name: removeText
+params: (pos, n, notify=false)
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove all cells in the specified range of rows and columns. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_REPLACED</tt> message is sent to the table's message target before each cell is removed. Raises IndexError if <em>startrow</em>, <em>endrow</em>, <em>startcol</em> or <em>endcol</em> is out of bounds.
+full_name: Fox::FXTable#removeRange
+is_singleton: false
+name: removeRange
+params: (startrow, endrow, startcol, endcol, notify=false)
+visibility: public

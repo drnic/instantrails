@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Alternative method for calling the transaction methods. An optional name can be specified for named transaction support.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction(:start):"
+    body: "#start_transaction"
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction(:rewind):"
+    body: "#rewind_transaction"
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction(:abort):"
+    body: "#abort_transaction"
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction(:commit):"
+    body: "#commit_transaction"
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction(:name):"
+    body: "#transaction_name"
+  - !ruby/struct:SM::Flow::LI 
+    label: "#transaction:"
+    body: "#transaction_open?"
+  type: :NOTE
+full_name: Transaction::Simple#transaction
+is_singleton: false
+name: transaction
+params: (action = nil, name = nil)
+visibility: public

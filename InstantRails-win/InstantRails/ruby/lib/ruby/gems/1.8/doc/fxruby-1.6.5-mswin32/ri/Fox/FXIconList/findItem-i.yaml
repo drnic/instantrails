@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search items by <em>text</em>, beginning from item <em>start</em>. If the start item is -1 the search will start at the first item in the list. Flags may be SEARCH_FORWARD or SEARCH_BACKWARD to control the search direction; this can be combined with SEARCH_NOWRAP or SEARCH_WRAP to control whether the search wraps at the start or end of the list. The option SEARCH_IGNORECASE causes a case-insensitive match. Finally, passing SEARCH_PREFIX causes searching for a prefix of the item name. Return -1 if no matching item is found.
+full_name: Fox::FXIconList#findItem
+is_singleton: false
+name: findItem
+params: (text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP)
+visibility: public

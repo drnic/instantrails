@@ -1,0 +1,223 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: decimals
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: def
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: flags
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: length
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: max_length
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: org_table
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: table
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: type
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Field type
+  name: TYPE_DECIMAL
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_TINY
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_SHORT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_LONG
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_FLOAT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_DOUBLE
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_NULL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_TIMESTAMP
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_LONGLONG
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_INT24
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_DATE
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_TIME
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_DATETIME
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_YEAR
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_NEWDATE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_ENUM
+  value: "247"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_SET
+  value: "248"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_TINY_BLOB
+  value: "249"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_MEDIUM_BLOB
+  value: "250"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_LONG_BLOB
+  value: "251"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_BLOB
+  value: "252"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_VAR_STRING
+  value: "253"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_STRING
+  value: "254"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_GEOMETRY
+  value: "255"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_CHAR
+  value: TYPE_TINY
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TYPE_INTERVAL
+  value: TYPE_ENUM
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Flag
+  name: NOT_NULL_FLAG
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PRI_KEY_FLAG
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNIQUE_KEY_FLAG
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MULTIPLE_KEY_FLAG
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BLOB_FLAG
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNSIGNED_FLAG
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ZEROFILL_FLAG
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BINARY_FLAG
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ENUM_FLAG
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AUTO_INCREMENT_FLAG
+  value: "512"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TIMESTAMP_FLAG
+  value: "1024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SET_FLAG
+  value: "2048"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NUM_FLAG
+  value: "32768"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PART_KEY_FLAG
+  value: "16384"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GROUP_FLAG
+  value: "32768"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNIQUE_FLAG
+  value: "65536"
+full_name: Mysql::Field
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+name: Field
+superclass: Object

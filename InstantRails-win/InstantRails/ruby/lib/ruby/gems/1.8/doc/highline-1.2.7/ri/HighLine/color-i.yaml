@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method provides easy access to ANSI color sequences, without the user needing to remember to CLEAR at the end of each sequence. Just pass the <em>string</em> to color, followed by a list of <em>colors</em> you would like it to be affected by. The <em>colors</em> can be HighLine class constants, or symbols (:blue for BLUE, for example). A CLEAR will automatically be embedded to the end of the returned String.
+- !ruby/struct:SM::Flow::P 
+  body: This method returns the original <em>string</em> unchanged if HighLine::use_color? is <tt>false</tt>.
+full_name: HighLine#color
+is_singleton: false
+name: color
+params: ( string, *colors )
+visibility: public

@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: struct
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: EventLog#read(flags=nil, offset=0) EventLog#read(flags=nil, offset=0){ |log| ... }
+- !ruby/struct:SM::Flow::P 
+  body: "Iterates over each record in the event log, yielding a EventLogStruct for each record. The offset value is only used when used in conjunction with the EventLog::SEEK_READ flag. Otherwise, it is ignored. If no flags are specified, then the default flags are:"
+- !ruby/struct:SM::Flow::P 
+  body: EventLog::SEQUENTIAL_READ | EventLog::FORWARDS_READ
+- !ruby/struct:SM::Flow::P 
+  body: Note that, if you're performing a SEEK_READ, then the offset must refer to a record number that actually exists. The default of 0 may or may not work for your particular event log.
+- !ruby/struct:SM::Flow::P 
+  body: "The EventLogStruct struct contains the following members:"
+- !ruby/struct:SM::Flow::P 
+  body: "record_number # Fixnum time_generated # Time time_written # Time event_id # Fixnum event_type # String category # String source # String computer # String user # String or nil description # String or nil string_inserts # An array of Strings or nil"
+- !ruby/struct:SM::Flow::P 
+  body: If no block is given the method returns an array of EventLogStruct's.
+full_name: Win32::EventLog#read
+is_singleton: false
+name: read
+params: (flags = nil, offset = 0) {|struct| ...}
+visibility: public

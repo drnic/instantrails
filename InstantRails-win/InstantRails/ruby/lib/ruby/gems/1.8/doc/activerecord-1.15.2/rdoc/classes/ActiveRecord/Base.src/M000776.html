@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>require_mysql (ActiveRecord::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/mysql_adapter.rb, line 46</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">require_mysql</span>
+      <span class="ruby-comment cmt"># Include the MySQL driver if one hasn't already been loaded</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">Mysql</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">require_library_or_gem</span> <span class="ruby-value str">'mysql'</span>
+        <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">cannot_require_mysql</span>
+          <span class="ruby-comment cmt"># Use the bundled Ruby/MySQL driver if no driver is already in place</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'active_record/vendor/mysql'</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-identifier">cannot_require_mysql</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Define Mysql::Result.all_hashes</span>
+      <span class="ruby-constant">MysqlCompat</span>.<span class="ruby-identifier">define_all_hashes_method!</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

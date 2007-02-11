@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: target
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Based on a suggestion from Hugh Sasse on the fxruby-users mailing list, an FXPseudoMouse object provides a simple means to operate widgets programmatically, to aid test driven design. An FXPseudoMouse instance can be pointed at an FXObject and will manage the sending of events to it.
+constants: []
+
+full_name: Fox::FXPseudoMouse
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: doLeftButtonPress
+- !ruby/object:RI::MethodSummary 
+  name: doLeftButtonRelease
+- !ruby/object:RI::MethodSummary 
+  name: doMiddleButtonPress
+- !ruby/object:RI::MethodSummary 
+  name: doMiddleButtonRelease
+- !ruby/object:RI::MethodSummary 
+  name: doMotion
+- !ruby/object:RI::MethodSummary 
+  name: doMouseWheel
+- !ruby/object:RI::MethodSummary 
+  name: doRightButtonPress
+- !ruby/object:RI::MethodSummary 
+  name: doRightButtonRelease
+name: FXPseudoMouse
+superclass: FXObject

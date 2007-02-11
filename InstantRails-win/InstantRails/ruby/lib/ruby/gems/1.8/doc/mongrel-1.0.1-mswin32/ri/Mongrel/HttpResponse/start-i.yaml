@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: "@header, @body"
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Receives a block passing it the header and body for you to work with. When the block is finished it writes everything you've done to the socket in the proper order. This lets you intermix header and body content as needed. Handlers are able to modify pretty much any part of the request in the chain, and can stop further processing by simple passing &quot;finalize=true&quot; to the start method. By default all handlers run and then mongrel finalizes the request when they're all done.
+full_name: Mongrel::HttpResponse#start
+is_singleton: false
+name: start
+params: (status=200, finalize=false) {|@header, @body| ...}
+visibility: public

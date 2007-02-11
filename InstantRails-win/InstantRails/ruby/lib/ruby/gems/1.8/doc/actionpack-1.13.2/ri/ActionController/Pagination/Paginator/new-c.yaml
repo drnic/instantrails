@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a new Paginator on the given <tt>controller</tt> for a set of items of size <tt>item_count</tt> and having <tt>items_per_page</tt> items per page. Raises ArgumentError if items_per_page is out of bounds (i.e., less than or equal to zero). The page CGI parameter for links defaults to &quot;page&quot; and can be overridden with <tt>page_parameter</tt>.
+full_name: ActionController::Pagination::Paginator::new
+is_singleton: true
+name: new
+params: (controller, item_count, items_per_page, current_page=1)
+visibility: public

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to find a matching path using the require_paths of the given <em>spec</em>.
+- !ruby/struct:SM::Flow::P 
+  body: Some of the intermediate results are cached in @lib_dirs for speed.
+full_name: Gem::GemPathSearcher#matching_file
+is_singleton: false
+name: matching_file
+params: (spec, path)
+visibility: private

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: CompiledTemplates modules hold methods that have been compiled. Templates are compiled into these methods so that they do not need to be re-read and re-parsed each request.
+- !ruby/struct:SM::Flow::P 
+  body: Each template may be compiled into one or more methods. Each method accepts a given set of parameters which is used to implement local assigns passing.
+- !ruby/struct:SM::Flow::P 
+  body: To use a compiled template module, create a new instance and include it into the class in which you want the template to be rendered.
+constants: []
+
+full_name: ActionView::CompiledTemplates
+includes: []
+
+instance_methods: []
+
+name: CompiledTemplates
+superclass: Module

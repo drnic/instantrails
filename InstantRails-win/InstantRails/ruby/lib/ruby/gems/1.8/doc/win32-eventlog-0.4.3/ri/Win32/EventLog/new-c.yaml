@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Opens a handle to the new EventLog <tt>source</tt> on <tt>server</tt>, or the local machine if no host is specified. Typically, your source will be 'Application, 'Security' or 'System', although you can specify a custom log file as well.
+- !ruby/struct:SM::Flow::P 
+  body: If a custom, registered log file name cannot be found, the event logging service opens the 'Application' log file. This is the behavior of the underlying Windows function, not my own doing.
+full_name: Win32::EventLog::new
+is_singleton: true
+name: new
+params: (source = 'Application', server = nil, file = nil) {|self| ...}
+visibility: public

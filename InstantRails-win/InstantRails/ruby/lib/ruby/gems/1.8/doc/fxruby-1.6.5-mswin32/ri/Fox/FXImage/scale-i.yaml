@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rescale pixels image to the specified width and height. Note that this serves a slightly different purpose than the base class resize() method, which simply resizes the client-side pixel data buffer but doesn't transform the image.
+- !ruby/struct:SM::Flow::P 
+  body: "The optional third argument specifies the <em>quality</em> of the scaling algorithm used. By default, #scale uses a fast (but low quality) nearest-neighbor algorithm for scaling the image to its new size. To use the higher-quality scaling algorithm from FOX 1.0, you should pass in a value of 1 as the third argument to #scale."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: new image width, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: new image height, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+quality+:"
+    body: scaling algorithm quality, either 0 or 1 (see above) [Integer]
+  type: :NOTE
+full_name: Fox::FXImage#scale
+is_singleton: false
+name: scale
+params: (w, h, quality=0)
+visibility: public

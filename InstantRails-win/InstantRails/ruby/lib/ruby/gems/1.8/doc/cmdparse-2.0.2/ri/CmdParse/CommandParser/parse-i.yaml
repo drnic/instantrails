@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: level, commandName
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Parses the command line arguments. If a block is specified, the current hierarchy level and the name of the current command is yielded after the options for the level have been parsed.
+full_name: CmdParse::CommandParser#parse
+is_singleton: false
+name: parse
+params: ( argv = ARGV ) {|level, commandName| ...}
+visibility: public

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates and shows the dialog, and registers the associated block to be called when the dialog is closed. The block is passed a boolean argument which is true if and only if the dialog was accepted.
+- !ruby/struct:SM::Flow::P 
+  body: "For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  dialogBox.execute_modal do |accepted|\n    if accepted\n      puts &quot;Dialog accepted&quot;\n    else\n      puts &quot;Dialog cancelled&quot;\n   end\n"
+full_name: Fox::FTNonModal#execute_modal
+is_singleton: false
+name: execute_modal
+params: (placement = PLACEMENT_CURSOR, &block)
+visibility: public

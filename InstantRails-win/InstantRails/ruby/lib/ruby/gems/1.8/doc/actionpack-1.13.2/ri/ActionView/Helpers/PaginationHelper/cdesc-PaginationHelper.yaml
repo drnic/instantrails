@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides methods for linking to ActionController::Pagination objects.
+- !ruby/struct:SM::Flow::P 
+  body: "You can also build your links manually, like in this example:"
+- !ruby/struct:SM::Flow::P 
+  body: "&lt;%= link_to &quot;Previous page&quot;, { :page =&gt; paginator.current.previous } if paginator.current.previous %&gt;"
+- !ruby/struct:SM::Flow::P 
+  body: "&lt;%= link_to &quot;Next page&quot;, { :page =&gt; paginator.current.next } if paginator.current.next %&gt;"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_OPTIONS
+  value: "{           :name => :page,           :window_size => 2,           :always_show_anchors => true,           :link_to_current_page => false,           :params => {}"
+full_name: ActionView::Helpers::PaginationHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: pagination_links
+- !ruby/object:RI::MethodSummary 
+  name: pagination_links_each
+name: PaginationHelper
+superclass: 

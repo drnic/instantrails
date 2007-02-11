@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An icon source is an object that loads an icon of any type. It exists purely for convenience, to make loading icons simpler by concentrating the knowledge of the supported icon formats in a single place. Needless to say, this class is subclassable, allowing users to add additional icon types and make them available to all widgets which deal with icons. Note, the icons are loaded, but <em>not</em> created (realized) yet; this allows users to manipulate the pixel data prior to realizing the icons.
+constants: []
+
+full_name: Fox::FXIconSource
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: loadIconData
+- !ruby/object:RI::MethodSummary 
+  name: loadIconFile
+- !ruby/object:RI::MethodSummary 
+  name: loadIconStream
+- !ruby/object:RI::MethodSummary 
+  name: loadImageData
+- !ruby/object:RI::MethodSummary 
+  name: loadImageFile
+- !ruby/object:RI::MethodSummary 
+  name: loadImageStream
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledIconData
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledIconFile
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledIconStream
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledImageData
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledImageFile
+- !ruby/object:RI::MethodSummary 
+  name: loadScaledImageStream
+name: FXIconSource
+superclass: FXObject

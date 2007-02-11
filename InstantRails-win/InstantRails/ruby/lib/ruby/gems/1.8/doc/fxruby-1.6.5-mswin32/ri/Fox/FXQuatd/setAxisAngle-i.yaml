@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set quaternion from rotation axis and angle.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+axis+:"
+    body: the rotation axis [FXVec3d]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+angle+:"
+    body: the rotation angle (in radians) [Float]
+  type: :NOTE
+full_name: Fox::FXQuatd#setAxisAngle
+is_singleton: false
+name: setAxisAngle
+params: (axis, phi=0.0)
+visibility: public

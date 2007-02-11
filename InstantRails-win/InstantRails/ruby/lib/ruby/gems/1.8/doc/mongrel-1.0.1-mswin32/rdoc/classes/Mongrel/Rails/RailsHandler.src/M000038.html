@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process (Mongrel::Rails::RailsHandler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/rails.rb, line 51</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">closed?</span>
+          <span class="ruby-keyword kw">return</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">path_info</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_INFO</span>]
+        <span class="ruby-identifier">page_cached</span> = <span class="ruby-identifier">path_info</span> <span class="ruby-operator">+</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">page_cache_extension</span>
+        <span class="ruby-identifier">get_or_head</span> = <span class="ruby-ivar">@@file_only_methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">REQUEST_METHOD</span>]
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">get_or_head</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">can_serve</span>(<span class="ruby-identifier">path_info</span>)
+          <span class="ruby-comment cmt"># File exists as-is so serve it up</span>
+          <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>,<span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">get_or_head</span> <span class="ruby-keyword kw">and</span> <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">can_serve</span>(<span class="ruby-identifier">page_cached</span>)
+          <span class="ruby-comment cmt"># Possible cached page, serve it up</span>
+          <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_INFO</span>] = <span class="ruby-identifier">page_cached</span>
+          <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>,<span class="ruby-identifier">response</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">cgi</span> = <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">CGIWrapper</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+            <span class="ruby-identifier">cgi</span>.<span class="ruby-identifier">handler</span> = <span class="ruby-keyword kw">self</span>
+            <span class="ruby-comment cmt"># We don't want the output to be really final until we're out of the lock</span>
+            <span class="ruby-identifier">cgi</span>.<span class="ruby-identifier">default_really_final</span> = <span class="ruby-keyword kw">false</span>
+
+            <span class="ruby-identifier">log_threads_waiting_for</span>(<span class="ruby-ivar">@active_request_path</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">$mongrel_debug_client</span>
+
+            <span class="ruby-ivar">@guard</span>.<span class="ruby-identifier">synchronize</span> {
+              <span class="ruby-ivar">@active_request_path</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-value str">&quot;PATH_INFO&quot;</span>] 
+              <span class="ruby-constant">Dispatcher</span>.<span class="ruby-identifier">dispatch</span>(<span class="ruby-identifier">cgi</span>, <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">CgiRequest</span><span class="ruby-operator">::</span><span class="ruby-constant">DEFAULT_SESSION_OPTIONS</span>, <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>)
+              <span class="ruby-ivar">@active_request_path</span> = <span class="ruby-keyword kw">nil</span>
+            }
+
+            <span class="ruby-comment cmt"># This finalizes the output using the proper HttpResponse way</span>
+            <span class="ruby-identifier">cgi</span>.<span class="ruby-identifier">out</span>(<span class="ruby-value str">&quot;text/html&quot;</span>,<span class="ruby-keyword kw">true</span>) {<span class="ruby-value str">&quot;&quot;</span>}
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EPIPE</span>
+            <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">close</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">rails_error</span>
+            <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{Time.now}: Error calling Dispatcher.dispatch #{rails_error.inspect}&quot;</span>
+            <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-identifier">rails_error</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

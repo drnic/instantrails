@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a textarea opening and closing tag set tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Example (call, result):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_area(&quot;post&quot;, &quot;body&quot;, &quot;cols&quot; =&gt; 20, &quot;rows&quot; =&gt; 40)\n    &lt;textarea cols=&quot;20&quot; rows=&quot;40&quot; id=&quot;post_body&quot; name=&quot;post[body]&quot;&gt;\n      #{@post.body}\n    &lt;/textarea&gt;\n"
+full_name: ActionView::Helpers::FormHelper#text_area
+is_singleton: false
+name: text_area
+params: (object_name, method, options = {})
+visibility: public

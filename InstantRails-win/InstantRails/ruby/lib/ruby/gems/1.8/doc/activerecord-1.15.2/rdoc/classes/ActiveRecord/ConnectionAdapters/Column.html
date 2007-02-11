@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::ConnectionAdapters::Column</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::Column</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/connection_adapters/abstract/schema_definitions_rb.html">
+                lib/active_record/connection_adapters/abstract/schema_definitions.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+An abstract definition of a column in a table.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000453">binary_to_string</a>&nbsp;&nbsp;
+      <a href="#M000451">human_name</a>&nbsp;&nbsp;
+      <a href="#M000448">klass</a>&nbsp;&nbsp;
+      <a href="#M000445">new</a>&nbsp;&nbsp;
+      <a href="#M000447">number?</a>&nbsp;&nbsp;
+      <a href="#M000452">string_to_binary</a>&nbsp;&nbsp;
+      <a href="#M000454">string_to_date</a>&nbsp;&nbsp;
+      <a href="#M000456">string_to_dummy_time</a>&nbsp;&nbsp;
+      <a href="#M000455">string_to_time</a>&nbsp;&nbsp;
+      <a href="#M000446">text?</a>&nbsp;&nbsp;
+      <a href="#M000449">type_cast</a>&nbsp;&nbsp;
+      <a href="#M000450">type_cast_code</a>&nbsp;&nbsp;
+      <a href="#M000457">value_to_boolean</a>&nbsp;&nbsp;
+      <a href="#M000458">value_to_decimal</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">limit</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">name</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">null</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">precision</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">primary</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">scale</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">sql_type</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">type</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000453" class="method-detail">
+        <a name="M000453"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000453.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000453.html');return false;">
+          <span class="method-name">binary_to_string</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to convert from BLOBs to Strings
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000445" class="method-detail">
+        <a name="M000445"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000445.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000445.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(name, default, sql_type = nil, null = true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Instantiates a <a href="Column.html#M000445">new</a> column in the table.
+</p>
+<p>
+<tt>name</tt> is the column&#8216;s name, as in <b><tt>supplier_id</b>
+int(11)</tt>. <tt>default</tt> is the type-casted default value, such as
+<tt>sales_stage varchar(20) default <b>&#8216;<a
+href="Column.html#M000445">new</a>&#8216;</tt></b>. <tt>sql_type</tt> is
+only used to extract the column&#8216;s length, if necessary. For example,
+<tt>company_name varchar(<b>60</b>)</tt>. <tt>null</tt> determines if this
+column allows <tt>NULL</tt> values.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000452" class="method-detail">
+        <a name="M000452"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000452.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000452.html');return false;">
+          <span class="method-name">string_to_binary</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to convert from Strings to BLOBs
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000454" class="method-detail">
+        <a name="M000454"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000454.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000454.html');return false;">
+          <span class="method-name">string_to_date</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000456" class="method-detail">
+        <a name="M000456"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000456.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000456.html');return false;">
+          <span class="method-name">string_to_dummy_time</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000455" class="method-detail">
+        <a name="M000455"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000455.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000455.html');return false;">
+          <span class="method-name">string_to_time</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000457" class="method-detail">
+        <a name="M000457"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000457.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000457.html');return false;">
+          <span class="method-name">value_to_boolean</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+convert something to a boolean
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000458" class="method-detail">
+        <a name="M000458"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000458.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000458.html');return false;">
+          <span class="method-name">value_to_decimal</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+convert something to a BigDecimal
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000451" class="method-detail">
+        <a name="M000451"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000451.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000451.html');return false;">
+          <span class="method-name">human_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the human name of the column name.
+</p>
+<h5>Examples</h5>
+<pre>
+ Column.new('sales_stage', ...).human_name #=&gt; 'Sales stage'
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000448" class="method-detail">
+        <a name="M000448"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000448.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000448.html');return false;">
+          <span class="method-name">klass</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the Ruby class that corresponds to the abstract data type.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000447" class="method-detail">
+        <a name="M000447"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000447.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000447.html');return false;">
+          <span class="method-name">number?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000446" class="method-detail">
+        <a name="M000446"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000446.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000446.html');return false;">
+          <span class="method-name">text?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000449" class="method-detail">
+        <a name="M000449"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000449.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000449.html');return false;">
+          <span class="method-name">type_cast</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Casts value (which is a String) to an appropriate instance.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000450" class="method-detail">
+        <a name="M000450"></a>
+
+        <div class="method-heading">
+          <a href="Column.src/M000450.html" target="Code" class="method-signature"
+            onclick="popupCode('Column.src/M000450.html');return false;">
+          <span class="method-name">type_cast_code</span><span class="method-args">(var_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

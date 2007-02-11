@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sweepers are the terminators of the caching world and responsible for expiring caches when model objects change. They do this by being half-observers, half-filters and implementing callbacks for both roles. A Sweeper example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ListSweeper &lt; ActionController::Caching::Sweeper\n    observe List, Item\n\n    def after_save(record)\n      list = record.is_a?(List) ? record : record.list\n      expire_page(:controller =&gt; &quot;lists&quot;, :action =&gt; %w( show public feed ), :id =&gt; list.id)\n      expire_action(:controller =&gt; &quot;lists&quot;, :action =&gt; &quot;all&quot;)\n      list.shares.each { |share| expire_page(:controller =&gt; &quot;lists&quot;, :action =&gt; &quot;show&quot;, :id =&gt; share.url_key) }\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The sweeper is assigned in the controllers that wish to have its job performed using the <tt>cache_sweeper</tt> class method:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ListsController &lt; ApplicationController\n    caches_action :index, :show, :public, :feed\n    cache_sweeper :list_sweeper, :only =&gt; [ :edit, :destroy, :share ]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: In the example above, four actions are cached and three actions are responsible for expiring those caches.
+constants: []
+
+full_name: ActionController::Caching::Sweeping
+includes: []
+
+instance_methods: []
+
+name: Sweeping
+superclass: 

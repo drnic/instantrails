@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>update_responses (HighLine::Menu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/highline/menu.rb, line 375</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_responses</span>(  )
+      <span class="ruby-identifier">append_default</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">default</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-ivar">@responses</span> = { <span class="ruby-identifier">:ambiguous_completion</span> =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-value str">&quot;Ambiguous choice.  &quot;</span> <span class="ruby-operator">+</span>
+                       <span class="ruby-node">&quot;Please choose one of #{options.inspect}.&quot;</span>,
+                     <span class="ruby-identifier">:ask_on_error</span>         =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-value str">&quot;?  &quot;</span>,
+                     <span class="ruby-identifier">:invalid_type</span>         =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-node">&quot;You must enter a valid #{options}.&quot;</span>,
+                     <span class="ruby-identifier">:no_completion</span>        =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-value str">&quot;You must choose one of &quot;</span> <span class="ruby-operator">+</span>
+                       <span class="ruby-node">&quot;#{options.inspect}.&quot;</span>,
+                     <span class="ruby-identifier">:not_in_range</span>         =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-value str">&quot;Your answer isn't within the expected range &quot;</span> <span class="ruby-operator">+</span>
+                       <span class="ruby-node">&quot;(#{expected_range}).&quot;</span>,
+                     <span class="ruby-identifier">:not_valid</span>            =<span class="ruby-operator">&gt;</span>
+                       <span class="ruby-value str">&quot;Your answer isn't valid (must match &quot;</span> <span class="ruby-operator">+</span>
+                       <span class="ruby-node">&quot;#{@validate.inspect}).&quot;</span> }.<span class="ruby-identifier">merge</span>(<span class="ruby-ivar">@responses</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

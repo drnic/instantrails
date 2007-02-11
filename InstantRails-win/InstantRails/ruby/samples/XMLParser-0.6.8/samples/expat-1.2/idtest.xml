@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!DOCTYPE test  SYSTEM "hoge.dtd" [
+<!ENTITY qqqq "QQQQ">
+<!ENTITY rrrr SYSTEM "ext.ent">
+<!ENTITY ssss PUBLIC "-//Hoge//EN" "ext.ent">
+]>
+<test b="a1234&#x9;&#xA;&#xD;" hoge ="4567">
+<aaaa b="abcd" a="defg">
+  ああ&#xD;ああ
+  bbbb&rrrr;
+</aaaa>
+</test>

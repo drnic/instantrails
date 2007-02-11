@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Mon Feb 05 08:53:54 -0600 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>0.6.2 - 21-Dec-2006</h1>
+<ul>
+<li>Added file related constants from sys/stat.h to the <a
+href="../classes/Windows/MSVCRT/File.html">Windows::MSVCRT::File</a>
+module.
+
+</li>
+<li>Added the open_osfhandle method to the <a
+href="../classes/Windows/Handle.html">Windows::Handle</a> module.
+
+</li>
+<li>Changed the signatures for the VirtualFree and VirtualFreeEx functions in
+the <a href="../classes/Windows/Memory.html">Windows::Memory</a> module.
+
+</li>
+<li>Added the Windows::GDI::Bitmap, Windows::GDI::DeviceContext and
+Windows::GDI::PaintingDrawing modules.
+
+</li>
+</ul>
+<h1>0.6.1 - 22-Nov-2006</h1>
+<ul>
+<li>Changed the signature for VirtualAlloc and VirtualAllocEx in the <a
+href="../classes/Windows/Memory.html">Windows::Memory</a> module (long
+instead of pointer for first argument).
+
+</li>
+<li>Added the get_osfhandle method to the <a
+href="../classes/Windows/Handle.html">Windows::Handle</a> module.
+
+</li>
+</ul>
+<h1>0.6.0 - 5-Nov-2006</h1>
+<ul>
+<li>Added the <a href="../classes/Windows/Volume.html">Windows::Volume</a>
+module.
+
+</li>
+</ul>
+<h1>0.5.6 - 22-Oct-2006</h1>
+<ul>
+<li>Modified the memcpy method in <a
+href="../classes/Windows/MSVCRT/Buffer.html">Windows::MSVCRT::Buffer</a> to
+do the right thing based on the type of the parameters, as well as
+automatically set the default size to the size of the source being copied.
+
+</li>
+</ul>
+<h1>0.5.5 - 11-Oct-2006</h1>
+<ul>
+<li>Prototype modification for VirtualQuery and VirtualQueryEx in the <a
+href="../classes/Windows/Memory.html">Windows::Memory</a> module.
+
+</li>
+</ul>
+<h1>0.5.4 - 8-Sep-2006</h1>
+<ul>
+<li>Added the <a
+href="../classes/Windows/NetworkManagement.html">Windows::NetworkManagement</a>
+module, which contains methods like NetUserAdd(), etc.
+
+</li>
+<li>Fixed bugs in SetLastError and SetLastErrorEx declarations.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Library.html">Windows::Library</a> module.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Console.html">Windows::Console</a> module.
+
+</li>
+<li>Added a test case for the <a
+href="../classes/Windows/Library.html">Windows::Library</a> module.
+
+</li>
+<li>Added the LOCKFILE_EXCLUSIVE_LOCK and LOCKFILE_FAIL_IMMEDIATELY constants
+to the <a href="../classes/Windows/File.html">Windows::File</a> module.
+
+</li>
+</ul>
+<h1>0.5.3 - 10-Aug-2006</h1>
+<ul>
+<li>Added wide character functions to the EventLog module.
+
+</li>
+<li>Added a test suite for the EventLog module.
+
+</li>
+<li>Fixed method wrapper for MapViewOfFileEx.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Registry.html">Windows::Registry</a> module (the
+RegSaveKeyEx might not be defined).
+
+</li>
+</ul>
+<h1>0.5.2 - 29-Jul-2006</h1>
+<ul>
+<li>Prototype fixes/changes for CreateProcess, GlobalLock,
+GlobalMemoryStatusEx, and CreateFileMapping.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Process.html">Windows::Process</a> module (only
+two methods might not be defined).
+
+</li>
+<li>Added method wrappers for the Handle constants.
+
+</li>
+<li>Added mmap related methods and constants.
+
+</li>
+<li>Added more test cases.
+
+</li>
+<li>Added wide character methods to the <a
+href="../classes/Windows/Directory.html">Windows::Directory</a> class.
+
+</li>
+<li>Added wide character helper methods.
+
+</li>
+<li>Added a few more methods to MSVCRT::String.
+
+</li>
+</ul>
+<h1>0.5.1 - 26-May-2006</h1>
+<ul>
+<li>Minor updates and fixes for the Unicode and DeviceIO modules.
+
+</li>
+<li>Added some wide character support, based on $KCODE values (which should not
+be used at this time).
+
+</li>
+</ul>
+<h1>0.5.0 - 23-May-2006</h1>
+<ul>
+<li>Added the Registry module
+
+</li>
+<li>Added the EventLog module
+
+</li>
+<li>Added the National module
+
+</li>
+<li>Added the SystemInfo module
+
+</li>
+</ul>
+<h1>0.4.0 - 7-May-2006</h1>
+<ul>
+<li>Bug fix for the WaitForMultipleObjects method in synchronize.rb
+
+</li>
+<li>Added the Window module (just a few constants for now)
+
+</li>
+<li>Added the Console module (AttachConsole, etc)
+
+</li>
+<li>Added the Library module (LoadLibrary, etc)
+
+</li>
+<li>Added the Directory module (CreateDirectory, etc)
+
+</li>
+<li>Added the Shell module (some constants, a few methods for now)
+
+</li>
+<li>Added the Unicode module (WideCharToMultiByte, etc)
+
+</li>
+<li>Added process creation, priority and startf flags to the Process module
+
+</li>
+</ul>
+<h1>0.3.0 - 22-Apr-2006</h1>
+<ul>
+<li>Added the Limits module.
+
+</li>
+<li>Added the Security module.
+
+</li>
+<li>Fixed a signature bug in the MSVCRT/Buffer module.
+
+</li>
+</ul>
+<h1>0.2.0 - 13-Apr-2006</h1>
+<ul>
+<li>Added the FileSystem module.
+
+</li>
+<li>Fixed signature and dll mistakes in the File module.
+
+</li>
+</ul>
+<h1>0.1.0 - 4-Apr-2006</h1>
+<ul>
+<li>Initial release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

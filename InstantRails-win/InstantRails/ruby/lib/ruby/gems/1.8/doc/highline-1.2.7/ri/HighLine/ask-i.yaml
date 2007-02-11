@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: question
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method is the primary interface for user input. Just provide a <em>question</em> to ask the user, the <em>answer_type</em> you want returned, and optionally a code block setting up details of how you want the question handled. See HighLine.say() for details on the format of <em>question</em>, and HighLine::Question for more information about <em>answer_type</em> and what's valid in the code block.
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>@question</tt> is set before ask() is called, parameters are ignored and that object (must be a HighLine::Question) is used to drive the process instead.
+- !ruby/struct:SM::Flow::P 
+  body: Raises EOFError if input is exhausted.
+full_name: HighLine#ask
+is_singleton: false
+name: ask
+params: ( question, answer_type = String ) {|question| ...}
+visibility: public

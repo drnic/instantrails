@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theStatusLine
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXStatusLine instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this shutter [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+target+:"
+    body: the message target, if any, for this shutter [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+selector+:"
+    body: the message identifier for this shutter [Integer]
+  type: :NOTE
+full_name: Fox::FXStatusLine::new
+is_singleton: true
+name: new
+params: (p, target=nil, selector=0) {|theStatusLine| ...}
+visibility: public

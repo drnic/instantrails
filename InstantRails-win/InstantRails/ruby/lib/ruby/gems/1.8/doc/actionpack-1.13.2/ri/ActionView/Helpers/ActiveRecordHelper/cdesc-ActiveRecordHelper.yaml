@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Active Record Helper makes it easier to create forms for records kept in instance variables. The most far-reaching is the form method that creates a complete form for all the basic content types of the record (not associations or aggregations, though). This is a great of making the record quickly available for editing, but likely to prove lackluster for a complicated real-world form. In that case, it's better to use the input method and the specialized form methods in link:classes/ActionView/Helpers/FormHelper.html
+constants: []
+
+full_name: ActionView::Helpers::ActiveRecordHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: error_message_on
+- !ruby/object:RI::MethodSummary 
+  name: error_messages_for
+- !ruby/object:RI::MethodSummary 
+  name: form
+- !ruby/object:RI::MethodSummary 
+  name: input
+name: ActiveRecordHelper
+superclass: 

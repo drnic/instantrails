@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return <tt>true</tt> if accelerator specified. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,
+- !ruby/struct:SM::Flow::VERB 
+  body: "  if accelTable.hasAccel?(fxparseAccel(&quot;Ctrl+S&quot;))\n    ...\n  end\n"
+full_name: Fox::FXAccelTable#hasAccel?
+is_singleton: false
+name: hasAccel?
+params: (hotKey)
+visibility: public

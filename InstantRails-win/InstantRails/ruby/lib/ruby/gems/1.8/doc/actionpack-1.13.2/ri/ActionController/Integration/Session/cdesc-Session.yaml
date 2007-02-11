@@ -1,0 +1,119 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The Accept header to send.
+  name: accept
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A reference to the controller instance used by the last request.
+  name: controller
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A map of the cookies returned by the last response, and which will be sent with the next request.
+  name: cookies
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A map of the headers returned by the last response.
+  name: headers
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The hostname used in the last request.
+  name: host
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The URI of the last request.
+  name: path
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The remote_addr used in the last request.
+  name: remote_addr
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A reference to the request instance used by the last request.
+  name: request
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A reference to the response instance used by the last request.
+  name: response
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The integer HTTP status code of the last request.
+  name: status
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The status message that accompanied the status code of the last request.
+  name: status_message
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An integration Session instance represents a set of requests and responses performed sequentially by some virtual user. Becase you can instantiate multiple sessions and run them side-by-side, you can also mimic (to some limited extent) multiple simultaneous users interacting with your system.
+- !ruby/struct:SM::Flow::P 
+  body: Typically, you will instantiate a new session using IntegrationTest#open_session, rather than instantiating Integration::Session directly.
+constants: []
+
+full_name: ActionController::Integration::Session
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Test::Unit::Assertions
+- !ruby/object:RI::IncludedModule 
+  name: ActionController::Assertions
+- !ruby/object:RI::IncludedModule 
+  name: ActionController::TestProcess
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: follow_redirect!
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: get_via_redirect
+- !ruby/object:RI::MethodSummary 
+  name: head
+- !ruby/object:RI::MethodSummary 
+  name: host!
+- !ruby/object:RI::MethodSummary 
+  name: https!
+- !ruby/object:RI::MethodSummary 
+  name: https?
+- !ruby/object:RI::MethodSummary 
+  name: post
+- !ruby/object:RI::MethodSummary 
+  name: post_via_redirect
+- !ruby/object:RI::MethodSummary 
+  name: put
+- !ruby/object:RI::MethodSummary 
+  name: redirect?
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+- !ruby/object:RI::MethodSummary 
+  name: url_for
+- !ruby/object:RI::MethodSummary 
+  name: xml_http_request
+name: Session
+superclass: Object

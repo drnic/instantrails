@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: IO Outputter invokes print then flush on the wrapped IO object. If the IO stream dies, IOOutputter sets itself to OFF and the system continues on its merry way.
+- !ruby/struct:SM::Flow::P 
+  body: To find out why an IO stream died, create a logger named 'log4r' and look at the output.
+constants: []
+
+full_name: Log4r::IOOutputter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: closed?
+name: IOOutputter
+superclass: Outputter

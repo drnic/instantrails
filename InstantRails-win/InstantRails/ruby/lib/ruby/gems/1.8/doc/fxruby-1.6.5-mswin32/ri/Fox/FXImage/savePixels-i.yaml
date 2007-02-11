@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Save pixel data to a stream.
+- !ruby/struct:SM::Flow::P 
+  body: "Note that the base class version of #savePixels saves the pixel data as-is, without any image format specific information. For example, if you have a 1024x768 image without an alpha channel (and thus only the red, green and blue channels) the total number of bytes written to the stream will be 1024*768*3*8. The behavior of #savePixels is different for subclasses such as FXPNGImage, where #savePixels will instead save the image data in a specific image file format (i.e. the PNG file format)."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+store+:"
+    body: opened stream to which to save the pixel data [FXStream]
+  type: :NOTE
+full_name: Fox::FXImage#savePixels
+is_singleton: false
+name: savePixels
+params: (store)
+visibility: public

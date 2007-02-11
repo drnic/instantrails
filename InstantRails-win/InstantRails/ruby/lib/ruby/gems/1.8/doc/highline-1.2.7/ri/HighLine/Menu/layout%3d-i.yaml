@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Setting a <em>layout</em> with this method also adjusts some other attributes of the Menu object, to ideal defaults for the chosen <em>layout</em>. To account for that, you probably want to set a <em>layout</em> first in your configuration block, if needed.
+- !ruby/struct:SM::Flow::P 
+  body: "Accepted settings for <em>layout</em> are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:list</tt>:"
+    body: The default <em>layout</em>. The <em>header</em> if set will appear at the top on its own line with a trailing colon. Then the list of menu items will follow. Finally, the <em>prompt</em> will be used as the ask()-like question.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:one_line</tt>:"
+    body: A shorter <em>layout</em> that fits on one line. The <em>header</em> comes first followed by a colon and spaces, then the <em>prompt</em> with menu items between trailing parenthesis.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:menu_only</tt>:"
+    body: Just the menu items, followed up by a likely short <em>prompt</em>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<i>any ERb String</i>:"
+    body: Will be taken as the literal <em>layout</em>. This String can access <tt>@header</tt>, <tt>@menu</tt> and <tt>@prompt</tt>, but is otherwise evaluated in the typical HighLine context, to provide access to utilities like HighLine.list() primarily.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: If set to either <tt>:one_line</tt>, or <tt>:menu_only</tt>, <em>index</em> will default to <tt>:none</tt> and <em>flow</em> will default to <tt>:inline</tt>.
+full_name: HighLine::Menu#layout=
+is_singleton: false
+name: layout=
+params: ( new_layout )
+visibility: public

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>auto_complete_for (ActionController::Macros::AutoComplete::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/macros/auto_complete.rb, line 38</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">auto_complete_for</span>(<span class="ruby-identifier">object</span>, <span class="ruby-identifier">method</span>, <span class="ruby-identifier">options</span> = {})
+          <span class="ruby-identifier">define_method</span>(<span class="ruby-node">&quot;auto_complete_for_#{object}_#{method}&quot;</span>) <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">find_options</span> = { 
+              <span class="ruby-identifier">:conditions</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-node">&quot;LOWER(#{method}) LIKE ?&quot;</span>, <span class="ruby-value str">'%'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">object</span>][<span class="ruby-identifier">method</span>].<span class="ruby-identifier">downcase</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'%'</span> ], 
+              <span class="ruby-identifier">:order</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;#{method} ASC&quot;</span>,
+              <span class="ruby-identifier">:limit</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">10</span> }.<span class="ruby-identifier">merge!</span>(<span class="ruby-identifier">options</span>)
+            
+            <span class="ruby-ivar">@items</span> = <span class="ruby-identifier">object</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">camelize</span>.<span class="ruby-identifier">constantize</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">:all</span>, <span class="ruby-identifier">find_options</span>)
+
+            <span class="ruby-identifier">render</span> <span class="ruby-identifier">:inline</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;&lt;%= auto_complete_result @items, '#{method}' %&gt;&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

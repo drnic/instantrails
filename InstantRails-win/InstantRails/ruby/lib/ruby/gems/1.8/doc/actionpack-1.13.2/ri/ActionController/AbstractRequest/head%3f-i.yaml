@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is this a HEAD request? HEAD is mapped as :get for request.method, so here we ask the REQUEST_METHOD header directly. Thus, for head, both get? and head? will return true.
+full_name: ActionController::AbstractRequest#head?
+is_singleton: false
+name: head?
+params: ()
+visibility: public

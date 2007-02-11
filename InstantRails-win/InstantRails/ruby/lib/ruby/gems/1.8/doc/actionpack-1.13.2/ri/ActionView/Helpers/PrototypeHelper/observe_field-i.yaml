@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Observes the field with the DOM ID specified by <tt>field_id</tt> and makes an Ajax call when its contents have changed.
+- !ruby/struct:SM::Flow::P 
+  body: "Required <tt>options</tt> are either of:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:url</tt>:"
+    body: <tt>url_for</tt>-style options for the action to call when the field has changed.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:function</tt>:"
+    body: Instead of making a remote call to a URL, you can specify a function to be called instead.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "Additional options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:frequency</tt>:"
+    body: The frequency (in seconds) at which changes to this field will be detected. Not setting this option at all or to a value equal to or less than zero will use event based observation instead of time based observation.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:update</tt>:"
+    body: Specifies the DOM ID of the element whose innerHTML should be updated with the XMLHttpRequest response text.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:with</tt>:"
+    body: A JavaScript expression specifying the parameters for the XMLHttpRequest. This defaults to 'value', which in the evaluated context refers to the new field value. If you specify a string without a &quot;=&quot;, it'll be extended to mean the form key that the value should be assigned to. So :with =&gt; &quot;term&quot; gives &quot;'term'=value&quot;. If a &quot;=&quot; is present, no extension will happen.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:on</tt>:"
+    body: Specifies which event handler to observe. By default, it's set to &quot;changed&quot; for text fields and areas and &quot;click&quot; for radio buttons and checkboxes. With this, you can specify it instead to be &quot;blur&quot; or &quot;focus&quot; or any other event.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: Additionally, you may specify any of the options documented in link_to_remote.
+full_name: ActionView::Helpers::PrototypeHelper#observe_field
+is_singleton: false
+name: observe_field
+params: (field_id, options = {})
+visibility: public

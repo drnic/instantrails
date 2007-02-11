@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A shortcut for multiple calls to the sister method choice(). <b>Be warned:</b> An <em>action</em> set here will apply to <b>all</b> provided <em>names</em>. This is considered to be a feature, so you can easily hand-off interface processing to a different chunk of code.
+full_name: HighLine::Menu#choices
+is_singleton: false
+name: choices
+params: ( *names, &action )
+visibility: public

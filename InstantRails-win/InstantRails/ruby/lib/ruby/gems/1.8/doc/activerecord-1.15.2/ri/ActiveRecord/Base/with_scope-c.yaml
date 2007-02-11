@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Scope parameters to method calls within the block. Takes a hash of method_name =&gt; parameters hash. method_name may be :find or :create. :find parameters may include the <tt>:conditions</tt>, <tt>:joins</tt>, <tt>:include</tt>, <tt>:offset</tt>, <tt>:limit</tt>, and <tt>:readonly</tt> options. :create parameters are an attributes hash.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Article.with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot; }, :create =&gt; { :blog_id =&gt; 1 }) do\n    Article.find(1) # =&gt; SELECT * from articles WHERE blog_id = 1 AND id = 1\n    a = Article.create(1)\n    a.blog_id # =&gt; 1\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: In nested scopings, all previous parameters are overwritten by inner rule except :conditions in :find, that are merged as hash.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Article.with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot;, :limit =&gt; 1 }, :create =&gt; { :blog_id =&gt; 1 }) do\n    Article.with_scope(:find =&gt; { :limit =&gt; 10})\n      Article.find(:all) # =&gt; SELECT * from articles WHERE blog_id = 1 LIMIT 10\n    end\n    Article.with_scope(:find =&gt; { :conditions =&gt; &quot;author_id = 3&quot; })\n      Article.find(:all) # =&gt; SELECT * from articles WHERE blog_id = 1 AND author_id = 3 LIMIT 1\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can ignore any previous scopings by using <tt>with_exclusive_scope</tt> method.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Article.with_scope(:find =&gt; { :conditions =&gt; &quot;blog_id = 1&quot;, :limit =&gt; 1 }) do\n    Article.with_exclusive_scope(:find =&gt; { :limit =&gt; 10 })\n      Article.find(:all) # =&gt; SELECT * from articles LIMIT 10\n    end\n  end\n"
+full_name: ActiveRecord::Base::with_scope
+is_singleton: true
+name: with_scope
+params: (method_scoping = {}, action = :merge, &block) {|| ...}
+visibility: public

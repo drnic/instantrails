@@ -1,0 +1,118 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: In ADO mode, this adapter will ONLY work on Windows systems, since it relies on Win32OLE, which, to my knowledge, is only available on Windows.
+- !ruby/struct:SM::Flow::P 
+  body: This mode also relies on the ADO support in the DBI module. If you are using the one-click installer of Ruby, then you already have DBI installed, but the ADO module is <b>NOT</b> installed. You will need to get the latest source distribution of Ruby-DBI from http://ruby-dbi.sourceforge.net/ unzip it, and copy the file <tt>src/lib/dbd_ado/ADO.rb</tt> to <tt>X:/Ruby/lib/ruby/site_ruby/1.8/DBD/ADO/ADO.rb</tt> (you will more than likely need to create the ADO directory). Once you've installed that file, you are ready to go.
+- !ruby/struct:SM::Flow::P 
+  body: In ODBC mode, the adapter requires the ODBC support in the DBI module which requires the Ruby ODBC module. Ruby ODBC 0.996 was used in development and testing, and it is available at http://www.ch-werner.de/rubyodbc/
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:mode</tt> -- ADO or ODBC. Defaults to ADO.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:username</tt> -- Defaults to sa.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Defaults to empty string.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "ADO specific options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- Defaults to localhost.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database</tt> -- The name of the database. No default, must be provided.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "ODBC specific options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:dsn</tt> -- Defaults to nothing.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: ADO code tested on Windows 2000 and higher systems, running ruby 1.8.2 (2004-07-29) [i386-mswin32], and SQL Server 2000 SP3.
+- !ruby/struct:SM::Flow::P 
+  body: "ODBC code tested on a Fedora Core 4 system, running FreeTDS 0.63, unixODBC 2.2.11, Ruby ODBC 0.996, Ruby DBI 0.0.23 and Ruby 1.8.2. [Linux strongmad 2.6.11-1.1369_FC4 #1 Thu Jun 2 22:55:56 EDT 2005 i686 i686 i386 GNU/Linux]"
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::SQLServerAdapter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: adapter_name
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: add_limit_offset!
+- !ruby/object:RI::MethodSummary 
+  name: begin_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: commit_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: create_database
+- !ruby/object:RI::MethodSummary 
+  name: current_database
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: drop_database
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: native_database_types
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quote_column_name
+- !ruby/object:RI::MethodSummary 
+  name: quote_string
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: recreate_database
+- !ruby/object:RI::MethodSummary 
+  name: remove_check_constraints
+- !ruby/object:RI::MethodSummary 
+  name: remove_column
+- !ruby/object:RI::MethodSummary 
+  name: remove_default_constraint
+- !ruby/object:RI::MethodSummary 
+  name: remove_index
+- !ruby/object:RI::MethodSummary 
+  name: rename_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: rollback_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: update
+name: SQLServerAdapter
+superclass: AbstractAdapter

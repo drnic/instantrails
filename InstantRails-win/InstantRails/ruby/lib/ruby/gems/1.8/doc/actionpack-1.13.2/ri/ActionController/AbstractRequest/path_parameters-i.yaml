@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash with the parameters used to form the path of the request
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  {:action =&gt; 'my_action', :controller =&gt; 'my_controller'}\n"
+full_name: ActionController::AbstractRequest#path_parameters
+is_singleton: false
+name: path_parameters
+params: ()
+visibility: public

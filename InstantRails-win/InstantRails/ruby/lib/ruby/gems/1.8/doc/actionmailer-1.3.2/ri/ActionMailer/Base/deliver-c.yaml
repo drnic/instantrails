@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Deliver the given mail object directly. This can be used to deliver a preconstructed mail object, like:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  email = MyMailer.create_some_mail(parameters)\n  email.set_some_obscure_header &quot;frobnicate&quot;\n  MyMailer.deliver(email)\n"
+full_name: ActionMailer::Base::deliver
+is_singleton: true
+name: deliver
+params: (mail)
+visibility: public

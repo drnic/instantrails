@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Checks if this Specification meets the requirement of the supplied dependency.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "dependency:"
+    body: "[Gem::Dependency] the dependency to check"
+  - !ruby/struct:SM::Flow::LI 
+    label: "return:"
+    body: "[Boolean] true if dependency is met, otherwise false"
+  type: :NOTE
+full_name: Gem::Specification#satisfies_requirement?
+is_singleton: false
+name: satisfies_requirement?
+params: (dependency)
+visibility: public

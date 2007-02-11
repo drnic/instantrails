@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theDial
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct a dial widget
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: parent widget for this dial [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+target+:"
+    body: message target object for this dial [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+selector+:"
+    body: message identifier [Integer]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>opts</tt>:: <tt>x</tt>:: <tt>y</tt>:: <tt>width</tt>:: <tt>height</tt>:: <tt>padLeft</tt>:: <tt>padRight</tt>:: <tt>padTop</tt>:: <tt>padBottom</tt>::"
+full_name: Fox::FXDial::new
+is_singleton: true
+name: new
+params: (p, target=nil, selector=0, opts=DIAL_NORMAL, x=0, y=0, width=0, height=0, padLeft=DEFAULT_PAD, padRight=DEFAULT_PAD, padTop=DEFAULT_PAD, padBottom=DEFAULT_PAD) {|theDial| ...}
+visibility: public

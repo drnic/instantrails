@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Mon Feb 05 08:57:50 -0600 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>What is it?</h1>
+<p>
+An interface to the Windows Event Log.
+</p>
+<h1>Prerequisites</h1>
+<p>
+Ruby 1.8.2 or later. windows-pr 0.5.0 or later.
+</p>
+<h1>Installation</h1>
+<h2>Manual install</h2>
+<p>
+ruby test\tc_eventlog.rb (optional) ruby install.rb
+</p>
+<h2>Gem Install</h2>
+<p>
+ruby win32-eventlog.gemspec gem install win32-eventlog-X.Y.Z-mswin32.gem
+</p>
+<p>
+This will install both the win32-eventlog and win32-mc packages. The latter
+is strictly for turning .mc files into .dll files. See the mc documentation
+for more details.
+</p>
+<h1>Installing the &#8216;RubyMsg&#8217; event source</h1>
+<p>
+If you wish to install the RubyMsg event source, run the
+&#8216;install_msg.rb&#8217; script in the &#8216;misc&#8217; directory.
+This will create a &#8216;rubymsg&#8217; directory under your toplevel Ruby
+installation directory (usually C:\ruby), and create the .dll, .h, .rc and
+.res files there, in addition to copying the rubymsg.mc file. It will then
+install the &#8216;RubyMsg&#8217; event source into your registry.
+</p>
+<p>
+DO NOT MOVE THE DLL FILE ONCE IT IS INSTALLED! If you do, you will have to
+delete the registry entry and reinstall it with the correct path.
+</p>
+<p>
+Take a look at the rubymsg.mc file for the category and message values. If
+you do not understand this, please read the &#8216;tutorial.txt&#8217; file
+in the &#8216;doc&#8217; directory.
+</p>
+<h1>Additional documentation</h1>
+<p>
+If you are unfamiliar with message files and event logging on Windows in
+general, please read the &#8216;tutorial.txt&#8217; file.
+</p>
+<p>
+There are also a couple of sample test scripts under the
+&#8216;examples&#8217; directory if you want to futz around and get a feel
+for how things work.
+</p>
+<h1>If the tc_mc.rb tests fail</h1>
+<p>
+There&#8216;s a chance that you either don&#8216;t have the mc, rc and/or
+link commands installed or they&#8216;re not in your %PATH%. If you have
+MSVC++, you should have them somewhere on your system.
+</p>
+<h1>Known Issues</h1>
+<p>
+The code currently only checks the EventMessage file, it does not check the
+CategoryMessage or ParameterMessage files.
+</p>
+<h1>License</h1>
+<p>
+Ruby&#8216;s
+</p>
+<h1>Warranty</h1>
+<p>
+This package is provided &quot;as is&quot; and without any express or
+implied warranties, including, without limitation, the implied warranties
+of merchantability and fitness for a particular purpose.
+</p>
+<h1>Authors</h1>
+<p>
+Daniel J. Berger Park Heesob
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

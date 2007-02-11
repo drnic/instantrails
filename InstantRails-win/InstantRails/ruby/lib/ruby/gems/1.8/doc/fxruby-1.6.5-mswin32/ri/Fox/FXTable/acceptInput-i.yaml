@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: End input mode and accept the new value from the control. The item in the cell will be set to the value from the control, and the control will be deleted. If <tt>true</tt> is passed, a <tt>SEL_REPLACED</tt> callback will be generated to signify to the target that this call has a new value. You can also accept the input by sending the table an <tt>ID_ACCEPT_INPUT</tt> message.
+full_name: Fox::FXTable#acceptInput
+is_singleton: false
+name: acceptInput
+params: (notify=false)
+visibility: public

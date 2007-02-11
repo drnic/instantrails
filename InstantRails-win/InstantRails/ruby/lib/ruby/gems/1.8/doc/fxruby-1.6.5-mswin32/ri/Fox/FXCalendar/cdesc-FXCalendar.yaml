@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font used for days [FXFont]
+  name: dayLabelFont
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Currently selected date [Time]
+  name: selected
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calendar widget
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXCalendar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a day button is clicked; the message data is a Time object indicating the selected date
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Calendar options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CALENDAR_NORMAL+:"
+    body: normal display mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CALENDAR_READONLY+:"
+    body: read-only mode
+  type: :NOTE
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DAYS
+  value: "['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']"
+full_name: Fox::FXCalendar
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dayLabelFont=
+- !ruby/object:RI::MethodSummary 
+  name: headerBackColor
+- !ruby/object:RI::MethodSummary 
+  name: headerBackColor=
+- !ruby/object:RI::MethodSummary 
+  name: headerTextColor
+- !ruby/object:RI::MethodSummary 
+  name: headerTextColor=
+name: FXCalendar
+superclass: FXVerticalFrame

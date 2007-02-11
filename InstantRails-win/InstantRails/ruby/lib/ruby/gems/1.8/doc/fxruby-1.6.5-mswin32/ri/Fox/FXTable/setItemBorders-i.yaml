@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change item borders style for the item at (<em>r</em>, <em>c</em>). Borders on each side of the item can be turned controlled individually using FXTableItem::LBORDER, FXTableItem::RBORDER, FXTableItem::TBORDER and FXTableItem::BBORDER.
+- !ruby/struct:SM::Flow::P 
+  body: Raises IndexError if either <em>r</em> or <em>c</em> is out of bounds.
+full_name: Fox::FXTable#setItemBorders
+is_singleton: false
+name: setItemBorders
+params: (r, c, borders)
+visibility: public

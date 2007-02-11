@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>kill (Process)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/process.rb, line 116</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">kill</span>(<span class="ruby-identifier">signal</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">pids</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">signal</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'SIGINT'</span>, <span class="ruby-value str">'INT'</span>
+            <span class="ruby-identifier">signal</span> = <span class="ruby-value">2</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'SIGBRK'</span>, <span class="ruby-value str">'BRK'</span>
+            <span class="ruby-identifier">signal</span> = <span class="ruby-value">3</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'SIGKILL'</span>, <span class="ruby-value str">'KILL'</span>
+            <span class="ruby-identifier">signal</span> = <span class="ruby-value">9</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">9</span>
+            <span class="ruby-comment cmt"># Do nothing</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-node">&quot;Invalid signal '#{signal}'&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">killed_pids</span> = []
+      
+      <span class="ruby-identifier">pids</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">pid</span><span class="ruby-operator">|</span>
+         <span class="ruby-comment cmt"># Send the signal to the current process if the pid is zero</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pid</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">pid</span> = <span class="ruby-constant">Process</span>.<span class="ruby-identifier">pid</span>
+         <span class="ruby-keyword kw">end</span>
+       
+         <span class="ruby-comment cmt"># No need for full access if the signal is zero</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">signal</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">access</span> = <span class="ruby-constant">PROCESS_QUERY_INFORMATION</span><span class="ruby-operator">|</span><span class="ruby-constant">PROCESS_VM_READ</span>
+            <span class="ruby-identifier">handle</span> = <span class="ruby-constant">OpenProcess</span>(<span class="ruby-identifier">access</span>, <span class="ruby-value">0</span> , <span class="ruby-identifier">pid</span>)
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">handle</span> = <span class="ruby-constant">OpenProcess</span>(<span class="ruby-constant">PROCESS_ALL_ACCESS</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">pid</span>)
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">signal</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span>   
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+                  <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-comment cmt"># If ERROR_ACCESS_DENIED is returned, we know it's running</span>
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GetLastError</span>() <span class="ruby-operator">==</span> <span class="ruby-constant">ERROR_ACCESS_DENIED</span>
+                     <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+                  <span class="ruby-keyword kw">else</span>
+                     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+                  <span class="ruby-keyword kw">end</span>
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">2</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GenerateConsoleCtrlEvent</span>(<span class="ruby-constant">CTRL_C_EVENT</span>, <span class="ruby-identifier">pid</span>)
+                  <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">3</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GenerateConsoleCtrlEvent</span>(<span class="ruby-constant">CTRL_BREAK_EVENT</span>, <span class="ruby-identifier">pid</span>)
+                  <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value">9</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-constant">TerminateProcess</span>(<span class="ruby-identifier">handle</span>, <span class="ruby-identifier">pid</span>)
+                  <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)
+                  <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+                  <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid</span>)           
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">thread_id</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+                  <span class="ruby-identifier">dll</span>       = <span class="ruby-value str">'kernel32'</span>
+                  <span class="ruby-identifier">proc</span>      = <span class="ruby-value str">'ExitProcess'</span>
+                  
+                  <span class="ruby-identifier">thread</span> = <span class="ruby-constant">CreateRemoteThread</span>(
+                     <span class="ruby-identifier">handle</span>,
+                     <span class="ruby-value">0</span>,
+                     <span class="ruby-value">0</span>,
+                     <span class="ruby-constant">GetProcAddress</span>(<span class="ruby-constant">GetModuleHandle</span>(<span class="ruby-identifier">dll</span>), <span class="ruby-identifier">proc</span>),
+                     <span class="ruby-value">0</span>,
+                     <span class="ruby-value">0</span>,
+                     <span class="ruby-identifier">thread_id</span>
+                  )
+                  
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">thread</span>
+                     <span class="ruby-constant">WaitForSingleObject</span>(<span class="ruby-identifier">thread</span>, <span class="ruby-value">5</span>)
+                     <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)
+                     <span class="ruby-identifier">killed_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+                     <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid</span>)
+                  <span class="ruby-keyword kw">else</span>
+                     <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)
+                     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+                  <span class="ruby-keyword kw">end</span>
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-keyword kw">end</span>
+               <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid</span>)
+         <span class="ruby-keyword kw">end</span>
+      }
+      
+      <span class="ruby-identifier">killed_pids</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

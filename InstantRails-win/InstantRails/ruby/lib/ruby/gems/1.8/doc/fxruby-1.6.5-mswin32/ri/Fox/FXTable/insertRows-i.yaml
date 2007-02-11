@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert <em>numRows</em> rows beginning at the specified <em>row</em> number. If <em>row</em> is equal to the number of rows in the table, the new rows are added to the bottom of the table. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the table's message target for each cell that is inserted. Raises IndexError if <em>row</em> is out of bounds.
+full_name: Fox::FXTable#insertRows
+is_singleton: false
+name: insertRows
+params: (row, numRows=1, notify=false)
+visibility: public

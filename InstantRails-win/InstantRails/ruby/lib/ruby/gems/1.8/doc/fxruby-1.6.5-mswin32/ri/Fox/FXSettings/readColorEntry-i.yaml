@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Read a color value registry entry from the specified <em>section</em> and <em>key</em>. If no value is found, the <em>default</em> value is returned.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+section+:"
+    body: the section name [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+key+:"
+    body: the key for the setting of interest [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+default+:"
+    body: the default value to return if <em>key</em> is not found [FXColor]
+  type: :NOTE
+full_name: Fox::FXSettings#readColorEntry
+is_singleton: false
+name: readColorEntry
+params: (section, key, default=0)
+visibility: public

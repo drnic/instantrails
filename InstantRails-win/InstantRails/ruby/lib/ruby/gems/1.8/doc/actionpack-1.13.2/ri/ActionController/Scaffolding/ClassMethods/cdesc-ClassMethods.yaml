@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Scaffolding is a way to quickly put an Active Record class online by providing a series of standardized actions for listing, showing, creating, updating, and destroying objects of the class. These standardized actions come with both controller logic and default templates that through introspection already know which fields to display and which input types to use. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " class WeblogController &lt; ActionController::Base\n   scaffold :entry\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This tiny piece of code will add all of the following methods to the controller:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " class WeblogController &lt; ActionController::Base\n   verify :method =&gt; :post, :only =&gt; [ :destroy, :create, :update ],\n          :redirect_to =&gt; { :action =&gt; :list }\n\n   def index\n     list\n   end\n\n   def list\n     @entries = Entry.find(:all)\n     render_scaffold &quot;list&quot;\n   end\n\n   def show\n     @entry = Entry.find(params[:id])\n     render_scaffold\n   end\n\n   def destroy\n     Entry.find(params[:id]).destroy\n     redirect_to :action =&gt; &quot;list&quot;\n   end\n\n   def new\n     @entry = Entry.new\n     render_scaffold\n   end\n\n   def create\n     @entry = Entry.new(params[:entry])\n     if @entry.save\n       flash[:notice] = &quot;Entry was successfully created&quot;\n       redirect_to :action =&gt; &quot;list&quot;\n     else\n       render_scaffold('new')\n     end\n   end\n\n   def edit\n     @entry = Entry.find(params[:id])\n     render_scaffold\n   end\n\n   def update\n     @entry = Entry.find(params[:id])\n     @entry.attributes = params[:entry]\n\n     if @entry.save\n       flash[:notice] = &quot;Entry was successfully updated&quot;\n       redirect_to :action =&gt; &quot;show&quot;, :id =&gt; @entry\n     else\n       render_scaffold('edit')\n     end\n   end\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>render_scaffold</tt> method will first check to see if you've made your own template (like &quot;weblog/show.rhtml&quot; for the show action) and if not, then render the generic template for that action. This gives you the possibility of using the scaffold while you're building your specific application. Start out with a totally generic setup, then replace one template and one action at a time while relying on the rest of the scaffolded templates and actions.
+constants: []
+
+full_name: ActionController::Scaffolding::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: scaffold
+name: ClassMethods
+superclass: 

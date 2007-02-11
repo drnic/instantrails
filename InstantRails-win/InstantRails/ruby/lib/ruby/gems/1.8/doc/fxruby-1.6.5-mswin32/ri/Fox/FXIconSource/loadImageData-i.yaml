@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Load an image of a given type (e.g. &quot;gif&quot;) from reswrapped data. Returns <tt>nil</tt> if there's some error loading the icon. (The optional parameter is actually mandatory at the time of this writing; future versions will attempt to inspect the first few bytes of the stream to divine the icon format if the parameter is omitted).
+full_name: Fox::FXIconSource#loadImageData
+is_singleton: false
+name: loadImageData
+params: (pixels, type=nil)
+visibility: public

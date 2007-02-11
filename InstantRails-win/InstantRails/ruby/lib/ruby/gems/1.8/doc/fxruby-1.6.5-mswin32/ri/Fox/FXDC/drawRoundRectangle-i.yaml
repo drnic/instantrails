@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw a rounded rectangle with ellipse width <em>ew</em> and ellipse height <em>eh</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>x</tt>:"
+    body: x-coordinate of the upper left corner of the bounding rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>y</tt>:"
+    body: y-coordinate of the upper left corner of the bounding rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>w</tt>:"
+    body: width of the bounding rectangle, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>h</tt>:"
+    body: height of the bounding rectangle, in pixels [Integer]
+  type: :NOTE
+full_name: Fox::FXDC#drawRoundRectangle
+is_singleton: false
+name: drawRoundRectangle
+params: (x, y, w, h, ew, eh)
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove items in range [<em>fromItem</em>, <em>toItem</em>] inclusively. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DELETED</tt> message is sent to the list's message target before each item is removed.
+full_name: Fox::FXTreeList#removeItems
+is_singleton: false
+name: removeItems
+params: (fromItem, toItem, notify=false)
+visibility: public

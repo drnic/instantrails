@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXSplashScreen instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: Owner window for this dialog box [FXWindow]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+title+:"
+    body: Title string for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+text+:"
+    body: Message text for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+action+:"
+    body: The action
+  type: :NOTE
+full_name: Fox::FXSplashScreen::new
+is_singleton: true
+name: new
+params: ( owner, title, text, action )
+visibility: public

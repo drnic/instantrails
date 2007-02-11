@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process (Mongrel::Camping::CampingHandler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/mongrel/camping.rb, line 46</span>
+46:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+47:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">socket</span>.<span class="ruby-identifier">closed?</span>
+48:           <span class="ruby-keyword kw">return</span>
+49:         <span class="ruby-keyword kw">end</span>
+50: 
+51:         <span class="ruby-identifier">controller</span> = <span class="ruby-keyword kw">nil</span>
+52:         <span class="ruby-ivar">@guard</span>.<span class="ruby-identifier">synchronize</span> {
+53:           <span class="ruby-identifier">controller</span> = <span class="ruby-ivar">@klass</span>.<span class="ruby-identifier">run</span>(<span class="ruby-identifier">request</span>.<span class="ruby-identifier">body</span>, <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>)
+54:         }
+55: 
+56:         <span class="ruby-identifier">sendfile</span>, <span class="ruby-identifier">clength</span> = <span class="ruby-keyword kw">nil</span>
+57:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span> = <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">status</span>
+58:         <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">headers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+59:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^X-SENDFILE$/i</span>
+60:             <span class="ruby-identifier">sendfile</span> = <span class="ruby-identifier">v</span>
+61:           <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^CONTENT-LENGTH$/i</span>
+62:             <span class="ruby-identifier">clength</span> = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span>
+63:           <span class="ruby-keyword kw">else</span>
+64:             [<span class="ruby-operator">*</span><span class="ruby-identifier">v</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">vi</span><span class="ruby-operator">|</span>
+65:               <span class="ruby-identifier">response</span>.<span class="ruby-identifier">header</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">vi</span>
+66:             <span class="ruby-keyword kw">end</span>
+67:           <span class="ruby-keyword kw">end</span>
+68:         <span class="ruby-keyword kw">end</span>
+69: 
+70:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sendfile</span>
+71:           <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_INFO</span>] = <span class="ruby-identifier">sendfile</span>
+72:           <span class="ruby-ivar">@files</span>.<span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+73:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:read</span>
+74:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_status</span>(<span class="ruby-identifier">clength</span>)
+75:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_header</span>
+76:           <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">chunk</span> = <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">read</span>(<span class="ruby-value">16384</span>)
+77:             <span class="ruby-identifier">response</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">chunk</span>)
+78:           <span class="ruby-keyword kw">end</span>
+79:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:close</span>
+80:             <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">close</span>
+81:           <span class="ruby-keyword kw">end</span>
+82:         <span class="ruby-keyword kw">else</span>
+83:           <span class="ruby-identifier">body</span> = <span class="ruby-identifier">controller</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">to_s</span>
+84:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_status</span>(<span class="ruby-identifier">body</span>.<span class="ruby-identifier">length</span>)
+85:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_header</span>
+86:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">write</span>(<span class="ruby-identifier">body</span>)
+87:         <span class="ruby-keyword kw">end</span>
+88:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

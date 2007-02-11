@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Starting position for this range of cells [FXTablePos]
+  name: fm
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Ending position for this range of cells [FXTablePos]
+  name: to
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a range of cells in an FXTable.
+constants: []
+
+full_name: Fox::FXTableRange
+includes: []
+
+instance_methods: []
+
+name: FXTableRange
+superclass: Object

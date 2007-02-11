@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets whether or not the file is being used for temporary storage.
+- !ruby/struct:SM::Flow::P 
+  body: File systems avoid writing data back to mass storage if sufficient cache memory is available, because often the application deletes the temporary file shortly after the handle is closed. In that case, the system can entirely avoid writing the data. Otherwise, the data will be written after the handle is closed.
+full_name: File#temporary=
+is_singleton: false
+name: temporary=
+params: (bool)
+visibility: public

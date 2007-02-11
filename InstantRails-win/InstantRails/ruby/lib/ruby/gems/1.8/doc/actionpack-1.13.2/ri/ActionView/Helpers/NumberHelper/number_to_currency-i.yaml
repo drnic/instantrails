@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats a <tt>number</tt> into a currency string. You can customize the format in the <tt>options</tt> hash.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:precision</tt> - Sets the level of precision, defaults to 2
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:unit</tt> - Sets the denomination of the currency, defaults to &quot;$&quot;
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:separator</tt> - Sets the separator between the units, defaults to &quot;.&quot;
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:delimiter</tt> - Sets the thousands delimiter, defaults to &quot;,&quot;
+  type: :BULLET
+- !ruby/struct:SM::Flow::VERB 
+  body: " number_to_currency(1234567890.50)     =&gt; $1,234,567,890.50\n number_to_currency(1234567890.506)    =&gt; $1,234,567,890.51\n number_to_currency(1234567890.506, :precision =&gt; 3)    =&gt; $1,234,567,890.506\n number_to_currency(1234567890.50, :unit =&gt; &quot;&amp;pound;&quot;, :separator =&gt; &quot;,&quot;, :delimiter =&gt; &quot;&quot;)\n    =&gt; &amp;pound;1234567890,50\n"
+full_name: ActionView::Helpers::NumberHelper#number_to_currency
+is_singleton: false
+name: number_to_currency
+params: (number, options = {})
+visibility: public

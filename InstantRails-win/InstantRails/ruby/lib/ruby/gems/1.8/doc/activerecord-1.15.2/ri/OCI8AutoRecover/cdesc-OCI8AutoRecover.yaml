@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: active
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The OCI8AutoRecover class enhances the OCI8 driver with auto-recover and reset functionality. If a call to #exec fails, and autocommit is turned on (ie., we're not in the middle of a longer transaction), it will automatically reconnect and try again. If autocommit is turned off, this would be dangerous (as the earlier part of the implied transaction may have failed silently if the connection died) -- so instead the connection is marked as dead, to be reconnected on it's next use."
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "ORA-00028: your session has been killed ORA-01012: not logged on ORA-03113: end-of-file on communication channel ORA-03114: not connected to ORACLE"
+  name: LOST_CONNECTION_ERROR_CODES
+  value: "[ 28, 1012, 3113, 3114 ]"
+full_name: OCI8AutoRecover
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: exec
+- !ruby/object:RI::MethodSummary 
+  name: ping
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+name: OCI8AutoRecover
+superclass: DelegateClass(OCI8)

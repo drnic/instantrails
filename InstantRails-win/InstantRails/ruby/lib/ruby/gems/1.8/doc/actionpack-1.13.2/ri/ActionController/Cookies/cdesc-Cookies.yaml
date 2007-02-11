@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Cookies are read and written through ActionController#cookies. The cookies being read are what were received along with the request, the cookies being written are what will be sent out with the response. Cookies are read by value (so you won't get the cookie object itself back -- just the value it holds). Examples for writing:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cookies[:user_name] = &quot;david&quot; # =&gt; Will set a simple session cookie\n  cookies[:login] = { :value =&gt; &quot;XJ-122&quot;, :expires =&gt; 1.hour.from_now }\n  # =&gt; Will set a cookie that expires in 1 hour\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Examples for reading:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cookies[:user_name] # =&gt; &quot;david&quot;\n  cookies.size         # =&gt; 2\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Example for deleting:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cookies.delete :user_name\n"
+- !ruby/struct:SM::Flow::P 
+  body: "All the option symbols for setting cookies are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>value</tt> - the cookie's value or list of values (as an array).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>path</tt> - the path for which this cookie applies. Defaults to the root of the application.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>domain</tt> - the domain for which this cookie applies.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>expires</tt> - the time at which this cookie expires, as a <tt>Time</tt> object.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>secure</tt> - whether this cookie is a secure cookie or not (default to false). Secure cookies are only transmitted to HTTPS servers.
+  type: :BULLET
+constants: []
+
+full_name: ActionController::Cookies
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cookie
+- !ruby/object:RI::MethodSummary 
+  name: cookies
+name: Cookies
+superclass: 

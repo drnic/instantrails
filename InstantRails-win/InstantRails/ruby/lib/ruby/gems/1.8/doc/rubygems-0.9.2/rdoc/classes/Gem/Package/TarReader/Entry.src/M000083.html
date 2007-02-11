@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Gem::Package::TarReader::Entry)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/package.rb, line 325</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">header</span>, <span class="ruby-identifier">anIO</span>)
+        <span class="ruby-ivar">@io</span> = <span class="ruby-identifier">anIO</span>
+        <span class="ruby-ivar">@name</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">name</span>
+        <span class="ruby-ivar">@mode</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">mode</span>
+        <span class="ruby-ivar">@uid</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">uid</span>
+        <span class="ruby-ivar">@gid</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gid</span>
+        <span class="ruby-ivar">@size</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">size</span>
+        <span class="ruby-ivar">@mtime</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">mtime</span>
+        <span class="ruby-ivar">@checksum</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">checksum</span>
+        <span class="ruby-ivar">@typeflag</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">typeflag</span>
+        <span class="ruby-ivar">@linkname</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">linkname</span>
+        <span class="ruby-ivar">@magic</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">magic</span>
+        <span class="ruby-ivar">@version</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">version</span>
+        <span class="ruby-ivar">@uname</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">uname</span>
+        <span class="ruby-ivar">@gname</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">gname</span>
+        <span class="ruby-ivar">@devmajor</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">devmajor</span>
+        <span class="ruby-ivar">@devminor</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">devminor</span>
+        <span class="ruby-ivar">@prefix</span> = <span class="ruby-identifier">header</span>.<span class="ruby-identifier">prefix</span>
+        <span class="ruby-ivar">@read</span> = <span class="ruby-value">0</span>
+        <span class="ruby-ivar">@orig_pos</span> = <span class="ruby-ivar">@io</span>.<span class="ruby-identifier">pos</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

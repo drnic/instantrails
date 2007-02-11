@@ -1,0 +1,62 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Specifies the split mode; used only when #hard_margins is set to <tt>true</tt>. Allowable values are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +SPLIT_FIXED+
+    body: The word will be split at the number of characters needed, with no marking at all.
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "     repre\n     senta\n     ion\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +SPLIT_CONTINUATION+
+    body: The word will be split at the number of characters needed, with a C-style continuation character.
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "      repr       #       esen       #       tati       #       on\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +SPLIT_HYPHENATION+
+    body: "The word will be split according to the hyphenator specified in #hyphenator. If there is no #hyphenator specified, works like SPLIT_CONTINUATION. The example is using TeX::Hyphen as the #hyphenator."
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "      rep-\n      re-\n      sen-\n      ta-\n      tion\n"
+- !ruby/struct:SM::Flow::P 
+  body: "These values can be bitwise ORed together (e.g., <tt>SPLIT_FIXED | SPLIT_CONTINUATION</tt>) to provide fallback split methods. In the example given, an attempt will be made to split the word using the rules of SPLIT_CONTINUATION; if there is not enough room, the word will be split with the rules of SPLIT_FIXED. These combinations are also available as the following values:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>SPLIT_CONTINUATION_FIXED</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>SPLIT_HYPHENATION_FIXED</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>SPLIT_HYPHENATION_CONTINUATION</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>SPLIT_ALL</tt>
+  type: :BULLET
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Default*:"
+    body: <tt>Text::Format::SPLIT_FIXED</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "<b>Used in</b>:"
+    body: <tt>#format</tt>, <tt>#paragraphs</tt>
+  type: :NOTE
+full_name: Text::Format#split_rules=
+is_singleton: false
+name: split_rules=
+params: (s)
+visibility: public

@@ -1,0 +1,37 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: input
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: init
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: Fox::FXIrb
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Singleton
+- !ruby/object:RI::IncludedModule 
+  name: Responder
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: gets
+- !ruby/object:RI::MethodSummary 
+  name: newLineEntered
+- !ruby/object:RI::MethodSummary 
+  name: onKeyRelease
+- !ruby/object:RI::MethodSummary 
+  name: processCommandLine
+- !ruby/object:RI::MethodSummary 
+  name: sendCommand
+- !ruby/object:RI::MethodSummary 
+  name: write
+name: FXIrb
+superclass: FXText

@@ -1,0 +1,127 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_PROCESS_DETACH
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_PROCESS_ATTACH
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_THREAD_ATTACH
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_THREAD_DETACH
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_PIN
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DONT_RESOLVE_DLL_REFERENCES
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_LIBRARY_AS_DATAFILE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_WITH_ALTERED_SEARCH_PATH
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_IGNORE_CODE_AUTHZ_LEVEL
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DisableThreadLibraryCalls
+  value: Win32API.new('kernel32', 'DisableThreadLibraryCalls', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FreeLibrary
+  value: Win32API.new('kernel32', 'FreeLibrary', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FreeLibraryAndExitThread
+  value: Win32API.new('kernel32', 'FreeLibraryAndExitThread', 'LL', 'V')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetModuleFileName
+  value: Win32API.new('kernel32', 'GetModuleFileName', 'LPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetModuleHandle
+  value: Win32API.new('kernel32', 'GetModuleHandle', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetProcAddress
+  value: Win32API.new('kernel32', 'GetProcAddress', 'LP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LoadLibrary
+  value: Win32API.new('kernel32', 'LoadLibrary', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LoadLibraryEx
+  value: Win32API.new('kernel32', 'LoadLibraryEx', 'PLL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LoadModule
+  value: Win32API.new('kernel32', 'LoadModule', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetDllDirectory
+  value: Win32API.new('kernel32', 'GetDllDirectory', 'LP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetModuleHandleEx
+  value: Win32API.new('kernel32', 'GetModuleHandleEx', 'LPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetDllDirectory
+  value: Win32API.new('kernel32', 'SetDllDirectory', 'P', 'I')
+full_name: Windows::Library
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: DisableThreadLibraryCalls
+- !ruby/object:RI::MethodSummary 
+  name: FreeLibrary
+- !ruby/object:RI::MethodSummary 
+  name: GetDllDirectory
+- !ruby/object:RI::MethodSummary 
+  name: GetModuleFileName
+- !ruby/object:RI::MethodSummary 
+  name: GetModuleHandle
+- !ruby/object:RI::MethodSummary 
+  name: GetModuleHandleEx
+- !ruby/object:RI::MethodSummary 
+  name: GetProcAddress
+- !ruby/object:RI::MethodSummary 
+  name: LoadLibrary
+- !ruby/object:RI::MethodSummary 
+  name: LoadLibraryEx
+- !ruby/object:RI::MethodSummary 
+  name: LoadModule
+- !ruby/object:RI::MethodSummary 
+  name: SetDllDirectory
+name: Library
+superclass: 

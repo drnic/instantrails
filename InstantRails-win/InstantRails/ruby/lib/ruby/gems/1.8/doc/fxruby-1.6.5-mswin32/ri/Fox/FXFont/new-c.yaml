@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theFont
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an FXFont instance initialized with the given face name, size in points (pixels), weight, slant, character set encoding, set width, and hints. The font name may be comprised of a family name and optional foundry name enclosed in square brackets, for example, &quot;helvetica [bitstream]&quot;.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+face+:"
+    body: font face name [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+size+:"
+    body: requested font size, in points [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+weight+:"
+    body: requested font weight [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+encoding+:"
+    body: requested font encoding [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+setWidth+:"
+    body: requested font set width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+hints+:"
+    body: font construction hints for font matching algorithm [Integer]
+  type: :NOTE
+full_name: Fox::FXFont::new
+is_singleton: true
+name: new
+params: (a, face, size, weight=FXFont::Normal, slant=Font::Straight, encoding=FONTENCODING_DEFAULT, setWidth=FXFont::NonExpanded, hints=0) {|theFont| ...}
+visibility: public

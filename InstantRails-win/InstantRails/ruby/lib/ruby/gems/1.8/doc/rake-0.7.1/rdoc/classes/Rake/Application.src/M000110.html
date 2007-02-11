@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_option (Rake::Application)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>      <span class="ruby-comment cmt"># File lib/rake.rb, line 1725</span>
+1725:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_option</span>(<span class="ruby-identifier">opt</span>, <span class="ruby-identifier">value</span>)
+1726:       <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+1727:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--dry-run'</span>
+1728:         <span class="ruby-identifier">verbose</span>(<span class="ruby-keyword kw">true</span>)
+1729:         <span class="ruby-identifier">nowrite</span>(<span class="ruby-keyword kw">true</span>)
+1730:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">dryrun</span> = <span class="ruby-keyword kw">true</span>
+1731:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">trace</span> = <span class="ruby-keyword kw">true</span>
+1732:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--help'</span>
+1733:         <span class="ruby-identifier">help</span>
+1734:         <span class="ruby-identifier">exit</span>
+1735:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--libdir'</span>
+1736:         <span class="ruby-identifier">$:</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">value</span>)
+1737:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--nosearch'</span>
+1738:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">nosearch</span> = <span class="ruby-keyword kw">true</span>
+1739:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--prereqs'</span>
+1740:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">show_prereqs</span> = <span class="ruby-keyword kw">true</span>
+1741:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--quiet'</span>
+1742:         <span class="ruby-identifier">verbose</span>(<span class="ruby-keyword kw">false</span>)
+1743:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--rakefile'</span>
+1744:         <span class="ruby-constant">RAKEFILES</span>.<span class="ruby-identifier">clear</span>
+1745:         <span class="ruby-constant">RAKEFILES</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">value</span>
+1746:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--rakelibdir'</span>
+1747:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">rakelib</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">':'</span>)
+1748:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--require'</span>
+1749:         <span class="ruby-keyword kw">begin</span>
+1750:           <span class="ruby-identifier">require</span> <span class="ruby-identifier">value</span>
+1751:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ex</span>
+1752:           <span class="ruby-keyword kw">begin</span>
+1753:             <span class="ruby-identifier">rake_require</span> <span class="ruby-identifier">value</span>
+1754:           <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">LoadError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ex2</span>
+1755:             <span class="ruby-identifier">raise</span> <span class="ruby-identifier">ex</span>
+1756:           <span class="ruby-keyword kw">end</span>
+1757:         <span class="ruby-keyword kw">end</span>
+1758:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--silent'</span>
+1759:         <span class="ruby-identifier">verbose</span>(<span class="ruby-keyword kw">false</span>)
+1760:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">silent</span> = <span class="ruby-keyword kw">true</span>
+1761:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--tasks'</span>
+1762:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">show_tasks</span> = <span class="ruby-keyword kw">true</span>
+1763:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">show_task_pattern</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">value</span> <span class="ruby-operator">||</span> <span class="ruby-value str">'.'</span>)
+1764:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--trace'</span>
+1765:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">trace</span> = <span class="ruby-keyword kw">true</span>
+1766:         <span class="ruby-identifier">verbose</span>(<span class="ruby-keyword kw">true</span>)
+1767:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--usage'</span>
+1768:         <span class="ruby-identifier">usage</span>
+1769:         <span class="ruby-identifier">exit</span>
+1770:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--verbose'</span>
+1771:         <span class="ruby-identifier">verbose</span>(<span class="ruby-keyword kw">true</span>)
+1772:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--version'</span>
+1773:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;rake, version #{RAKEVERSION}&quot;</span>
+1774:         <span class="ruby-identifier">exit</span>
+1775:       <span class="ruby-keyword kw">when</span> <span class="ruby-value str">'--classic-namespace'</span>
+1776:         <span class="ruby-identifier">require</span> <span class="ruby-value str">'rake/classic_namespace'</span>
+1777:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">classic_namespace</span> = <span class="ruby-keyword kw">true</span>
+1778:       <span class="ruby-keyword kw">else</span>
+1779:         <span class="ruby-identifier">fail</span> <span class="ruby-node">&quot;Unknown option: #{opt}&quot;</span>
+1780:       <span class="ruby-keyword kw">end</span>
+1781:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

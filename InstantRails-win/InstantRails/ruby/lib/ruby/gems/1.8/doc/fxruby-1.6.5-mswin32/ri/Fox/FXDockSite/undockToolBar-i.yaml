@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The dock site is informed that the given bar has been removed. In the default implementation, the dock site fixes the layout options of the remaining bars so they stay in the same place if possible.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bar+:"
+    body: a reference to the removed dockbar [FXDockBar]
+  type: :NOTE
+full_name: Fox::FXDockSite#undockToolBar
+is_singleton: false
+name: undockToolBar
+params: (bar)
+visibility: public

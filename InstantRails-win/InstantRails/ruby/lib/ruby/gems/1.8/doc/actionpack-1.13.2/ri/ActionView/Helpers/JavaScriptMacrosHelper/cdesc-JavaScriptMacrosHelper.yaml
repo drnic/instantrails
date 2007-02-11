@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides a set of helpers for creating JavaScript macros that rely on and often bundle methods from JavaScriptHelper into larger units. These macros also rely on counterparts in the controller that provide them with their backing. The in-place editing relies on ActionController::Base.in_place_edit_for and the autocompletion relies on ActionController::Base.auto_complete_for.
+constants: []
+
+full_name: ActionView::Helpers::JavaScriptMacrosHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: auto_complete_field
+- !ruby/object:RI::MethodSummary 
+  name: auto_complete_result
+- !ruby/object:RI::MethodSummary 
+  name: in_place_editor
+- !ruby/object:RI::MethodSummary 
+  name: in_place_editor_field
+- !ruby/object:RI::MethodSummary 
+  name: text_field_with_auto_complete
+name: JavaScriptMacrosHelper
+superclass: 

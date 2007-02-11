@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::Acts::List::InstanceMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::Acts::List::InstanceMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_record/acts/list_rb.html">
+                lib/active_record/acts/list.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+All the methods available to a record that has had <tt>acts_as_list</tt>
+specified. Each method works by assuming the object to be the item in the
+list, so <tt>chapter.move_lower</tt> would move that chapter lower in the
+list of all chapters. Likewise, <tt>chapter.first?</tt> would return true
+if that chapter is the first in the list of all chapters.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000375">decrement_position</a>&nbsp;&nbsp;
+      <a href="#M000376">first?</a>&nbsp;&nbsp;
+      <a href="#M000378">higher_item</a>&nbsp;&nbsp;
+      <a href="#M000380">in_list?</a>&nbsp;&nbsp;
+      <a href="#M000374">increment_position</a>&nbsp;&nbsp;
+      <a href="#M000368">insert_at</a>&nbsp;&nbsp;
+      <a href="#M000377">last?</a>&nbsp;&nbsp;
+      <a href="#M000379">lower_item</a>&nbsp;&nbsp;
+      <a href="#M000370">move_higher</a>&nbsp;&nbsp;
+      <a href="#M000369">move_lower</a>&nbsp;&nbsp;
+      <a href="#M000371">move_to_bottom</a>&nbsp;&nbsp;
+      <a href="#M000372">move_to_top</a>&nbsp;&nbsp;
+      <a href="#M000373">remove_from_list</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000375.html');return false;">
+          <span class="method-name">decrement_position</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decrease the position of this item without adjusting the rest of the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000376.html');return false;">
+          <span class="method-name">first?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if this object is the first in the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000378.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000378.html');return false;">
+          <span class="method-name">higher_item</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the next higher item in the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000380.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000380.html');return false;">
+          <span class="method-name">in_list?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000374.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000374.html');return false;">
+          <span class="method-name">increment_position</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Increase the position of this item without adjusting the rest of the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000368.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000368.html');return false;">
+          <span class="method-name">insert_at</span><span class="method-args">(position = 1)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000377.html');return false;">
+          <span class="method-name">last?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return true if this object is the last in the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000379.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000379.html');return false;">
+          <span class="method-name">lower_item</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the next lower item in the list.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000370.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000370.html');return false;">
+          <span class="method-name">move_higher</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Swap positions with the next higher item, if one exists.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000369.html');return false;">
+          <span class="method-name">move_lower</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Swap positions with the next lower item, if one exists.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000371.html');return false;">
+          <span class="method-name">move_to_bottom</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Move to the bottom of the list. If the item is already in the list, the
+items below it have their position adjusted accordingly.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000372.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000372.html');return false;">
+          <span class="method-name">move_to_top</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Move to the top of the list. If the item is already in the list, the items
+above it have their position adjusted accordingly.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="InstanceMethods.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('InstanceMethods.src/M000373.html');return false;">
+          <span class="method-name">remove_from_list</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

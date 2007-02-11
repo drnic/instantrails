@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theIcon
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an icon with an initial pixel buffer <em>pix</em>, a transparent color <em>clr</em>, and <em>opts</em> as in FXImage. The transparent color is used to determine which pixel values are transparent, i.e. need to be masked out in the absence of a true alpha channel. If the flag <tt>IMAGE_OPAQUE</tt> is passed, the shape and etch bitmaps are generated as if the image is fully opaque, even if it has an alpha channel or transparancy color. The flag <tt>IMAGE_ALPHACOLOR</tt> is used to force a specific alpha color instead of the alpha channel obtained from the image file. Specifying <tt>IMAGE_ALPHAGUESS</tt> causes FXIcon to obtain the alpha color from the background color of the image; it has the same effect as <tt>IMAGE_ALPHACOLOR</tt> in the sense that the icon will be transparent for those colors matching the alpha color.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pix+:"
+    body: initial pixel buffer [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+clr+:"
+    body: transparency color [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height [Integer]
+  type: :NOTE
+full_name: Fox::FXIcon::new
+is_singleton: true
+name: new
+params: (app, pix=nil, clr=0, opts=0, width=1, height=1) {|theIcon| ...}
+visibility: public

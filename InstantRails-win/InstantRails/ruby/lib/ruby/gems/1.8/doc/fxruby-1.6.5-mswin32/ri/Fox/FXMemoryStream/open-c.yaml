@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theMemoryStream
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct a new FXMemoryStream object with the specified data flow direction, data and container object. If an optional code block is given, it will be passed this memory stream as an argument, and the memory stream will automatically be closed when the block terminates. If no code block is provided, this method just returns the new memory stream in an opened state.
+- !ruby/struct:SM::Flow::P 
+  body: Raises FXStreamAllocError if some kind of memory allocation failed while initializing the stream.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+save_or_load+:"
+    body: access mode, either <tt>FXStreamSave</tt> or <tt>FXStreamLoad</tt> [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+data+:"
+    body: memory buffer used for the stream, or <tt>nil</tt> if the buffer is to be initially empty [String].
+  - !ruby/struct:SM::Flow::LI 
+    label: "+cont+:"
+    body: the container object, or <tt>nil</tt> if there is none [FXObject]
+  type: :NOTE
+full_name: Fox::FXMemoryStream::open
+is_singleton: true
+name: open
+params: (save_or_load, data, cont=nil) {|theMemoryStream| ...}
+visibility: public

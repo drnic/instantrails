@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Asserts that the routing of the given path was handled correctly and that the parsed options match.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_recognizes({:controller =&gt; 'items', :action =&gt; 'index'}, 'items') # check the default action\n  assert_recognizes({:controller =&gt; 'items', :action =&gt; 'list'}, 'items/list') # check a specific action\n  assert_recognizes({:controller =&gt; 'items', :action =&gt; 'list', :id =&gt; '1'}, 'items/list/1') # check an action with a parameter\n"
+- !ruby/struct:SM::Flow::P 
+  body: Pass a hash in the second argument to specify the request method. This is useful for routes requiring a specific HTTP method. The hash should contain a :path with the incoming request path and a :method containing the required HTTP verb.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that POSTing to /items will call the create action on ItemsController\n  assert_recognizes({:controller =&gt; 'items', :action =&gt; 'create'}, {:path =&gt; 'items', :method =&gt; :post})\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also pass in &quot;extras&quot; with a hash containing URL parameters that would normally be in the query string. This can be used to assert that values in the query string string will end up in the params hash correctly. To test query strings you must use the extras argument, appending the query string on the path directly will not work. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that a path of '/items/list/1?view=print' returns the correct options\n  assert_recognizes({:controller =&gt; 'items', :action =&gt; 'list', :id =&gt; '1', :view =&gt; 'print'}, 'items/list/1', { :view =&gt; &quot;print&quot; })\n"
+full_name: ActionController::Assertions::RoutingAssertions#assert_recognizes
+is_singleton: false
+name: assert_recognizes
+params: (expected_options, path, extras={}, message=nil)
+visibility: public

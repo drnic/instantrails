@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_content_type (TMail::Mail)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail/facade.rb, line 382</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_content_type</span>( <span class="ruby-identifier">str</span>, <span class="ruby-identifier">sub</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">param</span> = <span class="ruby-keyword kw">nil</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sub</span>
+        <span class="ruby-identifier">main</span>, <span class="ruby-identifier">sub</span> = <span class="ruby-identifier">str</span>, <span class="ruby-identifier">sub</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">main</span>, <span class="ruby-identifier">sub</span> = <span class="ruby-identifier">str</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">%r&lt;/&gt;</span>, <span class="ruby-value">2</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;sub type missing: #{str.inspect}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">sub</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">h</span> = <span class="ruby-ivar">@header</span>[<span class="ruby-value str">'content-type'</span>]
+        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">main_type</span> = <span class="ruby-identifier">main</span>
+        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">sub_type</span>  = <span class="ruby-identifier">sub</span>
+        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">params</span>.<span class="ruby-identifier">clear</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">store</span> <span class="ruby-value str">'Content-Type'</span>, <span class="ruby-node">&quot;#{main}/#{sub}&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@header</span>[<span class="ruby-value str">'content-type'</span>].<span class="ruby-identifier">params</span>.<span class="ruby-identifier">replace</span> <span class="ruby-identifier">param</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">param</span>
+
+      <span class="ruby-identifier">str</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

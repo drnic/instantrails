@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a swath of generic CRUD actions to the controller. The <tt>model_id</tt> is automatically converted into a class name unless one is specifically provide through <tt>options[:class_name]</tt>. So <tt>scaffold :post</tt> would use Post as the class and @post/@posts for the instance variables.
+- !ruby/struct:SM::Flow::P 
+  body: It's possible to use more than one scaffold in a single controller by specifying <tt>options[:suffix] = true</tt>. This will make <tt>scaffold :post, :suffix =&gt; true</tt> use method names like list_post, show_post, and create_post instead of just list, show, and post. If suffix is used, then no index method is added.
+full_name: ActionController::Scaffolding::ClassMethods#scaffold
+is_singleton: false
+name: scaffold
+params: (model_id, options = {})
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extend selection. If <em>notify</em> is <tt>true</tt>, a series of <tt>SEL_SELECTED</tt> and <tt>SEL_DESELECTED</tt> messages are sent to the table's message target after each affected item is selected or deselected. Raises IndexError if either <em>row</em> or <em>column</em> is out of bounds.
+full_name: Fox::FXTable#extendSelection
+is_singleton: false
+name: extendSelection
+params: (row, column, notify=false)
+visibility: public

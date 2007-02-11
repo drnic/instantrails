@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a set of select tags (one for year, month, and day) pre-selected for accessing a specified date-based attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). It's possible to tailor the selects through the <tt>options</tt> hash, which accepts all the keys that each of the individual select builders do (like :use_month_numbers for select_month) as well as a range of discard options. The discard options are <tt>:discard_year</tt>, <tt>:discard_month</tt> and <tt>:discard_day</tt>. Set to true, they'll drop the respective select. Discarding the month select will also automatically discard the day select. It's also possible to explicitly set the order of the tags using the <tt>:order</tt> option with an array of symbols <tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in the desired order. Symbols may be omitted and the respective select is not included.
+- !ruby/struct:SM::Flow::P 
+  body: Passing :disabled =&gt; true as part of the <tt>options</tt> will make elements inaccessible for change.
+- !ruby/struct:SM::Flow::P 
+  body: "NOTE: Discarded selects will default to 1. So if no month select is available, January will be assumed."
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  date_select(&quot;post&quot;, &quot;written_on&quot;)\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995, :use_month_numbers =&gt; true,\n                                    :discard_day =&gt; true, :include_blank =&gt; true)\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :order =&gt; [:day, :month, :year])\n  date_select(&quot;user&quot;, &quot;birthday&quot;,   :order =&gt; [:month, :day])\n"
+- !ruby/struct:SM::Flow::P 
+  body: The selects are prepared for multi-parameter assignment to an Active Record object.
+full_name: ActionView::Helpers::DateHelper#date_select
+is_singleton: false
+name: date_select
+params: (object_name, method, options = {})
+visibility: public

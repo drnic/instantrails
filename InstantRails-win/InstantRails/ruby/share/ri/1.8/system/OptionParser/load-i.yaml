@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Loads options from file names as <tt>filename</tt>. Does nothing when the file is not present. Returns whether successfully loaded.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>filename</tt> defaults to basename of the program without suffix in a directory ~/.options.
+full_name: OptionParser#load
+is_singleton: false
+name: load
+params: (filename = nil)
+visibility: public

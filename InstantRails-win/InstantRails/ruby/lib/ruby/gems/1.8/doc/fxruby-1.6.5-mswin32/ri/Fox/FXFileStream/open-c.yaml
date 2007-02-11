@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theFileStream
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct a new FXFileStream object with the specified data flow direction (<em>save_or_load</em>) and <em>container</em> object. If an optional code block is given, it will be passed this file stream as an argument, and the file stream will automatically be closed when the block terminates. If no code block is provided, this method just returns the new file stream in an opened state.
+- !ruby/struct:SM::Flow::P 
+  body: Raises FXStreamNoWriteError if <em>save_or_load</em> is <tt>FXStreamSave</tt> but the file cannot be opened for writing. Raises FXStreamNoReadError if <em>save_or_load</em> is <tt>FXStreamLoad</tt> but the file cannot be opened for reading.
+full_name: Fox::FXFileStream::open
+is_singleton: true
+name: open
+params: (filename, save_or_load, size=8192, container=nil) {|theFileStream| ...}
+visibility: public

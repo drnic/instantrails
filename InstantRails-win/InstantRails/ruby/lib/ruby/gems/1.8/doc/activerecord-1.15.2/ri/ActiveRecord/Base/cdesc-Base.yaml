@@ -1,0 +1,336 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Set this to true if this is an abstract class (see #abstract_class?)."
+  name: abstract_class
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ===
+- !ruby/object:RI::MethodSummary 
+  name: abstract_class?
+- !ruby/object:RI::MethodSummary 
+  name: attr_accessible
+- !ruby/object:RI::MethodSummary 
+  name: attr_protected
+- !ruby/object:RI::MethodSummary 
+  name: base_class
+- !ruby/object:RI::MethodSummary 
+  name: benchmark
+- !ruby/object:RI::MethodSummary 
+  name: class_of_active_record_descendant
+- !ruby/object:RI::MethodSummary 
+  name: clear_active_connections!
+- !ruby/object:RI::MethodSummary 
+  name: clear_reloadable_connections!
+- !ruby/object:RI::MethodSummary 
+  name: column_names
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: columns_hash
+- !ruby/object:RI::MethodSummary 
+  name: compute_type
+- !ruby/object:RI::MethodSummary 
+  name: connected?
+- !ruby/object:RI::MethodSummary 
+  name: connection
+- !ruby/object:RI::MethodSummary 
+  name: connection=
+- !ruby/object:RI::MethodSummary 
+  name: content_columns
+- !ruby/object:RI::MethodSummary 
+  name: count_by_sql
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: decrement_counter
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: delete_all
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: destroy_all
+- !ruby/object:RI::MethodSummary 
+  name: establish_connection
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: find_by_sql
+- !ruby/object:RI::MethodSummary 
+  name: increment_counter
+- !ruby/object:RI::MethodSummary 
+  name: inheritance_column
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: remove_connection
+- !ruby/object:RI::MethodSummary 
+  name: require_mysql
+- !ruby/object:RI::MethodSummary 
+  name: reset_column_information
+- !ruby/object:RI::MethodSummary 
+  name: sanitize_sql
+- !ruby/object:RI::MethodSummary 
+  name: sanitize_sql_array
+- !ruby/object:RI::MethodSummary 
+  name: sanitize_sql_hash
+- !ruby/object:RI::MethodSummary 
+  name: serialize
+- !ruby/object:RI::MethodSummary 
+  name: serialized_attributes
+- !ruby/object:RI::MethodSummary 
+  name: set_inheritance_column
+- !ruby/object:RI::MethodSummary 
+  name: set_primary_key
+- !ruby/object:RI::MethodSummary 
+  name: set_sequence_name
+- !ruby/object:RI::MethodSummary 
+  name: set_table_name
+- !ruby/object:RI::MethodSummary 
+  name: silence
+- !ruby/object:RI::MethodSummary 
+  name: table_exists?
+- !ruby/object:RI::MethodSummary 
+  name: table_name
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: update_all
+- !ruby/object:RI::MethodSummary 
+  name: with_exclusive_scope
+- !ruby/object:RI::MethodSummary 
+  name: with_scope
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Active Record objects don't specify their attributes directly, but rather infer them from the table definition with which they're linked. Adding, removing, and changing attributes and their type is done directly in the database. Any change is instantly reflected in the Active Record objects. The mapping that binds a given Active Record class to a certain database table will happen automatically in most common cases, but can be overwritten for the uncommon ones.
+- !ruby/struct:SM::Flow::P 
+  body: See the mapping rules in table_name and the full example in link:files/README.html for more insight.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Creation
+- !ruby/struct:SM::Flow::P 
+  body: "Active Records accept constructor parameters either in a hash or as a block. The hash method is especially useful when you're receiving the data from somewhere else, like a HTTP request. It works like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  user = User.new(:name =&gt; &quot;David&quot;, :occupation =&gt; &quot;Code Artist&quot;)\n  user.name # =&gt; &quot;David&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also use block initialization:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  user = User.new do |u|\n    u.name = &quot;David&quot;\n    u.occupation = &quot;Code Artist&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "And of course you can just create a bare object and specify the attributes after the fact:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  user = User.new\n  user.name = &quot;David&quot;\n  user.occupation = &quot;Code Artist&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Conditions
+- !ruby/struct:SM::Flow::P 
+  body: "Conditions can either be specified as a string, array, or hash representing the WHERE-part of an SQL statement. The array form is to be used when the condition input is tainted and requires sanitization. The string form can be used for statements that don't involve tainted data. The hash form works much like the array form, except only equality and range is possible. Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class User &lt; ActiveRecord::Base\n    def self.authenticate_unsafely(user_name, password)\n      find(:first, :conditions =&gt; &quot;user_name = '#{user_name}' AND password = '#{password}'&quot;)\n    end\n\n    def self.authenticate_safely(user_name, password)\n      find(:first, :conditions =&gt; [ &quot;user_name = ? AND password = ?&quot;, user_name, password ])\n    end\n\n    def self.authenticate_safely_simply(user_name, password)\n      find(:first, :conditions =&gt; { :user_name =&gt; user_name, :password =&gt; password })\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>authenticate_unsafely</tt> method inserts the parameters directly into the query and is thus susceptible to SQL-injection attacks if the <tt>user_name</tt> and <tt>password</tt> parameters come directly from a HTTP request. The <tt>authenticate_safely</tt> and <tt>authenticate_safely_simply</tt> both will sanitize the <tt>user_name</tt> and <tt>password</tt> before inserting them in the query, which will ensure that an attacker can't escape the query and fake the login (or worse).
+- !ruby/struct:SM::Flow::P 
+  body: "When using multiple parameters in the conditions, it can easily become hard to read exactly what the fourth or fifth question mark is supposed to represent. In those cases, you can resort to named bind variables instead. That's done by replacing the question marks with symbols and supplying a hash with values for the matching symbol keys:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Company.find(:first, [\n    &quot;id = :id AND name = :name AND division = :division AND created_at &gt; :accounting_date&quot;,\n    { :id =&gt; 3, :name =&gt; &quot;37signals&quot;, :division =&gt; &quot;First&quot;, :accounting_date =&gt; '2005-01-01' }\n  ])\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Similarly, a simple hash without a statement will generate conditions based on equality with the SQL AND operator. For instance:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Student.find(:all, :conditions =&gt; { :first_name =&gt; &quot;Harvey&quot;, :status =&gt; 1 })\n  Student.find(:all, :conditions =&gt; params[:student])\n"
+- !ruby/struct:SM::Flow::P 
+  body: "A range may be used in the hash to use the SQL BETWEEN operator:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Student.find(:all, :conditions =&gt; { :grade =&gt; 9..12 })\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Overwriting default accessors
+- !ruby/struct:SM::Flow::P 
+  body: "All column values are automatically available through basic accessors on the Active Record object, but some times you want to specialize this behavior. This can be done by either by overwriting the default accessors (using the same name as the attribute) calling read_attribute(attr_name) and write_attribute(attr_name, value) to actually change things. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Song &lt; ActiveRecord::Base\n    # Uses an integer of seconds to hold the length of the song\n\n    def length=(minutes)\n      write_attribute(:length, minutes * 60)\n    end\n\n    def length\n      read_attribute(:length) / 60\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can alternatively use self[:attribute]=(value) and self[:attribute] instead of write_attribute(:attribute, vaule) and read_attribute(:attribute) as a shorter form.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Accessing attributes before they have been typecasted
+- !ruby/struct:SM::Flow::P 
+  body: Sometimes you want to be able to read the raw attribute data without having the column-determined typecast run its course first. That can be done by using the &lt;attribute&gt;_before_type_cast accessors that all attributes have. For example, if your Account model has a balance attribute, you can call account.balance_before_type_cast or account.id_before_type_cast.
+- !ruby/struct:SM::Flow::P 
+  body: This is especially useful in validation situations where the user might supply a string for an integer field and you want to display the original string back in an error message. Accessing the attribute normally would typecast the string to 0, which isn't what you want.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Dynamic attribute-based finders
+- !ruby/struct:SM::Flow::P 
+  body: Dynamic attribute-based finders are a cleaner way of getting (and/or creating) objects by simple queries without turning to SQL. They work by appending the name of an attribute to <tt>find_by_</tt> or <tt>find_all_by_</tt>, so you get finders like Person.find_by_user_name, Person.find_all_by_last_name, Payment.find_by_transaction_id. So instead of writing <tt>Person.find(:first, [&quot;user_name = ?&quot;, user_name])</tt>, you just do <tt>Person.find_by_user_name(user_name)</tt>. And instead of writing <tt>Person.find(:all, [&quot;last_name = ?&quot;, last_name])</tt>, you just do <tt>Person.find_all_by_last_name(last_name)</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: It's also possible to use multiple attributes in the same find by separating them with &quot;<em>and</em>&quot;, so you get finders like <tt>Person.find_by_user_name_and_password</tt> or even <tt>Payment.find_by_purchaser_and_state_and_country</tt>. So instead of writing <tt>Person.find(:first, [&quot;user_name = ? AND password = ?&quot;, user_name, password])</tt>, you just do <tt>Person.find_by_user_name_and_password(user_name, password)</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: It's even possible to use all the additional parameters to find. For example, the full interface for Payment.find_all_by_amount is actually Payment.find_all_by_amount(amount, options). And the full interface to Person.find_by_user_name is actually Person.find_by_user_name(user_name, options). So you could call <tt>Payment.find_all_by_amount(50, :order =&gt; &quot;created_on&quot;)</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "The same dynamic finder style can be used to create the object if it doesn't already exist. This dynamic finder is called with <tt>find_or_create_by_</tt> and will return the object if it already exists and otherwise creates it, then returns it. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # No 'Summer' tag exists\n  Tag.find_or_create_by_name(&quot;Summer&quot;) # equal to Tag.create(:name =&gt; &quot;Summer&quot;)\n\n  # Now the 'Summer' tag does exist\n  Tag.find_or_create_by_name(&quot;Summer&quot;) # equal to Tag.find_by_name(&quot;Summer&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Use the <tt>find_or_initialize_by_</tt> finder if you want to return a new record without saving it first. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # No 'Winter' tag exists\n  winter = Tag.find_or_initialize_by_name(&quot;Winter&quot;)\n  winter.new_record? # true\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Saving arrays, hashes, and other non-mappable objects in text columns
+- !ruby/struct:SM::Flow::P 
+  body: "Active Record can serialize any object in text columns using YAML. To do so, you must specify this with a call to the class method <tt>serialize</tt>. This makes it possible to store arrays, hashes, and other non-mappable objects without doing any additional work. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class User &lt; ActiveRecord::Base\n    serialize :preferences\n  end\n\n  user = User.create(:preferences =&gt; { &quot;background&quot; =&gt; &quot;black&quot;, &quot;display&quot; =&gt; large })\n  User.find(user.id).preferences # =&gt; { &quot;background&quot; =&gt; &quot;black&quot;, &quot;display&quot; =&gt; large }\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also specify a class option as the second parameter that'll raise an exception if a serialized object is retrieved as a descendent of a class not in the hierarchy. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class User &lt; ActiveRecord::Base\n    serialize :preferences, Hash\n  end\n\n  user = User.create(:preferences =&gt; %w( one two three ))\n  User.find(user.id).preferences    # raises SerializationTypeMismatch\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Single table inheritance
+- !ruby/struct:SM::Flow::P 
+  body: "Active Record allows inheritance by storing the name of the class in a column that by default is called &quot;type&quot; (can be changed by overwriting <tt>Base.inheritance_column</tt>). This means that an inheritance looking like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Company &lt; ActiveRecord::Base; end\n  class Firm &lt; Company; end\n  class Client &lt; Company; end\n  class PriorityClient &lt; Client; end\n"
+- !ruby/struct:SM::Flow::P 
+  body: When you do Firm.create(:name =&gt; &quot;37signals&quot;), this record will be saved in the companies table with type = &quot;Firm&quot;. You can then fetch this row again using Company.find(:first, &quot;name = '37signals'&quot;) and it will return a Firm object.
+- !ruby/struct:SM::Flow::P 
+  body: If you don't have a type column defined in your table, single-table inheritance won't be triggered. In that case, it'll work just like normal subclasses with no special magic for differentiating between them or reloading the right type with find.
+- !ruby/struct:SM::Flow::P 
+  body: "Note, all the attributes for all the cases are kept in the same table. Read more: http://www.martinfowler.com/eaaCatalog/singleTableInheritance.html"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Connection to multiple databases in different models
+- !ruby/struct:SM::Flow::P 
+  body: Connections are usually created through ActiveRecord::Base.establish_connection and retrieved by ActiveRecord::Base.connection. All classes inheriting from ActiveRecord::Base will use this connection. But you can also set a class-specific connection. For example, if Course is a ActiveRecord::Base, but resides in a different database you can just say Course.establish_connection and Course *and all its subclasses* will use this connection instead.
+- !ruby/struct:SM::Flow::P 
+  body: This feature is implemented by keeping a connection pool in ActiveRecord::Base that is a Hash indexed by the class. If a connection is requested, the retrieve_connection method will go up the class-hierarchy until a connection is found in the connection pool.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Exceptions
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>ActiveRecordError</tt> -- generic error class and superclass of all other errors raised by Active Record
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>AdapterNotSpecified</tt> -- the configuration hash used in <tt>establish_connection</tt> didn't include a <tt>:adapter</tt> key.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>AdapterNotFound</tt> -- the <tt>:adapter</tt> key used in <tt>establish_connection</tt> specified an non-existent adapter (or a bad spelling of an existing one).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>AssociationTypeMismatch</tt> -- the object assigned to the association wasn't of the type specified in the association definition.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>SerializationTypeMismatch</tt> -- the object serialized wasn't of the class specified as the second parameter.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>ConnectionNotEstablished</tt> -- no connection has been established. Use <tt>establish_connection</tt> before querying.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>RecordNotFound</tt> -- no record responded to the find* method. Either the row with the given ID doesn't exist or the row didn't meet the additional restrictions.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>StatementInvalid</tt> -- the database server rejected the SQL statement. The precise error is added in the message. Either the record with the given ID doesn't exist or the record didn't meet the additional restrictions.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>MultiparameterAssignmentErrors</tt> -- collection of errors that occurred during a mass assignment using the +attributes=+ method. The <tt>errors</tt> property of this exception contains an array of <tt>AttributeAssignmentError</tt> objects that should be inspected to determine which attributes triggered the errors.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>AttributeAssignmentError</tt> -- an error occurred while doing a mass assignment through the +attributes=+ method. You can inspect the <tt>attribute</tt> property of the exception object to determine which attribute triggered the error.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "<b>Note</b>: The attributes listed are class-level attributes (accessible from both the class and instance level). So it's possible to assign a logger to the class through Base.logger= which will then be used by all instances in the current object space."
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_FIND_OPTIONS
+  value: "[ :conditions, :include, :joins, :limit, :offset,                                :order, :select, :readonly, :group, :from, :lock ]"
+full_name: ActiveRecord::Base
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Reloadable::Deprecated
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: attribute_names
+- !ruby/object:RI::MethodSummary 
+  name: attribute_present?
+- !ruby/object:RI::MethodSummary 
+  name: attributes
+- !ruby/object:RI::MethodSummary 
+  name: attributes=
+- !ruby/object:RI::MethodSummary 
+  name: attributes_before_type_cast
+- !ruby/object:RI::MethodSummary 
+  name: clone
+- !ruby/object:RI::MethodSummary 
+  name: column_for_attribute
+- !ruby/object:RI::MethodSummary 
+  name: connection
+- !ruby/object:RI::MethodSummary 
+  name: decrement
+- !ruby/object:RI::MethodSummary 
+  name: decrement!
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: eql?
+- !ruby/object:RI::MethodSummary 
+  name: freeze
+- !ruby/object:RI::MethodSummary 
+  name: frozen?
+- !ruby/object:RI::MethodSummary 
+  name: has_attribute?
+- !ruby/object:RI::MethodSummary 
+  name: hash
+- !ruby/object:RI::MethodSummary 
+  name: id
+- !ruby/object:RI::MethodSummary 
+  name: id=
+- !ruby/object:RI::MethodSummary 
+  name: increment
+- !ruby/object:RI::MethodSummary 
+  name: increment!
+- !ruby/object:RI::MethodSummary 
+  name: new_record?
+- !ruby/object:RI::MethodSummary 
+  name: readonly?
+- !ruby/object:RI::MethodSummary 
+  name: reload
+- !ruby/object:RI::MethodSummary 
+  name: respond_to?
+- !ruby/object:RI::MethodSummary 
+  name: save
+- !ruby/object:RI::MethodSummary 
+  name: save!
+- !ruby/object:RI::MethodSummary 
+  name: to_param
+- !ruby/object:RI::MethodSummary 
+  name: toggle
+- !ruby/object:RI::MethodSummary 
+  name: toggle!
+- !ruby/object:RI::MethodSummary 
+  name: update_attribute
+- !ruby/object:RI::MethodSummary 
+  name: update_attributes
+- !ruby/object:RI::MethodSummary 
+  name: update_attributes!
+name: Base
+superclass: Object

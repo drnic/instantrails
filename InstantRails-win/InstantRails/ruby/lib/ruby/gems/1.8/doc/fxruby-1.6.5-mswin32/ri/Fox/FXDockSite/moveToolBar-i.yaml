@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Move tool bar, changing its options to suit the new position. Used by the toolbar dragging to rearrange the toolbars inside the toolbar dock.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bar+:"
+    body: a reference to the dockbar that's being dragged [FXDockBar]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+barx+:"
+    body: current x-coordinate of the dockbar [Integer]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: <tt>bary</tt> current y-coordinate of the dockbar [Integer]
+full_name: Fox::FXDockSite#moveToolBar
+is_singleton: false
+name: moveToolBar
+params: (bar, barx, bary)
+visibility: public

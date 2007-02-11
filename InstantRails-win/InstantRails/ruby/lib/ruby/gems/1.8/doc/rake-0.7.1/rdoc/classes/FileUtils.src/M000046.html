@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>safe_ln (FileUtils)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/rake.rb, line 755</span>
+755:   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">safe_ln</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+756:     <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">LN_SUPPORTED</span>[<span class="ruby-value">0</span>]
+757:       <span class="ruby-identifier">cp</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+758:     <span class="ruby-keyword kw">else</span>
+759:       <span class="ruby-keyword kw">begin</span>
+760:         <span class="ruby-identifier">ln</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+761:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-constant">NotImplementedError</span>
+762:         <span class="ruby-constant">LN_SUPPORTED</span>[<span class="ruby-value">0</span>] = <span class="ruby-keyword kw">false</span>
+763:         <span class="ruby-identifier">cp</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>)
+764:       <span class="ruby-keyword kw">end</span>
+765:     <span class="ruby-keyword kw">end</span>
+766:   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

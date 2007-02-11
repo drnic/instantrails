@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: compare_versions
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::FrontBaseAdapter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: classes_for_table_name
+- !ruby/object:RI::MethodSummary 
+  name: create_table
+- !ruby/object:RI::MethodSummary 
+  name: current_database
+- !ruby/object:RI::MethodSummary 
+  name: default_sequence_name
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: drop_table
+- !ruby/object:RI::MethodSummary 
+  name: next_sequence_value
+- !ruby/object:RI::MethodSummary 
+  name: prefetch_primary_key?
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quote_string
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: remove_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: reset_pk_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: reset_sequence!
+- !ruby/object:RI::MethodSummary 
+  name: set_optimistic_transactions
+- !ruby/object:RI::MethodSummary 
+  name: set_pessimistic_transactions
+name: FrontBaseAdapter
+superclass: AbstractAdapter

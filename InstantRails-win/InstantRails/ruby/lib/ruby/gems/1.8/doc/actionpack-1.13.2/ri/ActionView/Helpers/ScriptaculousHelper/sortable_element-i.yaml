@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Makes the element with the DOM ID specified by <tt>element_id</tt> sortable by drag-and-drop and make an Ajax call whenever the sort order has changed. By default, the action called gets the serialized sortable element as parameters.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= sortable_element(&quot;my_list&quot;, :url =&gt; { :action =&gt; &quot;order&quot; }) %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: In the example, the action gets a &quot;my_list&quot; array parameter containing the values of the ids of elements the sortable consists of, in the current order.
+- !ruby/struct:SM::Flow::P 
+  body: "Important: For this to work, the sortable elements must have id attributes in the form &quot;string_identifier&quot;. For example, &quot;item_1&quot;. Only the identifier part of the id attribute will be serialized."
+- !ruby/struct:SM::Flow::P 
+  body: You can change the behaviour with various options, see http://script.aculo.us for more documentation.
+full_name: ActionView::Helpers::ScriptaculousHelper#sortable_element
+is_singleton: false
+name: sortable_element
+params: (element_id, options = {})
+visibility: public

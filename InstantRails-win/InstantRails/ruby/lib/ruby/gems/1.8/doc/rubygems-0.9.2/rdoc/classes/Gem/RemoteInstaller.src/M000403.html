@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>install_dependencies (Gem::RemoteInstaller)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/remote_installer.rb, line 164</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">install_dependencies</span>(<span class="ruby-identifier">dependencies</span>, <span class="ruby-identifier">force</span>, <span class="ruby-identifier">install_dir</span>)
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:ignore_dependencies</span>]
+      <span class="ruby-identifier">installed_gems</span> = []
+      <span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@options</span>[<span class="ruby-identifier">:include_dependencies</span>] <span class="ruby-operator">||</span>
+           <span class="ruby-identifier">ask_yes_no</span>(<span class="ruby-node">&quot;Install required dependency #{dep.name}?&quot;</span>, <span class="ruby-keyword kw">true</span>)
+          <span class="ruby-identifier">remote_installer</span> = <span class="ruby-constant">RemoteInstaller</span>.<span class="ruby-identifier">new</span> <span class="ruby-ivar">@options</span>
+          <span class="ruby-identifier">installed_gems</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">remote_installer</span>.<span class="ruby-identifier">install</span>(<span class="ruby-identifier">dep</span>.<span class="ruby-identifier">name</span>,
+                                                     <span class="ruby-identifier">dep</span>.<span class="ruby-identifier">version_requirements</span>,
+                                                     <span class="ruby-identifier">force</span>, <span class="ruby-identifier">install_dir</span>)
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">force</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-comment cmt"># ignore</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">DependencyError</span>, <span class="ruby-node">&quot;Required dependency #{dep.name} not installed&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">installed_gems</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

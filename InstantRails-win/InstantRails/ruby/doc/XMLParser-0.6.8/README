@@ -1,0 +1,701 @@
+         Expat (XML Parser Toolkit) Module for Ruby
+                       version 0.6.8
+
+                       Yoshida Masato
+                  <yoshidam@yoshidam.net>
+
+- Introduction
+
+This is a module to access to James Clark's XML Parser
+Toolkit "expat" (http://www.jclark.com/xml/expat.html) from
+Ruby.
+
+Supported versions of expat are 1.95.0 or later
+(http://sourceforge.net/projects/expat/).
+
+
+- Installation
+
+This can work with ruby-1.6. I recommend you to use
+ruby-1.6.7 or later. And you need the source code of
+expat-1.95.x.
+
+First, compile expat. With expat-1.95.x, configure; make;
+make install.
+
+Then, compile xmlparser. You can specify the location of
+expat's header file or library file.
+
+   --with-expat-dir=/path/to/expat
+
+or
+
+   --with-expat-lib=/path/to/expat/lib
+   --with-expat-include=/path/to/expat/inclide
+
+If you want to use encoding maps of XML::Parser of Perl, set
+the proper directory with --with-perl-enc-map option.
+
+For example:
+
+  ruby extconf.rb --with-expat-dir=/usr/local --with-perl-enc-map=/usr/local/share/XML/Parser/Encodings
+  make
+  make site-install
+
+
+- Usage
+
+If you do not link this module with Ruby statically, 
+
+  require "xml/parser"
+
+before using.
+
+There is two styles to get parsing result. One is to
+define instance methods as event handlers, another is
+to use iterator.
+
+To define event handlers is like SAX (Simple API for XML).
+
+If you use event handlers, inherit XMLParser class and
+define instance methods as event handlers.
+Or you may use the instance of XMLParser class (or derived)
+with singleton instance methods as event handlers.
+
+When no event handlers are defined, this parser does
+non-validating syntax checking only.
+
+  method name              | event
+  -------------------------+---------------------------
+  startElement             | element start tag
+  endElement               | element end tag
+  character                | character data
+  processingInstruction    | processing instruction
+  unparsedEntityDecl       | unparsed entity declaration(OBSOLETE)
+  notationDecl             | notation declaration
+  externalEntityRef        | external entity reference
+  comment                  | comment
+  startCdata               | CDATA section start
+  endCdata                 | CDATA section end
+  startNamespaceDecl       | Namespace declaration start
+  endNamespaceDecl         | Namespace declaration end
+  startDoctypeDecl         | DOCTYPE declaration start
+  endDoctypeDecl           | DOCTYPE declaration end
+  notStandalone            | document is not standalone
+  default                  | other data
+  defaultExpand            | same as default (*1)
+  unknownEncoding          | unknown character encoding
+  elementDecl              | element declaration
+  attlistDecl              | attlist declaration
+  xmlDecl                  | XML declaration
+  entityDecl               | entity declaration
+
+  *1 inhibits expansion of internal entities. defaultExpand
+     have higher priority than default.
+
+To use iterator is probably a ruby-ish manner.
+
+If you use iterator, this parser ignores event handlers
+even if they are defined.
+The iterator evaluates the iterator block with three
+variables, event type, name, and data.
+
+  event type                        | name            | data
+  ----------------------------------+-----------------+-------------------
+  START_ELEM                        | element name    | hash of attributes
+  END_ELEM                          | element name    | nil
+  CDATA                             | nil             | string
+  PI                                | PI name         | string
+  UNPARSED_ENTITY_DECL(OBSOLETE)    | entity name     | array (*1)
+  NOTATION_DECL                     | notation name   | array (*2)
+  EXTERNAL_ENTITY_REF               | entity names(*5)| array (*2)
+  COMMENT                           | nil             | string
+  START_CDATA                       | nil             | nil
+  END_CDATA                         | nil             | nil
+  START_NAMESPACE_DECL              | prefix          | URI
+  END_NAMESPACE_DECL                | prefix          | nil
+  START_DOCTYPE_DECL                | doctype name    | nil
+  END_DOCTYPE_DECL                  | nil             | nil
+  DEFAULT (*4)                      | nil             | string
+  ELEMENT_DECL                      | element name    | array (*8)
+  ATTLIST_DECL                      | element name    | array (*9)
+  XML_DECL                          | nil             | array (*10)
+  ENTITY_DECL                       | entity name     | array (*11)
+
+
+
+  *1 [URL base, system ID, public ID, notation name]
+      URL base and notation name may be nil.
+  *2 [URL base, system ID, public ID]
+      URL base, system ID and public ID may be nil.
+  *4 defaultExpand enables this event
+  *5 It may be nil
+  *8 [type, quant, name, [...]]
+  *9 [attname, atttype, default, isrequired]
+  *10 [version, encoding, standalone]
+  *11 [isPE, value, system ID, public ID, notation name]
+
+UNPARSED_ENTITY_DECL, NOTATION_DECL, EXTERNAL_ENTITY_REF,
+COMMENT, START_CDATA, END_CDATA, START_NAMESPACE_DECL,
+END_NAMESPACE_DECL, DEFAULT, ELEMENT_DECL, ATTLIST_DECL,
+XML_DECL, ENTITY_DECL, EXTERNAL_PARSED_ENTITY_DECL and
+INTERNAL_PARSED_ENTITY_DECL events are generated only if
+each dummy methods, "unparsedEntityDecl", "notationDecl",
+"externalEntityRef", "comment", "startCdata", "endCdata",
+"startNamespaceDecl", "endNamespaceDecl", "default" (or
+"defaultExpand"), "elementDecl", "attlistDecl", "xmlDecl",
+"entityDecl", "externalParsedEntityDecl" and
+"internalParsedEntityDecl" are defined.
+
+Supported input character encodings are UTF-8 and UTF-16.
+Output character encoding is UTF-8.
+If XML_ENC_PATH is set on compiling, you can use the
+encoding maps of XML::Parser of Perl. This package not
+include them, you must get XML::Parser or XML::Encoding from
+CPAN, and install .enc files into the proper directory.
+
+
+XMLParser class:
+
+ Class method
+    new(encoding = nil, nssep = nil)
+      Create a XML parser object. A failure of the
+      creation raises a XMLParserError exception.
+
+      The "encoding" parameter can specify the character
+      encoding. Expat can recognize ISO-8859-1, UTF-8,
+      US-ASCII and UTF-16, and expat_ja can also EUC-JP and
+      Shift_JIS.
+
+      The "nssep" parameter enables namespace extension.
+      The namespace-prefixed element and attribute names are
+      concatenated with the namespace's URI and a separator
+      (the first byte of nssep).
+
+      For example, with nssep = '!',
+
+         <hoge:test xmlns:hoge="http://www.yoshidam.net/ns/hoge">
+
+      is parsed into
+
+         http://www.yoshidam.net/ns/hoge!test
+
+      The object that finish parsing cannot be reused,
+      so you must create a new one for every parsing.
+
+    new(parser, context, encoding = nil)
+      Create a XML parser object that can parse an external
+      general entity. A failure of the creation raises a
+      XMLParserError exception.
+
+      This can be called at any point after the first call
+      to an externalEntityRef event.
+
+      The "context" parameter can be passed from the parse
+      context of externalEntityRef event.
+
+      The "encoding" parameter can specify the character
+      encoding.
+
+      Call "reset" to be reused.
+
+    expatVersion()
+      Get expat version.
+
+    getFeatureList
+      Get a hash list of expat API's features.
+
+      This method is for expat-1.95.5 or later.
+
+ Method
+    parse(str, isFinal = true)
+      Parse a string. This method can be an
+      iterator. Parsing results can be processed by event
+      handlers or an iterator block.
+
+      "IsFinal" parameter must true on last call of this
+      method. Default is true. No parameter call of this
+      method indicates the end of parsing.
+
+      "Str" can be a stream object. It must be an object
+      with "gets" method. In this case, "isFinal" is
+      ignored, the parsing is repeated until the stream
+      returns nil.
+
+      A failure to parse raises a XMLParserError
+      exception.
+
+    done
+      Free the parser. Usually you can trust the GC, but
+      after parsing the external parameser entity, you must
+      free the parser in the externalEntityRef event.
+
+    defaultCurrent
+      Raise a "default" event within any event handlers or
+      an iterator block.
+      You can get the corresponding markup.
+
+      If within a event handler, it raise a default event
+      immediately. But within an iterator block, the next
+      yielding will be a DEFAULT event.
+
+    setBase
+      Set URL base. The setting value can get the parameter
+      'base' of the external entity methods, such as
+      unparsedEntityDecl.
+
+    line
+    column
+    byteIndex
+      Get current parsing location.
+
+      When a "parse" method raises XML::Parser::Error, these
+      method return the position of the error detected.
+
+    byteCount
+      Get the number of bytes in the current event.
+
+      When the event is is in an internal entity, this
+      method returns 0.
+
+    getSpecifiedAttributes
+      Check the attributes whether specified or defaulted.
+
+      Return value is a hash, the keys are the attribute's
+      name, the values are specified or not (boolean).
+
+      This method should be used in startElement event
+      handler.
+
+    setParamEntityParsing(parsing)
+      Controls parsing of parameter entities (including the
+      external DTD subset ).
+
+      "Parsing" parameter is
+         PARAM_ENTITY_PARSING_NEVER (0) or
+         PARAM_ENTITY_PARSING_UNLESS_STANDALONE (1) or
+         PARAM_ENTITY_PARSING_ALWAYS (2).
+
+      References to external parameter entities will invoke
+      the externalEntityRef event. The context will be nil.
+
+    setReturnNSTriplet(do_nst)
+      Sets namespace triplet flag.
+
+      It will work well for element names with Expat-1.95.3 or later 
+
+    getInputContext
+      Returns the parser's input buffer and current parse
+      posion.
+
+    getIdAttribute
+      Gets the ID attribute name.
+
+      This method should be used in startElement event
+      handler.
+
+    reset(encoding)
+      Resets the parser object to be reused.
+
+      The "encoding" parameter can specify the character
+      encoding.
+
+      This method is for the expat-1.95.3 or later.
+
+    useForeignDTD(useDTD)
+      Specifies to parse an external DTD subset without the
+      DOCTYPE declaration.
+
+      In externalEntityRef, sysID and pubID will be NULL.
+
+      This method is for the expat-1.95.5 or later.
+
+      See setParamEntityParsing also.
+
+
+ Method (event handler)
+    startElement(name, attrs)
+      This method is called when element start tags are
+      detected.
+      "Name" is the element name, attrs is a hash of
+      attributes, the keys are the attribute's name, the
+      values are attribute's values.
+
+    endElement(name)
+      This method is called when element end tags are
+      detected.
+      "Name" is the element name.
+
+    character(data)
+      This method is called when texts or CDATA sections are
+      detected.
+      Internal entities are expanded as long as "default"
+      handler is not defined.
+
+    processingInstruction(target, data)
+      This method is called when processing instructions are
+      detected.
+
+    unparsedEntityDecl(entityName, base, systemId, publicId, notationName)
+      ** OBSOLETE **
+      This methods is called when parsed entity declarations
+      are detected.
+      "EntityName", "base", "systemId", "publicId" and
+      "notationName" are the entity name, the URL base, the
+      system identifier, the public identifier and the
+      notation name.
+      The URL base and the notation name can be nil.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause UNPARSED_ENTITY_DECL
+      event.
+
+    notationDecl(notationName, base, systemId, publicId)
+      This methods is called when notation declarations are
+      detected.
+      "NotationName", "base", "systemId", and "publicId" are
+      the notation name, the URL base, the system identifier
+      and the public identifier.
+      The URL base, the system identifier and the public
+      identifier can be nil.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause NOTATION_DECL event.
+
+    externalEntityRef(context, base, systemId, publicId)
+      This methods is called when external entity references
+      are detected.
+      "context", "base", "systemId", and "publicId" are the
+      parsing context, the URL base, the system identifier
+      and the public identifier.
+      The URL base and the public identifier can be nil.
+      The context can use the 'context' parameter of the
+      constructor of the external entity parser.
+
+      If you do not parse the external entities by this
+      event, the external entities are never parsed.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause EXTERNAL_ENTITY_REF
+      event.
+
+      On expat-19990626 or later, it is called when external
+      parameter entity refs (including external DTD subset) are
+      detected. In this case, "context" will be nil. The
+      parser for the external parameter entitiy must be
+      created, "parse" and "done" in this event.
+      See setParamEntityParsing also.
+
+    comment(data)
+      This methods is called when comments are detected.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause COMMENT event.
+
+    startCdata()
+      This methods is called when CDATA sections start.
+      The contents of the CDATA sections are reported by
+      character event.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause START_CDATA event.
+
+    endCdata()
+      This methods is called when CDATA sections end.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause END_CDATA event.
+
+    startNamespaceDecl(prefix, uri)
+      This methods is called before the element that has
+      namespace declaration.
+
+      Prefix and uri can be nil.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause START_NAMESPACE_DECL
+      event.
+
+    endNamespaceDecl(prefix)
+      This methods is called after the element that has
+      namespace declaration.
+
+      Prefix can be nil.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause END_NAMESPACE_DECL event.
+
+    startDoctypeDecl(doctypeName, sysid, pubid, has_internal_subset)
+      This methods is called when the name of the DOCTYPE is
+      encountered.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause START_DOCTYPE_DECL event.
+
+    endDoctypeDecl()
+      This methods is called when the closing > is
+      encountered, but after processing any external subset.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause END_DOCTYPE_DECL event.
+
+    default(data)
+      This method is called when there is no applicable
+      event handler.
+
+      If this method is defined, expansion of internal
+      entities are inhibited.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause DEFAULT event and to
+      inhibit expansion of internal entities.
+
+    defaultExpand(data)
+      This method is called when there is no applicable
+      event handler.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause DEFAULT event.
+
+      This method have higher priority than default method.
+
+    unknownEncoding(name)
+      This method is called when unknown encoding is
+      detected.
+
+      XMLEncoding object (or nil to reject) must be returned.
+
+      Even if parse method is used as the iterator, this
+      method is called.
+
+    notStandalone()
+      This methods is called if the document is not standalone
+      (it has an external subset or a reference to a
+       parameter entity, but does not have standalone="yes").
+
+      If you may return 0 to raise an error, or return 1 to
+      continue the parsing.
+
+      Even if parse method is used as the iterator, this
+      method is called.
+
+    elementDecl(name, model)
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause ELEMENT_DECL event.
+
+    attlistDecl(elname, attname, att_type, dflt, isrequired)
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause ATTLIST_DECL event.
+
+    xmlDecl(version, encoding, standalone)
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause XML_DECL event.
+
+    entityDecl(entityName, isparameter_entity, vale,
+               base, systenId, publicId, notationName)
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause ENTITY_DECL event.
+
+    skippedEntity(entityName, is_parameter_entity)
+
+      This method is for expat-1.95.4.
+
+      If you use iterator, this method is not called, but to
+      define this affects to cause
+      SKIPPED_ENTITY event.
+
+
+XMLEncoding class:
+  To convert the character encoding, you must define map and
+  convert method.
+
+  Method
+    map(code)
+      This method is called to define byte stream
+      information. Code is the first byte of stream, 00h to
+      ffh. You must return the following value.
+
+        >= 0     : treat as Unicode value
+        -1       : the byte sequence is malformed
+        -n (n>=2): n-byte sequence
+
+    convert(s)
+      This method is called to convert the byte sequence
+      into a Unicode.
+      The byte sequence is n-byte string (n is defined by
+      map), you must return an integer value (treat as
+      Unicode), an ASCII  character or two byte string
+      (treat as a little endian UCS-2 character).
+
+
+- Additional Library
+
+XML::DOM module and XML::DOM::Builder module are
+added since version 0.3.1.
+These module are not well documented, and API specification is
+not fixed, so they are for experts only.
+
+
+XML::DOM module (xml/dom/core.rb)
+  This module is a library for making and manipulating XML
+  trees.
+  The APIs are like Document Object Model (DOM) Core of W3C.
+ 
+  Classes
+    NameNodeMap
+    NodeList
+    Node
+    DocumentFragment<Node
+    Document<Node
+    CharacterData<Node
+    Attr<Node
+    Element<Node
+    Text<CharacterData
+    Comment<Data
+    CDATASection<Text
+    DocumentType<Node
+    Notation<Node
+    Entity<Node
+    EntityReference<Node
+    ProcessingInstruction<Node
+
+XML::DOM::Builder (xml/dom/builder.rb)
+  This module is a library for parsing XML file and building
+  XML tree.
+
+XML::JapaneseTreeBuilder class (xml/dom/builder-ja.rb)
+
+XML::DOM::Visitor (xml/dom/visitor.rb)
+
+XMLEncoding_ja class (xml/encoding-ja.rb)
+
+WGET module (wget.rb)
+
+DOMHASH module (xml/dom/digest.rb)
+
+SAX module (xml/sax.rb, xml/saxdriver.rb)
+
+XML::ParserNS class (xml/parserns.rb)
+
+XML::DOM (xml/dom2/)
+  An experimental implementation of DOM Level 2.
+
+
+- Samples
+
+These sample scripts are required the optional "uconv"
+module for Japanese XML files.
+
+  xmlchack.rb - a sample for syntax checking
+  xmlevent.rb - a sample for defining event handlers
+  xmliter.rb  - a sample for iterator
+  treetest.rb - a sample for XML::SimpleTree
+  buildertest.rb - a sample for XML::SimpleTreeBuilder
+  gtktree.rb  - a sample with GTK
+  xmlcomment.rb - a sample comes from XML::Parser of Perl
+  visitortest.rb - a visitor sample comes from XML::Grove of Perl
+  my-html.rb  - a visitor sample comes from XML::Grove of Perl
+  visitor.rb  - a sample to access the tree like visitor.
+  namespaces/ - files to test namespaces
+  xpointer.rb - a simple application of XPointer with GTK
+  digesttest.rb - a sample for DOMHASH
+  digesttest2.rb - a sample for DOMHASH without DOM
+  saxtest.rb - a sample for SAX
+
+
+- Copying
+
+This extension module is copyrighted free software by
+Yoshida Masato.
+
+You can redistribute it and/or modify it under the same term as
+Ruby or expat.
+
+encoding.h and the functions of encoding map are part of
+XML::Parser for Perl.
+
+  Copyright (c) 1998 Larry Wall and Clark Cooper.
+  All rights reserved.
+  This program is free software; you can redistribute it and/or modify it
+  under the same terms as Perl itself. 
+
+
+- Author
+
+ Yoshida Masato <yoshidam@yoshidam.net>
+
+ XPointer support is contributed by Masaki Fukushima 
+     <fukusima@goto.info.waseda.ac.jp>
+
+
+- History
+
+ Apr  5, 2004 version 0.6.8  fixes overflow, and taints output.
+ Sep 20, 2002 version 0.6.5  fixes reset
+                             adds skippedEntity event for expat-1.95.4
+                             adds XML::Parser.getFeatureList and
+                             XML::Parser#useForeignDTD for expat-1.95.5
+ Jun 18, 2002 version 0.6.4  adds XML::Parser#reset for expat-1.95.3.
+ Mar 23, 2002 version 0.6.2  changes a layout under lib
+                             changes the parent class of XML::Parser::Error
+                             adds an experimental implementaion of DOM Level 2
+                             adds XML::ParserNS (experimental)
+ Oct 15  2000 version 0.6.1  support expat-1.95.0 and expat-1.2
+ Aug  5, 2000 version 0.5.19 RDize xmltree.rb by TAKAHASHI Masayoshi
+ May 30, 2000 version 0.5.18 fix for Ruby 1.5
+ Oct 14, 1999 version 0.5.16 change some samples
+ Aug 18, 1999 version 0.5.15 support start/endDoctypeDecl event of
+                             expat-19990728.
+                             fix SAX driver bug.
+ Jun 29, 1999 version 0.5.14 support to parse external
+                             parameter entities for
+                             expat-19990626
+ Jun 10, 1999 version 0.5.13 support experimental SAX driver
+                             support expat-1.1
+ May 13, 1999 version 0.5.12 fix extconf.rb bug
+ Apr 28, 1999 version 0.5.11 for expat-19990425, add NotStandalone
+                             event, getSpecifiedAttributes method
+                             and byteCount method
+ Apr 20, 1999 version 0.5.10 change xmldigest.rb for xss4j
+ Mar 29, 1999 version 0.5.9  change the object structure for Ruby 1.3
+ Mar 23, 1999 version 0.5.8  support the omission of keywords of XPointer
+                             support to parse external parsed entities in 
+                             XML::DOM::Builder
+ Mar  8, 1999 version 0.5.7  support start/endNamespaceDecl event of
+                             expat-19990307.
+ Jan 25, 1999 version 0.5.6  class name aliases are defined in C module.
+                             support cygwin.
+ Jan 14, 1999 version 0.5.5  support start/endCdataSection event of
+                             expat-19981231
+ Jan 13, 1999 version 0.5.4  modify xmltree and xmltreebuilder
+ Jan 10, 1999 version 0.5.3  encoding map support
+ Dec  1, 1998 version 0.5.1  fix some bugs
+ Nov 24, 1998 version 0.5.0  support the test version of expat
+ Nov  5, 1998 version 0.4.18 fix some bugs, class name alias
+                               XMLParserErorr        -> XML::Parser::Error
+                             and change some internal functions.
+ Oct 28, 1998 version 0.4.17 mIDs are stored into static vars
+ Oct 28, 1998 version 0.4.16 change ID attribute support of XPointer.
+                             Node#trim is now xml:space-aware
+ Oct 23, 1998 version 0.4.15 fix some bugs, add class name alias
+                               XMLParser              -> XML::Parser
+                               XML::SimpleTree        -> XML::DOM
+                               XML::SimpleTreeBuilder -> XML::DOM::Builder
+ Oct 20, 1998 version 0.4.14 add better XPointer support by Masaki Fukushima
+ Sep 17, 1998 version 0.4.5 add methods to SimpleTree
+ Sep  8, 1998 version 0.4.4 change parser object type from
+                            T_DATA to T_OBJECT (now can use
+                            instance variables)
+ Sep  3, 1998 version 0.4.3 add isFinal flag, and stream
+                            parsing facility
+ Sep  2, 1998 version 0.4.2 add external entity event and parser
+ Aug 14, 1998 version 0.3.3 support expat 1.0
+ Aug 12, 1998 version 0.3.2
+ Aug  4, 1998 version 0.3.1
+ Jul 17, 1998 version 0.3
+ Jul  3, 1998 version 0.2
+ Jul  1, 1998 version 0.1

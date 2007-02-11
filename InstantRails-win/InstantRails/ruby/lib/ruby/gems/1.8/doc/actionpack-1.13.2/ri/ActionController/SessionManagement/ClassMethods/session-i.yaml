@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Specify how sessions ought to be managed for a subset of the actions on the controller. Like filters, you can specify <tt>:only</tt> and <tt>:except</tt> clauses to restrict the subset, otherwise options apply to all actions on this controller.
+- !ruby/struct:SM::Flow::P 
+  body: The session options are inheritable, as well, so if you specify them in a parent controller, they apply to controllers that extend the parent.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # turn off session management for all actions.\n  session :off\n\n  # turn off session management for all actions <em>except</em> foo and bar.\n  session :off, :except =&gt; %w(foo bar)\n\n  # turn off session management for only the foo and bar actions.\n  session :off, :only =&gt; %w(foo bar)\n\n  # the session will only work over HTTPS, but only for the foo action\n  session :only =&gt; :foo, :session_secure =&gt; true\n\n  # the session will only be disabled for 'foo', and only if it is\n  # requested as a web service\n  session :off, :only =&gt; :foo,\n          :if =&gt; Proc.new { |req| req.parameters[:ws] }\n"
+- !ruby/struct:SM::Flow::P 
+  body: All session options described for ActionController::Base.process_cgi are valid arguments.
+full_name: ActionController::SessionManagement::ClassMethods#session
+is_singleton: false
+name: session
+params: (*args)
+visibility: public
