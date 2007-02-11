@@ -18,26 +18,26 @@ DWORD RegenerateConfFiles(HWND parent_window)
 		szMySQLConfDest[MAX_PATH] = {0},
 		szPHPConfSrc[MAX_PATH] = {0},
 		szPHPConfDest[MAX_PATH] = {0},
-		szRubyBinErbSrc[MAX_PATH] = {0},
-		szRubyBinErbDest[MAX_PATH] = {0},
-		szRubyBinIrbSrc[MAX_PATH] = {0},
-		szRubyBinIrbDest[MAX_PATH] = {0},
-		szRubyBinRdocSrc[MAX_PATH] = {0},
-		szRubyBinRdocDest[MAX_PATH] = {0},
-		szRubyBinRiSrc[MAX_PATH] = {0},
-		szRubyBinRiDest[MAX_PATH] = {0},
-		szRubyBinTestrbSrc[MAX_PATH] = {0},
-		szRubyBinTestrbDest[MAX_PATH] = {0},
-		szRubyBinGemSrc[MAX_PATH] = {0},
-		szRubyBinGemDest[MAX_PATH] = {0},
-		szRubyBinGem_serverSrc[MAX_PATH] = {0},
-		szRubyBinGem_serverDest[MAX_PATH] = {0},
-		szRubyBinGemwhichSrc[MAX_PATH] = {0},
-		szRubyBinGemwhichDest[MAX_PATH] = {0},
+//		szRubyBinErbSrc[MAX_PATH] = {0},
+//		szRubyBinErbDest[MAX_PATH] = {0},
+//		szRubyBinIrbSrc[MAX_PATH] = {0},
+//		szRubyBinIrbDest[MAX_PATH] = {0},
+//		szRubyBinRdocSrc[MAX_PATH] = {0},
+//		szRubyBinRdocDest[MAX_PATH] = {0},
+//		szRubyBinRiSrc[MAX_PATH] = {0},
+//		szRubyBinRiDest[MAX_PATH] = {0},
+//		szRubyBinTestrbSrc[MAX_PATH] = {0},
+//		szRubyBinTestrbDest[MAX_PATH] = {0},
+//		szRubyBinGemSrc[MAX_PATH] = {0},
+//		szRubyBinGemDest[MAX_PATH] = {0},
+//		szRubyBinGem_serverSrc[MAX_PATH] = {0},
+//		szRubyBinGem_serverDest[MAX_PATH] = {0},
+//		szRubyBinGemwhichSrc[MAX_PATH] = {0},
+//		szRubyBinGemwhichDest[MAX_PATH] = {0},
 		szRubyBinRailsSrc[MAX_PATH] = {0},
 		szRubyBinRailsDest[MAX_PATH] = {0},
-		szRubyBinRakeSrc[MAX_PATH] = {0},
-		szRubyBinRakeDest[MAX_PATH] = {0},
+//		szRubyBinRakeSrc[MAX_PATH] = {0},
+//		szRubyBinRakeDest[MAX_PATH] = {0},
 		//szRubyBinUpdate_rubygemsSrc[MAX_PATH] = {0},
 		//szRubyBinUpdate_rubygemsDest[MAX_PATH] = {0},
 		szRubyBinMongrelRailsSrc[MAX_PATH] = {0},
@@ -98,35 +98,35 @@ DWORD RegenerateConfFiles(HWND parent_window)
 	_snprintf(szPHPConfSrc,  sizeof(szPHPConfSrc),   "%s\\conf_files\\php.ini", szCurrentPath2);
 	_snprintf(szPHPConfDest, sizeof(szPHPConfDest),  "%s\\Apache\\php.ini", szCurrentPath2);
 
-	_snprintf(szRubyBinErbSrc,  sizeof(szRubyBinErbSrc),   "%s\\conf_files\\erb.bat", szCurrentPath2);
-	_snprintf(szRubyBinErbDest, sizeof(szRubyBinErbDest),  "%s\\ruby\\bin\\erb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinErbSrc,  sizeof(szRubyBinErbSrc),   "%s\\conf_files\\erb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinErbDest, sizeof(szRubyBinErbDest),  "%s\\ruby\\bin\\erb.bat", szCurrentPath2);
 
-	_snprintf(szRubyBinIrbSrc,  sizeof(szRubyBinIrbSrc),   "%s\\conf_files\\irb.bat", szCurrentPath2);
-	_snprintf(szRubyBinIrbDest, sizeof(szRubyBinIrbDest),  "%s\\ruby\\bin\\irb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinIrbSrc,  sizeof(szRubyBinIrbSrc),   "%s\\conf_files\\irb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinIrbDest, sizeof(szRubyBinIrbDest),  "%s\\ruby\\bin\\irb.bat", szCurrentPath2);
 
-	_snprintf(szRubyBinRdocSrc,  sizeof(szRubyBinRdocSrc),   "%s\\conf_files\\rdoc.bat", szCurrentPath2);
-	_snprintf(szRubyBinRdocDest, sizeof(szRubyBinRdocDest),  "%s\\ruby\\bin\\rdoc.bat", szCurrentPath2);
+//	_snprintf(szRubyBinRdocSrc,  sizeof(szRubyBinRdocSrc),   "%s\\conf_files\\rdoc.bat", szCurrentPath2);
+//	_snprintf(szRubyBinRdocDest, sizeof(szRubyBinRdocDest),  "%s\\ruby\\bin\\rdoc.bat", szCurrentPath2);
 
-	_snprintf(szRubyBinRiSrc,  sizeof(szRubyBinRiSrc),   "%s\\conf_files\\ri.bat", szCurrentPath2);
-	_snprintf(szRubyBinRiDest, sizeof(szRubyBinRiDest),  "%s\\ruby\\bin\\ri.bat", szCurrentPath2);
+//	_snprintf(szRubyBinRiSrc,  sizeof(szRubyBinRiSrc),   "%s\\conf_files\\ri.bat", szCurrentPath2);
+//	_snprintf(szRubyBinRiDest, sizeof(szRubyBinRiDest),  "%s\\ruby\\bin\\ri.bat", szCurrentPath2);
 
-	_snprintf(szRubyBinTestrbSrc,  sizeof(szRubyBinTestrbSrc),   "%s\\conf_files\\testrb.bat", szCurrentPath2);
-	_snprintf(szRubyBinTestrbDest, sizeof(szRubyBinTestrbDest),  "%s\\ruby\\bin\\testrb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinTestrbSrc,  sizeof(szRubyBinTestrbSrc),   "%s\\conf_files\\testrb.bat", szCurrentPath2);
+//	_snprintf(szRubyBinTestrbDest, sizeof(szRubyBinTestrbDest),  "%s\\ruby\\bin\\testrb.bat", szCurrentPath2);
 
-	_snprintf(szRubyBinGemSrc,  sizeof(szRubyBinGemSrc),   "%s\\conf_files\\gem.cmd", szCurrentPath2);
-	_snprintf(szRubyBinGemDest, sizeof(szRubyBinGemDest),  "%s\\ruby\\bin\\gem.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGemSrc,  sizeof(szRubyBinGemSrc),   "%s\\conf_files\\gem.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGemDest, sizeof(szRubyBinGemDest),  "%s\\ruby\\bin\\gem.cmd", szCurrentPath2);
 
-	_snprintf(szRubyBinGem_serverSrc,  sizeof(szRubyBinGem_serverSrc),   "%s\\conf_files\\gem_server.cmd", szCurrentPath2);
-	_snprintf(szRubyBinGem_serverDest, sizeof(szRubyBinGem_serverDest),  "%s\\ruby\\bin\\gem_server.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGem_serverSrc,  sizeof(szRubyBinGem_serverSrc),   "%s\\conf_files\\gem_server.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGem_serverDest, sizeof(szRubyBinGem_serverDest),  "%s\\ruby\\bin\\gem_server.cmd", szCurrentPath2);
 
-	_snprintf(szRubyBinGemwhichSrc,  sizeof(szRubyBinGemwhichSrc),   "%s\\conf_files\\gemwhich.cmd", szCurrentPath2);
-	_snprintf(szRubyBinGemwhichDest, sizeof(szRubyBinGemwhichDest),  "%s\\ruby\\bin\\gemwhich.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGemwhichSrc,  sizeof(szRubyBinGemwhichSrc),   "%s\\conf_files\\gemwhich.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinGemwhichDest, sizeof(szRubyBinGemwhichDest),  "%s\\ruby\\bin\\gemwhich.cmd", szCurrentPath2);
 
 	_snprintf(szRubyBinRailsSrc,  sizeof(szRubyBinRailsSrc),   "%s\\conf_files\\rails.cmd", szCurrentPath2);
 	_snprintf(szRubyBinRailsDest, sizeof(szRubyBinRailsDest),  "%s\\ruby\\bin\\rails.cmd", szCurrentPath2);
 
-	_snprintf(szRubyBinRakeSrc,  sizeof(szRubyBinRakeSrc),   "%s\\conf_files\\rake.cmd", szCurrentPath2);
-	_snprintf(szRubyBinRakeDest, sizeof(szRubyBinRakeDest),  "%s\\ruby\\bin\\rake.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinRakeSrc,  sizeof(szRubyBinRakeSrc),   "%s\\conf_files\\rake.cmd", szCurrentPath2);
+//	_snprintf(szRubyBinRakeDest, sizeof(szRubyBinRakeDest),  "%s\\ruby\\bin\\rake.cmd", szCurrentPath2);
 
 	//_snprintf(szRubyBinUpdate_rubygemsSrc,  sizeof(szRubyBinUpdate_rubygemsSrc),   "%s\\conf_files\\update_rubygems.cmd", szCurrentPath2);
 	//_snprintf(szRubyBinUpdate_rubygemsDest, sizeof(szRubyBinUpdate_rubygemsDest),  "%s\\ruby\\bin\\update_rubygems.cmd", szCurrentPath2);
@@ -162,11 +162,11 @@ DWORD RegenerateConfFiles(HWND parent_window)
 //	GenerateConfFile(szCurrentPath2, szRubyBinRdocSrc, szRubyBinRdocDest, ':');
 //	GenerateConfFile(szCurrentPath2, szRubyBinRiSrc, szRubyBinRiDest, ':');
 //	GenerateConfFile(szCurrentPath2, szRubyBinTestrbSrc, szRubyBinTestrbDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinGemSrc, szRubyBinGemDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinGem_serverSrc, szRubyBinGem_serverDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinGemwhichSrc, szRubyBinGemwhichDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinGemSrc, szRubyBinGemDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinGem_serverSrc, szRubyBinGem_serverDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinGemwhichSrc, szRubyBinGemwhichDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinRailsSrc, szRubyBinRailsDest, ':');
-	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
+//	GenerateConfFile(szCurrentPath2, szRubyBinRakeSrc, szRubyBinRakeDest, ':');
 	//GenerateConfFile(szCurrentPath2, szRubyBinUpdate_rubygemsSrc, szRubyBinUpdate_rubygemsDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinMongrelRailsSrc, szRubyBinMongrelRailsDest, ':');
 	GenerateConfFile(szCurrentPath2, szRubyBinMongrelRailsSvcSrc, szRubyBinMongrelRailsSvcDest, ':');

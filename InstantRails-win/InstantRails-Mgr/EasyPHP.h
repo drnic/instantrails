@@ -18,7 +18,7 @@
 
 #include "resource.h"
 
-#define INSTANT_RAILS_VERSION "1.4"
+#define INSTANT_RAILS_VERSION "1.5"
 
 #define WM_EASYPHP				WM_USER+1
 #define WM_LOG					WM_USER+2

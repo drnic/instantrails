@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html class="sIFR-hasFlash" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><title>MySQL/Ruby for Windows</title>
+
+
+  
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="52.2333,6.85" name="ICBM">
+  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://www.vandomburg.net/xml/rsd">
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.vandomburg.net/xml/rss20/feed.xml">
+  <link rel="alternate" type="application/atom+xml" title="Atom" href="http://www.vandomburg.net/xml/atom10/feed.xml">
+  <script src="mysql-ruby-windows_files/cookies.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/prototype.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/effects.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/typo.js" type="text/javascript"></script>
+  
+  <script type="text/javascript"></script>
+
+  <link rel="icon" href="http://www.vandomburg.net/images/theme/icon_favicon.ico">
+  <link rel="shortcut icon" href="http://www.vandomburg.net/images/theme/icon_favicon.ico">
+  <link href="mysql-ruby-windows_files/user-styles.css" media="all" rel="Stylesheet" type="text/css">
+  <link href="mysql-ruby-windows_files/print.css" media="print" rel="Stylesheet" type="text/css">
+  <link href="mysql-ruby-windows_files/core.css" media="screen" rel="Stylesheet" type="text/css">
+  <link href="mysql-ruby-windows_files/tables.css" media="screen" rel="Stylesheet" type="text/css">
+ 
+  <link href="mysql-ruby-windows_files/sIFR-screen.css" media="screen" rel="Stylesheet" type="text/css">
+  <link href="mysql-ruby-windows_files/sIFR-print.css" media="print" rel="Stylesheet" type="text/css">
+ 
+  <script src="mysql-ruby-windows_files/init.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/sifr.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/sifr-addons.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/sifrResize.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/behaviour.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/coreFunctions.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/styleSwitcher.js" type="text/javascript"></script>
+  <script src="mysql-ruby-windows_files/searchResults.js" type="text/javascript"></script>
+
+  <script type="text/javascript">
+  	
+  </script><!--[if IE]>
+  <link href="/stylesheets/theme/core-IE.css?1170703850" media="screen" rel="Stylesheet" type="text/css" />
+  <![endif]--><!--[if IE 5]>
+  <link href="/stylesheets/theme/ie5_5.css?1171029226" media="screen" rel="Stylesheet" type="text/css" />
+  <![endif]--></head><body class="sIFROn fixedLayout rightNav mediumText">
+<script type="text/javascript">setUserStyles();</script>
+<p id="top-link"><a href="#sizer" title="Go to the top of the page">Top</a></p>
+	<div id="container" class="clearfix">
+		<div id="sizer">
+			<div id="expander">
+				<div id="header">
+					<div id="jump-menu">
+						<h3>Jump Menu</h3>
+						<ul class="menu horizontal clearfix">
+							<li><a href="#sidebar" id="skipToNav" title="Jump to Navigation">Navigation</a></li>
+							<li><a href="#content" id="skipToContent" title="Jump to Content">Content</a></li>
+							<li><a href="#q" id="skipToSearch" onclick="document.getElementById('q').focus(); return false;" title="Jump to Search">Search</a></li>
+						</ul>
+					</div>
+					<div id="personalize">
+						<div id="personalization-help">
+							<h2><a href="#" title="What do all these icons mean?">Need Help?</a></h2>
+							<div id="personalization-instructions" style="display: none;">
+								<h3>So what are all these buttons for?</h3>
+								<p>Roderick
+van Domburg has many personalization features for you, the reader.
+Below is a key of what all the icons mean and which aspects of the
+layout they change.</p>
+								<ol class="menu">
+									<li><img src="mysql-ruby-windows_files/icon_sifrOn.png" alt="Use rendered Trade Gothic type face (default)"> Use rendered Trade Gothic type face (default)</li>
+									<li><img src="mysql-ruby-windows_files/icon_sifrOff.png" alt="Use fonts available on your system"> Use fonts available on your system</li>
+									<li><img src="mysql-ruby-windows_files/icon_mediumText.png" alt="Set font size to medium (default)"> Set font size to medium (default)</li>
+									<li><img src="mysql-ruby-windows_files/icon_largeText.png" alt="Set font size to large"> Set font size to large</li>
+									<li><img src="mysql-ruby-windows_files/icon_xLargeText.png" alt="Set font size to x-large"> Set font size to x-large</li>
+									<li><img src="mysql-ruby-windows_files/icon_jello.png" alt="Set layout to 'Jello' (min-width:770px \ max-width:1200px)"> Set layout to "Jello" (min-width:770px \ max-width:1200px) (default) </li>
+									<li><img src="mysql-ruby-windows_files/icon_fluid.png" alt="Set layout to 'Fluid' (width: 100%)"> Set layout to "Fluid" (width: 100%)</li>
+									<li><img src="mysql-ruby-windows_files/icon_fixed.png" alt="Set layout to 'Fixed' (width: 770px) (default)"> Set layout to "Fixed" (width: 770px)</li>
+									<li><img src="mysql-ruby-windows_files/icon_rightSideBar.png" alt="Place navigation on the right of the screen (default)"> Place navigation on the right of the screen (default)</li>
+									<li><img src="mysql-ruby-windows_files/icon_leftSideBar.png" alt="Place navigation on the left of the screen"> Place navigation on the left of the screen</li>
+								</ol>
+								<p id="personalization-instructions-close">
+									<a href="#" title="Close Help Instructions">Close Window</a>
+								</p>
+							</div>
+						</div>
+						<h3>Personalize</h3>
+						<h4>Use sIFR</h4>
+						<ul id="text-styles" class="menu horizontal clearfix">
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="sIFROn" title="Turn on rendered text (sIFR)(Default)">Turn on rendered text (sIFR)</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="sIFROff" title="Turn off rendered text ">Turn off rendered text</a></li>
+						</ul>
+						<h4>Text Size</h4>
+						<ul id="text-size" class="menu horizontal clearfix">
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="mediumText" title="Medium Font Size (Default)">Medium Font Size (Default)</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="largeText" title="Large Font Size (Large Font Size)">Large Font Size</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="xLargeText" title="X-Large Font Size (X-Large Font Size)">X-Large Font Size</a></li>
+						</ul>
+						<h4>Layout</h4>
+						<ul id="layout" class="menu horizontal clearfix">
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="jelloLayout" title="Jello Layout (Minimum Width:770px \ Max-Width:1200px)">Jello Layout</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="fluidLayout" title="Fluid Layout (100% Width)">Fluid Width Layout</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="fixedLayout" title="Fixed Width Layout (770px Wide)">Fixed Width Layout</a></li>
+						</ul>
+						<h4>Navigation Position</h4>
+						<ul id="navigation-position" class="menu horizontal clearfix">
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="leftNav" title="Left Navigation">Left Navigation</a></li>
+							<li><a href="http://www.vandomburg.net/pages/javascript-error" id="rightNav" title="Right Navigation">Right Navigation</a></li>
+						</ul>
+					</div>
+					<div id="logo">
+						<h1 class="sIFR-replaced" id="site-name"><embed style="width: 310px; height: 34px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=&lt;a href=%22asfunction:_root.launchURL,0%22&gt;Roderick van Domburg&lt;/a&gt;&amp;textcolor=#ffffff&amp;hovercolor=#f2f2f2&amp;linkcolor=#ffffff&amp;w=310&amp;h=34&amp;sifr_url_0=/" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="34" width="310"><span class="sIFR-alternate"><a href="http://www.vandomburg.net/">Roderick van Domburg</a></span></h1>
+						<h2 class="sIFR-replaced" id="sub-title"><embed style="width: 379px; height: 22px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=%22Thinking men cannot be ruled.%22 -Ayn Rand&amp;textcolor=#ffffff&amp;hovercolor=#f2f2f2&amp;linkcolor=#ffffff&amp;w=379&amp;h=22" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="22" width="379"><span class="sIFR-alternate">"Thinking men cannot be ruled." -Ayn Rand</span></h2>
+					</div>
+					
+					<div id="search">
+						<a href="#" title="Close search results" id="search-results-close" style="display: none;">Close search results</a>
+						<form action="/articles/search" id="sform" method="get">
+	<div id="live-search-fieldset"><fieldset>
+		<label for="q">Live Search:</label>
+		<input autocomplete="off" id="q" name="q" value="" class="text" type="text">
+		<img alt="Search-throbber" id="search_spinner" src="mysql-ruby-windows_files/search-throbber.gif" style="display: none;">
+	</fieldset></div>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+new Form.Element.Observer('q', 1, function(element, value) {new Ajax.Updater('search-results', '/live/search', {asynchronous:true, evalScripts:true, onComplete:function(request){showResults()}, onLoading:function(request){Element.show('search_spinner')}, parameters:'q=' + escape($F('q'))})})
+//]]>
+</script>
+
+
+						<div id="search-results" style="display: none;"></div>
+					</div>
+				</div>
+				<div id="content" class="clearfix">
+					<div id="main-wrapper">
+						<div id="main">
+							<div class="post normal-post">
+  <h1 class="sIFR-replaced"><embed style="width: 468px; height: 36px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=MySQL/Ruby for Windows&amp;textcolor=#731400&amp;hovercolor=#666666&amp;linkcolor=#731400&amp;w=468&amp;h=36" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="36" width="468"><span class="sIFR-alternate">MySQL/Ruby for Windows</span></h1>
+
+<p><a href="http://tmtm.org/en/mysql/ruby/">MySQL/Ruby</a> is a native MySQL database adapter for Ruby by Tomita Masahiro, delivering:</p>
+
+<ul>
+<li>A <a href="http://weblog.rubyonrails.org/articles/2005/10/30/get-10-15-more-performance-with-mysql-rails">10-15% performance increase</a> over the <a href="http://tmtm.org/en/ruby/mysql/">pure Ruby</a> one.</li>
+<li>Proper compatibility with the new MySQL authentication mechanism as of MySQL 4.1 and up.</li>
+<li>An optional performance adapter that increases performance another 5-30% by incorporating Stefan Kaes’ <a href="http://railsexpress.de/blog/articles/2006/10/05/make-ruby-mysql-create-less-garbage">garbage correction patch</a>.</li>
+</ul>
+
+<p>What I provide here is a distribution for Windows. It was included by default in <a href="http://instantrails.rubyforge.org/wiki/wiki.pl">Instant Rails</a>
+1.2 but was taken out in 1.3a because of recurring segfaults on Windows
+2000. After having fixed these segfaults, Instant Rails has included it
+once again.</p>
+
+<h2 class="sIFR-replaced"><embed style="width: 468px; height: 30px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Background&amp;textcolor=#d26941&amp;hovercolor=#666666&amp;linkcolor=#d26941&amp;w=468&amp;h=30" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="30" width="468"><span class="sIFR-alternate">Background</span></h2>
+
+<p>Getting MySQL/Ruby up and running on Windows used to be a bit of a hassle. <a href="http://seagecko.org/thoughts/in-the-past/2004/09/09/ruby-mysql-and-windows/">Several</a> <a href="http://jeroen.concept-q.biz/files/">projects</a>
+presented solutions but many of them went stale and didn’t provide
+concise building instructions, so I figured I started maintaining a
+project of my own. And, unlike some other distributions, this one
+doesn’t require any additional runtime libraries.</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Solving the Segfaults on Windows 2000&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Solving the Segfaults on Windows 2000</span></h3>
+
+<p>Windows MySQL/Ruby was plagued by recurring segfaults on Windows
+2000 in the spring of 2006. After much debugging and conversation with
+the Ruby community, reader <a href="http://www.e-tobi.net/">Tobias Grimm</a> provided a patch that finally solved the issue. It has been included in the 2.7.1 release. Many thanks, Tobias!</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Fixing the garbage creation issue&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Fixing the garbage creation issue</span></h3>
+
+<p>Stefan Kaes discovered that MySQL/Ruby <a href="http://www.vandomburg.net/pages/railsexpress.de/blog/articles/2006/10/05/make-ruby-mysql-create-less-garbage">creates a lot more garbage</a>
+than it is supposed to, and this distribution is the first to
+incorporate that fix in an optional performance version of the adapter.
+Kudos to Stefan for his continuing and amazing quest to improve Ruby on
+Rails performance.</p>
+
+<h2 class="sIFR-replaced"><embed style="width: 468px; height: 30px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Installation&amp;textcolor=#d26941&amp;hovercolor=#666666&amp;linkcolor=#d26941&amp;w=468&amp;h=30" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="30" width="468"><span class="sIFR-alternate">Installation</span></h2>
+
+<p>Installation is easy. Just grab a small download and follow three simple steps.</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Download&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Download</span></h3>
+
+<ul>
+<li><strong>Current release:</strong> <a href="http://www.vandomburg.net/files/mysql-ruby-windows-2.7.3.zip">MySQL/Ruby 2.7.3</a></li>
+<li>Previous release: <a href="http://www.vandomburg.net/files/mysql-ruby-windows-2.7.1.zip">MySQL/Ruby 2.7.1</a></li>
+</ul>
+
+<p>These packages contain libraries for use with Ruby 1.8.5 and MySQL
+4.1 and up (earlier versions may work but are untested and
+unsupported). They have been compiled using Visual Studio C++ 6.0,
+optimizing for speed and modern CPUs. Follow the instructions below if
+you need to compile a custom version.</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Setup&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Setup</span></h3>
+
+<ol>
+<li><p>Select and copy the <code>.so</code> file of your choice to <code>%RUBYARCHDIR%</code> and <strong>rename</strong> it to <code>mysql.so</code> (e.g. <code>C:\ruby\lib\ruby\site_ruby\1.8\i386-msvcrt\mysql.so</code>).</p>
+
+<ul>
+<li><p>The 4.1 and 5.0 directories correspond to your MySQL server
+version. (For all you tech savvies: they are generally intercheangable,
+but differ slightly on byte-level in terms of argument types.)</p></li>
+<li><p>The ‘vanilla’ library is the stock MySQL/Ruby 2.7.3 we all know and love. The ‘performance’ library has Stefan Kaes’ <a href="http://railsexpress.de/blog/articles/2006/10/05/make-ruby-mysql-create-less-garbage">garbage correction patch</a>
+applied that can increase performance anywhere from 5% to 30% depending
+on the size of the data set you’re accessing. The flip-side is this: it
+is less tested, so take your pick!</p></li>
+</ul></li>
+<li><p>MySQL/Ruby needs a DLL dependency satisfied in order to run. You can do this by <em>either</em>:</p>
+
+<ul>
+<li><p>(Recommended) Including the MySQL bindir in your path (e.g. <code>C:\Program Files\MySQL\MySQL Server 5.0\bin</code>).</p></li>
+<li><p>Copying <code>libmysql.dll</code> from your MySQL bindir or source package to your Ruby bindir (e.g. <code>C:\ruby\bin</code>).</p></li>
+</ul>
+
+<blockquote>
+    <p><strong>Instant Rails users:</strong> You will find that the <code>libmysql.dll</code> from the included PHP distribution won’t work. Instead, grab a <code>libmysql.dll</code> from a real MySQL distribution. InstantRails 1.3a comes with MySQL 4.1.9, which you can download <a href="http://downloads.mysql.com/archives/mysql-4.1/mysql-4.1.9-win32.zip">here</a>.</p>
+</blockquote></li>
+<li><p>To verify, try to run the following code:</p>
+
+<blockquote>
+    <p><code>require 'mysql'</code><br>
+    <code>puts Mysql::VERSION</code></p>
+</blockquote>
+
+<p>If it outputs <code>20703</code>, then you’re all set up! <a href="http://www.vandomburg.net/articles/2006/09/20/mysql-ruby-for-windows-does-tcp-ip">Just be sure that you’re MySQL server has TCP/IP connections enabled.</a></p></li>
+</ol>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Donations&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Donations</span></h3>
+
+<p>If this solution helps you in your business or your professional life, please consider getting me an item off of my <a href="http://www.amazon.com/gp/registry/registry.html/102-0519676-9054530?type=wishlist&amp;id=1PCRKOICRS6XM">Amazon wish list</a>.
+Donations ensure you that I can continue support MySQL/Ruby for Windows
+and cut me a fair share of your profits. And at about $20 and below,
+that’s a bargain.</p>
+
+<h2 class="sIFR-replaced"><embed style="width: 468px; height: 30px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Rolling Your Own Release&amp;textcolor=#d26941&amp;hovercolor=#666666&amp;linkcolor=#d26941&amp;w=468&amp;h=30" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="30" width="468"><span class="sIFR-alternate">Rolling Your Own Release</span></h2>
+
+<p>If you’d like to roll a Windows release of your own, perhaps
+compiled against a different version of MySQL or Ruby or with debug
+symbols included, here’s how to.</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Prerequisites&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Prerequisites</span></h3>
+
+<p>You’ll need to have the following set up:</p>
+
+<ul>
+<li><p>Microsoft Visual C++ <strong>6.0</strong> with Service Pack 6.
+Using newer versions will result in compatibility issues and recurring
+segfaults. There have been talks in the Windows Ruby community about
+upgrading to Visual Studio 2005, but that will certainly not happen
+before the fall of 2006 at the very earliest and possibly much later.</p></li>
+<li><p><a href="http://dev.mysql.com/downloads/">MySQL</a> (be sure to install the development libraries and headers)</p></li>
+<li><p><a href="http://rubyinstaller.rubyforge.org/wiki/wiki.pl">Ruby for Windows</a></p></li>
+<li><p><a href="http://tmtm.org/mysql/ruby/README.html">MySQL/Ruby</a></p></li>
+<li><p>Optionally, Stefan Kaes’ <a href="http://railsexpress.de/blog/articles/2006/10/05/make-ruby-mysql-create-less-garbage">garbage correction patch</a>. You will need to perform the patch manually as Stefan’s patch is against an earlier version of MySQL/Ruby.</p></li>
+</ul>
+
+<p>Unpack the MySQL/Ruby tarball to a location of your choosing and install the rest.</p>
+
+<h3 class="sIFR-replaced"><embed style="width: 468px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Prepping and Building&amp;textcolor=#d78807&amp;hovercolor=#666666&amp;linkcolor=#d78807&amp;w=468&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="468"><span class="sIFR-alternate">Prepping and Building</span></h3>
+
+<p>With everything set up to go, we will need to set a few things up for a build to succeed. Assuming you installed Ruby to <code>C:\ruby</code> and are compiling against MySQL 5.0:</p>
+
+<ol>
+<li><p>Fire up Visual C++ and create an empty Win32 Dynamic-Link Library project.</p></li>
+<li><p>Rename <code>mysql.c.in</code> to <code>mysql.c</code> and add it to your Visual C++ project.</p></li>
+<li><p>Open up the Visual C++ project settings, and set the following
+configuration properties in the appropriate configuration (I recommend
+setting “All Configurations”):</p>
+
+<ul>
+<li><p>C/C++ &gt; Processor: Pick the one you’re targeting lest you’ll
+find yourself with a woefully underoptimized library. You will usually
+want to select “Pentium Pro” as that represents anything newer than a
+plain old Pentium.</p></li>
+<li><p>C/C++ &gt; Code Generation &gt; Use run-time library: Multithreaded DLL</p></li>
+<li><p>C/C++ &gt; Optimizations &gt; Optimizations: choose as you see fit, but you must ensure that “Frame-Pointer Omission” is <strong>disabled</strong>. Ruby’s garbage collector needs frame pointers or random segfaults will occur.</p>
+
+<p>My distribution is optimized as follows: Global Optimizations, Favor Fast Code. Inline function expansion: Only __inline</p></li>
+<li><p>C/C++ &gt; Preprocessor &gt; Preprocessor definitions: add <code>HAVE_MYSQL_H</code> to the list (comma-separated).</p></li>
+<li><p>C/C++ &gt; Preprocessor &gt; Additional include directories: <code>C:\ruby\lib\ruby\1.8\i386-mswin32,C:\Program Files\MySQL\MySQL Server 5.0\include</code></p></li>
+<li><p>Link &gt; Input &gt; Object/library modules: add <code>msvcrt-ruby18.lib libmysql.lib</code> to the list (space-separated).</p></li>
+<li><p>Link &gt; Input &gt; Additional library path: <code>C:\ruby\lib,C:\Program Files\MySQL\MySQL Server 5.0\lib\opt</code></p></li>
+<li><p>Link &gt; Project Options:  add <code>/EXPORT:Init_mysql</code> to the command line. Be sure to explicitly pick a configuration or this textfield will be greyed out.</p></li>
+</ul></li>
+<li><p>If compiling against MySQL 5.0.27: to the top of <code>mysql.c</code> add</p>
+
+<blockquote>
+    <p>#define ulong unsigned long</p>
+</blockquote></li>
+<li><p>Now build the project.</p></li>
+</ol>
+
+<p>If all went well, you should end up with a DLL file in the output
+folder you configured. Follow the regular installation instructions,
+and you’re all set with your home-built MySQL/Ruby!</p>
+
+<h2 class="sIFR-replaced"><embed style="width: 468px; height: 30px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Feedback&amp;textcolor=#d26941&amp;hovercolor=#666666&amp;linkcolor=#d26941&amp;w=468&amp;h=30" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="30" width="468"><span class="sIFR-alternate">Feedback</span></h2>
+
+<p>Words of praise? Doesn’t work for you? All of that and more is welcome at my address. Please leave your feedback at <a href="http://www.vandomburg.net/articles/tag/mysql">a suitable newsitem</a> on my blog. And if this helps you in your business or professional life, please also consider getting me an item off of my <a href="http://www.amazon.com/gp/registry/registry.html/102-0519676-9054530?type=wishlist&amp;id=1PCRKOICRS6XM">Amazon wish list</a>. Donations ensure you that I can continue support MySQL/Ruby for Windows and cut me a fair share of your profits.</p>
+</div>
+
+							<script type="text/javascript">
+//<![CDATA[
+show_dates_as_local_time()
+//]]>
+</script>
+					      </div>
+				      </div>
+					<div id="sidebar-wrapper">
+						<div id="sidebar">
+            					
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Rails Questions?&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Rails Questions?</span></h3>
+Got a question about Rails, or stuck in the midst of your project? Send
+me a note. I will gladly help you out in exchange for an item off of my
+<a href="http://www.amazon.com/gp/registry/registry.html/102-0519676-9054530?type=wishlist&amp;id=1PCRKOICRS6XM">Amazon wish list</a>.
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Facts&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Facts</span></h3>
+  <ul>
+  <li><a href="http://www.vandomburg.net/pages/about">About Roderick</a></li>
+  <li><a href="http://www.linkedin.com/in/vandomburg">LinkedIn Profile</a></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Things&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Things</span></h3>
+  <ul>
+  <li><a href="http://www.vandomburg.net/pages/freebsd-ports">FreeBSD Ports</a></li>
+  <li><a href="http://www.vandomburg.net/pages/mysql-ruby-windows">MySQL/Ruby for Windows</a></li>
+  <li><a href="http://www.vandomburg.net/pages/postgres-ruby-windows">Postgres/Ruby for Windows</a></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Tags&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Tags</span></h3>
+<p style="overflow: hidden;">
+<span style="font-size: 67.1642%;"><a href="http://www.vandomburg.net/articles/tag/howto">howto</a></span>
+<span style="font-size: 67.1642%;"><a href="http://www.vandomburg.net/articles/tag/install">install</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/instantrails">InstantRails</a></span>
+<span style="font-size: 200%;"><a href="http://www.vandomburg.net/articles/tag/mysql">MySQL</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/navy">navy</a></span>
+<span style="font-size: 67.1642%;"><a href="http://www.vandomburg.net/articles/tag/performance">performance</a></span>
+<span style="font-size: 67.1642%;"><a href="http://www.vandomburg.net/articles/tag/photos">photos</a></span>
+<span style="font-size: 89.5522%;"><a href="http://www.vandomburg.net/articles/tag/postgresql">PostgreSQL</a></span>
+<span style="font-size: 134.328%;"><a href="http://www.vandomburg.net/articles/tag/rails">Rails</a></span>
+<span style="font-size: 200%;"><a href="http://www.vandomburg.net/articles/tag/ruby">Ruby</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/segfaults">segfaults</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/typo">Typo</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/usb">USB</a></span>
+<span style="font-size: 200%;"><a href="http://www.vandomburg.net/articles/tag/windows">Windows</a></span>
+<span style="font-size: 66.6667%;"><a href="http://www.vandomburg.net/articles/tag/wordpress">WordPress</a></span>
+</p>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+    <div id="delicious">
+    <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=&lt;a href=%22asfunction:_root.launchURL,0%22&gt;del.icio.us/roderickvd&lt;/a&gt;&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25&amp;sifr_url_0=http://del.icio.us/roderickvd" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate"><a href="http://del.icio.us/roderickvd">del.icio.us/roderickvd</a></span></h3>
+            <ul>
+      
+      <li>
+        <a href="http://www.tonyspencer.com/2007/01/26/seo-for-ruby-on-rails/" title="">SEO for Ruby on Rails</a>
+              </li>
+      
+      <li>
+        <a href="http://www.erikveen.dds.nl/distributingrubyapplications/rails.html" title="">Distributing Rails Applications</a>
+              </li>
+      
+      <li>
+        <a href="http://www.agiledata.org/" title="">Agile Data Home Page</a>
+              </li>
+      
+      <li>
+        <a href="http://www.featuredrivendevelopment.com/" title="">Feature Driven Development</a>
+              </li>
+          </ul>
+      </div>
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Blogroll&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Blogroll</span></h3>
+  <ul>
+  <li><a href="http://www.axeleissens.nl/">Axel Eissens</a></li>
+  <li><a href="http://bartpegge.waarbenjij.nu/">Bart Pegge</a></li>
+  <li><a href="http://www.rorynuyens.nl/">Rory Nuyens</a></li>
+  <li><a href="http://www.timpostema.nl/weblog">Tim Postema</a></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Lifelines&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Lifelines</span></h3>
+  <ul>
+  <li><a href="http://www.pcsa-incognito.nl/" title="Fraternity">Heerendispuut P.C.S.A. Incognito</a></li>
+  <li><a href="http://www.risicomanagement.nl/" title="Work">Nederlands Adviesbureau voor Risicomanagement</a></li>
+  <li><a href="http://www.utwente.nl/en/" title="Study">University of Twente</a></li>
+</ul>
+
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=Syndicate&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">Syndicate</span></h3>
+<ul>
+    <li><a href="http://www.vandomburg.net/xml/rss20/feed.xml" title="Articles feed">Articles</a></li>
+  
+    <li><a href="http://www.vandomburg.net/xml/rss20/comments/feed.xml" title="Comments feed">Comments</a></li>
+  
+  
+</ul>
+
+</div>
+
+
+      
+<div class="sidebar-node">
+  <h3 class="sIFR-replaced"><embed style="width: 160px; height: 25px;" class="sIFR-flash" type="application/x-shockwave-flash" sifr="true" bgcolor="transparent" wmode="transparent" flashvars="txt=License&amp;textcolor=#a1b436&amp;hovercolor=#666666&amp;linkcolor=#a1b436&amp;w=160&amp;h=25" quality="best" src="mysql-ruby-windows_files/tradegothic.swf" height="25" width="160"><span class="sIFR-alternate">License</span></h3>
+  <!--Creative Commons License--><ul><li><a rel="license" href="http://creativecommons.org/licenses/by/2.5/nl/deed.en">Attribution 2.5 Netherlands</a></li></ul><!--/Creative Commons License-->
+<!--/Creative Commons License--><!-- <rdf:RDF xmlns="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+		<Work rdf:about="">
+			<license rdf:resource="http://creativecommons.org/licenses/by/2.5/nl/deed.en" />
+		</Work>
+		<License rdf:about="http://creativecommons.org/licenses/by/2.5/nl/deed.en"><permits rdf:resource="http://web.resource.org/cc/Reproduction"/><permits rdf:resource="http://web.resource.org/cc/Distribution"/><requires rdf:resource="http://web.resource.org/cc/Notice"/><requires rdf:resource="http://web.resource.org/cc/Attribution"/><permits rdf:resource="http://web.resource.org/cc/DerivativeWorks"/></License></rdf:RDF> -->
+
+</div>
+
+
+  
+
+
+						</div>
+					</div>
+					<ul class="menu" id="button-nav">
+						<li id="typo-powered"><a href="http://typo.leetsoft.com/trac/" title="Powered By TYPO">Powered By Typo</a></li>
+						<li id="validate-CSS"><a href="http://jigsaw.w3.org/css-validator/validator?uri=http://www.vandomburg.net/" title="Validate documents CSS">Validate CSS</a></li>
+						<li id="validate-XHTML"><a href="http://validator.w3.org/check?uri=referer" title="Validate XHTML 1.0">Validate XHTML 1.0</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="footer">
+		<p><strong>Template Design: <a href="http://www.leevigraham.com/" title="Template Design - The Leevi Graham (http://www.leevigraham.com)">Leevi Graham</a></strong></p>
+	</div>
+	<script type="text/javascript">
+		init();
+	</script>
+	
+</body></html>
