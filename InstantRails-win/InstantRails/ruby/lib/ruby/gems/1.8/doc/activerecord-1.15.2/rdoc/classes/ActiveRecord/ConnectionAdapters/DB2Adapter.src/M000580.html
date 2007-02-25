@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>columns (ActiveRecord::ConnectionAdapters::DB2Adapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/db2_adapter.rb, line 131</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+          <span class="ruby-identifier">result</span> = []
+          <span class="ruby-identifier">schema</span> = <span class="ruby-ivar">@connection_options</span>[<span class="ruby-identifier">:schema</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">'%'</span>
+          <span class="ruby-identifier">with_statement</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">stmt</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">stmt</span>.<span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">schema</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> 
+              <span class="ruby-identifier">c_name</span> = <span class="ruby-identifier">c</span>[<span class="ruby-value">3</span>].<span class="ruby-identifier">downcase</span>
+              <span class="ruby-identifier">c_default</span> = <span class="ruby-identifier">c</span>[<span class="ruby-value">12</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'NULL'</span> <span class="ruby-operator">?</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">c</span>[<span class="ruby-value">12</span>]
+              <span class="ruby-identifier">c_default</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/^'(.*)'$/</span>, <span class="ruby-value str">'\1'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">c_default</span>.<span class="ruby-identifier">nil?</span>
+              <span class="ruby-identifier">c_type</span> = <span class="ruby-identifier">c</span>[<span class="ruby-value">5</span>].<span class="ruby-identifier">downcase</span>
+              <span class="ruby-identifier">c_type</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;(#{c[6]})&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">c</span>[<span class="ruby-value">6</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">c</span>[<span class="ruby-value">6</span>] <span class="ruby-operator">!=</span> <span class="ruby-value str">''</span>
+              <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Column</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">c_name</span>, <span class="ruby-identifier">c_default</span>, <span class="ruby-identifier">c_type</span>, <span class="ruby-identifier">c</span>[<span class="ruby-value">17</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'YES'</span>)
+            <span class="ruby-keyword kw">end</span> 
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">result</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

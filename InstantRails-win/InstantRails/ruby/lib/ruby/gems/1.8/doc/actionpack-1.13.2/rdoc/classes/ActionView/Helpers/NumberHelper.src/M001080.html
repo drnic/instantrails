@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>number_to_phone (ActionView::Helpers::NumberHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/number_helper.rb, line 20</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">number_to_phone</span>(<span class="ruby-identifier">number</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">number</span>       = <span class="ruby-identifier">number</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">number</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-identifier">options</span>      = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">stringify_keys</span>
+        <span class="ruby-identifier">area_code</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;area_code&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">delimiter</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;delimiter&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;-&quot;</span>
+        <span class="ruby-identifier">extension</span>    = <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;extension&quot;</span>].<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">strip</span> <span class="ruby-operator">||</span> <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">country_code</span> = <span class="ruby-identifier">options</span>[<span class="ruby-value str">&quot;country_code&quot;</span>] <span class="ruby-operator">||</span> <span class="ruby-keyword kw">nil</span>
+
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-identifier">str</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;+#{country_code}#{delimiter}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">country_code</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">area_code</span>
+            <span class="ruby-identifier">number</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/([0-9]{1,3})([0-9]{3})([0-9]{4}$)/</span>,<span class="ruby-node">&quot;(\\1) \\2#{delimiter}\\3&quot;</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">number</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/([0-9]{1,3})([0-9]{3})([0-9]{4})$/</span>,<span class="ruby-node">&quot;\\1#{delimiter}\\2#{delimiter}\\3&quot;</span>)
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; x #{extension}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">extension</span>.<span class="ruby-identifier">blank?</span>
+          <span class="ruby-identifier">str</span>
+        <span class="ruby-keyword kw">rescue</span>
+          <span class="ruby-identifier">number</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

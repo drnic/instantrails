@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search for items by name, beginning from the item with index <em>start</em>. If the start item is -1, the search will start at the first item in the list. The search <em>flags</em> may be <tt>SEARCH_FORWARD</tt> or <tt>SEARCH_BACKWARD</tt>, to control the search direction; this can be combined with <tt>SEARCH_NOWRAP</tt> or <tt>SEARCH_WRAP</tt> to control whether the search wraps at the start or end of the list. The option <tt>SEARCH_IGNORECASE</tt> causes a case-insensitive match. Finally, passing <tt>SEARCH_PREFIX</tt> causes searching for a prefix of the item name. Returns the index of the first matching item, or -1 if no matching item is found.
+full_name: Fox::FXComboBox#findItem
+is_singleton: false
+name: findItem
+params: (text, start=-1, flags=SEARCH_FORWARD|SEARCH_WRAP)
+visibility: public

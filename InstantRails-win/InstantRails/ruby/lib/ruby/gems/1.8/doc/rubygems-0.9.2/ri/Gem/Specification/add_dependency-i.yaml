@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a dependency to this Gem. For example,
+- !ruby/struct:SM::Flow::VERB 
+  body: "  spec.add_dependency('jabber4r', '&gt; 0.1', '&lt;= 0.5')\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "gem:"
+    body: "[String or Gem::Dependency] The Gem name/dependency."
+  - !ruby/struct:SM::Flow::LI 
+    label: "requirements:"
+    body: "[default=&quot;&gt; 0.0.0&quot;] The version requirements."
+  type: :NOTE
+full_name: Gem::Specification#add_dependency
+is_singleton: false
+name: add_dependency
+params: (gem, *requirements)
+visibility: public

@@ -1,0 +1,41 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: matches
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Selects content from the RJS response.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Narrowing down
+- !ruby/struct:SM::Flow::P 
+  body: With no arguments, asserts that one or more elements are updated or inserted by RJS statements.
+- !ruby/struct:SM::Flow::P 
+  body: Use the <tt>id</tt> argument to narrow down the assertion to only statements that update or insert an element with that identifier.
+- !ruby/struct:SM::Flow::P 
+  body: Use the first argument to narrow down assertions to only statements of that type. Possible values are +:replace+, +:replace_html+ and +:insert_html+.
+- !ruby/struct:SM::Flow::P 
+  body: Use the argument +:insert+ followed by an insertion position to narrow down the assertion to only statements that insert elements in that position. Possible values are +:top+, +:bottom+, +:before+ and +:after+.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Using blocks
+- !ruby/struct:SM::Flow::P 
+  body: "Without a block, #assert_select_rjs merely asserts that the response contains one or more RJS statements that replace or update content."
+- !ruby/struct:SM::Flow::P 
+  body: "With a block, #assert_select_rjs also selects all elements used in these statements and passes them to the block. Nested assertions are supported."
+- !ruby/struct:SM::Flow::P 
+  body: "Calling #assert_select_rjs with no arguments and using nested asserts asserts that the HTML content is returned by one or more RJS statements. Using #assert_select directly makes the same assertion on the content, but without distinguishing whether the content is returned in an HTML or JavaScript."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Replacing the element foo.\n  # page.replace 'foo', ...\n  assert_select_rjs :replace, &quot;foo&quot;\n\n  # Replacing with the chained RJS proxy.\n  # page[:foo].replace ...\n  assert_select_rjs :chained_replace, 'foo'\n\n  # Inserting into the element bar, top position.\n  assert_select_rjs :insert, :top, &quot;bar&quot;\n\n  # Changing the element foo, with an image.\n  assert_select_rjs &quot;foo&quot; do\n    assert_select &quot;img[src=/images/logo.gif&quot;&quot;\n  end\n\n  # RJS inserts or updates a list with four items.\n  assert_select_rjs do\n    assert_select &quot;ol&gt;li&quot;, 4\n  end\n\n  # The same, but shorter.\n  assert_select &quot;ol&gt;li&quot;, 4\n"
+full_name: ActionController::Assertions::SelectorAssertions#assert_select_rjs
+is_singleton: false
+name: assert_select_rjs
+params: |
+  assert_select_rjs(id?) { |elements| ... }
+  assert_select_rjs(statement, id?) { |elements| ... }
+  assert_select_rjs(:insert, position, id?) { |elements| ... }
+
+visibility: public

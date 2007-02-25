@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>valid_group? (Mongrel::Command::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/command.rb, line 127</span>
+127:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">valid_group?</span>(<span class="ruby-identifier">group</span>)
+128:         <span class="ruby-identifier">valid?</span>(<span class="ruby-ivar">@user</span>, <span class="ruby-value str">&quot;You must also specify a user.&quot;</span>)
+129:         <span class="ruby-keyword kw">begin</span>
+130:           <span class="ruby-constant">Etc</span>.<span class="ruby-identifier">getgrnam</span>(<span class="ruby-identifier">group</span>)
+131:         <span class="ruby-keyword kw">rescue</span>
+132:           <span class="ruby-identifier">failure</span> <span class="ruby-node">&quot;Group does not exist: #{group}&quot;</span>
+133:           <span class="ruby-ivar">@valid</span> = <span class="ruby-keyword kw">false</span>
+134:         <span class="ruby-keyword kw">end</span>
+135:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

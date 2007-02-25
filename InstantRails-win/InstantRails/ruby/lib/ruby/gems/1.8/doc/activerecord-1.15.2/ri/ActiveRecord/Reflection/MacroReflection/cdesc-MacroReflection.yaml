@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: active_record
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Abstract base class for AggregateReflection and AssociationReflection that describes the interface available for both of those classes. Objects of AggregateReflection and AssociationReflection are returned by the Reflection::ClassMethods.
+constants: []
+
+full_name: ActiveRecord::Reflection::MacroReflection
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: class_name
+- !ruby/object:RI::MethodSummary 
+  name: klass
+- !ruby/object:RI::MethodSummary 
+  name: macro
+- !ruby/object:RI::MethodSummary 
+  name: name
+- !ruby/object:RI::MethodSummary 
+  name: options
+name: MacroReflection
+superclass: Object

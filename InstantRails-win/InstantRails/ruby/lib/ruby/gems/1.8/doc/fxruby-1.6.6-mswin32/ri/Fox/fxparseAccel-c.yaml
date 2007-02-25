@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Return a &quot;hot key&quot; code value that represents the accelerator key described in the string <em>str</em>. The string can contain some combination of the modifiers <em>Ctrl</em>, <em>Alt</em> and <em>Shift</em>, plus the key of interest. For example, to get the accelerator key for Ctrl+Alt+F7, you'd use:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hotKey = fxparseAccel(&quot;Ctrl+Alt+F7&quot;)\n"
+full_name: Fox::fxparseAccel
+is_singleton: true
+name: fxparseAccel
+params: (str)
+visibility: public

@@ -1,0 +1,41 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a string with a div containing all of the error messages for the objects located as instance variables by the names given. If more than one object is specified, the errors for the objects are displayed in the order that the object names are provided.
+- !ruby/struct:SM::Flow::P 
+  body: "This div can be tailored by the following options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>header_tag</tt> - Used for the header of the error div (default: h2)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>id</tt> - The id of the error div (default: errorExplanation)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>class</tt> - The class of the error div (default: errorExplanation)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>object_name</tt> - The object name to use in the header, or
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: any text that you prefer. If <tt>object_name</tt> is not set, the name of the first object will be used.
+- !ruby/struct:SM::Flow::P 
+  body: "Specifying one object:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error_messages_for 'user'\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Specifying more than one object (and using the name 'user' in the header as the <tt>object_name</tt> instead of 'user_common'):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error_messages_for 'user_common', 'user', :object_name =&gt; 'user'\n"
+- !ruby/struct:SM::Flow::P 
+  body: "NOTE: This is a pre-packaged presentation of the errors with embedded strings and a certain HTML structure. If what you need is significantly different from the default presentation, it makes plenty of sense to access the object.errors instance yourself and set it up. View the source of this method to see how easy it is."
+full_name: ActionView::Helpers::ActiveRecordHelper#error_messages_for
+is_singleton: false
+name: error_messages_for
+params: (*params)
+visibility: public

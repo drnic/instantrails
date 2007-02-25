@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Configuration options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>column</tt> - specifies the column name to use for keeping the position integer (default: position)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>scope</tt> - restricts what is to be considered a list. Given a symbol, it'll attach &quot;_id&quot; (if that hasn't been already) and use that as the foreign key restriction. It's also possible to give it an entire string that is interpolated if you need a tighter scope than just a foreign key. Example: <tt>acts_as_list :scope =&gt; 'todo_list_id = #{todo_list_id} AND completed = 0'</tt>"
+  type: :BULLET
+full_name: ActiveRecord::Acts::List::ClassMethods#acts_as_list
+is_singleton: false
+name: acts_as_list
+params: (options = {})
+visibility: public

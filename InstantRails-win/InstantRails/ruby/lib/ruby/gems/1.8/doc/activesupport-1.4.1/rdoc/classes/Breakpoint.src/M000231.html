@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>breakpoint (Breakpoint)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/breakpoint.rb, line 103</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">breakpoint</span>(<span class="ruby-identifier">id</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">context</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-identifier">callstack</span> = <span class="ruby-identifier">caller</span>
+    <span class="ruby-identifier">callstack</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-value">0</span>, <span class="ruby-value">3</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">callstack</span>.<span class="ruby-identifier">first</span>[<span class="ruby-value str">&quot;breakpoint&quot;</span>]
+    <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>, <span class="ruby-identifier">method</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">callstack</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/^(.+?):(\d+)(?::in `(.*?)')?/</span>).<span class="ruby-identifier">captures</span>
+
+    <span class="ruby-identifier">message</span> = <span class="ruby-value str">&quot;Executing break point &quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">id</span> <span class="ruby-value">? </span><span class="ruby-node">&quot;#{id.inspect} &quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>) <span class="ruby-operator">+</span>
+              <span class="ruby-node">&quot;at #{file}:#{line}&quot;</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">method</span> <span class="ruby-value">? </span><span class="ruby-node">&quot; in `#{method}'&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>)
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">context</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">handle_breakpoint</span>(<span class="ruby-identifier">context</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-constant">Binding</span>.<span class="ruby-identifier">of_caller</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">binding_context</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">handle_breakpoint</span>(<span class="ruby-identifier">binding_context</span>, <span class="ruby-identifier">message</span>, <span class="ruby-identifier">file</span>, <span class="ruby-identifier">line</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Toggle item at <em>index</em>. If <em>notify</em> is <tt>true</tt>, either a <tt>SEL_SELECTED</tt> or <tt>SEL_DESELECTED</tt> message is sent to the list's message target to indicate the item's new state. Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXIconList#toggleItem
+is_singleton: false
+name: toggleItem
+params: (index, notify=false)
+visibility: public

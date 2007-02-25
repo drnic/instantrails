@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: OpenURI</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">OpenURI</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/rubygems/open-uri_rb.html">
+                lib/rubygems/open-uri.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <pre>
+ OpenURI is an easy-to-use wrapper for net/http, net/https and net/ftp.
+</pre>
+<h2>Example</h2>
+<pre>
+ It is possible to open http/https/ftp URL as usual like opening a file:
+
+   open(&quot;http://www.ruby-lang.org/&quot;) {|f|
+     f.each_line {|line| p line}
+   }
+
+ The opened file has several methods for meta information as follows since
+ it is extended by OpenURI::Meta.
+
+   open(&quot;http://www.ruby-lang.org/en&quot;) {|f|
+     f.each_line {|line| p line}
+     p f.base_uri         # &lt;URI::HTTP:0x40e6ef2 URL:http://www.ruby-lang.org/en/&gt;
+     p f.content_type     # &quot;text/html&quot;
+     p f.charset          # &quot;iso-8859-1&quot;
+     p f.content_encoding # []
+     p f.last_modified    # Thu Dec 05 02:45:02 UTC 2002
+   }
+
+ Additional header fields can be specified by an optional hash argument.
+
+   open(&quot;http://www.ruby-lang.org/en/&quot;,
+     &quot;User-Agent&quot; =&gt; &quot;Ruby/#{RUBY_VERSION}&quot;,
+     &quot;From&quot; =&gt; &quot;foo@bar.invalid&quot;,
+     &quot;Referer&quot; =&gt; &quot;http://www.ruby-lang.org/&quot;) {|f|
+     # ...
+   }
+
+ The environment variables such as http_proxy, https_proxy and ftp_proxy
+ are in effect by default.  :proxy =&gt; nil disables proxy.
+
+   open(&quot;http://www.ruby-lang.org/en/raa.html&quot;, :proxy =&gt; nil) {|f|
+     # ...
+   }
+
+ URI objects can be opened in a similar way.
+
+   uri = URI.parse(&quot;http://www.ruby-lang.org/en/&quot;)
+   uri.open {|f|
+     # ...
+   }
+
+ URI objects can be read directly. The returned string is also extended by
+ OpenURI::Meta.
+
+   str = uri.read
+   p str.base_uri
+
+ Author:: Tanaka Akira &lt;akr@m17n.org&gt;
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="OpenURI/Meta.html" class="link">OpenURI::Meta</a><br />
+Module <a href="OpenURI/OpenRead.html" class="link">OpenURI::OpenRead</a><br />
+Class <a href="OpenURI/HTTPError.html" class="link">OpenURI::HTTPError</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Options</td>
+          <td>=</td>
+          <td class="context-item-value">{     :proxy =&gt; true,     :proxy_http_basic_authentication =&gt; true,     :progress_proc =&gt; true,     :content_length_proc =&gt; true,     :http_basic_authentication =&gt; true,     :read_timeout =&gt; true,     :ssl_ca_cert =&gt; nil,     :ssl_verify_mode =&gt; nil,   }</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

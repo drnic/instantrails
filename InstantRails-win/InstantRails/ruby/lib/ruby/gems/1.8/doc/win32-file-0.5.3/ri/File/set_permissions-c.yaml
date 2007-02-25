@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sets the file permissions for the given file name. The 'permissions' argument is a hash with an account name as the key, and the various permission constants as possible values. The possible constant values are:"
+- !ruby/struct:SM::Flow::P 
+  body: FILE_READ_DATA FILE_WRITE_DATA FILE_APPEND_DATA FILE_READ_EA FILE_WRITE_EA FILE_EXECUTE FILE_DELETE_CHILD FILE_READ_ATTRIBUTES FILE_WRITE_ATTRIBUTES STANDARD_RIGHTS_ALL FULL READ ADD CHANGE DELETE READ_CONTROL WRITE_DAC WRITE_OWNER SYNCHRONIZE STANDARD_RIGHTS_REQUIRED STANDARD_RIGHTS_READ STANDARD_RIGHTS_WRITE STANDARD_RIGHTS_EXECUTE STANDARD_RIGHTS_ALL SPECIFIC_RIGHTS_ALL ACCESS_SYSTEM_SECURITY MAXIMUM_ALLOWED GENERIC_READ GENERIC_WRITE GENERIC_EXECUTE GENERIC_ALL
+full_name: File::set_permissions
+is_singleton: true
+name: set_permissions
+params: (file, perms)
+visibility: public

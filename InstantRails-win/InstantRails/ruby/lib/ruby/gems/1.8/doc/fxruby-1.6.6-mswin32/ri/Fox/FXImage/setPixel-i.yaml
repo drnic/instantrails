@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set pixel at (<em>x</em>, <em>y</em>) to <em>clr</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate of the pixel of interest [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate of the pixel of interest [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+clr+:"
+    body: new color value for this pixel [FXColor]
+  type: :NOTE
+full_name: Fox::FXImage#setPixel
+is_singleton: false
+name: setPixel
+params: (x, y, clr)
+visibility: public

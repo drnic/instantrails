@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Clipboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Clipboard</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/clipboard_rb.html">
+                lib/windows/clipboard.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000125">CloseClipboard</a>&nbsp;&nbsp;
+      <a href="#M000129">CountClipboardFormats</a>&nbsp;&nbsp;
+      <a href="#M000127">EmptyClipboard</a>&nbsp;&nbsp;
+      <a href="#M000132">EnumClipboardFormats</a>&nbsp;&nbsp;
+      <a href="#M000126">GetClipboardData</a>&nbsp;&nbsp;
+      <a href="#M000131">GetClipboardFormatName</a>&nbsp;&nbsp;
+      <a href="#M000130">IsClipboardFormatAvailable</a>&nbsp;&nbsp;
+      <a href="#M000124">OpenClipboard</a>&nbsp;&nbsp;
+      <a href="#M000133">RegisterClipboardFormat</a>&nbsp;&nbsp;
+      <a href="#M000128">SetClipboardData</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_TEXT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_BITMAP</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_METAFILEPICT</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_SYLK</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_DIF</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_TIFF</td>
+          <td>=</td>
+          <td class="context-item-value">6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_OEMTEXT</td>
+          <td>=</td>
+          <td class="context-item-value">7</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_DIB</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_PALETTE</td>
+          <td>=</td>
+          <td class="context-item-value">9</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_PENDATA</td>
+          <td>=</td>
+          <td class="context-item-value">10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_RIFF</td>
+          <td>=</td>
+          <td class="context-item-value">11</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_WAVE</td>
+          <td>=</td>
+          <td class="context-item-value">12</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_UNICODETEXT</td>
+          <td>=</td>
+          <td class="context-item-value">13</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CF_ENHMETAFILE</td>
+          <td>=</td>
+          <td class="context-item-value">14</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OpenClipboard</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'OpenClipboard', 'L', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CloseClipboard</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'CloseClipboard', 'V', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetClipboardData</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'GetClipboardData', 'I', 'P')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EmptyClipboard</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'EmptyClipboard', 'V', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SetClipboardData</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'SetClipboardData', 'II', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CountClipboardFormats</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'CountClipboardFormats', 'V', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IsClipboardFormatAvailable</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'IsClipboardFormatAvailable', 'I', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GetClipboardFormatName</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'GetClipboardFormatName', 'IPI', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EnumClipboardFormats</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'EnumClipboardFormats', 'I', 'I')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RegisterClipboardFormat</td>
+          <td>=</td>
+          <td class="context-item-value">Win32API.new('user32', 'RegisterClipboardFormat', 'P', 'I')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000125" class="method-detail">
+        <a name="M000125"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000125.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000125.html');return false;">
+          <span class="method-name">CloseClipboard</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000129" class="method-detail">
+        <a name="M000129"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000129.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000129.html');return false;">
+          <span class="method-name">CountClipboardFormats</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000127" class="method-detail">
+        <a name="M000127"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000127.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000127.html');return false;">
+          <span class="method-name">EmptyClipboard</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000132" class="method-detail">
+        <a name="M000132"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000132.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000132.html');return false;">
+          <span class="method-name">EnumClipboardFormats</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000126" class="method-detail">
+        <a name="M000126"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000126.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000126.html');return false;">
+          <span class="method-name">GetClipboardData</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000131" class="method-detail">
+        <a name="M000131"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000131.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000131.html');return false;">
+          <span class="method-name">GetClipboardFormatName</span><span class="method-args">(format, format_name, max)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000130" class="method-detail">
+        <a name="M000130"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000130.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000130.html');return false;">
+          <span class="method-name">IsClipboardFormatAvailable</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000124" class="method-detail">
+        <a name="M000124"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000124.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000124.html');return false;">
+          <span class="method-name">OpenClipboard</span><span class="method-args">(handle)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000133" class="method-detail">
+        <a name="M000133"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000133.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000133.html');return false;">
+          <span class="method-name">RegisterClipboardFormat</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000128" class="method-detail">
+        <a name="M000128"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000128.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000128.html');return false;">
+          <span class="method-name">SetClipboardData</span><span class="method-args">(format, handle)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

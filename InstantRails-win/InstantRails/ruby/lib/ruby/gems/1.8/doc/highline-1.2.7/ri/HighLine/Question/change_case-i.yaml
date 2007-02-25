@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns the provided <em>answer_string</em> after changing character case by the rules of this Question. Valid settings for whitespace are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+nil+:"
+    body: Do not alter character case. (Default.)
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:up</tt>:"
+    body: Calls upcase().
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:upcase</tt>:"
+    body: Calls upcase().
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:down</tt>:"
+    body: Calls downcase().
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:downcase</tt>:"
+    body: Calls downcase().
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:capitalize</tt>:"
+    body: Calls capitalize().
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: An unrecognized choice (like <tt>:none</tt>) is treated as <tt>nil</tt>.
+full_name: HighLine::Question#change_case
+is_singleton: false
+name: change_case
+params: ( answer_string )
+visibility: public

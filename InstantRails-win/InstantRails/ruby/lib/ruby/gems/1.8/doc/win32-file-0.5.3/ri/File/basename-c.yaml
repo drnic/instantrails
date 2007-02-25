@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the last component of the filename given in <tt>filename</tt>. If <tt>suffix</tt> is given and present at the end of <tt>filename</tt>, it is removed. Any extension can be removed by giving an extension of &quot;.*&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: This was reimplemented because the current version does not handle UNC paths properly, i.e. it should not return anything less than the root. In all other respects it is identical to the current implementation.
+- !ruby/struct:SM::Flow::P 
+  body: File.basename(&quot;C:\foo\bar.txt&quot;) -&gt; &quot;bar.txt&quot; File.basename(&quot;C:\foo\bar.txt&quot;, &quot;.txt&quot;) -&gt; &quot;bar&quot; File.basename(&quot;\\foo\bar&quot;) -&gt; &quot;\\foo\bar&quot;
+full_name: File::basename
+is_singleton: true
+name: basename
+params: (file, suffix = nil)
+visibility: public

@@ -1,0 +1,195 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used to control range checks for answer.
+  name: above
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The type that will be used to convert this answer.
+  name: answer_type
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used to control range checks for answer.
+  name: below
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used to control character case processing for the answer to this question. See HighLine::Question.change_case() for acceptable settings.
+  name: case
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Can be set to <tt>true</tt> to use HighLine's cross-platform character reader instead of fetching an entire line of input. (Note: HighLine's character reader <b>ONLY</b> supports STDIN on Windows and Unix.) Can also be set to <tt>:getc</tt> to use that method on the input stream."
+  - !ruby/struct:SM::Flow::P 
+    body: "<b>WARNING</b>: The <em>echo</em> and <em>overwrite</em> attributes for a question are ignored when using the <tt>:getc</tt> method."
+  name: character
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Asks a yes or no confirmation question, to ensure a user knows what they have just agreed to. If set to <tt>true</tt> the question will be, &quot;Are you sure? &quot; Any other true value for this attribute is assumed to be the question to ask. When <tt>false</tt> or <tt>nil</tt> (the default), answers are not confirmed.
+  name: confirm
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used to provide a default answer to this question.
+  name: default
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The directory from which a user will be allowed to select files, when File or Pathname is specified as an <em>answer_type</em>. Initially set to <tt>Pathname.new(File.expand_path(File.dirname($0)))</tt>.
+  name: directory
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Can be set to <tt>true</tt> or <tt>false</tt> to control whether or not input will be echoed back to the user. A setting of <tt>true</tt> will cause echo to match input, but any other true value will be treated as to String to echo for each character typed.
+  - !ruby/struct:SM::Flow::P 
+    body: This requires HighLine's character reader. See the <em>character</em> attribute for details.
+  - !ruby/struct:SM::Flow::P 
+    body: "<b>Note</b>: When using HighLine to manage echo on Unix based systems, we recommend installing the termios gem. Without it, it's possible to type fast enough to have letters still show up (when reading character by character only)."
+  name: echo
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When set to a non <b>nil</b> value, this will be tried as an answer to the question. If this answer passes validations, it will become the result without the user ever being prompted. Otherwise this value is discarded, and this Question is resolved as a normal call to HighLine.ask().
+  name: first_answer
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When set, the user will be prompted for multiple answers which will be collected into an Array or Hash and returned as the final answer.
+  - !ruby/struct:SM::Flow::P 
+    body: You can set <em>gather</em> to an Integer to have an Array of exactly that many answers collected, or a String/Regexp to match an end input which will not be returned in the Array.
+  - !ruby/struct:SM::Flow::P 
+    body: Optionally <em>gather</em> can be set to a Hash. In this case, the question will be asked once for each key and the answers will be returned in a Hash, mapped by key. The <tt>@key</tt> variable is set before each question is evaluated, so you can use it in your question.
+  name: gather
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The glob pattern used to limit file selection when File or Pathname is specified as an <em>answer_type</em>. Initially set to <tt>&quot;*&quot;</tt>.
+  name: glob
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: If set, answer must pass an include?() check on this object.
+  name: in
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Allows you to set a character limit for input.
+  - !ruby/struct:SM::Flow::P 
+    body: "<b>WARNING</b>: This option forces a character by character read."
+  name: limit
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: When set to <tt>true</tt> the question is asked, but output does not progress to the next line. The Cursor is moved back to the beginning of the question line and it is cleared so that all the contents of the line disappear from the screen.
+  name: overwrite
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The ERb template of the question to be asked.
+  name: question
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Use the Readline library to fetch input. This allows input editing as well as keeping a history. In addition, tab will auto-complete within an Array of choices or a file listing.
+  - !ruby/struct:SM::Flow::P 
+    body: "<b>WARNING</b>: This option is incompatible with all of HighLine's character reading modes and it causes HighLine to ignore the specified <em>input</em> stream."
+  name: readline
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "A Hash that stores the various responses used by HighLine to notify the user. The currently used responses and their purpose are as follows:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:ambiguous_completion</tt>:"
+      body: Used to notify the user of an ambiguous answer the auto-completion system cannot resolve.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:ask_on_error</tt>:"
+      body: This is the question that will be redisplayed to the user in the event of an error. Can be set to <tt>:question</tt> to repeat the original question.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:invalid_type</tt>:"
+      body: The error message shown when a type conversion fails.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:no_completion</tt>:"
+      body: Used to notify the user that their selection does not have a valid auto-completion match.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:not_in_range</tt>:"
+      body: Used to notify the user that a provided answer did not satisfy the range requirement tests.
+    - !ruby/struct:SM::Flow::LI 
+      label: "<tt>:not_valid</tt>:"
+      body: The error message shown when validation checks fail.
+    type: :NOTE
+  name: responses
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: If set to a Regexp, the answer must match (before type conversion). Can also be set to a Proc which will be called with the provided answer to validate with a <tt>true</tt> or <tt>false</tt> return.
+  name: validate
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used to control whitespace processing for the answer to this question. See HighLine::Question.remove_whitespace() for acceptable settings.
+  name: whitespace
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Question objects contain all the details of a single invocation of HighLine.ask(). The object is initialized by the parameters passed to HighLine.ask() and then queried to make sure each step of the input process is handled according to the users wishes.
+constants: []
+
+full_name: HighLine::Question
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: answer_or_default
+- !ruby/object:RI::MethodSummary 
+  name: build_responses
+- !ruby/object:RI::MethodSummary 
+  name: change_case
+- !ruby/object:RI::MethodSummary 
+  name: convert
+- !ruby/object:RI::MethodSummary 
+  name: expected_range
+- !ruby/object:RI::MethodSummary 
+  name: first_answer
+- !ruby/object:RI::MethodSummary 
+  name: first_answer?
+- !ruby/object:RI::MethodSummary 
+  name: in_range?
+- !ruby/object:RI::MethodSummary 
+  name: remove_whitespace
+- !ruby/object:RI::MethodSummary 
+  name: selection
+- !ruby/object:RI::MethodSummary 
+  name: to_str
+- !ruby/object:RI::MethodSummary 
+  name: valid_answer?
+name: Question
+superclass: Object

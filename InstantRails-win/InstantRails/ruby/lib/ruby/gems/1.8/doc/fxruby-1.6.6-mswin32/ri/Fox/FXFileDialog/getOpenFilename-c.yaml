@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Display a dialog box that allows the user to select a single existing file name for opening. Returns the selected file name (a String).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: the owner window for the dialog box [FXWindow]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+caption+:"
+    body: the caption for the dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+path+:"
+    body: the initial filename [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+patterns+:"
+    body: the pattern list [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+initial+:"
+    body: the initial pattern to be used (an index into the pattern list) [Integer]
+  type: :NOTE
+full_name: Fox::FXFileDialog::getOpenFilename
+is_singleton: true
+name: getOpenFilename
+params: (owner, caption, path, patterns="*", initial=0)
+visibility: public

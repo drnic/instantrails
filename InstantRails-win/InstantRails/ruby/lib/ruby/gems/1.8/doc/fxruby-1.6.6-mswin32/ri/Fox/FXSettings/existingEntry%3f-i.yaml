@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>true</tt> if a registry entry exists for the specified <em>section</em> and <em>key</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+section+:"
+    body: the section containing the key of interest [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+key+:"
+    body: the key of interest [String]
+  type: :NOTE
+full_name: Fox::FXSettings#existingEntry?
+is_singleton: false
+name: existingEntry?
+params: (section, key)
+visibility: public

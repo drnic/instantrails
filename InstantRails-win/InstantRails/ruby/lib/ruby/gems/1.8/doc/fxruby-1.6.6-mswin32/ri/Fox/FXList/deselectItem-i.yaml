@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deselect item. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DESELECTED</tt> message is sent to the list's message target after the item is deselected. Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXList#deselectItem
+is_singleton: false
+name: deselectItem
+params: (index, notify=false)
+visibility: public

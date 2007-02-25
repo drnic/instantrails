@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns all the subdomains as an array, so [&quot;dev&quot;, &quot;www&quot;] would be returned for &quot;dev.www.rubyonrails.org&quot;. You can specify a different <tt>tld_length</tt>, such as 2 to catch [&quot;www&quot;] instead of [&quot;www&quot;, &quot;rubyonrails&quot;] in &quot;www.rubyonrails.co.uk&quot;.
+full_name: ActionController::AbstractRequest#subdomains
+is_singleton: false
+name: subdomains
+params: (tld_length = 1)
+visibility: public

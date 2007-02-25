@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sets the indexing style for this Menu object. Indexes are appended to menu items, when displayed in list form. The available settings are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:number</tt>:"
+    body: Menu items will be indexed numerically, starting with 1. This is the default method of indexing.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:letter</tt>:"
+    body: Items will be indexed alphabetically, starting with a.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:none</tt>:"
+    body: No index will be appended to menu items.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<i>any String</i>:"
+    body: Will be used as the literal <em>index</em>.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: Setting the <em>index</em> to <tt>:none</tt> a literal String, also adjusts <em>index_suffix</em> to a single space and <em>select_by</em> to <tt>:none</tt>. Because of this, you should make a habit of setting the <em>index</em> first.
+full_name: HighLine::Menu#index=
+is_singleton: false
+name: index=
+params: ( style )
+visibility: public

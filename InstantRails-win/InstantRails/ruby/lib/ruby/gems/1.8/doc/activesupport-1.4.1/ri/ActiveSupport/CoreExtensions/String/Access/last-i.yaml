@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the last character of the string or the last <tt>limit</tt> characters.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;hello&quot;.last     # =&gt; &quot;o&quot;\n  &quot;hello&quot;.last(2)  # =&gt; &quot;lo&quot;\n  &quot;hello&quot;.last(10) # =&gt; &quot;hello&quot;\n"
+full_name: ActiveSupport::CoreExtensions::String::Access#last
+is_singleton: false
+name: last
+params: (limit = 1)
+visibility: public

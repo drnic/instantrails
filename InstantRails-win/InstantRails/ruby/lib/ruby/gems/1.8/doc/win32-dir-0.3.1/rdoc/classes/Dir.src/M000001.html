@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_junction (Dir)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/dir.rb, line 45</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">create_junction</span>(<span class="ruby-identifier">to</span>, <span class="ruby-identifier">from</span>)
+      <span class="ruby-comment cmt"># Normalize the paths</span>
+      <span class="ruby-identifier">to</span>.<span class="ruby-identifier">tr!</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-value str">&quot;\\&quot;</span>)
+      <span class="ruby-identifier">from</span>.<span class="ruby-identifier">tr!</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-value str">&quot;\\&quot;</span>)
+      
+      <span class="ruby-identifier">to_path</span>    = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">260</span>
+      <span class="ruby-identifier">from_path</span>  = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">260</span>
+      <span class="ruby-identifier">buf_target</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">260</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GetFullPathName</span>(<span class="ruby-identifier">from</span>, <span class="ruby-identifier">from_path</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">from_path</span>, <span class="ruby-value">0</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">'GetFullPathName() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GetFullPathName</span>(<span class="ruby-identifier">to</span>, <span class="ruby-identifier">to_path</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">to_path</span>, <span class="ruby-value">0</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">'GetFullPathName() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">to_path</span>   = <span class="ruby-identifier">to_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-identifier">from_path</span> = <span class="ruby-identifier">from_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>
+      
+      <span class="ruby-comment cmt"># You can create a junction to a directory that already exists, so</span>
+      <span class="ruby-comment cmt"># long as it's empty.</span>
+      <span class="ruby-identifier">rv</span> = <span class="ruby-constant">CreateDirectory</span>(<span class="ruby-identifier">to_path</span>, <span class="ruby-value">0</span>)
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_ALREADY_EXISTS</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">'CreateDirectory() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">handle</span> = <span class="ruby-constant">CreateFile</span>(
+         <span class="ruby-identifier">to_path</span>,
+         <span class="ruby-constant">GENERIC_READ</span> <span class="ruby-operator">|</span> <span class="ruby-constant">GENERIC_WRITE</span>, 
+         <span class="ruby-value">0</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-constant">OPEN_EXISTING</span>, 
+         <span class="ruby-constant">FILE_FLAG_OPEN_REPARSE_POINT</span> <span class="ruby-operator">|</span> <span class="ruby-constant">FILE_FLAG_BACKUP_SEMANTICS</span>,
+         <span class="ruby-value">0</span>
+      )
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_HANDLE_VALUE</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-value str">'CreateFile() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span> 
+      
+      <span class="ruby-identifier">buf_target</span>  = <span class="ruby-identifier">buf_target</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-identifier">buf_target</span>  = <span class="ruby-value str">&quot;\\??\\&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">from_path</span>     
+      <span class="ruby-identifier">length</span>      = <span class="ruby-identifier">buf_target</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span> <span class="ruby-comment cmt"># sizeof(WCHAR)</span>
+      <span class="ruby-identifier">wide_string</span> = <span class="ruby-identifier">multi_to_wide</span>(<span class="ruby-identifier">buf_target</span>)
+      
+      <span class="ruby-comment cmt"># REPARSE_JDATA_BUFFER</span>
+      <span class="ruby-identifier">rdb</span> = [
+         <span class="ruby-value str">&quot;0xA0000003L&quot;</span>.<span class="ruby-identifier">hex</span>,      <span class="ruby-comment cmt"># ReparseTag (IO_REPARSE_TAG_MOUNT_POINT)</span>
+         <span class="ruby-identifier">wide_string</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">12</span>,  <span class="ruby-comment cmt"># ReparseDataLength</span>
+         <span class="ruby-value">0</span>,                      <span class="ruby-comment cmt"># Reserved</span>
+         <span class="ruby-value">0</span>,                      <span class="ruby-comment cmt"># SubstituteNameOffset</span>
+         <span class="ruby-identifier">wide_string</span>.<span class="ruby-identifier">size</span>,       <span class="ruby-comment cmt"># SubstituteNameLength</span>
+         <span class="ruby-identifier">wide_string</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">2</span>,   <span class="ruby-comment cmt"># PrintNameOffset</span>
+         <span class="ruby-value">0</span>,                      <span class="ruby-comment cmt"># PrintNameLength</span>
+         <span class="ruby-identifier">wide_string</span>             <span class="ruby-comment cmt"># PathBuffer</span>
+      ].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LSSSSSSa'</span> <span class="ruby-operator">+</span> (<span class="ruby-identifier">wide_string</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">+</span> <span class="ruby-value">4</span>).<span class="ruby-identifier">to_s</span>)
+
+      <span class="ruby-identifier">bytes</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+
+      <span class="ruby-identifier">bool</span> = <span class="ruby-constant">DeviceIoControl</span>(
+         <span class="ruby-identifier">handle</span>,
+         <span class="ruby-constant">CTL_CODE</span>(<span class="ruby-constant">FILE_DEVICE_FILE_SYSTEM</span>, <span class="ruby-value">41</span>, <span class="ruby-constant">METHOD_BUFFERED</span>, <span class="ruby-constant">FILE_ANY_ACCESS</span>),
+         <span class="ruby-identifier">rdb</span>,
+         <span class="ruby-identifier">rdb</span>.<span class="ruby-identifier">size</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-identifier">bytes</span>,
+         <span class="ruby-value">0</span>
+      )
+      
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bool</span>
+         <span class="ruby-identifier">error</span> = <span class="ruby-value str">'DeviceIoControl() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-constant">RemoveDirectory</span>(<span class="ruby-identifier">to</span>)
+         <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)        
+         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>)
+      
+      <span class="ruby-keyword kw">self</span>  
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

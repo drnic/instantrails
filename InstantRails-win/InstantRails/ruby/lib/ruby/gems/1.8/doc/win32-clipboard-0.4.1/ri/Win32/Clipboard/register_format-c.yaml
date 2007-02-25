@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Registers the given <tt>format</tt> (a String) as a clipboard format, which can then be used as a valid clipboard format.
+- !ruby/struct:SM::Flow::P 
+  body: If a registered format with the specified name already exists, a new format is not registered and the return value identifies the existing format. This enables more than one application to copy and paste data using the same registered clipboard format. Note that the format name comparison is case-insensitive.
+- !ruby/struct:SM::Flow::P 
+  body: Registered clipboard formats are identified by values in the range 0xC000 through 0xFFFF.
+full_name: Win32::Clipboard::register_format
+is_singleton: true
+name: register_format
+params: (format)
+visibility: public

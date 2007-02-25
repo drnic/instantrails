@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a button that'll trigger a JavaScript <tt>function</tt> using the onclick handler.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>function</tt> argument can be omitted in favor of an <tt>update_page</tt> block, which evaluates to a string when the template is rendered (instead of making an Ajax request first).
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  button_to_function &quot;Greeting&quot;, &quot;alert('Hello world!')&quot;\n  button_to_function &quot;Delete&quot;, &quot;if (confirm('Really?')) do_delete()&quot;\n  button_to_function &quot;Details&quot; do |page|\n    page[:details].visual_effect :toggle_slide\n  end\n  button_to_function &quot;Details&quot;, :class =&gt; &quot;details_button&quot; do |page|\n    page[:details].visual_effect :toggle_slide\n  end\n"
+full_name: ActionView::Helpers::JavaScriptHelper#button_to_function
+is_singleton: false
+name: button_to_function
+params: (name, *args, &block)
+visibility: public

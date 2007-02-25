@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>assert_select (ActionController::Assertions::SelectorAssertions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/assertions/selector_assertions.rb, line 179</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_select</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-comment cmt"># Start with optional element followed by mandatory selector.</span>
+        <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Node</span>)
+          <span class="ruby-comment cmt"># First argument is a node (tag or text, but also HTML root),</span>
+          <span class="ruby-comment cmt"># so we know what we're selecting from.</span>
+          <span class="ruby-identifier">root</span> = <span class="ruby-identifier">arg</span>
+          <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">arg</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-comment cmt"># This usually happens when passing a node/element that</span>
+          <span class="ruby-comment cmt"># happens to be nil.</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;First argument is either selector or element to select, but nil found. Perhaps you called assert_select with an element that does not exist?&quot;</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-ivar">@selected</span>
+          <span class="ruby-identifier">root</span> = <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Node</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>)
+          <span class="ruby-identifier">root</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">concat</span> <span class="ruby-ivar">@selected</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># Otherwise just operate on the response document.</span>
+          <span class="ruby-identifier">root</span> = <span class="ruby-identifier">response_from_page_or_rjs</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># First or second argument is the selector: string and we pass</span>
+        <span class="ruby-comment cmt"># all remaining arguments. Array and we pass the argument. Also</span>
+        <span class="ruby-comment cmt"># accepts selector itself.</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+            <span class="ruby-identifier">selector</span> = <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Selector</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-identifier">args</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+            <span class="ruby-identifier">selector</span> = <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Selector</span>.<span class="ruby-identifier">new</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">arg</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Selector</span>
+            <span class="ruby-identifier">selector</span> = <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Expecting a selector as the first argument&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Next argument is used for equality tests.</span>
+        <span class="ruby-identifier">equals</span> = {}
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+            <span class="ruby-identifier">equals</span> = <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>, <span class="ruby-constant">Regexp</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:text</span>] = <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:count</span>] = <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Range</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>] = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">begin</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:maximum</span>] = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">end</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FalseClass</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:count</span>] = <span class="ruby-value">0</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NilClass</span>, <span class="ruby-constant">TrueClass</span>
+            <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>] = <span class="ruby-value">1</span>
+          <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;I don't understand what you're trying to match&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># By default we're looking for at least one match.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:count</span>]
+          <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>] = <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:maximum</span>] = <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:count</span>]
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>] = <span class="ruby-value">1</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Last argument is the message we use if the assertion fails.</span>
+        <span class="ruby-identifier">message</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+        <span class="ruby-comment cmt">#- message = &quot;No match made with selector #{selector.inspect}&quot; unless message</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Not expecting that last argument, you either have too many arguments, or they're the wrong type&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">selector</span>.<span class="ruby-identifier">select</span>(<span class="ruby-identifier">root</span>)
+        <span class="ruby-comment cmt"># If text/html, narrow down to those elements that match it.</span>
+        <span class="ruby-identifier">content_mismatch</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">match_with</span> = <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:text</span>]
+          <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">text</span> = <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-identifier">stack</span> = <span class="ruby-identifier">match</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">reverse</span>
+            <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">node</span> = <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">pop</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">tag?</span>
+                <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">reverse</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">content</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip!</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">NO_STRIP</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">match</span>.<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">match_with</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>) <span class="ruby-operator">?</span> (<span class="ruby-identifier">text</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">match_with</span>) <span class="ruby-operator">:</span> (<span class="ruby-identifier">text</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">match_with</span>.<span class="ruby-identifier">to_s</span>)
+              <span class="ruby-identifier">content_mismatch</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;&lt;?&gt; expected but was\n&lt;?&gt;.&quot;</span>, <span class="ruby-identifier">match_with</span>, <span class="ruby-identifier">text</span>)
+              <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">match_with</span> = <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:html</span>]
+          <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">delete_if</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">html</span> = <span class="ruby-identifier">match</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_s</span>).<span class="ruby-identifier">join</span>
+            <span class="ruby-identifier">html</span>.<span class="ruby-identifier">strip!</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">NO_STRIP</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">match</span>.<span class="ruby-identifier">name</span>)
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">match_with</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>) <span class="ruby-operator">?</span> (<span class="ruby-identifier">html</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">match_with</span>) <span class="ruby-operator">:</span> (<span class="ruby-identifier">html</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">match_with</span>.<span class="ruby-identifier">to_s</span>)
+              <span class="ruby-identifier">content_mismatch</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;&lt;?&gt; expected but was\n&lt;?&gt;.&quot;</span>, <span class="ruby-identifier">match_with</span>, <span class="ruby-identifier">html</span>)
+              <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># Expecting foo found bar element only if found zero, not if</span>
+        <span class="ruby-comment cmt"># found one but expecting two.</span>
+        <span class="ruby-identifier">message</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">content_mismatch</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-comment cmt"># Test minimum/maximum occurrence.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>]
+          <span class="ruby-identifier">assert</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:minimum</span>], <span class="ruby-identifier">message</span> <span class="ruby-operator">||</span>
+             <span class="ruby-node">&quot;Expected at least #{equals[:minimum]} elements, found #{matches.size}.&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:maximum</span>]
+          <span class="ruby-identifier">assert</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-identifier">equals</span>[<span class="ruby-identifier">:maximum</span>], <span class="ruby-identifier">message</span> <span class="ruby-operator">||</span>
+            <span class="ruby-node">&quot;Expected at most #{equals[:maximum]} elements, found #{matches.size}.&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># If a block is given call that block. Set @selected to allow</span>
+        <span class="ruby-comment cmt"># nested assert_select, which can be nested several levels deep.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">matches</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">in_scope</span>, <span class="ruby-ivar">@selected</span> = <span class="ruby-ivar">@selected</span>, <span class="ruby-identifier">matches</span>
+            <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">matches</span>
+          <span class="ruby-keyword kw">ensure</span>
+            <span class="ruby-ivar">@selected</span> = <span class="ruby-identifier">in_scope</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Returns all matches elements.</span>
+        <span class="ruby-identifier">matches</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

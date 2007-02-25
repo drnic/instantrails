@@ -1,0 +1,75 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The MySQL adapter will work with both Ruby/MySQL, which is a Ruby-based MySQL adapter that comes bundled with Active Record, and with the faster C-based MySQL/Ruby adapter (available both as a gem and from http://www.tmtm.org/en/mysql/ruby/).
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- Defaults to localhost
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:port</tt> -- Defaults to 3306
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:socket</tt> -- Defaults to /tmp/mysql.sock
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:username</tt> -- Defaults to root
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Defaults to nothing
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database</tt> -- The name of the database. No default, must be provided.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:sslkey</tt> -- Necessary to use MySQL with an SSL connection
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:sslcert</tt> -- Necessary to use MySQL with an SSL connection
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:sslcapath</tt> -- Necessary to use MySQL with an SSL connection
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:sslcipher</tt> -- Necessary to use MySQL with an SSL connection
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "By default, the MysqlAdapter will consider all columns of type tinyint(1) as boolean. If you wish to disable this emulation (which was the default behavior in versions 0.13.1 and earlier) you can add the following line to your environment.rb file:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveRecord::ConnectionAdapters::MysqlAdapter.emulate_booleans = false\n"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOST_CONNECTION_ERROR_MESSAGES
+  value: "[         \"Server shutdown in progress\",         \"Broken pipe\",         \"Lost connection to MySQL server during query\",         \"MySQL server has gone away\""
+full_name: ActiveRecord::ConnectionAdapters::MysqlAdapter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: current_database
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: quote
+- !ruby/object:RI::MethodSummary 
+  name: quoted_false
+- !ruby/object:RI::MethodSummary 
+  name: quoted_true
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+name: MysqlAdapter
+superclass: AbstractAdapter

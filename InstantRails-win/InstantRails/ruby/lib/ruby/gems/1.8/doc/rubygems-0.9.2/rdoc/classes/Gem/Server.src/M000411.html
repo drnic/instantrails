@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process_args (Gem::Server)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/server.rb, line 342</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">process_args</span>(<span class="ruby-identifier">args</span>)
+    <span class="ruby-identifier">options</span> = {}
+    <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:port</span>] = <span class="ruby-value">8808</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:gemdir</span>] = <span class="ruby-constant">Gem</span>.<span class="ruby-identifier">dir</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:daemon</span>] = <span class="ruby-keyword kw">false</span>
+
+    <span class="ruby-identifier">opts</span> = <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opts</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on_tail</span>(<span class="ruby-value str">&quot;--help&quot;</span>, <span class="ruby-value str">&quot;show this message&quot;</span>) <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opts</span>
+        <span class="ruby-identifier">exit</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'-p'</span>, <span class="ruby-value str">'--port=PORT'</span>, <span class="ruby-value str">&quot;Specify the port to listen on&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:port</span>] = <span class="ruby-identifier">port</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'-d'</span>, <span class="ruby-value str">'--dir=GEMDIR'</span>, 
+              <span class="ruby-value str">&quot;Specify the directory from which to serve Gems&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">gemdir</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:gemdir</span>] = <span class="ruby-identifier">gemdir</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">on</span>(      <span class="ruby-value str">'--daemon'</span>, <span class="ruby-value str">&quot;Run as a daemon&quot;</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">daemon</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:daemon</span>] = <span class="ruby-identifier">daemon</span>
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">opts</span>.<span class="ruby-identifier">parse!</span> <span class="ruby-identifier">args</span>
+
+    <span class="ruby-identifier">options</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

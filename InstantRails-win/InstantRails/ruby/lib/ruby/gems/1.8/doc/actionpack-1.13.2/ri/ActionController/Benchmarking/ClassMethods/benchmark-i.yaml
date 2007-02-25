@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Log and benchmark the workings of a single block and silence whatever logging that may have happened inside it (unless <tt>use_silence</tt> is set to false).
+- !ruby/struct:SM::Flow::P 
+  body: The benchmark is only recorded if the current level of the logger matches the <tt>log_level</tt>, which makes it easy to include benchmarking statements in production software that will remain inexpensive because the benchmark will only be conducted if the log level is low enough.
+full_name: ActionController::Benchmarking::ClassMethods#benchmark
+is_singleton: false
+name: benchmark
+params: (title, log_level = Logger::DEBUG, use_silence = true) {|| ...}
+visibility: public

@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell column (zero-based) [Integer]
+  name: col
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell row (zero-based) [Integer]
+  name: row
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a cell position in an FXTable.
+constants: []
+
+full_name: Fox::FXTablePos
+includes: []
+
+instance_methods: []
+
+name: FXTablePos
+superclass: Object

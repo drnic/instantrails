@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a set of html select-tags (one for year, month, and day) pre-selected with the <tt>date</tt>. It's possible to explicitly set the order of the tags using the <tt>:order</tt> option with an array of symbols <tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in the desired order. If you do not supply a Symbol, it will be appened onto the <tt>:order</tt> passed in.
+full_name: ActionView::Helpers::DateHelper#select_date
+is_singleton: false
+name: select_date
+params: (date = Date.today, options = {})
+visibility: public

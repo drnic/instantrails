@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveSupport::Multibyte::Handlers::UTF8Handler</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveSupport::Multibyte::Handlers::UTF8Handler</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_support/multibyte/handlers/utf8_handler_rb.html">
+                lib/active_support/multibyte/handlers/utf8_handler.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="UTF8Handler.html">UTF8Handler</a> implements Unicode aware
+operations for strings, these operations will be used by the <a
+href="../Chars.html">Chars</a> proxy when $KCODE is set to
+&#8216;UTF8&#8217;.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000047">capitalize</a>&nbsp;&nbsp;
+      <a href="#M000050">compose</a>&nbsp;&nbsp;
+      <a href="#M000062">compose_codepoints</a>&nbsp;&nbsp;
+      <a href="#M000052">consumes?</a>&nbsp;&nbsp;
+      <a href="#M000049">decompose</a>&nbsp;&nbsp;
+      <a href="#M000061">decompose_codepoints</a>&nbsp;&nbsp;
+      <a href="#M000046">downcase</a>&nbsp;&nbsp;
+      <a href="#M000053">g_length</a>&nbsp;&nbsp;
+      <a href="#M000058">g_pack</a>&nbsp;&nbsp;
+      <a href="#M000057">g_unpack</a>&nbsp;&nbsp;
+      <a href="#M000055">in_char_class?</a>&nbsp;&nbsp;
+      <a href="#M000038">index</a>&nbsp;&nbsp;
+      <a href="#M000037">insert</a>&nbsp;&nbsp;
+      <a href="#M000040">lstrip</a>&nbsp;&nbsp;
+      <a href="#M000048">normalize</a>&nbsp;&nbsp;
+      <a href="#M000060">reorder_characters</a>&nbsp;&nbsp;
+      <a href="#M000043">reverse</a>&nbsp;&nbsp;
+      <a href="#M000039">rstrip</a>&nbsp;&nbsp;
+      <a href="#M000042">size</a>&nbsp;&nbsp;
+      <a href="#M000044">slice</a>&nbsp;&nbsp;
+      <a href="#M000041">strip</a>&nbsp;&nbsp;
+      <a href="#M000054">tidy_bytes</a>&nbsp;&nbsp;
+      <a href="#M000059">to_case</a>&nbsp;&nbsp;
+      <a href="#M000051">translate_offset</a>&nbsp;&nbsp;
+      <a href="#M000056">u_unpack</a>&nbsp;&nbsp;
+      <a href="#M000045">upcase</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0xAC00</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Hangul character boundaries and properties
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_LBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_VBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1161</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_TBASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x11A7</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_LCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">19</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_VCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">21</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_TCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">28</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_NCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">HANGUL_VCOUNT * HANGUL_TCOUNT</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SCOUNT</td>
+          <td>=</td>
+          <td class="context-item-value">11172</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_SLAST</td>
+          <td>=</td>
+          <td class="context-item-value">HANGUL_SBASE + HANGUL_SCOUNT</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_JAMO_FIRST</td>
+          <td>=</td>
+          <td class="context-item-value">0x1100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_JAMO_LAST</td>
+          <td>=</td>
+          <td class="context-item-value">0x11FF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_WHITESPACE</td>
+          <td>=</td>
+          <td class="context-item-value">[       (0x0009..0x000D).to_a,  # White_Space # Cc   [5] &lt;control-0009&gt;..&lt;control-000D&gt;       0x0020,          # White_Space # Zs       SPACE       0x0085,          # White_Space # Cc       &lt;control-0085&gt;       0x00A0,          # White_Space # Zs       NO-BREAK SPACE       0x1680,          # White_Space # Zs       OGHAM SPACE MARK       0x180E,          # White_Space # Zs       MONGOLIAN VOWEL SEPARATOR       (0x2000..0x200A).to_a, # White_Space # Zs  [11] EN QUAD..HAIR SPACE       0x2028,          # White_Space # Zl       LINE SEPARATOR       0x2029,          # White_Space # Zp       PARAGRAPH SEPARATOR       0x202F,          # White_Space # Zs       NARROW NO-BREAK SPACE       0x205F,          # White_Space # Zs       MEDIUM MATHEMATICAL SPACE       0x3000,          # White_Space # Zs       IDEOGRAPHIC SPACE     ].flatten.freeze</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+All the unicode whitespace
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_LEADERS_AND_TRAILERS</td>
+          <td>=</td>
+          <td class="context-item-value">UNICODE_WHITESPACE + [65279]</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+BOM (byte order mark) can also be seen as whitespace, it&#8216;s a
+non-rendering character used to distinguish between little and big endian.
+This is not an issue in utf-8, so it must be ignored.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UTF8_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(?:                    [\x00-\x7f]                                     |                    [\xc2-\xdf] [\x80-\xbf]                         |                    \xe0        [\xa0-\xbf] [\x80-\xbf]             |                    [\xe1-\xef] [\x80-\xbf] [\x80-\xbf]             |                    \xf0        [\x90-\xbf] [\x80-\xbf] [\x80-\xbf] |                    [\xf1-\xf3] [\x80-\xbf] [\x80-\xbf] [\x80-\xbf] |                    \xf4        [\x80-\x8f] [\x80-\xbf] [\x80-\xbf]                   )*\z/xn</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Borrowed from the Kconv library by Shinji KONO - (also as seen on the W3C
+site)
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_TRAILERS_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+\Z/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODE_LEADERS_PAT</td>
+          <td>=</td>
+          <td class="context-item-value">/\A(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+/</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UCD</td>
+          <td>=</td>
+          <td class="context-item-value">UnicodeDatabase.new</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+UniCode Database
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">size</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">length</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">slice</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">[]</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000047.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000047.html');return false;">
+          <span class="method-name">capitalize</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a copy of <tt>str</tt> with the first character converted to
+uppercase and the remainder to lowercase
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000050.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000050.html');return false;">
+          <span class="method-name">compose</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Perform composition on the characters in the string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000052.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000052.html');return false;">
+          <span class="method-name">consumes?</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Checks if the string is valid UTF8.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000049.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000049.html');return false;">
+          <span class="method-name">decompose</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Perform decomposition on the characters in the string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000046.html');return false;">
+          <span class="method-name">downcase</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert characters in the string to lowercase
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000053.html');return false;">
+          <span class="method-name">g_length</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of grapheme clusters in the string. This method is very
+likely to be moved or renamed in future versions.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000038.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000038.html');return false;">
+          <span class="method-name">index</span><span class="method-args">(str, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the position of the passed argument in the string, counting in
+codepoints
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000037.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000037.html');return false;">
+          <span class="method-name">insert</span><span class="method-args">(str, offset, fragment)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Inserts the passed string at specified codepoint offsets
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000040.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000040.html');return false;">
+          <span class="method-name">lstrip</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does Unicode-aware <a href="UTF8Handler.html#M000040">lstrip</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000048.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000048.html');return false;">
+          <span class="method-name">normalize</span><span class="method-args">(str, form=ActiveSupport::Multibyte::DEFAULT_NORMALIZATION_FORM)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the KC normalization of the string by default. NFKC is considered
+the best normalization form for passing strings to databases and
+validations.
+</p>
+<ul>
+<li><tt>str</tt>: The string to perform normalization on.
+
+</li>
+<li><tt>form</tt>: The form you want to <a
+href="UTF8Handler.html#M000048">normalize</a> in. Should be one of the
+following: :c, :kc, :d or :kd.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000043.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000043.html');return false;">
+          <span class="method-name">reverse</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reverses codepoints in the string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000039.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000039.html');return false;">
+          <span class="method-name">rstrip</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does Unicode-aware <a href="UTF8Handler.html#M000039">rstrip</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000042.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000042.html');return false;">
+          <span class="method-name">size</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of codepoints in the string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000044.html');return false;">
+          <span class="method-name">slice</span><span class="method-args">(str, *args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Implements Unicode-aware <a href="UTF8Handler.html#M000044">slice</a> with
+codepoints. Slicing on one point returns the codepoints for that character.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000041.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000041.html');return false;">
+          <span class="method-name">strip</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Removed leading and trailing whitespace
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000054.html');return false;">
+          <span class="method-name">tidy_bytes</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Replaces all the non-utf-8 bytes by their iso-8859-1 or cp1252 equivalent
+resulting in a valid utf-8 string
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000051.html');return false;">
+          <span class="method-name">translate_offset</span><span class="method-args">(str, byte_offset)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Used to translate an offset from bytes to characters, for instance one
+received from a regular expression match
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000045.html');return false;">
+          <span class="method-name">upcase</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert characters in the string to uppercase
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Class methods</h3>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000062.html');return false;">
+          <span class="method-name">compose_codepoints</span><span class="method-args">(codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Compose decomposed characters to the composed form
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000061.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000061.html');return false;">
+          <span class="method-name">decompose_codepoints</span><span class="method-args">(type, codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Decompose composed characters to the decomposed form
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000058.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000058.html');return false;">
+          <span class="method-name">g_pack</span><span class="method-args">(unpacked)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Reverse operation of <a href="UTF8Handler.html#M000057">g_unpack</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000057.html');return false;">
+          <span class="method-name">g_unpack</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unpack the string at grapheme boundaries instead of codepoint boundaries
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000055.html');return false;">
+          <span class="method-name">in_char_class?</span><span class="method-args">(codepoint, classes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Detect whether the codepoint is in a certain character class. Primarily
+used by the grapheme cluster support.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000060.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000060.html');return false;">
+          <span class="method-name">reorder_characters</span><span class="method-args">(codepoints)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Re-order codepoints so the string becomes canonical
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000059.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000059.html');return false;">
+          <span class="method-name">to_case</span><span class="method-args">(way, str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert characters to a different case
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="UTF8Handler.src/M000056.html" target="Code" class="method-signature"
+            onclick="popupCode('UTF8Handler.src/M000056.html');return false;">
+          <span class="method-name">u_unpack</span><span class="method-args">(str)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unpack the string at codepoints boundaries
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

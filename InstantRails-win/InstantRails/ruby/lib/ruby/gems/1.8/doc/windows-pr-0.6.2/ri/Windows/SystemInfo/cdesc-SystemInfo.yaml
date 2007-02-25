@@ -1,0 +1,127 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Obsolete processor info constants
+  name: PROCESSOR_INTEL_386
+  value: "386"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PROCESSOR_INTEL_486
+  value: "486"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PROCESSOR_INTEL_PENTIUM
+  value: "586"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PROCESSOR_INTEL_IA64
+  value: "2200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PROCESSOR_AMD_X8664
+  value: "8664"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Enum COMPUTER_NAME_FORMAT
+  name: ComputerNameNetBIOS
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNameDnsHostname
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNameDnsDomain
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNameDnsFullyQualified
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNamePhysicalNetBIOS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNamePhysicalDnsHostname
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNamePhysicalDnsDomain
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNamePhysicalDnsFullyQualified
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ComputerNameMax
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ExpandEnvironmentStrings
+  value: Win32API.new('kernel32', 'ExpandEnvironmentStrings', 'PPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetComputerName
+  value: Win32API.new('kernel32', 'GetComputerName', 'PP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetComputerNameEx
+  value: Win32API.new('kernel32', 'GetComputerNameEx', 'PPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetSystemInfo
+  value: Win32API.new('kernel32', 'GetSystemInfo', 'P', 'V')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetUserName
+  value: Win32API.new('advapi32', 'GetUserName', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetUserNameEx
+  value: Win32API.new('secur32', 'GetUserNameEx', 'LPL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetVersion
+  value: Win32API.new('kernel32', 'GetVersion', 'V', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetVersionEx
+  value: Win32API.new('kernel32', 'GetVersionEx', 'P', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetWindowsDirectory
+  value: Win32API.new('kernel32', 'GetWindowsDirectory', 'LI', 'I')
+full_name: Windows::SystemInfo
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ExpandEnvironmentStrings
+- !ruby/object:RI::MethodSummary 
+  name: GetComputerName
+- !ruby/object:RI::MethodSummary 
+  name: GetComputerNameEx
+- !ruby/object:RI::MethodSummary 
+  name: GetSystemInfo
+- !ruby/object:RI::MethodSummary 
+  name: GetUserName
+- !ruby/object:RI::MethodSummary 
+  name: GetUserNameEx
+- !ruby/object:RI::MethodSummary 
+  name: GetVersion
+- !ruby/object:RI::MethodSummary 
+  name: GetVersionEx
+- !ruby/object:RI::MethodSummary 
+  name: GetWindowsDirectory
+name: SystemInfo
+superclass: 

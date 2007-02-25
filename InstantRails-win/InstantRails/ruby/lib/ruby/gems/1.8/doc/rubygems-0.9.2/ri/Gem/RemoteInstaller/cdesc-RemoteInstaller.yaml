@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: Gem::RemoteInstaller
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: UserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: download_gem
+- !ruby/object:RI::MethodSummary 
+  name: find_dependencies_not_installed
+- !ruby/object:RI::MethodSummary 
+  name: find_gem_to_install
+- !ruby/object:RI::MethodSummary 
+  name: install
+- !ruby/object:RI::MethodSummary 
+  name: install_dependencies
+- !ruby/object:RI::MethodSummary 
+  name: new_installer
+- !ruby/object:RI::MethodSummary 
+  name: source_index_hash
+- !ruby/object:RI::MethodSummary 
+  name: specs_n_sources_matching
+- !ruby/object:RI::MethodSummary 
+  name: write_gem_to_file
+name: RemoteInstaller
+superclass: Object

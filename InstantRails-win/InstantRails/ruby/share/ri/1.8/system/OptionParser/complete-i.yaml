@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Completes shortened long style option switch and returns pair of canonical switch and switch descriptor OptionParser::Switch.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+id+:"
+    body: Searching table.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opt+:"
+    body: Searching key.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+icase+:"
+    body: Search case insensitive if true.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pat+:"
+    body: Optional pattern for completion.
+  type: :NOTE
+full_name: OptionParser#complete
+is_singleton: false
+name: complete
+params: (typ, opt, icase = false, *pat)
+visibility: private

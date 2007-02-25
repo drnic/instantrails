@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>find_gem_to_install (Gem::RemoteInstaller)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/remote_installer.rb, line 113</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">find_gem_to_install</span>(<span class="ruby-identifier">gem_name</span>, <span class="ruby-identifier">version_requirement</span>)
+      <span class="ruby-identifier">specs_n_sources</span> = <span class="ruby-identifier">specs_n_sources_matching</span> <span class="ruby-identifier">gem_name</span>, <span class="ruby-identifier">version_requirement</span>
+
+      <span class="ruby-identifier">top_3_versions</span> = <span class="ruby-identifier">specs_n_sources</span>.<span class="ruby-identifier">map</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gs</span><span class="ruby-operator">|</span> <span class="ruby-identifier">gs</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">version</span>}.<span class="ruby-identifier">uniq</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">3</span>]
+      <span class="ruby-identifier">specs_n_sources</span>.<span class="ruby-identifier">reject!</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">gs</span><span class="ruby-operator">|</span> <span class="ruby-operator">!</span><span class="ruby-identifier">top_3_versions</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">gs</span>.<span class="ruby-identifier">first</span>.<span class="ruby-identifier">version</span>)}
+
+      <span class="ruby-identifier">binary_gems</span> = <span class="ruby-identifier">specs_n_sources</span>.<span class="ruby-identifier">reject</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">platform</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">item</span>[<span class="ruby-value">0</span>].<span class="ruby-identifier">platform</span><span class="ruby-operator">==</span><span class="ruby-constant">Platform</span><span class="ruby-operator">::</span><span class="ruby-constant">RUBY</span>
+      }
+
+      <span class="ruby-comment cmt"># only non-binary gems...return latest</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">specs_n_sources</span>.<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">binary_gems</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-identifier">list</span> = <span class="ruby-identifier">specs_n_sources</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span>, <span class="ruby-identifier">source_uri</span><span class="ruby-operator">|</span>
+        <span class="ruby-node">&quot;#{spec.name} #{spec.version} (#{spec.platform})&quot;</span>
+      }
+
+      <span class="ruby-identifier">list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Skip this gem&quot;</span>
+      <span class="ruby-identifier">list</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;Cancel installation&quot;</span>
+
+      <span class="ruby-identifier">string</span>, <span class="ruby-identifier">index</span> = <span class="ruby-identifier">choose_from_list</span>(
+        <span class="ruby-node">&quot;Select which gem to install for your platform (#{RUBY_PLATFORM})&quot;</span>,
+        <span class="ruby-identifier">list</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> (<span class="ruby-identifier">list</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>) <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RemoteInstallationCancelled</span>, <span class="ruby-node">&quot;Installation of #{gem_name} cancelled.&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> (<span class="ruby-identifier">list</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">2</span>) <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">RemoteInstallationSkipped</span>, <span class="ruby-node">&quot;Installation of #{gem_name} skipped.&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">specs_n_sources</span>[<span class="ruby-identifier">index</span>]
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

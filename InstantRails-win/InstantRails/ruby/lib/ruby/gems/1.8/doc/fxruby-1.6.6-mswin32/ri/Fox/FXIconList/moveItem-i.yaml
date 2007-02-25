@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Move item from <em>oldIndex</em> to <em>newIndex</em> and return the new index of the item.. If <em>notify</em> is <tt>true</tt> and this move causes the current item to change, a <tt>SEL_CHANGED</tt> message is sent to the list's message target to indicate this change in the current item. Raises IndexError if either <em>oldIndex</em> or <em>newIndex</em> is out of bounds.
+full_name: Fox::FXIconList#moveItem
+is_singleton: false
+name: moveItem
+params: (newIndex, oldIndex, notify=false)
+visibility: public

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>debug (Mongrel::Configurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/configurator.rb, line 312</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">debug</span>(<span class="ruby-identifier">location</span>, <span class="ruby-identifier">what</span> = [<span class="ruby-identifier">:access</span>, <span class="ruby-identifier">:files</span>, <span class="ruby-identifier">:objects</span>, <span class="ruby-identifier">:threads</span>, <span class="ruby-identifier">:rails</span>])
+      <span class="ruby-identifier">require</span> <span class="ruby-value str">'mongrel/debug'</span>
+      <span class="ruby-identifier">handlers</span> = {
+        <span class="ruby-identifier">:access</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/handlers/requestlog::access&quot;</span>, 
+        <span class="ruby-identifier">:files</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/handlers/requestlog::files&quot;</span>, 
+        <span class="ruby-identifier">:objects</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/handlers/requestlog::objects&quot;</span>, 
+        <span class="ruby-identifier">:threads</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/handlers/requestlog::threads&quot;</span>,
+        <span class="ruby-identifier">:rails</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;/handlers/requestlog::params&quot;</span>
+      }
+
+      <span class="ruby-comment cmt"># turn on the debugging infrastructure, and ObjectTracker is a pig</span>
+      <span class="ruby-constant">MongrelDbg</span>.<span class="ruby-identifier">configure</span>
+
+      <span class="ruby-comment cmt"># now we roll through each requested debug type, turn it on and load that plugin</span>
+      <span class="ruby-identifier">what</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span><span class="ruby-operator">|</span> 
+        <span class="ruby-constant">MongrelDbg</span>.<span class="ruby-identifier">begin_trace</span> <span class="ruby-identifier">type</span> 
+        <span class="ruby-identifier">uri</span> <span class="ruby-identifier">location</span>, <span class="ruby-identifier">:handler</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">plugin</span>(<span class="ruby-identifier">handlers</span>[<span class="ruby-identifier">type</span>])
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

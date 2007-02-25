@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a collection of items for the given <tt>model</tt> and +options[conditions]+, ordered by +options[order]+, for the current page in the given <tt>paginator</tt>. Override this method to implement a custom finder.
+full_name: ActionController::Pagination#find_collection_for_pagination
+is_singleton: false
+name: find_collection_for_pagination
+params: (model, options, paginator)
+visibility: protected

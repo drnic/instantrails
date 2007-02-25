@@ -1,0 +1,56 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Transforms the given <em>answer_string</em> into the expected type for this Question. Currently supported conversions are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>[...]</tt>:"
+    body: Answer must be a member of the passed Array. Auto-completion is used to expand partial answers.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>lambda {...}</tt>:"
+    body: Answer is passed to lambda for conversion.
+  - !ruby/struct:SM::Flow::LI 
+    label: "Date:"
+    body: Date.parse() is called with answer.
+  - !ruby/struct:SM::Flow::LI 
+    label: "DateTime:"
+    body: DateTime.parse() is called with answer.
+  - !ruby/struct:SM::Flow::LI 
+    label: "File:"
+    body: The entered file name is auto-completed in terms of <em>directory</em> + <em>glob</em>, opened, and returned.
+  - !ruby/struct:SM::Flow::LI 
+    label: "Float:"
+    body: Answer is converted with Kernel.Float().
+  - !ruby/struct:SM::Flow::LI 
+    label: "Integer:"
+    body: Answer is converted with Kernel.Integer().
+  - !ruby/struct:SM::Flow::LI 
+    label: "+nil+:"
+    body: Answer is left in String format. (Default.)
+  - !ruby/struct:SM::Flow::LI 
+    label: "Pathname:"
+    body: Same as File, save that a Pathname object is returned.
+  - !ruby/struct:SM::Flow::LI 
+    label: "String:"
+    body: Answer is converted with Kernel.String().
+  - !ruby/struct:SM::Flow::LI 
+    label: "Regexp:"
+    body: Answer is fed to Regexp.new().
+  - !ruby/struct:SM::Flow::LI 
+    label: "Symbol:"
+    body: The method to_sym() is called on answer and the result returned.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<i>any other Class</i>:"
+    body: The answer is passed on to <tt>Class.parse()</tt>.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: This method throws ArgumentError, if the conversion cannot be completed for any reason.
+full_name: HighLine::Question#convert
+is_singleton: false
+name: convert
+params: ( answer_string )
+visibility: public

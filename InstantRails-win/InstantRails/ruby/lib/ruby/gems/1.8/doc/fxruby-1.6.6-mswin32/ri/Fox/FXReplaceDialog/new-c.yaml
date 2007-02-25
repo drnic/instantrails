@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theReplaceDialog
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXReplaceDialog instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: the owner window for this dialog box [FXWindow]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+caption+:"
+    body: the caption (title) string for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ic+:"
+    body: the icon [FXIcon]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: the options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: initial x-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: initial y-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: initial width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: initial height [Integer]
+  type: :NOTE
+full_name: Fox::FXReplaceDialog::new
+is_singleton: true
+name: new
+params: (owner, caption, ic=nil, opts=0, x=0, y=0, width=0, height=0) {|theReplaceDialog| ...}
+visibility: public

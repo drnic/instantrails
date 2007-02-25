@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns a element reference by finding it through <tt>id</tt> in the DOM. This element can then be used for further method calls. Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  page['blank_slate']                  # =&gt; $('blank_slate');\n  page['blank_slate'].show             # =&gt; $('blank_slate').show();\n  page['blank_slate'].show('first').up # =&gt; $('blank_slate').show('first').up();\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#[]
+is_singleton: false
+name: "[]"
+params: (id)
+visibility: public

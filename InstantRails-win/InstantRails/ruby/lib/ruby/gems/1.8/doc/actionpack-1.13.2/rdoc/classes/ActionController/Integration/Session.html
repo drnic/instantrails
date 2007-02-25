@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActionController::Integration::Session</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActionController::Integration::Session</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/action_controller/integration_rb.html">
+                lib/action_controller/integration.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+An integration <a href="Session.html">Session</a> instance represents a set
+of requests and responses performed sequentially by some virtual user.
+Becase you can instantiate multiple sessions and run them side-by-side, you
+can also mimic (to some limited extent) multiple simultaneous users
+interacting with your system.
+</p>
+<p>
+Typically, you will instantiate a <a href="Session.html#M000859">new</a>
+session using <a
+href="../IntegrationTest.html#M001019">IntegrationTest#open_session</a>,
+rather than instantiating <a href="Session.html">Integration::Session</a>
+directly.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000871">delete</a>&nbsp;&nbsp;
+      <a href="#M000864">follow_redirect!</a>&nbsp;&nbsp;
+      <a href="#M000868">get</a>&nbsp;&nbsp;
+      <a href="#M000865">get_via_redirect</a>&nbsp;&nbsp;
+      <a href="#M000872">head</a>&nbsp;&nbsp;
+      <a href="#M000863">host!</a>&nbsp;&nbsp;
+      <a href="#M000861">https!</a>&nbsp;&nbsp;
+      <a href="#M000862">https?</a>&nbsp;&nbsp;
+      <a href="#M000859">new</a>&nbsp;&nbsp;
+      <a href="#M000869">post</a>&nbsp;&nbsp;
+      <a href="#M000866">post_via_redirect</a>&nbsp;&nbsp;
+      <a href="#M000870">put</a>&nbsp;&nbsp;
+      <a href="#M000867">redirect?</a>&nbsp;&nbsp;
+      <a href="#M000860">reset!</a>&nbsp;&nbsp;
+      <a href="#M000874">url_for</a>&nbsp;&nbsp;
+      <a href="#M000873">xml_http_request</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Test::Unit::Assertions</span>
+        <span class="include-name">ActionController::Assertions</span>
+        <span class="include-name"><a href="../TestProcess.html">ActionController::TestProcess</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">accept</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The Accept header to send.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">controller</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A reference to the controller instance used by the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">cookies</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A map of the cookies returned by the last response, and which will be sent
+with the next request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">headers</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A map of the headers returned by the last response.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">host</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The hostname used in the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">path</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The URI of the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">remote_addr</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The remote_addr used in the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">request</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A reference to the request instance used by the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">response</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A reference to the response instance used by the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The integer HTTP status code of the last request.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status_message</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The status message that accompanied the status code of the last request.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000859" class="method-detail">
+        <a name="M000859"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000859.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000859.html');return false;">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create an initialize a <a href="Session.html#M000859">new</a> <a
+href="Session.html">Session</a> instance.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000871" class="method-detail">
+        <a name="M000871"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000871.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000871.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a DELETE request with the given parameters. See <a
+href="Session.html#M000868">get</a>() for more details.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000864" class="method-detail">
+        <a name="M000864"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000864.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000864.html');return false;">
+          <span class="method-name">follow_redirect!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Follow a single redirect response. If the last response was not a redirect,
+an exception will be raised. Otherwise, the redirect is performed on the
+location header.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000868" class="method-detail">
+        <a name="M000868"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000868.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000868.html');return false;">
+          <span class="method-name">get</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a GET request with the given parameters. The parameters may be
+<tt>nil</tt>, a Hash, or a string that is appropriately encoded
+(application/x-www-form-urlencoded or multipart/form-data). The headers
+should be a hash. The keys will automatically be upcased, with the prefix
+&#8216;HTTP_&#8217; added if needed.
+</p>
+<p>
+You can also perform POST, PUT, DELETE, and HEAD requests with <a
+href="Session.html#M000869">post</a>, <a
+href="Session.html#M000870">put</a>, <a
+href="Session.html#M000871">delete</a>, and <a
+href="Session.html#M000872">head</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000865" class="method-detail">
+        <a name="M000865"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000865.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000865.html');return false;">
+          <span class="method-name">get_via_redirect</span><span class="method-args">(path, args={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a GET request, following any subsequent redirect. Note that the
+redirects are followed until the response is not a redirect&#8212;this
+means you may run into an infinite loop if your redirect loops back to
+itself.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000872" class="method-detail">
+        <a name="M000872"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000872.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000872.html');return false;">
+          <span class="method-name">head</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a HEAD request with the given parameters. See <a
+href="Session.html#M000868">get</a>() for more details.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000863" class="method-detail">
+        <a name="M000863"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000863.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000863.html');return false;">
+          <span class="method-name">host!</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the host name to use in the next request.
+</p>
+<pre>
+  session.host! &quot;www.example.com&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000861" class="method-detail">
+        <a name="M000861"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000861.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000861.html');return false;">
+          <span class="method-name">https!</span><span class="method-args">(flag=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specify whether or not the session should mimic a secure HTTPS request.
+</p>
+<pre>
+  session.https!
+  session.https!(false)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000862" class="method-detail">
+        <a name="M000862"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000862.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000862.html');return false;">
+          <span class="method-name">https?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return <tt>true</tt> if the session is mimicing a secure HTTPS request.
+</p>
+<pre>
+  if session.https?
+    ...
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000869" class="method-detail">
+        <a name="M000869"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000869.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000869.html');return false;">
+          <span class="method-name">post</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a POST request with the given parameters. See <a
+href="Session.html#M000868">get</a>() for more details.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000866" class="method-detail">
+        <a name="M000866"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000866.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000866.html');return false;">
+          <span class="method-name">post_via_redirect</span><span class="method-args">(path, args={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a POST request, following any subsequent redirect. This is
+vulnerable to infinite loops, the same as <a
+href="Session.html#M000865">get_via_redirect</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000870" class="method-detail">
+        <a name="M000870"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000870.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000870.html');return false;">
+          <span class="method-name">put</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs a PUT request with the given parameters. See <a
+href="Session.html#M000868">get</a>() for more details.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000867" class="method-detail">
+        <a name="M000867"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000867.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000867.html');return false;">
+          <span class="method-name">redirect?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the last response was a redirect.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000860" class="method-detail">
+        <a name="M000860"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000860.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000860.html');return false;">
+          <span class="method-name">reset!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Resets the instance. This can be used to reset the state information in an
+existing session instance, so it can be used from a clean-slate condition.
+</p>
+<pre>
+  session.reset!
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000874" class="method-detail">
+        <a name="M000874"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000874.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000874.html');return false;">
+          <span class="method-name">url_for</span><span class="method-args">(options)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the URL for the given options, according to the rules specified in
+the application&#8216;s routes.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000873" class="method-detail">
+        <a name="M000873"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000873.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000873.html');return false;">
+          <span class="method-name">xml_http_request</span><span class="method-args">(path, parameters=nil, headers=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Performs an XMLHttpRequest request with the given parameters, mimicing the
+request environment created by the Prototype library. The parameters may be
+<tt>nil</tt>, a Hash, or a string that is appropriately encoded
+(application/x-www-form-urlencoded or multipart/form-data). The headers
+should be a hash. The keys will automatically be upcased, with the prefix
+&#8216;HTTP_&#8217; added if needed.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

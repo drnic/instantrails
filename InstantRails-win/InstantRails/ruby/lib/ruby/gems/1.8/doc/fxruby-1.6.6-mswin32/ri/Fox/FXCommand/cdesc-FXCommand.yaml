@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "FXCommand is an &quot;abstract&quot; base class for your application's commands. At a minimum, your concrete subclasses of FXCommand should implement the #undo, #redo, #undoName, and #redoName methods."
+constants: []
+
+full_name: Fox::FXCommand
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: redo
+- !ruby/object:RI::MethodSummary 
+  name: redoName
+- !ruby/object:RI::MethodSummary 
+  name: size
+- !ruby/object:RI::MethodSummary 
+  name: undo
+- !ruby/object:RI::MethodSummary 
+  name: undoName
+name: FXCommand
+superclass: Object

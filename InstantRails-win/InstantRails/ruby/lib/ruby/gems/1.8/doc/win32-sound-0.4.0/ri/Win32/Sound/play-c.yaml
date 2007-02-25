@@ -1,0 +1,58 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Plays the specified sound. The sound can be a wave file or a system sound, when used in conjunction with the ALIAS flag.
+- !ruby/struct:SM::Flow::P 
+  body: "Valid flags:"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::ALIAS
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound parameter is a system-event alias in the registry or the\n  WIN.INI file. If the registry contains no such name, it plays the\n  system default sound unless the NODEFAULT value is also specified.\n  Do not use with FILENAME.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::APPLICATION
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound is played using an application-specific association.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::ASYNC
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound is played asynchronously and the function returns\n  immediately after beginning the sound.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::FILENAME
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound parameter is the name of a WAV file.  Do not use with\n  ALIAS.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::LOOP
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound plays repeatedly until Sound.stop() is called. You must\n  also specify the ASYNC flag to loop sounds.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::MEMORY
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound points to an image of a waveform sound in memory.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::NODEFAULT
+- !ruby/struct:SM::Flow::VERB 
+  body: "  If the sound cannot be found, the function returns silently without\n  playing the default sound.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::NOSTOP
+- !ruby/struct:SM::Flow::VERB 
+  body: "  If a sound is currently playing, the function immediately returns\n  false without playing the requested sound.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::NOWAIT
+- !ruby/struct:SM::Flow::VERB 
+  body: "  If the driver is busy, return immediately without playing the sound.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::PURGE
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Stop playing all instances of the specified sound.\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sound::SYNC
+- !ruby/struct:SM::Flow::VERB 
+  body: "  The sound is played synchronously and the function does not return\n  until the sound ends.\n"
+full_name: Win32::Sound::play
+is_singleton: true
+name: play
+params: (sound, flags = 0)
+visibility: public

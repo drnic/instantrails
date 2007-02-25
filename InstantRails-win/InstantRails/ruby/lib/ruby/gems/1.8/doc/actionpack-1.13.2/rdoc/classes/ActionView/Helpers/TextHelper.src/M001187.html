@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sanitize (ActionView::Helpers::TextHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/text_helper.rb, line 221</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sanitize</span>(<span class="ruby-identifier">html</span>)
+        <span class="ruby-comment cmt"># only do this if absolutely necessary</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">html</span>.<span class="ruby-identifier">index</span>(<span class="ruby-value str">&quot;&lt;&quot;</span>)
+          <span class="ruby-identifier">tokenizer</span> = <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Tokenizer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">html</span>)
+          <span class="ruby-identifier">new_text</span> = <span class="ruby-value str">&quot;&quot;</span>
+
+          <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">token</span> = <span class="ruby-identifier">tokenizer</span>.<span class="ruby-identifier">next</span>
+            <span class="ruby-identifier">node</span> = <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Node</span>.<span class="ruby-identifier">parse</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">token</span>, <span class="ruby-keyword kw">false</span>)
+            <span class="ruby-identifier">new_text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">node</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Tag</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-constant">VERBOTEN_TAGS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">node</span>.<span class="ruby-identifier">name</span>)
+                  <span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&lt;/</span>, <span class="ruby-value str">&quot;&amp;lt;&quot;</span>)
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">closing</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">:close</span>
+                    <span class="ruby-identifier">node</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">delete_if</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">attr</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">attr</span> <span class="ruby-operator">=~</span> <span class="ruby-constant">VERBOTEN_ATTRS</span> }
+                    <span class="ruby-node">%w(href src)</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">attr</span><span class="ruby-operator">|</span>
+                      <span class="ruby-identifier">node</span>.<span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">delete</span> <span class="ruby-identifier">attr</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-identifier">attr</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^javascript:/i</span>
+                    <span class="ruby-keyword kw">end</span>
+                  <span class="ruby-keyword kw">end</span>
+                  <span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_s</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">node</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/&lt;/</span>, <span class="ruby-value str">&quot;&amp;lt;&quot;</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">html</span> = <span class="ruby-identifier">new_text</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">html</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

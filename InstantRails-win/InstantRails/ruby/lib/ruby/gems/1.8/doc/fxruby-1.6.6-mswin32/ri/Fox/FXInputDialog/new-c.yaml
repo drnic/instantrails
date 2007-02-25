@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theInputDialog
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct input dialog box with given caption, icon, and prompt text. If <em>owner</em> is a window, the dialog box will float over that window. If <em>owner</em> is the application, the dialog box will be free-floating.
+full_name: Fox::FXInputDialog::new
+is_singleton: true
+name: new
+params: (owner, caption, label, icon=nil, opts=INPUTDIALOG_STRING, x=0, y=0, width=0, height=0) {|theInputDialog| ...}
+visibility: public

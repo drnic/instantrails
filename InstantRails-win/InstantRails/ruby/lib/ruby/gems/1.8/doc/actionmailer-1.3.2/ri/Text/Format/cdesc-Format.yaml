@@ -1,0 +1,471 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Defines the current abbreviations as an array. This is only used if extra_space is turned on.
+  - !ruby/struct:SM::Flow::P 
+    body: "If one is abbreviating &quot;President&quot; as &quot;Pres.&quot; (abbreviations = [&quot;Pres&quot;]), then the results of formatting will be as illustrated in the table below:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "      extra_space  |  include?        |  !include?\n        true       |  Pres. Lincoln   |  Pres.  Lincoln\n        false      |  Pres. Lincoln   |  Pres. Lincoln\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>{}</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: abbreviations
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of spaces to indent all lines after the first line of a paragraph.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                            columns\n &lt;--------------------------------------------------------------&gt;\n &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;\n  left margin  INDENT  text is formatted into here  right margin\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>0</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: body_indent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The total width of the format area. The margins, indentation, and text are formatted into this space.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                            COLUMNS\n &lt;--------------------------------------------------------------&gt;\n &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;\n  left margin  indent  text is formatted into here  right margin\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>72</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>, <tt>#center</tt>
+    type: :NOTE
+  name: columns
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether sentence terminators should be followed by a single space (<tt>false</tt>), or two spaces (<tt>true</tt>).
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>false</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: extra_space
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of spaces to indent the first line of a paragraph.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                            columns\n &lt;--------------------------------------------------------------&gt;\n &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;\n  left margin  INDENT  text is formatted into here  right margin\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>4</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: first_indent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Specifies the format style. Allowable values are:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +LEFT_ALIGN+
+      body: Left justified, ragged right.
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "     |A paragraph that is|\n     |left aligned.|\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +RIGHT_ALIGN+
+      body: Right justified, ragged left.
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "     |A paragraph that is|\n     |     right aligned.|\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +RIGHT_FILL+
+      body: Left justified, right ragged, filled to width by spaces. (Essentially the same as <tt>LEFT_ALIGN</tt> except that lines are padded on the right.)
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "     |A paragraph that is|\n     |left aligned.      |\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +JUSTIFY+
+      body: Fully justified, words filled to width by spaces, except the last line.
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "     |A paragraph  that|\n     |is     justified.|\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>Text::Format::LEFT_ALIGN</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: format_style
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Normally, words larger than the format area will be placed on a line by themselves. Setting this to <tt>true</tt> will force words larger than the format area to be split into one or more &quot;words&quot; each at most the size of the format area. The first line and the original word will be placed into <tt>#split_words</tt>. Note that this will cause the output to look <b>similar</b> to a #format_style of JUSTIFY. (Lines will be filled as much as possible.)"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>false</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: hard_margins
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The object responsible for hyphenating. It must respond to #hyphenate_to(word, size) or #hyphenate_to(word, size, formatter) and return an array of the word split into two parts; if there is a hyphenation mark to be applied, responsibility belongs to the hyphenator object. The size is the MAXIMUM size permitted, including any hyphenation marks. If the #hyphenate_to method has an arity of 3, the formatter will be provided to the method. This allows the hyphenator to make decisions about the hyphenation based on the formatting rules."
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>nil</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: hyphenator
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of spaces used for the left margin.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                            columns\n &lt;--------------------------------------------------------------&gt;\n &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;\n  LEFT MARGIN  indent  text is formatted into here  right margin\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>0</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>, <tt>#center</tt>
+    type: :NOTE
+  name: left_margin
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether or not the non-breaking space feature should be used.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>false</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: nobreak
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A hash which holds the regular expressions on which spaces should not be broken. The hash is set up such that the key is the first word and the value is the second word.
+  - !ruby/struct:SM::Flow::P 
+    body: "For example, if <tt>nobreak_regex</tt> contains the following hash:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  { '^Mrs?\\.$' =&gt; '\\S+$', '^\\S+$' =&gt; '^(?:S|J)r\\.$'}\n"
+  - !ruby/struct:SM::Flow::P 
+    body: Then &quot;Mr. Jones&quot;, &quot;Mrs. Jones&quot;, and &quot;Jones Jr.&quot; would not be broken. If this simple matching algorithm indicates that there should not be a break at the current end of line, then a backtrack is done until there are two words on which line breaking is permitted. If two such words are not found, then the end of the line will be broken <b>regardless</b>. If there is a single word on the current line, then no backtrack is done and the word is stuck on the end.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>{}</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: nobreak_regex
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of spaces used for the right margin.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                            columns\n &lt;--------------------------------------------------------------&gt;\n &lt;-----------&gt;&lt;------&gt;&lt;---------------------------&gt;&lt;------------&gt;\n  left margin  indent  text is formatted into here  RIGHT MARGIN\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>0</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>, <tt>#center</tt>
+    type: :NOTE
+  name: right_margin
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Specifies the split mode; used only when #hard_margins is set to <tt>true</tt>. Allowable values are:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +SPLIT_FIXED+
+      body: The word will be split at the number of characters needed, with no marking at all.
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "     repre\n     senta\n     ion\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +SPLIT_CONTINUATION+
+      body: The word will be split at the number of characters needed, with a C-style continuation character. If a word is the only item on a line and it cannot be split into an appropriate size, SPLIT_FIXED will be used.
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "      repr       #       esen       #       tati       #       on\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: +SPLIT_HYPHENATION+
+      body: "The word will be split according to the hyphenator specified in #hyphenator. If there is no #hyphenator specified, works like SPLIT_CONTINUATION. The example is using TeX::Hyphen. If a word is the only item on a line and it cannot be split into an appropriate size, SPLIT_CONTINUATION mode will be used."
+    type: :LABELED
+  - !ruby/struct:SM::Flow::VERB 
+    body: "      rep-\n      re-\n      sen-\n      ta-\n      tion\n"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>Text::Format::SPLIT_FIXED</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: split_rules
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "An array of words split during formatting if #hard_margins is set to <tt>true</tt>."
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  #split_words &lt;&lt; Text::Format::SplitWord.new(word, first, rest)\n"
+  name: split_words
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates the number of spaces that a single tab represents.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>8</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#expand</tt>, <tt>#unexpand</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: tabstop
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the formatting of paragraphs should be done with tagged paragraphs. Useful only with <tt>#tag_text</tt>.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>false</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: tag_paragraph
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The array of text to be placed before each paragraph when <tt>#tag_paragraph</tt> is <tt>true</tt>. When <tt>#format()</tt> is called, only the first element of the array is used. When <tt>#paragraphs</tt> is called, then each entry in the array will be used once, with corresponding paragraphs. If the tag elements are exhausted before the text is exhausted, then the remaining paragraphs will not be tagged. Regardless of indentation settings, a blank line will be inserted between all paragraphs when <tt>#tag_paragraph</tt> is <tt>true</tt>.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>[]</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: <tt>#format</tt>, <tt>#paragraphs</tt>
+    type: :NOTE
+  name: tag_text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text to be manipulated. Note that value is optional, but if the formatting functions are called without values, this text is what will be formatted.
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "*Default*:"
+      body: <tt>[]</tt>
+    - !ruby/struct:SM::Flow::LI 
+      label: "<b>Used in</b>:"
+      body: All methods
+    type: :NOTE
+  name: text
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Text::Format for Ruby is copyright 2002 - 2005 by Austin Ziegler. It is available under Ruby's licence, the Perl Artistic licence, or the GNU GPL version 2 (or at your option, any later version). As a special exception, for use with official Rails (provided by the rubyonrails.org development team) and any project created with official Rails, the following alternative MIT-style licence may be used:"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Text::Format Licence for Rails and Rails Applications
+- !ruby/struct:SM::Flow::P 
+  body: "Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: The names of its contributors may not be used to endorse or promote products derived from this software without specific prior written permission.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+- !ruby/struct:SM::Flow::P 
+  body: THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.63'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Local abbreviations. More can be added with Text::Format.abbreviations
+  name: ABBREV
+  value: "[ 'Mr', 'Mrs', 'Ms', 'Jr', 'Sr' ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Formatting values
+  name: LEFT_ALIGN
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RIGHT_ALIGN
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RIGHT_FILL
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: JUSTIFY
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Word split modes (only applies when #hard_margins is true)."
+  name: SPLIT_FIXED
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_CONTINUATION
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_HYPHENATION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_CONTINUATION_FIXED
+  value: SPLIT_CONTINUATION | SPLIT_FIXED
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_HYPHENATION_FIXED
+  value: SPLIT_HYPHENATION | SPLIT_FIXED
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_HYPHENATION_CONTINUATION
+  value: SPLIT_HYPHENATION | SPLIT_CONTINUATION
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPLIT_ALL
+  value: SPLIT_HYPHENATION | SPLIT_CONTINUATION | SPLIT_FIXED
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LEQ_RE
+  value: /[.?!]['"]?$/
+full_name: Text::Format
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: body_indent=
+- !ruby/object:RI::MethodSummary 
+  name: center
+- !ruby/object:RI::MethodSummary 
+  name: columns=
+- !ruby/object:RI::MethodSummary 
+  name: expand
+- !ruby/object:RI::MethodSummary 
+  name: first_indent=
+- !ruby/object:RI::MethodSummary 
+  name: format
+- !ruby/object:RI::MethodSummary 
+  name: format_style=
+- !ruby/object:RI::MethodSummary 
+  name: hyphenate_to
+- !ruby/object:RI::MethodSummary 
+  name: hyphenator=
+- !ruby/object:RI::MethodSummary 
+  name: justify?
+- !ruby/object:RI::MethodSummary 
+  name: left_align?
+- !ruby/object:RI::MethodSummary 
+  name: left_margin=
+- !ruby/object:RI::MethodSummary 
+  name: paragraphs
+- !ruby/object:RI::MethodSummary 
+  name: right_align?
+- !ruby/object:RI::MethodSummary 
+  name: right_fill?
+- !ruby/object:RI::MethodSummary 
+  name: right_margin=
+- !ruby/object:RI::MethodSummary 
+  name: split_rules=
+- !ruby/object:RI::MethodSummary 
+  name: tabstop=
+- !ruby/object:RI::MethodSummary 
+  name: unexpand
+name: Format
+superclass: Object

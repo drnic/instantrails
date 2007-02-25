@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An IntegrationTest is one that spans multiple controllers and actions, tying them all together to ensure they work together as expected. It tests more completely than either unit or functional tests do, exercising the entire stack, from the dispatcher to the database.
+- !ruby/struct:SM::Flow::P 
+  body: "At its simplest, you simply extend IntegrationTest and write your tests using the get/post methods:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require &quot;#{File.dirname(<em>FILE</em>)}/test_helper&quot;\n\n  class ExampleTest &lt; ActionController::IntegrationTest\n    fixtures :people\n\n    def test_login\n      # get the login page\n      get &quot;/login&quot;\n      assert_equal 200, status\n\n      # post the login and follow through to the home page\n      post &quot;/login&quot;, :username =&gt; people(:jamis).username,\n        :password =&gt; people(:jamis).password\n      follow_redirect!\n      assert_equal 200, status\n      assert_equal &quot;/home&quot;, path\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: However, you can also have multiple session instances open per test, and even extend those instances with assertions and methods to create a very powerful testing DSL that is specific for your application. You can even reference any named routes you happen to have defined!
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require &quot;#{File.dirname(<em>FILE</em>)}/test_helper&quot;\n\n  class AdvancedTest &lt; ActionController::IntegrationTest\n    fixtures :people, :rooms\n\n    def test_login_and_speak\n      jamis, david = login(:jamis), login(:david)\n      room = rooms(:office)\n\n      jamis.enter(room)\n      jamis.speak(room, &quot;anybody home?&quot;)\n\n      david.enter(room)\n      david.speak(room, &quot;hello!&quot;)\n    end\n\n    private\n\n      module CustomAssertions\n        def enter(room)\n          # reference a named route, for maximum internal consistency!\n          get(room_url(:id =&gt; room.id))\n          assert(...)\n          ...\n        end\n\n        def speak(room, message)\n          xml_http_request &quot;/say/#{room.id}&quot;, :message =&gt; message\n          assert(...)\n          ...\n        end\n      end\n\n      def login(who)\n        open_session do |sess|\n          sess.extend(CustomAssertions)\n          who = people(who)\n          sess.post &quot;/login&quot;, :username =&gt; who.username,\n            :password =&gt; who.password\n          assert(...)\n        end\n      end\n  end\n"
+constants: []
+
+full_name: ActionController::IntegrationTest
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: open_session
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+name: IntegrationTest
+superclass: Test::Unit::TestCase

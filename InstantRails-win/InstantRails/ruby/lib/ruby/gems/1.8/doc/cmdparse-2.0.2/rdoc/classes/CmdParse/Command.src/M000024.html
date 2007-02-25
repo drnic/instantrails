@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>usage (CmdParse::Command)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/cmdparse.rb, line 219</span>
+219:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">usage</span>
+220:       <span class="ruby-identifier">tmp</span> = <span class="ruby-node">&quot;Usage: #{commandparser.program_name}&quot;</span>
+221:       <span class="ruby-identifier">tmp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; [options] &quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">commandparser</span>.<span class="ruby-identifier">options</span>.<span class="ruby-identifier">instance_of?</span>( <span class="ruby-constant">ParserWrapper</span> )
+222:       <span class="ruby-identifier">tmp</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">super_commands</span>.<span class="ruby-identifier">reverse</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span>
+223:         <span class="ruby-identifier">t</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">name</span>
+224:         <span class="ruby-identifier">t</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; [options]&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">c</span>.<span class="ruby-identifier">options</span>.<span class="ruby-identifier">instance_of?</span>( <span class="ruby-constant">ParserWrapper</span> )
+225:         <span class="ruby-identifier">t</span>
+226:       <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+227:       <span class="ruby-identifier">tmp</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">has_commands?</span> <span class="ruby-value">? </span><span class="ruby-value str">&quot; COMMAND [options] [ARGS]&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot; [ARGS]&quot;</span>)
+228:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

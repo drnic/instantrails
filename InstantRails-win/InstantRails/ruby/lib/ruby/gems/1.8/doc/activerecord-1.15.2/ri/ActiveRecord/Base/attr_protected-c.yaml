@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Attributes named in this macro are protected from mass-assignment, such as <tt>new(attributes)</tt> and <tt>attributes=(attributes)</tt>. Their assignment will simply be ignored. Instead, you can use the direct writer methods to do assignment. This is meant to protect sensitive attributes from being overwritten by URL/form hackers. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Customer &lt; ActiveRecord::Base\n    attr_protected :credit_rating\n  end\n\n  customer = Customer.new(&quot;name&quot; =&gt; David, &quot;credit_rating&quot; =&gt; &quot;Excellent&quot;)\n  customer.credit_rating # =&gt; nil\n  customer.attributes = { &quot;description&quot; =&gt; &quot;Jolly fellow&quot;, &quot;credit_rating&quot; =&gt; &quot;Superb&quot; }\n  customer.credit_rating # =&gt; nil\n\n  customer.credit_rating = &quot;Average&quot;\n  customer.credit_rating # =&gt; &quot;Average&quot;\n"
+full_name: ActiveRecord::Base::attr_protected
+is_singleton: true
+name: attr_protected
+params: (*attributes)
+visibility: public

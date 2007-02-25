@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the KC normalization of the string by default. NFKC is considered the best normalization form for passing strings to databases and validations.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>str</tt>: The string to perform normalization on."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>form</tt>: The form you want to normalize in. Should be one of the following: :c, :kc, :d or :kd."
+  type: :BULLET
+full_name: ActiveSupport::Multibyte::Handlers::UTF8Handler::normalize
+is_singleton: true
+name: normalize
+params: (str, form=ActiveSupport::Multibyte::DEFAULT_NORMALIZATION_FORM)
+visibility: public

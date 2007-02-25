@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>true</tt> if the provided <em>answer_string</em> is accepted by the <em>validate</em> attribute or <tt>false</tt> if it's not.
+- !ruby/struct:SM::Flow::P 
+  body: It's important to realize that an answer is validated after whitespace and case handling.
+full_name: HighLine::Question#valid_answer?
+is_singleton: false
+name: valid_answer?
+params: ( answer_string )
+visibility: public

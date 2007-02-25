@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the current file to <em>filename</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the file list's message target after the current item has changed. If this change causes the selected item(s) to change (because the file list is operating in browse-select mode), <tt>SEL_SELECTED</tt> and <tt>SEL_DESELECTED</tt> may be sent to the message target as well.
+full_name: Fox::FXFileList#setCurrentFile
+is_singleton: false
+name: setCurrentFile
+params: (filename, notify=false)
+visibility: public

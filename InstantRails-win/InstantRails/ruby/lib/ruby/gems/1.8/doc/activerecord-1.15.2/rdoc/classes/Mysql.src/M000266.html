@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>list_fields (Mysql)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/vendor/mysql.rb, line 284</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">list_fields</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">field</span>=<span class="ruby-keyword kw">nil</span>)
+    <span class="ruby-identifier">command</span> <span class="ruby-constant">COM_FIELD_LIST</span>, <span class="ruby-node">&quot;#{table}\0#{field}&quot;</span>, <span class="ruby-keyword kw">true</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@pre_411</span>
+      <span class="ruby-identifier">f</span> = <span class="ruby-identifier">read_rows</span> <span class="ruby-value">6</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">f</span> = <span class="ruby-identifier">read_rows</span> <span class="ruby-value">7</span>
+    <span class="ruby-keyword kw">end</span>
+    <span class="ruby-identifier">fields</span> = <span class="ruby-identifier">unpack_fields</span>(<span class="ruby-identifier">f</span>, <span class="ruby-ivar">@server_capabilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLIENT_LONG_FLAG</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>)
+    <span class="ruby-identifier">res</span> = <span class="ruby-constant">Result</span><span class="ruby-operator">::</span><span class="ruby-identifier">new</span> <span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">fields</span>, <span class="ruby-identifier">f</span>.<span class="ruby-identifier">length</span>
+    <span class="ruby-identifier">res</span>.<span class="ruby-identifier">eof</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-identifier">res</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

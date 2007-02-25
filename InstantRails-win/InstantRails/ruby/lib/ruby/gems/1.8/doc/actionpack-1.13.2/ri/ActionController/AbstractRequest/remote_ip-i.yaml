@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Determine originating IP address. REMOTE_ADDR is the standard but will fail if the user is behind a proxy. HTTP_CLIENT_IP and/or HTTP_X_FORWARDED_FOR are set by proxies so check for these before falling back to REMOTE_ADDR. HTTP_X_FORWARDED_FOR may be a comma- delimited list in the case of multiple chained proxies; the first is the originating IP.
+full_name: ActionController::AbstractRequest#remote_ip
+is_singleton: false
+name: remote_ip
+params: ()
+visibility: public

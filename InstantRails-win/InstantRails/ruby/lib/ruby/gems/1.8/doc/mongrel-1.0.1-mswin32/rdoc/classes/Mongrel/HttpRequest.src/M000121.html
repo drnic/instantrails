@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read_body (Mongrel::HttpRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel.rb, line 247</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_body</span>(<span class="ruby-identifier">remain</span>, <span class="ruby-identifier">total</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-comment cmt"># write the odd sized chunk first</span>
+        <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span> = <span class="ruby-identifier">read_socket</span>(<span class="ruby-identifier">remain</span> <span class="ruby-operator">%</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CHUNK_SIZE</span>)
+
+        <span class="ruby-identifier">remain</span> <span class="ruby-operator">-=</span> <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span>)
+
+        <span class="ruby-identifier">update_request_progress</span>(<span class="ruby-identifier">remain</span>, <span class="ruby-identifier">total</span>)
+
+        <span class="ruby-comment cmt"># then stream out nothing but perfectly sized chunks</span>
+        <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">remain</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">closed?</span>
+          <span class="ruby-comment cmt"># ASSUME: we are writing to a disk and these writes always write the requested amount</span>
+          <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span> = <span class="ruby-identifier">read_socket</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CHUNK_SIZE</span>)
+          <span class="ruby-identifier">remain</span> <span class="ruby-operator">-=</span> <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">write</span>(<span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span>)
+
+          <span class="ruby-identifier">update_request_progress</span>(<span class="ruby-identifier">remain</span>, <span class="ruby-identifier">total</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span>
+        <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;ERROR reading http body: #$!&quot;</span>
+        <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+        <span class="ruby-comment cmt"># any errors means we should delete the file, including if the file is dumped</span>
+        <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span>
+        <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">delete</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Tempfile</span>
+        <span class="ruby-ivar">@body</span> = <span class="ruby-keyword kw">nil</span> <span class="ruby-comment cmt"># signals that there was a problem</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

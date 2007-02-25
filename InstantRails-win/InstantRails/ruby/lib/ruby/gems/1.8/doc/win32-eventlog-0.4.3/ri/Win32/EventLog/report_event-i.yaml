@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: write
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: EventLog#report_event(key =&gt; value, ...)
+- !ruby/struct:SM::Flow::P 
+  body: "Writes an event to the event log. The following are valid keys:"
+- !ruby/struct:SM::Flow::P 
+  body: "source # Event log source name. Defaults to &quot;Application&quot; event_id # Event ID (defined in event message file) category # Event category (defined in category message file) data # String that is written to the log event_type # Type of event, e.g. EventLog::ERROR, etc."
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>event_type</tt> keyword is the only mandatory keyword. The others are optional. Although the <tt>source</tt> defaults to &quot;Application&quot;, I recommend that you create an application specific event source and use that instead. See the 'EventLog.add_event_source' method for more details.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>event_id</tt> and <tt>category</tt> values are defined in the message file(s) that you created for your application. See the tutorial.txt file for more details on how to create a message file.
+- !ruby/struct:SM::Flow::P 
+  body: An ArgumentError is raised if you attempt to use an invalid key.
+full_name: Win32::EventLog#report_event
+is_singleton: false
+name: report_event
+params: (args)
+visibility: public

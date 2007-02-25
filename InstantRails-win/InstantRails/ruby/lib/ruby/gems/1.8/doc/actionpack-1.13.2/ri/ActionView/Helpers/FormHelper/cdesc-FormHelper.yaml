@@ -1,0 +1,58 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Provides a set of methods for working with forms and especially forms related to objects assigned to the template. The following is an example of a complete form for a person object that works for both creates and updates built with all the form helpers. The <tt>@person</tt> object was assigned by an action on the controller:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;form action=&quot;save_person&quot; method=&quot;post&quot;&gt;\n    Name:\n    &lt;%= text_field &quot;person&quot;, &quot;name&quot;, &quot;size&quot; =&gt; 20 %&gt;\n\n    Password:\n    &lt;%= password_field &quot;person&quot;, &quot;password&quot;, &quot;maxsize&quot; =&gt; 20 %&gt;\n\n    Single?:\n    &lt;%= check_box &quot;person&quot;, &quot;single&quot; %&gt;\n\n    Description:\n    &lt;%= text_area &quot;person&quot;, &quot;description&quot;, &quot;cols&quot; =&gt; 20 %&gt;\n\n    &lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;\n  &lt;/form&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "...is compiled to:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;form action=&quot;save_person&quot; method=&quot;post&quot;&gt;\n    Name:\n    &lt;input type=&quot;text&quot; id=&quot;person_name&quot; name=&quot;person[name]&quot;\n      size=&quot;20&quot; value=&quot;&lt;%= @person.name %&gt;&quot; /&gt;\n\n    Password:\n    &lt;input type=&quot;password&quot; id=&quot;person_password&quot; name=&quot;person[password]&quot;\n      size=&quot;20&quot; maxsize=&quot;20&quot; value=&quot;&lt;%= @person.password %&gt;&quot; /&gt;\n\n    Single?:\n    &lt;input type=&quot;checkbox&quot; id=&quot;person_single&quot; name=&quot;person[single]&quot; value=&quot;1&quot; /&gt;\n\n    Description:\n    &lt;textarea cols=&quot;20&quot; rows=&quot;40&quot; id=&quot;person_description&quot; name=&quot;person[description]&quot;&gt;\n      &lt;%= @person.description %&gt;\n    &lt;/textarea&gt;\n\n    &lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;\n  &lt;/form&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If the object name contains square brackets the id for the object will be inserted. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= text_field &quot;person[]&quot;, &quot;name&quot; %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "...becomes:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;input type=&quot;text&quot; id=&quot;person_&lt;%= @person.id %&gt;_name&quot; name=&quot;person[&lt;%= @person.id %&gt;][name]&quot; value=&quot;&lt;%= @person.name %&gt;&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If the helper is being used to generate a repetitive sequence of similar form elements, for example in a partial used by render_collection_of_partials, the &quot;index&quot; option may come in handy. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= text_field &quot;person&quot;, &quot;name&quot;, &quot;index&quot; =&gt; 1 %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: becomes
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;input type=&quot;text&quot; id=&quot;person_1_name&quot; name=&quot;person[1][name]&quot; value=&quot;&lt;%= @person.name %&gt;&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: There's also methods for helping to build form tags in link:classes/ActionView/Helpers/FormOptionsHelper.html, link:classes/ActionView/Helpers/DateHelper.html, and link:classes/ActionView/Helpers/ActiveRecordHelper.html
+constants: []
+
+full_name: ActionView::Helpers::FormHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: check_box
+- !ruby/object:RI::MethodSummary 
+  name: fields_for
+- !ruby/object:RI::MethodSummary 
+  name: file_field
+- !ruby/object:RI::MethodSummary 
+  name: form_for
+- !ruby/object:RI::MethodSummary 
+  name: hidden_field
+- !ruby/object:RI::MethodSummary 
+  name: password_field
+- !ruby/object:RI::MethodSummary 
+  name: radio_button
+- !ruby/object:RI::MethodSummary 
+  name: text_area
+- !ruby/object:RI::MethodSummary 
+  name: text_field
+name: FormHelper
+superclass: 

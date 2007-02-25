@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Rectangle height [Integer]
+  name: h
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Rectangle width [Integer]
+  name: w
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Upper left corner's x-coordinate [Integer]
+  name: x
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Upper left corner's y-coordinate [Integer]
+  name: y
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Rectangle
+constants: []
+
+full_name: Fox::FXRectangle
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: contains?
+- !ruby/object:RI::MethodSummary 
+  name: contains?
+- !ruby/object:RI::MethodSummary 
+  name: contains?
+- !ruby/object:RI::MethodSummary 
+  name: grow!
+- !ruby/object:RI::MethodSummary 
+  name: grow!
+- !ruby/object:RI::MethodSummary 
+  name: grow!
+- !ruby/object:RI::MethodSummary 
+  name: move!
+- !ruby/object:RI::MethodSummary 
+  name: move!
+- !ruby/object:RI::MethodSummary 
+  name: shrink!
+- !ruby/object:RI::MethodSummary 
+  name: shrink!
+- !ruby/object:RI::MethodSummary 
+  name: shrink!
+name: FXRectangle
+superclass: Object

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>options (HighLine::Menu)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/highline/menu.rb, line 265</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options</span>(  )
+      <span class="ruby-comment cmt"># add in any hidden menu commands</span>
+      <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">concat</span>(<span class="ruby-ivar">@hidden_items</span>)
+      
+      <span class="ruby-identifier">by_index</span> = <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@index</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:letter</span>
+        <span class="ruby-identifier">l_index</span> = <span class="ruby-value str">&quot;`&quot;</span>
+        <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">map</span> { <span class="ruby-node">&quot;#{l_index.succ!}&quot;</span> }
+      <span class="ruby-keyword kw">else</span>
+        (<span class="ruby-value">1</span> <span class="ruby-operator">..</span> <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">size</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span> <span class="ruby-constant">String</span>(<span class="ruby-identifier">s</span>) }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">by_name</span> = <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">first</span> }
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@select_by</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:index</span> <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">by_index</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:name</span>
+        <span class="ruby-identifier">by_name</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">by_index</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">by_name</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">ensure</span>
+      <span class="ruby-comment cmt"># make sure the hidden items are removed, before we return</span>
+      <span class="ruby-ivar">@items</span>.<span class="ruby-identifier">slice!</span>(<span class="ruby-ivar">@items</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@hidden_items</span>.<span class="ruby-identifier">size</span>, <span class="ruby-ivar">@hidden_items</span>.<span class="ruby-identifier">size</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add (Log4r::Logger)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File src/log4r/logger.rb, line 114</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">_outputters</span>)
+      <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">thing</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">_outputters</span>
+        <span class="ruby-identifier">o</span> = (<span class="ruby-identifier">thing</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Outputter</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">thing</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Outputter</span>[<span class="ruby-identifier">thing</span>])
+        <span class="ruby-comment cmt"># some basic validation</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Outputter</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;Expected kind of Outputter, got #{o.class}&quot;</span>, <span class="ruby-identifier">caller</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">o</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-node">&quot;Couldn't find Outputter '#{thing}'&quot;</span>, <span class="ruby-identifier">caller</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@outputters</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">o</span>
+        <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">log_internal</span> {<span class="ruby-node">&quot;Added outputter '#{o.name}' to '#{@fullname}'&quot;</span>}
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@outputters</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

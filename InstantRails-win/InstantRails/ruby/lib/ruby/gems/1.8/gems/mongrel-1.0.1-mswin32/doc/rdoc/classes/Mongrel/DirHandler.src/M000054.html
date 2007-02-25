@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>send_file (Mongrel::DirHandler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/handlers.rb, line 182</span>
+182:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">req_path</span>, <span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>, <span class="ruby-identifier">header_only</span>=<span class="ruby-keyword kw">false</span>)
+183: 
+184:       <span class="ruby-identifier">stat</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">stat</span>(<span class="ruby-identifier">req_path</span>)
+185: 
+186:       <span class="ruby-comment cmt"># Set the last modified times as well and etag for all files</span>
+187:       <span class="ruby-identifier">mtime</span> = <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">mtime</span>
+188:       <span class="ruby-comment cmt"># Calculated the same as apache, not sure how well the works on win32</span>
+189:       <span class="ruby-identifier">etag</span> = <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">ETAG_FORMAT</span> <span class="ruby-operator">%</span> [<span class="ruby-identifier">mtime</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">ino</span>]
+190: 
+191:       <span class="ruby-identifier">modified_since</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP_IF_MODIFIED_SINCE</span>]
+192:       <span class="ruby-identifier">none_match</span> = <span class="ruby-identifier">request</span>.<span class="ruby-identifier">params</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">HTTP_IF_NONE_MATCH</span>]
+193: 
+194:       <span class="ruby-comment cmt"># test to see if this is a conditional request, and test if</span>
+195:       <span class="ruby-comment cmt"># the response would be identical to the last response</span>
+196:       <span class="ruby-identifier">same_response</span> = <span class="ruby-keyword kw">case</span>
+197:                       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">modified_since</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">last_response_time</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">httpdate</span>(<span class="ruby-identifier">modified_since</span>) <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+198:                       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">modified_since</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">last_response_time</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>                                  <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+199:                       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">modified_since</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">mtime</span> <span class="ruby-operator">&gt;</span> <span class="ruby-identifier">last_response_time</span>                                     <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+200:                       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">none_match</span>     <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">none_match</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'*'</span>                                              <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+201:                       <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">none_match</span>     <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">none_match</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/\s*,\s*/</span>).<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">etag</span>)              <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+202:                       <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">modified_since</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">none_match</span>  <span class="ruby-comment cmt"># validation successful if we get this far and at least one of the header exists</span>
+203:                       <span class="ruby-keyword kw">end</span>
+204: 
+205:       <span class="ruby-identifier">header</span> = <span class="ruby-identifier">response</span>.<span class="ruby-identifier">header</span>
+206:       <span class="ruby-identifier">header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">ETAG</span>] = <span class="ruby-identifier">etag</span>
+207: 
+208:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">same_response</span>
+209:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">start</span>(<span class="ruby-value">304</span>) {}
+210:       <span class="ruby-keyword kw">else</span>
+211:         <span class="ruby-comment cmt"># first we setup the headers and status then we do a very fast send on the socket directly</span>
+212:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">status</span> = <span class="ruby-value">200</span>
+213:         <span class="ruby-identifier">header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">LAST_MODIFIED</span>] = <span class="ruby-identifier">mtime</span>.<span class="ruby-identifier">httpdate</span>
+214: 
+215:         <span class="ruby-comment cmt"># set the mime type from our map based on the ending</span>
+216:         <span class="ruby-identifier">dot_at</span> = <span class="ruby-identifier">req_path</span>.<span class="ruby-identifier">rindex</span>(<span class="ruby-value str">'.'</span>)
+217:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">dot_at</span>
+218:           <span class="ruby-identifier">header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CONTENT_TYPE</span>] = <span class="ruby-constant">MIME_TYPES</span>[<span class="ruby-identifier">req_path</span>[<span class="ruby-identifier">dot_at</span> <span class="ruby-operator">..</span> <span class="ruby-value">-1</span>]] <span class="ruby-operator">||</span> <span class="ruby-ivar">@default_content_type</span>
+219:         <span class="ruby-keyword kw">else</span>
+220:           <span class="ruby-identifier">header</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CONTENT_TYPE</span>] = <span class="ruby-ivar">@default_content_type</span>
+221:         <span class="ruby-keyword kw">end</span>
+222: 
+223:         <span class="ruby-comment cmt"># send a status with out content length</span>
+224:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_status</span>(<span class="ruby-identifier">stat</span>.<span class="ruby-identifier">size</span>)
+225:         <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_header</span>
+226: 
+227:         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">header_only</span>
+228:           <span class="ruby-identifier">response</span>.<span class="ruby-identifier">send_file</span>(<span class="ruby-identifier">req_path</span>, <span class="ruby-identifier">stat</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CHUNK_SIZE</span> <span class="ruby-operator">*</span> <span class="ruby-value">2</span>)
+229:         <span class="ruby-keyword kw">end</span>
+230:       <span class="ruby-keyword kw">end</span>
+231:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

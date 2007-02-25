@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Replaces the inner HTML of the DOM element with the given <tt>id</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>options_for_render</tt> may be either a string of HTML to insert, or a hash of options to be passed to ActionView::Base#render. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Replace the HTML of the DOM element having ID 'person-45' with the\n  # 'person' partial for the appropriate object.\n  replace_html 'person-45', :partial =&gt; 'person', :object =&gt; @person\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#replace_html
+is_singleton: false
+name: replace_html
+params: (id, *options_for_render)
+visibility: public

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>has_one (ActiveRecord::Associations::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/associations.rb, line 608</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">has_one</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span> = {})
+        <span class="ruby-identifier">reflection</span> = <span class="ruby-identifier">create_has_one_reflection</span>(<span class="ruby-identifier">association_id</span>, <span class="ruby-identifier">options</span>)
+
+        <span class="ruby-identifier">module_eval</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">after_save</span> <span class="ruby-value str">&quot;association = instance_variable_get(\&quot;@\#{reflection.name}\&quot;)\nif !association.nil? &amp;&amp; (new_record? || association.new_record? || association[\&quot;\#{reflection.primary_key_name}\&quot;] != id)\nassociation[\&quot;\#{reflection.primary_key_name}\&quot;] = id\nassociation.save(true)\nend\n&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      
+        <span class="ruby-identifier">association_accessor_methods</span>(<span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:build</span>,  <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        <span class="ruby-identifier">association_constructor_method</span>(<span class="ruby-identifier">:create</span>, <span class="ruby-identifier">reflection</span>, <span class="ruby-constant">HasOneAssociation</span>)
+        
+        <span class="ruby-identifier">configure_dependency_for_has_one</span>(<span class="ruby-identifier">reflection</span>)
+
+        <span class="ruby-comment cmt"># deprecated api</span>
+        <span class="ruby-identifier">deprecated_has_association_method</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>)
+        <span class="ruby-identifier">deprecated_association_comparison_method</span>(<span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">name</span>, <span class="ruby-identifier">reflection</span>.<span class="ruby-identifier">class_name</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

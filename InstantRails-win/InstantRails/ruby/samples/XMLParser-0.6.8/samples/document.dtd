@@ -1,0 +1,77 @@
+<!-- <!DOCTYPE document [ -->
+
+<!ENTITY % coreattrs "id ID #IMPLIED">
+<!ENTITY % phrase "em|code">
+<!ENTITY % special "link|image">
+<!ENTITY % inline "#PCDATA|%phrase;|%special;">
+<!ENTITY % block "para|rpara|list|pre|table">
+<!ENTITY % flow "%inline;|%block;">
+
+<!ELEMENT document (title,(index|contents|section|%block;)*)>
+<!ATTLIST document %coreattrs;>
+
+<!ELEMENT em (%inline;)*>
+<!ATTLIST em %coreattrs;>
+
+<!ELEMENT code (%inline;)*>
+<!ATTLIST code %coreattrs;>
+
+<!ELEMENT title (%inline;)*>
+<!ATTLIST title %coreattrs;>
+
+<!ELEMENT para (%inline;)*>
+<!ATTLIST para %coreattrs;>
+
+<!ELEMENT rpara (%inline;)*>
+<!ATTLIST rpara %coreattrs;>
+
+<!ELEMENT contents (item)+>
+<!ATTLIST contents %coreattrs;>
+
+<!ELEMENT index (link)+>
+<!ATTLIST index %coreattrs;>
+
+<!ELEMENT pre (%inline;)*>
+<!ATTLIST pre %coreattrs;>
+
+<!ELEMENT section (heading,(%block;|subsection)*)>
+<!ATTLIST section %coreattrs;>
+
+<!ELEMENT subsection (heading,(%block;)*)>
+<!ATTLIST subsection %coreattrs;>
+
+<!ELEMENT heading (%inline;)*>
+<!ATTLIST heading %coreattrs;>
+
+<!ELEMENT link (%inline;)*>
+<!ATTLIST link %coreattrs;>
+<!ATTLIST link xml:link CDATA #FIXED 'simple'
+               href CDATA #REQUIRED>
+
+<!ELEMENT image EMPTY>
+<!ATTLIST image %coreattrs;
+                xml:link CDATA #FIXED 'simple'
+                href CDATA #REQUIRED
+                title CDATA #REQUIRED
+                role CDATA #IMPLIED
+                show CDATA #IMPLIED>
+
+<!ELEMENT list (item)+>
+<!ATTLIST list %coreattrs;>
+
+<!ELEMENT item (%flow;)*>
+<!ATTLIST item %coreattrs;>
+
+<!ELEMENT table (caption?,tr+)>
+<!ATTLIST table %coreattrs;>
+
+<!ELEMENT tr (td)+>
+<!ATTLIST tr %coreattrs;>
+
+<!ELEMENT td (%flow;)*>
+<!ATTLIST td %coreattrs;>
+
+<!ELEMENT caption (%inline;)*>
+<!ATTLIST caption %coreattrs;>
+
+<!-- ]> -->

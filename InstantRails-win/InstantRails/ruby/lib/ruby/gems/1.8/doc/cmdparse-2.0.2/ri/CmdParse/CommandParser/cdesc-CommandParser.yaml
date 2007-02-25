@@ -1,0 +1,54 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A standard banner for help &amp; version screens
+  name: banner
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Are Exceptions be handled gracefully? I.e. by printing error message and the help screen?
+  name: handle_exceptions
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The top level command representing the program itself.
+  name: main_command
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the program.
+  name: program_name
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The version of the program.
+  name: program_version
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The main class for creating a command based CLI program.
+constants: []
+
+full_name: CmdParse::CommandParser
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_command
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: options=
+- !ruby/object:RI::MethodSummary 
+  name: parse
+name: CommandParser
+superclass: Object

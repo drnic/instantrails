@@ -1,0 +1,57 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ActiveRecord connection adapter for Sybase Open Client bindings (see http://raa.ruby-lang.org/project/sybase-ctlib).
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- The name of the database server. No default, must be provided.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database</tt> -- The name of the database. No default, must be provided.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:username</tt> -- Defaults to &quot;sa&quot;.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Defaults to empty string.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Usage Notes:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: The sybase-ctlib bindings do not support the DATE SQL column type; use DATETIME instead.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Table and column names are limited to 30 chars in Sybase 12.5
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":binary columns not yet supported"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":boolean columns use the BIT SQL type, which does not allow nulls or indexes. If a DEFAULT is not specified for ALTER TABLE commands, the column will be declared with DEFAULT 0 (false)."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Migrations:"
+- !ruby/struct:SM::Flow::P 
+  body: The Sybase adapter supports migrations, but for ALTER TABLE commands to work, the database must have the database option 'select into' set to 'true' with sp_dboption (see below). The sp_helpdb command lists the current options for all databases.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  1&gt; use mydb\n  2&gt; go\n  1&gt; master..sp_dboption mydb, &quot;select into&quot;, true\n  2&gt; go\n  1&gt; checkpoint\n  2&gt; go\n"
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::SybaseAdapter
+includes: []
+
+instance_methods: []
+
+name: SybaseAdapter
+superclass: AbstractAdapter

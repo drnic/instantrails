@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>error_messages_for (ActionView::Helpers::ActiveRecordHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/active_record_helper.rb, line 120</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">error_messages_for</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">params</span>)
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">params</span>.<span class="ruby-identifier">pop</span>.<span class="ruby-identifier">symbolize_keys</span> <span class="ruby-operator">:</span> {}
+        <span class="ruby-identifier">objects</span> = <span class="ruby-identifier">params</span>.<span class="ruby-identifier">collect</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">object_name</span><span class="ruby-operator">|</span> <span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-node">&quot;@#{object_name}&quot;</span>) }.<span class="ruby-identifier">compact</span>
+        <span class="ruby-identifier">count</span>   = <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-value">0</span>) {<span class="ruby-operator">|</span><span class="ruby-identifier">sum</span>, <span class="ruby-identifier">object</span><span class="ruby-operator">|</span> <span class="ruby-identifier">sum</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">count</span> }
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">count</span>.<span class="ruby-identifier">zero?</span>
+          <span class="ruby-identifier">html</span> = {}
+          [<span class="ruby-identifier">:id</span>, <span class="ruby-identifier">:class</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+              <span class="ruby-identifier">value</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">key</span>]
+              <span class="ruby-identifier">html</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">value</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">blank?</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">html</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-value str">'errorExplanation'</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">header_message</span> = <span class="ruby-node">&quot;#{pluralize(count, 'error')} prohibited this #{(options[:object_name] || params.first).to_s.gsub('_', ' ')} from being saved&quot;</span>
+          <span class="ruby-identifier">error_messages</span> = <span class="ruby-identifier">objects</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">object</span><span class="ruby-operator">|</span> <span class="ruby-identifier">object</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:li</span>, <span class="ruby-identifier">msg</span>) } }
+          <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:div</span>,
+            <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:header_tag</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">:h2</span>, <span class="ruby-identifier">header_message</span>) <span class="ruby-operator">&lt;&lt;</span>
+              <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:p</span>, <span class="ruby-value str">'There were problems with the following fields:'</span>) <span class="ruby-operator">&lt;&lt;</span>
+              <span class="ruby-identifier">content_tag</span>(<span class="ruby-identifier">:ul</span>, <span class="ruby-identifier">error_messages</span>),
+            <span class="ruby-identifier">html</span>
+          )
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-value str">''</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

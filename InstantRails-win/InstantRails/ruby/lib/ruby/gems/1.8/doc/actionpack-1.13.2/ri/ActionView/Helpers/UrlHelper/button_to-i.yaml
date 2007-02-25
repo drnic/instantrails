@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Generates a form containing a single button that submits to the URL created by the set of <tt>options</tt>. This is the safest method to ensure links that cause changes to your data are not triggered by search bots or accelerators. If the HTML button does not work with your layout, you can also consider using the link_to method with the <tt>:method</tt> modifier as described in the link_to documentation.
+- !ruby/struct:SM::Flow::P 
+  body: The generated FORM element has a class name of <tt>button-to</tt> to allow styling of the form itself and its children. You can control the form submission and input element behavior using <tt>html_options</tt>. This method accepts the <tt>:method</tt> and <tt>:confirm</tt> modifiers described in the link_to documentation. If no <tt>:method</tt> modifier is given, it will default to performing a POST operation. You can also disable the button by passing <tt>:disabled =&gt; true</tt> in <tt>html_options</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  button_to &quot;New&quot;, :action =&gt; &quot;new&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Generates the following HTML:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;form method=&quot;post&quot; action=&quot;/controller/new&quot; class=&quot;button-to&quot;&gt;\n    &lt;div&gt;&lt;input value=&quot;New&quot; type=&quot;submit&quot; /&gt;&lt;/div&gt;\n  &lt;/form&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: If you are using RESTful routes, you can pass the <tt>:method</tt> to change the HTTP verb used to submit the form.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  button_to &quot;Delete Image&quot;, { :action =&gt; &quot;delete&quot;, :id =&gt; @image.id },\n            :confirm =&gt; &quot;Are you sure?&quot;, :method =&gt; :delete\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Which generates the following HTML:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;form method=&quot;post&quot; action=&quot;/images/delete/1&quot; class=&quot;button-to&quot;&gt;\n    &lt;div&gt;\n      &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;delete&quot; /&gt;\n      &lt;input onclick=&quot;return confirm('Are you sure?');&quot;\n                value=&quot;Delete&quot; type=&quot;submit&quot; /&gt;\n    &lt;/div&gt;\n  &lt;/form&gt;\n"
+full_name: ActionView::Helpers::UrlHelper#button_to
+is_singleton: false
+name: button_to
+params: (name, options = {}, html_options = {})
+visibility: public

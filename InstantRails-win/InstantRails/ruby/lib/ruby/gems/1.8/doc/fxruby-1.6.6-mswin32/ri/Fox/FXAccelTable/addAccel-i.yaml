@@ -1,0 +1,32 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Add an accelerator to the table. The <em>hotKey</em> is a code returned by the Fox.fxparseAccel method. For example, to associate the Ctrl+S keypress with sending a &quot;save&quot; command to a document, you might use code like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hotKey = fxparseAccel(&quot;Ctrl+S&quot;)\n  accelTable.addAccel(hotKey, doc, FXSEL(SEL_COMMAND, MyDocument::ID_SAVE))\n"
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+hotKey+:"
+    body: the hotkey associated with this accelerator [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+target+:"
+    body: message target [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+seldn+:"
+    body: selector for the <tt>SEL_KEYPRESS</tt> event [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+selup+:"
+    body: selector for the <tt>SEL_KEYRELEASE</tt> event [Integer]
+  type: :NOTE
+full_name: Fox::FXAccelTable#addAccel
+is_singleton: false
+name: addAccel
+params: (hotKey, target=nil, seldn=0, selup=0)
+visibility: public

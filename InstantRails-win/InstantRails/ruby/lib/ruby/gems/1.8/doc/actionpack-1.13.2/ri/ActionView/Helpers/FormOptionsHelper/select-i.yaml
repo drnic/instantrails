@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a select tag and a series of contained option tags for the provided object and method. The option currently held by the object will be selected, provided that the object is available. See options_for_select for the required format of the choices parameter.
+- !ruby/struct:SM::Flow::P 
+  body: "Example with @post.person_id =&gt; 1:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  select(&quot;post&quot;, &quot;person_id&quot;, Person.find(:all).collect {|p| [ p.name, p.id ] }, { :include_blank =&gt; true })\n"
+- !ruby/struct:SM::Flow::P 
+  body: "could become:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;select name=&quot;post[person_id]&quot;&gt;\n    &lt;option&gt;&lt;/option&gt;\n    &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;David&lt;/option&gt;\n    &lt;option value=&quot;2&quot;&gt;Sam&lt;/option&gt;\n    &lt;option value=&quot;3&quot;&gt;Tobias&lt;/option&gt;\n  &lt;/select&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This can be used to provide a default set of options in the standard way: before rendering the create form, a new model instance is assigned the default options and bound to @model_name. Usually this model is not saved to the database. Instead, a second model object is created when the create request is received. This allows the user to submit a form page more than once with the expected results of creating multiple records. In addition, this allows a single partial to be used to generate form inputs for both edit and create forms."
+- !ruby/struct:SM::Flow::P 
+  body: By default, post.person_id is the selected option. Specify :selected =&gt; value to use a different selection or :selected =&gt; nil to leave all options unselected.
+full_name: ActionView::Helpers::FormOptionsHelper#select
+is_singleton: false
+name: select
+params: (object, method, choices, options = {}, html_options = {})
+visibility: public

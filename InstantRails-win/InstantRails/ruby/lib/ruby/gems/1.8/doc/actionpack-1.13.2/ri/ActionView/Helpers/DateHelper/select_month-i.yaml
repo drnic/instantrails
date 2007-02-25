@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a select tag with options for each of the months January through December with the current month selected. The month names are presented as keys (what's shown to the user) and the month numbers (1-12) are used as values (what's submitted to the server). It's also possible to use month numbers for the presentation instead of names -- set the <tt>:use_month_numbers</tt> key in <tt>options</tt> to true for this to happen. If you want both numbers and names, set the <tt>:add_month_numbers</tt> key in <tt>options</tt> to true. If you would prefer to show month names as abbreviations, set the <tt>:use_short_month</tt> key in <tt>options</tt> to true. If you want to use your own month names, set the <tt>:use_month_names</tt> key in <tt>options</tt> to an array of 12 month names.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  select_month(Date.today)                             # Will use keys like &quot;January&quot;, &quot;March&quot;\n  select_month(Date.today, :use_month_numbers =&gt; true) # Will use keys like &quot;1&quot;, &quot;3&quot;\n  select_month(Date.today, :add_month_numbers =&gt; true) # Will use keys like &quot;1 - January&quot;, &quot;3 - March&quot;\n  select_month(Date.today, :use_short_month =&gt; true)   # Will use keys like &quot;Jan&quot;, &quot;Mar&quot;\n  select_month(Date.today, :use_month_names =&gt; %w(Januar Februar Marts ...))   # Will use keys like &quot;Januar&quot;, &quot;Marts&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Override the field name using the <tt>:field_name</tt> option, 'month' by default.
+full_name: ActionView::Helpers::DateHelper#select_month
+is_singleton: false
+name: select_month
+params: (date, options = {})
+visibility: public

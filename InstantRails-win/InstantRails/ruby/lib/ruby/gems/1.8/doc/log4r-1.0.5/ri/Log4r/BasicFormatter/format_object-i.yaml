@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Formats data according to its class:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "String:"
+    body: Prints it out as normal.
+  - !ruby/struct:SM::Flow::LI 
+    label: "Exception:"
+    body: Produces output similar to command-line exceptions.
+  - !ruby/struct:SM::Flow::LI 
+    label: "Object:"
+    body: "Prints the type of object, then the output of <tt>inspect</tt>. An example -- Array: [1, 2, 3]"
+  type: :NOTE
+full_name: Log4r::BasicFormatter#format_object
+is_singleton: false
+name: format_object
+params: (obj)
+visibility: public

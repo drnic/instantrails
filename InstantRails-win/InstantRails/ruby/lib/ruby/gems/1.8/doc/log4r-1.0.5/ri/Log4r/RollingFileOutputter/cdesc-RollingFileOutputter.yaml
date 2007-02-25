@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: count
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: maxsize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: maxtime
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: startTime
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "RollingFileOutputter - subclass of FileOutputter that rolls files on size or time. Additional hash arguments are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:maxsize</tt>
+    body: Maximum size of the file in bytes.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:trunc</tt>
+    body: Maximum age of the file in seconds.
+  type: :LABELED
+constants: []
+
+full_name: Log4r::RollingFileOutputter
+includes: []
+
+instance_methods: []
+
+name: RollingFileOutputter
+superclass: FileOutputter

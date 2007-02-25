@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert <em>numColumns</em> columns beginning at the specified <em>column</em> number. If <em>column</em> is equal to the number of columns in the table, the new columns are added to the right of the table. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the table's message target for each cell that is inserted. Raises IndexError if <em>column</em> is out of bounds.
+full_name: Fox::FXTable#insertColumns
+is_singleton: false
+name: insertColumns
+params: (column, numColumns=1, notify=false)
+visibility: public

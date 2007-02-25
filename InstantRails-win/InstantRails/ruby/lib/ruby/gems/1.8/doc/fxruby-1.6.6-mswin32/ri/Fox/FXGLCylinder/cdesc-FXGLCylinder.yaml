@@ -1,0 +1,61 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cylinder height [Float]
+  name: height
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of loops (default is 4) [Integer]
+  name: loops
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cylinder radius [Float]
+  name: radius
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of slices (default is 20) [Integer]
+  name: slices
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of stacks (default is 20) [Integer]
+  name: stacks
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: OpenGL cylinder object
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cylinder fidelity
+  name: SLICES_NUMBER
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STACKS_NUMBER
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOOPS
+  value: "4"
+full_name: Fox::FXGLCylinder
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: drawshape
+name: FXGLCylinder
+superclass: FXGLShape

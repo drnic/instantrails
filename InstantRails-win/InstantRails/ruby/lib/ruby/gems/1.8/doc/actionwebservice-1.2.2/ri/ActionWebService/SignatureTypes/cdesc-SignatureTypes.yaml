@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Action Web Service supports the following base types in a signature:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:int</tt>
+    body: Represents an integer value, will be cast to an integer using <tt>Integer(value)</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:string</tt>
+    body: Represents a string value, will be cast to an string using the <tt>to_s</tt> method on an object
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:base64</tt>
+    body: Represents a Base 64 value, will contain the binary bytes of a Base 64 value sent by the caller
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:bool</tt>
+    body: Represents a boolean value, whatever is passed will be cast to boolean (<tt>true</tt>, '1', 'true', 'y', 'yes' are taken to represent true; <tt>false</tt>, '0', 'false', 'n', 'no' and <tt>nil</tt> represent false)
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:float</tt>
+    body: Represents a floating point value, will be cast to a float using <tt>Float(value)</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:time</tt>
+    body: Represents a timestamp, will be cast to a <tt>Time</tt> object
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:datetime</tt>
+    body: Represents a timestamp, will be cast to a <tt>DateTime</tt> object
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:date</tt>
+    body: Represents a date, will be cast to a <tt>Date</tt> object
+  type: :LABELED
+- !ruby/struct:SM::Flow::P 
+  body: For structured types, you'll need to pass in the Class objects of ActionWebService::Struct and ActiveRecord::Base derivatives.
+constants: []
+
+full_name: ActionWebService::SignatureTypes
+includes: []
+
+instance_methods: []
+
+name: SignatureTypes
+superclass: 

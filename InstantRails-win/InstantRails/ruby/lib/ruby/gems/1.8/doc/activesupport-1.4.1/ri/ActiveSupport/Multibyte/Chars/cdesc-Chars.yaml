@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: string
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: handler=
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Chars enables you to work transparently with multibyte encodings in the Ruby String class without having extensive knowledge about the encoding. A Chars object accepts a string upon initialization and proxies String methods in an encoding safe manner. All the normal String methods are also implemented on the proxy.
+- !ruby/struct:SM::Flow::P 
+  body: String methods are proxied through the Chars object, and can be accessed through the <tt>chars</tt> method. Methods which would normally return a String object now return a Chars object so methods can be chained.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;The Perfect String  &quot;.chars.downcase.strip.normalize #=&gt; &quot;the perfect string&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Chars objects are perfectly interchangeable with String objects as long as no explicit class checks are made. If certain methods do explicitly check the class, call <tt>to_s</tt> before you pass chars objects to them.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  bad.explicit_checking_method &quot;T&quot;.chars.downcase.to_s\n"
+- !ruby/struct:SM::Flow::P 
+  body: The actual operations on the string are delegated to handlers. Theoretically handlers can be implemented for any encoding, but the default handler handles UTF-8. This handler is set during initialization, if you want to use you own handler, you can set it on the Chars class. Look at the UTF8Handler source for an example how to implement your own handler. If you your own handler to work on anything but UTF-8 you probably also want to override Chars#handler.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveSupport::Multibyte::Chars.handler = MyHandler\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that a few methods are defined on Chars instead of the handler because they are defined on Object or Kernel and method_missing can't catch them.
+constants: []
+
+full_name: ActiveSupport::Multibyte::Chars
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Comparable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: <=>
+- !ruby/object:RI::MethodSummary 
+  name: =~
+- !ruby/object:RI::MethodSummary 
+  name: gsub
+- !ruby/object:RI::MethodSummary 
+  name: handler
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: split
+- !ruby/object:RI::MethodSummary 
+  name: to_str
+name: Chars
+superclass: Object

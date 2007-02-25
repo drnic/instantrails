@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>which_to_update (Gem::UpdateCommand)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/gem_commands.rb, line 1006</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">which_to_update</span>(<span class="ruby-identifier">highest_installed_gems</span>, <span class="ruby-identifier">remote_gemspecs</span>)
+      <span class="ruby-identifier">result</span> = []
+      <span class="ruby-identifier">highest_installed_gems</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">l_name</span>, <span class="ruby-identifier">l_spec</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">highest_remote_gem</span> =
+          <span class="ruby-identifier">remote_gemspecs</span>.<span class="ruby-identifier">select</span>  { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">l_name</span> }.
+                          <span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span> }.
+                          <span class="ruby-identifier">last</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">highest_remote_gem</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">l_spec</span>.<span class="ruby-identifier">version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">highest_remote_gem</span>.<span class="ruby-identifier">version</span>
+          <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">l_name</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">result</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

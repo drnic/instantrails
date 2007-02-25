@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: msg
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields each full error message added. So Person.errors.add(&quot;first_name&quot;, &quot;can't be empty&quot;) will be returned through iteration as &quot;First name can't be empty&quot;.
+full_name: ActiveRecord::Errors#each_full
+is_singleton: false
+name: each_full
+params: () {|msg| ...}
+visibility: public

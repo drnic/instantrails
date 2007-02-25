@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (CmdParse::CommandParser)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/cmdparse.rb, line 384</span>
+384:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">handleExceptions</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">partial_commands</span> = <span class="ruby-keyword kw">false</span> )
+385:       <span class="ruby-ivar">@main_command</span> = <span class="ruby-constant">Command</span>.<span class="ruby-identifier">new</span>( <span class="ruby-value str">'mainCommand'</span>, <span class="ruby-keyword kw">true</span> )
+386:       <span class="ruby-ivar">@main_command</span>.<span class="ruby-identifier">super_command</span> = <span class="ruby-keyword kw">self</span>
+387:       <span class="ruby-ivar">@main_command</span>.<span class="ruby-identifier">use_partial_commands</span>( <span class="ruby-identifier">partial_commands</span> )
+388:       <span class="ruby-ivar">@program_name</span> = <span class="ruby-identifier">$0</span>
+389:       <span class="ruby-ivar">@program_version</span> = <span class="ruby-value str">&quot;0.0.0&quot;</span>
+390:       <span class="ruby-ivar">@handle_exceptions</span> = <span class="ruby-identifier">handleExceptions</span>
+391:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change relative position of icon and text of item. Passing FXHeaderItem::BEFORE or FXHeaderItem::AFTER places the icon before or after the text, and passing FXHeaderItem::ABOVE or FXHeaderItem::BELOW places it above or below the text, respectively. The default of FXHeaderItem::BEFORE places the icon in front of the text. Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXHeader#setItemIconPosition
+is_singleton: false
+name: setItemIconPosition
+params: (index, mode)
+visibility: public

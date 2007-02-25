@@ -1,0 +1,633 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NERR_Success
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_PREFERRED_LENGTH
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Taken from LMServer.h
+  name: SV_TYPE_WORKSTATION
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SQLSERVER
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_CTRL
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_BAKCTRL
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_TIME_SOURCE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_AFP
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_NOVELL
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_MEMBER
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_PRINTQ_SERVER
+  value: "0x00000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DIALIN_SERVER
+  value: "0x00000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_XENIX_SERVER
+  value: "0x00000800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_UNIX
+  value: SV_TYPE_XENIX_SERVER
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_NT
+  value: "0x00001000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_WFW
+  value: "0x00002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_MFPN
+  value: "0x00004000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_NT
+  value: "0x00008000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_POTENTIAL_BROWSER
+  value: "0x00010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_BACKUP_BROWSER
+  value: "0x00020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_MASTER_BROWSER
+  value: "0x00040000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_MASTER
+  value: "0x00080000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_OSF
+  value: "0x00100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_VMS
+  value: "0x00200000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_WINDOWS
+  value: "0x00400000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DFS
+  value: "0x00800000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_CLUSTER_NT
+  value: "0x01000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_TERMINALSERVER
+  value: "0x02000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_CLUSTER_VS_NT
+  value: "0x04000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DCE
+  value: "0x10000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_ALTERNATE_XPORT
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_LOCAL_LIST_ONLY
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_ENUM
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_ALL
+  value: "0xFFFFFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetAlertRaise
+  value: Win32API.new('netapi32', 'NetAlertRaise', 'PPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetAlertRaiseEx
+  value: Win32API.new('netapi32', 'NetAlertRaiseEx', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetApiBufferAllocate
+  value: Win32API.new('netapi32', 'NetApiBufferAllocate', 'LP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetApiBufferFree
+  value: Win32API.new('netapi32', 'NetApiBufferFree', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetApiBufferReallocate
+  value: Win32API.new('netapi32', 'NetApiBufferReallocate', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetApiBufferSize
+  value: Win32API.new('netapi32', 'NetApiBufferSize', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGetAnyDCName
+  value: Win32API.new('netapi32', 'NetGetAnyDCName', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGetDCName
+  value: Win32API.new('netapi32', 'NetGetDCName', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGetDisplayInformationIndex
+  value: Win32API.new('netapi32', 'NetGetDisplayInformationIndex', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGetJoinableOUs
+  value: Win32API.new('netapi32', 'NetGetJoinableOUs', 'PPPPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGetJoinInformation
+  value: Win32API.new('netapi32', 'NetGetJoinInformation', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupAdd
+  value: Win32API.new('netapi32', 'NetGroupAdd', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupAddUser
+  value: Win32API.new('netapi32', 'NetGroupAddUser', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupDel
+  value: Win32API.new('netapi32', 'NetGroupDel', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupDelUser
+  value: Win32API.new('netapi32', 'NetGroupDelUser', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupEnum
+  value: Win32API.new('netapi32', 'NetGroupEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupGetInfo
+  value: Win32API.new('netapi32', 'NetGroupGetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupGetUsers
+  value: Win32API.new('netapi32', 'NetGroupGetUsers', 'PPLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupSetInfo
+  value: Win32API.new('netapi32', 'NetGroupSetInfo', 'PPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetGroupSetUsers
+  value: Win32API.new('netapi32', 'NetGroupSetUsers', 'PPLPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetJoinDomain
+  value: Win32API.new('netapi32', 'NetJoinDomain', 'PPPPPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupAdd
+  value: Win32API.new('netapi32', 'NetLocalGroupAdd', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupAddMembers
+  value: Win32API.new('netapi32', 'NetLocalGroupAddMembers', 'PPLPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupDel
+  value: Win32API.new('netapi32', 'NetLocalGroupDel', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupDelMembers
+  value: Win32API.new('netapi32', 'NetLocalGroupDelMembers', 'PPLPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupEnum
+  value: Win32API.new('netapi32', 'NetLocalGroupEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupGetInfo
+  value: Win32API.new('netapi32', 'NetLocalGroupGetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupGetMembers
+  value: Win32API.new('netapi32', 'NetLocalGroupGetMembers', 'PPLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupSetInfo
+  value: Win32API.new('netapi32', 'NetLocalGroupSetInfo', 'PPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetLocalGroupSetMembers
+  value: Win32API.new('netapi32', 'NetLocalGroupSetMembers', 'PPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetMessageBufferSend
+  value: Win32API.new('netapi32', 'NetMessageBufferSend', 'PPPPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetMessageNameAdd
+  value: Win32API.new('netapi32', 'NetMessageNameAdd', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetMessageNameDel
+  value: Win32API.new('netapi32', 'NetMessageNameDel', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetMessageNameEnum
+  value: Win32API.new('netapi32', 'NetMessageNameEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetMessageNameGetInfo
+  value: Win32API.new('netapi32', 'NetMessageNameGetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetQueryDisplayInformation
+  value: Win32API.new('netapi32', 'NetQueryDisplayInformation', 'PLLLLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetRemoteComputerSupports
+  value: Win32API.new('netapi32', 'NetRemoteComputerSupports', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetRemoteTOD
+  value: Win32API.new('netapi32', 'NetRemoteTOD', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetRenameMachineInDomain
+  value: Win32API.new('netapi32', 'NetRenameMachineInDomain', 'PPPPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetScheduleJobAdd
+  value: Win32API.new('netapi32', 'NetScheduleJobAdd', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetScheduleJobDel
+  value: Win32API.new('netapi32', 'NetScheduleJobDel', 'PLL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetScheduleJobEnum
+  value: Win32API.new('netapi32', 'NetScheduleJobEnum', 'PPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetScheduleJobGetInfo
+  value: Win32API.new('netapi32', 'NetScheduleJobGetInfo', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerComputerNameAdd
+  value: Win32API.new('netapi32', 'NetServerComputerNameAdd', 'PPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerComputerNameDel
+  value: Win32API.new('netapi32', 'NetServerComputerNameDel', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerDiskEnum
+  value: Win32API.new('netapi32', 'NetServerDiskEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerEnum
+  value: Win32API.new('netapi32', 'NetServerEnum', 'PLPLPPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerGetInfo
+  value: Win32API.new('netapi32', 'NetServerGetInfo', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerSetInfo
+  value: Win32API.new('netapi32', 'NetServerSetInfo', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerTransportAdd
+  value: Win32API.new('netapi32', 'NetServerTransportAdd', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerTransportAddEx
+  value: Win32API.new('netapi32', 'NetServerTransportAddEx', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerTransportDel
+  value: Win32API.new('netapi32', 'NetServerTransportDel', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetServerTransportEnum
+  value: Win32API.new('netapi32', 'NetServerTransportEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUnjoinDomain
+  value: Win32API.new('netapi32', 'NetUnjoinDomain', 'PPPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUseAdd
+  value: Win32API.new('netapi32', 'NetUseAdd', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUseDel
+  value: Win32API.new('netapi32', 'NetUseDel', 'PPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUseEnum
+  value: Win32API.new('netapi32', 'NetUseEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUseGetInfo
+  value: Win32API.new('netapi32', 'NetUseGetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserAdd
+  value: Win32API.new('netapi32', 'NetUserAdd', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserChangePassword
+  value: Win32API.new('netapi32', 'NetUserChangePassword', 'PPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserDel
+  value: Win32API.new('netapi32', 'NetUserDel', 'PP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserEnum
+  value: Win32API.new('netapi32', 'NetUserEnum', 'PLLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserGetGroups
+  value: Win32API.new('netapi32', 'NetUserGetGroups', 'PPLPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserGetInfo
+  value: Win32API.new('netapi32', 'NetUserGetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserGetLocalGroups
+  value: Win32API.new('netapi32', 'NetUserGetLocalGroups', 'PPLLPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserModalsGet
+  value: Win32API.new('netapi32', 'NetUserModalsGet', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserModalsSet
+  value: Win32API.new('netapi32', 'NetUserModalsSet', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserSetGroups
+  value: Win32API.new('netapi32', 'NetUserSetGroups', 'PPLPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetUserSetInfo
+  value: Win32API.new('netapi32', 'NetUserSetInfo', 'PPLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetValidateName
+  value: Win32API.new('netapi32', 'NetValidateName', 'PPPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaGetInfo
+  value: Win32API.new('netapi32', 'NetWkstaGetInfo', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaSetInfo
+  value: Win32API.new('netapi32', 'NetWkstaSetInfo', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaTransportAdd
+  value: Win32API.new('netapi32', 'NetWkstaTransportAdd', 'PLPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaTransportDel
+  value: Win32API.new('netapi32', 'NetWkstaTransportDel', 'PPL', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaTransportEnum
+  value: Win32API.new('netapi32', 'NetWkstaTransportEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaUserEnum
+  value: Win32API.new('netapi32', 'NetWkstaUserEnum', 'PLPLPPP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaUserGetInfo
+  value: Win32API.new('netapi32', 'NetWkstaUserGetInfo', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NetWkstaUserSetInfo
+  value: Win32API.new('netapi32', 'NetWkstaUserSetInfo', 'PPLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetNetScheduleAccountInformation
+  value: Win32API.new('mstask', 'GetNetScheduleAccountInformation', 'PLP', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetNetScheduleAccountInformation
+  value: Win32API.new('netapi32', 'SetNetScheduleAccountInformation', 'PPP', 'L')
+full_name: Windows::NetworkManagement
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: GetNetScheduleAccountInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetAlertRaise
+- !ruby/object:RI::MethodSummary 
+  name: NetAlertRaiseEx
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferAllocate
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferFree
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferReallocate
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferSize
+- !ruby/object:RI::MethodSummary 
+  name: NetGetAnyDCName
+- !ruby/object:RI::MethodSummary 
+  name: NetGetDCName
+- !ruby/object:RI::MethodSummary 
+  name: NetGetDisplayInformationIndex
+- !ruby/object:RI::MethodSummary 
+  name: NetGetJoinInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetGetJoinableOUs
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupAddUser
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupDel
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupDelUser
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupGetUsers
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupSetUsers
+- !ruby/object:RI::MethodSummary 
+  name: NetJoinDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupAddMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupDel
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupDelMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupGetMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupSetMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageBufferSend
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameDel
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetQueryDisplayInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetRemoteComputerSupports
+- !ruby/object:RI::MethodSummary 
+  name: NetRemoteTOD
+- !ruby/object:RI::MethodSummary 
+  name: NetRenameMachineInDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobDel
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerComputerNameAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetServerComputerNameDel
+- !ruby/object:RI::MethodSummary 
+  name: NetServerDiskEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetServerEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetServerGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportAddEx
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportDel
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUnjoinDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetUseAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetUseDel
+- !ruby/object:RI::MethodSummary 
+  name: NetUseEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUseGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetUserAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetUserChangePassword
+- !ruby/object:RI::MethodSummary 
+  name: NetUserDel
+- !ruby/object:RI::MethodSummary 
+  name: NetUserEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetLocalGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserModalsGet
+- !ruby/object:RI::MethodSummary 
+  name: NetUserModalsSet
+- !ruby/object:RI::MethodSummary 
+  name: NetUserSetGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetValidateName
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportDel
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: SetNetScheduleAccountInformation
+name: NetworkManagement
+superclass: 

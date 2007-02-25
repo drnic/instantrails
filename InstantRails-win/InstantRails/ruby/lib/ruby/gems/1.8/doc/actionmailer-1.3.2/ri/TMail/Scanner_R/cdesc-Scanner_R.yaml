@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: debug
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Version
+  value: "'0.10.7'"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MIME_HEADERS
+  value: "{       :CTYPE        => true,       :CENCODING    => true,       :CDISPOSITION => true"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PATTERN_TABLE
+  value: "{}"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RECV_TOKEN
+  value: "{       'from' => :FROM,       'by'   => :BY,       'via'  => :VIA,       'with' => :WITH,       'id'   => :ID,       'for'  => :FOR"
+full_name: TMail::Scanner_R
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: scan
+name: Scanner_R
+superclass: Object

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Generate a url with the provided options. The following special options may effect the constructed url:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  * :host Specifies the host the link should be targetted at. This option\n    must be provided either explicitly, or via default_url_options.\n  * :protocol The protocol to connect to. Defaults to 'http'\n  * :port Optionally specify the port to connect to.\n"
+full_name: ActionController::UrlWriter#url_for
+is_singleton: false
+name: url_for
+params: (options)
+visibility: public

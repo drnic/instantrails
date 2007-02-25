@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Accepts three file names as arguments and returns an MC object. The <tt>mc_file</tt> is the name of the .mc file to be used to ultimately generate the .dll file.
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>res_file</tt> or <tt>dll_file</tt> are not specified, then the basename of <tt>mc_file</tt> is used to generate their names, with .res and .dll extensions, respectively.
+full_name: Win32::MC::new
+is_singleton: true
+name: new
+params: (mc_file, res_file=nil, dll_file=nil)
+visibility: public

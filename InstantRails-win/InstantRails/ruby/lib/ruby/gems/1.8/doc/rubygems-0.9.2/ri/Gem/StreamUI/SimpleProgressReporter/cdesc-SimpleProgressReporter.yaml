@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: count
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: Gem::StreamUI::SimpleProgressReporter
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: DefaultUserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: done
+- !ruby/object:RI::MethodSummary 
+  name: updated
+name: SimpleProgressReporter
+superclass: Object
