@@ -794,7 +794,7 @@ void CEasyPhpDlg::OnFxri()
 {
 	SetCurrentDirectory(CEasyPhpDlg::GetInstallPath());
 	char command[MAX_PATH] = {0};
-	_snprintf(command, sizeof(command)-1, "%sruby\\bin\\fxri.bat", m_cEasyPHP.InstallPath());
+	_snprintf(command, sizeof(command)-1, "%sruby\\bin\\rubyw.exe %sruby\\bin\\fxri.bat", m_cEasyPHP.InstallPath(), m_cEasyPHP.InstallPath());
 	WinExec(command, SW_SHOW);
 }
 
