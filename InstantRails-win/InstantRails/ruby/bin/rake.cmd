@@ -1,1 +1,1 @@
-@ruby "E:/Dev/RubyDev/rubyinstaller/svn-repo/installer-win2/ruby/bin/rake" %*
+@ruby "E:/Dev/RubyDev/InstantRails-Project/InstantRails-win/InstantRails/ruby/bin/rake" %*
