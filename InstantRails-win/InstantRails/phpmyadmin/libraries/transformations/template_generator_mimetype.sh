@@ -1,5 +1,5 @@
 #!/bin/bash
-# $Id: template_generator_mimetype.sh,v 2.0 2003/11/18 15:20:45 nijel Exp $
+# $Id: template_generator_mimetype.sh 9537 2006-10-12 16:27:13Z nijel $
 #
 # Shell script that adds a new mimetype without transform function.
 #

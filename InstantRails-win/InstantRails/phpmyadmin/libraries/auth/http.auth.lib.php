@@ -1,5 +1,5 @@
 <?php
-/* $Id: http.auth.lib.php,v 2.5 2004/06/16 23:44:47 lem9 Exp $ */
+/* $Id: http.auth.lib.php 9352 2006-08-24 12:39:16Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 // +--------------------------------------------------------------------------+
@@ -19,89 +19,47 @@
  *
  * @access  public
  */
-function PMA_auth()
-{
-    global $right_font_family, $font_size, $font_bigger;
+function PMA_auth() {
 
-    header('WWW-Authenticate: Basic realm="phpMyAdmin ' . sprintf($GLOBALS['strRunning'], (empty($GLOBALS['cfg']['Server']['verbose']) ? str_replace('\'', '\\\'',$GLOBALS['cfg']['Server']['host']) : str_replace('\'', '\\\'', $GLOBALS['cfg']['Server']['verbose']))) .  '"');
+    /* Perform logout to custom URL */
+    if (!empty($_REQUEST['old_usr']) && !empty($GLOBALS['cfg']['Server']['LogoutURL'])) {
+        PMA_sendHeaderLocation($GLOBALS['cfg']['Server']['LogoutURL']);
+        exit;
+    }
+
+    header('WWW-Authenticate: Basic realm="phpMyAdmin ' . sprintf($GLOBALS['strRunning'], (empty($GLOBALS['cfg']['Server']['verbose']) ? str_replace('\'', '\\\'', $GLOBALS['cfg']['Server']['host']) : str_replace('\'', '\\\'', $GLOBALS['cfg']['Server']['verbose']))) .  '"');
     header('HTTP/1.0 401 Unauthorized');
     header('status: 401 Unauthorized');
 
     // Defines the charset to be used
     header('Content-Type: text/html; charset=' . $GLOBALS['charset']);
+    /* HTML header */
+    $page_title = $GLOBALS['strAccessDenied'];
+    require './libraries/header_meta_style.inc.php';
     ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>" lang="<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>" dir="<?php echo $GLOBALS['text_dir']; ?>">
-
-<head>
-<title><?php echo $GLOBALS['strAccessDenied']; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $GLOBALS['charset']; ?>" />
-<style type="text/css">
-<!--
-body     {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo $font_size; ?>; color: #000000}
-h1       {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo $font_bigger; ?>; font-weight: bold}
-//-->
-</style>
-<script language="JavaScript" type="text/javascript">
-<!--
-    /* added 2004-06-10 by Michael Keck
-     *       we need this for Backwards-Compatibility and resolving problems
-     *       with non DOM browsers, which may have problems with css 2 (like NC 4)
-    */
-    var isDOM      = (typeof(document.getElementsByTagName) != 'undefined'
-                      && typeof(document.createElement) != 'undefined')
-                   ? 1 : 0;
-    var isIE4      = (typeof(document.all) != 'undefined'
-                      && parseInt(navigator.appVersion) >= 4)
-                   ? 1 : 0;
-    var isNS4      = (typeof(document.layers) != 'undefined')
-                   ? 1 : 0;
-    var capable    = (isDOM || isIE4 || isNS4)
-                   ? 1 : 0;
-    // Uggly fix for Opera and Konqueror 2.2 that are half DOM compliant
-    if (capable) {
-        if (typeof(window.opera) != 'undefined') {
-            var browserName = ' ' + navigator.userAgent.toLowerCase();
-            if ((browserName.indexOf('konqueror 7') == 0)) {
-                capable = 0;
-            }
-        } else if (typeof(navigator.userAgent) != 'undefined') {
-            var browserName = ' ' + navigator.userAgent.toLowerCase();
-            if ((browserName.indexOf('konqueror') > 0) && (browserName.indexOf('konqueror/3') == 0)) {
-                capable = 0;
-            }
-        } // end if... else if...
-    } // end if
-    document.writeln('<link rel="stylesheet" type="text/css" href="<?php echo defined('PMA_PATH_TO_BASEDIR') ? PMA_PATH_TO_BASEDIR : './'; ?>css/phpmyadmin.css.php?lang=<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>&amp;js_frame=right&amp;js_isDOM=' + isDOM + '" />');
-//-->
-</script>
-<noscript>
-    <link rel="stylesheet" type="text/css" href="<?php echo defined('PMA_PATH_TO_BASEDIR') ? PMA_PATH_TO_BASEDIR : './'; ?>css/phpmyadmin.css.php?lang=<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>&amp;js_frame=right" />
-</noscript>
 </head>
-
-<body bgcolor="<?php echo $GLOBALS['cfg']['RightBgColor']; ?>">
-
-<?php include('./config.header.inc.php'); ?>
+<body>
+<?php if (file_exists('./config.header.inc.php')) {
+          require('./config.header.inc.php');
+      } 
+ ?>
 
 <br /><br />
 <center>
     <h1><?php echo sprintf($GLOBALS['strWelcome'], ' phpMyAdmin ' . PMA_VERSION); ?></h1>
 </center>
 <br />
-<div class="warning"><p><?php echo $GLOBALS['strWrongUser']; ?></p></div>
+<div class="warning"><?php echo $GLOBALS['strWrongUser']; ?></div>
 
-<?php include('./config.footer.inc.php'); ?>
+<?php if (file_exists('./config.footer.inc.php')) {
+         require('./config.footer.inc.php');
+      }
+ ?>
 
 </body>
-
 </html>
     <?php
-    echo "\n";
     exit();
-
-    return TRUE;
 } // end of the 'PMA_auth()' function
 
 
@@ -127,81 +85,51 @@ h1       {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo 
 function PMA_auth_check()
 {
     global $PHP_AUTH_USER, $PHP_AUTH_PW;
-    global $REMOTE_USER, $AUTH_USER, $REMOTE_PASSWORD, $AUTH_PASSWORD;
-    global $HTTP_AUTHORIZATION;
     global $old_usr;
 
     // Grabs the $PHP_AUTH_USER variable whatever are the values of the
     // 'register_globals' and the 'variables_order' directives
     // loic1 - 2001/25/11: use the new globals arrays defined with php 4.1+
     if (empty($PHP_AUTH_USER)) {
-        if (!empty($_SERVER) && isset($_SERVER['PHP_AUTH_USER'])) {
-            $PHP_AUTH_USER = $_SERVER['PHP_AUTH_USER'];
-        }
-        else if (isset($REMOTE_USER)) {
-            $PHP_AUTH_USER = $REMOTE_USER;
-        }
-        else if (!empty($_ENV) && isset($_ENV['REMOTE_USER'])) {
-            $PHP_AUTH_USER = $_ENV['REMOTE_USER'];
-        }
-        else if (@getenv('REMOTE_USER')) {
-            $PHP_AUTH_USER = getenv('REMOTE_USER');
-        }
-        // Fix from Matthias Fichtner for WebSite Professional - Part 1
-        else if (isset($AUTH_USER)) {
-            $PHP_AUTH_USER = $AUTH_USER;
-        }
-        else if (!empty($_ENV) && isset($_ENV['AUTH_USER'])) {
-            $PHP_AUTH_USER = $_ENV['AUTH_USER'];
-        }
-        else if (@getenv('AUTH_USER')) {
-            $PHP_AUTH_USER = getenv('AUTH_USER');
+        if (PMA_getenv('PHP_AUTH_USER')) {
+            $PHP_AUTH_USER = PMA_getenv('PHP_AUTH_USER');
+        } elseif (PMA_getenv('REMOTE_USER')) {
+            // CGI, might be encoded, see bellow
+            $PHP_AUTH_USER = PMA_getenv('REMOTE_USER');
+        } elseif (PMA_getenv('AUTH_USER')) {
+            // WebSite Professional
+            $PHP_AUTH_USER = PMA_getenv('AUTH_USER');
+        } elseif (PMA_getenv('HTTP_AUTHORIZATION')) {
+            // IIS, might be encoded, see bellow
+            $PHP_AUTH_USER = PMA_getenv('HTTP_AUTHORIZATION');
+        } elseif (PMA_getenv('Authorization')) {
+            // FastCGI, might be encoded, see bellow
+            $PHP_AUTH_USER = PMA_getenv('Authorization');
         }
     }
     // Grabs the $PHP_AUTH_PW variable whatever are the values of the
     // 'register_globals' and the 'variables_order' directives
     // loic1 - 2001/25/11: use the new globals arrays defined with php 4.1+
     if (empty($PHP_AUTH_PW)) {
-        if (!empty($_SERVER) && isset($_SERVER['PHP_AUTH_PW'])) {
-            $PHP_AUTH_PW = $_SERVER['PHP_AUTH_PW'];
-        }
-        else if (isset($REMOTE_PASSWORD)) {
-            $PHP_AUTH_PW = $REMOTE_PASSWORD;
-        }
-        else if (!empty($_ENV) && isset($_ENV['REMOTE_PASSWORD'])) {
-            $PHP_AUTH_PW = $_ENV['REMOTE_PASSWORD'];
-        }
-        else if (@getenv('REMOTE_PASSWORD')) {
-            $PHP_AUTH_PW = getenv('REMOTE_PASSWORD');
-        }
-        // Fix from Matthias Fichtner for WebSite Professional - Part 2
-        else if (isset($AUTH_PASSWORD)) {
-            $PHP_AUTH_PW = $AUTH_PASSWORD;
-        }
-        else if (!empty($_ENV) && isset($_ENV['AUTH_PASSWORD'])) {
-            $PHP_AUTH_PW = $_ENV['AUTH_PASSWORD'];
-        }
-        else if (@getenv('AUTH_PASSWORD')) {
-            $PHP_AUTH_PW = getenv('AUTH_PASSWORD');
+        if (PMA_getenv('PHP_AUTH_PW')) {
+            $PHP_AUTH_PW = PMA_getenv('PHP_AUTH_PW');
+        } elseif (PMA_getenv('REMOTE_PASSWORD')) {
+            // Apache/CGI
+            $PHP_AUTH_PW = PMA_getenv('REMOTE_PASSWORD');
+        } elseif (PMA_getenv('AUTH_PASSWORD')) {
+            // WebSite Professional
+            $PHP_AUTH_PW = PMA_getenv('AUTH_PASSWORD');
         }
     }
-    // Gets authenticated user settings with IIS
-    if (empty($PHP_AUTH_USER) && empty($PHP_AUTH_PW)
-        && function_exists('base64_decode')) {
-        if (!empty($HTTP_AUTHORIZATION)
-            && substr($HTTP_AUTHORIZATION, 0, 6) == 'Basic ') {
-            list($PHP_AUTH_USER, $PHP_AUTH_PW) = explode(':', base64_decode(substr($HTTP_AUTHORIZATION, 6)));
+
+    // Decode possibly encoded information (used by IIS/CGI/FastCGI)
+    if (strcmp(substr($PHP_AUTH_USER, 0, 6), 'Basic ') == 0) {
+        $usr_pass = base64_decode(substr($PHP_AUTH_USER, 6));
+        if (!empty($usr_pass) && strpos($usr_pass, ':') !== false) {
+            list($PHP_AUTH_USER, $PHP_AUTH_PW) = explode(':', $usr_pass);
         }
-        else if (!empty($_ENV)
-             && isset($_ENV['HTTP_AUTHORIZATION'])
-             && substr($_ENV['HTTP_AUTHORIZATION'], 0, 6) == 'Basic ') {
-            list($PHP_AUTH_USER, $PHP_AUTH_PW) = explode(':', base64_decode(substr($_ENV['HTTP_AUTHORIZATION'], 6)));
-        }
-        else if (@getenv('HTTP_AUTHORIZATION')
-                 && substr(getenv('HTTP_AUTHORIZATION'), 0, 6) == 'Basic ') {
-            list($PHP_AUTH_USER, $PHP_AUTH_PW) = explode(':', base64_decode(substr(getenv('HTTP_AUTHORIZATION'), 6)));
-        }
-    } // end IIS
+        unset($usr_pass);
+    }
 
     // User logged out -> ensure the new username is not the same
     if (!empty($old_usr)
@@ -211,13 +139,9 @@ function PMA_auth_check()
 
     // Returns whether we get authentication settings or not
     if (empty($PHP_AUTH_USER)) {
-        return FALSE;
+        return false;
     } else {
-        if (get_magic_quotes_gpc()) {
-            $PHP_AUTH_USER = stripslashes($PHP_AUTH_USER);
-            $PHP_AUTH_PW   = stripslashes($PHP_AUTH_PW);
-        }
-        return TRUE;
+        return true;
     }
 } // end of the 'PMA_auth_check()' function
 
@@ -257,7 +181,7 @@ function PMA_auth_set_user()
     $cfg['Server']['user']     = $PHP_AUTH_USER;
     $cfg['Server']['password'] = $PHP_AUTH_PW;
 
-    return TRUE;
+    return true;
 } // end of the 'PMA_auth_set_user()' function
 
 
@@ -270,9 +194,15 @@ function PMA_auth_set_user()
  */
 function PMA_auth_fails()
 {
-    PMA_auth();
+    $error = PMA_DBI_getError();
+    if ($error && $GLOBALS['errno'] != 1045) {
+        PMA_sendHeaderLocation('error.php?error=' . urlencode($error));
+        exit;
+    } else {
+        PMA_auth();
+        return true;
+    }
 
-    return TRUE;
 } // end of the 'PMA_auth_fails()' function
 
 ?>

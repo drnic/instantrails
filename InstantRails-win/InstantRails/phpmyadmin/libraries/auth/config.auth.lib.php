@@ -1,5 +1,5 @@
 <?php
-/* $Id: config.auth.lib.php,v 2.9 2004/10/20 15:50:52 nijel Exp $ */
+/* $Id: config.auth.lib.php 9438 2006-09-21 14:28:46Z cybot_tm $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 // +--------------------------------------------------------------------------+
@@ -44,7 +44,7 @@ function PMA_auth_check()
 function PMA_auth_set_user()
 {
     return TRUE;
-} // end of the 'PMA_auth_set_user()' function 
+} // end of the 'PMA_auth_set_user()' function
 
 
 /**
@@ -68,73 +68,25 @@ function PMA_auth_set_user()
 function PMA_auth_fails()
 {
     global $php_errormsg, $cfg;
-    global $right_font_family, $font_size, $font_bigger;
-    if (PMA_DBI_getError()) {
-        $conn_error = PMA_DBI_getError();
-    } else if (isset($php_errormsg)) {
-        $conn_error = $php_errormsg;
-    } else {
-        $conn_error = $GLOBALS['strConnectionError'];
+
+    $conn_error = PMA_DBI_getError();
+    if (!$conn_error) {
+        if (isset($php_errormsg)) {
+            $conn_error = $php_errormsg;
+        } else {
+            $conn_error = $GLOBALS['strConnectionError'];
+        }
     }
 
     // Defines the charset to be used
     header('Content-Type: text/html; charset=' . $GLOBALS['charset']);
-    // Defines the theme to be used
-    require_once('./libraries/select_theme.lib.php');
+    /* HTML header */
+    $page_title = $GLOBALS['strAccessDenied'];
+    require('./libraries/header_meta_style.inc.php');
     ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>" lang="<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>" dir="<?php echo $GLOBALS['text_dir']; ?>">
-
-<head>
-<title><?php echo $GLOBALS['strAccessDenied']; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $GLOBALS['charset']; ?>" />
-<style type="text/css">
-<!--
-body     {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo $font_size; ?>; color: #000000}
-h1       {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo $font_bigger; ?>; font-weight: bold}
-//-->
-</style>
-<script language="JavaScript" type="text/javascript">
-<!--
-    /* added 2004-06-10 by Michael Keck
-     *       we need this for Backwards-Compatibility and resolving problems
-     *       with non DOM browsers, which may have problems with css 2 (like NC 4)
-    */
-    var isDOM      = (typeof(document.getElementsByTagName) != 'undefined'
-                      && typeof(document.createElement) != 'undefined')
-                   ? 1 : 0;
-    var isIE4      = (typeof(document.all) != 'undefined'
-                      && parseInt(navigator.appVersion) >= 4)
-                   ? 1 : 0;
-    var isNS4      = (typeof(document.layers) != 'undefined')
-                   ? 1 : 0;
-    var capable    = (isDOM || isIE4 || isNS4)
-                   ? 1 : 0;
-    // Uggly fix for Opera and Konqueror 2.2 that are half DOM compliant
-    if (capable) {
-        if (typeof(window.opera) != 'undefined') {
-            var browserName = ' ' + navigator.userAgent.toLowerCase();
-            if ((browserName.indexOf('konqueror 7') == 0)) {
-                capable = 0;
-            }
-        } else if (typeof(navigator.userAgent) != 'undefined') {
-            var browserName = ' ' + navigator.userAgent.toLowerCase();
-            if ((browserName.indexOf('konqueror') > 0) && (browserName.indexOf('konqueror/3') == 0)) {
-                capable = 0;
-            }
-        } // end if... else if...
-    } // end if
-    document.writeln('<link rel="stylesheet" type="text/css" href="<?php echo defined('PMA_PATH_TO_BASEDIR') ? PMA_PATH_TO_BASEDIR : './'; ?>css/phpmyadmin.css.php?lang=<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>&amp;js_frame=right&amp;js_isDOM=' + isDOM + '" />');
-//-->
-</script>
-<noscript>
-    <link rel="stylesheet" type="text/css" href="<?php echo defined('PMA_PATH_TO_BASEDIR') ? PMA_PATH_TO_BASEDIR : './'; ?>css/phpmyadmin.css.php?lang=<?php echo $GLOBALS['available_languages'][$GLOBALS['lang']][2]; ?>&amp;js_frame=right" />
-</noscript>
-
 </head>
 
-<body bgcolor="<?php echo $cfg['RightBgColor']; ?>">
+<body>
 <br /><br />
 <center>
     <h1><?php echo sprintf($GLOBALS['strWelcome'], ' phpMyAdmin ' . PMA_VERSION); ?></h1>
@@ -147,28 +99,54 @@ h1       {font-family: <?php echo $right_font_family; ?>; font-size: <?php echo 
     echo "\n";
     $GLOBALS['is_header_sent'] = TRUE;
 
-    // if we display the "Server not responding" error, do not confuse users
-    // by telling them they have a settings problem 
-    // (note: it's true that they could have a badly typed host name, but
-    //  anyway the current $strAccessDeniedExplanation tells that the server
-    //  rejected the connection, which is not really what happened)
-    // 2002 is the error given by mysqli
-    // 2003 is the error given by mysql
+    /**
+     * @todo I have included this div from libraries/header.inc.php to work around
+     * an undefined variable in tooltip.js, when the server is not responding.
+     * Work has to be done to merge all code that starts the page (DOCTYPE and
+     * this div) to one place
+     */
+    ?>
+    <div id="TooltipContainer" onmouseover="holdTooltip();" onmouseout="swapTooltip('default');"></div>
+    <?php
 
     if (isset($GLOBALS['allowDeny_forbidden']) && $GLOBALS['allowDeny_forbidden']) {
         echo '<p>' . $GLOBALS['strAccessDenied'] . '</p>' . "\n";
     } else {
-        if (!isset($GLOBALS['errno']) || (isset($GLOBALS['errno']) && $GLOBALS['errno'] != 2002) && $GLOBALS['errno'] != 2003) {
+        // Check whether user has configured something
+        if ($_SESSION['PMA_Config']->source_mtime == 0) {
+            echo '<p>' . sprintf($GLOBALS['strAccessDeniedCreateConfig'], '<a href="scripts/setup.php">', '</a>') . '</p>' . "\n";
+        } elseif (!isset($GLOBALS['errno']) || (isset($GLOBALS['errno']) && $GLOBALS['errno'] != 2002) && $GLOBALS['errno'] != 2003) {
+        // if we display the "Server not responding" error, do not confuse users
+        // by telling them they have a settings problem
+        // (note: it's true that they could have a badly typed host name, but
+        //  anyway the current $strAccessDeniedExplanation tells that the server
+        //  rejected the connection, which is not really what happened)
+        // 2002 is the error given by mysqli
+        // 2003 is the error given by mysql
             echo '<p>' . $GLOBALS['strAccessDeniedExplanation'] . '</p>' . "\n";
         }
-        PMA_mysqlDie($conn_error, '');
+        PMA_mysqlDie($conn_error, '', true, '', false);
+    }
+    if ( ! empty( $GLOBALS['PMA_errors'] ) && is_array( $GLOBALS['PMA_errors'] ) ) {
+        foreach ( $GLOBALS['PMA_errors'] as $error ) {
+            echo '<div class="error">' . $error . '</div>' . "\n";
+        }
     }
 ?>
         </td>
     </tr>
-</table>
 <?php
-    require_once('./footer.inc.php');
+    if (count($GLOBALS['cfg']['Servers']) > 1) {
+        // offer a chance to login to other servers if the current one failed
+        require_once('./libraries/select_server.lib.php');
+        echo '<tr>' . "\n";
+        echo ' <td>' . "\n";
+        PMA_select_server(TRUE, TRUE);
+        echo ' </td>' . "\n";
+        echo '</tr>' . "\n";
+    }
+    echo '</table>' . "\n";
+    require_once('./libraries/footer.inc.php');
     return TRUE;
 } // end of the 'PMA_auth_fails()' function
 

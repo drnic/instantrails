@@ -1,37 +1,40 @@
 <?php
-/* $Id: tbl_printview.php,v 2.8 2004/10/08 11:14:07 garvinhicking Exp $ */
+/* $Id: tbl_printview.php 9602 2006-10-25 12:25:01Z nijel $ */
 
+require_once './libraries/common.lib.php';
+
+require './libraries/tbl_common.php';
 
 /**
  * Gets the variables sent or posted to this script, then displays headers
  */
-if (!isset($selected_tbl)) {
-    require_once('./libraries/grab_globals.lib.php');
-    require_once('./header.inc.php');
+$print_view = true;
+if (! isset($selected_tbl)) {
+    require_once './libraries/header.inc.php';
 }
 
 // Check parameters
 
-if (!isset($the_tables) || !is_array($the_tables)) {
+if (! isset($the_tables) || ! is_array($the_tables)) {
     $the_tables = array();
 }
 
 /**
  * Gets the relations settings
  */
-require_once('./libraries/relation.lib.php');
-require_once('./libraries/transformations.lib.php');
+require_once './libraries/relation.lib.php';
+require_once './libraries/transformations.lib.php';
+require_once './libraries/tbl_indexes.lib.php';
 
-$cfgRelation  = PMA_getRelationsParam();
-
+$cfgRelation = PMA_getRelationsParam();
 
 /**
  * Defines the url to return to in case of error in a sql statement
  */
 if (isset($table)) {
-    $err_url = 'tbl_properties.php?' . PMA_generate_common_url($db, $table);
+    $err_url = 'tbl_sql.php?' . PMA_generate_common_url($db, $table);
 } else {
-    $err_url = 'db_details.php?' . PMA_generate_common_url($db);
+    $err_url = 'db_sql.php?' . PMA_generate_common_url($db);
 }
 
 
@@ -42,30 +45,33 @@ PMA_DBI_select_db($db);
 
 
 /**
- * Multi-tables printview thanks to Christophe Gesché from the "MySQL Form
+ * Multi-tables printview thanks to Christophe Gesche from the "MySQL Form
  * Generator for PHPMyAdmin" (http://sourceforge.net/projects/phpmysqlformgen/)
  */
 if (isset($selected_tbl) && is_array($selected_tbl)) {
     $the_tables   = $selected_tbl;
-} else if (isset($table)) {
+} elseif (isset($table)) {
     $the_tables[] = $table;
 }
 $multi_tables     = (count($the_tables) > 1);
 
 if ($multi_tables) {
+    if (empty($GLOBALS['is_header_sent'])) {
+        require_once './libraries/header.inc.php';
+    }
     $tbl_list     = '';
-    foreach ($the_tables AS $key => $table) {
+    foreach ($the_tables as $key => $table) {
         $tbl_list .= (empty($tbl_list) ? '' : ', ')
                   . PMA_backquote(urldecode($table));
     }
-    echo '<b>'.  $strShowTables . ':&nbsp;' . $tbl_list . '</b>' . "\n";
+    echo '<b>'.  $strShowTables . ': ' . $tbl_list . '</b>' . "\n";
     echo '<hr />' . "\n";
 } // end if
 
 $tables_cnt = count($the_tables);
 $counter    = 0;
 
-foreach ($the_tables AS $key => $table) {
+foreach ($the_tables as $key => $table) {
     $table = urldecode($table);
     if ($counter + 1 >= $tables_cnt) {
         $breakstyle = '';
@@ -79,60 +85,41 @@ foreach ($the_tables AS $key => $table) {
     /**
      * Gets table informations
      */
-    $result       = PMA_DBI_query('SHOW TABLE STATUS LIKE \'' . PMA_sqlAddslashes($table, TRUE) . '\';');
+    $result       = PMA_DBI_query(
+        'SHOW TABLE STATUS LIKE \'' . PMA_sqlAddslashes($table, true) . '\';');
     $showtable    = PMA_DBI_fetch_assoc($result);
     $num_rows     = (isset($showtable['Rows']) ? $showtable['Rows'] : 0);
     $show_comment = (isset($showtable['Comment']) ? $showtable['Comment'] : '');
     PMA_DBI_free_result($result);
 
+    $tbl_is_view = PMA_Table::isView($db, $table);
 
-    /**
-     * Gets table keys and retains them
-     */
-    $result       = PMA_DBI_query('SHOW KEYS FROM ' . PMA_backquote($table) . ';');
-    $primary      = '';
+    //  Gets table keys and store them in arrays
     $indexes      = array();
-    $lastIndex    = '';
     $indexes_info = array();
     $indexes_data = array();
-    $pk_array     = array(); // will be use to emphasis prim. keys in the table
-                             // view
-    while ($row = PMA_DBI_fetch_assoc($result)) {
-        // Backups the list of primary keys
-        if ($row['Key_name'] == 'PRIMARY') {
-            $primary .= $row['Column_name'] . ', ';
-            $pk_array[$row['Column_name']] = 1;
-        }
-        // Retains keys informations
-        if ($row['Key_name'] != $lastIndex ){
-            $indexes[] = $row['Key_name'];
-            $lastIndex = $row['Key_name'];
-        }
-        $indexes_info[$row['Key_name']]['Sequences'][]     = $row['Seq_in_index'];
-        $indexes_info[$row['Key_name']]['Non_unique']      = $row['Non_unique'];
-        if (isset($row['Cardinality'])) {
-            $indexes_info[$row['Key_name']]['Cardinality'] = $row['Cardinality'];
-        }
-//      I don't know what does following column mean....
-//      $indexes_info[$row['Key_name']]['Packed']          = $row['Packed'];
-        $indexes_info[$row['Key_name']]['Comment']         = $row['Comment'];
+    $ret_keys = PMA_get_indexes($table, $err_url_0);
 
-        $indexes_data[$row['Key_name']][$row['Seq_in_index']]['Column_name']  = $row['Column_name'];
-        if (isset($row['Sub_part'])) {
-            $indexes_data[$row['Key_name']][$row['Seq_in_index']]['Sub_part'] = $row['Sub_part'];
-        }
-
-    } // end while
-    if ($result) {
-        PMA_DBI_free_result($result);
-    }
-
+    PMA_extract_indexes($ret_keys, $indexes, $indexes_info, $indexes_data);
 
     /**
      * Gets fields properties
      */
-    $result      = PMA_DBI_query('SHOW FIELDS FROM ' . PMA_backquote($table) . ';', NULL, PMA_DBI_QUERY_STORE);
+    $result      = PMA_DBI_query(
+        'SHOW FIELDS FROM ' . PMA_backquote($table) . ';', null,
+        PMA_DBI_QUERY_STORE);
     $fields_cnt  = PMA_DBI_num_rows($result);
+
+
+// We need this to correctly learn if a TIMESTAMP is NOT NULL, since
+// SHOW FULL FIELDS or INFORMATION_SCHEMA incorrectly says NULL
+// and SHOW CREATE TABLE says NOT NULL (tested
+// in MySQL 4.0.25 and 5.0.21, http://bugs.mysql.com/20910).
+
+    $show_create_table = PMA_DBI_fetch_value(
+        'SHOW CREATE TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table),
+        0, 1);
+    $analyzed_sql = PMA_SQP_analyze(PMA_SQP_parse($show_create_table));
 
     // Check if we can use Relations (Mike Beck)
     if (!empty($cfgRelation['relation'])) {
@@ -141,13 +128,12 @@ foreach ($the_tables AS $key => $table) {
         $res_rel = PMA_getForeigners($db, $table);
 
         if (count($res_rel) > 0) {
-            $have_rel = TRUE;
+            $have_rel = true;
         } else {
-            $have_rel = FALSE;
+            $have_rel = false;
         }
-    }
-    else {
-           $have_rel = FALSE;
+    } else {
+           $have_rel = false;
     } // end if
 
 
@@ -155,7 +141,7 @@ foreach ($the_tables AS $key => $table) {
      * Displays the comments of the table if MySQL >= 3.23
      */
     if (!empty($show_comment)) {
-        echo $strTableComments . ':&nbsp;' . $show_comment . '<br /><br />';
+        echo $strTableComments . ': ' . $show_comment . '<br /><br />';
     }
 
     /**
@@ -164,18 +150,18 @@ foreach ($the_tables AS $key => $table) {
     ?>
 
 <!-- TABLE INFORMATIONS -->
-<table width="95%" bordercolorlight="black" border="border" style="border-collapse: collapse; background-color: white">
+<table style="width: 100%;">
+<thead>
 <tr>
-    <th width="50"><?php echo $strField; ?></th>
-    <th width="80"><?php echo $strType; ?></th>
-    <!--<th width="50"><?php echo $strAttr; ?></th>-->
-    <th width="40"><?php echo $strNull; ?></th>
-    <th width="70"><?php echo $strDefault; ?></th>
-    <!--<th width="50"><?php echo $strExtra; ?></th>-->
+    <th><?php echo $strField; ?></th>
+    <th><?php echo $strType; ?></th>
+    <!--<th><?php echo $strAttr; ?></th>-->
+    <th><?php echo $strNull; ?></th>
+    <th><?php echo $strDefault; ?></th>
+    <!--<th><?php echo $strExtra; ?></th>-->
     <?php
-    echo "\n";
     if ($have_rel) {
-        echo '    <th>' . $strLinksTo . '</th>' . "\n";
+        echo '<th>' . $strLinksTo . '</th>' . "\n";
     }
     if ($cfgRelation['commwork']) {
         echo '    <th>' . $strComments . '</th>' . "\n";
@@ -185,26 +171,22 @@ foreach ($the_tables AS $key => $table) {
     }
     ?>
 </tr>
-
+</thead>
+<tbody>
     <?php
-    $i = 0;
     while ($row = PMA_DBI_fetch_assoc($result)) {
-        $bgcolor = ($i % 2) ?$cfg['BgcolorOne'] : $cfg['BgcolorTwo'];
-        $i++;
-
         $type             = $row['Type'];
         // reformat mysql query output - staybyte - 9. June 2001
         // loic1: set or enum types: slashes single quotes inside options
         if (preg_match('@^(set|enum)\((.+)\)$@i', $type, $tmp)) {
-            $tmp[2]       = substr(preg_replace('@([^,])\'\'@', '\\1\\\'', ',' . $tmp[2]), 1);
+            $tmp[2]       = substr(preg_replace('@([^,])\'\'@', '\\1\\\'',
+                                    ',' . $tmp[2]), 1);
             $type         = $tmp[1] . '(' . str_replace(',', ', ', $tmp[2]) . ')';
-            $type_nowrap  = '';
 
             $binary       = 0;
             $unsigned     = 0;
             $zerofill     = 0;
         } else {
-            $type_nowrap  = ' nowrap="nowrap"';
             $type         = preg_replace('@BINARY@i', '', $type);
             $type         = preg_replace('@ZEROFILL@i', '', $type);
             $type         = preg_replace('@UNSIGNED@i', '', $type);
@@ -227,41 +209,52 @@ foreach ($the_tables AS $key => $table) {
             $strAttribute = 'UNSIGNED ZEROFILL';
         }
         if (!isset($row['Default'])) {
-            if ($row['Null'] != '') {
+            if ($row['Null'] != ''  && $row['Null'] != 'NO') {
                 $row['Default'] = '<i>NULL</i>';
             }
         } else {
             $row['Default'] = htmlspecialchars($row['Default']);
         }
         $field_name = htmlspecialchars($row['Field']);
-        echo "\n";
+
+        // here, we have a TIMESTAMP that SHOW FULL FIELDS reports as having the
+        // NULL attribute, but SHOW CREATE TABLE says the contrary. Believe
+        // the latter.
+        /**
+         * @todo merge this logic with the one in tbl_structure.php
+         * or move it in a function similar to PMA_DBI_get_columns_full()
+         * but based on SHOW CREATE TABLE because information_schema
+         * cannot be trusted in this case (MySQL bug)
+         */
+        if (!empty($analyzed_sql[0]['create_table_fields'][$field_name]['type']) && $analyzed_sql[0]['create_table_fields'][$field_name]['type'] == 'TIMESTAMP' && $analyzed_sql[0]['create_table_fields'][$field_name]['timestamp_not_null']) {
+            $row['Null'] = '';
+        }
         ?>
-<tr>
-    <td width="50" class="print" nowrap="nowrap">
+
+<tr><td>
     <?php
     if (isset($pk_array[$row['Field']])) {
-        echo '    <u>' . $field_name . '</u>&nbsp;' . "\n";
+        echo '    <u>' . $field_name . '</u>' . "\n";
     } else {
-        echo '    ' . $field_name . '&nbsp;' . "\n";
+        echo '    ' . $field_name . "\n";
     }
     ?>
     </td>
-    <td width="80" class="print"<?php echo $type_nowrap; ?>><?php echo $type; ?><bdo dir="ltr"></bdo></td>
-    <!--<td width="50" bgcolor="<?php echo $bgcolor; ?>" nowrap="nowrap"><?php echo $strAttribute; ?></td>-->
-    <td width="40" class="print"><?php echo (($row['Null'] == '') ? $strNo : $strYes); ?>&nbsp;</td>
-    <td width="70" class="print" nowrap="nowrap"><?php if (isset($row['Default'])) echo $row['Default']; ?>&nbsp;</td>
-    <!--<td width="50" bgcolor="<?php echo $bgcolor; ?>" nowrap="nowrap"><?php echo $row['Extra']; ?>&nbsp;</td>-->
+    <td><?php echo $type; ?><bdo dir="ltr"></bdo></td>
+    <!--<td><?php echo $strAttribute; ?></td>-->
+    <td><?php echo (($row['Null'] == '' || $row['Null'] == 'NO') ? $strNo : $strYes); ?>&nbsp;</td>
+    <td><?php if (isset($row['Default'])) { echo $row['Default']; } ?>&nbsp;</td>
+    <!--<td><?php echo $row['Extra']; ?>&nbsp;</td>-->
     <?php
-    echo "\n";
     if ($have_rel) {
-        echo '    <td class="print">';
+        echo '    <td>';
         if (isset($res_rel[$field_name])) {
             echo htmlspecialchars($res_rel[$field_name]['foreign_table'] . ' -> ' . $res_rel[$field_name]['foreign_field'] );
         }
         echo '&nbsp;</td>' . "\n";
     }
-    if ($cfgRelation['commwork']) {
-        echo '    <td class="print">';
+    if ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100) {
+        echo '    <td>';
         $comments = PMA_getComments($db, $table);
         if (isset($comments[$field_name])) {
             echo htmlspecialchars($comments[$field_name]);
@@ -271,7 +264,7 @@ foreach ($the_tables AS $key => $table) {
     if ($cfgRelation['mimework']) {
         $mime_map = PMA_getMIME($db, $table, true);
 
-        echo '    <td class="print">';
+        echo '    <td>';
         if (isset($mime_map[$field_name])) {
             echo htmlspecialchars(str_replace('_', '/', $mime_map[$field_name]['mimetype']));
         }
@@ -282,350 +275,280 @@ foreach ($the_tables AS $key => $table) {
         <?php
     } // end while
     PMA_DBI_free_result($result);
-
-    echo "\n";
     ?>
+</tbody>
 </table>
-
 
     <?php
-    /**
-     * Displays indexes
-     */
-    $index_count = (isset($indexes))
-                 ? count($indexes)
-                 : 0;
-    if ($index_count > 0) {
-        echo "\n";
-        ?>
-<br /><br />
 
-<!-- Indexes -->
-&nbsp;<big><?php echo $strIndexes . ':'; ?></big>
-<table bordercolorlight="black" border="border" style="border-collapse: collapse; background-color: white">
-    <tr>
-        <th><?php echo $strKeyname; ?></th>
-        <th><?php echo $strType; ?></th>
-        <th><?php echo $strCardinality; ?></th>
-        <th colspan="2"><?php echo $strField; ?></th>
-    </tr>
-        <?php
-        echo "\n";
-        foreach ($indexes AS $index_no => $index_name) {
-            $cell_bgd = (($index_no % 2) ? $cfg['BgcolorOne'] : $cfg['BgcolorTwo']);
-            $index_td = '        <td class="print" rowspan="' . count($indexes_info[$index_name]['Sequences']) . '">' . "\n";
-            echo '    <tr>' . "\n";
-            echo $index_td
-                 . '            ' . htmlspecialchars($index_name) . "\n"
-                 . '        </td>' . "\n";
+    if ( ! $tbl_is_view
+      && ( $db != 'information_schema'
+        || PMA_MYSQL_INT_VERSION < 50002 ) ) {
 
-            if ($indexes_info[$index_name]['Comment'] == 'FULLTEXT') {
-                $index_type = 'FULLTEXT';
-            } else if ($index_name == 'PRIMARY') {
-                $index_type = 'PRIMARY';
-            } else if ($indexes_info[$index_name]['Non_unique'] == '0') {
-                $index_type = 'UNIQUE';
-            } else {
-                $index_type = 'INDEX';
-            }
-            echo $index_td
-                 . '            ' . $index_type . "\n"
-                 . '        </td>' . "\n";
-
-            echo $index_td
-                 . '            ' . (isset($indexes_info[$index_name]['Cardinality']) ? $indexes_info[$index_name]['Cardinality'] : $strNone) . "\n"
-                 . '        </td>' . "\n";
-
-            foreach ($indexes_info[$index_name]['Sequences'] AS $row_no => $seq_index) {
-                if ($row_no > 0) {
-                    echo '    <tr>' . "\n";
-                }
-                if (!empty($indexes_data[$index_name][$seq_index]['Sub_part'])) {
-                    echo '        <td class="print">' . "\n"
-                         . '            ' . $indexes_data[$index_name][$seq_index]['Column_name'] . "\n"
-                         . '        </td>' . "\n";
-                    echo '        <td align="right" class="print">' . "\n"
-                         . '            ' . $indexes_data[$index_name][$seq_index]['Sub_part'] . "\n"
-                         . '        </td>' . "\n";
-                    echo '    </tr>' . "\n";
-                } else {
-                    echo '        <td class="print" colspan="2">' . "\n"
-                         . '            ' . $indexes_data[$index_name][$seq_index]['Column_name'] . "\n"
-                         . '        </td>' . "\n";
-                    echo '    </tr>' . "\n";
-                }
-            } // end while
-        } // end while
-        echo "\n";
-        ?>
-</table>
-        <?php
-        echo "\n";
-    } // end display indexes
-
-
-    /**
-     * Displays Space usage and row statistics
-     *
-     * staybyte - 9 June 2001
-     */
-    if ($cfg['ShowStats']) {
-        $nonisam     = FALSE;
-        if (isset($showtable['Type']) && !preg_match('@ISAM|HEAP@i', $showtable['Type'])) {
-            $nonisam = TRUE;
-        }
-        if ($nonisam == FALSE) {
-            // Gets some sizes
-            $mergetable     = FALSE;
-            if (isset($showtable['Type']) && $showtable['Type'] == 'MRG_MyISAM') {
-                $mergetable = TRUE;
-            }
-            list($data_size, $data_unit)         = PMA_formatByteDown($showtable['Data_length']);
-            if ($mergetable == FALSE) {
-                list($index_size, $index_unit)   = PMA_formatByteDown($showtable['Index_length']);
-            }
-            if (isset($showtable['Data_free']) && $showtable['Data_free'] > 0) {
-                list($free_size, $free_unit)     = PMA_formatByteDown($showtable['Data_free']);
-                list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length'] - $showtable['Data_free']);
-            } else {
-                unset($free_size);
-                unset($free_unit);
-                list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
-            }
-            list($tot_size, $tot_unit)           = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
-            if ($num_rows > 0) {
-                list($avg_size, $avg_unit)       = PMA_formatByteDown(($showtable['Data_length'] + $showtable['Index_length']) / $showtable['Rows'], 6, 1);
-            }
-
-            // Displays them
+        /**
+         * Displays indexes
+         */
+        $index_count = (isset($indexes))
+                     ? count($indexes)
+                     : 0;
+        if ($index_count > 0) {
+            echo "\n";
             ?>
-<br /><br />
+    <br /><br />
 
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-
-    <!-- Space usage -->
-    <td class="print" valign="top">
-        &nbsp;<big><?php echo $strSpaceUsage . ':'; ?></big>
-        <table width="100%" bordercolorlight="black" border="border" style="border-collapse: collapse; background-color: white">
+    <!-- Indexes -->
+    <big><?php echo $strIndexes . ':'; ?></big>
+    <table>
         <tr>
+            <th><?php echo $strKeyname; ?></th>
             <th><?php echo $strType; ?></th>
-            <th colspan="2" align="center"><?php echo $strUsage; ?></th>
-        </tr>
-        <tr>
-            <td class="print" style="padding-right: 10px"><?php echo $strData; ?></td>
-            <td align="right" class="print" nowrap="nowrap"><?php echo $data_size; ?></td>
-            <td class="print"><?php echo $data_unit; ?></td>
+            <th><?php echo $strCardinality; ?></th>
+            <th colspan="2"><?php echo $strField; ?></th>
         </tr>
             <?php
-            if (isset($index_size)) {
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print" style="padding-right: 10px"><?php echo $strIndex; ?></td>
-            <td align="right" class="print" nowrap="nowrap"><?php echo $index_size; ?></td>
-            <td class="print"><?php echo $index_unit; ?></td>
-        </tr>
-                <?php
-            }
-            if (isset($free_size)) {
-                echo "\n";
-                ?>
-        <tr style="color: #bb0000">
-            <td class="print" style="padding-right: 10px"><?php echo $strOverhead; ?></td>
-            <td align="right" class="print" nowrap="nowrap"><?php echo $free_size; ?></td>
-            <td class="print"><?php echo $free_unit; ?></td>
-        </tr>
-        <tr>
-            <td class="print" style="padding-right: 10px"><?php echo $strEffective; ?></td>
-            <td align="right" class="print" nowrap="nowrap"><?php echo $effect_size; ?></td>
-            <td class="print"><?php echo $effect_unit; ?></td>
-        </tr>
-                <?php
-            }
-            if (isset($tot_size) && $mergetable == FALSE) {
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print" style="padding-right: 10px"><?php echo $strTotalUC; ?></td>
-            <td align="right" class="print" nowrap="nowrap"><?php echo $tot_size; ?></td>
-            <td class="print"><?php echo $tot_unit; ?></td>
-        </tr>
-                <?php
-            }
+            echo "\n";
+            PMA_show_indexes($table, $indexes, $indexes_info, $indexes_data, true, true);
             echo "\n";
             ?>
-        </table>
-    </td>
-
-    <td width="20" class="print">&nbsp;</td>
-
-    <!-- Rows Statistic -->
-    <td valign="top">
-        &nbsp;<big><?php echo $strRowsStatistic . ':'; ?></big>
-        <table width=100% bordercolorlight="black" border="border" style="border-collapse: collapse; background-color: white">
-        <tr>
-            <th><?php echo $strStatement; ?></th>
-            <th align="center"><?php echo $strValue; ?></th>
-        </tr>
+    </table>
             <?php
-            $i = 0;
-            if (isset($showtable['Row_format'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo ucfirst($strFormat); ?></td>
-            <td align="<?php echo $cell_align_left; ?>" class="print" nowrap="nowrap">
-                <?php
-                echo '                ';
-                if ($showtable['Row_format'] == 'Fixed') {
-                    echo $strFixed;
-                } else if ($showtable['Row_format'] == 'Dynamic') {
-                    echo $strDynamic;
+            echo "\n";
+        } // end display indexes
+
+
+        /**
+         * Displays Space usage and row statistics
+         *
+         * staybyte - 9 June 2001
+         */
+        if ($cfg['ShowStats']) {
+            $nonisam     = false;
+            if (isset($showtable['Type']) && !preg_match('@ISAM|HEAP@i', $showtable['Type'])) {
+                $nonisam = true;
+            }
+            if ($nonisam == false) {
+                // Gets some sizes
+                $mergetable     = false;
+                if (isset($showtable['Type']) && $showtable['Type'] == 'MRG_MyISAM') {
+                    $mergetable = true;
+                }
+                list($data_size, $data_unit)         = PMA_formatByteDown($showtable['Data_length']);
+                if ($mergetable == false) {
+                    list($index_size, $index_unit)   = PMA_formatByteDown($showtable['Index_length']);
+                }
+                if (isset($showtable['Data_free']) && $showtable['Data_free'] > 0) {
+                    list($free_size, $free_unit)     = PMA_formatByteDown($showtable['Data_free']);
+                    list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length'] - $showtable['Data_free']);
                 } else {
-                    echo $showtable['Row_format'];
+                    unset($free_size);
+                    unset($free_unit);
+                    list($effect_size, $effect_unit) = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
+                }
+                list($tot_size, $tot_unit)           = PMA_formatByteDown($showtable['Data_length'] + $showtable['Index_length']);
+                if ($num_rows > 0) {
+                    list($avg_size, $avg_unit)       = PMA_formatByteDown(($showtable['Data_length'] + $showtable['Index_length']) / $showtable['Rows'], 6, 1);
+                }
+
+                // Displays them
+                ?>
+    <br /><br />
+
+    <table border="0" cellspacing="0" cellpadding="0" class="noborder">
+    <tr>
+
+        <!-- Space usage -->
+        <td valign="top">
+            <big><?php echo $strSpaceUsage . ':'; ?></big>
+            <table width="100%">
+            <tr>
+                <th><?php echo $strType; ?></th>
+                <th colspan="2" align="center"><?php echo $strUsage; ?></th>
+            </tr>
+            <tr>
+                <td style="padding-right: 10px"><?php echo $strData; ?></td>
+                <td align="right"><?php echo $data_size; ?></td>
+                <td><?php echo $data_unit; ?></td>
+            </tr>
+                <?php
+                if (isset($index_size)) {
+                    echo "\n";
+                    ?>
+            <tr>
+                <td style="padding-right: 10px"><?php echo $strIndex; ?></td>
+                <td align="right"><?php echo $index_size; ?></td>
+                <td><?php echo $index_unit; ?></td>
+            </tr>
+                    <?php
+                }
+                if (isset($free_size)) {
+                    echo "\n";
+                    ?>
+            <tr style="color: #bb0000">
+                <td style="padding-right: 10px"><?php echo $strOverhead; ?></td>
+                <td align="right"><?php echo $free_size; ?></td>
+                <td><?php echo $free_unit; ?></td>
+            </tr>
+            <tr>
+                <td style="padding-right: 10px"><?php echo $strEffective; ?></td>
+                <td align="right"><?php echo $effect_size; ?></td>
+                <td><?php echo $effect_unit; ?></td>
+            </tr>
+                    <?php
+                }
+                if (isset($tot_size) && $mergetable == false) {
+                    echo "\n";
+                    ?>
+            <tr>
+                <td style="padding-right: 10px"><?php echo $strTotalUC; ?></td>
+                <td align="right"><?php echo $tot_size; ?></td>
+                <td><?php echo $tot_unit; ?></td>
+            </tr>
+                    <?php
                 }
                 echo "\n";
                 ?>
-            </td>
-        </tr>
-                <?php
-            }
-            if (isset($showtable['Rows'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-            ?>
-        <tr>
-            <td class="print"><?php echo ucfirst($strRows); ?></td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo number_format($showtable['Rows'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
-            </td>
-        </tr>
-                <?php
-            }
-            if (isset($showtable['Avg_row_length']) && $showtable['Avg_row_length'] > 0) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo ucfirst($strRowLength); ?>&nbsp;&oslash;</td>
-            <td class="print" nowrap="nowrap">
-                <?php echo number_format($showtable['Avg_row_length'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
-            </td>
-        </tr>
-                <?php
-            }
-            if (isset($showtable['Data_length']) && $showtable['Rows'] > 0 && $mergetable == FALSE) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo ucfirst($strRowSize); ?>&nbsp;&oslash;</td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo $avg_size . ' ' . $avg_unit . "\n"; ?>
-            </td>
-        </tr>
-                <?php
-            }
-            if (isset($showtable['Auto_increment'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo ucfirst($strNext); ?>&nbsp;Autoindex</td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo number_format($showtable['Auto_increment'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
-            </td>
-        </tr>
-                <?php
-            }
-            echo "\n";
+            </table>
+        </td>
 
-            if (isset($showtable['Create_time'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo $strStatCreateTime; ?></td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo PMA_localisedDate(strtotime($showtable['Create_time'])) . "\n"; ?>
-            </td>
-        </tr>
+        <td width="20">&nbsp;</td>
+
+        <!-- Rows Statistic -->
+        <td valign="top">
+            <big><?php echo $strRowsStatistic . ':'; ?></big>
+            <table width="100%">
+            <tr>
+                <th><?php echo $strStatement; ?></th>
+                <th align="center"><?php echo $strValue; ?></th>
+            </tr>
                 <?php
-            }
-            echo "\n";
-
-            if (isset($showtable['Update_time'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
+                if (isset($showtable['Row_format'])) {
+                    ?>
+            <tr>
+                <td><?php echo ucfirst($strFormat); ?></td>
+                <td align="<?php echo $cell_align_left; ?>">
+                    <?php
+                    if ($showtable['Row_format'] == 'Fixed') {
+                        echo $strFixed;
+                    } elseif ($showtable['Row_format'] == 'Dynamic') {
+                        echo $strDynamic;
+                    } else {
+                        echo $showtable['Row_format'];
+                    }
+                    ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Rows'])) {
+                    ?>
+            <tr>
+                <td><?php echo ucfirst($strRows); ?></td>
+                <td align="right">
+                    <?php echo number_format($showtable['Rows'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Avg_row_length']) && $showtable['Avg_row_length'] > 0) {
+                    ?>
+            <tr>
+                <td><?php echo ucfirst($strRowLength); ?>&nbsp;&oslash;</td>
+                <td>
+                    <?php echo number_format($showtable['Avg_row_length'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Data_length']) && $showtable['Rows'] > 0 && $mergetable == false) {
+                    ?>
+            <tr>
+                <td><?php echo ucfirst($strRowSize); ?>&nbsp;&oslash;</td>
+                <td align="right">
+                    <?php echo $avg_size . ' ' . $avg_unit . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Auto_increment'])) {
+                    ?>
+            <tr>
+                <td><?php echo ucfirst($strNext); ?>&nbsp;Autoindex</td>
+                <td align="right">
+                    <?php echo number_format($showtable['Auto_increment'], 0, $number_decimal_separator, $number_thousands_separator) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Create_time'])) {
+                    ?>
+            <tr>
+                <td><?php echo $strStatCreateTime; ?></td>
+                <td align="right">
+                    <?php echo PMA_localisedDate(strtotime($showtable['Create_time'])) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Update_time'])) {
+                    ?>
+            <tr>
+                <td><?php echo $strStatUpdateTime; ?></td>
+                <td align="right">
+                    <?php echo PMA_localisedDate(strtotime($showtable['Update_time'])) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
+                if (isset($showtable['Check_time'])) {
+                    ?>
+            <tr>
+                <td><?php echo $strStatCheckTime; ?></td>
+                <td align="right">
+                    <?php echo PMA_localisedDate(strtotime($showtable['Check_time'])) . "\n"; ?>
+                </td>
+            </tr>
+                    <?php
+                }
                 ?>
-        <tr>
-            <td class="print"><?php echo $strStatUpdateTime; ?></td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo PMA_localisedDate(strtotime($showtable['Update_time'])) . "\n"; ?>
-            </td>
-        </tr>
+
+            </table>
+        </td>
+    </tr>
+    </table>
+
                 <?php
-            }
-            echo "\n";
-
-            if (isset($showtable['Check_time'])) {
-                $bgcolor = ((++$i%2) ? $cfg['BgcolorTwo'] : $cfg['BgcolorOne']);
-                echo "\n";
-                ?>
-        <tr>
-            <td class="print"><?php echo $strStatCheckTime; ?></td>
-            <td align="right" class="print" nowrap="nowrap">
-                <?php echo PMA_localisedDate(strtotime($showtable['Check_time'])) . "\n"; ?>
-            </td>
-        </tr>
-                <?php
-            }
-            echo "\n";
-            ?>
-        </table>
-    </td>
-</tr>
-</table>
-
-            <?php
-        } // end if ($nonisam == FALSE)
-    } // end if ($cfg['ShowStats'])
-
-    echo "\n";
+            } // end if ($nonisam == false)
+        } // end if ($cfg['ShowStats'])
+    }
     if ($multi_tables) {
-        unset($ret_keys);
-        unset($num_rows);
-        unset($show_comment);
+        unset($ret_keys, $num_rows, $show_comment);
         echo '<hr />' . "\n";
     } // end if
     echo '</div>' . "\n";
 
 } // end while
 
-
-
 /**
  * Displays the footer
  */
-echo "\n";
 ?>
-<script type="text/javascript" language="javascript1.2">
-<!--
+
+<script type="text/javascript" language="javascript">
+//<![CDATA[
 function printPage()
 {
-    document.getElementById('print').style.visibility = 'hidden';
     // Do print the page
     if (typeof(window.print) != 'undefined') {
         window.print();
     }
-    document.getElementById('print').style.visibility = '';
 }
-//-->
+//]]>
 </script>
-<?php
-echo '<br /><br />&nbsp;<input type="button" style="visibility: ; width: 100px; height: 25px" id="print" value="' . $strPrint . '" onclick="printPage()">' . "\n";
 
-require_once('./footer.inc.php');
+<p class="print_ignore">
+    <input type="button" id="print" value="<?php echo $strPrint; ?>"
+        onclick="printPage()" /></p>
+
+<?php
+require_once './libraries/footer.inc.php';
 ?>

@@ -1,5 +1,5 @@
 <?php
-/* $Id: string.lib.php,v 2.9 2004/12/28 15:12:16 nijel Exp $ */
+/* $Id: string.lib.php 8301 2006-01-17 17:03:02Z cybot_tm $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /** Specialized String Functions for phpMyAdmin
@@ -17,7 +17,7 @@
 /* Try to load mbstring, unless we're using buggy php version */
 if (PMA_PHP_INT_VERSION != 40203) {
     if (!@extension_loaded('mbstring')) {
-        //PMA_dl('mbstring');
+        PMA_dl('mbstring');
     }
 }
 
@@ -134,7 +134,7 @@ function PMA_STR_charIsEscaped($string, $pos, $start = 0)
 
     $p           = $pos - 1;
     $escaped     = FALSE;
-    while (($p >= $start) && ($string[$p] == '\\')) {
+    while (($p >= $start) && (PMA_substr($string, $p, 1) == '\\')) {
         $escaped = !$escaped;
         $p--;
     } // end while
@@ -310,8 +310,7 @@ function PMA_STR_isSpace($c)
  *
  * @param   string   character to check for
  *
- * @return  boolean  whether the character is an upper alphabetic one or
- *                   not
+ * @return  boolean  whether the character is an accented one or not
  *
  * @see     PMA_STR_numberInRangeInclusive()
  */
@@ -362,7 +361,7 @@ function PMA_STR_isSqlIdentifier($c, $dot_is_valid = FALSE)
  */
 function PMA_STR_binarySearchInArr($str, $arr, $arrsize)
 {
-    // $arr NUST be sorted, due to binary search
+    // $arr MUST be sorted, due to binary search
     $top    = $arrsize - 1;
     $bottom = 0;
     $found  = FALSE;
@@ -372,7 +371,7 @@ function PMA_STR_binarySearchInArr($str, $arr, $arrsize)
         $res        = strcmp($str, $arr[$mid]);
         if ($res == 0) {
             $found  = TRUE;
-        } else if ($res < 0) {
+        } elseif ($res < 0) {
             $top    = $mid - 1;
         } else {
             $bottom = $mid + 1;

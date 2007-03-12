@@ -1,5 +1,5 @@
 <?php
-/* $Id: sqlvalidator.class.php,v 2.2 2003/11/26 22:52:23 rabus Exp $ */
+/* $Id: sqlvalidator.class.php 9550 2006-10-13 08:21:55Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
@@ -17,8 +17,8 @@
 *
 * If you got this file from somewhere other than phpMyAdmin
 * please be aware that the latest copy will always be in the
-* phpMyAdmin CVS tree as
-* $Source: /cvsroot/phpmyadmin/phpMyAdmin/libraries/sqlvalidator.class.php,v $
+* phpMyAdmin subversion tree as
+* $HeadURL: https://svn.sourceforge.net/svnroot/phpmyadmin/branches/MAINT_2_10_0/phpMyAdmin/libraries/sqlvalidator.class.php $
 *
 * This code that also used to depend on the PHP overload module, but that has been
 * removed now.
@@ -27,7 +27,7 @@
 *
 * @author   Robin Johnson <robbat2@users.sourceforge.net>
 *
-* @version  $Id: sqlvalidator.class.php,v 2.2 2003/11/26 22:52:23 rabus Exp $
+* @version  $Id: sqlvalidator.class.php 9550 2006-10-13 08:21:55Z nijel $
 */
 
 @include_once('SOAP/Client.php');
@@ -54,8 +54,8 @@ if (!function_exists('class_exists') || !class_exists('SOAP_Client')) {
         var $connection_technology_version;
         var $interactive;
 
-        var $service_link = NULL;
-        var $session_data = NULL;
+        var $service_link = null;
+        var $session_data = null;
 
 
         /**
@@ -103,7 +103,7 @@ if (!function_exists('class_exists') || !class_exists('SOAP_Client')) {
                                       $interactive)
         {
     $use_array = array( "a_userName" => $username, "a_password" => $password, "a_callingProgram" => $calling_program, "a_callingProgramVersion" => $calling_program_version, "a_targetDbms" => $target_dbms, "a_targetDbmsVersion" => $target_dbms_version, "a_connectionTechnology" => $connection_technology, "a_connectionTechnologyVersion" => $connection_technology_version, "a_interactive" => $interactive);
-            $ret = $obj->call("openSession",$use_array);
+            $ret = $obj->call("openSession", $use_array);
 
            // This is the old version that needed the overload extension
            /* $ret = $obj->openSession($username, $password,
@@ -131,7 +131,7 @@ if (!function_exists('class_exists') || !class_exists('SOAP_Client')) {
         function _validateSQL($obj, $session, $sql, $method)
         {
     $use_array = array("a_sessionId" => $session->sessionId, "a_sessionKey" => $session->sessionKey, "a_SQL" => $sql, "a_resultType" => $this->output_type);
-            $res = $obj->call("validateSQL",$use_array);
+            $res = $obj->call("validateSQL", $use_array);
 
            // This is the old version that needed the overload extension
            // $res = $obj->validateSQL($session->sessionId, $session->sessionKey, $sql, $this->output_type);
@@ -178,15 +178,15 @@ if (!function_exists('class_exists') || !class_exists('SOAP_Client')) {
             $this->username                      = 'anonymous';
             $this->password                      = '';
             $this->calling_program               = 'PHP_SQLValidator';
-            $this->calling_program_version       = '$Revision: 2.2 $';
+            $this->calling_program_version       = '$Revision: 9550 $';
             $this->target_dbms                   = 'N/A';
             $this->target_dbms_version           = 'N/A';
             $this->connection_technology         = 'PHP';
             $this->connection_technology_version = phpversion();
             $this->interactive = 1;
 
-            $this->service_link = NULL;
-            $this->session_data = NULL;
+            $this->service_link = null;
+            $this->session_data = null;
         } // end of the "PMA_SQLValidator()" function
 
 
@@ -347,7 +347,7 @@ if (!function_exists('class_exists') || !class_exists('SOAP_Client')) {
                                                               $this->connection_technology, $this->connection_technology_version,
                                                               $this->interactive);
 
-            if (isset($this->session_data) && ($this->session_data != NULL)
+            if (isset($this->session_data) && ($this->session_data != null)
                 && ($this->session_data->target != $this->url)) {
                 // Reopens the service on the new URL that was provided
                 $url = $this->session_data->target;

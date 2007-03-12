@@ -1,13 +1,14 @@
 <?php
-/* $Id: db_datadict.php,v 2.15 2004/10/08 11:14:06 garvinhicking Exp $ */
+/* $Id: db_datadict.php 9602 2006-10-25 12:25:01Z nijel $ */
 
 
 /**
  * Gets the variables sent or posted to this script, then displays headers
  */
+require_once('./libraries/common.lib.php');
+
 if (!isset($selected_tbl)) {
-    require_once('./libraries/grab_globals.lib.php');
-    require_once('./header.inc.php');
+    require_once('./libraries/header.inc.php');
 }
 
 
@@ -28,9 +29,9 @@ PMA_checkParameters(array('db'));
  * Defines the url to return to in case of error in a sql statement
  */
 if (isset($table)) {
-    $err_url = 'tbl_properties.php?' . PMA_generate_common_url($db, $table);
+    $err_url = 'tbl_sql.php?' . PMA_generate_common_url($db, $table);
 } else {
-    $err_url = 'db_details.php?' . PMA_generate_common_url($db);
+    $err_url = 'db_sql.php?' . PMA_generate_common_url($db);
 }
 
 if ($cfgRelation['commwork']) {
@@ -41,10 +42,8 @@ if ($cfgRelation['commwork']) {
      */
     if (is_array($comment)) {
         ?>
-    <!-- DB comment -->
-    <p><?php echo $strDBComment; ?> <i>
-        <?php echo htmlspecialchars(implode(' ', $comment)) . "\n"; ?>
-    </i></p>
+    <p> <?php echo $strDBComment; ?>
+        <i><?php echo htmlspecialchars( implode( ' ', $comment ) ); ?></i></p>
         <?php
     } // end if
 }
@@ -53,13 +52,13 @@ if ($cfgRelation['commwork']) {
  * Selects the database and gets tables names
  */
 PMA_DBI_select_db($db);
-$rowset = PMA_DBI_query('SHOW TABLES FROM ' . PMA_backquote($db) . ';', NULL, PMA_DBI_QUERY_STORE);
+$rowset = PMA_DBI_query('SHOW TABLES FROM ' . PMA_backquote($db) . ';', null, PMA_DBI_QUERY_STORE);
 
 $count  = 0;
 while ($row = PMA_DBI_fetch_assoc($rowset)) {
     $myfieldname = 'Tables_in_' . htmlspecialchars($db);
     $table        = $row[$myfieldname];
-    if ($cfgRelation['commwork']) {
+    if ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100) {
         $comments = PMA_getComments($db, $table);
     }
 
@@ -75,11 +74,10 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
      * Gets table informations
      */
     // The 'show table' statement works correct since 3.23.03
-    $result       = PMA_DBI_query('SHOW TABLE STATUS LIKE \'' . PMA_sqlAddslashes($table, TRUE) . '\'', NULL, PMA_DBI_QUERY_STORE);
-    $showtable    = PMA_DBI_fetch_assoc($result);
-    $num_rows     = (isset($showtable['Rows']) ? $showtable['Rows'] : 0);
-    $show_comment = (isset($showtable['Comment']) ? $showtable['Comment'] : '');
-    PMA_DBI_free_result($result);
+    $showtable    = PMA_DBI_get_tables_full( $db, $table );
+    $num_rows     = (isset($showtable[$table]['TABLE_ROWS']) ? $showtable[$table]['TABLE_ROWS'] : 0);
+    $show_comment = (isset($showtable[$table]['TABLE_COMMENT']) ? $showtable[$table]['TABLE_COMMENT'] : '');
+    unset( $showtable );
 
 
     /**
@@ -130,8 +128,20 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
     /**
      * Gets fields properties
      */
-    $result      = PMA_DBI_query('SHOW FIELDS FROM ' . PMA_backquote($table) . ';', NULL, PMA_DBI_QUERY_STORE);
+    $result      = PMA_DBI_query('SHOW FIELDS FROM ' . PMA_backquote($table) . ';', null, PMA_DBI_QUERY_STORE);
     $fields_cnt  = PMA_DBI_num_rows($result);
+
+
+// We need this to correctly learn if a TIMESTAMP is NOT NULL, since
+// SHOW FULL FIELDS or INFORMATION_SCHEMA incorrectly says NULL
+// and SHOW CREATE TABLE says NOT NULL (tested
+// in MySQL 4.0.25 and 5.0.21, http://bugs.mysql.com/20910).
+
+    $show_create_table = PMA_DBI_fetch_value(
+        'SHOW CREATE TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table),
+        0, 1);
+    $analyzed_sql = PMA_SQP_analyze(PMA_SQP_parse($show_create_table));
+
     // Check if we can use Relations (Mike Beck)
     if (!empty($cfgRelation['relation'])) {
         // Find which tables are related with the current one and write it in
@@ -143,8 +153,7 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
         } else {
             $have_rel = FALSE;
         }
-    }
-    else {
+    } else {
         $have_rel = FALSE;
     } // end if
 
@@ -153,7 +162,7 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
      * Displays the comments of the table if MySQL >= 3.23
      */
     if (!empty($show_comment)) {
-        echo $strTableComments . ':&nbsp;' . $show_comment . '<br /><br />';
+        echo $strTableComments . ': ' . $show_comment . '<br /><br />';
     }
 
     /**
@@ -161,21 +170,18 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
      */
     ?>
 
-<!-- TABLE INFORMATIONS -->
-<table width="100%" style="border: 1px solid black; border-collapse: collapse; background-color: white;">
-<tr>
-    <th width="50"><?php echo $strField; ?></th>
+<table width="100%" class="print">
+<tr><th width="50"><?php echo $strField; ?></th>
     <th width="80"><?php echo $strType; ?></th>
-    <!--<th width="50"><?php echo $strAttr; ?></th>-->
+<?php /*    <th width="50"><?php echo $strAttr; ?></th>*/ ?>
     <th width="40"><?php echo $strNull; ?></th>
     <th width="70"><?php echo $strDefault; ?></th>
-    <!--<th width="50"><?php echo $strExtra; ?></th>-->
+<?php /*    <th width="50"><?php echo $strExtra; ?></th>*/ ?>
     <?php
-    echo "\n";
     if ($have_rel) {
         echo '    <th>' . $strLinksTo . '</th>' . "\n";
     }
-    if ($cfgRelation['commwork']) {
+    if ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100) {
         echo '    <th>' . $strComments . '</th>' . "\n";
     }
     if ($cfgRelation['mimework']) {
@@ -183,12 +189,9 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
     }
     ?>
 </tr>
-
     <?php
-    $i = 0;
+    $odd_row = true;
     while ($row = PMA_DBI_fetch_assoc($result)) {
-        $bgcolor = ($i % 2) ?$cfg['BgcolorOne'] : $cfg['BgcolorTwo'];
-        $i++;
 
         $type             = $row['Type'];
         // reformat mysql query output - staybyte - 9. June 2001
@@ -210,10 +213,10 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
             $type         = preg_replace('@ZEROFILL@i', '', $type);
             $type         = preg_replace('@UNSIGNED@i', '', $type);
             if (empty($type)) {
-                $type     = '&nbsp;';
+                $type     = ' ';
             }
         }
-        $strAttribute     = '&nbsp;';
+        $strAttribute     = ' ';
         if ($binary) {
             $strAttribute = 'BINARY';
         }
@@ -224,80 +227,84 @@ while ($row = PMA_DBI_fetch_assoc($rowset)) {
             $strAttribute = 'UNSIGNED ZEROFILL';
         }
         if (!isset($row['Default'])) {
-            if ($row['Null'] != '') {
+            if ($row['Null'] != '' && $row['Null'] != 'NO') {
                 $row['Default'] = '<i>NULL</i>';
             }
         } else {
             $row['Default'] = htmlspecialchars($row['Default']);
         }
         $field_name = htmlspecialchars($row['Field']);
-        echo "\n";
+
+        // here, we have a TIMESTAMP that SHOW FULL FIELDS reports as having the
+        // NULL attribute, but SHOW CREATE TABLE says the contrary. Believe
+        // the latter.
+        /**
+         * @todo merge this logic with the one in tbl_structure.php
+         * or move it in a function similar to PMA_DBI_get_columns_full()
+         * but based on SHOW CREATE TABLE because information_schema
+         * cannot be trusted in this case (MySQL bug)
+         */
+        if (!empty($analyzed_sql[0]['create_table_fields'][$field_name]['type']) && $analyzed_sql[0]['create_table_fields'][$field_name]['type'] == 'TIMESTAMP' && $analyzed_sql[0]['create_table_fields'][$field_name]['timestamp_not_null']) {
+            $row['Null'] = '';
+        }
         ?>
-<tr>
-    <td width=50 class='print' nowrap="nowrap">
+<tr class="<?php echo $odd_row ? 'odd' : 'even'; $odd_row = ! $odd_row; ?>">
+    <td nowrap="nowrap">
         <?php
-        echo "\n";
         if (isset($pk_array[$row['Field']])) {
-            echo '    <u>' . $field_name . '</u>&nbsp;' . "\n";
+            echo '<u>' . $field_name . '</u>';
         } else {
-            echo '    ' . $field_name . '&nbsp;' . "\n";
+            echo $field_name;
         }
         ?>
     </td>
-    <td width="80" class="print"<?php echo $type_nowrap; ?>><?php echo $type; ?><bdo dir="ltr"></bdo></td>
-    <!--<td width="50" bgcolor="<?php echo $bgcolor; ?>" nowrap="nowrap"><?php echo $strAttribute; ?></td>-->
-    <td width="40" class="print"><?php echo (($row['Null'] == '') ? $strNo : $strYes); ?>&nbsp;</td>
-    <td width="70" class="print" nowrap="nowrap"><?php if (isset($row['Default'])) echo $row['Default']; ?>&nbsp;</td>
-    <!--<td width="50" bgcolor="<?php echo $bgcolor; ?>" nowrap="nowrap"><?php echo $row['Extra']; ?>&nbsp;</td>-->
+    <td<?php echo $type_nowrap; ?> xml:lang="en" dir="ltr"><?php echo $type; ?></td>
+<?php /*    <td<?php echo $type_nowrap; ?>><?php echo $strAttribute; ?></td>*/ ?>
+    <td><?php echo (($row['Null'] == '' || $row['Null'] == 'NO') ? $strNo : $strYes); ?></td>
+    <td nowrap="nowrap"><?php if (isset($row['Default'])) { echo $row['Default']; } ?></td>
+<?php /*    <td<?php echo $type_nowrap; ?>><?php echo $row['Extra']; ?></td>*/ ?>
         <?php
-        echo "\n";
         if ($have_rel) {
-            echo '    <td class="print">';
+            echo '    <td>';
             if (isset($res_rel[$field_name])) {
                 echo htmlspecialchars($res_rel[$field_name]['foreign_table'] . ' -> ' . $res_rel[$field_name]['foreign_field']);
             }
-            echo '&nbsp;</td>' . "\n";
+            echo '</td>' . "\n";
         }
-        if ($cfgRelation['commwork']) {
-            echo '    <td class="print">';
+        if ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100) {
+            echo '    <td>';
             if (isset($comments[$field_name])) {
                 echo htmlspecialchars($comments[$field_name]);
             }
-            echo '&nbsp;</td>' . "\n";
+            echo '</td>' . "\n";
         }
         if ($cfgRelation['mimework']) {
             $mime_map = PMA_getMIME($db, $table, true);
 
-            echo '    <td class="print">';
+            echo '    <td>';
             if (isset($mime_map[$field_name])) {
                 echo htmlspecialchars(str_replace('_', '/', $mime_map[$field_name]['mimetype']));
             }
-            echo '&nbsp;</td>' . "\n";
+            echo '</td>' . "\n";
         }
         ?>
 </tr>
         <?php
     } // end while
-    PMA_DBI_free_result($result);
-
-    echo "\n";
+    PMA_DBI_free_result( $result );
+    $count++;
     ?>
 </table>
-
+</div>
     <?php
-    echo '</div>' . "\n";
-
-    $count++;
 } //ends main while
-
 
 /**
  * Displays the footer
  */
-echo "\n";
 ?>
-<script type="text/javascript" language="javascript1.2">
-<!--
+<script type="text/javascript" language="javascript">
+//<![CDATA[
 function printPage()
 {
     document.getElementById('print').style.visibility = 'hidden';
@@ -307,10 +314,10 @@ function printPage()
     }
     document.getElementById('print').style.visibility = '';
 }
-//-->
+//]]>
 </script>
 <?php
-echo '<br /><br />&nbsp;<input type="button" style="width: 100px; height: 25px;" id="print" value="' . $strPrint . '" onclick="printPage()">' . "\n";
+echo '<br /><br /><input type="button" id="print" value="' . $strPrint . '" onclick="printPage()" />';
 
-require_once('./footer.inc.php');
+require_once('./libraries/footer.inc.php');
 ?>

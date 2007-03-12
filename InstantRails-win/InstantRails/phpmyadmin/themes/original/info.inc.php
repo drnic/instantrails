@@ -1,7 +1,6 @@
 <?php
-/* $Id: info.inc.php,v 2.0 2004/10/13 10:09:51 rabus Exp $ */
+/* $Id: info.inc.php 9277 2006-08-11 09:22:10Z cybot_tm $ */
 /* Theme information */
 $theme_name = 'Original';
-$theme_version = 1;
-$theme_generation = 1;
+$theme_full_version = '2.9';
 ?>

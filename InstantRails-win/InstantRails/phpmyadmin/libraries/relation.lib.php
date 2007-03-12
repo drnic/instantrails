@@ -1,7 +1,9 @@
 <?php
-/* $Id: relation.lib.php,v 2.23 2004/08/16 15:19:15 nijel Exp $ */
+/* $Id: relation.lib.php 9698 2006-11-13 17:58:15Z lem9 $ */
 // vim: expandtab sw=4 ts=4 sts=4:
-error_reporting(E_ALL);
+
+require_once './libraries/Table.class.php';
+
 /**
  * Set of functions used with the relation and pdf feature
  */
@@ -23,23 +25,33 @@ error_reporting(E_ALL);
  *
  * @author  Mike Beck <mikebeck@users.sourceforge.net>
  */
- function PMA_query_as_cu($sql, $show_error = TRUE, $options = 0) {
-    global $err_url_0, $db, $dbh, $cfgRelation;
+ function PMA_query_as_cu($sql, $show_error = true, $options = 0) {
+    global $db, $controllink, $cfgRelation;
 
-    PMA_DBI_select_db($cfgRelation['db'], $dbh);
+    // Comparing resource ids works on PHP 5 because, when no controluser
+    // is defined, connecting with the same user for controllink does
+    // not create a new connection. However a new connection is created
+    // on PHP 4, so we cannot directly compare resource ids.
+
+    if ($controllink == $GLOBALS['userlink'] || PMA_MYSQL_INT_VERSION < 50000) {
+        PMA_DBI_select_db($cfgRelation['db'], $controllink);
+    }
     if ($show_error) {
-        $result = PMA_DBI_query($sql, $dbh, $options);
+        $result = PMA_DBI_query($sql, $controllink, $options);
     } else {
-        $result = @PMA_DBI_try_query($sql, $dbh, $options);
+        $result = @PMA_DBI_try_query($sql, $controllink, $options);
     } // end if... else...
-    PMA_DBI_select_db($db, $dbh);
+    // It makes no sense to restore database on control user
+    if ($controllink == $GLOBALS['userlink'] || PMA_MYSQL_INT_VERSION < 50000) {
+        PMA_DBI_select_db($db, $controllink);
+    }
 
     if ($result) {
         return $result;
     } else {
-        return FALSE;
+        return false;
     }
- } // end of the "PMA_query_as_cu()" function 
+ } // end of the "PMA_query_as_cu()" function
 
 
 /**
@@ -62,34 +74,36 @@ error_reporting(E_ALL);
  *
  * @author  Mike Beck <mikebeck@users.sourceforge.net>
  */
-function PMA_getRelationsParam($verbose = FALSE)
+function PMA_getRelationsParam($verbose = false)
 {
-    global $cfg, $server, $err_url_0, $db, $table;
-    global $cfgRelation;
+    global $cfg, $server, $controllink, $cfgRelation;
 
     $cfgRelation                = array();
-    $cfgRelation['relwork']     = FALSE;
-    $cfgRelation['displaywork'] = FALSE;
-    $cfgRelation['bookmarkwork']= FALSE;
-    $cfgRelation['pdfwork']     = FALSE;
-    $cfgRelation['commwork']    = FALSE;
-    $cfgRelation['mimework']    = FALSE;
-    $cfgRelation['historywork'] = FALSE;
-    $cfgRelation['allworks']    = FALSE;
+    $cfgRelation['relwork']     = false;
+    $cfgRelation['displaywork'] = false;
+    $cfgRelation['bookmarkwork']= false;
+    $cfgRelation['pdfwork']     = false;
+    $cfgRelation['commwork']    = false;
+    $cfgRelation['mimework']    = false;
+    $cfgRelation['historywork'] = false;
+    $cfgRelation['designerwork'] = false;
+    $cfgRelation['allworks']    = false;
 
     // No server selected -> no bookmark table
-    // we return the array with the FALSEs in it,
+    // we return the array with the falses in it,
     // to avoid some 'Unitialized string offset' errors later
-    if ($server == 0
-       || empty($cfg['Server'])
-       || empty($cfg['Server']['pmadb'])) {
-        if ($verbose == TRUE) {
+    if ($server == 0 || empty($cfg['Server']) || empty($cfg['Server']['pmadb'])
+      || ! PMA_DBI_select_db($cfg['Server']['pmadb'], $controllink)) {
+        if ($verbose == true) {
             echo 'PMA Database ... '
                  . '<font color="red"><b>' . $GLOBALS['strNotOK'] . '</b></font>'
-                 . '[ <a href="Documentation.html#pmadb">' . $GLOBALS['strDocu'] . '</a> ]<br />' . "\n"
+                 . '[ <a href="Documentation.html#pmadb">' . $GLOBALS['strDocu']
+                 . '</a> ]<br />' . "\n"
                  . $GLOBALS['strGeneralRelationFeat']
-                 . ' <font color="green">' . $GLOBALS['strDisabled'] . '</font>' . "\n";
+                 . ' <font color="green">' . $GLOBALS['strDisabled']
+                 . '</font>' . "\n";
         }
+        $cfg['Server']['pmadb'] = false;
         return $cfgRelation;
     }
 
@@ -100,100 +114,109 @@ function PMA_getRelationsParam($verbose = FALSE)
     //  example enable relations but not pdf...
     //  I was thinking of checking if they have all required columns but I
     //  fear it might be too slow
-    // PMA_DBI_select_db($cfgRelation['db']);
 
     $tab_query = 'SHOW TABLES FROM ' . PMA_backquote($cfgRelation['db']);
-    $tab_rs    = PMA_query_as_cu($tab_query, FALSE, PMA_DBI_QUERY_STORE);
+    $tab_rs    = PMA_query_as_cu($tab_query, false, PMA_DBI_QUERY_STORE);
 
     if ($tab_rs) {
         while ($curr_table = @PMA_DBI_fetch_row($tab_rs)) {
             if ($curr_table[0] == $cfg['Server']['bookmarktable']) {
                 $cfgRelation['bookmark']        = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['relation']) {
+            } elseif ($curr_table[0] == $cfg['Server']['relation']) {
                 $cfgRelation['relation']        = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['table_info']) {
+            } elseif ($curr_table[0] == $cfg['Server']['table_info']) {
                 $cfgRelation['table_info']      = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['table_coords']) {
+            } elseif ($curr_table[0] == $cfg['Server']['table_coords']) {
                 $cfgRelation['table_coords']    = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['column_info']) {
+            } elseif ($curr_table[0] == $cfg['Server']['designer_coords']) {
+                $cfgRelation['designer_coords']    = $curr_table[0];
+            } elseif ($curr_table[0] == $cfg['Server']['column_info']) {
                 $cfgRelation['column_info'] = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['pdf_pages']) {
+            } elseif ($curr_table[0] == $cfg['Server']['pdf_pages']) {
                 $cfgRelation['pdf_pages']       = $curr_table[0];
-            } else if ($curr_table[0] == $cfg['Server']['history']) {
+            } elseif ($curr_table[0] == $cfg['Server']['history']) {
                 $cfgRelation['history'] = $curr_table[0];
             }
         } // end while
+        PMA_DBI_free_result($tab_rs);
+    } else {
+        $cfg['Server']['pmadb'] = false;
     }
 
     if (isset($cfgRelation['relation'])) {
-        $cfgRelation['relwork']         = TRUE;
+        $cfgRelation['relwork']         = true;
         if (isset($cfgRelation['table_info'])) {
-                $cfgRelation['displaywork'] = TRUE;
+                $cfgRelation['displaywork'] = true;
         }
     }
     if (isset($cfgRelation['table_coords']) && isset($cfgRelation['pdf_pages'])) {
-        $cfgRelation['pdfwork']     = TRUE;
+        $cfgRelation['pdfwork']     = true;
     }
     if (isset($cfgRelation['column_info'])) {
-        $cfgRelation['commwork']    = TRUE;
+        $cfgRelation['commwork']    = true;
 
         if ($cfg['Server']['verbose_check']) {
-            $mime_query  = 'SHOW FIELDS FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']);
-            $mime_rs     = PMA_query_as_cu($mime_query, FALSE);
+            $mime_query  = 'SHOW FIELDS FROM '
+                . PMA_backquote($cfgRelation['db']) . '.'
+                . PMA_backquote($cfgRelation['column_info']);
+            $mime_rs     = PMA_query_as_cu($mime_query, false);
 
-            $mime_field_mimetype                = FALSE;
-            $mime_field_transformation          = FALSE;
-            $mime_field_transformation_options  = FALSE;
+            $mime_field_mimetype                = false;
+            $mime_field_transformation          = false;
+            $mime_field_transformation_options  = false;
             while ($curr_mime_field = @PMA_DBI_fetch_row($mime_rs)) {
                 if ($curr_mime_field[0] == 'mimetype') {
-                    $mime_field_mimetype               = TRUE;
-                } else if ($curr_mime_field[0] == 'transformation') {
-                    $mime_field_transformation         = TRUE;
-                } else if ($curr_mime_field[0] == 'transformation_options') {
-                    $mime_field_transformation_options = TRUE;
+                    $mime_field_mimetype               = true;
+                } elseif ($curr_mime_field[0] == 'transformation') {
+                    $mime_field_transformation         = true;
+                } elseif ($curr_mime_field[0] == 'transformation_options') {
+                    $mime_field_transformation_options = true;
                 }
             }
             PMA_DBI_free_result($mime_rs);
 
-            if ($mime_field_mimetype == TRUE
-                && $mime_field_transformation == TRUE
-                && $mime_field_transformation_options == TRUE) {
-                $cfgRelation['mimework'] = TRUE;
+            if ($mime_field_mimetype == true
+                && $mime_field_transformation == true
+                && $mime_field_transformation_options == true) {
+                $cfgRelation['mimework'] = true;
             }
         } else {
-            $cfgRelation['mimework'] = TRUE;
+            $cfgRelation['mimework'] = true;
         }
     }
 
     if (isset($cfgRelation['history'])) {
-        $cfgRelation['historywork']     = TRUE;
+        $cfgRelation['historywork']     = true;
+    }
+
+    // we do not absolutely need that the internal relations or the PDF
+    // schema feature be activated
+    if (isset($cfgRelation['designer_coords'])) {
+        $cfgRelation['designerwork']     = true;
     }
 
     if (isset($cfgRelation['bookmark'])) {
-        $cfgRelation['bookmarkwork']     = TRUE;
+        $cfgRelation['bookmarkwork']     = true;
     }
 
-    if ($cfgRelation['relwork'] == TRUE && $cfgRelation['displaywork'] == TRUE
-        && $cfgRelation['pdfwork'] == TRUE && $cfgRelation['commwork'] == TRUE
-        && $cfgRelation['mimework'] == TRUE && $cfgRelation['historywork'] == TRUE
-        && $cfgRelation['bookmarkwork'] == TRUE) {
-        $cfgRelation['allworks'] = TRUE;
-    }
-    if ($tab_rs) {
-        PMA_DBI_free_result($tab_rs);
-    } else {
-        $cfg['Server']['pmadb'] = FALSE;
+    if ($cfgRelation['relwork'] == true && $cfgRelation['displaywork'] == true
+        && $cfgRelation['pdfwork'] == true && $cfgRelation['commwork'] == true
+        && $cfgRelation['mimework'] == true && $cfgRelation['historywork'] == true
+        && $cfgRelation['bookmarkwork'] == true && $cfgRelation['designerwork'] == true) {
+        $cfgRelation['allworks'] = true;
     }
 
-    if ($verbose == TRUE) {
-        $shit     = '<font color="red"><b>' . $GLOBALS['strNotOK'] . '</b></font> [ <a href="Documentation.html#%s">' . $GLOBALS['strDocu'] . '</a> ]';
+    if ($verbose == true) {
+        $shit     = '<font color="red"><b>' . $GLOBALS['strNotOK']
+            . '</b></font> [ <a href="Documentation.html#%s">'
+            . $GLOBALS['strDocu'] . '</a> ]';
         $hit      = '<font color="green"><b>' . $GLOBALS['strOK'] . '</b></font>';
         $enabled  = '<font color="green">' . $GLOBALS['strEnabled'] . '</font>';
         $disabled = '<font color="red">'   . $GLOBALS['strDisabled'] . '</font>';
 
         echo '<table>' . "\n";
         echo '    <tr><th align="left">$cfg[\'Servers\'][$i][\'pmadb\'] ... </th><td align="right">'
-             . (($cfg['Server']['pmadb'] == FALSE) ? sprintf($shit, 'pmadb') : $hit)
+             . (($cfg['Server']['pmadb'] == false) ? sprintf($shit, 'pmadb') : $hit)
              . '</td></tr>' . "\n";
         echo '    <tr><td>&nbsp;</td></tr>' . "\n";
 
@@ -201,15 +224,15 @@ function PMA_getRelationsParam($verbose = FALSE)
              . ((isset($cfgRelation['relation'])) ? $hit : sprintf($shit, 'relation'))
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">'. $GLOBALS['strGeneralRelationFeat'] . ': '
-             . (($cfgRelation['relwork'] == TRUE) ? $enabled :  $disabled)
+             . (($cfgRelation['relwork'] == true) ? $enabled :  $disabled)
              . '</td></tr>' . "\n";
         echo '    <tr><td>&nbsp;</td></tr>' . "\n";
 
         echo '    <tr><th align="left">$cfg[\'Servers\'][$i][\'table_info\']   ... </th><td align="right">'
-             . (($cfgRelation['displaywork'] == FALSE) ? sprintf($shit, 'table_info') : $hit)
+             . (($cfgRelation['displaywork'] == false) ? sprintf($shit, 'table_info') : $hit)
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strDisplayFeat'] . ': '
-             . (($cfgRelation['displaywork'] == TRUE) ? $enabled : $disabled)
+             . (($cfgRelation['displaywork'] == true) ? $enabled : $disabled)
              . '</td></tr>' . "\n";
         echo '    <tr><td>&nbsp;</td></tr>' . "\n";
 
@@ -220,7 +243,7 @@ function PMA_getRelationsParam($verbose = FALSE)
              . ((isset($cfgRelation['pdf_pages'])) ? $hit : sprintf($shit, 'table_coords'))
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strCreatePdfFeat'] . ': '
-             . (($cfgRelation['pdfwork'] == TRUE) ? $enabled : $disabled)
+             . (($cfgRelation['pdfwork'] == true) ? $enabled : $disabled)
              . '</td></tr>' . "\n";
         echo '    <tr><td>&nbsp;</td></tr>' . "\n";
 
@@ -228,28 +251,35 @@ function PMA_getRelationsParam($verbose = FALSE)
              . ((isset($cfgRelation['column_info'])) ? $hit : sprintf($shit, 'col_com'))
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strColComFeat'] . ': '
-             . (($cfgRelation['commwork'] == TRUE) ? $enabled : $disabled)
+             . (($cfgRelation['commwork'] == true) ? $enabled : $disabled)
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strBookmarkQuery'] . ': '
-             . (($cfgRelation['bookmarkwork'] == TRUE) ? $enabled : $disabled)
+             . (($cfgRelation['bookmarkwork'] == true) ? $enabled : $disabled)
              . '</td></tr>' . "\n";
         echo '    <tr><th align="left">MIME ...</th><td align="right">'
-             . (($cfgRelation['mimework'] == TRUE) ? $hit : sprintf($shit, 'col_com'))
+             . (($cfgRelation['mimework'] == true) ? $hit : sprintf($shit, 'col_com'))
              . '</td></tr>' . "\n";
 
-             if (($cfgRelation['commwork'] == TRUE) && ($cfgRelation['mimework'] != TRUE)) {
-                 echo '<tr><td colspan=2 align="left">' . $GLOBALS['strUpdComTab'] . '</td></tr>' . "\n";
-             }
+        if (($cfgRelation['commwork'] == true) && ($cfgRelation['mimework'] != true)) {
+            echo '<tr><td colspan=2 align="left">' . $GLOBALS['strUpdComTab'] . '</td></tr>' . "\n";
+        }
 
         echo '    <tr><th align="left">$cfg[\'Servers\'][$i][\'history\'] ... </th><td align="right">'
              . ((isset($cfgRelation['history'])) ? $hit : sprintf($shit, 'history'))
              . '</td></tr>' . "\n";
         echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strQuerySQLHistory'] . ': '
-             . (($cfgRelation['historywork'] == TRUE) ? $enabled : $disabled)
+             . (($cfgRelation['historywork'] == true) ? $enabled : $disabled)
+             . '</td></tr>' . "\n";
+
+        echo '    <tr><th align="left">$cfg[\'Servers\'][$i][\'designer_coords\'] ... </th><td align="right">'
+             . ((isset($cfgRelation['designer_coords'])) ? $hit : sprintf($shit, 'designer_coords'))
+             . '</td></tr>' . "\n";
+        echo '    <tr><td colspan=2 align="center">' . $GLOBALS['strDesigner'] . ': '
+             . (($cfgRelation['designerwork'] == true) ? $enabled : $disabled)
              . '</td></tr>' . "\n";
 
         echo '</table>' . "\n";
-    } // end if ($verbose == TRUE) {
+    } // end if ($verbose == true) {
 
     return $cfgRelation;
 } // end of the 'PMA_getRelationsParam()' function
@@ -274,25 +304,19 @@ function PMA_getRelationsParam($verbose = FALSE)
  * @author  Mike Beck <mikebeck@users.sourceforge.net> and Marc Delisle
  */
 function PMA_getForeigners($db, $table, $column = '', $source = 'both') {
-    global $cfgRelation, $err_url_0;
+    global $cfgRelation;
 
     if ($cfgRelation['relwork'] && ($source == 'both' || $source == 'internal')) {
-        $rel_query          = 'SELECT master_field, foreign_db, foreign_table, foreign_field'
-                            . ' FROM ' . PMA_backquote($cfgRelation['relation']);
-        if (PMA_MYSQL_INT_VERSION >= 40100) {
-            list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-            $rel_query     .= ' WHERE CONVERT(master_db USING ' . $conn_charset . ') =  \'' . PMA_sqlAddslashes($db) . '\' '
-                            . ' AND   CONVERT(master_table USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($table) . '\' ';
-            if (!empty($column)) {
-                $rel_query .= ' AND   CONVERT(master_field USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($column) . '\'';
-            }
-            unset($conn_charset);
-        } else {
-            $rel_query     .= ' WHERE master_db =  \'' . PMA_sqlAddslashes($db) . '\' '
-                            . ' AND   master_table = \'' . PMA_sqlAddslashes($table) . '\' ';
-            if (!empty($column)) {
-                $rel_query .= ' AND   master_field = \'' . PMA_sqlAddslashes($column) . '\'';
-            }
+        $rel_query = '
+             SELECT master_field,
+                    foreign_db,
+                    foreign_table,
+                    foreign_field
+               FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['relation']) . '
+              WHERE master_db =  \'' . PMA_sqlAddslashes($db) . '\'
+                AND master_table = \'' . PMA_sqlAddslashes($table) . '\' ';
+        if (isset($column) && strlen($column)) {
+            $rel_query .= ' AND   master_field = \'' . PMA_sqlAddslashes($column) . '\'';
         }
         $relations     = PMA_query_as_cu($rel_query);
         $i = 0;
@@ -307,11 +331,11 @@ function PMA_getForeigners($db, $table, $column = '', $source = 'both') {
         unset($relations);
     }
 
-    if (($source == 'both' || $source == 'innodb') && !empty($table)) {
+    if (($source == 'both' || $source == 'innodb') && isset($table) && strlen($table)) {
         $show_create_table_query = 'SHOW CREATE TABLE '
             . PMA_backquote($db) . '.' . PMA_backquote($table);
         $show_create_table_res = PMA_DBI_query($show_create_table_query);
-        list(,$show_create_table) = PMA_DBI_fetch_row($show_create_table_res);
+        list(, $show_create_table) = PMA_DBI_fetch_row($show_create_table_res);
         PMA_DBI_free_result($show_create_table_res);
         unset($show_create_table_res, $show_create_table_query);
         $analyzed_sql = PMA_SQP_analyze(PMA_SQP_parse($show_create_table));
@@ -329,7 +353,7 @@ function PMA_getForeigners($db, $table, $column = '', $source = 'both') {
                 // The parser looks for a CONSTRAINT clause just before
                 // the FOREIGN KEY clause. It finds it (as output from
                 // SHOW CREATE TABLE) in MySQL 4.0.13, but not in older
-                // versions like 3.23.58. 
+                // versions like 3.23.58.
                 // In those cases, the FOREIGN KEY parsing will put numbers
                 // like -1, 0, 1... instead of the constraint number.
 
@@ -354,11 +378,34 @@ function PMA_getForeigners($db, $table, $column = '', $source = 'both') {
         }
     }
 
-    if (isset($foreign) && is_array($foreign)) {
+    /**
+     * Emulating relations for some information_schema tables
+     */
+    if (PMA_MYSQL_INT_VERSION >= 50002 && $db == 'information_schema'
+        && ($source == 'internal' || $source == 'both')) {
+
+        require_once './libraries/information_schema_relations.lib.php';
+
+        if (!isset($foreign)) {
+            $foreign = array();
+        }
+
+        if (isset($GLOBALS['information_schema_relations'][$table])) {
+            foreach ($GLOBALS['information_schema_relations'][$table] as $field => $relations) {
+                if ((! isset($column) || ! strlen($column) || $column == $field)
+                  && (! isset($foreign[$field]) || ! strlen($foreign[$field]))) {
+                    $foreign[$field] = $relations;
+                }
+            }
+        }
+    }
+
+    if (!empty($foreign) && is_array($foreign)) {
        return $foreign;
     } else {
-       return FALSE;
+        return false;
     }
+
 } // end of the 'PMA_getForeigners()' function
 
 
@@ -378,28 +425,42 @@ function PMA_getForeigners($db, $table, $column = '', $source = 'both') {
  */
 function PMA_getDisplayField($db, $table) {
     global $cfgRelation;
-    if (trim(@$cfgRelation['table_info']) == '') {
-        return FALSE;
+
+    /**
+     * Try to fetch the display field from DB.
+     */
+    if (trim(@$cfgRelation['table_info']) != '') {
+
+        $disp_query = '
+             SELECT display_field
+               FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['table_info']) . '
+              WHERE db_name    = \'' . PMA_sqlAddslashes($db) . '\'
+                AND table_name = \'' . PMA_sqlAddslashes($table) . '\'';
+
+        $disp_res   = PMA_query_as_cu($disp_query);
+        $row        = ($disp_res ? PMA_DBI_fetch_assoc($disp_res) : '');
+        PMA_DBI_free_result($disp_res);
+        if (isset($row['display_field'])) {
+            return $row['display_field'];
+        }
+
     }
 
-    $disp_query      = 'SELECT display_field FROM ' . PMA_backquote($cfgRelation['table_info']);
-    if (PMA_MYSQL_INT_VERSION >= 40100) {
-        list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-        $disp_query .= ' WHERE CONVERT(db_name    USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($db) . '\''
-                     . ' AND   CONVERT(table_name USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($table) . '\'';
-    } else {
-        $disp_query .= ' WHERE db_name    = \'' . PMA_sqlAddslashes($db) . '\''
-                     . ' AND   table_name = \'' . PMA_sqlAddslashes($table) . '\'';
+    /**
+     * Emulating the display field for some information_schema tables.
+     */
+    if (PMA_MYSQL_INT_VERSION >= 50002 && $db == 'information_schema') {
+        switch ($table) {
+            case 'CHARACTER_SETS': return 'DESCRIPTION';
+            case 'TABLES':         return 'TABLE_COMMENT';
+        }
     }
 
-    $disp_res   = PMA_query_as_cu($disp_query);
-    $row        = ($disp_res ? PMA_DBI_fetch_assoc($disp_res) : '');
-    PMA_DBI_free_result($disp_res);
-    if (isset($row['display_field'])) {
-        return $row['display_field'];
-    } else {
-        return FALSE;
-    }
+    /**
+     * No Luck...
+     */
+    return false;
+
 } // end of the 'PMA_getDisplayField()' function
 
 
@@ -415,144 +476,196 @@ function PMA_getDisplayField($db, $table) {
  *
  * @access  public
  *
- * @author  Mike Beck <mikebeck@users.sourceforge.net>
+ * @authors  Mike Beck <mikebeck@users.sourceforge.net>
+ *           and lem9
  */
 function PMA_getComments($db, $table = '') {
     global $cfgRelation;
 
-    if (PMA_MYSQL_INT_VERSION >= 40100) {
-        list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-    }
-
     if ($table != '') {
-        $com_qry      = 'SELECT column_name, ' . PMA_backquote('comment') . ' FROM ' . PMA_backquote($cfgRelation['column_info']);
+
+        // MySQL 4.1.x native column comments
         if (PMA_MYSQL_INT_VERSION >= 40100) {
-            $com_qry .= ' WHERE CONVERT(db_name    USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($db) . '\''
-                      . ' AND   CONVERT(table_name USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($table) . '\'';
-        } else {
-            $com_qry .= ' WHERE db_name    = \'' . PMA_sqlAddslashes($db) . '\''
-                      . ' AND   table_name = \'' . PMA_sqlAddslashes($table) . '\'';
+            $fields = PMA_DBI_get_fields($db, $table);
+            if ($fields) {
+                foreach ($fields as $key=>$field) {
+                    $tmp_col = $field['Field'];
+                    if (!empty($field['Comment'])) {
+                        $native_comment[$tmp_col] = $field['Comment'];
+                    }
+                }
+                if (isset($native_comment)) {
+                    $comment = $native_comment;
+                }
+            }
         }
-        $com_rs   = PMA_query_as_cu($com_qry, TRUE);
+
+        // pmadb internal column comments
+        // (this function can be called even if $cfgRelation['commwork'] is
+        // false, to get native column comments, so recheck here)
+        if ($cfgRelation['commwork']) {
+            $com_qry = '
+                 SELECT column_name,
+                        comment
+                   FROM ' . PMA_backquote($cfgRelation['db']) . '.' .PMA_backquote($cfgRelation['column_info']) . '
+                  WHERE db_name    = \'' . PMA_sqlAddslashes($db) . '\'
+                    AND table_name = \'' . PMA_sqlAddslashes($table) . '\'';
+            $com_rs   = PMA_query_as_cu($com_qry, true, PMA_DBI_QUERY_STORE);
+        }
     } else {
-        $com_qry      = 'SELECT ' . PMA_backquote('comment') . ' FROM ' . PMA_backquote($cfgRelation['column_info']);
-        if (PMA_MYSQL_INT_VERSION >= 40100) {
-            $com_qry .= ' WHERE CONVERT(db_name     USING ' . $conn_charset . ') = \'' . PMA_sqlAddslashes($db) . '\''
-                      . ' AND   CONVERT(table_name  USING ' . $conn_charset . ') = \'\''
-                      . ' AND   CONVERT(column_name USING ' . $conn_charset . ') = \'(db_comment)\'';
-        } else {
-            $com_qry .= ' WHERE db_name     = \'' . PMA_sqlAddslashes($db) . '\''
-                      . ' AND   table_name  = \'\''
-                      . ' AND   column_name = \'(db_comment)\'';
-        }
-        $com_rs   = PMA_query_as_cu($com_qry, TRUE);
+        // pmadb internal db comments
+        $com_qry = '
+             SELECT ' . PMA_backquote('comment') . '
+               FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+              WHERE db_name     = \'' . PMA_sqlAddslashes($db) . '\'
+                AND table_name  = \'\'
+                AND column_name = \'(db_comment)\'';
+        $com_rs   = PMA_query_as_cu($com_qry, true, PMA_DBI_QUERY_STORE);
     }
 
-    $i = 0;
-    while ($row = PMA_DBI_fetch_assoc($com_rs)) {
-        $i++;
-        $col           = ($table != '' ? $row['column_name'] : $i);
 
-        if (strlen($row['comment']) > 0) {
-            $comment[$col] = $row['comment'];
-        }
+    if (isset($com_rs) && PMA_DBI_num_rows($com_rs) > 0) {
+        $i = 0;
+        while ($row = PMA_DBI_fetch_assoc($com_rs)) {
+            $i++;
+            $col           = ($table != '' ? $row['column_name'] : $i);
 
-    } // end while
-    PMA_DBI_free_result($com_rs);
-    unset($com_rs);
+            if (strlen($row['comment']) > 0) {
+                $comment[$col] = $row['comment'];
+                // if this version supports native comments and this function
+                // was called with a table parameter
+                if (PMA_MYSQL_INT_VERSION >= 40100 && isset($table) && strlen($table)) {
+                    // if native comment found, use it instead of pmadb
+                    if (!empty($native_comment[$col])) {
+                        $comment[$col] = $native_comment[$col];
+                    } else {
+                        // no native comment, so migrate pmadb-style to native
+                        PMA_setComment($db, $table, $col, $comment[$col], '', 'native');
+                        // and erase the pmadb-style comment
+                        PMA_setComment($db, $table, $col, '', '', 'pmadb');
+                    }
+                }
+            }
+        } // end while
+
+        PMA_DBI_free_result($com_rs);
+        unset($com_rs);
+    }
 
     if (isset($comment) && is_array($comment)) {
         return $comment;
      } else {
-        return FALSE;
+        return false;
      }
  } // end of the 'PMA_getComments()' function
 
 /**
-* Adds/removes slashes if required
-*
-* @param   string  the string to slash
-*
-* @return  string  the slashed string
-*
-* @access  public
-*/
+ * Adds/removes slashes if required
+ *
+ * @param   string  the string to slash
+ *
+ * @return  string  the slashed string
+ *
+ * @access  public
+ */
 function PMA_handleSlashes($val) {
-  return (get_magic_quotes_gpc() ? str_replace('\\"', '"', $val) : PMA_sqlAddslashes($val));
+  return PMA_sqlAddslashes($val);
 } // end of the "PMA_handleSlashes()" function
 
 /**
-* Set a single comment to a certain value.
-*
-* @param   string   the name of the db
-* @param   string   the name of the table
-* @param   string   the name of the column
-* @param   string   the value of the column
-* @param   string   (optional) if a column is renamed, this is the name of the former key which will get deleted
-*
-* @return  boolean  true, if comment-query was made.
-*
-* @global  array    the list of relations settings
-*
-* @access  public
-*/
-function PMA_setComment($db, $table, $key, $value, $removekey = '') {
+ * Set a single comment to a certain value.
+ *
+ * @param   string   the name of the db
+ * @param   string   the name of the table (may be empty in case of a db comment)
+ * @param   string   the name of the column
+ * @param   string   the value of the column
+ * @param   string   (optional) if a column is renamed, this is the name of the former key which will get deleted
+ * @param   string   whether we set pmadb comments, native comments or both
+ *
+ * @return  boolean  true, if comment-query was made.
+ *
+ * @global  array    the list of relations settings
+ *
+ * @access  public
+ */
+function PMA_setComment($db, $table, $col, $comment, $removekey = '', $mode='auto') {
     global $cfgRelation;
 
-    if (PMA_MYSQL_INT_VERSION >= 40100) {
-        list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-        $cols = array(
-            'db_name'     => 'CONVERT(db_name     USING ' . $conn_charset . ')',
-            'table_name'  => 'CONVERT(table_name  USING ' . $conn_charset . ')',
-            'column_name' => 'CONVERT(column_name USING ' . $conn_charset . ')'
-        );
-    } else {
-        $cols = array(
-            'db_name'     => 'db_name    ',
-            'table_name'  => 'table_name ',
-            'column_name' => 'column_name'
-        );
+    if ($mode=='auto') {
+        if (PMA_MYSQL_INT_VERSION >= 40100) {
+            $mode='native';
+        } else {
+            $mode='pmadb';
+        }
     }
 
-    if ($removekey != '' AND $removekey != $key) {
-        $remove_query = 'DELETE FROM ' . PMA_backquote($cfgRelation['column_info'])
-                      . ' WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\''
-                      . ' AND   ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\''
-                      . ' AND   ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($removekey) . '\'';
+    // native mode is only for column comments so we need a table name
+    if ($mode == 'native' && isset($table) && strlen($table)) {
+        $query = 'ALTER TABLE ' . PMA_backquote($table) . ' CHANGE '
+            . PMA_Table::generateAlter($col, $col, '', '', '', '', false, '', false, '', $comment, '', '');
+        PMA_DBI_try_query($query, null, PMA_DBI_QUERY_STORE);
+        return true;
+    }
+
+    // $mode == 'pmadb' section:
+
+    $cols = array(
+        'db_name'     => 'db_name    ',
+        'table_name'  => 'table_name ',
+        'column_name' => 'column_name'
+    );
+
+    if ($removekey != '' AND $removekey != $col) {
+        $remove_query = '
+             DELETE FROM
+                    ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+              WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\'
+                AND ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\'
+                AND ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($removekey) . '\'';
         PMA_query_as_cu($remove_query);
         unset($remove_query);
     }
 
-    $test_qry = 'SELECT ' . PMA_backquote('comment') . ', mimetype, transformation, transformation_options FROM ' . PMA_backquote($cfgRelation['column_info'])
-              . ' WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\''
-              . ' AND   ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\''
-              . ' AND   ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($key) . '\'';
-    $test_rs   = PMA_query_as_cu($test_qry, TRUE, PMA_DBI_QUERY_STORE);
+    $test_qry = '
+         SELECT ' . PMA_backquote('comment') . ',
+                mimetype,
+                transformation,
+                transformation_options
+           FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+          WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\'
+            AND ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\'
+            AND ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($col) . '\'';
+    $test_rs   = PMA_query_as_cu($test_qry, true, PMA_DBI_QUERY_STORE);
 
     if ($test_rs && PMA_DBI_num_rows($test_rs) > 0) {
         $row = PMA_DBI_fetch_assoc($test_rs);
         PMA_DBI_free_result($test_rs);
 
-        if (strlen($value) > 0 || strlen($row['mimetype']) > 0 || strlen($row['transformation']) > 0 || strlen($row['transformation_options']) > 0) {
-            $upd_query = 'UPDATE ' . PMA_backquote($cfgRelation['column_info'])
-                       . ' SET ' . PMA_backquote('comment') . ' = \'' . PMA_sqlAddslashes($value) . '\''
-                       . ' WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\''
-                       . ' AND   ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\''
-                       . ' AND   ' . $cols['column_name'] . ' = \'' . PMA_sqlAddSlashes($key) . '\'';
+        if (strlen($comment) > 0 || strlen($row['mimetype']) > 0 || strlen($row['transformation']) > 0 || strlen($row['transformation_options']) > 0) {
+            $upd_query = '
+                 UPDATE ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+                    SET ' . PMA_backquote('comment') . ' = \'' . PMA_sqlAddslashes($comment) . '\'
+                  WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\'
+                    AND ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\'
+                    AND ' . $cols['column_name'] . ' = \'' . PMA_sqlAddSlashes($col) . '\'';
         } else {
-            $upd_query = 'DELETE FROM ' . PMA_backquote($cfgRelation['column_info'])
-                       . ' WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\''
-                       . ' AND   ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\''
-                       . ' AND   ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($key) . '\'';
+            $upd_query = '
+                 DELETE FROM
+                        ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+                  WHERE ' . $cols['db_name']     . ' = \'' . PMA_sqlAddslashes($db) . '\'
+                    AND ' . $cols['table_name']  . ' = \'' . PMA_sqlAddslashes($table) . '\'
+                    AND ' . $cols['column_name'] . ' = \'' . PMA_sqlAddslashes($col) . '\'';
         }
-    } else if (strlen($value) > 0) {
-        $upd_query = 'INSERT INTO ' . PMA_backquote($cfgRelation['column_info'])
-                   . ' (db_name, table_name, column_name, ' . PMA_backquote('comment') . ') '
-                   . ' VALUES('
-                   . '\'' . PMA_sqlAddslashes($db) . '\','
-                   . '\'' . PMA_sqlAddslashes($table) . '\','
-                   . '\'' . PMA_sqlAddslashes($key) . '\','
-                   . '\'' . PMA_sqlAddslashes($value) . '\')';
+    } elseif (strlen($comment) > 0) {
+        $upd_query = '
+             INSERT INTO
+                    ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['column_info']) . '
+                    (db_name, table_name, column_name, ' . PMA_backquote('comment') . ')
+             VALUES (
+                   \'' . PMA_sqlAddslashes($db) . '\',
+                   \'' . PMA_sqlAddslashes($table) . '\',
+                   \'' . PMA_sqlAddslashes($col) . '\',
+                   \'' . PMA_sqlAddslashes($comment) . '\')';
     }
 
     if (isset($upd_query)){
@@ -565,61 +678,60 @@ function PMA_setComment($db, $table, $key, $value, $removekey = '') {
 } // end of 'PMA_setComment()' function
 
 /**
-* Set a SQL history entry
-*
-* @param   string   the name of the db
-* @param   string   the name of the table
-* @param   string   the username
-* @param   string   the sql query
-*
-* @return  boolean  true
-*
-* @access  public
-*/
+ * Set a SQL history entry
+ *
+ * @param   string   the name of the db
+ * @param   string   the name of the table
+ * @param   string   the username
+ * @param   string   the sql query
+ *
+ * @global  array    the list of relations settings
+ *
+ * @return  boolean  true
+ *
+ * @access  public
+ */
 function PMA_setHistory($db, $table, $username, $sqlquery) {
     global $cfgRelation;
 
-    $hist_rs    = PMA_query_as_cu('INSERT INTO ' . PMA_backquote($cfgRelation['history']) . ' ('
-                . PMA_backquote('username') . ','
-                . PMA_backquote('db') . ','
-                . PMA_backquote('table') . ','
-                . PMA_backquote('timevalue') . ','
-                . PMA_backquote('sqlquery')
-                . ') VALUES ('
-                . '\'' . PMA_sqlAddslashes($username) . '\','
-                . '\'' . PMA_sqlAddslashes($db) . '\','
-                . '\'' . PMA_sqlAddslashes($table) . '\','
-                . 'NOW(),'
-                . '\'' . PMA_sqlAddslashes($sqlquery) . '\')');
+    $hist_rs = PMA_query_as_cu('
+         INSERT INTO
+                ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['history']) . '
+              (' . PMA_backquote('username') . ',
+                ' . PMA_backquote('db') . ',
+                ' . PMA_backquote('table') . ',
+                ' . PMA_backquote('timevalue') . ',
+                ' . PMA_backquote('sqlquery') . ')
+         VALUES
+              (\'' . PMA_sqlAddslashes($username) . '\',
+                \'' . PMA_sqlAddslashes($db) . '\',
+                \'' . PMA_sqlAddslashes($table) . '\',
+                NOW(),
+                \'' . PMA_sqlAddslashes($sqlquery) . '\')');
     return true;
 } // end of 'PMA_setHistory()' function
 
 /**
-* Gets a SQL history entry
-*
-* @param   string   the username
-*
-* @return  array    list of history items
-*
-* @access  public
-*/
+ * Gets a SQL history entry
+ *
+ * @param   string   the username
+ *
+ * @global  array    the list of relations settings
+ *
+ * @return  array    list of history items
+ *
+ * @access  public
+ */
 function PMA_getHistory($username) {
     global $cfgRelation;
 
-    $hist_query      = 'SELECT '
-                     . PMA_backquote('db') . ','
-                     . PMA_backquote('table') . ','
-                     . PMA_backquote('sqlquery')
-                     . ' FROM ' . PMA_backquote($cfgRelation['history'])
-                     . ' WHERE ';
-    if (PMA_MYSQL_INT_VERSION >= 40100) {
-        list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-        $hist_query .= 'CONVERT(username USING ' . $conn_charset . ')';
-        unset($conn_charset);
-    } else {
-        $hist_query .= 'username';
-    }
-    $hist_query     .= ' = \'' . PMA_sqlAddslashes($username) . '\' ORDER BY id DESC';
+    $hist_query = '
+         SELECT ' . PMA_backquote('db') . ',
+                ' . PMA_backquote('table') . ',
+                ' . PMA_backquote('sqlquery') . '
+           FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['history']) . '
+          WHERE username = \'' . PMA_sqlAddslashes($username) . '\'
+       ORDER BY id DESC';
 
     $hist_rs = PMA_query_as_cu($hist_query);
     unset($hist_query);
@@ -636,29 +748,28 @@ function PMA_getHistory($username) {
 } // end of 'PMA_getHistory()' function
 
 /**
-* Set a SQL history entry
-*
-* @param   string   the name of the db
-* @param   string   the name of the table
-* @param   string   the username
-* @param   string   the sql query
-*
-* @return  boolean  true
-*
-* @access  public
-*/
+ * Set a SQL history entry
+ *
+ * @param   string   the name of the db
+ * @param   string   the name of the table
+ * @param   string   the username
+ * @param   string   the sql query
+ *
+ * @global  array    the list of relations settings
+ * @global  array    global phpMyAdmin configuration
+ *
+ * @return  boolean  true
+ *
+ * @access  public
+ */
 function PMA_purgeHistory($username) {
     global $cfgRelation, $cfg;
 
-    $purge_query  = 'SELECT timevalue FROM ' . PMA_backquote($cfgRelation['history']) . ' WHERE ';
-    if (PMA_MYSQL_INT_VERSION >= 40100) {
-        list($conn_charset) = explode('_', $GLOBALS['collation_connection']);
-        $purge_query .= 'CONVERT(username USING ' . $conn_charset . ')';
-        unset($conn_charset);
-    } else {
-        $purge_query .= 'username';
-    }
-    $purge_query .= ' = \'' . PMA_sqlAddSlashes($username) . '\' ORDER BY timevalue DESC LIMIT ' . $cfg['QueryHistoryMax'] . ', 1';
+    $purge_query = '
+         SELECT timevalue
+           FROM ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['history']) . '
+          WHERE username = \'' . PMA_sqlAddSlashes($username) . '\'
+       ORDER BY timevalue DESC LIMIT ' . $cfg['QueryHistoryMax'] . ', 1';
     $purge_rs = PMA_query_as_cu($purge_query);
     $i = 0;
     $row = PMA_DBI_fetch_row($purge_rs);
@@ -668,76 +779,149 @@ function PMA_purgeHistory($username) {
         $maxtime = $row[0];
         // quotes added around $maxtime to prevent a difficult to
         // reproduce problem
-        $remove_rs = PMA_query_as_cu('DELETE FROM ' . PMA_backquote($cfgRelation['history']) . ' WHERE timevalue <= "' . $maxtime . '"');
+        $remove_rs = PMA_query_as_cu('
+             DELETE FROM
+                    ' . PMA_backquote($cfgRelation['db']) . '.' . PMA_backquote($cfgRelation['history']) . '
+              WHERE timevalue <= \'' . $maxtime . '\'');
     }
 
     return true;
 } // end of 'PMA_purgeHistory()' function
 
+
 /**
-* Outputs dropdown with values of foreign fields
-*
-* @param   string   the query of the foreign keys
-* @param   string   the foreign field
-* @param   string   the foreign field to display
-* @param   string   the current data of the dropdown
-*
-* @return  string   the <option value=""><option>s
-*
-* @access  public
-*/
-function PMA_foreignDropdown($disp, $foreign_field, $foreign_display, $data, $max = 100) {
+ * Prepares the dropdown for one mode
+ *
+ * @param   array    the keys and values for foreigns
+ * @param   string   the current data of the dropdown
+ * @param   string   the needed mode
+ *
+ * @global  array    global phpMyAdmin configuration
+ *
+ * @return  array   the <option value=""><option>s
+ *
+ * @access  private
+ */
+function PMA_foreignDropdownBuild($foreign, $data, $mode) {
     global $cfg;
 
-    $ret = '<option value=""></option>' . "\n";
+    $reloptions = array();
 
-    $reloptions = array('content-id' => array(), 'id-content' => array());
-    
-    foreach ($disp AS $disp_key => $relrow) {
-        $key   = $relrow[$foreign_field];
+    foreach ($foreign as $key => $value) {
 
-        // if the display field has been defined for the foreign table
-        if ($foreign_display) {
-            if (PMA_strlen($relrow[$foreign_display]) <= $cfg['LimitChars']) {
-                $value  = htmlspecialchars($relrow[$foreign_display]);
-                $vtitle = '';
-            } else {
-                $vtitle = htmlspecialchars($relrow[$foreign_display]);
-                $value  = htmlspecialchars(substr($vtitle, 0, $cfg['LimitChars']) . '...');
-            }
+        if (PMA_strlen($value) <= $cfg['LimitChars']) {
+            $vtitle = '';
+            $value  = htmlspecialchars($value);
         } else {
-            $vtitle = $value = '';
-        } // end if ($foreign_display)
+            $vtitle  = htmlspecialchars($value);
+            $value  = htmlspecialchars(substr($value, 0, $cfg['LimitChars']) . '...');
+        }
 
-        $reloption = '<option value="' . htmlspecialchars($key) . '"';
+        $reloption = '                <option value="' . htmlspecialchars($key) . '"';
         if ($vtitle != '') {
             $reloption .= ' title="' . $vtitle . '"';
         }
 
-        if ($key == $data) {
+        if ((string) $key == (string) $data) {
            $reloption .= ' selected="selected"';
-        } // end if
+        }
 
-        $reloptions['id-content'][] = $reloption . '>' . $value . '&nbsp;-&nbsp;' . htmlspecialchars($key) .  '</option>' . "\n";
-        $reloptions['content-id'][] = $reloption . '>' . htmlspecialchars($key) .  '&nbsp;-&nbsp;' . $value . '</option>' . "\n";
-    } // end while
+        if ($mode == 'content-id') {
+            $reloptions[] = $reloption . '>' . $value . '&nbsp;-&nbsp;' . htmlspecialchars($key) .  '</option>' . "\n";
+        } else {
+            $reloptions[] = $reloption . '>' . htmlspecialchars($key) .  '&nbsp;-&nbsp;' . $value . '</option>' . "\n";
+        }
+    } // end foreach
 
-    // the list of keys looks better if not sorted by description
+    return $reloptions;
+} // end of 'PMA_foreignDropdownBuild' function
+
+/**
+ * Outputs dropdown with values of foreign fields
+ *
+ * @param   string   the query of the foreign keys
+ * @param   string   the foreign field
+ * @param   string   the foreign field to display
+ * @param   string   the current data of the dropdown
+ *
+ * @global  array    global phpMyAdmin configuration
+ *
+ * @return  string   the <option value=""><option>s
+ *
+ * @access  public
+ */
+function PMA_foreignDropdown($disp, $foreign_field, $foreign_display, $data, $max) {
+    global $cfg;
+
+    $foreign = array();
+
+    // collect the data
+    foreach ($disp as $relrow) {
+        $key   = $relrow[$foreign_field];
+
+        // if the display field has been defined for this foreign table
+        if ($foreign_display) {
+            $value  = $relrow[$foreign_display];
+        } else {
+            $value = '';
+        } // end if ($foreign_display)
+
+        $foreign[$key] = $value;
+    } // end foreach
+
+    // beginning of dropdown
+    $ret = '<option value=""></option>' . "\n";
+
+    // master array for dropdowns
+    $reloptions = array('content-id' => array(), 'id-content' => array());
+
+    // sort for id-content
     if ($cfg['NaturalOrder']) {
-        natsort($reloptions['content-id']); }
-    else {
-        asort($reloptions['content-id']);
+        uksort($foreign, 'strnatcasecmp');
+    } else {
+        ksort($foreign);
     }
 
-    if ($max == -1 || count($reloptions['content-id']) < $max) {
-        $ret .= implode('', $reloptions['content-id']);
-        if (count($reloptions['content-id']) > 0) {
-            $ret .= '<option value=""></option>' . "\n";
-            $ret .= '<option value=""></option>' . "\n";
+    // build id-content dropdown
+    $reloptions['id-content'] = PMA_foreignDropdownBuild($foreign, $data, 'id-content');
+
+    // sort for content-id
+    if ($cfg['NaturalOrder']) {
+        natcasesort($foreign);
+    } else {
+        asort($foreign);
+    }
+
+    // build content-id dropdown
+    $reloptions['content-id'] = PMA_foreignDropdownBuild($foreign, $data, 'content-id');
+
+
+    // put the dropdown sections in correct order
+
+    $c = count($cfg['ForeignKeyDropdownOrder']);
+    if ($c == 2) {
+        $top = $reloptions[$cfg['ForeignKeyDropdownOrder'][0]];
+        $bot = $reloptions[$cfg['ForeignKeyDropdownOrder'][1]];
+    } elseif ($c == 1) {
+        $bot = $reloptions[$cfg['ForeignKeyDropdownOrder'][0]];
+        $top = null;
+    } else {
+        $top = $reloptions['id-content'];
+        $bot = $reloptions['content-id'];
+    }
+    $str_bot = implode('', $bot);
+    if ($top !== null) {
+        $str_top = implode('', $top);
+        $top_count = count($top);
+        if ($max == -1 || $top_count < $max) {
+            $ret .= $str_top;
+            if ($top_count > 0) {
+                $ret .= '                <option value=""></option>' . "\n";
+                $ret .= '                <option value=""></option>' . "\n";
+            }
         }
     }
-
-    $ret .= implode('', $reloptions['id-content']);
+    $ret .= $str_bot;
 
     return $ret;
 } // end of 'PMA_foreignDropdown()' function

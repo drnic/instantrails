@@ -1,6 +1,6 @@
 <?php
 
-/* $Id: mcrypt.lib.php,v 2.2 2004/11/25 13:26:09 nijel Exp $ */
+/* $Id: mcrypt.lib.php 9657 2006-11-02 10:51:57Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
@@ -12,13 +12,9 @@
 // per server so I don't put the server number in the cookie name.
 
 if (!isset($_COOKIE['pma_mcrypt_iv'])) {
-    srand();
+    srand((double) microtime() * 1000000);
     $iv = mcrypt_create_iv(mcrypt_get_iv_size(MCRYPT_BLOWFISH, MCRYPT_MODE_CBC), MCRYPT_RAND);
-    setcookie('pma_mcrypt_iv',
-        base64_encode($iv),
-        time() + (60 * 60 * 24 * 30),
-        $GLOBALS['cookie_path'], '',
-        $GLOBALS['is_https']);
+    PMA_setCookie('pma_mcrypt_iv', base64_encode($iv));
 } else {
     $iv = base64_decode($_COOKIE['pma_mcrypt_iv']);
 }

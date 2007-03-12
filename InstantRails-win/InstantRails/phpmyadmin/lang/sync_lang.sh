@@ -1,5 +1,5 @@
 #!/bin/sh
-# $Id: sync_lang.sh,v 2.12 2004/10/13 08:59:36 nijel Exp $
+# $Id: sync_lang.sh 9375 2006-08-29 15:33:28Z nijel $
 ##
 # Shell script that synchronises all translations in phpMyAdmin
 ##
@@ -11,6 +11,10 @@
 # Written by Michal Cihar <nijel at users.sourceforge.net>
 ##
 # Changes:
+# 2005-12-08
+#   * less verbose output to allow quick overview
+# 2005-11-29
+#   * hack for multibyte chars, so that \'; at the end will not fool PHP
 # 2004-09-22
 #   * default to iconv, as it doesn't break things as recode does
 # 2004-09-03
@@ -82,13 +86,15 @@ albanian-iso-8859-1
 arabic-windows-1256
 azerbaijani-iso-8859-9
 basque-iso-8859-1
+belarusian_cyrillic-windows-1251
+belarusian_latin-utf-8
 bosnian-windows-1250
 brazilian_portuguese-iso-8859-1
-bulgarian-windows-1251
+bulgarian-utf-8
 catalan-iso-8859-1
 chinese_traditional-utf-8
 chinese_simplified-gb2312
-croatian-iso-8859-2
+croatian-windows-1250
 czech-utf-8
 danish-iso-8859-1
 dutch-iso-8859-1
@@ -103,8 +109,8 @@ hebrew-iso-8859-8-i
 hungarian-iso-8859-2
 indonesian-iso-8859-1
 italian-iso-8859-1
-japanese-euc
-korean-euc-kr
+japanese-utf-8
+korean-utf-8
 latvian-windows-1257
 lithuanian-windows-1257
 malay-iso-8859-1
@@ -117,10 +123,11 @@ russian-windows-1251
 serbian_cyrillic-windows-1251
 serbian_latin-windows-1250
 slovenian-iso-8859-2
-slovak-iso-8859-2
+slovak-utf-8
 spanish-iso-8859-1
 swedish-iso-8859-1
-thai-tis-620
+tatarish-iso-8859-9
+thai-utf-8
 turkish-utf-8
 ukrainian-windows-1251"
 
@@ -139,7 +146,7 @@ IGNORE_UTF=""
 # translation for that language (usually for those which are not correctly
 # supported by convertor).
 #
-IGNORE_TRANSLATIONS="japanese-sjis
+IGNORE_TRANSLATIONS="
 russian-cp-866"
 
 ##
@@ -182,7 +189,7 @@ for base in $BASE_TRANSLATIONS ; do
     if [ $src_charset = 'iso-8859-8-i' ] ; then
         src_charset=iso-8859-8
     fi
-    echo "$base [charset $src_charset]"
+    echo -n "$base [charset $src_charset]"
 
     # do we already have utf-8 translation?
     if [ $src_charset = 'utf-8' ] ; then
@@ -207,44 +214,30 @@ for base in $BASE_TRANSLATIONS ; do
 
         # check whether we need to update translation
         if [ ! "$base.inc.php" -nt "$file" -a "$FORCE" -eq 0 -a -s "$file" ] ; then
-            echo " $file is not needed to update"
+            echo -n " ($file:ok)"
             continue
         fi
 
-        echo -n " to $charset..."
+        echo -n " ($file:to $charset:"
         if [ $charset = 'utf-8' ] ; then
             # if we convert to utf-8, we should add allow_recoding
             is_utf=yes
             $CONVERTOR $(printf "$CONVERTOR_PARAMS" $src_charset $charset) < $base.inc.php| sed -e "s/$replace_charset/$charset/" -e '/\$charset/a\
 $allow_recoding = TRUE;' > $TEMPFILE
-            if [ -s $TEMPFILE ] ; then
-                cat $TEMPFILE > $file
-                echo done
-            else
-                FAILED="$FAILED $file"
-                echo FAILED
-            fi
         elif [ $src_charset = 'utf-8' ] ; then
             is_utf=yes
             # if we convert from utf-8, we should remove allow_recoding
             $CONVERTOR $(printf "$CONVERTOR_PARAMS" $src_charset $charset) < $base.inc.php| grep -v allow_recoding | sed "s/$replace_charset/$charset/" > $TEMPFILE
-            if [ -s $TEMPFILE ] ; then
-                cat $TEMPFILE > $file
-                echo done
-            else
-                FAILED="$FAILED $file"
-                echo FAILED
-            fi
         else
             # just convert
             $CONVERTOR $(printf "$CONVERTOR_PARAMS" $src_charset $charset) < $base.inc.php| sed "s/$replace_charset/$charset/" > $TEMPFILE
-            if [ -s $TEMPFILE ] ; then
-                cat $TEMPFILE > $file
-                echo done
-            else
-                FAILED="$FAILED $file"
-                echo FAILED
-            fi
+        fi
+        if [ -s $TEMPFILE ] ; then
+            sed "s/\\\\';[[:space:]]\+$/\\\\\\\\';/" $TEMPFILE > $file
+            echo -n 'done)'
+        else
+            FAILED="$FAILED $file"
+            echo -n 'FAILED)'
         fi
     done
 
@@ -255,23 +248,24 @@ $allow_recoding = TRUE;' > $TEMPFILE
             true
         else
             # we should create utf-8 translation
-            echo -n " creating utf-8 translation ... "
             charset=utf-8
             file=$lang-$charset.inc.php
+            echo -n " [$file:$charset:"
             $CONVERTOR $(printf "$CONVERTOR_PARAMS" $src_charset $charset) < $base.inc.php| sed -e "s/$replace_charset/$charset/" -e '/\$charset/a\
 $allow_recoding = TRUE;' > $TEMPFILE
             if [ -s $TEMPFILE ] ; then
                 cat $TEMPFILE > $file
-                echo done
+                echo -n 'done)'
             else
                 FAILED="$FAILED $file"
-                echo FAILED
+                echo -n 'FAILED)'
             fi
         fi
     fi
-    echo "$lang processing finished."
-    echo "-------------------------------------------------------------------"
+    echo
 done
+
+echo "-------------------------------------------------------------------"
 
 if [ -z "$FAILED" ] ; then
     echo "Everything seems to went okay"

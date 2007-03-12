@@ -1,89 +1,112 @@
 <?php
 /*
  * Code for displaying server selection written by nijel
- * $Id: select_server.lib.php,v 2.4 2004/12/26 21:46:45 lem9 Exp $
+ * $Id: select_server.lib.php 9438 2006-09-21 14:28:46Z cybot_tm $
  */
 
-if (count($cfg['Servers']) > 1) {
-    if (!$cfg['DisplayServersList']) {
-    ?>
-    <form method="post" action="index.php" target="_parent" style="margin: 0px; padding: 0px;">
-    <?php
-    }
-    if ($show_server_left) {
-        echo '<div class="heada">' . $strServer . ':</div>';
+/**
+ * display server selection in list or selectbox form, or option tags only
+ *
+ * @globals $lang
+ * @globals $convcharset
+ * @uses    $GLOBALS['cfg']['DisplayServersList']
+ * @uses    $GLOBALS['strServer']
+ * @uses    $GLOBALS['cfg']['Servers']
+ * @uses    $GLOBALS['strGo']
+ * @uses    implode()
+ * @uses    htmlspecialchars()
+ * @param   boolean $not_only_options   whether to include form tags or not
+ * @param   boolean $ommit_fieldset     whether to ommit fieldset tag or not
+ */
+function PMA_select_server($not_only_options, $ommit_fieldset)
+{
+    global $lang, $convcharset;
+
+    // Show as list?
+    if ($not_only_options) {
+        $list = $GLOBALS['cfg']['DisplayServersList'];
+        $not_only_options =! $list;
     } else {
-    ?>
-<!-- MySQL servers choice form -->
-<table border="0" cellpadding="3" cellspacing="0" bgcolor="<?php echo $cfg['BgcolorOne']; ?>">
-    <tr>
-        <th class="tblHeaders"><?php echo $strServerChoice; ?></th>
-    </tr>
-    <tr>
-        <td>
-    <?php
+        $list = false;
     }
-    if (!$cfg['DisplayServersList']) {
-    ?>
-    <form method="post" action="index.php" target="_parent" style="margin: 0px; padding: 0px;">
-        <select name="server" onchange="this.form.submit();">
-    <?php
+
+    if ($not_only_options) {
+        echo '<form method="post" action="index.php" target="_parent">';
+
+        if (! $ommit_fieldset) {
+            echo '<fieldset>';
+        }
+        echo '<label for="select_server">' . $GLOBALS['strServer'] . ':</label> ';
+
+        echo '<select name="server" id="select_server"'
+            . ' onchange="if (this.value != \'\') this.form.submit();">';
+        echo '<option value="">(' . $GLOBALS['strServers'] . ') ...</option>' . "\n";
+    } elseif ($list) {
+        echo $GLOBALS['strServer'] . ':<br />';
+        echo '<ul id="list_server">';
     }
-    foreach ($cfg['Servers'] AS $key => $val) {
-        if (!empty($val['host'])) {
-             $selected = 0;
-            if (!empty($server) && ($server == $key)) {
-                $selected = 1;
-            }
-            if (!empty($val['verbose'])) {
-                $label = $val['verbose'];
-            } else {
-                $label = $val['host'];
-                if (!empty($val['port'])) {
-                    $label .= ':' . $val['port'];
-                }
-            }
-            // loic1: if 'only_db' is an array and there is more than one
-            //        value, displaying such informations may not be a so good
-            //        idea
-            if (!empty($val['only_db'])) {
-                $label .= ' - ' . (is_array($val['only_db']) ? implode(', ', $val['only_db']) : $val['only_db']);
-            }
-            if (!empty($val['user']) && ($val['auth_type'] == 'config')) {
-                $label .= '  (' . $val['user'] . ')';
-            }
 
-            if ($cfg['DisplayServersList']){
-                if ($selected && !$show_server_left) {
-                    echo '&raquo; <b>' . $label . '</b><br />';
-                }else{
-                    echo '&raquo; <a class="item" href="index.php?server=' . $key . '&amp;lang=' . $lang . '&amp;convcharset=' . $convcharset . '" target="_top">' . $label . '</a><br />';
-                }
-            } else {
-                echo '                <option value="' . $key . '" ' . ($selected ? ' selected="selected"' : '') . '>' . $label . '</option>' . "\n";
-            }
+    foreach ($GLOBALS['cfg']['Servers'] as $key => $server) {
+        if (empty($server['host'])) {
+            continue;
+        }
 
-        } // end if (!empty($val['host']))
+        if (!empty($GLOBALS['server']) && (int) $GLOBALS['server'] === (int) $key) {
+            $selected = 1;
+        } else {
+            $selected = 0;
+        }
+
+        if (!empty($server['verbose'])) {
+            $label = $server['verbose'];
+        } else {
+            $label = $server['host'];
+            if (!empty($server['port'])) {
+                $label .= ':' . $server['port'];
+            }
+        }
+        // loic1: if 'only_db' is an array and there is more than one
+        //        value, displaying such informations may not be a so good
+        //        idea
+        if (!empty($server['only_db'])) {
+            /**
+             * @todo this can become a really big/long/wide selectbox ...
+             */
+            $label .= ' - ' . (is_array($server['only_db']) ? implode(', ', $server['only_db']) : $server['only_db']);
+        }
+        if (!empty($server['user']) && $server['auth_type'] == 'config') {
+            $label .= '  (' . $server['user'] . ')';
+        }
+
+        if ($list) {
+            echo '<li>';
+            if ($selected && !$ommit_fieldset) {
+                echo '<b>' . htmlspecialchars($label) . '</b>';
+            } else {
+                echo '<a class="item" href="index.php?server=' . $key . '&amp;lang=' . $lang . '&amp;convcharset=' . $convcharset . '" target="_top">' . htmlspecialchars($label) . '</a>';
+            }
+            echo '</li>';
+        } else {
+            echo '            <option value="' . $key . '" ' . ($selected ? ' selected="selected"' : '') . '>' . htmlspecialchars($label) . '</option>' . "\n";
+        }
     } // end while
 
-    if (!$cfg['DisplayServersList']){
-?>
-        </select>
+    if ($not_only_options) {
+        echo '</select>';
+        ?>
         <input type="hidden" name="lang" value="<?php echo $lang; ?>" />
         <input type="hidden" name="convcharset" value="<?php echo $convcharset; ?>" />
-        <input type="submit" value="<?php echo $strGo; ?>" />
-    </form>
-<?php
-    }
-    if (!$show_server_left) {
-    ?>
-        </td>
-    </tr>
-</table>
-<br />
-<?php
-    } else {
-        echo '<hr />' . "\n";
+        <?php
+        // Show submit button if we have just one server (this happens with no default)
+        echo '<noscript>';
+        echo '<input type="submit" value="' . $GLOBALS['strGo'] . '" />';
+        echo '</noscript>';
+        if (! $ommit_fieldset) {
+            echo '</fieldset>';
+        }
+        echo '</form>';
+    } elseif ($list) {
+        echo '</ul>';
     }
 }
 ?>

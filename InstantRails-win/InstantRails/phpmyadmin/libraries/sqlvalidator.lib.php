@@ -1,5 +1,5 @@
 <?php
-/* $Id: sqlvalidator.lib.php,v 2.2 2003/11/26 22:52:23 rabus Exp $ */
+/* $Id: sqlvalidator.lib.php 7465 2005-10-08 15:17:42Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 
@@ -87,13 +87,6 @@ function PMA_validateSQL($sql)
         }
 
     } // end if
-
-    /*
-    else {
-        // The service is not available so note that properly
-        $str = $GLOBALS['strValidatorDisabled'];
-    } // end if... else...
-    */
 
     // Gives string back to caller
     return $str;

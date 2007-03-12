@@ -1,5 +1,5 @@
 <?php
-/* $Id: text_plain__external.inc.php,v 2.6 2004/12/10 12:18:58 lem9 Exp $ */
+/* $Id: text_plain__external.inc.php 8340 2006-01-19 15:39:29Z cybot_tm $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 function PMA_transformation_text_plain__external_nowrap($options = array()) {

@@ -1,12 +1,11 @@
 <?php
-/* $Id: user_password.php,v 2.8 2004/11/24 02:44:49 lem9 Exp $ */
+/* $Id: user_password.php 9657 2006-11-02 10:51:57Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 
 /**
  * Gets some core libraries
  */
-require_once('./libraries/grab_globals.lib.php');
 require_once('./libraries/common.lib.php');
 
 /**
@@ -17,10 +16,10 @@ if (!$cfg['ShowChgPassword']) {
     $cfg['ShowChgPassword'] = PMA_DBI_select_db('mysql');
 }
 if ($cfg['Server']['auth_type'] == 'config' || !$cfg['ShowChgPassword']) {
-    require_once('./header.inc.php');
+    require_once('./libraries/header.inc.php');
     echo '<p><b>' . $strError . '</b></p>' . "\n"
        . '<p>&nbsp;&nbsp;&nbsp;&nbsp;' .  $strNoRights . '</p>' . "\n";
-    require_once('./footer.inc.php');
+    require_once('./libraries/footer.inc.php');
 } // end if
 
 
@@ -58,12 +57,7 @@ if (isset($nopass)) {
         // Duration = till the browser is closed for password (we don't want this to be saved)
         if ($cfg['Server']['auth_type'] == 'cookie') {
 
-            setcookie('pma_cookie_password-' . $server,
-               PMA_blowfish_encrypt($pma_pw,
-               $GLOBALS['cfg']['blowfish_secret'] . $GLOBALS['current_time']),
-               0,
-               $GLOBALS['cookie_path'], '',
-               $GLOBALS['is_https']);
+            PMA_setCookie('pma_cookie_password-' . $server, PMA_blowfish_encrypt($pma_pw, $GLOBALS['cfg']['blowfish_secret'] . $GLOBALS['current_time']));
 
         } // end if
         // For http auth. mode, the "back" link will also enforce new
@@ -73,7 +67,7 @@ if (isset($nopass)) {
                      : '';
 
         // Displays the page
-        require_once('./header.inc.php');
+        require_once('./libraries/header.inc.php');
         echo '<h1>' . $strChangePassword . '</h1>' . "\n\n";
         $show_query = 'y';
         PMA_showMessage($strUpdateProfileMessage);
@@ -92,7 +86,7 @@ if (isset($nopass)) {
  */
 // Loads the headers
 $js_to_run = 'user_password.js';
-require_once('./header.inc.php');
+require_once('./libraries/header.inc.php');
 echo '<h1>' . $strChangePassword . '</h1>' . "\n\n";
 
 // Displays an error message if required
@@ -172,5 +166,5 @@ if (PMA_MYSQL_INT_VERSION >= 40102) {
 /**
  * Displays the footer
  */
-require_once('./footer.inc.php');
+require_once('./libraries/footer.inc.php');
 ?>

@@ -1,14 +1,15 @@
 <?php
-/* $Id: tbl_alter.php,v 2.12 2005/01/01 19:34:05 nijel Exp $ */
+/* $Id: tbl_alter.php 9601 2006-10-25 10:55:20Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
-
 
 /**
  * Gets some core libraries
  */
-require_once('./libraries/grab_globals.lib.php');
+require_once('./libraries/common.lib.php');
+require_once('./libraries/Table.class.php');
+
 $js_to_run = 'functions.js';
-require_once('./header.inc.php');
+require_once('./libraries/header.inc.php');
 
 // Check parameters
 PMA_checkParameters(array('db', 'table'));
@@ -16,20 +17,20 @@ PMA_checkParameters(array('db', 'table'));
 /**
  * Gets tables informations
  */
-require('./tbl_properties_common.php');
-require('./tbl_properties_table_info.php');
+require_once('./libraries/tbl_common.php');
+require_once('./libraries/tbl_info.inc.php');
 /**
  * Displays top menu links
  */
-$active_page = 'tbl_properties_structure.php';
+$active_page = 'tbl_structure.php';
 // I don't see the need to display the links here, they will be displayed later
-//require('./tbl_properties_links.php');
+//require('./libraries/tbl_links.inc.php');
 
 
 /**
  * Defines the url to return to in case of error in a sql statement
  */
-$err_url = 'tbl_properties_structure.php?' . PMA_generate_common_url($db, $table);
+$err_url = 'tbl_structure.php?' . PMA_generate_common_url($db, $table);
 
 
 /**
@@ -39,7 +40,7 @@ $abort = false;
 if (isset($do_save_data)) {
     $field_cnt = count($field_orig);
     for ($i = 0; $i < $field_cnt; $i++) {
-        // to "&quot;" in tbl_properties.php
+        // to "&quot;" in tbl_sql.php
         $field_orig[$i]     = urldecode($field_orig[$i]);
         if (strcmp(str_replace('"', '&quot;', $field_orig[$i]), $field_name[$i]) == 0) {
             $field_name[$i] = $field_orig[$i];
@@ -57,30 +58,8 @@ if (isset($do_save_data)) {
         } else {
             $query .= ', CHANGE ';
         }
-        $query .= PMA_backquote($field_orig[$i]) . ' ' . PMA_backquote($field_name[$i]) . ' ' . $field_type[$i];
-        // Some field types shouldn't have lengths
-        if ($field_length[$i] != ''
-            && !preg_match('@^(DATE|DATETIME|TIME|TINYBLOB|TINYTEXT|BLOB|TEXT|MEDIUMBLOB|MEDIUMTEXT|LONGBLOB|LONGTEXT)$@i', $field_type[$i])) {
-            $query .= '(' . $field_length[$i] . ')';
-        }
-        if ($field_attribute[$i] != '') {
-            $query .= ' ' . $field_attribute[$i];
-        } else if (PMA_MYSQL_INT_VERSION >= 40100 && $field_collation[$i] != '' && preg_match('@^(TINYTEXT|TEXT|MEDIUMTEXT|LONGTEXT|VARCHAR|CHAR)$@i', $field_type[$i])) {
-            $query .= PMA_generateCharsetQueryPart($field_collation[$i]);
-        }
-        if ($field_default[$i] != '') {
-            if (strtoupper($field_default[$i]) == 'NULL') {
-                $query .= ' DEFAULT NULL';
-            } else {
-                $query .= ' DEFAULT \'' . PMA_sqlAddslashes($field_default[$i]) . '\'';
-            }
-        }
-        if ($field_null[$i] != '') {
-            $query .= ' ' . $field_null[$i];
-        }
-        if ($field_extra[$i] != '') {
-            $query .= ' ' . $field_extra[$i];
-        }
+
+        $query .= PMA_Table::generateAlter($field_orig[$i], $field_name[$i], $field_type[$i], $field_length[$i], $field_attribute[$i], isset($field_collation[$i]) ? $field_collation[$i] : '', $field_null[$i], $field_default[$i], isset($field_default_current_timestamp[$i]), $field_extra[$i], (isset($field_comments[$i]) ? $field_comments[$i] : ''), $field_default_orig[$i]);
     } // end for
 
     // To allow replication, we first select the db to use and then run queries
@@ -101,10 +80,13 @@ if (isset($do_save_data)) {
 
         $cfgRelation = PMA_getRelationsParam();
 
+        // take care of pmadb internal comments here
         // garvin: Update comment table, if a comment was set.
-        if (isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork']) {
+        if (PMA_MYSQL_INT_VERSION < 40100 && isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork']) {
             foreach ($field_comments AS $fieldindex => $fieldcomment) {
-                PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment, $field_orig[$fieldindex]);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment, $field_orig[$fieldindex], 'pmadb');
+                }
             }
         }
 
@@ -113,7 +95,7 @@ if (isset($do_save_data)) {
             foreach ($field_orig AS $fieldindex => $fieldcontent) {
                 if ($field_name[$fieldindex] != $fieldcontent) {
                     if ($cfgRelation['displaywork']) {
-                        $table_query = 'UPDATE ' . PMA_backquote($cfgRelation['table_info'])
+                        $table_query = 'UPDATE ' . PMA_backquote($GLOBALS['cfgRelation']['db']) . '.' . PMA_backquote($cfgRelation['table_info'])
                                       . ' SET     display_field = \'' . PMA_sqlAddslashes($field_name[$fieldindex]) . '\''
                                       . ' WHERE db_name  = \'' . PMA_sqlAddslashes($db) . '\''
                                       . ' AND table_name = \'' . PMA_sqlAddslashes($table) . '\''
@@ -124,7 +106,7 @@ if (isset($do_save_data)) {
                     }
 
                     if ($cfgRelation['relwork']) {
-                        $table_query = 'UPDATE ' . PMA_backquote($cfgRelation['relation'])
+                        $table_query = 'UPDATE ' . PMA_backquote($GLOBALS['cfgRelation']['db']) . '.' . PMA_backquote($cfgRelation['relation'])
                                       . ' SET     master_field = \'' . PMA_sqlAddslashes($field_name[$fieldindex]) . '\''
                                       . ' WHERE master_db  = \'' . PMA_sqlAddslashes($db) . '\''
                                       . ' AND master_table = \'' . PMA_sqlAddslashes($table) . '\''
@@ -133,7 +115,7 @@ if (isset($do_save_data)) {
                         unset($table_query);
                         unset($tb_rs);
 
-                        $table_query = 'UPDATE ' . PMA_backquote($cfgRelation['relation'])
+                        $table_query = 'UPDATE ' . PMA_backquote($GLOBALS['cfgRelation']['db']) . '.' . PMA_backquote($cfgRelation['relation'])
                                       . ' SET     foreign_field = \'' . PMA_sqlAddslashes($field_name[$fieldindex]) . '\''
                                       . ' WHERE foreign_db  = \'' . PMA_sqlAddslashes($db) . '\''
                                       . ' AND foreign_table = \'' . PMA_sqlAddslashes($table) . '\''
@@ -149,17 +131,19 @@ if (isset($do_save_data)) {
         // garvin: Update comment table for mime types [MIME]
         if (isset($field_mimetype) && is_array($field_mimetype) && $cfgRelation['commwork'] && $cfgRelation['mimework'] && $cfg['BrowseMIME']) {
             foreach ($field_mimetype AS $fieldindex => $mimetype) {
-                PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                }
             }
         }
 
-        $active_page = 'tbl_properties_structure.php';
-        require('./tbl_properties_structure.php');
+        $active_page = 'tbl_structure.php';
+        require('./tbl_structure.php');
     } else {
         PMA_mysqlDie('', '', '', $err_url, FALSE);
         // garvin: An error happened while inserting/updating a table definition.
         // to prevent total loss of that data, we embed the form once again.
-        // The variable $regenerate will be used to restore data in tbl_properties.inc.php
+        // The variable $regenerate will be used to restore data in libraries/tbl_properties.inc.php
         if (isset($orig_field)) {
                 $field = $orig_field;
         }
@@ -180,7 +164,9 @@ if ($abort == FALSE) {
         $selected_cnt = count($selected);
     }
 
-    // TODO: optimize in case of multiple fields to modify
+    /**
+     * @todo optimize in case of multiple fields to modify
+     */
     for ($i = 0; $i < $selected_cnt; $i++) {
         if (!empty($submit_mult)) {
             $field = PMA_sqlAddslashes(urldecode($selected[$i]), TRUE);
@@ -191,15 +177,34 @@ if ($abort == FALSE) {
         $fields_meta[] = PMA_DBI_fetch_assoc($result);
         PMA_DBI_free_result($result);
     }
-
     $num_fields  = count($fields_meta);
     $action      = 'tbl_alter.php';
-    require('./tbl_properties.inc.php');
+
+    // Get more complete field information
+    // For now, this is done just for MySQL 4.1.2+ new TIMESTAMP options
+    // but later, if the analyser returns more information, it
+    // could be executed for any MySQL version and replace
+    // the info given by SHOW FULL FIELDS FROM.
+    /**
+     * @todo put this code into a require()
+     * or maybe make it part of PMA_DBI_get_fields();
+     */
+
+    // We also need this to correctly learn if a TIMESTAMP is NOT NULL, since
+    // SHOW FULL FIELDS says NULL and SHOW CREATE TABLE says NOT NULL (tested
+    // in MySQL 4.0.25).
+
+    $show_create_table = PMA_DBI_fetch_value(
+        'SHOW CREATE TABLE ' . PMA_backquote($db) . '.' . PMA_backquote($table),
+        0, 1 );
+    $analyzed_sql = PMA_SQP_analyze( PMA_SQP_parse( $show_create_table ) );
+
+    require('./libraries/tbl_properties.inc.php');
 }
 
 
 /**
  * Displays the footer
  */
-require_once('./footer.inc.php');
+require_once('./libraries/footer.inc.php');
 ?>

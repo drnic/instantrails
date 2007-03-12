@@ -1,8 +1,35 @@
 <?php
-/* $Id: xls.php,v 2.0 2004/10/13 09:59:56 rabus Exp $ */
+/* $Id: xls.php 9438 2006-09-21 14:28:46Z cybot_tm $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
-require_once('Spreadsheet/Excel/Writer.php');
+// Check if we have native MS Excel export using PEAR class Spreadsheet_Excel_Writer
+if (!empty($GLOBALS['cfg']['TempDir'])) {
+    @include_once('Spreadsheet/Excel/Writer.php');
+    if (class_exists('Spreadsheet_Excel_Writer')) {
+        $xls = TRUE;
+    } else {
+        $xls = FALSE;
+    }
+} else {
+    $xls = FALSE;
+}
+
+if ($xls) {
+
+    if (isset($plugin_list)) {
+        $plugin_list['xls'] = array(
+            'text' => 'strStrucNativeExcel',
+            'extension' => 'xls',
+            'mime_type' => 'application/vnd.ms-excel',
+            'force_file' => true,
+            'options' => array(
+                array('type' => 'text', 'name' => 'null', 'text' => 'strReplaceNULLBy'),
+                array('type' => 'text', 'name' => 'columns', 'text' => 'strPutColNames'),
+                array('type' => 'hidden', 'name' => 'data'),
+                ),
+            'options_text' => 'strStrucNativeExcelOptions',
+            );
+    } else {
 
 /**
  * Set of functions used to build MS Excel dumps of tables
@@ -15,7 +42,8 @@ require_once('Spreadsheet/Excel/Writer.php');
  *
  * @return  bool        Whether it suceeded
  */
-function PMA_exportComment($text) {
+function PMA_exportComment($text)
+{
     return TRUE;
 }
 
@@ -26,7 +54,8 @@ function PMA_exportComment($text) {
  *
  * @access  public
  */
-function PMA_exportFooter() {
+function PMA_exportFooter()
+{
     global $workbook;
     global $tmp_filename;
 
@@ -35,7 +64,9 @@ function PMA_exportFooter() {
         echo $res->getMessage();
         return FALSE;
     }
-    if (!PMA_exportOutputHandler(file_get_contents($tmp_filename))) return FALSE;
+    if (!PMA_exportOutputHandler(file_get_contents($tmp_filename))) {
+        return FALSE;
+    }
     unlink($tmp_filename);
 
     return TRUE;
@@ -48,11 +79,14 @@ function PMA_exportFooter() {
  *
  * @access  public
  */
-function PMA_exportHeader() {
+function PMA_exportHeader()
+{
     global $workbook;
     global $tmp_filename;
 
-    if (empty($GLOBALS['cfg']['TempDir'])) return FALSE;
+    if (empty($GLOBALS['cfg']['TempDir'])) {
+        return FALSE;
+    }
     $tmp_filename = tempnam(realpath($GLOBALS['cfg']['TempDir']), 'pma_xls_');
     $workbook = new Spreadsheet_Excel_Writer($tmp_filename);
 
@@ -68,7 +102,8 @@ function PMA_exportHeader() {
  *
  * @access  public
  */
-function PMA_exportDBHeader($db) {
+function PMA_exportDBHeader($db)
+{
     return TRUE;
 }
 
@@ -81,7 +116,8 @@ function PMA_exportDBHeader($db) {
  *
  * @access  public
  */
-function PMA_exportDBFooter($db) {
+function PMA_exportDBFooter($db)
+{
     return TRUE;
 }
 
@@ -94,7 +130,8 @@ function PMA_exportDBFooter($db) {
  *
  * @access  public
  */
-function PMA_exportDBCreate($db) {
+function PMA_exportDBCreate($db)
+{
     return TRUE;
 }
 
@@ -111,7 +148,8 @@ function PMA_exportDBCreate($db) {
  *
  * @access  public
  */
-function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
+function PMA_exportData($db, $table, $crlf, $error_url, $sql_query)
+{
     global $what;
     global $workbook;
 
@@ -119,12 +157,12 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
     $workbook->setTempDir(realpath($GLOBALS['cfg']['TempDir']));
 
     // Gets the data from the database
-    $result      = PMA_DBI_query($sql_query, NULL, PMA_DBI_QUERY_UNBUFFERED);
+    $result      = PMA_DBI_query($sql_query, null, PMA_DBI_QUERY_UNBUFFERED);
     $fields_cnt  = PMA_DBI_num_fields($result);
     $col         = 0;
 
     // If required, get fields name at the first line
-    if (isset($GLOBALS['xls_shownames']) && $GLOBALS['xls_shownames'] == 'yes') {
+    if (isset($GLOBALS['xls_columns']) && $GLOBALS['xls_columns'] == 'yes') {
         $schema_insert = '';
         for ($i = 0; $i < $fields_cnt; $i++) {
             $worksheet->write(0, $i, stripslashes(PMA_DBI_field_name($result, $i)));
@@ -137,9 +175,11 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
         $schema_insert = '';
         for ($j = 0; $j < $fields_cnt; $j++) {
             if (!isset($row[$j]) || is_null($row[$j])) {
-                $worksheet->write($col, $j, $GLOBALS['xls_replace_null']);
-            } else if ($row[$j] == '0' || $row[$j] != '') {
-                // FIXME: we should somehow handle character set here!
+                $worksheet->write($col, $j, $GLOBALS['xls_null']);
+            } elseif ($row[$j] == '0' || $row[$j] != '') {
+                /**
+                 * @todo we should somehow handle character set here!
+                 */
                 $worksheet->write($col, $j, $row[$j]);
             } else {
                 $worksheet->write($col, $j, '');
@@ -150,5 +190,8 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
     PMA_DBI_free_result($result);
 
     return TRUE;
+}
+
+    }
 }
 ?>

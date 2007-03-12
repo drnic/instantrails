@@ -1,6 +1,6 @@
 <?php
 
-/* $Id: blowfish.php,v 2.4 2004/12/16 18:26:43 lem9 Exp $ */
+/* $Id: blowfish.php 8301 2006-01-17 17:03:02Z cybot_tm $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
@@ -15,7 +15,7 @@
  * did not receive this file, see http://www.fsf.org/copyleft/lgpl.html.
  *
  * @author  Mike Cochrane <mike@graftonhall.co.nz>
- * @version $Revision: 2.4 $
+ * @version $Revision: 8301 $
  * @since   Horde 2.2
  * @package horde.cipher
  */
@@ -441,10 +441,10 @@ class Horde_Cipher_blowfish {
         $R = null;
 
         $retarray = array_values(unpack('N*', $block));
-        if(isset($retarray[0])) {
+        if (isset($retarray[0])) {
             $L = $retarray[0];
         }
-        if(isset($retarray[1])) {
+        if (isset($retarray[1])) {
             $R = $retarray[1];
         }
 // end change for phpMyAdmin
@@ -534,7 +534,7 @@ function PMA_blowfish_encrypt($data, $secret) {
     for ($i=0; $i<strlen($data); $i+=8) {
         $block = substr($data, $i, 8);
         if (strlen($block) < 8) {
-            $block = full_str_pad($block,8,"\0", 1);
+            $block = full_str_pad($block, 8, "\0", 1);
         }
         $encrypt .= $pma_cipher->encryptBlock($block, $secret);
     }

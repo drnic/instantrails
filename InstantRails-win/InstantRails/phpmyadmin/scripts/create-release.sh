@@ -1,6 +1,14 @@
 #!/bin/sh
 #
-# $Id: create-release.sh,v 2.11 2004/08/23 12:53:01 nijel Exp $
+# $Id: create-release.sh 9544 2006-10-13 07:40:50Z nijel $
+# vim: expandtab sw=4 ts=4 sts=4:
+#
+# 2005-09-13, lem9@users.sourceforge.net
+# - no longer create a config.default.php from config.inc.php
+#
+# 2005-06-12, lem9@users.sourceforge.net
+# - cvs server name changed to cvs, because cvs1 no longer works from
+#   shell.sourceforge.net
 #
 # 2003-08-23, nijel@users.sourceforge.net:
 # - support for creating snapshots outside sourceforge:
@@ -60,49 +68,39 @@
 # - added release todo list
 #
 
-cvsserver=${cvsserver:-cvs1}
+KITS="all-languages-utf-8-only all-languages english"
+COMPRESSIONS="zip-7z tbz tgz 7z"
 
-if [ $# == 0 ]
+if [ $# = 0 ]
 then
-  echo "Usage: create-release.sh version from_branch"
+  echo "Usages:"
+  echo "  create-release.sh <version> [from_branch]"
+  echo "  create-release.sh snapshot [sf]"
   echo "  (no spaces allowed!)"
   echo ""
-  echo "Example: create-release.sh 2.2.7-rc1 v2_2_7-branch"
+  echo "Examples:"
+  echo "  create-release.sh 2.9.0-rc1 branches/QA_2_9"
+  echo "  create-release.sh 2.9.0 tags/RELEASE_2_9_0"
   exit 65
 fi
 
-if [ "$1" == "snapshot" ]
-then
-  branch=''
-elif [ "$#" == 2 ]
-then
-  branch="-r $2"
-fi
+branch='trunk'
 
-if [ $1 == "snapshot" ]
-then
-  mode="snapshot"
-  date_snapshot=`date +%Y%m%d-%H%M%S`
-fi
-
-# Set target name
-if [ "$mode" != "snapshot" ]
-then
- target=$1
+if [ "$1" = "snapshot" ] ; then
+    mode="snapshot"
+    date_snapshot=`date +%Y%m%d-%H%M%S`
+    target=$date_snapshot
 else
- target=$date_snapshot
-fi
-
-
-if [ "$mode" != "snapshot" ]
-then
-
- cat <<END
+    if [ "$#" -ge 2 ] ; then
+        branch="$2"
+    fi
+    target="$1"
+    cat <<END
 
 Please ensure you have:
-  1. incremented rc count or version in CVS :
-     - in libraries/defines.lib.php the line
-          " define('PMA_VERSION', '$1'); "
+  1. incremented rc count or version in subversion :
+     - in libraries/Config.class.php PMA_Config::__constructor() the line
+          " \$this->set( 'PMA_VERSION', '$1' ); "
      - in Documentation.html the 2 lines
           " <title>phpMyAdmin $1 - Documentation</title> "
           " <h1>phpMyAdmin $1 Documentation</h1> "
@@ -116,81 +114,94 @@ Please ensure you have:
 
 Continue (y/n)?
 END
- printf "\a"
- read do_release
+    read do_release
 
- if [ "$do_release" != 'y' ]; then
-   exit
- fi
+    if [ "$do_release" != 'y' ]; then
+        exit
+    fi
 fi
 
-if [ "$mode" == "snapshot" -a "$2" != "local" ] ; then
-# Goto project dir
+if [ "$mode" = "snapshot" -a "$2" = "sf" ] ; then
+    # Goto project dir
     cd /home/groups/p/ph/phpmyadmin/htdocs
 
-## Move old cvs dir
-#if [ -e cvs ];
-#then
-#    mv cvs cvs-`date +%s`
-#fi
-
-# Keep one previous version of the cvs directory
-    if [ -e cvs-prev ];
-    then
-        rm -rf cvs-prev
+    # Keep one previous version of the cvs directory
+    if [ -e svn-prev ] ; then
+        rm -rf svn-prev
     fi
-    mv cvs cvs-prev
+    mv svn svn-prev
 fi
 
-# Do CVS checkout
-mkdir cvs
-cd cvs
+# Do SVNcheckout
+mkdir -p ./svn 
+cd svn
 
-if [ "$mode" != "snapshot" ]
-then
- echo "Press [ENTER]!"
- cvs -q -d:pserver:anonymous@$cvsserver:/cvsroot/phpmyadmin login
- if [ $? -ne 0 ] ; then
-     echo "CVS login failed, bailing out"
-     exit 1
- fi
-fi
+echo "Exporting repository from subversion"
 
-cvs -q -z3 -d:pserver:anonymous@$cvsserver:/cvsroot/phpmyadmin co -P $branch phpMyAdmin
+svn export -q https://svn.sourceforge.net/svnroot/phpmyadmin/$branch/phpMyAdmin
 
 if [ $? -ne 0 ] ; then
-    echo "CVS checkout failed, bailing out"
+    echo "Subversion checkout failed, bailing out"
     exit 2
 fi
 
 # Cleanup release dir
 LC_ALL=C date -u > phpMyAdmin/RELEASE-DATE-${target}
 
-# Olivier asked to keep those in the cvs release, to allow testers to use
-# cvs update on it
-if [ "$mode" != "snapshot" ]
-then
- find phpMyAdmin \( -name .cvsignore -o -name CVS \) -print0 | xargs -0 rm -rf
-fi
-
-find phpMyAdmin -type d -print0 | xargs -0 chmod 755
-find phpMyAdmin -type f -print0 | xargs -0 chmod 644
-find phpMyAdmin \( -name '*.sh' -o -name '*.pl' \) -print0 | xargs -0 chmod 755
-
 # Building Documentation.txt
-lynx --dont_wrap_pre --nolist --dump phpMyAdmin/Documentation.html > phpMyAdmin/Documentation.txt
-
-# Creating a backup config.inc.php
-cp phpMyAdmin/config.inc.php phpMyAdmin/config.default.php
+LC_ALL=C w3m -dump phpMyAdmin/Documentation.html > phpMyAdmin/Documentation.txt
 
 # Renaming directory
 mv phpMyAdmin phpMyAdmin-$target
 
-# Building distribution kits
-zip -9 -r phpMyAdmin-${target}.zip phpMyAdmin-${target}
-tar cvf phpMyAdmin-${target}.tar phpMyAdmin-${target}
-bzip2 -9kv phpMyAdmin-${target}.tar
-gzip -9v phpMyAdmin-${target}.tar
+# Prepare all kits
+for kit in $KITS ; do
+    # Copy all files
+	name=phpMyAdmin-$target-$kit
+	cp -r phpMyAdmin-$target $name
+
+	# Cleanup translations
+    cd phpMyAdmin-$target-$kit
+    scripts/lang-cleanup.sh $kit
+    cd ..
+
+    # Prepare distributions
+    for comp in $COMPRESSIONS ; do
+        case $comp in
+            tbz|tgz)
+                echo "Creating $name.tar"
+                tar cf $name.tar $name
+                if [ $comp = tbz ] ; then
+                    echo "Creating $name.tar.bz2"
+                    bzip2 -9k $name.tar
+                fi
+                if [ $comp = tgz ] ; then
+                    echo "Creating $name.tar.gz"
+                    gzip -9c $name.tar > $name.tar.gz
+                fi
+                rm $name.tar
+                ;;
+            zip)
+                echo "Creating $name.zip"
+                zip -q -9 -r $name.zip $name
+                ;;
+            zip-7z)
+                echo "Creating $name.zip"
+                7za a -bd -tzip $name.zip $name > /dev/null
+                ;;
+            7z)
+                echo "Creating $name.7z"
+                7za a -bd $name.7z $name > /dev/null
+                ;;
+            *)
+                echo "WARNING: ignoring compression '$comp', not known!"
+                ;;
+        esac
+    done
+
+    # Remove directory with current dist set
+    rm -rf $name
+done
 
 # Cleanup
 rm -rf phpMyAdmin-${target}
@@ -205,19 +216,19 @@ echo ""
 echo "Files:"
 echo "------"
 
-ls -la *.gz *.zip *.bz2
+ls -la *.gz *.zip *.bz2 *.7z
 
 echo
 echo "MD5 sums:"
 echo "--------"
 
-md5sum *.{gz,zip,bz2} | sed "s/\([^ ]*\)[ ]*\([^ ]*\)/\$md5sum['\2'] = '\1';/"
+md5sum *.{gz,zip,bz2,7z} | sed "s/\([^ ]*\)[ ]*\([^ ]*\)/\$md5sum['\2'] = '\1';/"
 
 echo
 echo "Sizes:"
 echo "------"
 
-ls -l --block-size=k *.{gz,zip,bz2} | sed -r "s/[a-z-]+[[:space:]]+[0-9]+[[:space:]]+[^[:space:]]+[[:space:]]+[^[:space:]]+[[:space:]]+([0-9]*)K.*[[:space:]]([^[:space:]]+)\$/\$size['\2'] = \1;/"
+ls -l --block-size=k *.{gz,zip,bz2,7z} | sed -r "s/[a-z-]+[[:space:]]+[0-9]+[[:space:]]+[^[:space:]]+[[:space:]]+[^[:space:]]+[[:space:]]+([0-9]*)K.*[[:space:]]([^[:space:]]+)\$/\$size['\2'] = \1;/"
 
 echo
 echo "Add these to /home/groups/p/ph/phpmyadmin/htdocs/home_page/files.inc.php on sf"
@@ -227,26 +238,33 @@ cat <<END
 
 Todo now:
 ---------
- 1. tag the cvs tree with the new revision number for a plain release or a
-    release candidate
+ 1. tag the subversion tree with the new revision number for a plain release
+    or a release candidate:
+    version 2.7.0 gets two tags: RELEASE_2_7_0 and STABLE
+    version 2.7.1-rc1 gets RELEASE_2_7_1RC1 and TESTING
+
  2. upload the files to SF:
         ftp upload.sourceforge.net
         cd incoming
         binary
-        mput cvs/*.gz *.zip *.bz2
+        mput svn/*.gz *.zip *.bz2
  3. add files to SF files page (cut and paste changelog since last release)
  4. add SF news item to phpMyAdmin project
  5. update web page:
-        - add MD5s and file sizes to /home/groups/p/ph/phpmyadmin/htdocs/home_page/files.inc.php
-        - add release to /home/groups/p/ph/phpmyadmin/htdocs/home_page/config.inc.php
+        - add MD5s and file sizes to /home/groups/p/ph/phpmyadmin/htdocs/home_page/includes/list_files.inc.php
+        - add release to /home/groups/p/ph/phpmyadmin/htdocs/home_page/includes/list_release.inc.php
  6. announce release on freshmeat (http://freshmeat.net/projects/phpmyadmin/)
  7. send a short mail (with list of major changes) to
         phpmyadmin-devel@lists.sourceforge.net
         phpmyadmin-news@lists.sourceforge.net
         phpmyadmin-users@lists.sourceforge.net
- 8. increment rc count or version in CVS :
-        - in libraries/defines.lib.php the line
-              " define('PHPMYADMIN_VERSION', '2.2.2-rc1'); "
+
+    Don't forget to update the Description section in the announcement,
+    based on Documentation.html.
+
+ 8. increment rc count or version in subversion :
+        - in libraries/Config.class.php PMA_Config::__constructor() the line
+              " $this->set( 'PMA_VERSION', '2.7.1-dev' ); "
         - in Documentation.html the 2 lines
               " <title>phpMyAdmin 2.2.2-rc1 - Documentation</title> "
               " <h1>phpMyAdmin 2.2.2-rc1 Documentation</h1> "
@@ -255,16 +273,12 @@ Todo now:
  9. add a group for bug tracking this new version, at
     https://sourceforge.net/tracker/admin/index.php?group_id=23067&atid=377408&add_group=1
 
-10. the end :-)
+10. Visit http://phpmyadmin.net/home_page/version.php then copy the results to /home/groups/p/ph/phpmyadmin/htdocs/latest.txt. This is needed for users of the pre-2.8.0 scripts/upgrade.pl.
+
+11. the end :-)
 
 END
 
-fi
-
-if [ "$mode" == "snapshot" -a "$2" != "local" ] ; then
-    cd ..
-    find cvs -type d -print0 | xargs -0 chmod 775
-    find cvs -type f -print0 | xargs -0 chmod 664
 fi
 
 # Removed due to not needed thanks to clever scripting by Robbat2

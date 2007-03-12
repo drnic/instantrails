@@ -1,10 +1,66 @@
 <?php
-/* $Id: latex.php,v 2.12 2004/05/20 16:14:13 nijel Exp $ */
+/* $Id: latex.php 9805 2006-12-26 16:10:47Z lem9 $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
  * Set of functions used to build dumps of tables
  */
+
+if (isset($plugin_list)) {
+    $hide_structure = false;
+    if ($plugin_param['export_type'] == 'table' && !$plugin_param['single_table']) {
+        $hide_structure = true;
+    }
+    $plugin_list['latex'] = array(
+        'text' => 'strLaTeX',
+        'extension' => 'tex',
+        'mime_type' => 'application/x-tex',
+        'options' => array(
+            array('type' => 'bool', 'name' => 'caption', 'text' => 'strLatexIncludeCaption'),
+            ),
+        'options_text' => 'strLaTeXOptions',
+        );
+    /* Structure options */
+    if (!$hide_structure) {
+        $plugin_list['latex']['options'][] =
+            array('type' => 'bgroup', 'name' => 'structure', 'text' => 'strStructure', 'force' => 'data');
+        $plugin_list['latex']['options'][] =
+            array('type' => 'text', 'name' => 'structure_caption', 'text' => 'strLatexCaption');
+        $plugin_list['latex']['options'][] =
+            array('type' => 'text', 'name' => 'structure_continued_caption', 'text' => 'strLatexContinuedCaption');
+        $plugin_list['latex']['options'][] =
+            array('type' => 'text', 'name' => 'structure_label', 'text' => 'strLatexLabel');
+        if (!empty($GLOBALS['cfgRelation']['relation'])) {
+            $plugin_list['latex']['options'][] =
+                array('type' => 'bool', 'name' => 'relation', 'text' => 'strRelations');
+        }
+        if (!empty($GLOBALS['cfgRelation']['commwork']) || PMA_MYSQL_INT_VERSION >= 40100) {
+            $plugin_list['latex']['options'][] =
+                array('type' => 'bool', 'name' => 'comments', 'text' => 'strComments');
+        }
+        if (!empty($GLOBALS['cfgRelation']['mimework'])) {
+            $plugin_list['latex']['options'][] =
+                array('type' => 'bool', 'name' => 'mime', 'text' => 'strMIME_MIMEtype');
+        }
+        $plugin_list['latex']['options'][] =
+            array('type' => 'egroup');
+    }
+    /* Data */
+    $plugin_list['latex']['options'][] =
+        array('type' => 'bgroup', 'name' => 'data', 'text' => 'strData', 'force' => 'structure');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'bool', 'name' => 'columns', 'text' => 'strPutColNames');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'text', 'name' => 'data_caption', 'text' => 'strLatexCaption');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'text', 'name' => 'data_continued_caption', 'text' => 'strLatexContinuedCaption');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'text', 'name' => 'data_label', 'text' => 'strLatexLabel');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'text', 'name' => 'null', 'text' => 'strReplaceNULLBy');
+    $plugin_list['latex']['options'][] =
+        array('type' => 'egroup');
+} else {
 
 /**
  * Escapes some special characters for use in TeX/LaTeX
@@ -129,7 +185,7 @@ function PMA_exportDBCreate($db) {
  * @access  public
  */
 function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
-    $result      = PMA_DBI_try_query($sql_query, NULL, PMA_DBI_QUERY_UNBUFFERED);
+    $result      = PMA_DBI_try_query($sql_query, null, PMA_DBI_QUERY_UNBUFFERED);
 
     $columns_cnt = PMA_DBI_num_fields($result);
     for ($i = 0; $i < $columns_cnt; $i++) {
@@ -150,23 +206,31 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
         $buffer .= ' \\caption{' . str_replace('__TABLE__', PMA_texEscape($table), $GLOBALS['latex_data_caption'])
                    . '} \\label{' . str_replace('__TABLE__', $table, $GLOBALS['latex_data_label']) . '} \\\\';
     }
-    if (!PMA_exportOutputHandler($buffer)) return FALSE;
+    if (!PMA_exportOutputHandler($buffer)) {
+        return FALSE;
+    }
 
     // show column names
-    if (isset($GLOBALS['latex_showcolumns'])) {
+    if (isset($GLOBALS['latex_columns'])) {
         $buffer = '\\hline ';
         for ($i = 0; $i < $columns_cnt; $i++) {
             $buffer .= '\\multicolumn{1}{|c|}{\\textbf{' . PMA_texEscape(stripslashes($columns[$i])) . '}} & ';
           }
 
-        $buffer = substr($buffer,0,-2) . '\\\\ \\hline \hline ';
-        if (!PMA_exportOutputHandler($buffer . ' \\endfirsthead ' . $crlf)) return FALSE;
+        $buffer = substr($buffer, 0, -2) . '\\\\ \\hline \hline ';
+        if (!PMA_exportOutputHandler($buffer . ' \\endfirsthead ' . $crlf)) {
+            return FALSE;
+        }
         if (isset($GLOBALS['latex_caption'])) {
             if (!PMA_exportOutputHandler('\\caption{' . str_replace('__TABLE__', PMA_texEscape($table), $GLOBALS['latex_data_continued_caption']) . '} \\\\ ')) return FALSE;
         }
-        if (!PMA_exportOutputHandler($buffer . '\\endhead \\endfoot' . $crlf)) return FALSE;
+        if (!PMA_exportOutputHandler($buffer . '\\endhead \\endfoot' . $crlf)) {
+            return FALSE;
+        }
     } else {
-        if (!PMA_exportOutputHandler('\\\\ \hline')) return FALSE;
+        if (!PMA_exportOutputHandler('\\\\ \hline')) {
+            return FALSE;
+        }
     }
 
     // print the whole table
@@ -178,7 +242,7 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
             if ( isset($record[$columns[$i]]) && (!function_exists('is_null') || !is_null($record[$columns[$i]]))) {
                 $column_value = PMA_texEscape(stripslashes($record[$columns[$i]]));
             } else {
-                $column_value = $GLOBALS['latex_replace_null'];
+                $column_value = $GLOBALS['latex_null'];
             }
 
             // last column ... no need for & character
@@ -189,11 +253,15 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
             }
         }
         $buffer .= ' \\\\ \\hline ' . $crlf;
-        if (!PMA_exportOutputHandler($buffer)) return FALSE;
+        if (!PMA_exportOutputHandler($buffer)) {
+            return FALSE;
+        }
     }
 
     $buffer = ' \\end{longtable}' . $crlf;
-    if (!PMA_exportOutputHandler($buffer)) return FALSE;
+    if (!PMA_exportOutputHandler($buffer)) {
+        return FALSE;
+    }
 
     PMA_DBI_free_result($result);
     return TRUE;
@@ -210,13 +278,14 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
  * @param   boolean  whether to include relation comments
  * @param   boolean  whether to include column comments
  * @param   boolean  whether to include mime comments
+ * @param   string   future feature: support view dependencies 
  *
  * @return  bool     Whether it suceeded
  *
  * @access  public
  */
  // @@@ $strTableStructure
-function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = false, $do_comments = false, $do_mime = false, $dates = false)
+function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = false, $do_comments = false, $do_mime = false, $dates = false, $dummy)
 {
     global $cfgRelation;
 
@@ -227,10 +296,12 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
     $keys_result    = PMA_DBI_query($keys_query);
     $unique_keys    = array();
     while ($key = PMA_DBI_fetch_assoc($keys_result)) {
-        if ($key['Non_unique'] == 0) $unique_keys[] = $key['Column_name'];
+        if ($key['Non_unique'] == 0) {
+            $unique_keys[] = $key['Column_name'];
+        }
     }
     PMA_DBI_free_result($keys_result);
-    
+
     /**
      * Gets fields properties
      */
@@ -250,8 +321,7 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
         } else {
             $have_rel = FALSE;
         }
-    }
-    else {
+    } else {
            $have_rel = FALSE;
     } // end if
 
@@ -260,7 +330,9 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
      */
     $buffer      = $crlf . '%' . $crlf . '% ' . $GLOBALS['strStructure'] . ': ' . $table  . $crlf . '%' . $crlf
                  . ' \\begin{longtable}{';
-    if (!PMA_exportOutputHandler($buffer)) return FALSE;
+    if (!PMA_exportOutputHandler($buffer)) {
+        return FALSE;
+    }
 
     $columns_cnt = 4;
     $alignment = '|l|c|c|c|';
@@ -268,7 +340,7 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
         $columns_cnt++;
         $alignment .= 'l|';
     }
-    if ($do_comments && $cfgRelation['commwork']) {
+    if ($do_comments && ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100)) {
         $columns_cnt++;
         $alignment .= 'l|';
     }
@@ -283,7 +355,7 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
     if ($do_relation && $have_rel) {
         $header .= ' & \\multicolumn{1}{|c|}{\\textbf{' . $GLOBALS['strLinksTo'] . '}}';
     }
-    if ($do_comments && $cfgRelation['commwork']) {
+    if ($do_comments && ($cfgRelation['commwork'] || PMA_MYSQL_INT_VERSION >= 40100)) {
         $header .= ' & \\multicolumn{1}{|c|}{\\textbf{' . $GLOBALS['strComments'] . '}}';
         $comments = PMA_getComments($db, $table);
     }
@@ -306,9 +378,11 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
         $buffer .= ' \\caption{'. str_replace('__TABLE__', PMA_texEscape($table), $GLOBALS['latex_structure_continued_caption'])
                    . '} \\\\ ' . $crlf;
     }
-    $buffer .= $header . ' \\\\ \\hline \\hline \\endhead \\endfoot ';
+    $buffer .= $header . ' \\\\ \\hline \\hline \\endhead \\endfoot ' . $crlf;
 
-    if (!PMA_exportOutputHandler($buffer)) return FALSE;
+    if (!PMA_exportOutputHandler($buffer)) {
+        return FALSE;
+    }
 
     while ($row = PMA_DBI_fetch_assoc($result)) {
 
@@ -332,19 +406,9 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
                 $type     = '&nbsp;';
             }
 
-            $binary       = eregi('BINARY', $row['Type'], $test);
-            $unsigned     = eregi('UNSIGNED', $row['Type'], $test);
-            $zerofill     = eregi('ZEROFILL', $row['Type'], $test);
-        }
-        $strAttribute     = '&nbsp;';
-        if ($binary) {
-            $strAttribute = 'BINARY';
-        }
-        if ($unsigned) {
-            $strAttribute = 'UNSIGNED';
-        }
-        if ($zerofill) {
-            $strAttribute = 'UNSIGNED ZEROFILL';
+            $binary       = eregi('BINARY', $row['Type']);
+            $unsigned     = eregi('UNSIGNED', $row['Type']);
+            $zerofill     = eregi('ZEROFILL', $row['Type']);
         }
         if (!isset($row['Default'])) {
             if ($row['Null'] != '') {
@@ -379,20 +443,24 @@ function PMA_exportStructure($db, $table, $crlf, $error_url, $do_relation = fals
         $local_buffer = PMA_texEscape($local_buffer);
         if ($row['Key']=='PRI') {
             $pos=strpos($local_buffer, "\000");
-            $local_buffer = '\\textit{' . substr($local_buffer,0,$pos) . '}' . substr($local_buffer,$pos);
+            $local_buffer = '\\textit{' . substr($local_buffer, 0, $pos) . '}' . substr($local_buffer, $pos);
         }
         if (in_array($field_name, $unique_keys)) {
             $pos=strpos($local_buffer, "\000");
-            $local_buffer = '\\textbf{' . substr($local_buffer,0,$pos) . '}' . substr($local_buffer,$pos);
+            $local_buffer = '\\textbf{' . substr($local_buffer, 0, $pos) . '}' . substr($local_buffer, $pos);
         }
         $buffer = str_replace("\000", ' & ', $local_buffer);
         $buffer .= ' \\\\ \\hline ' . $crlf;
 
-        if (!PMA_exportOutputHandler($buffer)) return FALSE;
+        if (!PMA_exportOutputHandler($buffer)) {
+            return FALSE;
+        }
     } // end while
     PMA_DBI_free_result($result);
 
     $buffer = ' \\end{longtable}' . $crlf;
     return PMA_exportOutputHandler($buffer);
-} // end of the 'PMA_getTableStructureLaTeX()' function
+} // end of the 'PMA_exportStructure' function
+
+} // end else
 ?>

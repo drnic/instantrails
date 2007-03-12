@@ -1,5 +1,5 @@
 #!/bin/bash
-# $Id: generator.sh,v 2.0 2003/11/18 15:20:44 nijel Exp $
+# $Id: generator.sh 9537 2006-10-12 16:27:13Z nijel $
 #
 # Shell script that adds a new function file using a template. Should not be called directly
 # but instead by template_Generator.sh and template_generator_mimetype.sh

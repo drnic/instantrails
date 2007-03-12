@@ -1,13 +1,15 @@
 <?php
-/* $Id: tbl_addfield.php,v 2.11 2005/01/07 14:33:20 lem9 Exp $ */
+/* $Id: tbl_addfield.php 9601 2006-10-25 10:55:20Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
  * Get some core libraries
  */
-require_once('./libraries/grab_globals.lib.php');
+require_once './libraries/common.lib.php';
+require_once './libraries/Table.class.php';
+
 $js_to_run = 'functions.js';
-require_once('./header.inc.php');
+require_once './libraries/header.inc.php';
 
 // Check parameters
 PMA_checkParameters(array('db', 'table'));
@@ -16,7 +18,7 @@ PMA_checkParameters(array('db', 'table'));
 /**
  * Defines the url to return to in case of error in a sql statement
  */
-$err_url = 'tbl_properties.php?' . PMA_generate_common_url($db, $table);
+$err_url = 'tbl_sql.php?' . PMA_generate_common_url($db, $table);
 
 /**
  * The form used to define the field to add has been submitted
@@ -31,7 +33,7 @@ if (isset($submit_num_fields)) {
     }
     $num_fields = $orig_num_fields + $added_fields;
     $regenerate = TRUE;
-} else if (isset($do_save_data)) {
+} elseif (isset($do_save_data)) {
     $query = '';
 
     // Transforms the radio button field_key into 3 arrays
@@ -50,45 +52,14 @@ if (isset($submit_num_fields)) {
         } // end if
     } // end for
     // Builds the field creation statement and alters the table
+
     for ($i = 0; $i < $field_cnt; ++$i) {
-        if (empty($field_name[$i])) {
+        // '0' is also empty for php :-(
+        if (empty($field_name[$i]) && $field_name[$i] != '0') {
             continue;
         }
 
-        $query .= PMA_backquote($field_name[$i]) . ' ' . $field_type[$i];
-        if ($field_length[$i] != ''
-            && !preg_match('@^(DATE|DATETIME|TIME|TINYBLOB|TINYTEXT|BLOB|TEXT|MEDIUMBLOB|MEDIUMTEXT|LONGBLOB|LONGTEXT)$@i', $field_type[$i])) {
-            $query .= '(' . $field_length[$i] . ')';
-        }
-        if ($field_attribute[$i] != '') {
-            $query .= ' ' . $field_attribute[$i];
-        } else if (PMA_MYSQL_INT_VERSION >= 40100 && isset($field_charset[$i]) && $field_charset[$i] != '') {
-            $query .= ' CHARACTER SET ' . $field_charset[$i];
-        }
-        if ($field_default[$i] != '') {
-            if (strtoupper($field_default[$i]) == 'NULL') {
-                $query .= ' DEFAULT NULL';
-            } else {
-                $query .= ' DEFAULT \'' . PMA_sqlAddslashes($field_default[$i]) . '\'';
-            }
-        }
-        if ($field_null[$i] != '') {
-            $query .= ' ' . $field_null[$i];
-        }
-        if ($field_extra[$i] != '') {
-            $query .= ' ' . $field_extra[$i];
-            // An auto_increment field must be use as a primary key
-            if ($field_extra[$i] == 'AUTO_INCREMENT' && isset($field_primary)) {
-                $primary_cnt = count($field_primary);
-                for ($j = 0; $j < $primary_cnt && $field_primary[$j] != $i; $j++) {
-                    // void
-                } // end for
-                if ($field_primary[$j] == $i) {
-                    $query .= ' PRIMARY KEY';
-                    unset($field_primary[$j]);
-                } // end if
-            } // end if (auto_increment)
-        }
+        $query .= PMA_Table::generateFieldSpec($field_name[$i], $field_type[$i], $field_length[$i], $field_attribute[$i], isset($field_collation[$i]) ? $field_collation[$i] : '', $field_null[$i], $field_default[$i], isset($field_default_current_timestamp[$i]), $field_extra[$i], isset($field_comments[$i]) ? $field_comments[$i] : '', $field_primary, $i);
 
         if ($field_where != 'last') {
             // Only the first field can be added somewhere other than at the end
@@ -123,12 +94,12 @@ if (isset($submit_num_fields)) {
             $primary_cnt = count($field_primary);
             for ($i = 0; $i < $primary_cnt; $i++) {
                 $j       = $field_primary[$i];
-                if (!empty($field_name[$j])) {
+                if (isset($field_name[$j]) && strlen($field_name[$j])) {
                     $primary .= PMA_backquote($field_name[$j]) . ', ';
                 }
             } // end for
             $primary     = preg_replace('@, $@', '', $primary);
-            if (!empty($primary)) {
+            if (strlen($primary)) {
                 $sql_query      = 'ALTER TABLE ' . PMA_backquote($table) . ' ADD PRIMARY KEY (' . $primary . ');';
                 $result         = PMA_DBI_query($sql_query);
                 $sql_query_cpy  .= "\n" . $sql_query . ';';
@@ -141,12 +112,12 @@ if (isset($submit_num_fields)) {
             $index_cnt = count($field_index);
             for ($i = 0; $i < $index_cnt; $i++) {
                 $j     = $field_index[$i];
-                if (!empty($field_name[$j])) {
+                if (isset($field_name[$j]) && strlen($field_name[$j])) {
                     $index .= PMA_backquote($field_name[$j]) . ', ';
                 }
             } // end for
             $index     = preg_replace('@, $@', '', $index);
-            if (!empty($index)) {
+            if (strlen($index)) {
                 $sql_query      = 'ALTER TABLE ' . PMA_backquote($table) . ' ADD INDEX (' . $index . ')';
                 $result         = PMA_DBI_query($sql_query);
                 $sql_query_cpy  .= "\n" . $sql_query . ';';
@@ -159,12 +130,12 @@ if (isset($submit_num_fields)) {
             $unique_cnt = count($field_unique);
             for ($i = 0; $i < $unique_cnt; $i++) {
                 $j      = $field_unique[$i];
-                if (!empty($field_name[$j])) {
+                if (isset($field_name[$j]) && strlen($field_name[$j])) {
                     $unique .= PMA_backquote($field_name[$j]) . ', ';
                 }
             } // end for
             $unique = preg_replace('@, $@', '', $unique);
-            if (!empty($unique)) {
+            if (strlen($unique)) {
                 $sql_query      = 'ALTER TABLE ' . PMA_backquote($table) . ' ADD UNIQUE (' . $unique . ')';
                 $result         = PMA_DBI_query($sql_query);
                 $sql_query_cpy  .= "\n" . $sql_query . ';';
@@ -181,7 +152,7 @@ if (isset($submit_num_fields)) {
                 $fulltext .= PMA_backquote($field_name[$j]) . ', ';
             } // end for
             $fulltext = preg_replace('@, $@', '', $fulltext);
-            if (!empty($fulltext)) {
+            if (strlen($fulltext)) {
                 $sql_query      = 'ALTER TABLE ' . PMA_backquote($table) . ' ADD FULLTEXT (' . $fulltext . ')';
                 $result         = PMA_DBI_query($sql_query);
                 $sql_query_cpy  .= "\n" . $sql_query . ';';
@@ -195,16 +166,20 @@ if (isset($submit_num_fields)) {
         $cfgRelation = PMA_getRelationsParam();
 
         // garvin: Update comment table, if a comment was set.
-        if (isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork']) {
+        if (isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork'] && PMA_MYSQL_INT_VERSION < 40100) {
             foreach ($field_comments AS $fieldindex => $fieldcomment) {
-                PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment, '', 'pmadb');
+                }
             }
         }
 
         // garvin: Update comment table for mime types [MIME]
         if (isset($field_mimetype) && is_array($field_mimetype) && $cfgRelation['commwork'] && $cfgRelation['mimework'] && $cfg['BrowseMIME']) {
             foreach ($field_mimetype AS $fieldindex => $mimetype) {
-                PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                }
             }
         }
 
@@ -212,13 +187,13 @@ if (isset($submit_num_fields)) {
         $sql_query = $sql_query_cpy;
         unset($sql_query_cpy);
         $message   = $strTable . ' ' . htmlspecialchars($table) . ' ' . $strHasBeenAltered;
-        $active_page = 'tbl_properties_structure.php';
-        require('./tbl_properties_structure.php');
+        $active_page = 'tbl_structure.php';
+        require('./tbl_structure.php');
     } else {
         PMA_mysqlDie('', '', '', $err_url, FALSE);
         // garvin: An error happened while inserting/updating a table definition.
         // to prevent total loss of that data, we embed the form once again.
-        // The variable $regenerate will be used to restore data in tbl_properties.inc.php
+        // The variable $regenerate will be used to restore data in libraries/tbl_properties.inc.php
         $num_fields = $orig_num_fields;
         if (isset($orig_after_field)) {
             $after_field = $orig_after_field;
@@ -237,22 +212,22 @@ if ($abort == FALSE) {
     /**
      * Gets tables informations
      */
-    require('./tbl_properties_common.php');
-    require('./tbl_properties_table_info.php');
+    require_once('./libraries/tbl_common.php');
+    require_once('./libraries/tbl_info.inc.php');
     /**
      * Displays top menu links
      */
-    $active_page = 'tbl_properties_structure.php';
-    require('./tbl_properties_links.php');
+    $active_page = 'tbl_structure.php';
+    require_once('./libraries/tbl_links.inc.php');
     /**
      * Display the form
      */
     $action = 'tbl_addfield.php';
-    require('./tbl_properties.inc.php');
+    require_once('./libraries/tbl_properties.inc.php');
 
     // Diplays the footer
     echo "\n";
-    require_once('./footer.inc.php');
+    require_once('./libraries/footer.inc.php');
 }
 
 ?>

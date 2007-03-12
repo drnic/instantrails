@@ -1,19 +1,22 @@
 <?php
-/* $Id: tbl_create.php,v 2.12 2004/12/26 22:47:40 lem9 Exp $ */
+/* $Id: tbl_create.php 8748 2006-03-08 18:07:55Z lem9 $ */
 // vim: expandtab sw=4 ts=4 sts=4:
-
 
 /**
  * Get some core libraries
  */
-require_once('./libraries/grab_globals.lib.php');
+require_once './libraries/common.lib.php';
+require_once './libraries/Table.class.php';
+
 $js_to_run = 'functions.js';
-require_once('./header.inc.php');
+
+if (isset($table)) {
+    $table = PMA_sanitize($table);
+}
+
+require_once './libraries/header.inc.php';
 
 // Check parameters
-
-require_once('./libraries/common.lib.php');
-
 PMA_checkParameters(array('db', 'table'));
 
 /**
@@ -31,11 +34,11 @@ PMA_DBI_select_db($db);
 /**
  * The form used to define the structure of the table has been submitted
  */
-$abort = FALSE;
+$abort = false;
 if (isset($submit_num_fields)) {
-    $regenerate = TRUE;
+    $regenerate = true;
     $num_fields = $orig_num_fields + $added_fields;
-} else if (isset($do_save_data)) {
+} elseif (isset($do_save_data)) {
     $sql_query = $query_cpy = '';
 
     // Transforms the radio button field_key into 3 arrays
@@ -59,29 +62,9 @@ if (isset($submit_num_fields)) {
         if (empty($field_name[$i]) && $field_name[$i] != '0') {
             continue;
         }
-        $query = PMA_backquote($field_name[$i]) . ' ' . $field_type[$i];
-        if ($field_length[$i] != ''
-            && !preg_match('@^(DATE|DATETIME|TIME|TINYBLOB|TINYTEXT|BLOB|TEXT|MEDIUMBLOB|MEDIUMTEXT|LONGBLOB|LONGTEXT)$@i', $field_type[$i])) {
-            $query .= '(' . $field_length[$i] . ')';
-        }
-        if ($field_attribute[$i] != '') {
-            $query .= ' ' . $field_attribute[$i];
-        } else if (PMA_MYSQL_INT_VERSION >= 40100 && !empty($field_collation[$i])) {
-            $query .= PMA_generateCharsetQueryPart($field_collation[$i]);
-        }
-        if ($field_default[$i] != '') {
-            if (strtoupper($field_default[$i]) == 'NULL') {
-                $query .= ' DEFAULT NULL';
-            } else {
-                $query .= ' DEFAULT \'' . PMA_sqlAddslashes($field_default[$i]) . '\'';
-            }
-        }
-        if ($field_null[$i] != '') {
-            $query .= ' ' . $field_null[$i];
-        }
-        if ($field_extra[$i] != '') {
-            $query .= ' ' . $field_extra[$i];
-        }
+
+        $query = PMA_Table::generateFieldSpec($field_name[$i], $field_type[$i], $field_length[$i], $field_attribute[$i], isset($field_collation[$i]) ? $field_collation[$i] : '', $field_null[$i], $field_default[$i], isset($field_default_current_timestamp[$i]), $field_extra[$i], isset($field_comments[$i]) ? $field_comments[$i] : '', $field_primary, $i);
+
         $query .= ', ';
         $sql_query .= $query;
         $query_cpy .= "\n" . '  ' . $query;
@@ -96,13 +79,13 @@ if (isset($submit_num_fields)) {
     $primary_cnt = (isset($field_primary) ? count($field_primary) : 0);
     for ($i = 0; $i < $primary_cnt; $i++) {
         $j = $field_primary[$i];
-        if (!empty($field_name[$j])) {
+        if (isset($field_name[$j]) && strlen($field_name[$j])) {
             $primary .= PMA_backquote($field_name[$j]) . ', ';
         }
     } // end for
     unset($primary_cnt);
     $primary = preg_replace('@, $@', '', $primary);
-    if (!empty($primary)) {
+    if (strlen($primary)) {
         $sql_query .= ', PRIMARY KEY (' . $primary . ')';
         $query_cpy .= ',' . "\n" . '  PRIMARY KEY (' . $primary . ')';
     }
@@ -113,13 +96,13 @@ if (isset($submit_num_fields)) {
     $index_cnt = (isset($field_index) ? count($field_index) : 0);
     for ($i = 0;$i < $index_cnt; $i++) {
         $j = $field_index[$i];
-        if (!empty($field_name[$j])) {
+        if (isset($field_name[$j]) && strlen($field_name[$j])) {
             $index .= PMA_backquote($field_name[$j]) . ', ';
         }
     } // end for
     unset($index_cnt);
     $index = preg_replace('@, $@', '', $index);
-    if (!empty($index)) {
+    if (strlen($index)) {
         $sql_query .= ', INDEX (' . $index . ')';
         $query_cpy .= ',' . "\n" . '  INDEX (' . $index . ')';
     }
@@ -130,30 +113,30 @@ if (isset($submit_num_fields)) {
     $unique_cnt = (isset($field_unique) ? count($field_unique) : 0);
     for ($i = 0; $i < $unique_cnt; $i++) {
         $j = $field_unique[$i];
-        if (!empty($field_name[$j])) {
+        if (isset($field_name[$j]) && strlen($field_name[$j])) {
            $unique .= PMA_backquote($field_name[$j]) . ', ';
         }
     } // end for
     unset($unique_cnt);
     $unique = preg_replace('@, $@', '', $unique);
-    if (!empty($unique)) {
+    if (strlen($unique)) {
         $sql_query .= ', UNIQUE (' . $unique . ')';
         $query_cpy .= ',' . "\n" . '  UNIQUE (' . $unique . ')';
     }
     unset($unique);
 
-    // Builds the fulltextes statements
+    // Builds the FULLTEXT statements
     $fulltext     = '';
     $fulltext_cnt = (isset($field_fulltext) ? count($field_fulltext) : 0);
     for ($i = 0; $i < $fulltext_cnt; $i++) {
         $j = $field_fulltext[$i];
-        if (!empty($field_name[$j])) {
+        if (isset($field_name[$j]) && strlen($field_name[$j])) {
            $fulltext .= PMA_backquote($field_name[$j]) . ', ';
         }
     } // end for
 
     $fulltext = preg_replace('@, $@', '', $fulltext);
-    if (!empty($fulltext)) {
+    if (strlen($fulltext)) {
         $sql_query .= ', FULLTEXT (' . $fulltext . ')';
         $query_cpy .= ',' . "\n" . '  FULLTEXT (' . $fulltext . ')';
     }
@@ -165,8 +148,8 @@ if (isset($submit_num_fields)) {
 
     // Adds table type, character set and comments
     if (!empty($tbl_type) && ($tbl_type != 'Default')) {
-        $sql_query .= ' TYPE = ' . $tbl_type;
-        $query_cpy .= "\n" . 'TYPE = ' . $tbl_type;
+        $sql_query .= ' ' . PMA_ENGINE_KEYWORD  . ' = ' . $tbl_type;
+        $query_cpy .= "\n" . PMA_ENGINE_KEYWORD . ' = ' . $tbl_type;
     }
     if (PMA_MYSQL_INT_VERSION >= 40100 && !empty($tbl_collation)) {
         $sql_query .= PMA_generateCharsetQueryPart($tbl_collation);
@@ -179,51 +162,55 @@ if (isset($submit_num_fields)) {
     }
 
     // Executes the query
-    $error_create = FALSE;
-    $result    = PMA_DBI_try_query($sql_query) or $error_create = TRUE;
+    $error_create = false;
+    $result    = PMA_DBI_try_query($sql_query) or $error_create = true;
 
-    if ($error_create == FALSE) {
+    if ($error_create == false) {
         $sql_query = $query_cpy . ';';
         unset($query_cpy);
         $message   = $strTable . ' ' . htmlspecialchars($table) . ' ' . $strHasBeenCreated;
 
         // garvin: If comments were sent, enable relation stuff
-        require_once('./libraries/relation.lib.php');
-        require_once('./libraries/transformations.lib.php');
+        require_once './libraries/relation.lib.php';
+        require_once './libraries/transformations.lib.php';
 
         $cfgRelation = PMA_getRelationsParam();
 
         // garvin: Update comment table, if a comment was set.
-        if (isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork']) {
+        if (isset($field_comments) && is_array($field_comments) && $cfgRelation['commwork'] && PMA_MYSQL_INT_VERSION < 40100) {
             foreach ($field_comments AS $fieldindex => $fieldcomment) {
-                PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setComment($db, $table, $field_name[$fieldindex], $fieldcomment, '', 'pmadb');
+                }
             }
         }
 
         // garvin: Update comment table for mime types [MIME]
         if (isset($field_mimetype) && is_array($field_mimetype) && $cfgRelation['commwork'] && $cfgRelation['mimework'] && $cfg['BrowseMIME']) {
             foreach ($field_mimetype AS $fieldindex => $mimetype) {
-                PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                if (isset($field_name[$fieldindex]) && strlen($field_name[$fieldindex])) {
+                    PMA_setMIME($db, $table, $field_name[$fieldindex], $mimetype, $field_transformation[$fieldindex], $field_transformation_options[$fieldindex]);
+                }
             }
         }
 
-        require('./' . $cfg['DefaultTabTable']);
-        $abort = TRUE;
+        require './' . $cfg['DefaultTabTable'];
+        $abort = true;
         exit();
     } else {
-        PMA_mysqlDie('', '', '', $err_url, FALSE);
+        PMA_mysqlDie('', '', '', $err_url, false);
         // garvin: An error happened while inserting/updating a table definition.
         // to prevent total loss of that data, we embed the form once again.
-        // The variable $regenerate will be used to restore data in tbl_properties.inc.php
+        // The variable $regenerate will be used to restore data in libraries/tbl_properties.inc.php
         $num_fields = $orig_num_fields;
-        $regenerate = TRUE;
+        $regenerate = true;
     }
 } // end do create table
 
 /**
  * Displays the form used to define the structure of the table
  */
-if ($abort == FALSE) {
+if ($abort == false) {
     if (isset($num_fields)) {
         $num_fields = intval($num_fields);
     }
@@ -232,16 +219,19 @@ if ($abort == FALSE) {
         PMA_mysqlDie($strTableEmpty, '', '', $err_url);
     }
     // No valid number of fields
-    else if (empty($num_fields) || !is_int($num_fields)) {
+    elseif (empty($num_fields) || !is_int($num_fields)) {
         PMA_mysqlDie($strFieldsEmpty, '', '', $err_url);
+    }
+    // Does table exist?
+    elseif (!(PMA_DBI_get_fields($db, $table) === false)) {
+        PMA_mysqlDie(sprintf($strTableAlreadyExists, htmlspecialchars($table)), '', '', $err_url);
     }
     // Table name and number of fields are valid -> show the form
     else {
         $action = 'tbl_create.php';
-        require('./tbl_properties.inc.php');
-        // Diplays the footer
-        echo "\n";
-        require_once('./footer.inc.php');
+        require './libraries/tbl_properties.inc.php';
+        // Displays the footer
+        require_once './libraries/footer.inc.php';
    }
 }
 

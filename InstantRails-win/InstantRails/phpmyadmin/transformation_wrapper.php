@@ -1,13 +1,8 @@
 <?php
-/* $Id: transformation_wrapper.php,v 2.7 2004/08/21 13:41:41 lem9 Exp $ */
+/* $Id: transformation_wrapper.php 8755 2006-03-10 13:44:49Z lem9 $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
-$is_transformation_wrapper = true;
-
-/**
- * Get the variables sent or posted to this script and displays the header
- */
-require_once('./libraries/grab_globals.lib.php');
+define('IS_TRANSFORMATION_WRAPPER', true);
 
 /**
  * Gets a core script and starts output buffering work
@@ -27,12 +22,12 @@ require_once('./libraries/db_table_exists.lib.php');
  * Get the list of the fields of the current table
  */
 PMA_DBI_select_db($db);
-$table_def = PMA_DBI_query('SHOW FIELDS FROM ' . PMA_backquote($table), NULL, PMA_DBI_QUERY_STORE);
+$table_def = PMA_DBI_query('SHOW FIELDS FROM ' . PMA_backquote($table), null, PMA_DBI_QUERY_STORE);
 if (isset($primary_key)) {
-    $result      = PMA_DBI_query('SELECT * FROM ' . PMA_backquote($table) . ' WHERE ' . $primary_key . ';', NULL, PMA_DBI_QUERY_STORE);
+    $result      = PMA_DBI_query('SELECT * FROM ' . PMA_backquote($table) . ' WHERE ' . $primary_key . ';', null, PMA_DBI_QUERY_STORE);
     $row         = PMA_DBI_fetch_assoc($result);
 } else {
-    $result      = PMA_DBI_query('SELECT * FROM ' . PMA_backquote($table) . ' LIMIT 1;', NULL, PMA_DBI_QUERY_STORE);
+    $result      = PMA_DBI_query('SELECT * FROM ' . PMA_backquote($table) . ' LIMIT 1;', null, PMA_DBI_QUERY_STORE);
     $row         = PMA_DBI_fetch_assoc($result);
 }
 
@@ -55,8 +50,8 @@ if ($cfgRelation['commwork'] && $cfgRelation['mimework']) {
 }
 
 // garvin: For re-usability, moved http-headers and stylesheets
-// to a seperate file. It can now be included by header.inc.php,
-// queryframe.php, querywindow.php.
+// to a seperate file. It can now be included by libraries/header.inc.php,
+// querywindow.php.
 
 require_once('./libraries/header_http.inc.php');
 // [MIME]
@@ -65,12 +60,11 @@ if (isset($ct) && !empty($ct)) {
 } else {
     $content_type = 'Content-Type: ' . (isset($mime_map[urldecode($transform_key)]['mimetype']) ? str_replace('_', '/', $mime_map[urldecode($transform_key)]['mimetype']) : $default_ct) . (isset($mime_options['charset']) ? $mime_options['charset'] : '');
 }
+header($content_type);
 
 if (isset($cn) && !empty($cn)) {
-    $content_type .= "\n" . 'Content-Disposition: attachment; filename=' . urldecode($cn);
+    header('Content-Disposition: attachment; filename=' . urldecode($cn));
 }
-
-header($content_type);
 
 if (!isset($resize)) {
     echo $row[urldecode($transform_key)];
@@ -92,7 +86,7 @@ if (!isset($resize)) {
     if ($ratioWidth < $ratioHeight){
         $destWidth = $srcWidth/$ratioHeight;
         $destHeight = $newHeight;
-    }else{
+    } else {
         $destWidth = $newWidth;
         $destHeight = $srcHeight/$ratioWidth;
     }
@@ -106,7 +100,7 @@ if (!isset($resize)) {
     ImageCopyResampled( $destImage, $srcImage, 0, 0, 0, 0, $destWidth, $destHeight, $srcWidth, $srcHeight );
 
     if ($resize == 'jpeg') {
-        ImageJPEG( $destImage,'',75 );
+        ImageJPEG( $destImage, '', 75 );
     }
     if ($resize == 'png') {
         ImagePNG( $destImage);
@@ -118,8 +112,8 @@ if (!isset($resize)) {
 /**
  * Close MySql non-persistent connections
  */
-if (isset($GLOBALS['dbh']) && $GLOBALS['dbh']) {
-    @PMA_DBI_close($GLOBALS['dbh']);
+if (isset($GLOBALS['controllink']) && $GLOBALS['controllink']) {
+    @PMA_DBI_close($GLOBALS['controllink']);
 }
 if (isset($GLOBALS['userlink']) && $GLOBALS['userlink']) {
     @PMA_DBI_close($GLOBALS['userlink']);

@@ -1,10 +1,24 @@
 <?php
-/* $Id: xml.php,v 2.7 2004/04/14 13:51:11 nijel Exp $ */
+/* $Id: xml.php 9082 2006-05-30 06:43:00Z nijel $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
  * Set of functions used to build XML dumps of tables
  */
+
+if (isset($GLOBALS['db']) && strlen($GLOBALS['db'])) { /* Can't do server export */
+
+if (isset($plugin_list)) {
+    $plugin_list['xml'] = array(
+        'text' => 'strXML',
+        'extension' => 'xml',
+        'mime_type' => 'text/xml',
+        'options' => array(
+            array('type' => 'hidden', 'name' => 'data'),
+            ),
+        'options_text' => 'strXMLOptions',
+        );
+} else {
 
 /**
  * Outputs comment
@@ -124,7 +138,7 @@ function PMA_exportDBCreate($db) {
  * @access  public
  */
 function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
-    $result      = PMA_DBI_query($sql_query, NULL, PMA_DBI_QUERY_UNBUFFERED);
+    $result      = PMA_DBI_query($sql_query, null, PMA_DBI_QUERY_UNBUFFERED);
 
     $columns_cnt = PMA_DBI_num_fields($result);
     for ($i = 0; $i < $columns_cnt; $i++) {
@@ -133,7 +147,9 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
     unset($i);
 
     $buffer      = '  <!-- ' . $GLOBALS['strTable'] . ' ' . $table . ' -->' . $crlf;
-    if (!PMA_exportOutputHandler($buffer)) return FALSE;
+    if (!PMA_exportOutputHandler($buffer)) {
+        return FALSE;
+    }
 
     while ($record = PMA_DBI_fetch_row($result)) {
         $buffer         = '    <' . $table . '>' . $crlf;
@@ -145,10 +161,14 @@ function PMA_exportData($db, $table, $crlf, $error_url, $sql_query) {
         }
         $buffer         .= '    </' . $table . '>' . $crlf;
 
-        if (!PMA_exportOutputHandler($buffer)) return FALSE;
+        if (!PMA_exportOutputHandler($buffer)) {
+            return FALSE;
+        }
     }
     PMA_DBI_free_result($result);
 
     return TRUE;
 } // end of the 'PMA_getTableXML()' function
+}
+}
 ?>

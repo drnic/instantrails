@@ -1,5 +1,5 @@
 <?php
-/* $Id: ip_allow_deny.lib.php,v 2.3 2004/05/20 16:14:11 nijel Exp $ */
+/* $Id: ip_allow_deny.lib.php 9780 2006-12-07 17:57:02Z lem9 $ */
 // vim: expandtab sw=4 ts=4 sts=4:
 
 /**
@@ -17,138 +17,27 @@
  */
 function PMA_getIp()
 {
-    global $REMOTE_ADDR;
-    global $HTTP_X_FORWARDED_FOR, $HTTP_X_FORWARDED, $HTTP_FORWARDED_FOR, $HTTP_FORWARDED;
-    global $HTTP_VIA, $HTTP_X_COMING_FROM, $HTTP_COMING_FROM;
-
-    // Get some server/environment variables values
-    if (empty($REMOTE_ADDR)) {
-        if (!empty($_SERVER) && isset($_SERVER['REMOTE_ADDR'])) {
-            $REMOTE_ADDR = $_SERVER['REMOTE_ADDR'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['REMOTE_ADDR'])) {
-            $REMOTE_ADDR = $_ENV['REMOTE_ADDR'];
-        }
-        else if (@getenv('REMOTE_ADDR')) {
-            $REMOTE_ADDR = getenv('REMOTE_ADDR');
-        }
-    } // end if
-    if (empty($HTTP_X_FORWARDED_FOR)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $HTTP_X_FORWARDED_FOR = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_X_FORWARDED_FOR'])) {
-            $HTTP_X_FORWARDED_FOR = $_ENV['HTTP_X_FORWARDED_FOR'];
-        }
-        else if (@getenv('HTTP_X_FORWARDED_FOR')) {
-            $HTTP_X_FORWARDED_FOR = getenv('HTTP_X_FORWARDED_FOR');
-        }
-    } // end if
-    if (empty($HTTP_X_FORWARDED)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_X_FORWARDED'])) {
-            $HTTP_X_FORWARDED = $_SERVER['HTTP_X_FORWARDED'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_X_FORWARDED'])) {
-            $HTTP_X_FORWARDED = $_ENV['HTTP_X_FORWARDED'];
-        }
-        else if (@getenv('HTTP_X_FORWARDED')) {
-            $HTTP_X_FORWARDED = getenv('HTTP_X_FORWARDED');
-        }
-    } // end if
-    if (empty($HTTP_FORWARDED_FOR)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_FORWARDED_FOR'])) {
-            $HTTP_FORWARDED_FOR = $_SERVER['HTTP_FORWARDED_FOR'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_FORWARDED_FOR'])) {
-            $HTTP_FORWARDED_FOR = $_ENV['HTTP_FORWARDED_FOR'];
-        }
-        else if (@getenv('HTTP_FORWARDED_FOR')) {
-            $HTTP_FORWARDED_FOR = getenv('HTTP_FORWARDED_FOR');
-        }
-    } // end if
-    if (empty($HTTP_FORWARDED)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_FORWARDED'])) {
-            $HTTP_FORWARDED = $_SERVER['HTTP_FORWARDED'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_FORWARDED'])) {
-            $HTTP_FORWARDED = $_ENV['HTTP_FORWARDED'];
-        }
-        else if (@getenv('HTTP_FORWARDED')) {
-            $HTTP_FORWARDED = getenv('HTTP_FORWARDED');
-        }
-    } // end if
-    if (empty($HTTP_VIA)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_VIA'])) {
-            $HTTP_VIA = $_SERVER['HTTP_VIA'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_VIA'])) {
-            $HTTP_VIA = $_ENV['HTTP_VIA'];
-        }
-        else if (@getenv('HTTP_VIA')) {
-            $HTTP_VIA = getenv('HTTP_VIA');
-        }
-    } // end if
-    if (empty($HTTP_X_COMING_FROM)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_X_COMING_FROM'])) {
-            $HTTP_X_COMING_FROM = $_SERVER['HTTP_X_COMING_FROM'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_X_COMING_FROM'])) {
-            $HTTP_X_COMING_FROM = $_ENV['HTTP_X_COMING_FROM'];
-        }
-        else if (@getenv('HTTP_X_COMING_FROM')) {
-            $HTTP_X_COMING_FROM = getenv('HTTP_X_COMING_FROM');
-        }
-    } // end if
-    if (empty($HTTP_COMING_FROM)) {
-        if (!empty($_SERVER) && isset($_SERVER['HTTP_COMING_FROM'])) {
-            $HTTP_COMING_FROM = $_SERVER['HTTP_COMING_FROM'];
-        }
-        else if (!empty($_ENV) && isset($_ENV['HTTP_COMING_FROM'])) {
-            $HTTP_COMING_FROM = $_ENV['HTTP_COMING_FROM'];
-        }
-        else if (@getenv('HTTP_COMING_FROM')) {
-            $HTTP_COMING_FROM = getenv('HTTP_COMING_FROM');
-        }
-    } // end if
-
-    // Gets the default ip sent by the user
-    if (!empty($REMOTE_ADDR)) {
-        $direct_ip = $REMOTE_ADDR;
+    /* Get the address of user */
+    if (!empty($_SERVER['REMOTE_ADDR'])) {
+        $direct_ip = $_SERVER['REMOTE_ADDR'];
+    } else {
+        /* We do not know remote IP */
+        return false;
     }
 
-    // Gets the proxy ip sent by the user
-    $proxy_ip     = '';
-    if (!empty($HTTP_X_FORWARDED_FOR)) {
-        $proxy_ip = $HTTP_X_FORWARDED_FOR;
-    } else if (!empty($HTTP_X_FORWARDED)) {
-        $proxy_ip = $HTTP_X_FORWARDED;
-    } else if (!empty($HTTP_FORWARDED_FOR)) {
-        $proxy_ip = $HTTP_FORWARDED_FOR;
-    } else if (!empty($HTTP_FORWARDED)) {
-        $proxy_ip = $HTTP_FORWARDED;
-    } else if (!empty($HTTP_VIA)) {
-        $proxy_ip = $HTTP_VIA;
-    } else if (!empty($HTTP_X_COMING_FROM)) {
-        $proxy_ip = $HTTP_X_COMING_FROM;
-    } else if (!empty($HTTP_COMING_FROM)) {
-        $proxy_ip = $HTTP_COMING_FROM;
-    } // end if... else if...
-
-    // Returns the true IP if it has been found, else FALSE
-    if (empty($proxy_ip)) {
-        // True IP without proxy
-        return $direct_ip;
-    } else {
-        $is_ip = preg_match('|^([0-9]{1,3}\.){3,3}[0-9]{1,3}|', $proxy_ip, $regs);
+    /* Do we trust this IP as a proxy? If yes we will use it's header. */
+    if (isset($GLOBALS['cfg']['TrustedProxies'][$direct_ip])) {
+        $proxy_ip = PMA_getenv($GLOBALS['cfg']['TrustedProxies'][$direct_ip]);
+        // the $ checks that the header contains only one IP address
+        $is_ip = preg_match('|^([0-9]{1,3}\.){3,3}[0-9]{1,3}$|', $proxy_ip, $regs);
         if ($is_ip && (count($regs) > 0)) {
             // True IP behind a proxy
             return $regs[0];
-        } else {
-            // Can't define IP: there is a proxy but we don't have
-            // information about the true IP
-            return FALSE;
         }
-    } // end if... else...
+    }
+
+    /* Return true IP */
+    return $direct_ip;
 } // end of the 'PMA_getIp()' function
 
 
@@ -175,7 +64,7 @@ function PMA_getIp()
  */
 function PMA_ipMaskTest($testRange, $ipToTest)
 {
-   $result = TRUE;
+   $result = true;
 
    if (preg_match('|([0-9]+)\.([0-9]+)\.([0-9]+)\.([0-9]+)/([0-9]+)|', $testRange, $regs)) {
        // performs a mask match
@@ -191,9 +80,9 @@ function PMA_ipMaskTest($testRange, $ipToTest)
        } // end for
 
        if (($maskl & $rangel) == ($maskl & $ipl)) {
-           return TRUE;
+           return true;
        } else {
-           return FALSE;
+           return false;
        }
    } else {
        // range based
@@ -205,11 +94,11 @@ function PMA_ipMaskTest($testRange, $ipToTest)
             if (preg_match('|\[([0-9]+)\-([0-9]+)\]|', $maskocts[$i], $regs)) {
                 if (($ipocts[$i] > $regs[2])
                     || ($ipocts[$i] < $regs[1])) {
-                    $result = FALSE;
+                    $result = false;
                 } // end if
             } else {
                 if ($maskocts[$i] <> $ipocts[$i]) {
-                    $result = FALSE;
+                    $result = false;
                 } // end if
             } // end if/else
        } //end for
@@ -237,7 +126,7 @@ function PMA_allowDeny($type)
     // Grabs true IP of the user and returns if it can't be found
     $remote_ip = PMA_getIp();
     if (empty($remote_ip)) {
-        return FALSE;
+        return false;
     }
 
     // copy username
@@ -252,7 +141,14 @@ function PMA_allowDeny($type)
         'localhost' => '127.0.0.1/8'
     );
 
-    foreach ($rules AS $rule) {
+    // Provide some useful shortcuts if server gives us address:
+    if (PMA_getenv('SERVER_ADDR')) {
+        $shortcuts['localnetA'] = PMA_getenv('SERVER_ADDR') . '/8';
+        $shortcuts['localnetB'] = PMA_getenv('SERVER_ADDR') . '/16';
+        $shortcuts['localnetC'] = PMA_getenv('SERVER_ADDR') . '/24';
+    }
+
+    foreach ($rules as $rule) {
         // extract rule data
         $rule_data = explode(' ', $rule);
 
@@ -284,11 +180,11 @@ function PMA_allowDeny($type)
 
         // Do the actual matching now
         if (PMA_ipMaskTest($rule_data[2], $remote_ip)) {
-            return TRUE;
+            return true;
         }
     } // end while
 
-    return FALSE;
+    return false;
 } // end of the "PMA_AllowDeny()" function
 
 ?>
