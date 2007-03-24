@@ -1,0 +1,32 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw the line from (<em>x1</em>, <em>y1</em>) to (<em>x2</em>, <em>y2</em>).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>x1</tt>:"
+    body: x-coordinate of the starting point [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>y1</tt>:"
+    body: y-coordinate of the starting point [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>x2</tt>:"
+    body: x-coordinate of the ending point [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>y2</tt>:"
+    body: y-coordinate of the ending point [Integer]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawLines and #drawLinesRel."
+full_name: Fox::FXDC#drawLine
+is_singleton: false
+name: drawLine
+params: (x1, y1, x2, y2)
+visibility: public

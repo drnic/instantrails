@@ -1,0 +1,48 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This acts provides Nested Set functionality. Nested Set is similiar to Tree, but with the added feature that you can select the children and all of their descendents with a single query. A good use case for this is a threaded post system, where you want to display every reply to a comment without multiple selects.
+- !ruby/struct:SM::Flow::P 
+  body: A google search for &quot;Nested Set&quot; should point you in the direction to explain the database theory. I figured out a bunch of this from http://threebit.net/tutorials/nestedset/tutorial1.html
+- !ruby/struct:SM::Flow::P 
+  body: Instead of picturing a leaf node structure with children pointing back to their parent, the best way to imagine how this works is to think of the parent entity surrounding all of its children, and its parent surrounding it, etc. Assuming that they are lined up horizontally, we store the left and right boundries in the database.
+- !ruby/struct:SM::Flow::P 
+  body: "Imagine:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  root\n    |_ Child 1\n      |_ Child 1.1\n      |_ Child 1.2\n    |_ Child 2\n      |_ Child 2.1\n      |_ Child 2.2\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If my cirlces in circles description didn't make sense, check out this sweet ASCII art:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    <em>_</em>\n   |  Root                                                             |\n   |    <em>__</em>    <em>__</em>   |\n   |   |  Child 1                  |   |  Child 2                  |   |\n   |   |   <em>__</em>   <em>_</em>  |   |   <em>__</em>   <em>_</em>  |   |\n   |   |  |  C 1.1  |  |  C 1.2 |  |   |  |  C 2.1  |  |  C 2.2 |  |   |\n   1   2  3_________4  5________6  7   8  9_________10 11_______12 13  14\n   |   |<em>_</em>|   |<em>_</em>|   |\n   |<em>_</em>|\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The numbers represent the left and right boundries. The table then might look like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   ID | PARENT | LEFT | RIGHT | DATA\n    1 |      0 |    1 |    14 | root\n    2 |      1 |    2 |     7 | Child 1\n    3 |      2 |    3 |     4 | Child 1.1\n    4 |      2 |    5 |     6 | Child 1.2\n    5 |      1 |    8 |    13 | Child 2\n    6 |      5 |    9 |    10 | Child 2.1\n    7 |      5 |   11 |    12 | Child 2.2\n"
+- !ruby/struct:SM::Flow::P 
+  body: So, to get all children of an entry, you
+- !ruby/struct:SM::Flow::VERB 
+  body: "    SELECT * WHERE CHILD.LEFT IS BETWEEN PARENT.LEFT AND PARENT.RIGHT\n"
+- !ruby/struct:SM::Flow::P 
+  body: To get the count, it's (LEFT - RIGHT + 1)/2, etc.
+- !ruby/struct:SM::Flow::P 
+  body: To get the direct parent, it falls back to using the PARENT_ID field.
+- !ruby/struct:SM::Flow::P 
+  body: There are instance methods for all of these.
+- !ruby/struct:SM::Flow::P 
+  body: The structure is good if you need to group things together; the downside is that keeping data integrity is a pain, and both adding and removing an entry require a full table write.
+- !ruby/struct:SM::Flow::P 
+  body: This sets up a before_destroy trigger to prune the tree correctly if one of its elements gets deleted.
+constants: []
+
+full_name: ActiveRecord::Acts::NestedSet::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acts_as_nested_set
+name: ClassMethods
+superclass: 

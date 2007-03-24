@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: human_size
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats the bytes in <tt>size</tt> into a more understandable representation. Useful for reporting file sizes to users. This method returns nil if <tt>size</tt> cannot be converted into a number. You can change the default precision of 1 in <tt>precision</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: " number_to_human_size(123)           =&gt; 123 Bytes\n number_to_human_size(1234)          =&gt; 1.2 KB\n number_to_human_size(12345)         =&gt; 12.1 KB\n number_to_human_size(1234567)       =&gt; 1.2 MB\n number_to_human_size(1234567890)    =&gt; 1.1 GB\n number_to_human_size(1234567890123) =&gt; 1.1 TB\n number_to_human_size(1234567, 2)    =&gt; 1.18 MB\n"
+full_name: ActionView::Helpers::NumberHelper#number_to_human_size
+is_singleton: false
+name: number_to_human_size
+params: (size, precision=1)
+visibility: public

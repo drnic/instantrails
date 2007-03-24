@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a reference to one of the default application cursors (an FXCursor instance), where <em>which</em> is one of the default cursor identifiers listed above, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  rotateCursor = app.getDefaultCursor(DEF_ROTATE_CURSOR)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "See also #setDefaultCursor."
+full_name: Fox::FXApp#getDefaultCursor
+is_singleton: false
+name: getDefaultCursor
+params: (which)
+visibility: public

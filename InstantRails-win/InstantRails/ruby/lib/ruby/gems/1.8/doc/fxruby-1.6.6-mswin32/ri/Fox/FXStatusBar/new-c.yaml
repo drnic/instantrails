@@ -1,0 +1,54 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theStatusBar
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXStatusBar instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this status bar [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: status bar options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: initial x-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: initial y-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: initial width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: initial height [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+padLeft+:"
+    body: internal padding on the left side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+padRight+:"
+    body: internal padding on the right side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+padTop+:"
+    body: internal padding on the top side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+padBottom+:"
+    body: internal padding on the bottom side, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+hSpacing+:"
+    body: horizontal spacing between widgets, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+vSpacing+:"
+    body: vertical spacing between widgets, in pixels [Integer]
+  type: :NOTE
+full_name: Fox::FXStatusBar::new
+is_singleton: true
+name: new
+params: (p, opts=0, x=0, y=0, width=0, height=0, padLeft=3, padRight=3, padTop=2, padBottom=2, hSpacing=4, vSpacing=0) {|theStatusBar| ...}
+visibility: public

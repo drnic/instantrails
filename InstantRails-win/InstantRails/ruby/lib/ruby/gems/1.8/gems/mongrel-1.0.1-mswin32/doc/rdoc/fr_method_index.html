@@ -1,0 +1,177 @@
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+
+    Methods
+
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="rdoc-style.css" type="text/css" />
+  <base target="docwin" />
+</head>
+<body>
+<div id="index">
+  <h1 class="section-bar">Methods</h1>
+  <div id="index-entries">
+    <a href="classes/Mongrel/HeaderOut.html#M000067">[]= (Mongrel::HeaderOut)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000056">add_mime_type (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000122">args (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/MongrelDbg.html#M000009">begin_trace (MongrelDbg)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000052">can_serve (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000096">change_privilege (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000100">cloaker (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000099">cloaking_class (Mongrel::Configurator)</a><br />
+    <a href="classes/IO.html#M000004">close (IO)</a><br />
+    <a href="classes/Mongrel/Command/Registry.html#M000031">commands (Mongrel::Command::Registry)</a><br />
+    <a href="classes/MongrelDbg.html#M000007">configure (MongrelDbg)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000020">configure (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000061">configure_socket_options (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000104">daemonize (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000113">debug (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/StatusHandler.html#M000070">describe_listener (Mongrel::StatusHandler)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000086">done (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000085">done= (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000142">dump (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/StatisticsFilter.html#M000130">dump (Mongrel::StatisticsFilter)</a><br />
+    <a href="classes/MongrelDbg.html#M000010">end_trace (MongrelDbg)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000123">env_table (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000048">error? (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000136">escape (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000047">execute (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000030">failure (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000046">finish (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000084">finished (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000049">finished? (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000060">graceful_shutdown (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000118">header (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000022">help (Mongrel::Command::Base)</a><br />
+    <a href="classes/TCPServer.html#M000006">initialize (TCPServer)</a><br />
+    <a href="classes/TCPServer.html#M000005">initialize_with_backlog (TCPServer)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000088">inspect (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000112">join (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000102">listener (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000107">load_mime_map (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000105">load_plugins (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000106">load_yaml (Mongrel::Configurator)</a><br />
+    <a href="classes/Mutex.html#M000001">lock (Mutex)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000116">log (Mongrel::Configurator)</a><br />
+    <a href="classes/Kernel.html#M000013">log_open_files (Kernel)</a><br />
+    <a href="classes/Mongrel/Rails/RailsHandler.html#M000039">log_threads_waiting_for (Mongrel::Rails::RailsHandler)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000144">mean (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/StatisticsFilter.html#M000128">new (Mongrel::StatisticsFilter)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000117">new (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/StatusHandler.html#M000068">new (Mongrel::StatusHandler)</a><br />
+    <a href="classes/Mongrel/Error404Handler.html#M000126">new (Mongrel::Error404Handler)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000044">new (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000051">new (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000019">new (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/RedirectHandler.html#M000131">new (Mongrel::RedirectHandler)</a><br />
+    <a href="classes/Mongrel/HttpHandlerPlugin.html#M000016">new (Mongrel::HttpHandlerPlugin)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000133">new (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mongrel/Camping/CampingHandler.html#M000042">new (Mongrel::Camping::CampingHandler)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000057">new (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000095">new (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/DeflateFilter.html#M000093">new (Mongrel::DeflateFilter)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000139">new (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/Rails/RailsHandler.html#M000037">new (Mongrel::Rails::RailsHandler)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000089">new (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/HeaderOut.html#M000066">new (Mongrel::HeaderOut)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000075">new (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000050">nread (Mongrel::HttpParser)</a><br />
+    <a href="classes/IO.html#M000003">open (IO)</a><br />
+    <a href="classes/Kernel.html#M000012">open (Kernel)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000018">options (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000120">out (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000108">plugin (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Command/Registry.html#M000032">print_command_list (Mongrel::Command::Registry)</a><br />
+    <a href="classes/Mongrel/Rails/RailsHandler.html#M000038">process (Mongrel::Rails::RailsHandler)</a><br />
+    <a href="classes/RequestLog/Params.html#M000151">process (RequestLog::Params)</a><br />
+    <a href="classes/Mongrel/HttpHandler.html#M000074">process (Mongrel::HttpHandler)</a><br />
+    <a href="classes/Mongrel/StatusHandler.html#M000071">process (Mongrel::StatusHandler)</a><br />
+    <a href="classes/RequestLog/Objects.html#M000150">process (RequestLog::Objects)</a><br />
+    <a href="classes/RequestLog/Threads.html#M000149">process (RequestLog::Threads)</a><br />
+    <a href="classes/RequestLog/Files.html#M000148">process (RequestLog::Files)</a><br />
+    <a href="classes/RequestLog/Access.html#M000147">process (RequestLog::Access)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000055">process (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/DeflateFilter.html#M000094">process (Mongrel::DeflateFilter)</a><br />
+    <a href="classes/Mongrel/Camping/CampingHandler.html#M000043">process (Mongrel::Camping::CampingHandler)</a><br />
+    <a href="classes/Mongrel/RedirectHandler.html#M000132">process (Mongrel::RedirectHandler)</a><br />
+    <a href="classes/Mongrel/HttpHandlerPlugin.html#M000017">process (Mongrel::HttpHandlerPlugin)</a><br />
+    <a href="classes/Mongrel/Error404Handler.html#M000127">process (Mongrel::Error404Handler)</a><br />
+    <a href="classes/Mongrel/StatisticsFilter.html#M000129">process (Mongrel::StatisticsFilter)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000058">process_client (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000138">query_parse (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mongrel/Rails/RailsConfigurator.html#M000034">rails (Mongrel::Rails::RailsConfigurator)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000134">read_body (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000135">read_socket (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000059">reap_dead_workers (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000109">redirect (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000090">register (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000063">register (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Rails/RailsHandler.html#M000040">reload! (Mongrel::Rails::RailsHandler)</a><br />
+    <a href="classes/Mongrel/Rails/RailsConfigurator.html#M000035">reload! (Mongrel::Rails::RailsConfigurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000097">remove_pid_file (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/HttpHandler.html#M000072">request_begins (Mongrel::HttpHandler)</a><br />
+    <a href="classes/Mongrel/HttpHandlerPlugin.html#M000014">request_begins (Mongrel::HttpHandlerPlugin)</a><br />
+    <a href="classes/Mongrel/HttpHandler.html#M000073">request_progress (Mongrel::HttpHandler)</a><br />
+    <a href="classes/Mongrel/HttpHandlerPlugin.html#M000015">request_progress (Mongrel::HttpHandlerPlugin)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000077">reset (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000140">reset (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/HttpParser.html#M000045">reset (Mongrel::HttpParser)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000092">resolve (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000101">resolve_defaults (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Command/Registry.html#M000033">run (Mongrel::Command::Registry)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000062">run (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000110">run (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000023">run (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000114">run_config (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000141">sample (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000145">sd (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000080">send_body (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000119">send_cookies (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000053">send_dir_listing (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/DirHandler.html#M000054">send_file (Mongrel::DirHandler)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000081">send_file (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000079">send_header (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000078">send_status (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/Rails/RailsConfigurator.html#M000036">setup_rails_signals (Mongrel::Rails::RailsConfigurator)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000115">setup_signals (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000082">socket_error (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/Camping.html#M000041">start (Mongrel::Camping)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000076">start (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000121">status (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000124">stdinput (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/CGIWrapper.html#M000125">stdoutput (Mongrel::CGIWrapper)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000111">stop (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000065">stop (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/StatusHandler.html#M000069">table (Mongrel::StatusHandler)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000146">tick (Mongrel::Stats)</a><br />
+    <a href="classes/Mongrel/Stats.html#M000143">to_s (Mongrel::Stats)</a><br />
+    <a href="classes/MongrelDbg.html#M000008">trace (MongrelDbg)</a><br />
+    <a href="classes/MongrelDbg.html#M000011">tracing? (MongrelDbg)</a><br />
+    <a href="classes/Mongrel/HttpRequest.html#M000137">unescape (Mongrel::HttpRequest)</a><br />
+    <a href="classes/Mutex.html#M000002">unlock (Mutex)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000091">unregister (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/HttpServer.html#M000064">unregister (Mongrel::HttpServer)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000103">uri (Mongrel::Configurator)</a><br />
+    <a href="classes/Mongrel/URIClassifier.html#M000087">uris (Mongrel::URIClassifier)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000024">valid? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000027">valid_dir? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000025">valid_exists? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000026">valid_file? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000029">valid_group? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000028">valid_user? (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/Command/Base.html#M000021">validate (Mongrel::Command::Base)</a><br />
+    <a href="classes/Mongrel/HttpResponse.html#M000083">write (Mongrel::HttpResponse)</a><br />
+    <a href="classes/Mongrel/Configurator.html#M000098">write_pid_file (Mongrel::Configurator)</a><br />
+  </div>
+</div>
+</body>
+</html>

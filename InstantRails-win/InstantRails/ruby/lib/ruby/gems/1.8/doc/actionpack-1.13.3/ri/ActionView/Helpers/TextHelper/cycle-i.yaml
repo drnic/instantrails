@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Creates a Cycle object whose <em>to_s</em> method cycles through elements of an array every time it is called. This can be used for example, to alternate classes for table rows:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% @items.each do |item| %&gt;\n    &lt;tr class=&quot;&lt;%= cycle(&quot;even&quot;, &quot;odd&quot;) -%&gt;&quot;&gt;\n      &lt;td&gt;item&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can use named cycles to allow nesting in loops. Passing a Hash as the last parameter with a <tt>:name</tt> key will create a named cycle. You can manually reset a cycle by calling reset_cycle and passing the name of the cycle.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% @items.each do |item| %&gt;\n    &lt;tr class=&quot;&lt;%= cycle(&quot;even&quot;, &quot;odd&quot;, :name =&gt; &quot;row_class&quot;)\n      &lt;td&gt;\n        &lt;% item.values.each do |value| %&gt;\n          &lt;span style=&quot;color:&lt;%= cycle(&quot;red&quot;, &quot;green&quot;, &quot;blue&quot;, :name =&gt; &quot;colors&quot;) -%&gt;&quot;&gt;\n            value\n          &lt;/span&gt;\n        &lt;% end %&gt;\n        &lt;% reset_cycle(&quot;colors&quot;) %&gt;\n      &lt;/td&gt;\n   &lt;/tr&gt;\n &lt;% end %&gt;\n"
+full_name: ActionView::Helpers::TextHelper#cycle
+is_singleton: false
+name: cycle
+params: (first_value, *values)
+visibility: public

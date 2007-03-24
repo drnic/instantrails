@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search items by associated user data, beginning from item <em>start</em>. If the start item is <tt>nil</tt> the search will start at the first, top-most item in the list. Flags may be <tt>SEARCH_FORWARD</tt> or <tt>SEARCH_BACKWARD</tt> to control the search direction; this can be combined with <tt>SEARCH_NOWRAP</tt> or <tt>SEARCH_WRAP</tt> to control whether the search wraps at the start or end of the list. Returns <tt>nil</tt> if no matching item is found.
+full_name: Fox::FXFoldingList#findItemByData
+is_singleton: false
+name: findItemByData
+params: (ptr, start=nil, flags=SEARCH_FORWARD|SEARCH_WRAP)
+visibility: public

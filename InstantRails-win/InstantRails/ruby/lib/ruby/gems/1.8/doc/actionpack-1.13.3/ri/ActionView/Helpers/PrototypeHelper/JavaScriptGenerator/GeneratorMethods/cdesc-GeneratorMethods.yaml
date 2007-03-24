@@ -1,0 +1,74 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: JavaScriptGenerator generates blocks of JavaScript code that allow you to change the content and presentation of multiple DOM elements. Use this in your Ajax response bodies, either in a &lt;script&gt; tag or as plain JavaScript sent with a Content-type of &quot;text/javascript&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: "Create new instances with PrototypeHelper#update_page or with ActionController::Base#render, then call #insert_html, #replace_html, #remove, #show, #hide, #visual_effect, or any other of the built-in methods on the yielded generator in any order you like to modify the content and appearance of the current page."
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  update_page do |page|\n    page.insert_html :bottom, 'list', &quot;&lt;li&gt;#{@item.name}&lt;/li&gt;&quot;\n    page.visual_effect :highlight, 'list'\n    page.hide 'status-indicator', 'cancel-link'\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "generates the following JavaScript:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  new Insertion.Bottom(&quot;list&quot;, &quot;&lt;li&gt;Some item&lt;/li&gt;&quot;);\n  new Effect.Highlight(&quot;list&quot;);\n  [&quot;status-indicator&quot;, &quot;cancel-link&quot;].each(Element.hide);\n"
+- !ruby/struct:SM::Flow::P 
+  body: Helper methods can be used in conjunction with JavaScriptGenerator. When a helper method is called inside an update block on the <tt>page</tt> object, that method will also have access to a <tt>page</tt> object.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module ApplicationHelper\n    def update_time\n      page.replace_html 'time', Time.now.to_s(:db)\n      page.visual_effect :highlight, 'time'\n    end\n  end\n\n  # Controller action\n  def poll\n    render(:update) { |page| page.update_time }\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can also use PrototypeHelper#update_page_tag instead of PrototypeHelper#update_page to wrap the generated JavaScript in a &lt;script&gt; tag.
+constants: []
+
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: alert
+- !ruby/object:RI::MethodSummary 
+  name: assign
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: delay
+- !ruby/object:RI::MethodSummary 
+  name: draggable
+- !ruby/object:RI::MethodSummary 
+  name: drop_receiving
+- !ruby/object:RI::MethodSummary 
+  name: hide
+- !ruby/object:RI::MethodSummary 
+  name: insert_html
+- !ruby/object:RI::MethodSummary 
+  name: literal
+- !ruby/object:RI::MethodSummary 
+  name: redirect_to
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: replace
+- !ruby/object:RI::MethodSummary 
+  name: replace_html
+- !ruby/object:RI::MethodSummary 
+  name: select
+- !ruby/object:RI::MethodSummary 
+  name: show
+- !ruby/object:RI::MethodSummary 
+  name: sortable
+- !ruby/object:RI::MethodSummary 
+  name: toggle
+- !ruby/object:RI::MethodSummary 
+  name: visual_effect
+name: GeneratorMethods
+superclass: 

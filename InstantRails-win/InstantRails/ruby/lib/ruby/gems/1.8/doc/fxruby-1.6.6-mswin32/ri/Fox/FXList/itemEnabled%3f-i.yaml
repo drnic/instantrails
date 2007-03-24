@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Return <tt>true</tt> if item is enabled; this is equivalent to:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  getItem(index).enabled?\n"
+- !ruby/struct:SM::Flow::P 
+  body: Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXList#itemEnabled?
+is_singleton: false
+name: itemEnabled?
+params: (index)
+visibility: public

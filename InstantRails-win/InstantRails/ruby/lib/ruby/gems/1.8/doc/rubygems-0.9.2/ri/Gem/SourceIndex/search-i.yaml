@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search for a gem by short name pattern and optional version
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "gem_name:"
+    body: "[String] a partial for the (short) name of the gem, or"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: Regex
+      body: a pattern to match against the short name
+    type: :LABELED
+  - !ruby/struct:SM::Flow::LI 
+    label: "version_requirement:"
+    body: "[String | default=Version::Requirement.new(&quot;&gt;= 0&quot;)] version to find"
+  - !ruby/struct:SM::Flow::LI 
+    label: "return:"
+    body: "[Array] list of Gem::Specification objects in sorted (version) order. Empty if not found."
+  type: :NOTE
+full_name: Gem::SourceIndex#search
+is_singleton: false
+name: search
+params: (gem_pattern, version_requirement=Version::Requirement.new(">= 0"))
+visibility: public

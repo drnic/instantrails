@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dynamically create a nested hash structure used to cache calls to <tt>method_name</tt> The cache method is named +#{method_name}_cache+ unless :as =&gt; :alternate_name is given.
+- !ruby/struct:SM::Flow::P 
+  body: "The hash structure is created using nested Hash.new. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def slow_method(a, b) a ** b end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "can be cached using hash_cache :slow_method, which will define the method slow_method_cache. We can then find the result of a ** b using:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  slow_method_cache[a][b]\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The hash structure returned by slow_method_cache would look like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Hash.new do |as, a|\n    as[a] = Hash.new do |bs, b|\n      bs[b] = slow_method(a, b)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The generated code is actually compressed onto a single line to maintain sensible backtrace signatures.
+full_name: ActiveSupport::CachingTools::HashCaching#hash_cache
+is_singleton: false
+name: hash_cache
+params: (method_name, options = {})
+visibility: public

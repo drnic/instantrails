@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Log4r</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Log4r</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/src/log4r/base_rb.html">
+                src/log4r/base.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/config_rb.html">
+                src/log4r/config.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/configurator_rb.html">
+                src/log4r/configurator.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/formatter/formatter_rb.html">
+                src/log4r/formatter/formatter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/formatter/patternformatter_rb.html">
+                src/log4r/formatter/patternformatter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/lib/drbloader_rb.html">
+                src/log4r/lib/drbloader.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/lib/xmlloader_rb.html">
+                src/log4r/lib/xmlloader.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/logevent_rb.html">
+                src/log4r/logevent.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/logger_rb.html">
+                src/log4r/logger.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/loggerfactory_rb.html">
+                src/log4r/loggerfactory.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/logserver_rb.html">
+                src/log4r/logserver.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/consoleoutputters_rb.html">
+                src/log4r/outputter/consoleoutputters.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/datefileoutputter_rb.html">
+                src/log4r/outputter/datefileoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/emailoutputter_rb.html">
+                src/log4r/outputter/emailoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/fileoutputter_rb.html">
+                src/log4r/outputter/fileoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/iooutputter_rb.html">
+                src/log4r/outputter/iooutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/outputter_rb.html">
+                src/log4r/outputter/outputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/outputterfactory_rb.html">
+                src/log4r/outputter/outputterfactory.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/remoteoutputter_rb.html">
+                src/log4r/outputter/remoteoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/rollingfileoutputter_rb.html">
+                src/log4r/outputter/rollingfileoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/staticoutputter_rb.html">
+                src/log4r/outputter/staticoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/outputter/syslogoutputter_rb.html">
+                src/log4r/outputter/syslogoutputter.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/repository_rb.html">
+                src/log4r/repository.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/staticlogger_rb.html">
+                src/log4r/staticlogger.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r/yamlconfigurator_rb.html">
+                src/log4r/yamlconfigurator.rb
+                </a>
+        <br />
+                <a href="../files/src/log4r_rb.html">
+                src/log4r.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+:nodoc:
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Log4r/BasicFormatter.html" class="link">Log4r::BasicFormatter</a><br />
+Class <a href="Log4r/ConfigError.html" class="link">Log4r::ConfigError</a><br />
+Class <a href="Log4r/Configurator.html" class="link">Log4r::Configurator</a><br />
+Class <a href="Log4r/DateFileOutputter.html" class="link">Log4r::DateFileOutputter</a><br />
+Class <a href="Log4r/DefaultFormatter.html" class="link">Log4r::DefaultFormatter</a><br />
+Class <a href="Log4r/EmailOutputter.html" class="link">Log4r::EmailOutputter</a><br />
+Class <a href="Log4r/FileOutputter.html" class="link">Log4r::FileOutputter</a><br />
+Class <a href="Log4r/Formatter.html" class="link">Log4r::Formatter</a><br />
+Class <a href="Log4r/IOOutputter.html" class="link">Log4r::IOOutputter</a><br />
+Class <a href="Log4r/Log4rTools.html" class="link">Log4r::Log4rTools</a><br />
+Class <a href="Log4r/LogEvent.html" class="link">Log4r::LogEvent</a><br />
+Class <a href="Log4r/LogServer.html" class="link">Log4r::LogServer</a><br />
+Class <a href="Log4r/Logger.html" class="link">Log4r::Logger</a><br />
+Class <a href="Log4r/ObjectFormatter.html" class="link">Log4r::ObjectFormatter</a><br />
+Class <a href="Log4r/Outputter.html" class="link">Log4r::Outputter</a><br />
+Class <a href="Log4r/PatternFormatter.html" class="link">Log4r::PatternFormatter</a><br />
+Class <a href="Log4r/RemoteOutputter.html" class="link">Log4r::RemoteOutputter</a><br />
+Class <a href="Log4r/RollingFileOutputter.html" class="link">Log4r::RollingFileOutputter</a><br />
+Class <a href="Log4r/RootLogger.html" class="link">Log4r::RootLogger</a><br />
+Class <a href="Log4r/SimpleFormatter.html" class="link">Log4r::SimpleFormatter</a><br />
+Class <a href="Log4r/StderrOutputter.html" class="link">Log4r::StderrOutputter</a><br />
+Class <a href="Log4r/StdoutOutputter.html" class="link">Log4r::StdoutOutputter</a><br />
+Class <a href="Log4r/SyslogOutputter.html" class="link">Log4r::SyslogOutputter</a><br />
+Class <a href="Log4r/YamlConfigurator.html" class="link">Log4r::YamlConfigurator</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LNAMES</td>
+          <td>=</td>
+          <td class="context-item-value">['ALL']</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HAVE_ROMP</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HAVE_ROMP</td>
+          <td>=</td>
+          <td class="context-item-value">false</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HAVE_REXML</td>
+          <td>=</td>
+          <td class="context-item-value">true</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HAVE_REXML</td>
+          <td>=</td>
+          <td class="context-item-value">false</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Log4rVersion</td>
+          <td>=</td>
+          <td class="context-item-value">[1, 0, 1].join '.'</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

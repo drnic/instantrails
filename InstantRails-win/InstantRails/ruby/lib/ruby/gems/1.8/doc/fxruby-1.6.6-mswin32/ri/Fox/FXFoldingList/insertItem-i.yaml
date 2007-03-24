@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Insert a (possibly subclassed) <em>item</em> under <em>father</em>, before <em>other</em>. Returns a reference to the newly added item (an FXFoldingItem instance). If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the list's message target after the item is added.
+full_name: Fox::FXFoldingList#insertItem
+is_singleton: false
+name: insertItem
+params: (other, father, item, notify=false)
+visibility: public

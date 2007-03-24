@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Chars uses this handler when $KCODE is not set to 'UTF8'. Because this handler doesn't define any methods all call will be forwarded to String.
+constants: []
+
+full_name: ActiveSupport::Multibyte::Handlers::PassthruHandler
+includes: []
+
+instance_methods: []
+
+name: PassthruHandler
+superclass: Object

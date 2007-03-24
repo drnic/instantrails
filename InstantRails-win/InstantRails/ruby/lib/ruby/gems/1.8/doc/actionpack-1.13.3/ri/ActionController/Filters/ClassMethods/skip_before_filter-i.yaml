@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Removes the specified filters from the <tt>before</tt> filter chain. Note that this only works for skipping method-reference filters, not procs. This is especially useful for managing the chain in inheritance hierarchies where only one out of many sub-controllers need a different hierarchy.
+- !ruby/struct:SM::Flow::P 
+  body: You can control the actions to skip the filter for with the <tt>:only</tt> and <tt>:except</tt> options, just like when you apply the filters.
+full_name: ActionController::Filters::ClassMethods#skip_before_filter
+is_singleton: false
+name: skip_before_filter
+params: (*filters)
+visibility: public

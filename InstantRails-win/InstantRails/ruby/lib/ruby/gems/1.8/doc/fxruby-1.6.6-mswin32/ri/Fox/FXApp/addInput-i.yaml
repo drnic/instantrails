@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a file descriptor <em>fileDesc</em> to be watched for activity as determined by <em>mode</em>, where <em>mode</em> is a bitwise OR (<tt>INPUT_READ</tt>, <tt>INPUT_WRITE</tt>, <tt>INPUT_EXCEPT</tt>). A message of type <tt>SEL_IO_READ</tt>, <tt>SEL_IO_WRITE</tt>, or <tt>SEL_IO_EXCEPT</tt> will be sent to the target when the specified activity is detected on the file descriptor.
+- !ruby/struct:SM::Flow::P 
+  body: "There are several forms for #addInput; the original form (from FOX) takes four arguments:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  anApp.addInput(fileDesc, mode, anObject, aMessageId)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "A second form takes three arguments:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  anApp.addInput(fileDesc, mode, aMethod)\n"
+- !ruby/struct:SM::Flow::P 
+  body: For this form, <em>aMethod</em> should have the standard argument list for a FOX message handler. That is, the method should take three arguments, for the message <em>sender</em> (an FXObject), the message <em>selector</em>, and the message <em>data</em> (if any).
+- !ruby/struct:SM::Flow::P 
+  body: "The last form of #addInput takes a block:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  anApp.addInput(fileDesc, mode) { |sender, sel, data|\n    ... handle the I/O event ...\n  }\n"
+full_name: Fox::FXApp#addInput
+is_singleton: false
+name: addInput
+params: (fd, mode, *args, &block)
+visibility: public

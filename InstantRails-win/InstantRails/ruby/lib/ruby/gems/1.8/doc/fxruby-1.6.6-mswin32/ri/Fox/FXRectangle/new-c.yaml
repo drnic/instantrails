@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXRectangle instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+xx+:"
+    body: upper left corner's initial x-coordinate [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+yy+:"
+    body: upper left corner's initial y-coordinate [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ww+:"
+    body: initial width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+hh+:"
+    body: initial height [Integer]
+  type: :NOTE
+full_name: Fox::FXRectangle::new
+is_singleton: true
+name: new
+params: (xx, yy, ww, hh)
+visibility: public

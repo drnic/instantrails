@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open memory stream for reading or writing. Returns <tt>true</tt> if successful, <tt>false</tt> otherwise.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+save_or_load+:"
+    body: access mode, either <tt>FXStreamSave</tt> or <tt>FXStreamLoad</tt> [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+data+:"
+    body: memory buffer to be used for the stream, or <tt>nil</tt> if the stream object should allocate its own buffer [String]
+  type: :NOTE
+full_name: Fox::FXMemoryStream#open
+is_singleton: false
+name: open
+params: (save_or_load, data)
+visibility: public

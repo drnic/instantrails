@@ -1,0 +1,139 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACL_REVISION
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACL_REVISION2
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACL_REVISION3
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACL_REVISION4
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALLOW_ACE_LENGTH
+  value: "62"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DACL_SECURITY_INFORMATION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SE_DACL_PRESENT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECURITY_DESCRIPTOR_MIN_LENGTH
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECURITY_DESCRIPTOR_REVISION
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_RIGHTS_MASK
+  value: "4026597376"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_RIGHTS_CHK
+  value: "4026531840"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REST_RIGHTS_MASK
+  value: "2097151"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AddAce
+  value: Win32API.new('advapi32', 'AddAce', 'PLLLL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CopySid
+  value: Win32API.new('advapi32', 'CopySid', 'LLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetAce
+  value: Win32API.new('advapi32', 'GetAce', 'LLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetFileSecurity
+  value: Win32API.new('advapi32', 'GetFileSecurity', 'PLPLP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetLengthSid
+  value: Win32API.new('advapi32', 'GetLengthSid', 'P', 'L')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetSecurityDescriptorControl
+  value: Win32API.new('advapi32', 'GetSecurityDescriptorControl', 'PPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetSecurityDescriptorDacl
+  value: Win32API.new('advapi32', 'GetSecurityDescriptorDacl', 'PPPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: InitializeAcl
+  value: Win32API.new('advapi32', 'InitializeAcl', 'PLL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: InitializeSecurityDescriptor
+  value: Win32API.new('advapi32', 'InitializeSecurityDescriptor', 'PL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LookupAccountName
+  value: Win32API.new('advapi32', 'LookupAccountName', 'PPPPPPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LookupAccountSid
+  value: Win32API.new('advapi32', 'LookupAccountSid', 'PLPPPPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetFileSecurity
+  value: Win32API.new('advapi32', 'SetFileSecurity', 'PPP', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetSecurityDescriptorDacl
+  value: Win32API.new('advapi32', 'SetSecurityDescriptorDacl', 'PIPI', 'I')
+full_name: Windows::Security
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: AddAce
+- !ruby/object:RI::MethodSummary 
+  name: CopySid
+- !ruby/object:RI::MethodSummary 
+  name: GetAce
+- !ruby/object:RI::MethodSummary 
+  name: GetFileSecurity
+- !ruby/object:RI::MethodSummary 
+  name: GetLengthSid
+- !ruby/object:RI::MethodSummary 
+  name: GetSecurityDescriptorControl
+- !ruby/object:RI::MethodSummary 
+  name: GetSecurityDescriptorDacl
+- !ruby/object:RI::MethodSummary 
+  name: InitializeAcl
+- !ruby/object:RI::MethodSummary 
+  name: InitializeSecurityDescriptor
+- !ruby/object:RI::MethodSummary 
+  name: LookupAccountName
+- !ruby/object:RI::MethodSummary 
+  name: LookupAccountSid
+- !ruby/object:RI::MethodSummary 
+  name: SetFileSecurity
+- !ruby/object:RI::MethodSummary 
+  name: SetSecurityDescriptorDacl
+name: Security
+superclass: 

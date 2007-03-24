@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: after_filter
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The passed <tt>filters</tt> will be appended to the array of filters that run <em>after</em> actions on this controller are performed.
+full_name: ActionController::Filters::ClassMethods#append_after_filter
+is_singleton: false
+name: append_after_filter
+params: (*filters, &block)
+visibility: public

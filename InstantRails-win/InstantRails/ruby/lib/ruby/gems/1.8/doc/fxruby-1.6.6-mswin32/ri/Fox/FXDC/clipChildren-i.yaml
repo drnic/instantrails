@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "When you call #clipChildren with the argument <tt>true</tt>, anything that you draw into this window will be clipped by its child windows. In other words, the child windows &quot;obscure&quot; the parent window. This is the default behavior. If you call #clipChildren with <tt>false</tt>, anything that you draw into this window will be visible in its child windows (i.e. the drawing will <b>not</b> be clipped)."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+yes+:"
+    body: if <tt>true</tt>, drawing is clipped against child windows [Boolean]
+  type: :NOTE
+full_name: Fox::FXDC#clipChildren
+is_singleton: false
+name: clipChildren
+params: (yes)
+visibility: public

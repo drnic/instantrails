@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: thePCXIcon
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXPCXIcon instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pix+:"
+    body: a memory buffer formatted in PCX file format [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+clr+:"
+    body: transparency color [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height [Integer]
+  type: :NOTE
+full_name: Fox::FXPCXIcon::new
+is_singleton: true
+name: new
+params: (a, pix=nil, clr=0, opts=0, width=1, height=1) {|thePCXIcon| ...}
+visibility: public

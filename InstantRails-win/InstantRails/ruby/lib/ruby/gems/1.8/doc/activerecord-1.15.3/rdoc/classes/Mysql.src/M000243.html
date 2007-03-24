@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>handle_auth_fallback (Mysql)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/vendor/mysql.rb, line 160</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">handle_auth_fallback</span>(<span class="ruby-identifier">pkt</span>, <span class="ruby-identifier">passwd</span>)
+    <span class="ruby-comment cmt"># A packet like this means that we need to send an old-format password</span>
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pkt</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">pkt</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">254</span> <span class="ruby-keyword kw">and</span>
+       <span class="ruby-ivar">@server_capabilities</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">CLIENT_SECURE_CONNECTION</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">data</span> = <span class="ruby-identifier">scramble</span>(<span class="ruby-identifier">passwd</span>, <span class="ruby-ivar">@scramble_buff</span>, <span class="ruby-ivar">@protocol_version</span> <span class="ruby-operator">==</span> <span class="ruby-value">9</span>)
+      <span class="ruby-identifier">write</span> <span class="ruby-identifier">data</span> <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;\0&quot;</span>
+      <span class="ruby-identifier">read</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Select <em>len</em> characters starting at position <em>pos</em>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_DESELECTED</tt> message is sent to the text widget's message target before any previously selected text is deselected, then a <tt>SEL_SELECTED</tt> message is sent after the new text is selected.
+full_name: Fox::FXText#setSelection
+is_singleton: false
+name: setSelection
+params: (pos, len, notify=false)
+visibility: public

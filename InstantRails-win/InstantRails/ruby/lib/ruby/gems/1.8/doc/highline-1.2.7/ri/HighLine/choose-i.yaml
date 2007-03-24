@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method is HighLine's menu handler. For simple usage, you can just pass all the menu items you wish to display. At that point, choose() will build and display a menu, walk the user through selection, and return their choice amoung the provided items. You might use this in a case statement for quick and dirty menus.
+- !ruby/struct:SM::Flow::P 
+  body: However, choose() is capable of much more. If provided, a block will be passed a HighLine::Menu object to configure. Using this method, you can customize all the details of menu handling from index display, to building a complete shell-like menuing system. See HighLine::Menu for all the methods it responds to.
+- !ruby/struct:SM::Flow::P 
+  body: Raises EOFError if input is exhausted.
+full_name: HighLine#choose
+is_singleton: false
+name: choose
+params: ( *items, &details )
+visibility: public

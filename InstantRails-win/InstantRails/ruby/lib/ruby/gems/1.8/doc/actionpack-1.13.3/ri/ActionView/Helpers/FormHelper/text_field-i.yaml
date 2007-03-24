@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an input tag of the &quot;text&quot; type tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples (call, result):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_field(&quot;post&quot;, &quot;title&quot;, &quot;size&quot; =&gt; 20)\n    &lt;input type=&quot;text&quot; id=&quot;post_title&quot; name=&quot;post[title]&quot; size=&quot;20&quot; value=&quot;#{@post.title}&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#text_field
+is_singleton: false
+name: text_field
+params: (object_name, method, options = {})
+visibility: public

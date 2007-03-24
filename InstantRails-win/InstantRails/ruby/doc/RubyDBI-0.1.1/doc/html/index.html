@@ -1,0 +1,278 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Homepage of Ruby's DBI</title>
+<link href="rubyStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label-0" id="label-0">Ruby/DBI - a database independent interface for accessing databases - similar to Perl's DBI</a></h1><!-- RDLabel: "Ruby/DBI - a database independent interface for accessing databases - similar to Perl's DBI" -->
+<p>$Id: index.rd,v 1.34 2004/04/22 19:59:46 mneumann Exp $</p>
+<h2><a name="label-1" id="label-1">License</a></h2><!-- RDLabel: "License" -->
+<p>Copyright (c) 2001, 2002, 2003, 2004 Michael Neumann &lt;mneumann@ntecs.de&gt; and others (see the beginning
+of each file for copyright holder information). </p>
+<p>All rights reserved.</p>
+<p>Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions 
+are met:</p>
+<ol>
+<li>Redistributions of source code must retain the above copyright 
+    notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright 
+    notice, this list of conditions and the following disclaimer in the 
+    documentation and/or other materials provided with the distribution.</li>
+<li>The name of the author may not be used to endorse or promote products
+    derived from this software without specific prior written permission.</li>
+</ol>
+<pre>THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL
+THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</pre>
+<p>This is the BSD license which is less restrictive than GNU's GPL (General Public
+License).</p>
+<h2><a name="label-2" id="label-2">Contributors</a></h2><!-- RDLabel: "Contributors" -->
+<dl>
+<dt><a name="label-3" id="label-3">Michael Neumann</a></dt><!-- RDLabel: "Michael Neumann" -->
+<dd>
+Author of Ruby/DBI; wrote the DBI and most of the DBDs (except DBD::Pg).
+</dd>
+<dt><a name="label-4" id="label-4">Rainer Perl</a></dt><!-- RDLabel: "Rainer Perl" -->
+<dd>
+Author of Ruby/DBI 0.0.4 from which many good ideas were taken into the new completely rewritten version 0.0.5. 
+</dd>
+<dt><a name="label-5" id="label-5">Jim Weirich</a></dt><!-- RDLabel: "Jim Weirich" -->
+<dd>
+Author of the PostgreSQL driver (DBD::Pg).
+Wrote many additional code (e.g. sql.rb, testcases). 
+Gave many helpful hints and comments.
+</dd>
+<dt><a name="label-6" id="label-6">Eli Green</a></dt><!-- RDLabel: "Eli Green" -->
+<dd>
+Implemented DatabaseHandle#columns for Mysql and Pg.
+</dd>
+<dt><a name="label-7" id="label-7">Masatoshi SEKI</a></dt><!-- RDLabel: "Masatoshi SEKI" -->
+<dd>
+For his version of module BasicQuote in sql.rb
+</dd>
+<dt><a name="label-8" id="label-8">John Gorman</a></dt><!-- RDLabel: "John Gorman" -->
+<dd>
+For his case insensitive load_driver patch and parameter parser.
+</dd>
+<dt><a name="label-9" id="label-9">David Muse</a></dt><!-- RDLabel: "David Muse" -->
+<dd>
+For testing the SQLRelay DBD and for his initial DBD. 
+</dd>
+<dt><a name="label-10" id="label-10">Jim Menard</a></dt><!-- RDLabel: "Jim Menard" -->
+<dd>
+Extending Oracle DBD for method columns.
+</dd>
+<dt><a name="label-11" id="label-11">Joseph McDonald</a></dt><!-- RDLabel: "Joseph McDonald" -->
+<dd>
+Fixed bug in DBD for PostgreSQL (default values in method columns).
+</dd>
+<dt><a name="label-12" id="label-12">Norbert Gawor</a></dt><!-- RDLabel: "Norbert Gawor" -->
+<dd>
+Fixed bug in DBD ODBC (method columns) and proxyserver.
+</dd>
+<dt><a name="label-13" id="label-13">James F. Hranicky</a></dt><!-- RDLabel: "James F. Hranicky" -->
+<dd>
+Patch for DBD Pg (cache PGResult#result in Tuples) which increases
+performance by a factor around 100
+</dd>
+<dt><a name="label-14" id="label-14">Stephen Davies</a></dt><!-- RDLabel: "Stephen Davies" -->
+<dd>
+Added method Statement#fetch_scroll for PostgreSQL DBD.
+</dd>
+<dt><a name="label-15" id="label-15">Dave Thomas</a></dt><!-- RDLabel: "Dave Thomas" -->
+<dd>
+Several enhancements.
+</dd>
+<dt><a name="label-16" id="label-16">Daniel J. Berger</a></dt><!-- RDLabel: "Daniel J. Berger" -->
+<dd>
+contrib/dbrc
+</dd>
+<dt><a name="label-17" id="label-17">Brad Hilton</a></dt><!-- RDLabel: "Brad Hilton" -->
+<dd>
+Column coercing patch for DBD Mysql.
+</dd>
+<dt><a name="label-18" id="label-18">Sean Chittenden</a></dt><!-- RDLabel: "Sean Chittenden" -->
+<dd>
+Submitted several patches and helped with lots of comments; Co-owner of the project.
+</dd>
+<dt><a name="label-19" id="label-19">MoonWolf</a></dt><!-- RDLabel: "MoonWolf" -->
+<dd>
+quote/escape_bytea patch for DBD Pg.
+DBD::SQLite patch and Database#columns implementation.
+Further patches.
+</dd>
+<dt><a name="label-20" id="label-20">Paul DuBois</a></dt><!-- RDLabel: "Paul DuBois" -->
+<dd>
+Fixed typos and formatting. 
+Maintains DBD Mysql.
+</dd>
+<dt><a name="label-21" id="label-21">Tim Bates</a></dt><!-- RDLabel: "Tim Bates" -->
+<dd>
+Bug fixes for Mysql and DBI
+</dd>
+<dt><a name="label-22" id="label-22">Brian Candler</a></dt><!-- RDLabel: "Brian Candler" -->
+<dd>
+Zero-padding date/time/timestamps fix.
+</dd>
+<dt><a name="label-23" id="label-23">Florian G. Pflug</a></dt><!-- RDLabel: "Florian G. Pflug" -->
+<dd>
+Discussion and helpful comments/benchmarks about DBD::Pg 
+async_exec vs. exec.
+</dd>
+<dt><a name="label-24" id="label-24">Oliver M. Bolzer</a></dt><!-- RDLabel: "Oliver M. Bolzer" -->
+<dd>
+Patches to support Postgres arrays for DBD::Pg
+</dd>
+<dt><a name="label-25" id="label-25">Stephen R. Veit</a></dt><!-- RDLabel: "Stephen R. Veit" -->
+<dd>
+ruby-db2 and DBD::DB2 enhancements.
+</dd>
+<dt><a name="label-26" id="label-26">Dennis Vshivkov</a></dt><!-- RDLabel: "Dennis Vshivkov" -->
+<dd>
+Postgres DBD patches
+</dd>
+<dt><a name="label-27" id="label-27">Cail Borrell from frontbase.com</a></dt><!-- RDLabel: "Cail Borrell from frontbase.com" -->
+<dd>
+For the Frontbase DBD and C interface.
+</dd>
+</dl>
+<h2><a name="label-28" id="label-28">Database Drivers (DBDs)</a></h2><!-- RDLabel: "Database Drivers (DBDs)" -->
+<ul>
+<li><p>ADO (ActiveX Data Objects) <em>(dbd_ado)</em></p>
+<p>depend on WinOLE from RAA.</p></li>
+<li><p>DB2 <em>(dbd_db2)</em></p>
+<p>depend on Michael Neumann's Ruby/DB2 Module, available from RAA.</p></li>
+<li><p>Frontbase <em>(dbd_frontbase)</em></p>
+<p>depend on Cail Borrell's ruby-frontbase, available from RAA.</p></li>
+<li><p>InterBase <em>(dbd_interbase)</em></p>
+<p>depend on the InterBase module available from RAA.</p></li>
+<li><p>mSQL <em>(dbd_msql)</em></p>
+<p>depend on the "mSQL Library" by DATE Ken available from the RAA.</p></li>
+<li><p>MySQL <em>(dbd_mysql)</em></p>
+<p>depend on the "MySQL Ruby Module" by TOMITA Masahiro &lt;tommy@tmtm.org&gt; <a href="http://www.tmtm.org/mysql/">&lt;URL:http://www.tmtm.org/mysql/&gt;</a> or
+available from the RAA.</p></li>
+<li><p>ODBC <em>(dbd_odbc)</em></p>
+<p>depend on the Ruby/ODBC (version &gt;= 0.5) binding by Christian Werner &lt;chw@ch-werner.de&gt; 
+<a href="http://www.ch-werner.de/rubyodbc">&lt;URL:http://www.ch-werner.de/rubyodbc&gt;</a> or available from the RAA. 
+Works also together with unixODBC. To use the 'odbc_ignorecase' option you need Ruby/ODBC &gt;= 0.9.3.</p></li>
+<li><p>Oracle <em>(dbd_oracle)</em></p>
+<p>depend on the "Oracle 7 Module for Ruby" version 0.2.11 by Yoshida Masato, available from RAA. Works fine with Oracle 8/8i.</p></li>
+<li><p>Oracle OCI8 <em>(dbd_oci8)</em></p>
+<p><a href="http://www.jiubao.org/ruby-oci8/index.en.html">&lt;URL:http://www.jiubao.org/ruby-oci8/index.en.html&gt;</a></p></li>
+<li><p>PostgreSQL <em>(dbd_pg)</em></p>
+<p>depend on Noboru Saitou's Postgres Package:
+<a href="http://www.ruby-lang.org/en/raa-list.rhtml?name=postgres">&lt;URL:http://www.ruby-lang.org/en/raa-list.rhtml?name=postgres&gt;</a></p></li>
+<li><p>Proxy/Server <em>(dbd_proxy)</em></p>
+<p>depend on distributed Ruby (DRb) available from RAA.</p></li>
+<li><p>SQLite <em>(dbd_sqlite)</em></p>
+<p>depend only on the SQLite C-library from: <a href="http://www.hwaci.com/sw/sqlite/">&lt;URL:http://www.hwaci.com/sw/sqlite/&gt;</a>.</p></li>
+<li><p>SQLRelay <em>(dbd_sqlrelay)</em></p>
+<p>depend on the Ruby library of SQLRelay: <a href="http://www.firstworks.com/sqlrelay/">&lt;URL:http://www.firstworks.com/sqlrelay/&gt;</a>.</p></li>
+<li><p>Sybase <em>(dbd_sybase)</em></p>
+<p>this DBD is currently outdated and will <em>not</em> work with DBI versions &gt; 0.0.4 !!! </p></li>
+</ul>
+<h2><a name="label-29" id="label-29">ChangeLog</a></h2><!-- RDLabel: "ChangeLog" -->
+<p>See <a href="http://ruby-dbi.rubyforge.org/ChangeLog.html">&lt;URL:http://ruby-dbi.rubyforge.org/ChangeLog.html&gt;</a>.</p>
+<p>See <a href="http://ruby-dbi.rubyforge.org/ChangeLog">&lt;URL:http://ruby-dbi.rubyforge.org/ChangeLog&gt;</a> for the plain-text version.</p>
+<h2><a name="label-30" id="label-30">ToDo</a></h2><!-- RDLabel: "ToDo" -->
+<p>See <a href="http://ruby-dbi.rubyforge.org/ToDo.html">&lt;URL:http://ruby-dbi.rubyforge.org/ToDo.html&gt;</a>.</p>
+<h2><a name="label-31" id="label-31">Download</a></h2><!-- RDLabel: "Download" -->
+<p>Ruby/DBI is available for from the <a href="http://rubyforge.org/frs/?group_id=234">RubyForge project page</a>.</p>
+<p>Older file releases can be downloaded for a limited time from <a href="http://sourceforge.net/project/showfiles.php?group_id=43737">SourceForge project page</a>. But note that this will (hopefully) soon become obsolete.</p>
+<p>If you're running FreeBSD or NetBSD, have a look at their package collections. FreeBSD has for DBI and each DBD an easy to
+install package, NetBSD currently only for PostgreSQL but more is to come.</p>
+<p>A NetBSD package for MySQL is available at <a href="http://www.fantasy-coders.de/ruby/ruby-mysql-2.4.tar.gz">&lt;URL:http://www.fantasy-coders.de/ruby/ruby-mysql-2.4.tar.gz&gt;</a>.</p>
+<h2><a name="label-32" id="label-32">Installation</a></h2><!-- RDLabel: "Installation" -->
+<p>All available DBDs come with this package, but you should only
+install the DBDs you really need.</p>
+<h3><a name="label-33" id="label-33">To install all:</a></h3><!-- RDLabel: "To install all:" -->
+<pre>ruby setup.rb config
+ruby setup.rb setup
+ruby setup.rb install</pre>
+<h3><a name="label-34" id="label-34">To install dbi and some DBDs:</a></h3><!-- RDLabel: "To install dbi and some DBDs:" -->
+<pre>ruby setup.rb config --with=dbi,dbd_pg....
+ruby setup.rb setup
+ruby setup.rb install</pre>
+<p>Choose the packages to install by specifing them after the option <code>--with</code>.</p>
+<h2><a name="label-35" id="label-35">Mailing List</a></h2><!-- RDLabel: "Mailing List" -->
+<p>A mailinglist for DBI-specific discussions is available at the 
+<a href="http://rubyforge.org/projects/ruby-dbi">RubyForge project page</a>.</p>
+<p>Our former mailing-list was at <a href="http://groups.yahoo.com/group/ruby-dbi-talk">&lt;URL:http://groups.yahoo.com/group/ruby-dbi-talk&gt;</a>; 
+please, don't use it!</p>
+<h2><a name="label-36" id="label-36">Documentation</a></h2><!-- RDLabel: "Documentation" -->
+<p>See the directories lib/*/doc or ext/*/doc for DBI and DBD specific informations.</p>
+<p>The DBI specification is lib/dbi/doc/DBI_SPEC or lib/dbi/doc/html/DBI_SPEC.html or available
+from WWW at <a href="http://ruby-dbi.rubyforge.org/DBI_SPEC.html">&lt;URL:http://ruby-dbi.rubyforge.org/DBI_SPEC.html&gt;</a>.</p>
+<p>The DBD specification (how to write a database driver) is lib/dbi/doc/DBD_SPEC or lib/dbi/doc/html/DBD_SPEC.html or available
+from WWW at <a href="http://ruby-dbi.rubyforge.org/DBD_SPEC.html">&lt;URL:http://ruby-dbi.rubyforge.org/DBD_SPEC.html&gt;</a>.</p>
+<h2><a name="label-37" id="label-37">Articles</a></h2><!-- RDLabel: "Articles" -->
+<ul>
+<li><a href="http://www.kitebird.com/articles/ruby-dbi.html">Using the Ruby DBI Module</a> by Paul DuBois.</li>
+</ul>
+<h2><a name="label-38" id="label-38">Applications</a></h2><!-- RDLabel: "Applications" -->
+<h3><a name="label-39" id="label-39">sqlsh.rb</a></h3><!-- RDLabel: "sqlsh.rb" -->
+<p>The SQL command line interpreter sqlsh.rb is available in directory bin/commandline.
+It gets installed by default.</p>
+<h2><a name="label-40" id="label-40">Examples</a></h2><!-- RDLabel: "Examples" -->
+<p>Examples can be found in the examples/ subdirectory.
+In this directory there is the file proxyserver.rb which has to be run if you use the DBD::Proxy, 
+to access databases remote over a TCP/IP network. </p>
+<h3><a name="label-41" id="label-41">A simple example</a></h3><!-- RDLabel: "A simple example" -->
+<pre>require 'dbi'
+
+# connect to a datbase
+dbh = DBI.connect('DBI:Mysql:test', 'testuser', 'testpwd')
+
+puts "inserting..."
+1.upto(13) do |i|
+   sql = "insert into simple01 (SongName, SongLength_s) VALUES (?, ?)"
+   dbh.do(sql, "Song #{i}", "#{i*10}")
+end 
+
+puts "selecting..."
+sth=dbh.prepare('select * from simple01')
+sth.execute
+
+while row=sth.fetch do
+ p row
+end
+
+puts "deleting..."
+dbh.do('delete from simple01 where internal_id &gt; 10')
+
+dbh.disconnect</pre>
+<h3><a name="label-42" id="label-42">The same using Ruby's features</a></h3><!-- RDLabel: "The same using Ruby's features" -->
+<pre>require 'dbi'
+
+DBI.connect('DBI:Mysql:test', 'testuser', 'testpwd') do | dbh |
+
+  puts "inserting..."
+  sql = "insert into simple01 (SongName, SongLength_s) VALUES (?, ?)"
+  dbh.prepare(sql) do | sth | 
+    1.upto(13) { |i| sth.execute("Song #{i}", "#{i*10}") }
+  end 
+
+  puts "selecting..."
+  dbh.select_all('select * from simple01') do | row |
+    p row
+  end
+
+  puts "deleting..."
+  dbh.do('delete from simple01 where internal_id &gt; 10')
+
+end</pre>
+
+</body>
+</html>

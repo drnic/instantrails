@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module provides a class-level method for specifying that certain actions are guarded against being called without certain prerequisites being met. This is essentially a special kind of before_filter.
+- !ruby/struct:SM::Flow::P 
+  body: An action may be guarded against being invoked without certain request parameters being set, or without certain session values existing.
+- !ruby/struct:SM::Flow::P 
+  body: When a verification is violated, values may be inserted into the flash, and a specified redirection is triggered.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class GlobalController &lt; ActionController::Base\n    # Prevent the #update_settings action from being invoked unless\n    # the 'admin_privileges' request parameter exists. The\n    # settings action will be redirected to in current controller\n    # if verification fails.\n    verify :params =&gt; &quot;admin_privileges&quot;, :only =&gt; :update_post,\n           :redirect_to =&gt; { :action =&gt; &quot;settings&quot; }\n\n    # Disallow a post from being updated if there was no information\n    # submitted with the post, and if there is no active post in the\n    # session, and if there is no &quot;note&quot; key in the flash. The route\n    # named category_url will be redirected to if verification fails.\n\n    verify :params =&gt; &quot;post&quot;, :session =&gt; &quot;post&quot;, &quot;flash&quot; =&gt; &quot;note&quot;,\n           :only =&gt; :update_post,\n           :add_flash =&gt; { &quot;alert&quot; =&gt; &quot;Failed to create your message&quot; },\n           :redirect_to =&gt; :category_url\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that these prerequisites are not business rules. They do not examine the content of the session or the parameters. That level of validation should be encapsulated by your domain model or helper methods in the controller.
+constants: []
+
+full_name: ActionController::Verification::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: verify
+name: ClassMethods
+superclass: 

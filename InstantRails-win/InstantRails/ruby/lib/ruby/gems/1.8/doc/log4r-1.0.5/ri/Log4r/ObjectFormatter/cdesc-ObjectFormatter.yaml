@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Formats objects the same way irb does:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  loggername:foo.rb in 12&gt;\n  [1, 3, 4]\n  loggername:foo.rb in 13&gt;\n  {1=&gt;&quot;1&quot;}\n"
+- !ruby/struct:SM::Flow::P 
+  body: Strings don't get inspected. just printed. The trace is optional.
+constants: []
+
+full_name: Log4r::ObjectFormatter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: format
+name: ObjectFormatter
+superclass: Formatter

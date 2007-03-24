@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns an html image tag for the <tt>source</tt>. The <tt>source</tt> can be a full path or a file that exists in your public images directory. Note that specifying a filename without the extension is now deprecated in Rails. You can add html attributes using the <tt>options</tt>. The <tt>options</tt> supports two additional keys for convienence and conformance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:alt</tt> - If no alt text is given, the file name part of the <tt>source</tt> is used (capitalized and without the extension)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:size</tt> - Supplied as &quot;{Width}x{Height}&quot;, so &quot;30x45&quot; becomes width=&quot;30&quot; and height=&quot;45&quot;. <tt>:size</tt> will be ignored if the value is not in the correct format.
+  type: :BULLET
+- !ruby/struct:SM::Flow::VERB 
+  body: " image_tag(&quot;icon.png&quot;)  # =&gt;\n   &lt;img src=&quot;/images/icon.png&quot; alt=&quot;Icon&quot; /&gt;\n image_tag(&quot;icon.png&quot;, :size =&gt; &quot;16x10&quot;, :alt =&gt; &quot;Edit Entry&quot;)  # =&gt;\n   &lt;img src=&quot;/images/icon.png&quot; width=&quot;16&quot; height=&quot;10&quot; alt=&quot;Edit Entry&quot; /&gt;\n image_tag(&quot;/icons/icon.gif&quot;, :size =&gt; &quot;16x16&quot;)  # =&gt;\n   &lt;img src=&quot;/icons/icon.gif&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;Icon&quot; /&gt;\n"
+full_name: ActionView::Helpers::AssetTagHelper#image_tag
+is_singleton: false
+name: image_tag
+params: (source, options = {})
+visibility: public

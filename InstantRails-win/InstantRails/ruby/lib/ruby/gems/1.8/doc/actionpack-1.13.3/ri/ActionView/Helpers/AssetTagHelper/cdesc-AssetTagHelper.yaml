@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: register_javascript_include_default
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides methods for linking an HTML page together with other assets such as images, javascripts, stylesheets, and feeds. You can direct Rails to link to assets from a dedicated assets server by setting ActionController::Base.asset_host in your environment.rb. These methods do not verify the assets exist before linking to them.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActionController::Base.asset_host = &quot;http://assets.example.com&quot;\n  image_tag(&quot;rails.png&quot;)\n    =&gt; &lt;img src=&quot;http://assets.example.com/images/rails.png&quot; alt=&quot;Rails&quot; /&gt;\n  stylesheet_include_tag(&quot;application&quot;)\n    =&gt; &lt;link href=&quot;http://assets.example.com/stylesheets/application.css&quot; media=&quot;screen&quot; rel=&quot;Stylesheet&quot; type=&quot;text/css&quot; /&gt;\n"
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: JAVASCRIPT_DEFAULT_SOURCES
+  value: "['prototype', 'effects', 'dragdrop', 'controls'] unless const_defined?(:JAVASCRIPT_DEFAULT_SOURCES)"
+full_name: ActionView::Helpers::AssetTagHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: auto_discovery_link_tag
+- !ruby/object:RI::MethodSummary 
+  name: image_path
+- !ruby/object:RI::MethodSummary 
+  name: image_tag
+- !ruby/object:RI::MethodSummary 
+  name: javascript_include_tag
+- !ruby/object:RI::MethodSummary 
+  name: javascript_path
+- !ruby/object:RI::MethodSummary 
+  name: stylesheet_link_tag
+- !ruby/object:RI::MethodSummary 
+  name: stylesheet_path
+name: AssetTagHelper
+superclass: 

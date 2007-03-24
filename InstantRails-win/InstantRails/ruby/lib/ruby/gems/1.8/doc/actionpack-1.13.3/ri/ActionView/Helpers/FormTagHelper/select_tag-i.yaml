@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a dropdown selection box, or if the <tt>:multiple</tt> option is set to true, a multiple choice selection box.
+- !ruby/struct:SM::Flow::P 
+  body: Helpers::FormOptions can be used to create common select boxes such as countries, time zones, or associated records.
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>option_tags</tt> is a string containing the option tags for the select box:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Outputs &lt;select id=&quot;people&quot; name=&quot;people&quot;&gt;&lt;option&gt;David&lt;/option&gt;&lt;/select&gt;\n  select_tag &quot;people&quot;, &quot;&lt;option&gt;David&lt;/option&gt;&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:multiple</tt> - If set to true the selection will allow multiple choices.
+  type: :BULLET
+full_name: ActionView::Helpers::FormTagHelper#select_tag
+is_singleton: false
+name: select_tag
+params: (name, option_tags = nil, options = {})
+visibility: public

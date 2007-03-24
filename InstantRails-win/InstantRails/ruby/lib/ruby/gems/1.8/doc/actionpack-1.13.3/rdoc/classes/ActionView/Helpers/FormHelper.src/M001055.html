@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>form_for (ActionView::Helpers::FormHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/form_helper.rb, line 123</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">form_for</span>(<span class="ruby-identifier">object_name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Missing block&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
+        <span class="ruby-identifier">concat</span>(<span class="ruby-identifier">form_tag</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:url</span>) <span class="ruby-operator">||</span> {}, <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">:html</span>) <span class="ruby-operator">||</span> {}), <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">binding</span>)
+        <span class="ruby-identifier">fields_for</span>(<span class="ruby-identifier">object_name</span>, <span class="ruby-operator">*</span>(<span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">options</span>), <span class="ruby-operator">&amp;</span><span class="ruby-identifier">proc</span>)
+        <span class="ruby-identifier">concat</span>(<span class="ruby-value str">'&lt;/form&gt;'</span>, <span class="ruby-identifier">proc</span>.<span class="ruby-identifier">binding</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

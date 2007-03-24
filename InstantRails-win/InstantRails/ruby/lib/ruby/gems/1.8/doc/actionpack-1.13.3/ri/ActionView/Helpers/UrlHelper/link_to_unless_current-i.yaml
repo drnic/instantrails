@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a link tag of the given <tt>name</tt> using a URL created by the set of <tt>options</tt> unless the current request uri is the same as the links, in which case only the name is returned (or the given block is yielded, if one exists). Refer to the documentation for link_to_unless for block usage.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;ul id=&quot;navbar&quot;&gt;\n    &lt;li&gt;&lt;%= link_to_unless_current(&quot;Home&quot;, { :action =&gt; &quot;index&quot; }) %&gt;&lt;/li&gt;\n    &lt;li&gt;&lt;%= link_to_unless_current(&quot;About Us&quot;, { :action =&gt; &quot;about&quot; }) %&gt;&lt;/li&gt;\n  &lt;/ul&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This will render the following HTML when on the about us page:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;ul id=&quot;navbar&quot;&gt;\n    &lt;li&gt;&lt;a href=&quot;/controller/index&quot;&gt;Home&lt;/a&gt;&lt;/li&gt;\n    &lt;li&gt;About Us&lt;/li&gt;\n  &lt;/ul&gt;\n"
+full_name: ActionView::Helpers::UrlHelper#link_to_unless_current
+is_singleton: false
+name: link_to_unless_current
+params: (name, options = {}, html_options = {}, *parameters_for_method_reference, &block)
+visibility: public

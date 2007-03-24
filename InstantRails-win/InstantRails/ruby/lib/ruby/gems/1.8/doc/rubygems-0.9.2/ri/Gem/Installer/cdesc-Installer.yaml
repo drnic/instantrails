@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The installer class processes RubyGem .gem files and installs the files contained in the .gem into the Gem.path.
+constants: []
+
+full_name: Gem::Installer
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: UserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: app_script_text
+- !ruby/object:RI::MethodSummary 
+  name: build_extensions
+- !ruby/object:RI::MethodSummary 
+  name: build_support_directories
+- !ruby/object:RI::MethodSummary 
+  name: ensure_dependency!
+- !ruby/object:RI::MethodSummary 
+  name: extract_files
+- !ruby/object:RI::MethodSummary 
+  name: generate_bin
+- !ruby/object:RI::MethodSummary 
+  name: generate_bin_script
+- !ruby/object:RI::MethodSummary 
+  name: generate_bin_symlink
+- !ruby/object:RI::MethodSummary 
+  name: generate_windows_script
+- !ruby/object:RI::MethodSummary 
+  name: install
+- !ruby/object:RI::MethodSummary 
+  name: installation_satisfies_dependency?
+- !ruby/object:RI::MethodSummary 
+  name: shebang
+- !ruby/object:RI::MethodSummary 
+  name: shebang_default
+- !ruby/object:RI::MethodSummary 
+  name: shebang_env
+- !ruby/object:RI::MethodSummary 
+  name: unpack
+- !ruby/object:RI::MethodSummary 
+  name: write_spec
+name: Installer
+superclass: Object

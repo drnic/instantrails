@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return <tt>true</tt> if given chore has been set, otherwise return <tt>false</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "For example, you might set up a chore at some point in the execution:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    chore = app.addChore { ... }\n"
+- !ruby/struct:SM::Flow::P 
+  body: "but decide that you want to &quot;cancel&quot; that chore later (before it's had a chance to run):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    if app.hasChore?(chore)\n      app.removeChore(chore)\n    end\n"
+full_name: Fox::FXApp#hasChore?
+is_singleton: false
+name: hasChore?
+params: (*args)
+visibility: public

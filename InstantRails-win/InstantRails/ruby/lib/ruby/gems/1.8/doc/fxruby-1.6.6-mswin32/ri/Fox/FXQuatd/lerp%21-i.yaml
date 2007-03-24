@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Spherical lerp and return a reference to self.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+u+:"
+    body: "[FXQuatd]"
+  - !ruby/struct:SM::Flow::LI 
+    label: "+v+:"
+    body: "[FXQuatd]"
+  - !ruby/struct:SM::Flow::LI 
+    label: "+f+:"
+    body: "[Float]"
+  type: :NOTE
+full_name: Fox::FXQuatd#lerp!
+is_singleton: false
+name: lerp!
+params: (u, v, f)
+visibility: public

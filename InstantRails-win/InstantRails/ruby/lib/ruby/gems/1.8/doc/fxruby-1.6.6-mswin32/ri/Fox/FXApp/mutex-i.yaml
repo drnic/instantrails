@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a reference to the application-wide mutex (an FXMutex instance). Normally, the main user interface thread holds this mutex, insuring that no other threads are modifying data during the processing of user interface messages. However, whenever the main user interface thread blocks for messages, it releases this mutex, to allow other threads to modify the same data. When a new message becomes available, the main user interface thread regains the mutex prior to dispatching the message. Other threads should hold this mutex only for short durations, so as to not starve the main user interface thread.
+full_name: Fox::FXApp#mutex
+is_singleton: false
+name: mutex
+params: ()
+visibility: public

@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "When dragging, inform the drop target of the new position and the drag action. The <em>action</em> is a constant, one of:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_REJECT+:"
+    body: reject all drop actions
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_ACCEPT+:"
+    body: accept any drop action
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_COPY+:"
+    body: accept this drop as a copy
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_MOVE+:"
+    body: accept this drop as a move
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_LINK+:"
+    body: accept this drop as a link
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DRAG_PRIVATE+:"
+    body: private
+  type: :NOTE
+full_name: Fox::FXWindow#handleDrag
+is_singleton: false
+name: handleDrag
+params: (x, y, action=DRAG_COPY)
+visibility: public

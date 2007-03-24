@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (HighLine::Question)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/highline/question.rb, line 34</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">question</span>, <span class="ruby-identifier">answer_type</span> )
+      <span class="ruby-comment cmt"># initialize instance data</span>
+      <span class="ruby-ivar">@question</span>    = <span class="ruby-identifier">question</span>
+      <span class="ruby-ivar">@answer_type</span> = <span class="ruby-identifier">answer_type</span>
+      
+      <span class="ruby-ivar">@character</span>    = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@limit</span>        = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@echo</span>         = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@readline</span>     = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@whitespace</span>   = <span class="ruby-identifier">:strip</span>
+      <span class="ruby-ivar">@case</span>         = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@default</span>      = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@validate</span>     = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@above</span>        = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@below</span>        = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@in</span>           = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@confirm</span>      = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@gather</span>       = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@first_answer</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@directory</span>    = <span class="ruby-constant">Pathname</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>(<span class="ruby-identifier">$0</span>)))
+      <span class="ruby-ivar">@glob</span>         = <span class="ruby-value str">&quot;*&quot;</span>
+      <span class="ruby-ivar">@responses</span>    = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@overwrite</span>    = <span class="ruby-keyword kw">false</span>
+      
+      <span class="ruby-comment cmt"># allow block to override settings</span>
+      <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+
+      <span class="ruby-comment cmt"># finalize responses based on settings</span>
+      <span class="ruby-identifier">build_responses</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Log4r::SyslogOutputter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File src/log4r/outputter/syslogoutputter.rb, line 40</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>={})
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>)
+      <span class="ruby-identifier">ident</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:ident</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'ident'</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">_name</span>)
+      <span class="ruby-identifier">logopt</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:logopt</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'logopt'</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-constant">LOG_PID</span> <span class="ruby-operator">|</span> <span class="ruby-constant">LOG_CONS</span>).<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">facility</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:facility</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'facility'</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-constant">LOG_USER</span>).<span class="ruby-identifier">to_i</span>
+      <span class="ruby-ivar">@syslog</span> = <span class="ruby-constant">Syslog</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">ident</span>, <span class="ruby-identifier">logopt</span>, <span class="ruby-identifier">facility</span>)
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

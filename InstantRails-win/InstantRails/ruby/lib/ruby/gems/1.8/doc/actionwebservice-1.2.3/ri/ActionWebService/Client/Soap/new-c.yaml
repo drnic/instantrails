@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a new web service client using the SOAP RPC protocol.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>api</tt> must be an ActionWebService::API::Base derivative, and <tt>endpoint_uri</tt> must point at the relevant URL to which protocol requests will be sent with HTTP POST.
+- !ruby/struct:SM::Flow::P 
+  body: "Valid options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:namespace</tt>
+    body: If the remote server has used a custom namespace to declare its custom types, you can specify it here. This would be the namespace declared with a [WebService(Namespace = &quot;http://namespace&quot;)] attribute in .NET, for example.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:driver_options</tt>
+    body: If you want to supply any custom SOAP RPC driver options, you can provide them as a Hash here
+  type: :LABELED
+- !ruby/struct:SM::Flow::P 
+  body: "The <tt>:driver_options</tt> option can be used to configure the backend SOAP RPC driver. An example of configuring the SOAP backend to do client-certificate authenticated SSL connections to the server:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  opts = {}\n  opts['protocol.http.ssl_config.verify_mode'] = 'OpenSSL::SSL::VERIFY_PEER'\n  opts['protocol.http.ssl_config.client_cert'] = client_cert_file_path\n  opts['protocol.http.ssl_config.client_key'] = client_key_file_path\n  opts['protocol.http.ssl_config.ca_file'] = ca_cert_file_path\n  client = ActionWebService::Client::Soap.new(api, 'https://some/service', :driver_options =&gt; opts)\n"
+full_name: ActionWebService::Client::Soap::new
+is_singleton: true
+name: new
+params: (api, endpoint_uri, options={})
+visibility: public

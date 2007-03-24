@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: link_to_image
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: DEPRECATED. It is reccommended to use the AssetTagHelper::image_tag within a link_to method to generate a linked image.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  link_to(image_tag(&quot;rss&quot;, :size =&gt; &quot;30x45&quot;, :border =&gt; 0), &quot;http://www.example.com&quot;)\n"
+full_name: ActionView::Helpers::UrlHelper#link_image_to
+is_singleton: false
+name: link_image_to
+params: (src, options = {}, html_options = {}, *parameters_for_method_reference)
+visibility: public

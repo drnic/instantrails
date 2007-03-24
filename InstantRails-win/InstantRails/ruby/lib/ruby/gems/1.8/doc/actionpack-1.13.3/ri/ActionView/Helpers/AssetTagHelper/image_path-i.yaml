@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Computes the path to an image asset in the public images directory. Full paths from the document root will be passed through. Used internally by image_tag to build the image path. Passing a filename without an extension is deprecated.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  image_path(&quot;edit.png&quot;)  # =&gt; /images/edit.png\n  image_path(&quot;icons/edit.png&quot;)  # =&gt; /images/icons/edit.png\n  image_path(&quot;/icons/edit.png&quot;)  # =&gt; /icons/edit.png\n"
+full_name: ActionView::Helpers::AssetTagHelper#image_path
+is_singleton: false
+name: image_path
+params: (source)
+visibility: public

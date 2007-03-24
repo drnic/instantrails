@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Clears the loaded inflections within a given scope (default is :all). Give the scope as a symbol of the inflection type, the options are: :plurals, :singulars, :uncountables"
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  clear :all\n  clear :plurals\n"
+full_name: Inflector::Inflections#clear
+is_singleton: false
+name: clear
+params: (scope = :all)
+visibility: public

@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set quaternion from yaw (z), pitch (y) and roll (x).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+roll+:"
+    body: roll angle in radians [Float]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pitch+:"
+    body: pitch angle in radians [Float]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+yaw+:"
+    body: yaw angle in radians [Float]
+  type: :NOTE
+full_name: Fox::FXQuatd#setRollPitchYaw
+is_singleton: false
+name: setRollPitchYaw
+params: (roll, pitch, yaw)
+visibility: public

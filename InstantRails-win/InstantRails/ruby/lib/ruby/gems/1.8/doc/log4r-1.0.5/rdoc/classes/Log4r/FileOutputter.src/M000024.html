@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Log4r::FileOutputter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File src/log4r/outputter/fileoutputter.rb, line 16</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-identifier">hash</span>={})
+      <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">_name</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">hash</span>)
+
+      <span class="ruby-ivar">@trunc</span> = <span class="ruby-constant">Log4rTools</span>.<span class="ruby-identifier">decode_bool</span>(<span class="ruby-identifier">hash</span>, <span class="ruby-identifier">:trunc</span>, <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-identifier">_filename</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">:filename</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'filename'</span>])
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">_filename</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-value str">&quot;Argument 'filename' must be a String&quot;</span>, <span class="ruby-identifier">caller</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># file validation</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">exist?</span>( <span class="ruby-identifier">_filename</span> )
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">file?</span>( <span class="ruby-identifier">_filename</span> )
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-node">&quot;'#{_filename}' is not a regular file&quot;</span>, <span class="ruby-identifier">caller</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-keyword kw">not</span> <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">writable?</span>( <span class="ruby-identifier">_filename</span> )
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-node">&quot;'#{_filename}' is not writable!&quot;</span>, <span class="ruby-identifier">caller</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># ensure directory is writable</span>
+        <span class="ruby-identifier">dir</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">dirname</span>( <span class="ruby-identifier">_filename</span> )
+        <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-constant">FileTest</span>.<span class="ruby-identifier">writable?</span>( <span class="ruby-identifier">dir</span> )
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">StandardError</span>, <span class="ruby-node">&quot;'#{dir}' is not writable!&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@filename</span> = <span class="ruby-identifier">_filename</span>
+      <span class="ruby-ivar">@out</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">new</span>(<span class="ruby-ivar">@filename</span>, (<span class="ruby-ivar">@trunc</span> <span class="ruby-operator">?</span> <span class="ruby-value str">&quot;w&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;a&quot;</span>)) 
+      <span class="ruby-constant">Logger</span>.<span class="ruby-identifier">log_internal</span> {
+        <span class="ruby-node">&quot;FileOutputter '#{@name}' writing to #{@filename}&quot;</span>
+      }
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

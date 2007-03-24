@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>listener (Mongrel::Configurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/configurator.rb, line 122</span>
+122:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">listener</span>(<span class="ruby-identifier">options</span>={},<span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>)
+123:       <span class="ruby-identifier">raise</span> <span class="ruby-value str">&quot;Cannot call listener inside another listener block.&quot;</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-ivar">@listener</span> <span class="ruby-keyword kw">or</span> <span class="ruby-ivar">@listener_name</span>)
+124:       <span class="ruby-identifier">ops</span> = <span class="ruby-identifier">resolve_defaults</span>(<span class="ruby-identifier">options</span>)
+125:       <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:num_processors</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">950</span>
+126:       <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:timeout</span>] <span class="ruby-operator">||=</span> <span class="ruby-value">0</span>
+127: 
+128:       <span class="ruby-ivar">@listener</span> = <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpServer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:host</span>], <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:port</span>].<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:num_processors</span>].<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:timeout</span>].<span class="ruby-identifier">to_i</span>)
+129:       <span class="ruby-ivar">@listener_name</span> = <span class="ruby-node">&quot;#{ops[:host]}:#{ops[:port]}&quot;</span>
+130:       <span class="ruby-ivar">@listeners</span>[<span class="ruby-ivar">@listener_name</span>] = <span class="ruby-ivar">@listener</span>
+131: 
+132:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:user</span>] <span class="ruby-keyword kw">and</span> <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:group</span>]
+133:         <span class="ruby-identifier">change_privilege</span>(<span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:user</span>], <span class="ruby-identifier">ops</span>[<span class="ruby-identifier">:group</span>])
+134:       <span class="ruby-keyword kw">end</span>
+135: 
+136:       <span class="ruby-comment cmt"># Does the actual cloaking operation to give the new implicit self.</span>
+137:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk</span>
+138:         <span class="ruby-identifier">cloaker</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">blk</span>).<span class="ruby-identifier">bind</span>(<span class="ruby-keyword kw">self</span>).<span class="ruby-identifier">call</span>
+139:       <span class="ruby-keyword kw">end</span>
+140: 
+141:       <span class="ruby-comment cmt"># all done processing this listener setup, reset implicit variables</span>
+142:       <span class="ruby-ivar">@listener</span> = <span class="ruby-keyword kw">nil</span>
+143:       <span class="ruby-ivar">@listener_name</span> = <span class="ruby-keyword kw">nil</span>
+144:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

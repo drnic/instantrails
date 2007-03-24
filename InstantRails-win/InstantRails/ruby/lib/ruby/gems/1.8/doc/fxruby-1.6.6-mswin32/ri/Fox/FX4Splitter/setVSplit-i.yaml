@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Change vertical split fraction. The split fraction <em>s</em> is an integer value between 0 and 10000 (inclusive), indicating how much space to allocate to the topmost panes. For example, to split the panes at 35 percent, use:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  fourSplitter.setVSplit(3500)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "or just:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  fourSplitter.vSplit = 3500\n"
+full_name: Fox::FX4Splitter#setVSplit
+is_singleton: false
+name: setVSplit
+params: (s)
+visibility: public

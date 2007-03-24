@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>header (Mongrel::CGIWrapper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>    <span class="ruby-comment cmt"># File lib/mongrel/cgi.rb, line 60</span>
+60:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">header</span>(<span class="ruby-identifier">options</span> = <span class="ruby-value str">&quot;text/html&quot;</span>)
+61:       <span class="ruby-comment cmt"># if they pass in a string then just write the Content-Type</span>
+62:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">String</span>
+63:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>]
+64:       <span class="ruby-keyword kw">else</span>
+65:         <span class="ruby-comment cmt"># convert the given options into what Mongrel wants</span>
+66:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'type'</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;text/html&quot;</span>
+67:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Type'</span>] <span class="ruby-operator">+=</span> <span class="ruby-value str">&quot;; charset=&quot;</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">has_key?</span> <span class="ruby-value str">&quot;charset&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'charset'</span>]
+68:         
+69:         <span class="ruby-comment cmt"># setup date only if they use nph</span>
+70:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Date'</span>] = <span class="ruby-constant">CGI</span><span class="ruby-operator">::</span><span class="ruby-identifier">rfc1123_date</span>(<span class="ruby-constant">Time</span>.<span class="ruby-identifier">now</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'nph'</span>]
+71: 
+72:         <span class="ruby-comment cmt"># setup the server to use the default or what they set</span>
+73:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Server'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'server'</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">env_table</span>[<span class="ruby-value str">'SERVER_SOFTWARE'</span>]
+74: 
+75:         <span class="ruby-comment cmt"># remaining possible options they can give</span>
+76:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Status'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'status'</span>]
+77:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Content-Language'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'language'</span>]
+78:         <span class="ruby-ivar">@head</span>[<span class="ruby-value str">'Expires'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-value str">'expires'</span>]
+79: 
+80:         <span class="ruby-comment cmt"># drop the keys we don't want anymore</span>
+81:         <span class="ruby-constant">REMOVED_KEYS</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">k</span>) }
+82: 
+83:         <span class="ruby-comment cmt"># finally just convert the rest raw (which puts 'cookie' directly)</span>
+84:         <span class="ruby-comment cmt"># 'cookie' is translated later as we write the header out</span>
+85:         <span class="ruby-identifier">options</span>.<span class="ruby-identifier">each</span>{<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@head</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span>}
+86:       <span class="ruby-keyword kw">end</span>
+87: 
+88:       <span class="ruby-comment cmt"># doing this fakes out the cgi library to think the headers are empty</span>
+89:       <span class="ruby-comment cmt"># we then do the real headers in the out function call later</span>
+90:       <span class="ruby-value str">&quot;&quot;</span>
+91:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

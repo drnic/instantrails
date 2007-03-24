@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "DEPRECATION WARNING: This method will become a separate plugin when Rails 2.0 ships."
+- !ruby/struct:SM::Flow::P 
+  body: Use this method in your view to generate a return for the AJAX autocomplete requests.
+- !ruby/struct:SM::Flow::P 
+  body: "Example action:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def auto_complete_for_item_title\n    @items = Item.find(:all,\n      :conditions =&gt; [ 'LOWER(description) LIKE ?',\n      '%' + request.raw_post.downcase + '%' ])\n    render :inline =&gt; &quot;&lt;%= auto_complete_result(@items, 'description') %&gt;&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The auto_complete_result can of course also be called from a view belonging to the auto_complete action if you need to decorate it further.
+full_name: ActionView::Helpers::JavaScriptMacrosHelper#auto_complete_result
+is_singleton: false
+name: auto_complete_result
+params: (entries, field, phrase = nil)
+visibility: public

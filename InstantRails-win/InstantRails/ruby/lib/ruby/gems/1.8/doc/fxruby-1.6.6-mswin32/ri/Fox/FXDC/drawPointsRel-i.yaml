@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Draw multiple points, where <em>points</em> is an array of FXPoint instances. Unlike #drawPoints, where each of the points is drawn relative to the origin, #drawPointsRel treats all coordinates after the first as relative to the previous point."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+points+:"
+    body: array of FXPoint instances [Array]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawPoint and #drawPoints."
+full_name: Fox::FXDC#drawPointsRel
+is_singleton: false
+name: drawPointsRel
+params: (points)
+visibility: public

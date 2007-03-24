@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Additional hash arguments are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:dirname</tt>
+    body: Directory of the log file
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:date_pattern</tt>
+    body: Time.strftime format string (default is &quot;%Y-%m-%d&quot;)
+  type: :LABELED
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_DATE_FMT
+  value: "\"%Y-%m-%d\""
+full_name: Log4r::DateFileOutputter
+includes: []
+
+instance_methods: []
+
+name: DateFileOutputter
+superclass: FileOutputter

@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Gem::RemoteInstaller</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Gem::RemoteInstaller</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/rubygems/remote_installer_rb.html">
+                lib/rubygems/remote_installer.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000404">download_gem</a>&nbsp;&nbsp;
+      <a href="#M000402">find_dependencies_not_installed</a>&nbsp;&nbsp;
+      <a href="#M000401">find_gem_to_install</a>&nbsp;&nbsp;
+      <a href="#M000398">install</a>&nbsp;&nbsp;
+      <a href="#M000403">install_dependencies</a>&nbsp;&nbsp;
+      <a href="#M000397">new</a>&nbsp;&nbsp;
+      <a href="#M000406">new_installer</a>&nbsp;&nbsp;
+      <a href="#M000399">source_index_hash</a>&nbsp;&nbsp;
+      <a href="#M000400">specs_n_sources_matching</a>&nbsp;&nbsp;
+      <a href="#M000405">write_gem_to_file</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="UserInteraction.html">UserInteraction</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000397" class="method-detail">
+        <a name="M000397"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000397.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000397.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<tt>options[:http_proxy]</tt>::
+</p>
+<ul>
+<li>[String]: explicit specification of proxy; overrides any environment
+variable setting
+
+</li>
+<li>nil: respect environment variables (HTTP_PROXY, HTTP_PROXY_USER,
+HTTP_PROXY_PASS)
+
+</li>
+<li><tt>:no_proxy</tt>: ignore environment variables and _don&#8216;t_ use a
+proxy
+
+</li>
+<li><tt>:cache_dir</tt>: override where downloaded gems are cached.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000404" class="method-detail">
+        <a name="M000404"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000404.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000404.html');return false;">
+          <span class="method-name">download_gem</span><span class="method-args">(destination_file, source, spec)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000402" class="method-detail">
+        <a name="M000402"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000402.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000402.html');return false;">
+          <span class="method-name">find_dependencies_not_installed</span><span class="method-args">(dependencies)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000401" class="method-detail">
+        <a name="M000401"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000401.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000401.html');return false;">
+          <span class="method-name">find_gem_to_install</span><span class="method-args">(gem_name, version_requirement)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Find a gem to be installed by interacting with the user.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000398" class="method-detail">
+        <a name="M000398"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000398.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000398.html');return false;">
+          <span class="method-name">install</span><span class="method-args">(gem_name, version_requirement = &quot;&gt; 0.0.0&quot;, force=false, install_dir=Gem.dir, install_stub=true)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This method will <a href="RemoteInstaller.html#M000398">install</a>
+package_name onto the local system.
+</p>
+<table>
+<tr><td valign="top">gem_name:</td><td>[String] Name of the <a href="../Gem.html">Gem</a> to <a
+href="RemoteInstaller.html#M000398">install</a>
+
+</td></tr>
+<tr><td valign="top">version_requirement:</td><td>[default = &quot;&gt; 0.0.0&quot;] <a href="../Gem.html">Gem</a> version
+requirement to <a href="RemoteInstaller.html#M000398">install</a>
+
+</td></tr>
+<tr><td valign="top">Returns:</td><td>an array of <a href="Specification.html">Gem::Specification</a> objects,
+one for each gem installed.
+
+</td></tr>
+</table>
+        </div>
+      </div>
+
+      <div id="method-M000403" class="method-detail">
+        <a name="M000403"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000403.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000403.html');return false;">
+          <span class="method-name">install_dependencies</span><span class="method-args">(dependencies, force, install_dir)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Install all the given dependencies. Returns an array of <a
+href="Specification.html">Gem::Specification</a> objects, one for each
+dependency installed.
+</p>
+<p>
+TODO: For now, we recursively <a
+href="RemoteInstaller.html#M000398">install</a>, but this is not the right
+way to do things (e.g. if a package fails to download, we shouldn&#8216;t
+<a href="RemoteInstaller.html#M000398">install</a> anything).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000406" class="method-detail">
+        <a name="M000406"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000406.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000406.html');return false;">
+          <span class="method-name">new_installer</span><span class="method-args">(gem)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000399" class="method-detail">
+        <a name="M000399"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000399.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000399.html');return false;">
+          <span class="method-name">source_index_hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a hash mapping the available source names to the source index of
+that source.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000400" class="method-detail">
+        <a name="M000400"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000400.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000400.html');return false;">
+          <span class="method-name">specs_n_sources_matching</span><span class="method-args">(gem_name, version_requirement)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Finds the <a href="Specification.html">Gem::Specification</a> objects and
+the corresponding source <a href="../URI.html">URI</a> for gems matching
+<tt>gem_name</tt> and <tt>version_requirement</tt>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000405" class="method-detail">
+        <a name="M000405"></a>
+
+        <div class="method-heading">
+          <a href="RemoteInstaller.src/M000405.html" target="Code" class="method-signature"
+            onclick="popupCode('RemoteInstaller.src/M000405.html');return false;">
+          <span class="method-name">write_gem_to_file</span><span class="method-args">(body, destination_file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FXObject is the base class for all objects in FOX; in order to receive messages from the user interface, your class must derive from FXObject. The FXObject class also provides serialization facilities, with which you can save and restore the object's state. If you've subclassed from FXObject, you can save your subclasses' state by overloading the save() and load() functions and use the stream API to serialize its member data.
+constants: []
+
+full_name: Fox::FXObject
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: handle
+- !ruby/object:RI::MethodSummary 
+  name: load
+- !ruby/object:RI::MethodSummary 
+  name: save
+name: FXObject
+superclass: Object

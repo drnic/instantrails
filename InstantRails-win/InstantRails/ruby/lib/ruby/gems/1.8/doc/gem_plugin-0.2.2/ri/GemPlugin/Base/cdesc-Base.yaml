@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: options
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: category=
+- !ruby/object:RI::MethodSummary 
+  name: inherited
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This base class for plugins really does nothing more than wire up the new class into the right category. It is not thread-safe yet but will be soon.
+constants: []
+
+full_name: GemPlugin::Base
+includes: []
+
+instance_methods: []
+
+name: Base
+superclass: Object

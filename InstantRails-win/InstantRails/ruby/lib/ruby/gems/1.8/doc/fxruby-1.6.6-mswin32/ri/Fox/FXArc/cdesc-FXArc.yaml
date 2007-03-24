@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Start of the arc, relative to the three-o'clock position from the center, in units of degrees * 64 [Integer]
+  name: a
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Path and extent of the arc, relative to the three-o'clock position from the center, in units of degrees * 64 [Integer]
+  name: b
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height [Integer]
+  name: h
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width [Integer]
+  name: w
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: x-coordinate of center point [Integer]
+  name: x
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: y-coordinate of center point [Integer]
+  name: y
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Arc
+constants: []
+
+full_name: Fox::FXArc
+includes: []
+
+instance_methods: []
+
+name: FXArc
+superclass: Object

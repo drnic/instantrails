@@ -1,0 +1,28 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Name can take one of three forms:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "String: This would normally take the form of a path like &quot;pages/45/notes&quot;"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "Hash: Is treated as an implicit call to url_for, like { :controller =&gt; &quot;pages&quot;, :action =&gt; &quot;notes&quot;, :id =&gt; 45 }"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "Regexp: Will destroy all the matched fragments, example:"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  %r{pages/\\d*/notes}\n"
+  - !ruby/struct:SM::Flow::P 
+    body: Ensure you do not specify start and finish in the regex (^$) because the actual filename matched looks like ./cache/filename/path.cache Regexp expiration is not supported on caches which can't iterate over all keys, such as memcached.
+  type: :BULLET
+full_name: ActionController::Caching::Fragments#expire_fragment
+is_singleton: false
+name: expire_fragment
+params: (name, options = nil)
+visibility: public

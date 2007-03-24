@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw mutiple, unconnected lines (i.e. line segments), where <em>segments</em> is an array of FXSegment instances.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+segments+:"
+    body: an array of FXSegment instances [Array]
+  type: :NOTE
+full_name: Fox::FXDC#drawLineSegments
+is_singleton: false
+name: drawLineSegments
+params: (segments)
+visibility: public

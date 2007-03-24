@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Change item icon and mark the list's layout as dirty; this is equivalent to:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  getItem(index).icon = icon\n  recalc\n"
+- !ruby/struct:SM::Flow::P 
+  body: Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXList#setItemIcon
+is_singleton: false
+name: setItemIcon
+params: (index, icon, owned=false)
+visibility: public

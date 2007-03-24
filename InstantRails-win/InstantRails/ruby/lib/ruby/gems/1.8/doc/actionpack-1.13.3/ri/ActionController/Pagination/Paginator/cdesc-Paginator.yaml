@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: controller
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: item_count
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: items_per_page
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A class representing a paginator for an Active Record collection.
+constants: []
+
+full_name: ActionController::Pagination::Paginator
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: current
+- !ruby/object:RI::MethodSummary 
+  name: current_page
+- !ruby/object:RI::MethodSummary 
+  name: current_page=
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: first
+- !ruby/object:RI::MethodSummary 
+  name: first_page
+- !ruby/object:RI::MethodSummary 
+  name: has_page_number?
+- !ruby/object:RI::MethodSummary 
+  name: last
+- !ruby/object:RI::MethodSummary 
+  name: last_page
+- !ruby/object:RI::MethodSummary 
+  name: length
+- !ruby/object:RI::MethodSummary 
+  name: page_count
+name: Paginator
+superclass: Object

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: strict_base64decode
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: strict_parse
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: to_config
+comment: 
+constants: []
+
+full_name: TMail::Config
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new_body_port
+- !ruby/object:RI::MethodSummary 
+  name: new_part_port
+- !ruby/object:RI::MethodSummary 
+  name: new_preamble_port
+- !ruby/object:RI::MethodSummary 
+  name: strict_base64decode?
+- !ruby/object:RI::MethodSummary 
+  name: strict_parse?
+name: Config
+superclass: Object

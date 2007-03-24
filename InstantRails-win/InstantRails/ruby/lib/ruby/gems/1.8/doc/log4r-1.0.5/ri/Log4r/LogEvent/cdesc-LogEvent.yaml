@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: data
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: fullname
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: level
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: tracer
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: LogEvent wraps up all the miscellaneous data associated with a logging statement. It gets passed around to the varied components of Log4r and should be of interest to those creating extensions.
+- !ruby/struct:SM::Flow::P 
+  body: "Data contained:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: level
+    body: The integer level of the log event. Use LNAMES[level] to get the actual level name.
+  - !ruby/struct:SM::Flow::LI 
+    label: tracer
+    body: The execution stack returned by <tt>caller</tt> at the log event. It is nil if the invoked Logger's trace is false.
+  - !ruby/struct:SM::Flow::LI 
+    label: data
+    body: The object that was passed into the logging method.
+  - !ruby/struct:SM::Flow::LI 
+    label: name
+    body: The name of the logger that was invoked.
+  - !ruby/struct:SM::Flow::LI 
+    label: fullname
+    body: The fully qualified name of the logger that was invoked.
+  type: :LABELED
+- !ruby/struct:SM::Flow::P 
+  body: Note that creating timestamps is a task left to formatters.
+constants: []
+
+full_name: Log4r::LogEvent
+includes: []
+
+instance_methods: []
+
+name: LogEvent
+superclass: Object

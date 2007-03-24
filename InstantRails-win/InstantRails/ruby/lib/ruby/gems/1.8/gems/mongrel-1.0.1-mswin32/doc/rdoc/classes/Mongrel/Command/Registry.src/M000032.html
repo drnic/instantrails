@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>print_command_list (Mongrel::Command::Registry)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/mongrel/command.rb, line 156</span>
+156:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">print_command_list</span>
+157:         <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{Mongrel::Command::BANNER}\nAvailable commands are:\n\n&quot;</span>
+158: 
+159:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">commands</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+160:           <span class="ruby-keyword kw">if</span> <span class="ruby-regexp re">/mongrel::/</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">name</span>
+161:             <span class="ruby-identifier">name</span> = <span class="ruby-identifier">name</span>[<span class="ruby-value">9</span> <span class="ruby-operator">..</span> <span class="ruby-value">-1</span>]
+162:           <span class="ruby-keyword kw">end</span>
+163: 
+164:           <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot; - #{name[1 .. -1]}\n&quot;</span>
+165:         <span class="ruby-keyword kw">end</span>
+166: 
+167:         <span class="ruby-identifier">puts</span> <span class="ruby-value str">&quot;\nEach command takes -h as an option to get help.&quot;</span>
+168: 
+169:       <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

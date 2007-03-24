@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change currently active tab item; this raises the active tab item slightly above the neighboring tab items. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_COMMAND</tt> message is sent to the tab bar's message target
+full_name: Fox::FXTabBar#setCurrent
+is_singleton: false
+name: setCurrent
+params: (index, notify=false)
+visibility: public

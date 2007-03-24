@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Executes the content of the block after a delay of <tt>seconds</tt>. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  page.delay(20) do\n    page.visual_effect :fade, 'notice'\n  end\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#delay
+is_singleton: false
+name: delay
+params: (seconds = 1) {|| ...}
+visibility: public

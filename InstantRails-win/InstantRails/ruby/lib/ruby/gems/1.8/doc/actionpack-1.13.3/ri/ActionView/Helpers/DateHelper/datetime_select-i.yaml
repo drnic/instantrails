@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns a set of select tags (one for year, month, day, hour, and minute) pre-selected for accessing a specified datetime-based attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  datetime_select(&quot;post&quot;, &quot;written_on&quot;)\n  datetime_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)\n"
+- !ruby/struct:SM::Flow::P 
+  body: The selects are prepared for multi-parameter assignment to an Active Record object.
+full_name: ActionView::Helpers::DateHelper#datetime_select
+is_singleton: false
+name: datetime_select
+params: (object_name, method, options = {})
+visibility: public

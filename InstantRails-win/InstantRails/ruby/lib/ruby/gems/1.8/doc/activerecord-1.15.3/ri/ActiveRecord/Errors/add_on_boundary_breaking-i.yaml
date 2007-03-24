@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: add_on_boundry_breaking
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Will add an error message to each of the attributes in <tt>attributes</tt> that has a length outside of the passed boundary <tt>range</tt>. If the length is above the boundary, the too_long_msg message will be used. If below, the too_short_msg.
+full_name: ActiveRecord::Errors#add_on_boundary_breaking
+is_singleton: false
+name: add_on_boundary_breaking
+params: (attributes, range, too_long_msg = @@default_error_messages[:too_long], too_short_msg = @@default_error_messages[:too_short])
+visibility: public

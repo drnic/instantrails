@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Allows specific variables to be excluded from transaction support. Must be done after extending the object but before starting the first transaction on the object.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  vv.transaction_exclusions &lt;&lt; &quot;@io&quot;\n"
+full_name: Transaction::Simple#transaction_exclusions
+is_singleton: false
+name: transaction_exclusions
+params: ()
+visibility: public

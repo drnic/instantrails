@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>remove_actions_from_included_actions! (ActionController::Filters::ClassMethods)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/filters.rb, line 577</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_actions_from_included_actions!</span>(<span class="ruby-identifier">filters</span>,<span class="ruby-operator">*</span><span class="ruby-identifier">actions</span>)
+          <span class="ruby-identifier">actions</span> = <span class="ruby-identifier">actions</span>.<span class="ruby-identifier">flatten</span>.<span class="ruby-identifier">map</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">:to_s</span>)
+          <span class="ruby-identifier">updated_hash</span> = <span class="ruby-identifier">filters</span>.<span class="ruby-identifier">inject</span>(<span class="ruby-identifier">included_actions</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">hash</span>,<span class="ruby-identifier">filter</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">ia</span> = (<span class="ruby-identifier">hash</span>[<span class="ruby-identifier">filter</span>] <span class="ruby-operator">||</span> []) <span class="ruby-operator">-</span> <span class="ruby-identifier">actions</span>
+            <span class="ruby-identifier">ia</span>.<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-identifier">hash</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">filter</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">filter</span>] = <span class="ruby-identifier">ia</span>
+            <span class="ruby-identifier">hash</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">write_inheritable_attribute</span>(<span class="ruby-value str">'included_actions'</span>, <span class="ruby-identifier">updated_hash</span>)
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

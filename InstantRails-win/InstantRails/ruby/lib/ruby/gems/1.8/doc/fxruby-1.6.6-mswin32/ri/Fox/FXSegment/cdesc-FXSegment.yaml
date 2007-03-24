@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: x-coordinate of the starting point [Integer]
+  name: x1
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: x-coordinate of the endpoint [Integer]
+  name: x2
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: y-coordinate of the starting point [Integer]
+  name: y1
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: y-coordinate of the endpoint [Integer]
+  name: y2
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Line segment
+constants: []
+
+full_name: Fox::FXSegment
+includes: []
+
+instance_methods: []
+
+name: FXSegment
+superclass: Object

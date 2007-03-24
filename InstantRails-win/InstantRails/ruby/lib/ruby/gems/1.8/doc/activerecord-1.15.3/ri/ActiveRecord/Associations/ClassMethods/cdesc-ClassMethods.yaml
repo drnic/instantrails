@@ -1,0 +1,248 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Associations are a set of macro-like class methods for tying objects together through foreign keys. They express relationships like &quot;Project has one Project Manager&quot; or &quot;Project belongs to a Portfolio&quot;. Each macro adds a number of methods to the class which are specialized according to the collection or association symbol and the options hash. It works much the same way as Ruby's own attr* methods. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project &lt; ActiveRecord::Base\n    belongs_to              :portfolio\n    has_one                 :project_manager\n    has_many                :milestones\n    has_and_belongs_to_many :categories\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The project class now has the following methods (and more) to ease the traversal and manipulation of its relationships:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Project#portfolio, Project#portfolio=(portfolio), Project#portfolio.nil?</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Project#project_manager, Project#project_manager=(project_manager), Project#project_manager.nil?,</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Project#milestones.empty?, Project#milestones.size, Project#milestones, Project#milestones&lt;&lt;(milestone),</tt> <tt>Project#milestones.delete(milestone), Project#milestones.find(milestone_id), Project#milestones.find(:all, options),</tt> <tt>Project#milestones.build, Project#milestones.create</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Project#categories.empty?, Project#categories.size, Project#categories, Project#categories&lt;&lt;(category1),</tt> <tt>Project#categories.delete(category1)</tt>
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Example
+- !ruby/struct:SM::Flow::P 
+  body: link:files/examples/associations.png
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Is it belongs_to or has_one?
+- !ruby/struct:SM::Flow::P 
+  body: "Both express a 1-1 relationship, the difference is mostly where to place the foreign key, which goes on the table for the class saying belongs_to. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class User &lt; ActiveRecord::Base\n    # I reference an account.\n    belongs_to :account\n  end\n\n  class Account &lt; ActiveRecord::Base\n    # One user references me.\n    has_one :user\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The tables for these classes could look something like:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  CREATE TABLE users (\n    id int(11) NOT NULL auto_increment,\n    account_id int(11) default NULL,\n    name varchar default NULL,\n    PRIMARY KEY  (id)\n  )\n\n  CREATE TABLE accounts (\n    id int(11) NOT NULL auto_increment,\n    name varchar default NULL,\n    PRIMARY KEY  (id)\n  )\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Unsaved objects and associations
+- !ruby/struct:SM::Flow::P 
+  body: You can manipulate objects and associations before they are saved to the database, but there is some special behaviour you should be aware of, mostly involving the saving of associated objects.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: One-to-one associations
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Assigning an object to a has_one association automatically saves that object and the object being replaced (if there is one), in order to update their primary keys - except if the parent object is unsaved (new_record? == true).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: If either of these saves fail (due to one of the objects being invalid) the assignment statement returns false and the assignment is cancelled.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "If you wish to assign an object to a has_one association without saving it, use the #association.build method (documented below)."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Assigning an object to a belongs_to association does not save the object, since the foreign key field belongs on the parent. It does not save the parent either.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Collections
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Adding an object to a collection (has_many or has_and_belongs_to_many) automatically saves that object, except if the parent object (the owner of the collection) is not yet stored in the database.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "If saving any of the objects being added to a collection (via #push or similar) fails, then #push returns false."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "You can add an object to a collection without automatically saving it by using the #collection.build method (documented below)."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: All unsaved (new_record? == true) members of the collection are automatically saved when the parent is saved.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Association callbacks
+- !ruby/struct:SM::Flow::P 
+  body: "Similiar to the normal callbacks that hook into the lifecycle of an Active Record object, you can also define callbacks that get trigged when you add an object to or removing an object from a association collection. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project\n    has_and_belongs_to_many :developers, :after_add =&gt; :evaluate_velocity\n\n    def evaluate_velocity(developer)\n      ...\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "It's possible to stack callbacks by passing them as an array. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Project\n    has_and_belongs_to_many :developers, :after_add =&gt; [:evaluate_velocity, Proc.new { |p, d| p.shipping_date = Time.now}]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Possible callbacks are: before_add, after_add, before_remove and after_remove."
+- !ruby/struct:SM::Flow::P 
+  body: Should any of the before_add callbacks throw an exception, the object does not get added to the collection. Same with the before_remove callbacks, if an exception is thrown the object doesn't get removed.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Association extensions
+- !ruby/struct:SM::Flow::P 
+  body: "The proxy objects that controls the access to associations can be extended through anonymous modules. This is especially beneficial for adding new finders, creators, and other factory-type methods that are only used as part of this association. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Account &lt; ActiveRecord::Base\n    has_many :people do\n      def find_or_create_by_name(name)\n        first_name, last_name = name.split(&quot; &quot;, 2)\n        find_or_create_by_first_name_and_last_name(first_name, last_name)\n      end\n    end\n  end\n\n  person = Account.find(:first).people.find_or_create_by_name(&quot;David Heinemeier Hansson&quot;)\n  person.first_name # =&gt; &quot;David&quot;\n  person.last_name  # =&gt; &quot;Heinemeier Hansson&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If you need to share the same extensions between many associations, you can use a named extension module. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module FindOrCreateByNameExtension\n    def find_or_create_by_name(name)\n      first_name, last_name = name.split(&quot; &quot;, 2)\n      find_or_create_by_first_name_and_last_name(first_name, last_name)\n    end\n  end\n\n  class Account &lt; ActiveRecord::Base\n    has_many :people, :extend =&gt; FindOrCreateByNameExtension\n  end\n\n  class Company &lt; ActiveRecord::Base\n    has_many :people, :extend =&gt; FindOrCreateByNameExtension\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If you need to use multiple named extension modules, you can specify an array of modules with the :extend option. In the case of name conflicts between methods in the modules, methods in modules later in the array supercede those earlier in the array. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Account &lt; ActiveRecord::Base\n    has_many :people, :extend =&gt; [FindOrCreateByNameExtension, FindRecentExtension]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Some extensions can only be made to work with knowledge of the association proxy's internals. Extensions can access relevant state using accessors on the association proxy:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>proxy_owner</tt> - Returns the object the association is part of.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>proxy_reflection</tt> - Returns the reflection object that describes the association.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>proxy_target</tt> - Returns the associated object for belongs_to and has_one, or the collection of associated objects for has_many and has_and_belongs_to_many.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Association Join Models
+- !ruby/struct:SM::Flow::P 
+  body: "Has Many associations can be configured with the :through option to use an explicit join model to retrieve the data. This operates similarly to a <tt>has_and_belongs_to_many</tt> association. The advantage is that you're able to add validations, callbacks, and extra attributes on the join model. Consider the following schema:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Author &lt; ActiveRecord::Base\n    has_many :authorships\n    has_many :books, :through =&gt; :authorships\n  end\n\n  class Authorship &lt; ActiveRecord::Base\n    belongs_to :author\n    belongs_to :book\n  end\n\n  @author = Author.find :first\n  @author.authorships.collect { |a| a.book } # selects all books that the author's authorships belong to.\n  @author.books                              # selects all books by using the Authorship join model\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also go through a has_many association on the join model:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Firm &lt; ActiveRecord::Base\n    has_many   :clients\n    has_many   :invoices, :through =&gt; :clients\n  end\n\n  class Client &lt; ActiveRecord::Base\n    belongs_to :firm\n    has_many   :invoices\n  end\n\n  class Invoice &lt; ActiveRecord::Base\n    belongs_to :client\n  end\n\n  @firm = Firm.find :first\n  @firm.clients.collect { |c| c.invoices }.flatten # select all invoices for all clients of the firm\n  @firm.invoices                                   # selects all invoices by going through the Client join model.\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Polymorphic Associations
+- !ruby/struct:SM::Flow::P 
+  body: Polymorphic associations on models are not restricted on what types of models they can be associated with. Rather, they specify an interface that a has_many association must adhere to.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Asset &lt; ActiveRecord::Base\n    belongs_to :attachable, :polymorphic =&gt; true\n  end\n\n  class Post &lt; ActiveRecord::Base\n    has_many :assets, :as =&gt; :attachable         # The <tt>:as</tt> option specifies the polymorphic interface to use.\n  end\n\n  @asset.attachable = @post\n"
+- !ruby/struct:SM::Flow::P 
+  body: This works by using a type column in addition to a foreign key to specify the associated record. In the Asset example, you'd need an attachable_id integer column and an attachable_type string column.
+- !ruby/struct:SM::Flow::P 
+  body: Using polymorphic associations in combination with single table inheritance (STI) is a little tricky. In order for the associations to work as expected, ensure that you store the base model for the STI models in the type column of the polymorphic association. To continue with the asset example above, suppose there are guest posts and member posts that use the posts table for STI. So there will be an additional 'type' column in the posts table.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Asset &lt; ActiveRecord::Base\n    belongs_to :attachable, :polymorphic =&gt; true\n\n    def attachable_type=(sType)\n       super(sType.to_s.classify.constantize.base_class.to_s)\n    end\n  end\n\n  class Post &lt; ActiveRecord::Base\n    # because we store &quot;Post&quot; in attachable_type now :dependent =&gt; :destroy will work\n    has_many :assets, :as =&gt; :attachable, :dependent =&gt; :destroy\n  end\n\n  class GuestPost &lt; ActiveRecord::Base\n  end\n\n  class MemberPost &lt; ActiveRecord::Base\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Caching
+- !ruby/struct:SM::Flow::P 
+  body: "All of the methods are built on a simple caching principle that will keep the result of the last query around unless specifically instructed not to. The cache is even shared across methods to make it even cheaper to use the macro-added methods without worrying too much about performance at the first go. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  project.milestones             # fetches milestones from the database\n  project.milestones.size        # uses the milestone cache\n  project.milestones.empty?      # uses the milestone cache\n  project.milestones(true).size  # fetches milestones from the database\n  project.milestones             # uses the milestone cache\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Eager loading of associations
+- !ruby/struct:SM::Flow::P 
+  body: "Eager loading is a way to find objects of a certain class and a number of named associations along with it in a single SQL call. This is one of the easiest ways of to prevent the dreaded 1+N problem in which fetching 100 posts that each needs to display their author triggers 101 database queries. Through the use of eager loading, the 101 queries can be reduced to 1. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Post &lt; ActiveRecord::Base\n    belongs_to :author\n    has_many   :comments\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Consider the following loop using the class above:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  for post in Post.find(:all)\n    puts &quot;Post:            &quot; + post.title\n    puts &quot;Written by:      &quot; + post.author.name\n    puts &quot;Last comment on: &quot; + post.comments.first.created_on\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "To iterate over these one hundred posts, we'll generate 201 database queries. Let's first just optimize it for retrieving the author:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  for post in Post.find(:all, :include =&gt; :author)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This references the name of the belongs_to association that also used the :author symbol, so the find will now weave in a join something like this: LEFT OUTER JOIN authors ON authors.id = posts.author_id. Doing so will cut down the number of queries from 201 to 101."
+- !ruby/struct:SM::Flow::P 
+  body: "We can improve upon the situation further by referencing both associations in the finder with:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  for post in Post.find(:all, :include =&gt; [ :author, :comments ])\n"
+- !ruby/struct:SM::Flow::P 
+  body: "That'll add another join along the lines of: LEFT OUTER JOIN comments ON comments.post_id = posts.id. And we'll be down to 1 query. But that shouldn't fool you to think that you can pull out huge amounts of data with no performance penalty just because you've reduced the number of queries. The database still needs to send all the data to Active Record and it still needs to be processed. So it's no catch-all for performance problems, but it's a great way to cut down on the number of queries in a situation as the one described above."
+- !ruby/struct:SM::Flow::P 
+  body: Since the eager loading pulls from multiple tables, you'll have to disambiguate any column references in both conditions and orders. So :order =&gt; &quot;posts.id DESC&quot; will work while :order =&gt; &quot;id DESC&quot; will not. Because eager loading generates the SELECT statement too, the :select option is ignored.
+- !ruby/struct:SM::Flow::P 
+  body: You can use eager loading on multiple associations from the same table, but you cannot use those associations in orders and conditions as there is currently not any way to disambiguate them. Eager loading will not pull additional attributes on join tables, so &quot;rich associations&quot; with has_and_belongs_to_many are not a good fit for eager loading.
+- !ruby/struct:SM::Flow::P 
+  body: When eager loaded, conditions are interpolated in the context of the model class, not the model instance. Conditions are lazily interpolated before the actual model exists.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Table Aliasing
+- !ruby/struct:SM::Flow::P 
+  body: "ActiveRecord uses table aliasing in the case that a table is referenced multiple times in a join. If a table is referenced only once, the standard table name is used. The second time, the table is aliased as #{reflection_name}_#{parent_table_name}. Indexes are appended for any more successive uses of the table name."
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.find :all, :include =&gt; :comments\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ...\n  Post.find :all, :include =&gt; :special_comments # STI\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ... AND comments.type = 'SpecialComment'\n  Post.find :all, :include =&gt; [:comments, :special_comments] # special_comments is the reflection name, posts is the parent table name\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments ON ... LEFT OUTER JOIN comments special_comments_posts\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Acts as tree example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  TreeMixin.find :all, :include =&gt; :children\n  # =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...\n  TreeMixin.find :all, :include =&gt; {:children =&gt; :parent} # using cascading eager includes\n  # =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...\n                              LEFT OUTER JOIN parents_mixins ...\n  TreeMixin.find :all, :include =&gt; {:children =&gt; {:parent =&gt; :children}}\n  # =&gt; SELECT ... FROM mixins LEFT OUTER JOIN mixins childrens_mixins ...\n                              LEFT OUTER JOIN parents_mixins ...\n"
+- !ruby/struct:SM::Flow::P 
+  body: LEFT OUTER JOIN mixins childrens_mixins_2
+- !ruby/struct:SM::Flow::P 
+  body: "Has and Belongs to Many join tables use the same idea, but add a _join suffix:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.find :all, :include =&gt; :categories\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...\n  Post.find :all, :include =&gt; {:categories =&gt; :posts}\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...\n                             LEFT OUTER JOIN categories_posts posts_categories_join LEFT OUTER JOIN posts posts_categories\n  Post.find :all, :include =&gt; {:categories =&gt; {:posts =&gt; :categories}}\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN categories_posts ... LEFT OUTER JOIN categories ...\n                             LEFT OUTER JOIN categories_posts posts_categories_join LEFT OUTER JOIN posts posts_categories\n                             LEFT OUTER JOIN categories_posts categories_posts_join LEFT OUTER JOIN categories categories_posts\n"
+- !ruby/struct:SM::Flow::P 
+  body: If you wish to specify your own custom joins using a :joins option, those table names will take precedence over the eager associations..
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.find :all, :include =&gt; :comments, :joins =&gt; &quot;inner join comments ...&quot;\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments_posts ON ... INNER JOIN comments ...\n  Post.find :all, :include =&gt; [:comments, :special_comments], :joins =&gt; &quot;inner join comments ...&quot;\n  # =&gt; SELECT ... FROM posts LEFT OUTER JOIN comments comments_posts ON ...\n                             LEFT OUTER JOIN comments special_comments_posts ...\n                             INNER JOIN comments ...\n"
+- !ruby/struct:SM::Flow::P 
+  body: Table aliases are automatically truncated according to the maximum length of table identifiers according to the specific database.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Modules
+- !ruby/struct:SM::Flow::P 
+  body: "By default, associations will look for objects within the current module scope. Consider:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module MyApplication\n    module Business\n      class Firm &lt; ActiveRecord::Base\n         has_many :clients\n       end\n\n      class Company &lt; ActiveRecord::Base; end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "When Firm#clients is called, it'll in turn call <tt>MyApplication::Business::Company.find(firm.id)</tt>. If you want to associate with a class in another module scope this can be done by specifying the complete class name, such as:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module MyApplication\n    module Business\n      class Firm &lt; ActiveRecord::Base; end\n    end\n\n    module Billing\n      class Account &lt; ActiveRecord::Base\n        belongs_to :firm, :class_name =&gt; &quot;MyApplication::Business::Firm&quot;\n      end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Type safety with ActiveRecord::AssociationTypeMismatch
+- !ruby/struct:SM::Flow::P 
+  body: If you attempt to assign an object to an association that doesn't match the inferred or specified <tt>:class_name</tt>, you'll get a ActiveRecord::AssociationTypeMismatch.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: All of the association macros can be specialized through options which makes more complex cases than the simple and guessable ones possible.
+constants: []
+
+full_name: ActiveRecord::Associations::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: has_and_belongs_to_many
+- !ruby/object:RI::MethodSummary 
+  name: has_many
+- !ruby/object:RI::MethodSummary 
+  name: has_one
+name: ClassMethods
+superclass: 

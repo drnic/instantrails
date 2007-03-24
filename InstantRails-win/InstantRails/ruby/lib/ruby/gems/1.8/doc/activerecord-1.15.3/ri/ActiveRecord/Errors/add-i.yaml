@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds an error message (<tt>msg</tt>) to the <tt>attribute</tt>, which will be returned on a call to <tt>on(attribute)</tt> for the same attribute and ensure that this error object returns false when asked if <tt>empty?</tt>. More than one error can be added to the same <tt>attribute</tt> in which case an array will be returned on a call to <tt>on(attribute)</tt>. If no <tt>msg</tt> is supplied, &quot;invalid&quot; is assumed.
+full_name: ActiveRecord::Errors#add
+is_singleton: false
+name: add
+params: (attribute, msg = @@default_error_messages[:invalid])
+visibility: public

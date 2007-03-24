@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Waits for the given child process to exit and returns an array containing the process id and the exit status.
+- !ruby/struct:SM::Flow::P 
+  body: Note that the $? (Process::Status) global variable is NOT set. This may be addressed in a future release.
+full_name: Process#waitpid2
+is_singleton: false
+name: waitpid2
+params: (pid)
+visibility: public

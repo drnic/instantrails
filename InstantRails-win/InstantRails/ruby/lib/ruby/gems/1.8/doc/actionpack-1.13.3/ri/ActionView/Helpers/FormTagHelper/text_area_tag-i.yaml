@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a text input area.
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:size</tt> - A string specifying the dimensions of the textarea.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "  # Outputs &lt;textarea name=&quot;body&quot; id=&quot;body&quot; cols=&quot;25&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;\n  &lt;%= text_area_tag &quot;body&quot;, nil, :size =&gt; &quot;25x10&quot; %&gt;\n"
+  type: :BULLET
+full_name: ActionView::Helpers::FormTagHelper#text_area_tag
+is_singleton: false
+name: text_area_tag
+params: (name, content = nil, options = {})
+visibility: public

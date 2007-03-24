@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements XML-RPC client support
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example Usage
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class BloggerAPI &lt; ActionWebService::API::Base\n    inflect_names false\n    api_method :getRecentPosts, :returns =&gt; [[Blog::Post]]\n  end\n\n  blog = ActionWebService::Client::XmlRpc.new(BloggerAPI, &quot;http://.../RPC&quot;, :handler_name =&gt; &quot;blogger&quot;)\n  posts = blog.getRecentPosts\n"
+constants: []
+
+full_name: ActionWebService::Client::XmlRpc
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: perform_invocation
+- !ruby/object:RI::MethodSummary 
+  name: public_name
+name: XmlRpc
+superclass: Base

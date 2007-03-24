@@ -1,0 +1,158 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Associates two classes via an intermediate join table. Unless the join table is explicitly specified as an option, it is guessed using the lexical order of the class names. So a join between Developer and Project will give the default join table name of &quot;developers_projects&quot; because &quot;D&quot; outranks &quot;P&quot;. Note that this precedence is calculated using the <tt>&lt;</tt> operator for <tt>String</tt>. This means that if the strings are of different lengths, and the strings are equal when compared up to the shortest length, then the longer string is considered of higher lexical precedence than the shorter one. For example, one would expect the tables <tt>paper_boxes</tt> and <tt>papers</tt> to generate a join table name of <tt>papers_paper_boxes</tt> because of the length of the name <tt>paper_boxes</tt>, but it in fact generates a join table name of <tt>paper_boxes_papers</tt>. Be aware of this caveat, and use the custom <tt>join_table</tt> option if you need to.
+- !ruby/struct:SM::Flow::P 
+  body: "Deprecated: Any additional fields added to the join table will be placed as attributes when pulling records out through has_and_belongs_to_many associations. Records returned from join tables with additional attributes will be marked as ReadOnly (because we can't save changes to the additional attrbutes). It's strongly recommended that you upgrade any associations with attributes to a real join model (see introduction)."
+- !ruby/struct:SM::Flow::P 
+  body: Adds the following methods for retrieval and query. <tt>collection</tt> is replaced with the symbol passed as the first argument, so <tt>has_and_belongs_to_many :categories</tt> would add among others <tt>categories.empty?</tt>.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection(force_reload = false)</tt> - returns an array of all the associated objects. An empty array is returned if none is found.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection&lt;&lt;(object, ...)</tt> - adds one or more objects to the collection by creating associations in the join table (collection.push and collection.concat are aliases to this method).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.push_with_attributes(object, join_attributes)</tt> - adds one to the collection by creating an association in the join table that also holds the attributes from <tt>join_attributes</tt> (should be a hash with the column names as keys). This can be used to have additional attributes on the join, which will be injected into the associated objects when they are retrieved through the collection. (collection.concat_with_attributes is an alias to this method). This method is now deprecated.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.delete(object, ...)</tt> - removes one or more objects from the collection by removing their associations from the join table. This does not destroy the objects.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection=objects</tt> - replaces the collections content by deleting and adding objects as appropriate.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection_singular_ids</tt> - returns an array of the associated objects ids
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection_singular_ids=ids</tt> - replace the collection by the objects identified by the primary keys in <tt>ids</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.clear</tt> - removes every object from the collection. This does not destroy the objects.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.empty?</tt> - returns true if there are no associated objects.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.size</tt> - returns the number of associated objects.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.find(id)</tt> - finds an associated object responding to the <tt>id</tt> and that meets the condition that it has to be associated with this object.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.build(attributes = {})</tt> - returns a new object of the collection type that has been instantiated with <tt>attributes</tt> and linked to this object through the join table but has not yet been saved.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>collection.create(attributes = {})</tt> - returns a new object of the collection type that has been instantiated with <tt>attributes</tt> and linked to this object through the join table and that has already been saved (if it passed the validation).
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Example: An Developer class declares <tt>has_and_belongs_to_many :projects</tt>, which will add:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects&lt;&lt;</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.delete</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects=</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#project_ids</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#project_ids=</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.clear</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.empty?</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.size</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.find(id)</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.build</tt> (similar to <tt>Project.new(&quot;project_id&quot; =&gt; id)</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Developer#projects.create</tt> (similar to <tt>c = Project.new(&quot;project_id&quot; =&gt; id); c.save; c</tt>)
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The declaration may include an options hash to specialize the behavior of the association.
+- !ruby/struct:SM::Flow::P 
+  body: "Options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:class_name</tt> - specify the class name of the association. Use it only if that name can't be inferred from the association name. So <tt>has_and_belongs_to_many :projects</tt> will by default be linked to the <tt>Project</tt> class, but if the real class name is <tt>SuperProject</tt>, you'll have to specify it with this option.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:join_table</tt> - specify the name of the join table if the default based on lexical order isn't what you want. WARNING: If you're overwriting the table name of either class, the table_name method MUST be declared underneath any has_and_belongs_to_many declaration in order to work."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:foreign_key</tt> - specify the foreign key used for the association. By default this is guessed to be the name of this class in lower-case and &quot;_id&quot; suffixed. So a <tt>Person</tt> class that makes a has_and_belongs_to_many association will use &quot;person_id&quot; as the default foreign_key.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:association_foreign_key</tt> - specify the association foreign key used for the association. By default this is guessed to be the name of the associated class in lower-case and &quot;_id&quot; suffixed. So if the associated class is <tt>Project</tt>, the has_and_belongs_to_many association will use &quot;project_id&quot; as the default association foreign_key.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:conditions</tt> - specify the conditions that the associated object must meet in order to be included as a &quot;WHERE&quot; sql fragment, such as &quot;authorized = 1&quot;.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:order</tt> - specify the order in which the associated objects are returned as a &quot;ORDER BY&quot; sql fragment, such as &quot;last_name, first_name DESC&quot;
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:uniq</tt> - if set to true, duplicate associated objects will be ignored by accessors and query methods
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:finder_sql</tt> - overwrite the default generated SQL used to fetch the association with a manual one
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:delete_sql</tt> - overwrite the default generated SQL used to remove links between the associated classes with a manual one
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:insert_sql</tt> - overwrite the default generated SQL used to add links between the associated classes with a manual one
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:extend</tt> - anonymous module for extending the proxy, see &quot;Association extensions&quot;.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:include</tt> - specify second-order associations that should be eager loaded when the collection is loaded.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:group</tt>: An attribute name by which the result should be grouped. Uses the GROUP BY SQL-clause."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:limit</tt>: An integer determining the limit on the number of rows that should be returned."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:offset</tt>: An integer determining the offset from where the rows should be fetched. So at 5, it would skip the first 4 rows."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be changed if you for example want to do a join, but not include the joined columns."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Option examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  has_and_belongs_to_many :projects\n  has_and_belongs_to_many :projects, :include =&gt; [ :milestones, :manager ]\n  has_and_belongs_to_many :nations, :class_name =&gt; &quot;Country&quot;\n  has_and_belongs_to_many :categories, :join_table =&gt; &quot;prods_cats&quot;\n  has_and_belongs_to_many :active_projects, :join_table =&gt; 'developers_projects', :delete_sql =&gt;\n  'DELETE FROM developers_projects WHERE active=1 AND developer_id = #{id} AND project_id = #{record.id}'\n"
+full_name: ActiveRecord::Associations::ClassMethods#has_and_belongs_to_many
+is_singleton: false
+name: has_and_belongs_to_many
+params: (association_id, options = {}, &extension)
+visibility: public

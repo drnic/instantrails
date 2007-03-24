@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>activate_drb (Breakpoint)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/breakpoint.rb, line 354</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">activate_drb</span>(<span class="ruby-identifier">uri</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">allowed_hosts</span> = [<span class="ruby-value str">'localhost'</span>, <span class="ruby-value str">'127.0.0.1'</span>, <span class="ruby-value str">'::1'</span>],
+    <span class="ruby-identifier">ignore_collisions</span> = <span class="ruby-keyword kw">false</span>)
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@use_drb</span>
+
+    <span class="ruby-identifier">uri</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">'druby://localhost:42531'</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">allowed_hosts</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">acl</span> = [<span class="ruby-value str">&quot;deny&quot;</span>, <span class="ruby-value str">&quot;all&quot;</span>]
+
+      <span class="ruby-constant">Array</span>(<span class="ruby-identifier">allowed_hosts</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">acl</span> <span class="ruby-operator">+=</span> [<span class="ruby-value str">&quot;allow&quot;</span>, <span class="ruby-identifier">host</span>]
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-constant">DRb</span>.<span class="ruby-identifier">install_acl</span>(<span class="ruby-constant">ACL</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">acl</span>))
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@use_drb</span> = <span class="ruby-keyword kw">true</span>
+    <span class="ruby-ivar">@drb_service</span> = <span class="ruby-constant">DRbService</span>.<span class="ruby-identifier">new</span>
+    <span class="ruby-identifier">did_collision</span> = <span class="ruby-keyword kw">false</span>
+    <span class="ruby-keyword kw">begin</span>
+      <span class="ruby-ivar">@service</span> = <span class="ruby-constant">DRb</span>.<span class="ruby-identifier">start_service</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-ivar">@drb_service</span>)
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Errno</span><span class="ruby-operator">::</span><span class="ruby-constant">EADDRINUSE</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ignore_collisions</span> <span class="ruby-keyword kw">then</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-comment cmt"># The port is already occupied by another</span>
+        <span class="ruby-comment cmt"># Breakpoint service. We will try to tell</span>
+        <span class="ruby-comment cmt"># the old service that we want its port.</span>
+        <span class="ruby-comment cmt"># It will then forward that request to the</span>
+        <span class="ruby-comment cmt"># user and retry.</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">did_collision</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-constant">DRbObject</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">uri</span>).<span class="ruby-identifier">collision</span>
+          <span class="ruby-identifier">did_collision</span> = <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">sleep</span>(<span class="ruby-value">10</span>)
+        <span class="ruby-keyword kw">retry</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "ColorScheme objects encapsulate a named set of colors to be used in the HighLine.colors() method call. For example, by applying a ColorScheme that has a <tt>:warning</tt> color then the following could be used:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  colors(&quot;This is a warning&quot;, :warning)\n"
+- !ruby/struct:SM::Flow::P 
+  body: A ColorScheme contains named sets of HighLine color constants.
+- !ruby/struct:SM::Flow::P 
+  body: "Example: Instantiating a color scheme, applying it to HighLine,"
+- !ruby/struct:SM::Flow::VERB 
+  body: "         and using it:\n\n  ft = HighLine::ColorScheme.new do |cs|\n         cs[:headline]        = [ :bold, :yellow, :on_black ]\n         cs[:horizontal_line] = [ :bold, :white ]\n         cs[:even_row]        = [ :green ]\n         cs[:odd_row]         = [ :magenta ]\n       end\n\n  HighLine.color_scheme = ft\n  say(&quot;&lt;%= color('Headline', :headline) %&gt;&quot;)\n  say(&quot;&lt;%= color('-'*20, :horizontal_line) %&gt;&quot;)\n  i = true\n  (&quot;A&quot;..&quot;D&quot;).each do |row|\n     if i then\n       say(&quot;&lt;%= color('#{row}', :even_row ) %&gt;&quot;)\n     else\n       say(&quot;&lt;%= color('#{row}', :odd_row) %&gt;&quot;)\n     end\n     i = !i\n  end\n"
+constants: []
+
+full_name: HighLine::ColorScheme
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: include?
+- !ruby/object:RI::MethodSummary 
+  name: load_from_hash
+name: ColorScheme
+superclass: Object

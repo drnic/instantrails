@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set dash pattern and dash offset. A dash pattern of [1, 2, 3, 4] is a repeating pattern of 1 foreground pixel, 2 background pixels, 3 foreground pixels, and 4 background pixels. The offset is where in the pattern the system will start counting. The maximum length of the dash pattern array is 32 elements.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dashOffset+:"
+    body: indicates which element of the dash pattern to start with (zero for the beginning) [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+dashPattern+:"
+    body: array of integers indicating the dash pattern [Array]
+  type: :NOTE
+full_name: Fox::FXDC#setDashes
+is_singleton: false
+name: setDashes
+params: (dashOffset, dashPattern)
+visibility: public

@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Crop image to given rectangle; this calls resize() to adjust the client and server side representations. The new image may be smaller or larger than the old one; blank areas are filled with color. There must be at least one pixel of overlap between the old and the new image.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate for top left corner of the clip rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate for top left corner of the clip rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width of the clip rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height of the clip rectangle [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+color+:"
+    body: fill color for blank areas after crop [FXColor]
+  type: :NOTE
+full_name: Fox::FXImage#crop
+is_singleton: false
+name: crop
+params: (x, y, w, h, color=0)
+visibility: public

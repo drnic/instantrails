@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If this macro is used, only those attributes named in it will be accessible for mass-assignment, such as <tt>new(attributes)</tt> and <tt>attributes=(attributes)</tt>. This is the more conservative choice for mass-assignment protection. If you'd rather start from an all-open default and restrict attributes as needed, have a look at attr_protected.
+full_name: ActiveRecord::Base::attr_accessible
+is_singleton: true
+name: attr_accessible
+params: (*attributes)
+visibility: public

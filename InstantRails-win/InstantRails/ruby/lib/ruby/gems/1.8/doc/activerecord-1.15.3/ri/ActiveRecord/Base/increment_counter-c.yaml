@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Increments the specified counter by one. So <tt>DiscussionBoard.increment_counter(&quot;post_count&quot;, discussion_board_id)</tt> would increment the &quot;post_count&quot; counter on the board responding to discussion_board_id. This is used for caching aggregate values, so that they don't need to be computed every time. Especially important for looping over a collection where each element require a number of aggregate values. Like the DiscussionBoard that needs to list both the number of posts and comments.
+full_name: ActiveRecord::Base::increment_counter
+is_singleton: true
+name: increment_counter
+params: (counter_name, id)
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Set this item's state to closed. The primary result of this change is that the item's icon will change to its &quot;closed&quot; icon. This is different from the #collapseTree method, which actually collapses part of the tree list, making some items invisible. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CLOSED</tt> message is sent to the list's message target after the item is closed."
+full_name: Fox::FXTreeList#closeItem
+is_singleton: false
+name: closeItem
+params: (item, notify=false)
+visibility: public

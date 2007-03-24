@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Will run Breakpoint in DRb mode. This will spawn a server that can be attached to via the breakpoint-client command whenever a breakpoint is executed. This is useful when you are debugging CGI applications or other applications where you can't access debug sessions via the standard input and output of your application.
+- !ruby/struct:SM::Flow::P 
+  body: You can specify an URI where the DRb server will run at. This way you can specify the port the server runs on. The default URI is druby://localhost:42531.
+- !ruby/struct:SM::Flow::P 
+  body: Please note that breakpoints will be skipped silently in case the DRb server can not spawned. (This can happen if the port is already used by another instance of your application on CGI or another application.)
+- !ruby/struct:SM::Flow::P 
+  body: Also note that by default this will only allow access from localhost. You can however specify a list of allowed hosts or nil (to allow access from everywhere). But that will still not protect you from somebody reading the data as it goes through the net.
+- !ruby/struct:SM::Flow::P 
+  body: "A good approach for getting security and remote access is setting up an SSH tunnel between the DRb service and the client. This is usually done like this:"
+- !ruby/struct:SM::Flow::P 
+  body: $ ssh -L20000:127.0.0.1:20000 -R10000:127.0.0.1:10000 example.com (This will connect port 20000 at the client side to port 20000 at the server side, and port 10000 at the server side to port 10000 at the client side.)
+- !ruby/struct:SM::Flow::P 
+  body: "After that do this on the server side: (the code being debugged) Breakpoint.activate_drb(&quot;druby://127.0.0.1:20000&quot;, &quot;localhost&quot;)"
+- !ruby/struct:SM::Flow::P 
+  body: "And at the client side: ruby breakpoint_client.rb -c druby://127.0.0.1:10000 -s druby://127.0.0.1:20000"
+- !ruby/struct:SM::Flow::P 
+  body: Running through such a SSH proxy will also let you use breakpoint.rb in case you are behind a firewall.
+- !ruby/struct:SM::Flow::P 
+  body: Detailed information about running DRb through firewalls is available at http://www.rubygarden.org/ruby?DrbTutorial
+full_name: Breakpoint#activate_drb
+is_singleton: false
+name: activate_drb
+params: (uri = nil, allowed_hosts = ['localhost', '127.0.0.1', '::1'], ignore_collisions = false)
+visibility: public

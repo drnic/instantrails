@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Assign a &quot;handler&quot; for all FOX messages of type <em>messageType</em> sent from this widget. When called with only one argument, a block is expected, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    aButton.connect(SEL_COMMAND) { |sender, selector, data|\n      ... code to handle this event ...\n    }\n"
+- !ruby/struct:SM::Flow::P 
+  body: The arguments passed into the block are the <em>sender</em> of the message (i.e. the widget), the <em>selector</em> for the message, and any message-specific <em>data</em>.
+- !ruby/struct:SM::Flow::P 
+  body: "When #connect is called with two arguments, the second argument should be some callable object such as a Method or Proc instance, e.g."
+- !ruby/struct:SM::Flow::VERB 
+  body: "    aButton.connect(SEL_COMMAND, method(:onCommand))\n"
+- !ruby/struct:SM::Flow::P 
+  body: "As with the one-argument form of #connect, the callable object will be &quot;called&quot; with three arguments (the sender, selector and message data)."
+full_name: Responder2#connect
+is_singleton: false
+name: connect
+params: (messageType, callableObject=nil, &block)
+visibility: public

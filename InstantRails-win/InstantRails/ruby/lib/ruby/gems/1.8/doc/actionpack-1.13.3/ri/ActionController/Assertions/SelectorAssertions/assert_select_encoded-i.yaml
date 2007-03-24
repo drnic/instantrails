@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extracts the content of an element, treats it as encoded HTML and runs nested assertion on it.
+- !ruby/struct:SM::Flow::P 
+  body: You typically call this method within another assertion to operate on all currently selected elements. You can also pass an element or array of elements.
+- !ruby/struct:SM::Flow::P 
+  body: The content of each element is un-encoded, and wrapped in the root element <tt>encoded</tt>. It then calls the block with all un-encoded elements.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_select_feed :rss, 2.0 do\n    # Select description element of each feed item.\n    assert_select &quot;channel&gt;item&gt;description&quot; do\n      # Run assertions on the encoded elements.\n      assert_select_encoded do\n        assert_select &quot;p&quot;\n      end\n    end\n  end\n"
+full_name: ActionController::Assertions::SelectorAssertions#assert_select_encoded
+is_singleton: false
+name: assert_select_encoded
+params: |
+  assert_select_encoded(element?) { |elements| ... }
+
+visibility: public

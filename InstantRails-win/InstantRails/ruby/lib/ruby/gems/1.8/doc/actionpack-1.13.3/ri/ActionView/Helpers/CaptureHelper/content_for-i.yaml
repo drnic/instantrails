@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calling content_for stores the block of markup for later use. Subsequently, you can make calls to it by name with <tt>yield</tt> in another template or in the layout.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% content_for(&quot;header&quot;) do %&gt;\n    alert('hello world')\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can use yield :header anywhere in your templates.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= yield :header %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "NOTE: Beware that content_for is ignored in caches. So you shouldn't use it for elements that are going to be fragment cached."
+- !ruby/struct:SM::Flow::P 
+  body: The deprecated way of accessing a content_for block was to use a instance variable named @@content_for_#{name_of_the_content_block}@. So <tt>&lt;%= content_for('footer') %&gt;</tt> would be avaiable as <tt>&lt;%= @content_for_footer %&gt;</tt>. The preferred notation now is <tt>&lt;%= yield :footer %&gt;</tt>.
+full_name: ActionView::Helpers::CaptureHelper#content_for
+is_singleton: false
+name: content_for
+params: (name, content = nil, &block)
+visibility: public

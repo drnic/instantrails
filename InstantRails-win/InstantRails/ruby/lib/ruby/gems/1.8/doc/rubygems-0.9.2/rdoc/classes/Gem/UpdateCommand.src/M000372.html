@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (Gem::UpdateCommand)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/gem_commands.rb, line 952</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:system</span>]
+        <span class="ruby-identifier">say</span> <span class="ruby-value str">&quot;Updating RubyGems...&quot;</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>].<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">fail</span> <span class="ruby-value str">&quot;No gem names are allowed with the --system option&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>] = [<span class="ruby-value str">&quot;rubygems-update&quot;</span>]
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-value str">&quot;Updating installed gems...&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">hig</span> = <span class="ruby-identifier">highest_installed_gems</span> = {}
+      <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceIndex</span>.<span class="ruby-identifier">from_installed_gems</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hig</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">hig</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>].<span class="ruby-identifier">version</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span>
+          <span class="ruby-identifier">hig</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">spec</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">remote_gemspecs</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceInfoCache</span>.<span class="ruby-identifier">search</span>(<span class="ruby-regexp re">//</span>)
+      <span class="ruby-identifier">gems_to_update</span> =  <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>].<span class="ruby-identifier">empty?</span>) <span class="ruby-keyword kw">then</span>
+                          <span class="ruby-identifier">which_to_update</span>(<span class="ruby-identifier">highest_installed_gems</span>, <span class="ruby-identifier">remote_gemspecs</span>)
+                        <span class="ruby-keyword kw">else</span>
+                          <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>]
+                        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:domain</span>] = <span class="ruby-identifier">:remote</span> <span class="ruby-comment cmt"># install from remote source</span>
+      <span class="ruby-identifier">install_command</span> = <span class="ruby-identifier">command_manager</span>[<span class="ruby-value str">'install'</span>]
+      <span class="ruby-identifier">gems_to_update</span>.<span class="ruby-identifier">uniq</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Attempting remote update of #{name}&quot;</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>] = [<span class="ruby-identifier">name</span>]
+        <span class="ruby-identifier">install_command</span>.<span class="ruby-identifier">merge_options</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">install_command</span>.<span class="ruby-identifier">execute</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">gems_to_update</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">&quot;rubygems-update&quot;</span>)
+        <span class="ruby-identifier">latest_ruby_gem</span> = <span class="ruby-identifier">remote_gemspecs</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">s</span>.<span class="ruby-identifier">name</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'rubygems-update'</span> 
+        }.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">s</span>.<span class="ruby-identifier">version</span>
+        }.<span class="ruby-identifier">last</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Updating version of RubyGems to #{latest_ruby_gem.version}&quot;</span>
+        <span class="ruby-identifier">do_rubygems_update</span>(<span class="ruby-identifier">latest_ruby_gem</span>.<span class="ruby-identifier">version</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:system</span>]) <span class="ruby-keyword kw">then</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-value str">&quot;RubyGems system software updated&quot;</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;Gems: [#{gems_to_update.uniq.sort.collect{|g| g.to_s}.join(', ')}] updated&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

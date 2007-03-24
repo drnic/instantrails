@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>quote (ActiveRecord::ConnectionAdapters::FrontBaseAdapter)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_record/connection_adapters/frontbase_adapter.rb, line 297</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quote</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">column</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">quoted_id</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:quoted_id</span>)
+
+        <span class="ruby-identifier">retvalue</span> = <span class="ruby-value str">&quot;&lt;INVALID&gt;&quot;</span>
+
+        <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;quote(#{value.inspect}(#{value.class}),#{column.type.inspect})&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">FB_TRACE</span>
+        <span class="ruby-comment cmt"># If a column was passed in, use column type information</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">column</span>
+            <span class="ruby-identifier">retvalue</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:string</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>)
+                  <span class="ruby-node">&quot;'#{quote_string(value.to_s)}'&quot;</span> <span class="ruby-comment cmt"># ' (for ruby-mode)</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-node">&quot;'#{quote_string(value.to_yaml)}'&quot;</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:integer</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">TrueClass</span>)
+                  <span class="ruby-value str">'1'</span>
+                <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">FalseClass</span>)
+                  <span class="ruby-value str">'0'</span>
+                <span class="ruby-keyword kw">else</span>
+                   <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_i</span>.<span class="ruby-identifier">to_s</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:float</span>
+                <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span>.<span class="ruby-identifier">to_s</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:decimal</span>
+                <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_d</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-value str">&quot;F&quot;</span>)
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:datetime</span>, <span class="ruby-identifier">:timestamp</span>
+                <span class="ruby-node">&quot;TIMESTAMP '#{value.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)}'&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:time</span>
+                <span class="ruby-node">&quot;TIME '#{value.strftime(&quot;%H:%M:%S&quot;)}'&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:date</span>
+                <span class="ruby-node">&quot;DATE '#{value.strftime(&quot;%Y-%m-%d&quot;)}'&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:twelvebytekey</span>
+                <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>).<span class="ruby-identifier">first</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">TwelveByteKey</span>)
+                <span class="ruby-node">&quot;X'#{value.to_s}'&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:boolean</span>
+                <span class="ruby-identifier">value</span> = <span class="ruby-identifier">quoted_true</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">TrueClass</span>)
+                <span class="ruby-identifier">value</span> = <span class="ruby-identifier">quoted_false</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">FalseClass</span>)
+                <span class="ruby-identifier">value</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:binary</span>
+                <span class="ruby-identifier">blob_handle</span> = <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">create_blob</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>)
+                <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;SQL -&gt; Insert #{value.to_s.length} byte blob as #{retvalue}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">FB_TRACE</span>
+                <span class="ruby-identifier">blob_handle</span>.<span class="ruby-identifier">handle</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:text</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">String</span>)
+                  <span class="ruby-identifier">clobdata</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-comment cmt"># ' (for ruby-mode)</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">clobdata</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_yaml</span>
+                <span class="ruby-keyword kw">end</span>
+                <span class="ruby-identifier">clob_handle</span> = <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">create_clob</span>(<span class="ruby-identifier">clobdata</span>)
+                <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;SQL -&gt; Insert #{value.to_s.length} byte clob as #{retvalue}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">FB_TRACE</span>
+                <span class="ruby-identifier">clob_handle</span>.<span class="ruby-identifier">handle</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-node">&quot;*** UNKNOWN TYPE: #{column.type.inspect}&quot;</span>
+            <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># case</span>
+          <span class="ruby-comment cmt"># Since we don't have column type info, make a best guess based</span>
+          <span class="ruby-comment cmt"># on the Ruby class of the value</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">retvalue</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">value</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">ConnectionAdapters</span><span class="ruby-operator">::</span><span class="ruby-constant">TwelveByteKey</span>
+                <span class="ruby-identifier">s</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>).<span class="ruby-identifier">first</span>
+                <span class="ruby-node">&quot;X'#{s}'&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">column</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:binary</span>
+                  <span class="ruby-identifier">s</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;H*&quot;</span>).<span class="ruby-identifier">first</span>
+                  <span class="ruby-node">&quot;X'#{s}'&quot;</span>
+                <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">column</span> <span class="ruby-operator">&amp;&amp;</span> [<span class="ruby-identifier">:integer</span>, <span class="ruby-identifier">:float</span>, <span class="ruby-identifier">:decimal</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span>) 
+                  <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-node">&quot;'#{quote_string(value)}'&quot;</span> <span class="ruby-comment cmt"># ' (for ruby-mode)</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NilClass</span>
+                <span class="ruby-value str">&quot;NULL&quot;</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TrueClass</span>
+                (<span class="ruby-identifier">column</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:integer</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'1'</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">quoted_true</span>)
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FalseClass</span>
+                (<span class="ruby-identifier">column</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:integer</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'0'</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">quoted_false</span>)
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Float</span>, <span class="ruby-constant">Fixnum</span>, <span class="ruby-constant">Bignum</span>, <span class="ruby-constant">BigDecimal</span>
+                <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Time</span>, <span class="ruby-constant">Date</span>, <span class="ruby-constant">DateTime</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">column</span>
+                  <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">column</span>.<span class="ruby-identifier">type</span>
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:date</span>
+                      <span class="ruby-node">&quot;DATE '#{value.strftime(&quot;%Y-%m-%d&quot;)}'&quot;</span>
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:time</span>
+                      <span class="ruby-node">&quot;TIME '#{value.strftime(&quot;%H:%M:%S&quot;)}'&quot;</span>
+                    <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:timestamp</span>
+                      <span class="ruby-node">&quot;TIMESTAMP '#{value.strftime(&quot;%Y-%m-%d %H:%M:%S&quot;)}'&quot;</span>
+                  <span class="ruby-keyword kw">else</span>
+                    <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;Unknown column type!&quot;</span>
+                  <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt"># case</span>
+                <span class="ruby-keyword kw">else</span> <span class="ruby-comment cmt"># Column wasn't passed in, so try to guess the right type</span>
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">kind_of?</span> <span class="ruby-constant">Date</span>
+                    <span class="ruby-node">&quot;DATE '#{value.strftime(&quot;%Y-%m-%d&quot;)}'&quot;</span>
+                  <span class="ruby-keyword kw">else</span>
+                    <span class="ruby-keyword kw">if</span> [<span class="ruby-identifier">:hour</span>, <span class="ruby-identifier">:min</span>, <span class="ruby-identifier">:sec</span>].<span class="ruby-identifier">all?</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">part</span><span class="ruby-operator">|</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">:part</span>).<span class="ruby-identifier">zero?</span> }
+                      <span class="ruby-node">&quot;TIME '#{value.strftime(&quot;%H:%M:%S&quot;)}'&quot;</span>
+                    <span class="ruby-keyword kw">else</span>
+                      <span class="ruby-node">&quot;TIMESTAMP '#{quoted_date(value)}'&quot;</span>
+                    <span class="ruby-keyword kw">end</span>
+                  <span class="ruby-keyword kw">end</span> 
+                <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#if column</span>
+              <span class="ruby-keyword kw">else</span> 
+                <span class="ruby-node">&quot;'#{quote_string(value.to_yaml)}'&quot;</span>
+            <span class="ruby-keyword kw">end</span> <span class="ruby-comment cmt">#case</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">retvalue</span> = <span class="ruby-value str">&quot;NULL&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+         
+        <span class="ruby-identifier">retvalue</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Aborts the transaction. Resets the object state to what it was before the transaction was started and closes the transaction. If <tt>name</tt> is specified, then the intervening transactions and the named transaction will be aborted. Otherwise, only the current transaction is aborted.
+- !ruby/struct:SM::Flow::P 
+  body: If the current or named transaction has been started by a block (Transaction::Simple.start), then the execution of the block will be halted with <tt>break</tt> <tt>self</tt>.
+full_name: Transaction::Simple#abort_transaction
+is_singleton: false
+name: abort_transaction
+params: (name = nil)
+visibility: public

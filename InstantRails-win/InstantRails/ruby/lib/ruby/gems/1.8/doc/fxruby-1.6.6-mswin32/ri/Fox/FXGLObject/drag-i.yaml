@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Drag this object from one position to another. Returns <tt>true</tt> if the drag was successful.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+viewer+:"
+    body: the viewer window in which we're dragging [FXGLViewer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+fx+:"
+    body: x-coordinate for position we're dragging from [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+fy+:"
+    body: y-coordinate for position we're dragging from [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+tx+:"
+    body: x-coordinate for position we're dragging to [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ty+:"
+    body: y-coordinate for position we're dragging to [Integer]
+  type: :NOTE
+full_name: Fox::FXGLObject#drag
+is_singleton: false
+name: drag
+params: (viewer, fx, fy, tx, ty)
+visibility: public

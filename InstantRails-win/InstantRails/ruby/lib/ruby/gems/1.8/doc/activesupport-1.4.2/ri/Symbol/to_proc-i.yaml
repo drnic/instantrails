@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Turns the symbol into a simple proc, which is especially useful for enumerations. Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # The same as people.collect { |p| p.name }\n  people.collect(&amp;:name)\n\n  # The same as people.select { |p| p.manager? }.collect { |p| p.salary }\n  people.select(&amp;:manager?).collect(&amp;:salary)\n"
+full_name: Symbol#to_proc
+is_singleton: false
+name: to_proc
+params: ()
+visibility: public

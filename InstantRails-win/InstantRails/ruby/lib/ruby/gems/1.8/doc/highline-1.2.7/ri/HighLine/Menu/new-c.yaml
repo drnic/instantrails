@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an instance of HighLine::Menu. All customization is done through the passed block, which should call accessors and choice() and choices() as needed to define the Menu. Note that Menus are also Questions, so all that functionality is available to the block as well.
+full_name: HighLine::Menu::new
+is_singleton: true
+name: new
+params: ( ) {|self if block_given?| ...}
+visibility: public
