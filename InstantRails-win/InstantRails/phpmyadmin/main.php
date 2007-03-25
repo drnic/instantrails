@@ -348,6 +348,10 @@ if ($server != 0
     && $cfg['Server']['user'] == 'root'
     && $cfg['Server']['password'] == '') {
     echo '<div class="warning">' . $strInsecureMySQL . '</div>' . "\n";
+/*** Begin Instant Rails specific ***/
+echo "<br><font color='#008000'><b>[ Instant Rails : Ignore this message if you don't modify default configuration:
+MySql is accessible only from localhost address. ]</b></font>";
+/*** End Instant Rails specific ***/
 }
 
 /**
