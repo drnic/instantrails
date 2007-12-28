@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current alignment [Integer]
+  name: alignment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The bitmap [FXBitmap]
+  name: bitmap
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color used for the &quot;off&quot; bits in the bitmap [FXColor]
+  name: offColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color used for the &quot;on&quot; bits in the bitmap [FXColor]
+  name: onColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Bitmap View widget display a scrollable view of a monochrome bitmap image; the bitmap is not owned by the bitmap frame so it must be explicitly deleted elsewhere. Thus, a single bitmap image can be displayed inside multiple bitmap view widgets.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Bitmap alignment styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_NORMAL+:"
+    body: Normal mode is centered
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_CENTER_X+:"
+    body: Centered horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_LEFT+:"
+    body: Left-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_RIGHT+:"
+    body: Right-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_CENTER_Y+:"
+    body: Centered vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_TOP+:"
+    body: Top-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BITMAPVIEW_BOTTOM+:"
+    body: Bottom-aligned
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXBitmapView
+includes: []
+
+instance_methods: []
+
+name: FXBitmapView
+superclass: FXScrollArea

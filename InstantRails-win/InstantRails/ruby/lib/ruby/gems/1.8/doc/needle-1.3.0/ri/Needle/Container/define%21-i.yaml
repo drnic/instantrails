@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new DefinitionContext around the container, and then evaluate the block within the new context instance (via <tt>instance_eval</tt>).
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.define! do\n    calc( :model =&gt; :prototype ) { Calc.new( operations ) }\n  end\n"
+full_name: Needle::Container#define!
+is_singleton: false
+name: define!
+params: ( &block )
+visibility: public

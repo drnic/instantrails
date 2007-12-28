@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The #status message changed in this version. It adds <tt>message</tt> and <tt>language</tt> fields, so the callback now receives <tt>driver</tt>, <tt>id</tt>, <tt>code</tt>, <tt>message</tt>, and <tt>language</tt> as parameters."
+full_name: Net::SFTP::Protocol::V_03::Impl#do_status
+is_singleton: false
+name: do_status
+params: ( channel, content )
+visibility: public

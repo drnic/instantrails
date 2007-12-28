@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Version 4 of the SFTP protocol changed the number of parameters to several different packet types:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: rename( id, old, new, flags )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: stat( id, path, flags )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: lstat( id, path, flags )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: fstat( id, handle, flags )
+  type: :BULLET
+constants: []
+
+full_name: Net::SFTP::Protocol::V_04::PacketAssistant
+includes: []
+
+instance_methods: []
+
+name: PacketAssistant
+superclass: V_03::PacketAssistant

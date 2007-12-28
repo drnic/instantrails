@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Getting ranges in different convenient string representations and other objects
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RANGE_FORMATS
+  value: "{           :db => Proc.new { |start, stop| \"BETWEEN '#{start.to_s(:db)}' AND '#{stop.to_s(:db)}'\" }"
+full_name: ActiveSupport::CoreExtensions::Range::Conversions
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_formatted_s
+name: Conversions
+superclass: 

@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Group box style [Integer]
+  name: groupBoxStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Group box title text [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title text color [FXColor]
+  name: textColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXGroupBox widget provides a nice raised or sunken border around a group of widgets, providing a visual delineation. Typically, a title is placed over the border to provide some clarification.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Group box options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GROUPBOX_TITLE_LEFT+:"
+    body: Title is left-justified
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GROUPBOX_TITLE_CENTER+:"
+    body: Title is centered
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GROUPBOX_TITLE_RIGHT+:"
+    body: Title is right-justified
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GROUPBOX_NORMAL+:"
+    body: same as <tt>GROUPBOX_TITLE_LEFT</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXGroupBox
+includes: []
+
+instance_methods: []
+
+name: FXGroupBox
+superclass: FXPacker

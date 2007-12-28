@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A convenience class for a read/write buffer.
+constants: []
+
+full_name: Net::SSH::Util::Buffer
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: BufferBase
+- !ruby/object:RI::IncludedModule 
+  name: ReaderBufferImpl
+- !ruby/object:RI::IncludedModule 
+  name: WriterBufferImpl
+instance_methods: []
+
+name: Buffer
+superclass: Object

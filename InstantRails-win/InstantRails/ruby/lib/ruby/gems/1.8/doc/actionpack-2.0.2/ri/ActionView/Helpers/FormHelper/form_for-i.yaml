@@ -1,0 +1,70 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a form and a scope around a specific model object that is used as a base for questioning about values for the fields.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :person, @person, :url =&gt; { :action =&gt; &quot;update&quot; } do |f| %&gt;\n    First name: &lt;%= f.text_field :first_name %&gt;\n    Last name : &lt;%= f.text_field :last_name %&gt;\n    Biography : &lt;%= f.text_area :biography %&gt;\n    Admin?    : &lt;%= f.check_box :admin %&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Worth noting is that the form_for tag is called in a ERb evaluation block, not an ERb output block. So that's <tt>&lt;% %&gt;</tt>, not <tt>&lt;%= %&gt;</tt>. Also worth noting is that form_for yields a <tt>form_builder</tt> object, in this example as <tt>f</tt>, which emulates the API for the stand-alone FormHelper methods, but without the object name. So instead of <tt>text_field :person, :name</tt>, you get away with <tt>f.text_field :name</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: Even further, the form_for method allows you to more easily escape the instance variable convention. So while the stand-alone approach would require <tt>text_field :person, :name, :object =&gt; person</tt> to work with local variables instead of instance ones, the form_for calls remain the same. You simply declare once with <tt>:person, person</tt> and all subsequent field calls save <tt>:person</tt> and <tt>:object =&gt; person</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Also note that form_for doesn't create an exclusive scope. It's still possible to use both the stand-alone FormHelper methods and methods from FormTagHelper. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :person, @person, :url =&gt; { :action =&gt; &quot;update&quot; } do |f| %&gt;\n    First name: &lt;%= f.text_field :first_name %&gt;\n    Last name : &lt;%= f.text_field :last_name %&gt;\n    Biography : &lt;%= text_area :person, :biography %&gt;\n    Admin?    : &lt;%= check_box_tag &quot;person[admin]&quot;, @person.company.admin? %&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Note: This also works for the methods in FormOptionHelper and DateHelper that are designed to work with an object as base, like FormOptionHelper#collection_select and DateHelper#datetime_select."
+- !ruby/struct:SM::Flow::P 
+  body: "HTML attributes for the form tag can be given as :html =&gt; {...}. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :person, @person, :html =&gt; {:id =&gt; 'person_form'} do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: The above form will then have the <tt>id</tt> attribute with the value &lt;/tt&gt;person_form&lt;/tt&gt;, which you can then style with CSS or manipulate with JavaScript.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Relying on record identification
+- !ruby/struct:SM::Flow::P 
+  body: "In addition to manually configuring the form_for call, you can also rely on record identification, which will use the conventions and named routes of that approach. Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for(@post) do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This will expand to be the same as:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :post, @post, :url =&gt; post_path(@post), :html =&gt; { :method =&gt; :put, :class =&gt; &quot;edit_post&quot;, :id =&gt; &quot;edit_post_45&quot; } do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "And for new records:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for(Post.new) do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This will expand to be the same as:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :post, @post, :url =&gt; posts_path, :html =&gt; { :class =&gt; &quot;new_post&quot;, :id =&gt; &quot;new_post&quot; } do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also overwrite the individual conventions, like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for(@post, :url =&gt; super_post_path(@post)) do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "And for namespaced routes, like admin_post_url:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for([:admin, @post]) do |f| %&gt;\n   ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Customized form builders
+- !ruby/struct:SM::Flow::P 
+  body: You can also build forms using a customized FormBuilder class. Subclass FormBuilder and override or define some more helpers, then use your custom builder. For example, let's say you made a helper to automatically add labels to form inputs.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% form_for :person, @person, :url =&gt; { :action =&gt; &quot;update&quot; }, :builder =&gt; LabellingFormBuilder do |f| %&gt;\n    &lt;%= f.text_field :first_name %&gt;\n    &lt;%= f.text_field :last_name %&gt;\n    &lt;%= text_area :person, :biography %&gt;\n    &lt;%= check_box_tag &quot;person[admin]&quot;, @person.company.admin? %&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "In many cases you will want to wrap the above in another helper, so you could do something like the following:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def labelled_form_for(name, object, options, &amp;proc)\n    form_for(name, object, options.merge(:builder =&gt; LabellingFormBuiler), &amp;proc)\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: If you don't need to attach a form to a model instance, then check out FormTagHelper#form_tag.
+full_name: ActionView::Helpers::FormHelper#form_for
+is_singleton: false
+name: form_for
+params: (record_or_name_or_array, *args, &proc)
+visibility: public

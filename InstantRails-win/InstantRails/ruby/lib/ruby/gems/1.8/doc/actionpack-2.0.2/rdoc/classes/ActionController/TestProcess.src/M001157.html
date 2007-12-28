@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>with_routing (ActionController::TestProcess)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/test_process.rb, line 498</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">with_routing</span>
+      <span class="ruby-identifier">real_routes</span> = <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">Routes</span>
+      <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span>.<span class="ruby-identifier">module_eval</span> { <span class="ruby-identifier">remove_const</span> <span class="ruby-identifier">:Routes</span> }
+
+      <span class="ruby-identifier">temporary_routes</span> = <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span><span class="ruby-operator">::</span><span class="ruby-constant">RouteSet</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span>.<span class="ruby-identifier">module_eval</span> { <span class="ruby-identifier">const_set</span> <span class="ruby-identifier">:Routes</span>, <span class="ruby-identifier">temporary_routes</span> }
+
+      <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">temporary_routes</span>
+    <span class="ruby-keyword kw">ensure</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span>.<span class="ruby-identifier">const_defined?</span> <span class="ruby-identifier">:Routes</span>
+        <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span>.<span class="ruby-identifier">module_eval</span> { <span class="ruby-identifier">remove_const</span> <span class="ruby-identifier">:Routes</span> }
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Routing</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">:Routes</span>, <span class="ruby-identifier">real_routes</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">real_routes</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

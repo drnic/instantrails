@@ -1,0 +1,107 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Currently active tab item's index [Integer]
+  name: current
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tab bar style [Integer]
+  name: tabStyle
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The FXTabBar layout manager arranges tab items side by side, and raises the active tab item above the neighboring tab items. In a the horizontal arrangement, the tab bar can have the tab items on the top or on the bottom. In the vertical arrangement, the tabs can be on the left or on the right. When one of the tab items is pressed, the tab bar's #setCurrent() method is called with <em>notify</em> of <tt>true</tt>. This in turn causes the tab bar to send a <tt>SEL_COMMAND</tt> message to its target."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTabBar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent whenever the current tab item changes; the message data is an integer indicating the new current tab item's index.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Tab book options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_TOPTABS+:"
+    body: Tabs on top (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_BOTTOMTABS+:"
+    body: Tabs on bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_SIDEWAYS+:"
+    body: Tabs on left
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_LEFTTABS+:"
+    body: Tabs on left
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_RIGHTTABS+:"
+    body: Tabs on right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABBOOK_NORMAL+:"
+    body: same as <tt>TABBOOK_TOPTABS</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_ITEM+:"
+    body: Sent from one of the FXTabItems
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FIRST+:"
+    body: Switch to the first panel
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SECOND+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_THIRD+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FOURTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FIFTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SIXTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SEVENTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_EIGHTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_NINETH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_TENTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_LAST+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTabBar
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setCurrent
+name: FXTabBar
+superclass: FXPacker

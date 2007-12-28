@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>end_index (Gem::Indexer::MarshalIndexBuilder)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/indexer/marshal_index_builder.rb, line 5</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">end_index</span>
+    <span class="ruby-identifier">gems</span> = {}
+    <span class="ruby-identifier">index</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceIndex</span>.<span class="ruby-identifier">new</span>
+
+    <span class="ruby-ivar">@index</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">gemspec</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">gems</span>[<span class="ruby-identifier">gemspec</span>.<span class="ruby-identifier">original_name</span>] = <span class="ruby-identifier">gemspec</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">index</span>.<span class="ruby-identifier">instance_variable_get</span>(<span class="ruby-identifier">:@gems</span>).<span class="ruby-identifier">replace</span> <span class="ruby-identifier">gems</span>
+
+    <span class="ruby-ivar">@file</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">index</span>.<span class="ruby-identifier">dump</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

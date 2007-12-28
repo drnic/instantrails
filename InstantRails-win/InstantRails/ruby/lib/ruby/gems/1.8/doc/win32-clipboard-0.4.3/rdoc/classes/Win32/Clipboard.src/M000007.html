@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>formats (Win32::Clipboard)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/clipboard.rb, line 124</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">formats</span>
+         <span class="ruby-identifier">formats</span> = {}
+         <span class="ruby-identifier">format</span> = <span class="ruby-value">0</span>
+         
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">open</span>
+         <span class="ruby-keyword kw">while</span> <span class="ruby-value">0</span> <span class="ruby-operator">!=</span> (<span class="ruby-identifier">format</span> = <span class="ruby-constant">EnumClipboardFormats</span>(<span class="ruby-identifier">format</span>))
+            <span class="ruby-identifier">buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">80</span>
+            <span class="ruby-constant">GetClipboardFormatName</span>(<span class="ruby-identifier">format</span>, <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">length</span>)
+            <span class="ruby-identifier">formats</span>[<span class="ruby-identifier">format</span>] = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>
+         <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">close</span>
+         <span class="ruby-identifier">formats</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

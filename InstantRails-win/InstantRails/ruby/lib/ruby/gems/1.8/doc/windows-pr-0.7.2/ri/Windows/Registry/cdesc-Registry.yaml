@@ -1,0 +1,247 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_CLASSES_ROOT
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_CURRENT_USER
+  value: "0x80000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_LOCAL_MACHINE
+  value: "0x80000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_USERS
+  value: "0x80000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_PERFORMANCE_DATA
+  value: "0x80000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_PERFORMANCE_TEXT
+  value: "0x80000050"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_PERFORMANCE_NLSTEXT
+  value: "0x80000060"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_CURRENT_CONFIG
+  value: "0x80000005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HKEY_DYN_DATA
+  value: "0x80000006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_QUERY_VALUE
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_SET_VALUE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_CREATE_SUB_KEY
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ENUMERATE_SUB_KEYS
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_NOTIFY
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_CREATE_LINK
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_WOW64_32KEY
+  value: "0x0200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_WOW64_64KEY
+  value: "0x0100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_WOW64_RES
+  value: "0x0300"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_READ
+  value: (STANDARD_RIGHTS_READ|KEY_QUERY_VALUE|KEY_ENUMERATE_SUB_KEYS|                   KEY_NOTIFY) & (~SYNCHRONIZE)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_WRITE
+  value: (STANDARD_RIGHTS_WRITE|KEY_SET_VALUE|                   KEY_CREATE_SUB_KEY) & (~SYNCHRONIZE)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_EXECUTE
+  value: KEY_READ & (~SYNCHRONIZE)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ALL_ACCESS
+  value: (STANDARD_RIGHTS_ALL|KEY_QUERY_VALUE|KEY_SET_VALUE|                   KEY_CREATE_SUB_KEY|KEY_ENUMERATE_SUB_KEYS|KEY_NOTIFY|                   KEY_CREATE_LINK) & (~SYNCHRONIZE)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_RESERVED
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_NON_VOLATILE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_VOLATILE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_CREATE_LINK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_BACKUP_RESTORE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPTION_OPEN_LINK
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_LEGAL_OPTION
+  value: REG_OPTION_RESERVED|REG_OPTION_NON_VOLATILE|          REG_OPTION_VOLATILE|REG_OPTION_CREATE_LINK|REG_OPTION_BACKUP_RESTORE|          REG_OPTION_OPEN_LINK
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_CREATED_NEW_KEY
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_OPENED_EXISTING_KEY
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_STANDARD_FORMAT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_LATEST_FORMAT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NO_COMPRESSION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_WHOLE_HIVE_VOLATILE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_REFRESH_HIVE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NO_LAZY_FLUSH
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_FORCE_RESTORE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_FORCE_UNLOAD
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NOTIFY_CHANGE_NAME
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NOTIFY_CHANGE_ATTRIBUTES
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NOTIFY_CHANGE_LAST_SET
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NOTIFY_CHANGE_SECURITY
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_LEGAL_CHANGE_FILTER
+  value: REG_NOTIFY_CHANGE_NAME|          REG_NOTIFY_CHANGE_ATTRIBUTES|REG_NOTIFY_CHANGE_LAST_SET|          REG_NOTIFY_CHANGE_SECURITY
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_SZ
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_EXPAND_SZ
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_BINARY
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_DWORD
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_DWORD_LITTLE_ENDIAN
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_DWORD_BIG_ENDIAN
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_LINK
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_MULTI_SZ
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_RESOURCE_LIST
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_FULL_RESOURCE_DESCRIPTOR
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_RESOURCE_REQUIREMENTS_LIST
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_QWORD
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: REG_QWORD_LITTLE_ENDIAN
+  value: "11"
+full_name: Windows::Registry
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::File
+instance_methods: []
+
+name: Registry
+superclass: 

@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An array of lines returned by the server prior to reporting the version.
+  name: header_lines
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Manages the negotiation of the version strings between client and server.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: For processing the version header. The version reported by the server must match this pattern.
+  name: VERSION_LINE
+  value: /^SSH-/
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Only versions matching this pattern are supported by Net::SSH.
+  name: REQUIRED_VERSION_PATTERN
+  value: /^SSH-(1.99|2.0)-/
+full_name: Net::SSH::Transport::VersionNegotiator
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: negotiate
+name: VersionNegotiator
+superclass: Object

@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: XML_TYPE_NAMES
+  value: "{           \"Symbol\"     => \"symbol\",           \"Fixnum\"     => \"integer\",           \"Bignum\"     => \"integer\",           \"BigDecimal\" => \"decimal\",           \"Float\"      => \"float\",           \"Date\"       => \"date\",           \"DateTime\"   => \"datetime\",           \"Time\"       => \"datetime\",           \"TrueClass\"  => \"boolean\",           \"FalseClass\" => \"boolean\""
+- !ruby/object:RI::Constant 
+  comment: 
+  name: XML_FORMATTING
+  value: "{           \"symbol\"   => Proc.new { |symbol| symbol.to_s },           \"date\"     => Proc.new { |date| date.to_s(:db) },           \"datetime\" => Proc.new { |time| time.xmlschema },           \"binary\"   => Proc.new { |binary| Base64.encode64(binary) },           \"yaml\"     => Proc.new { |yaml| yaml.to_yaml }"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: XML_PARSING
+  value: "{             \"symbol\"       => Proc.new  { |symbol|  symbol.to_sym },             \"date\"         => Proc.new  { |date|    ::Date.parse(date) },             \"datetime\"     => Proc.new  { |time|    ::Time.parse(time).utc },             \"integer\"      => Proc.new  { |integer| integer.to_i },             \"float\"        => Proc.new  { |float|   float.to_f },             \"decimal\"      => Proc.new  { |number|  BigDecimal(number) },             \"boolean\"      => Proc.new  { |boolean| %w(1 true).include?(boolean.strip) },             \"string\"       => Proc.new  { |string|  string.to_s },             \"yaml\"         => Proc.new  { |yaml|    YAML::load(yaml) rescue yaml },             \"base64Binary\" => Proc.new  { |bin|     Base64.decode64(bin) },             # FIXME: Get rid of eval and institute a proper decorator here             \"file\"         => Proc.new do |file, entity|               f = StringIO.new(Base64.decode64(file))"
+full_name: ActiveSupport::CoreExtensions::Hash::Conversions
+includes: []
+
+instance_methods: []
+
+name: Conversions
+superclass: 

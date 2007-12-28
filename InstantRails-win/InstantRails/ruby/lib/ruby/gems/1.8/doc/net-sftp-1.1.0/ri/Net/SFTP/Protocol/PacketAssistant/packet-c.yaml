@@ -1,0 +1,40 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A helper method for defining a new packet type. The <tt>name</tt> is the name of the packet (and of the corresponding method that is created), and the arguments are symbols representing the types of each element in the packet. The supported types are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":long"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":int64"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":short"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":byte"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":string"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":attrs"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":write"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The :attrs and :write types both simply convert the argument to a string.
+- !ruby/struct:SM::Flow::P 
+  body: The method that is created always supports an <tt>id</tt> parameter in the first position, which if null will default to the next available request id. The method returns a tuple consisting of the request id, and a string consisting of the arguments formatted according to the packet's description.
+full_name: Net::SFTP::Protocol::PacketAssistant::packet
+is_singleton: true
+name: packet
+params: ( name, *args )
+visibility: public

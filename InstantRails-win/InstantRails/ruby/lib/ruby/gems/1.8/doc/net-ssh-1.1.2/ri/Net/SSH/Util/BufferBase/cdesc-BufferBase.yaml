@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: exposes the content of the buffer
+  name: content
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The abstract ancestor module of both ReaderBufferImpl and WriterBufferImpl. It defines the common interface for both submodules.
+constants: []
+
+full_name: Net::SSH::Util::BufferBase
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: clear!
+- !ruby/object:RI::MethodSummary 
+  name: length
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: BufferBase
+superclass: 

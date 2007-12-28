@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Object</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Object</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/active_support/core_ext/blank_rb.html">
+                lib/active_support/core_ext/blank.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/duplicable_rb.html">
+                lib/active_support/core_ext/duplicable.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/kernel/agnostics_rb.html">
+                lib/active_support/core_ext/kernel/agnostics.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/object/conversions_rb.html">
+                lib/active_support/core_ext/object/conversions.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/object/extending_rb.html">
+                lib/active_support/core_ext/object/extending.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/object/instance_variables_rb.html">
+                lib/active_support/core_ext/object/instance_variables.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/core_ext/object/misc_rb.html">
+                lib/active_support/core_ext/object/misc.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/dependencies_rb.html">
+                lib/active_support/dependencies.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/json/encoders/object_rb.html">
+                lib/active_support/json/encoders/object.rb
+                </a>
+        <br />
+                <a href="../files/lib/active_support/vendor/builder-2_1_2/blankslate_rb.html">
+                lib/active_support/vendor/builder-2.1.2/blankslate.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Same as above, except in <a href="Object.html">Object</a>.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000270">acts_like?</a>&nbsp;&nbsp;
+      <a href="#M000262">blank?</a>&nbsp;&nbsp;
+      <a href="#M000263">duplicable?</a>&nbsp;&nbsp;
+      <a href="#M000274">find_hidden_method</a>&nbsp;&nbsp;
+      <a href="#M000266">instance_exec</a>&nbsp;&nbsp;
+      <a href="#M000267">instance_variable_defined?</a>&nbsp;&nbsp;
+      <a href="#M000273">method_added</a>&nbsp;&nbsp;
+      <a href="#M000268">returning</a>&nbsp;&nbsp;
+      <a href="#M000272">to_json</a>&nbsp;&nbsp;
+      <a href="#M000264">to_param</a>&nbsp;&nbsp;
+      <a href="#M000265">to_query</a>&nbsp;&nbsp;
+      <a href="#M000271">unloadable</a>&nbsp;&nbsp;
+      <a href="#M000269">with_options</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">InstanceExecMethods</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">send</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">send!</td>
+        </tr>
+      <tr class="top-aligned-row context-row">
+        <td>&nbsp;</td>
+        <td colspan="2" class="context-item-desc">
+Anticipating Ruby 1.9 neutering send
+
+</td>
+      </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">load</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">load_without_new_constant_marking</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">method_added</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">blank_slate_method_added</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000274" class="method-detail">
+        <a name="M000274"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000274.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000274.html');return false;">
+          <span class="method-name">find_hidden_method</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000273" class="method-detail">
+        <a name="M000273"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000273.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000273.html');return false;">
+          <span class="method-name">method_added</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Detect method additions to <a href="Object.html">Object</a> and remove them
+in the <a href="BlankSlate.html">BlankSlate</a> class.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000270" class="method-detail">
+        <a name="M000270"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000270.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000270.html');return false;">
+          <span class="method-name">acts_like?</span><span class="method-args">(duck)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A duck-type assistant method. For example, ActiveSupport extends Date to
+define an acts_like_date? method, and extends Time to define
+acts_like_time?. As a result, we can do &quot;x.acts_like?(:time)&quot; and
+&quot;x.acts_like?(:date)&quot; to do duck-type-safe comparisons, since
+classes that we want to act like Time simply need to define an
+acts_like_time? method.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000262" class="method-detail">
+        <a name="M000262"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000262.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000262.html');return false;">
+          <span class="method-name">blank?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An object is blank if it&#8216;s nil, empty, or a whitespace string. For
+example, &quot;&quot;, &quot; &quot;, nil, [], and {} are blank.
+</p>
+<p>
+This simplifies
+</p>
+<pre>
+  if !address.nil? &amp;&amp; !address.empty?
+</pre>
+<p>
+to
+</p>
+<pre>
+  if !address.blank?
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000263" class="method-detail">
+        <a name="M000263"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000263.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000263.html');return false;">
+          <span class="method-name">duplicable?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Can you safely .dup this object? False for nil, false, true, symbols, and
+numbers; true otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000266" class="method-detail">
+        <a name="M000266"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000266.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000266.html');return false;">
+          <span class="method-name">instance_exec</span><span class="method-args">(*args, &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Evaluate the block with the given arguments within the context of this
+object, so self is set to the method receiver.
+</p>
+<p>
+From Mauricio&#8216;s <a
+href="http://eigenclass.org/hiki/bounded+space+instance_exec">eigenclass.org/hiki/bounded+space+instance_exec</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000267" class="method-detail">
+        <a name="M000267"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000267.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000267.html');return false;">
+          <span class="method-name">instance_variable_defined?</span><span class="method-args">(variable)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000268" class="method-detail">
+        <a name="M000268"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000268.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000268.html');return false;">
+          <span class="method-name">returning</span><span class="method-args">(value) {|value| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A Ruby-ized realization of the K combinator, courtesy of Mikael Brockman.
+</p>
+<pre>
+  def foo
+    returning values = [] do
+      values &lt;&lt; 'bar'
+      values &lt;&lt; 'baz'
+    end
+  end
+
+  foo # =&gt; ['bar', 'baz']
+
+  def foo
+    returning [] do |values|
+      values &lt;&lt; 'bar'
+      values &lt;&lt; 'baz'
+    end
+  end
+
+  foo # =&gt; ['bar', 'baz']
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000272" class="method-detail">
+        <a name="M000272"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000272.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000272.html');return false;">
+          <span class="method-name">to_json</span><span class="method-args">(options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Dumps object in JSON (JavaScript <a href="Object.html">Object</a>
+Notation). See <a href="http://www.json.org">www.json.org</a> for more
+info.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000264" class="method-detail">
+        <a name="M000264"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000264.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000264.html');return false;">
+          <span class="method-name">to_param</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias of <tt>to_s</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000265" class="method-detail">
+        <a name="M000265"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000265.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000265.html');return false;">
+          <span class="method-name">to_query</span><span class="method-args">(key)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts an object into a string suitable for use as a URL query string,
+using the given <tt>key</tt> as the param name.
+</p>
+<p>
+Note: This method is defined as a default implementation for all Objects
+for Hash#to_query to work.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000271" class="method-detail">
+        <a name="M000271"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000271.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000271.html');return false;">
+          <span class="method-name">unloadable</span><span class="method-args">(const_desc)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Mark the given constant as <a href="Object.html#M000271">unloadable</a>.
+Unloadable constants are removed each time dependencies are cleared.
+</p>
+<p>
+Note that marking a constant for unloading need only be done once. Setup or
+init scripts may list each <a href="Object.html#M000271">unloadable</a>
+constant that may need unloading; each constant will be removed for every
+subsequent clear, as opposed to for the first clear.
+</p>
+<p>
+The provided constant descriptor may be a (non-anonymous) module or class,
+or a qualified constant name as a string or symbol.
+</p>
+<p>
+Returns true if the constant was not previously marked for unloading, false
+otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000269" class="method-detail">
+        <a name="M000269"></a>
+
+        <div class="method-heading">
+          <a href="Object.src/M000269.html" target="Code" class="method-signature"
+            onclick="popupCode('Object.src/M000269.html');return false;">
+          <span class="method-name">with_options</span><span class="method-args">(options) {|ActiveSupport::OptionMerger.new(self, options)| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An elegant way to refactor out common options
+</p>
+<pre>
+  with_options :order =&gt; 'created_at', :class_name =&gt; 'Comment' do |post|
+    post.has_many :comments, :conditions =&gt; ['approved = ?', true], :dependent =&gt; :delete_all
+    post.has_many :unapproved_comments, :conditions =&gt; ['approved = ?', false]
+    post.has_many :all_comments
+  end
+</pre>
+<p>
+Can also be used with an explicit receiver:
+</p>
+<pre>
+  map.with_options :controller =&gt; &quot;people&quot; do |people|
+    people.connect &quot;/people&quot;,     :action =&gt; &quot;index&quot;
+    people.connect &quot;/people/:id&quot;, :action =&gt; &quot;show&quot;
+  end
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

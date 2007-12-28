@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Execute the operation. If a callback is given, the operation will be performed asynchronously with the callback being invoked when the operation completes. If a callback is not given, the operation will be performed synchronously, with the expected value being returned.
+full_name: Net::SFTP::Operations::Abstract#execute
+is_singleton: false
+name: execute
+params: ( *args, &callback )
+visibility: public

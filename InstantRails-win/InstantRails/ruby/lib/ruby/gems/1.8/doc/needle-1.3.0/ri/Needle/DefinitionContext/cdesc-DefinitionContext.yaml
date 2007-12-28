@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class is used by the Container#define! and Container#namespace! methods to allow an <tt>instance_eval</tt>'d block to create new service points simply by invoking imaginary methods. It is basically an empty shell, with almost all of the builtin methods removed from it. (This allows services like &quot;hash&quot; and &quot;print&quot; to be defined, where they would normally conflict with the Kernel methods of the same name.)
+constants: []
+
+full_name: Needle::DefinitionContext
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: has_key?
+- !ruby/object:RI::MethodSummary 
+  name: intercept
+- !ruby/object:RI::MethodSummary 
+  name: knows_key?
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: namespace
+- !ruby/object:RI::MethodSummary 
+  name: namespace!
+- !ruby/object:RI::MethodSummary 
+  name: namespace_define
+- !ruby/object:RI::MethodSummary 
+  name: namespace_define!
+- !ruby/object:RI::MethodSummary 
+  name: require
+- !ruby/object:RI::MethodSummary 
+  name: this_container
+- !ruby/object:RI::MethodSummary 
+  name: use
+- !ruby/object:RI::MethodSummary 
+  name: use!
+name: DefinitionContext
+superclass: Object

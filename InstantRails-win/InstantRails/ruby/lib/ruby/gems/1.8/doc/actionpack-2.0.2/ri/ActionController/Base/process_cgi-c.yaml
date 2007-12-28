@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Process a request extracted from an CGI object and return a response. Pass false as <tt>session_options</tt> to disable sessions (large performance increase if sessions are not needed). The <tt>session_options</tt> are the same as for CGI::Session:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database_manager</tt> - standard options are CGI::Session::FileStore, CGI::Session::MemoryStore, and CGI::Session::PStore (default). Additionally, there is CGI::Session::DRbStore and CGI::Session::ActiveRecordStore. Read more about these in lib/action_controller/session.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_key</tt> - the parameter name used for the session id. Defaults to '_session_id'.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_id</tt> - the session id to use. If not provided, then it is retrieved from the <tt>session_key</tt> cookie, or automatically generated for a new session.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:new_session</tt> - if true, force creation of a new session. If not set, a new session is only created if none currently exists. If false, a new session is never created, and if none currently exists and the <tt>session_id</tt> option is not set, an ArgumentError is raised.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_expires</tt> - the time the current session expires, as a <tt>Time</tt> object. If not set, the session will continue indefinitely.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_domain</tt> - the hostname domain for which this session is valid. If not set, defaults to the hostname of the server.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_secure</tt> - if <tt>true</tt>, this session will only work over HTTPS.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:session_path</tt> - the path for which this session applies. Defaults to the directory of the CGI script.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:cookie_only</tt> - if <tt>true</tt> (the default), session IDs will only be accepted from cookies and not from the query string or POST parameters. This protects against session fixation attacks.
+  type: :BULLET
+full_name: ActionController::Base::process_cgi
+is_singleton: true
+name: process_cgi
+params: (cgi = CGI.new, session_options = {})
+visibility: public

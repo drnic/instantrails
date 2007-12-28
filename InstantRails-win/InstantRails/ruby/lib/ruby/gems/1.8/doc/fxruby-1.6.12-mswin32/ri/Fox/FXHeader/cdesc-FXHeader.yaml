@@ -1,0 +1,198 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Header style options [Integer]
+  name: headerStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this header
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of items [Integer]
+  name: numItems
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current position [Integer]
+  name: position
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Total size of all items [Integer]
+  name: totalSize
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Header control may be placed over a table or list to provide a resizable captions above a number of columns. Each caption comprises a label and an optional icon; in addition, an arrow may be shown to indicate whether the items in that column are sorted, and if so, whether they are sorted in increasing or decreasing order. Each caption can be interactively resized. During the resizing, if the HEADER_TRACKING was specified, the header control sends a SEL_CHANGED message to its target, with the message data set to the caption number being resized, of the type FXint. If the HEADER_TRACKING was not specified the SEL_CHANGED message is sent at the end of the resizing operation. Clicking on a caption causes a message of type SEL_COMMAND to be sent to the target, with the message data set to the caption number being clicked. A single click on a split causes a message of type SEL_CLICKED to be sent to the target; a typical response to this message would be to adjust the size of the split to fit the contents displayed underneath it. The contents may be scrolled by calling setPosition().
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXHeader to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously while a header item is being resized, if the <tt>HEADER_TRACKING</tt> option was specified, or at the end of the resize if <tt>HEADER_TRACKING</tt> was not specfied. The message data is an integer indicating the index of the item being resized.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a header item is clicked; the message data is an integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLICKED+:"
+    body: sent when a header item is clicked; the message data is an integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_REPLACED+:"
+    body: sent when a header item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_INSERTED+:"
+    body: sent after a header item is inserted; the message data is an Integer indicating the index of the item that was inserted.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETED+:"
+    body: sent when a header item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Header style options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_BUTTON+:"
+    body: Button style can be clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_HORIZONTAL+:"
+    body: Horizontal header control (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_VERTICAL+:"
+    body: Vertical header control
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_TRACKING+:"
+    body: Tracks continuously while moving
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_RESIZE+:"
+    body: Allow resizing sections
+  - !ruby/struct:SM::Flow::LI 
+    label: "+HEADER_NORMAL+:"
+    body: Normal options, same as <tt>HEADER_HORIZONTAL|FRAME_NORMAL</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TIPTIMER+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXHeader
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: arrowDown?
+- !ruby/object:RI::MethodSummary 
+  name: arrowMaybe?
+- !ruby/object:RI::MethodSummary 
+  name: arrowUp?
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: extractItem
+- !ruby/object:RI::MethodSummary 
+  name: fillItems
+- !ruby/object:RI::MethodSummary 
+  name: getArrowDir
+- !ruby/object:RI::MethodSummary 
+  name: getItem
+- !ruby/object:RI::MethodSummary 
+  name: getItemAt
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: getItemJustify
+- !ruby/object:RI::MethodSummary 
+  name: getItemOffset
+- !ruby/object:RI::MethodSummary 
+  name: getItemSize
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: isItemPressed
+- !ruby/object:RI::MethodSummary 
+  name: makeItemVisible
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: setArrowDir
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: setItemJustify
+- !ruby/object:RI::MethodSummary 
+  name: setItemPressed
+- !ruby/object:RI::MethodSummary 
+  name: setItemSize
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: updateItem
+name: FXHeader
+superclass: Object

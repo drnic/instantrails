@@ -1,0 +1,74 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: table_definition
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Creates a new table There are two ways to work with #create_table. You can use the block form or the regular form, like this:"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Block form
+- !ruby/struct:SM::Flow::VERB 
+  body: " # create_table() yields a TableDefinition instance\n create_table(:suppliers) do |t|\n   t.column :name, :string, :limit =&gt; 60\n   # Other fields here\n end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Regular form
+- !ruby/struct:SM::Flow::VERB 
+  body: " create_table(:suppliers)\n add_column(:suppliers, :name, :string, {:limit =&gt; 60})\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The <tt>options</tt> hash can include the following keys:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:id</tt>
+    body: Whether to automatically add a primary key column. Defaults to true. Join tables for has_and_belongs_to_many should set :id =&gt; false.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:primary_key</tt>
+    body: The name of the primary key, if one is to be added automatically. Defaults to <tt>id</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:options</tt>
+    body: Any extra options you want appended to the table definition.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:temporary</tt>
+    body: Make a temporary table.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:force</tt>
+    body: Set to true to drop the table before creating it. Defaults to false.
+  type: :LABELED
+- !ruby/struct:SM::Flow::H 
+  level: 5
+  text: Examples
+- !ruby/struct:SM::Flow::H 
+  level: 6
+  text: Add a backend specific option to the generated SQL (MySQL)
+- !ruby/struct:SM::Flow::VERB 
+  body: " create_table(:suppliers, :options =&gt; 'ENGINE=InnoDB DEFAULT CHARSET=utf8')\n"
+- !ruby/struct:SM::Flow::P 
+  body: "generates:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE TABLE suppliers (\n   id int(11) DEFAULT NULL auto_increment PRIMARY KEY\n ) ENGINE=InnoDB DEFAULT CHARSET=utf8\n"
+- !ruby/struct:SM::Flow::H 
+  level: 6
+  text: Rename the primary key column
+- !ruby/struct:SM::Flow::VERB 
+  body: " create_table(:objects, :primary_key =&gt; 'guid') do |t|\n   t.column :name, :string, :limit =&gt; 80\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "generates:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE TABLE objects (\n   guid int(11) DEFAULT NULL auto_increment PRIMARY KEY,\n   name varchar(80)\n )\n"
+- !ruby/struct:SM::Flow::H 
+  level: 6
+  text: Do not add a primary key column
+- !ruby/struct:SM::Flow::VERB 
+  body: " create_table(:categories_suppliers, :id =&gt; false) do |t|\n   t.column :category_id, :integer\n   t.column :supplier_id, :integer\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "generates:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " CREATE TABLE categories_suppliers (\n   category_id int,\n   supplier_id int\n )\n"
+- !ruby/struct:SM::Flow::P 
+  body: See also TableDefinition#column for details on how to create columns.
+full_name: ActiveRecord::ConnectionAdapters::SchemaStatements#create_table
+is_singleton: false
+name: create_table
+params: (table_name, options = {}) {|table_definition| ...}
+visibility: public

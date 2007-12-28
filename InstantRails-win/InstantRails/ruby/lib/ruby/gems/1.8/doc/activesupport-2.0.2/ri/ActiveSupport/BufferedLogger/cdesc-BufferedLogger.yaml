@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: auto_flushing
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: buffer
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: level
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inspired by the buffered logger idea by Ezra
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_BUFFER_SIZE
+  value: "1000"
+full_name: ActiveSupport::BufferedLogger
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Severity
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: auto_flush
+- !ruby/object:RI::MethodSummary 
+  name: auto_flushing=
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: flush
+- !ruby/object:RI::MethodSummary 
+  name: silence
+name: BufferedLogger
+superclass: Object

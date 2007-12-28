@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The dock site is notified that the given bar has been added logically before the given window, and is to placed on a new galley all by itself. The default implementation adjusts the layout options of the bars accordingly.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bar+:"
+    body: a reference to the newly docked dockbar [FXDockBar]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+before+:"
+    body: a reference to the window that the dockbar was added before [FXWindow]
+  type: :NOTE
+full_name: Fox::FXDockSite#dockToolBar
+is_singleton: false
+name: dockToolBar
+params: (bar, before)
+visibility: public

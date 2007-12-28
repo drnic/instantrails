@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Active color [FXColor]
+  name: activeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the grip is displayed as a double-bar [Boolean]
+  name: doubleBar
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A tool bar grip is used to move its container, a dock bar. The grip draws either a single or double bar; it is customary to use the single bar grip for toolbar-rearrangements only, and use the double-bar when the toolbar needs to be floated or docked. The tool bar grip is automatically oriented properly by the the toolbar widget, similar to the FXSeparator widget. Holding the Control Key while dragging the grip will prevent the toolbar from docking when it is near a dock site.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Toolbar Grip styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOOLBARGRIP_SINGLE+:"
+    body: Single bar mode for movable tool bars
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOOLBARGRIP_DOUBLE+:"
+    body: Double bar mode for dockable tool bars
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXToolBarGrip
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: doubleBar?
+name: FXToolBarGrip
+superclass: FXDockHandler

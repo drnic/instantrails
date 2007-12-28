@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Register the given block to be invoked when data is recieved from the invoked command's <tt>stderr</tt> stream. The block should accept two parameters: the process instance (<tt>self</tt>) and the data string. Note that if the process sends large amounts of data, this method may be invoked multiple times, each time with a portion of the command's error output."
+full_name: Net::SSH::Service::Process::OpenManager#on_stderr
+is_singleton: false
+name: on_stderr
+params: ( &block )
+visibility: public

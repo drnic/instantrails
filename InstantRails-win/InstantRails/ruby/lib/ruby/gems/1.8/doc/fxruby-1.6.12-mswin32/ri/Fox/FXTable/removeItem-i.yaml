@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove item at (<em>row</em>, <em>col</em>), replacing it with <tt>nil</tt>. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_REPLACED</tt> message is sent to the table's message target before this cell is removed. Raises IndexError if either <em>row</em> or <em>col</em> is out of bounds.
+full_name: Fox::FXTable#removeItem
+is_singleton: false
+name: removeItem
+params: (row, col, notify=false)
+visibility: public

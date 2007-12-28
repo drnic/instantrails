@@ -1,0 +1,46 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a mailto link tag to the specified <tt>email_address</tt>, which is also used as the name of the link unless <tt>name</tt> is specified. Additional HTML attributes for the link can be passed in <tt>html_options</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: mail_to has several methods for hindering email harvesters and customizing the email itself by passing special keys to <tt>html_options</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:encode</tt> - This key will accept the strings &quot;javascript&quot; or &quot;hex&quot;. Passing &quot;javascript&quot; will dynamically create and encode the mailto: link then eval it into the DOM of the page. This method will not show the link on the page if the user has JavaScript disabled. Passing &quot;hex&quot; will hex encode the <tt>email_address</tt> before outputting the mailto: link."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:replace_at</tt> - When the link <tt>name</tt> isn't provided, the <tt>email_address</tt> is used for the link label. You can use this option to obfuscate the <tt>email_address</tt> by substituting the @ sign with the string given as the value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:replace_dot</tt> - When the link <tt>name</tt> isn't provided, the <tt>email_address</tt> is used for the link label. You can use this option to obfuscate the <tt>email_address</tt> by substituting the . in the email with the string given as the value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:subject</tt> - Preset the subject line of the email.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:body</tt> - Preset the body of the email.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:cc</tt> - Carbon Copy addition recipients on the email.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:bcc</tt> - Blind Carbon Copy additional recipients on the email.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  mail_to &quot;me@domain.com&quot;\n  # =&gt; &lt;a href=&quot;mailto:me@domain.com&quot;&gt;me@domain.com&lt;/a&gt;\n\n  mail_to &quot;me@domain.com&quot;, &quot;My email&quot;, :encode =&gt; &quot;javascript&quot;\n  # =&gt; &lt;script type=&quot;text/javascript&quot;&gt;eval(unescape('%64%6f%63...%6d%65%6e'))&lt;/script&gt;\n\n  mail_to &quot;me@domain.com&quot;, &quot;My email&quot;, :encode =&gt; &quot;hex&quot;\n  # =&gt; &lt;a href=&quot;mailto:%6d%65@%64%6f%6d%61%69%6e.%63%6f%6d&quot;&gt;My email&lt;/a&gt;\n\n  mail_to &quot;me@domain.com&quot;, nil, :replace_at =&gt; &quot;<em>at</em>&quot;, :replace_dot =&gt; &quot;<em>dot</em>&quot;, :class =&gt; &quot;email&quot;\n  # =&gt; &lt;a href=&quot;mailto:me@domain.com&quot; class=&quot;email&quot;&gt;me_at_domain_dot_com&lt;/a&gt;\n\n  mail_to &quot;me@domain.com&quot;, &quot;My email&quot;, :cc =&gt; &quot;ccaddress@domain.com&quot;,\n           :subject =&gt; &quot;This is an example email&quot;\n  # =&gt; &lt;a href=&quot;mailto:me@domain.com?cc=ccaddress@domain.com&amp;subject=This%20is%20an%20example%20email&quot;&gt;My email&lt;/a&gt;\n"
+full_name: ActionView::Helpers::UrlHelper#mail_to
+is_singleton: false
+name: mail_to
+params: (email_address, name = nil, html_options = {})
+visibility: public

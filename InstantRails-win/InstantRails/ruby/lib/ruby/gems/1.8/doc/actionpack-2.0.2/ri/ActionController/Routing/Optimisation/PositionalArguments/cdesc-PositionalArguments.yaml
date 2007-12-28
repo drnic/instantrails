@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Given a route: map.person '/people/:id'"
+- !ruby/struct:SM::Flow::P 
+  body: If the user calls person_url(@person), we can simply return a string like &quot;/people/#{@person.to_param}&quot; rather than triggering the expensive logic in url_for
+constants: []
+
+full_name: ActionController::Routing::Optimisation::PositionalArguments
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: generation_code
+- !ruby/object:RI::MethodSummary 
+  name: guard_condition
+name: PositionalArguments
+superclass: Optimiser

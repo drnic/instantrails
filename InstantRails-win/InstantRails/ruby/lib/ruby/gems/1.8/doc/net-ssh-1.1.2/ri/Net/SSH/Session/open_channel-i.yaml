@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Opens a new communication channel over the current connection. This returns immediately. The block will be invoked when then the channel has been opened. (See Net::SSH::Connection::Driver#open_channel).
+full_name: Net::SSH::Session#open_channel
+is_singleton: false
+name: open_channel
+params: ( type="session", data=nil, &block )
+visibility: public

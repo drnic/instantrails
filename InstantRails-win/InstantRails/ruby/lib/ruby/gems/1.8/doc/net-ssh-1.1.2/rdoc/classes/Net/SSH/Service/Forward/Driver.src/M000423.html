@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_open_channel (Net::SSH::Service::Forward::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/forward/driver.rb, line 280</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_open_channel</span>( <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">data</span> )
+            <span class="ruby-identifier">connected_address</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">read_string</span>
+            <span class="ruby-identifier">connected_port</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">read_long</span>
+            <span class="ruby-identifier">originator_address</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">read_string</span>
+            <span class="ruby-identifier">originator_port</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">read_long</span>
+
+            <span class="ruby-identifier">forward_data</span> = <span class="ruby-ivar">@remote_forwards</span>[ <span class="ruby-identifier">connected_port</span> ]
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">forward_data</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+                <span class="ruby-value str">&quot;recieved invalid channel-open command for a port forward &quot;</span> <span class="ruby-operator">+</span>
+                <span class="ruby-value str">&quot;that was never requested&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">handler</span> = <span class="ruby-identifier">forward_data</span>[<span class="ruby-identifier">:handler</span>]
+
+            <span class="ruby-identifier">forward_data</span>[<span class="ruby-identifier">:channel</span>] = <span class="ruby-identifier">channel</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_open</span> )
+              <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">on_open</span>( <span class="ruby-identifier">channel</span>,
+                               <span class="ruby-identifier">connected_address</span>, <span class="ruby-identifier">connected_port</span>,
+                               <span class="ruby-identifier">originator_address</span>, <span class="ruby-identifier">originator_port</span> )
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_data</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">handler</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">:on_receive</span>) )
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_close</span> )
+              <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_close</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">handler</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">:on_close</span>) )
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_eof</span> )
+              <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_eof</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">handler</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">:on_eof</span>) )
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

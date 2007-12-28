@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>to_mail (ActionMailer::Part)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/part.rb, line 56</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">to_mail</span>(<span class="ruby-identifier">defaults</span>)
+      <span class="ruby-identifier">part</span> = <span class="ruby-constant">TMail</span><span class="ruby-operator">::</span><span class="ruby-constant">Mail</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-identifier">real_content_type</span>, <span class="ruby-identifier">ctype_attrs</span> = <span class="ruby-identifier">parse_content_type</span>(<span class="ruby-identifier">defaults</span>)
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@parts</span>.<span class="ruby-identifier">empty?</span>
+        <span class="ruby-identifier">part</span>.<span class="ruby-identifier">content_transfer_encoding</span> = <span class="ruby-identifier">transfer_encoding</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;quoted-printable&quot;</span>
+        <span class="ruby-keyword kw">case</span> (<span class="ruby-identifier">transfer_encoding</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>).<span class="ruby-identifier">downcase</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;base64&quot;</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-identifier">part</span>.<span class="ruby-identifier">body</span> = <span class="ruby-constant">TMail</span><span class="ruby-operator">::</span><span class="ruby-constant">Base64</span>.<span class="ruby-identifier">folding_encode</span>(<span class="ruby-identifier">body</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;quoted-printable&quot;</span>
+            <span class="ruby-identifier">part</span>.<span class="ruby-identifier">body</span> = [<span class="ruby-constant">Utils</span>.<span class="ruby-identifier">normalize_new_lines</span>(<span class="ruby-identifier">body</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">&quot;M*&quot;</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">part</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">body</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Always set the content_type after setting the body and or parts!</span>
+        <span class="ruby-comment cmt"># Also don't set filename and name when there is none (like in</span>
+        <span class="ruby-comment cmt"># non-attachment parts)</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content_disposition</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;attachment&quot;</span>
+          <span class="ruby-identifier">ctype_attrs</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value str">&quot;charset&quot;</span>
+          <span class="ruby-identifier">part</span>.<span class="ruby-identifier">set_content_type</span>(<span class="ruby-identifier">real_content_type</span>, <span class="ruby-keyword kw">nil</span>,
+            <span class="ruby-identifier">squish</span>(<span class="ruby-value str">&quot;name&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">ctype_attrs</span>))
+          <span class="ruby-identifier">part</span>.<span class="ruby-identifier">set_content_disposition</span>(<span class="ruby-identifier">content_disposition</span>,
+            <span class="ruby-identifier">squish</span>(<span class="ruby-value str">&quot;filename&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">filename</span>).<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">ctype_attrs</span>))
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">part</span>.<span class="ruby-identifier">set_content_type</span>(<span class="ruby-identifier">real_content_type</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">ctype_attrs</span>)
+          <span class="ruby-identifier">part</span>.<span class="ruby-identifier">set_content_disposition</span>(<span class="ruby-identifier">content_disposition</span>) 
+        <span class="ruby-keyword kw">end</span>        
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">body</span>
+          <span class="ruby-ivar">@parts</span>.<span class="ruby-identifier">unshift</span> <span class="ruby-constant">Part</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">:charset</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">charset</span>, <span class="ruby-identifier">:body</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@body</span>, <span class="ruby-identifier">:content_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/plain'</span>)
+          <span class="ruby-ivar">@body</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span>
+          
+        <span class="ruby-ivar">@parts</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">prt</span> = (<span class="ruby-constant">TMail</span><span class="ruby-operator">::</span><span class="ruby-constant">Mail</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">p</span> <span class="ruby-value">? </span><span class="ruby-identifier">p</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">p</span>.<span class="ruby-identifier">to_mail</span>(<span class="ruby-identifier">defaults</span>))
+          <span class="ruby-identifier">part</span>.<span class="ruby-identifier">parts</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">prt</span>
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-identifier">part</span>.<span class="ruby-identifier">set_content_type</span>(<span class="ruby-identifier">real_content_type</span>, <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">ctype_attrs</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">real_content_type</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/multipart/</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">headers</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">k</span>,<span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">part</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-identifier">v</span> }
+
+      <span class="ruby-identifier">part</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

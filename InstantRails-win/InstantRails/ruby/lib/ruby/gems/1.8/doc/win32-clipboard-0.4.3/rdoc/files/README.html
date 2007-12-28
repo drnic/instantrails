@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:53 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>Description</h2>
+<pre>
+   win32-clipboard - a Ruby package for interacting with the Win32 clipboard.
+</pre>
+<h2>Installation</h2>
+<pre>
+   rake test (optional)
+   rake install (non-gem) or rake install_gem (gem)
+</pre>
+<h2>Synopsis</h2>
+<pre>
+   require 'win32/clipboard'
+   include Win32
+
+   puts &quot;Data on clipboard: &quot; + Clipboard.data
+   puts &quot;Number of available formats: &quot; + Clipboard.num_formats
+
+   puts &quot;Setting data to 'foobar'&quot;
+   Clipboard.set_data(&quot;foobar&quot;)
+
+   puts &quot;Clipboard now contains: &quot; + Clipboard.data
+
+   puts &quot;Clearing clipboard&quot;
+   Clipboard.empty
+</pre>
+<h2>Class Methods</h2>
+<p>
+Clipboard.data(format=nil)
+</p>
+<pre>
+   Returns the data currently in the clipboard.  If +format+ is
+   specified, it will attempt to retrieve the data in that format. The
+   default is Clipboard::TEXT.  See the 'Constants' section for
+   the supported formats.
+
+   Note that this method does implicit conversions on formats with regards
+   to text data.  See the MSDN documentation for more details.
+</pre>
+<p>
+Clipboard.empty
+</p>
+<pre>
+   Empty the contents of the clipboard
+</pre>
+<p>
+Clipboard.format_available?(format_number)
+</p>
+<pre>
+   Returns true if 'format_number' is currently available on the clipboard,
+   false otherwise.
+</pre>
+<p>
+Clipboard.format_name(format_number)
+</p>
+<pre>
+   Returns the corresponding name for the given 'format_number', or nil
+   if it does not exist.
+</pre>
+<p>
+Clipboard.formats
+</p>
+<pre>
+   Returns a hash of all the current formats, with the format number as the
+   key and the format name as the value for that key.
+</pre>
+<p>
+Clipboard.get_data(format=nil)
+</p>
+<pre>
+   Alias for Clipboard.data.
+</pre>
+<p>
+Clipboard.num_formats
+</p>
+<pre>
+    Returns the number of different data formats currently on the clipboard.
+</pre>
+<p>
+Clipboard.register_format(format)
+</p>
+<pre>
+   Registers the given 'format' (a String) as a clipboard format, which
+   can then be used as a valid clipboard format.
+
+   If a registered format with the specified name already exists, a new
+   format is not registered and the return value identifies the existing
+   format. This enables more than one application to copy and paste data
+   using the same registered clipboard format. Note that the format name
+   comparison is case-insensitive.
+
+   Registered clipboard formats are identified by values in the range 0xC000
+   through 0xFFFF.
+</pre>
+<p>
+Clipboard.set_data(data, format=nil)
+</p>
+<pre>
+   Sets the clipboard contents to the data that you specify.  You may
+   optionally specify a clipboard format. The default is Clipboard::TEXT.
+
+   See the 'Constants' section for a list of the supported formats.
+</pre>
+<h2>Error Classes</h2>
+<p>
+Clipboard::Error
+</p>
+<pre>
+   Typically only raised if the clipboard fails to open or if you attempt to
+   register an invalid format.
+</pre>
+<h2>Constants</h2>
+<h3>Standard Constants</h3>
+<p>
+VERSION
+</p>
+<pre>
+   Returns the current version number of this package, as a String.
+</pre>
+<h3>Clipboard Formats</h3>
+<p>
+Clipboard::OEMTEXT
+</p>
+<pre>
+   Text format containing characters in the OEM character set. Each line ends
+   with a carriage return/linefeed (CR-LF) combination. A null character
+   signals the end of the data.
+</pre>
+<p>
+Clipboard::TEXT
+</p>
+<pre>
+   Text format. Each line ends with a carriage return/linefeed (CR-LF)
+   combination. A null character signals the end of the data. Use this format
+   for ANSI text.
+</pre>
+<p>
+Clipboard::UNICODETEXT
+</p>
+<pre>
+   Unicode text format. Each line ends with a carriage return/linefeed
+   (CR-LF) combination. A null character signals the end of the data.  This
+   format is only supported on NT/2000/XP.
+</pre>
+<h2>Future Plans</h2>
+<pre>
+   Add more formatting option contants and related methods.
+</pre>
+<h2>License</h2>
+<pre>
+   Ruby's
+</pre>
+<h2>Copyright</h2>
+<pre>
+   (C) 2003-2007 Daniel J. Berger
+   All Rights Reserved
+</pre>
+<h2>Author</h2>
+<pre>
+   Daniel J. Berger
+   djberg96 at nospame gmail dot com
+   imperator on IRC (irc.freenode.org)
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

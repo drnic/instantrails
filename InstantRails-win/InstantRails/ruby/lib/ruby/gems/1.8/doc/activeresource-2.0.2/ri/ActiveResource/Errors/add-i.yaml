@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds an error to an Active Resource object's attribute (named for the <tt>attribute</tt> parameter) with the error message in <tt>msg</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_resource = Node.find(1)\n  my_resource.errors.add('name', 'can not be &quot;base&quot;') if my_resource.name == 'base'\n  my_resource.errors.on('name')\n  # =&gt; 'can not be &quot;base&quot;!'\n\n  my_resource.errors.add('desc', 'can not be blank') if my_resource.desc == ''\n  my_resource.valid?\n  # =&gt; false\n  my_resource.errors.on('desc')\n  # =&gt; 'can not be blank!'\n"
+full_name: ActiveResource::Errors#add
+is_singleton: false
+name: add
+params: (attribute, msg)
+visibility: public

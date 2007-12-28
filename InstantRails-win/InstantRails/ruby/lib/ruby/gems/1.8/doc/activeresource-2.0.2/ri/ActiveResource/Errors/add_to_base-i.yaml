@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add an error to the base Active Resource object rather than an attribute.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_folder = Folder.find(1)\n  my_folder.errors.add_to_base(&quot;You can't edit an existing folder&quot;)\n  my_folder.errors.on_base\n  # =&gt; &quot;You can't edit an existing folder&quot;\n\n  my_folder.errors.add_to_base(&quot;This folder has been tagged as frozen&quot;)\n  my_folder.valid?\n  # =&gt; false\n  my_folder.errors.on_base\n  # =&gt; [&quot;You can't edit an existing folder&quot;, &quot;This folder has been tagged as frozen&quot;]\n"
+full_name: ActiveResource::Errors#add_to_base
+is_singleton: false
+name: add_to_base
+params: (msg)
+visibility: public

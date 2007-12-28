@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This operation is special since a later version of the protocol adds support for flags. In this version, the flags parameter is ignored, but it exists for compatibility with later versions.
+full_name: Net::SFTP::Protocol::V_02::Impl#rename
+is_singleton: false
+name: rename
+params: ( id, name, new_name, flags=nil )
+visibility: public

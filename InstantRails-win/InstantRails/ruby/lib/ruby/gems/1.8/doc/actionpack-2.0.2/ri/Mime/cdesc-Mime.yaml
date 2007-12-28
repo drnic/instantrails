@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SET
+  value: "[]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EXTENSION_LOOKUP
+  value: Hash.new { |h, k| h[k] = Type.new(k) unless k.blank? }
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOOKUP
+  value: Hash.new { |h, k| h[k] = Type.new(k) unless k.blank? }
+full_name: Mime
+includes: []
+
+instance_methods: []
+
+name: Mime
+superclass: 

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A helper method for registering new callbacks. Each callback will cause three new methods to be created, <tt>on_<em>name</em></tt>, <tt>has_on_<em>name</em>?</tt>, and <tt>call_on_<em>name</em></tt>. The <tt>on_<em>name</em></tt> method may be used to register a block for the corresponding callback.
+full_name: Net::SFTP::Protocol::V_01::Impl::callback
+is_singleton: true
+name: callback
+params: ( *names )
+visibility: public

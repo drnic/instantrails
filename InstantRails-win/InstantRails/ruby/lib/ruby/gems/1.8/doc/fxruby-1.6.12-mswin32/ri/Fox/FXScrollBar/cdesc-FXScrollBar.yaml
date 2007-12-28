@@ -1,0 +1,142 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bar size [Integer]
+  name: barSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll increment for line [Integer]
+  name: line
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Viewport page size [Integer]
+  name: page
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current scroll position [Integer]
+  name: position
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content size range [Integer]
+  name: range
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Scroll bar style [Integer]
+  name: scrollbarStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The scroll bar is used when a document has a larger content than may be made visible. The range is the total size of the document, the page is the part of the document which is visible. The size of the scrollbar thumb is adjusted to give feedback of the relative sizes of each. The scroll bar may be manipulated by the left mouse button (normal scrolling), by the middle mouse button (same as the left mouse only the scroll position can jump to the place where the click is made), or by the right mouse button (vernier- or fine-scrolling). Holding down the control key while scrolling with the left or middle mouse button also enables vernier-scrolling mode. The vernier-scrolling mode is very useful for accurate positioning in large documents. Finally, if the mouse sports a wheel, the scroll bar can be manipulated by means of the mouse wheel as well. Holding down the Control-key during wheel motion will cause the scrolling to go faster than normal.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXScrollBar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONPRESS+:"
+    body: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONRELEASE+:"
+    body: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously while the scroll bar is moving; the message data is an integer indicating the current position of the scroll bar.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent at the end of a scrolling operation, to signal that the scrolling is complete. The message data is an integer indicating the new position of the scroll bar.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Scrollbar styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SCROLLBAR_HORIZONTAL+:"
+    body: Horizontally oriented
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SCROLLBAR_VERTICAL+:"
+    body: Vertically oriented (the default)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TIMEWHEEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTOINC_LINE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTODEC_LINE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTOINC_PAGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTODEC_PAGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTOINC_PIX+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTODEC_PIX+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXScrollBar
+includes: []
+
+instance_methods: []
+
+name: FXScrollBar
+superclass: FXWindow

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a view_path to the end of the view_paths array. If the current class has no view paths, copy them from the superclass. This change will be visible for all future requests.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ArticleController.append_view_path(&quot;views/default&quot;)\n  ArticleController.append_view_path([&quot;views/default&quot;, &quot;views/custom&quot;])\n"
+full_name: ActionController::Base::append_view_path
+is_singleton: true
+name: append_view_path
+params: (path)
+visibility: public

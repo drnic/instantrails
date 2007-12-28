@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Puts together an array of neighboring sibling elements based on their proximity to this element.
+- !ruby/struct:SM::Flow::P 
+  body: This method accepts ranges and sets of numbers.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   ele.siblings_at(-3..-1, 1..3) # gets three elements before and three after\n   ele.siblings_at(1, 5, 7) # gets three elements at offsets below the current element\n   ele.siblings_at(0, 5..6) # the current element and two others\n"
+- !ruby/struct:SM::Flow::P 
+  body: Like the other &quot;sibling&quot; methods, this doesn't find text and comment nodes. Use nodes_at to include those nodes.
+full_name: Hpricot::Container::Trav#siblings_at
+is_singleton: false
+name: siblings_at
+params: (*pos)
+visibility: public

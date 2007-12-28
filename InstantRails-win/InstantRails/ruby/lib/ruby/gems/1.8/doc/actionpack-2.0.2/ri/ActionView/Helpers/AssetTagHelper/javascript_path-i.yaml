@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: path_to_javascript
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Computes the path to a javascript asset in the public javascripts directory. If the <tt>source</tt> filename has no extension, .js will be appended. Full paths from the document root will be passed through. Used internally by javascript_include_tag to build the script path.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  javascript_path &quot;xmlhr&quot; # =&gt; /javascripts/xmlhr.js\n  javascript_path &quot;dir/xmlhr.js&quot; # =&gt; /javascripts/dir/xmlhr.js\n  javascript_path &quot;/dir/xmlhr&quot; # =&gt; /dir/xmlhr.js\n  javascript_path &quot;http://www.railsapplication.com/js/xmlhr&quot; # =&gt; http://www.railsapplication.com/js/xmlhr.js\n  javascript_path &quot;http://www.railsapplication.com/js/xmlhr.js&quot; # =&gt; http://www.railsapplication.com/js/xmlhr.js\n"
+full_name: ActionView::Helpers::AssetTagHelper#javascript_path
+is_singleton: false
+name: javascript_path
+params: (source)
+visibility: public

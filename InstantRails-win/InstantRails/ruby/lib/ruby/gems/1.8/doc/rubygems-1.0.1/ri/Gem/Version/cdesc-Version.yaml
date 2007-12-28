@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ints
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: version
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: correct?
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Version class processes string versions into comparable values
+constants: []
+
+full_name: Gem::Version
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Comparable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: <=>
+- !ruby/object:RI::MethodSummary 
+  name: bump
+- !ruby/object:RI::MethodSummary 
+  name: marshal_dump
+- !ruby/object:RI::MethodSummary 
+  name: marshal_load
+- !ruby/object:RI::MethodSummary 
+  name: normalize
+- !ruby/object:RI::MethodSummary 
+  name: to_ints
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+- !ruby/object:RI::MethodSummary 
+  name: to_yaml_properties
+- !ruby/object:RI::MethodSummary 
+  name: version=
+- !ruby/object:RI::MethodSummary 
+  name: yaml_initialize
+name: Version
+superclass: Object

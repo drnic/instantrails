@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a &lt;pre&gt;-tag that has <tt>object</tt> dumped by YAML. This creates a very readable way to inspect an object.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: " my_hash = {'first' =&gt; 1, 'second' =&gt; 'two', 'third' =&gt; [1,2,3]}\n debug(my_hash)\n\n =&gt; &lt;pre class='debug_dump'&gt;---\n first: 1\n second: two\n third:\n - 1\n - 2\n - 3\n &lt;/pre&gt;\n"
+full_name: ActionView::Helpers::DebugHelper#debug
+is_singleton: false
+name: debug
+params: (object)
+visibility: public

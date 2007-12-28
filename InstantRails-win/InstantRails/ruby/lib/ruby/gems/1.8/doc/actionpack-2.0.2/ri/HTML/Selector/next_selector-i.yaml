@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Called to create a dependent selector (sibling, descendant, etc). Passes the remainder of the statement that will be reduced to zero eventually, and array of substitution values.
+- !ruby/struct:SM::Flow::P 
+  body: This method is called from four places, so it helps to put it here for reuse. The only logic deals with the need to detect comma separators (alternate) and apply them to the selector group of the top selector.
+full_name: HTML::Selector#next_selector
+is_singleton: false
+name: next_selector
+params: (statement, values)
+visibility: protected

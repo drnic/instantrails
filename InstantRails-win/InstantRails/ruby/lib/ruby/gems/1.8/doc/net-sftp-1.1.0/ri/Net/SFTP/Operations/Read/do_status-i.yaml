@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Invoked when a status code is received from the server. If the code is FX_EOF, then no data could be read because the end of the file was reached. In this case, the callback is invoked with the data that has been read so far. Other status codes are handled by the superclass.
+full_name: Net::SFTP::Operations::Read#do_status
+is_singleton: false
+name: do_status
+params: ( code, message, language )
+visibility: public

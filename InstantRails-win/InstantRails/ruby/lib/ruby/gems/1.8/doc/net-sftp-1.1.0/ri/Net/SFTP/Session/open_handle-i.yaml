@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: handle
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Opens the given remote file and returns a handle to it, which may be used with other operations (read, write, etc.). If a block is given, the handle will be yielded to it and closed when the block finishes, otherwise the handle will be returned. If the flags parameter is a numeric value, it must be a combination of IO constants, otherwise, it should be a string such as given to File.open.
+full_name: Net::SFTP::Session#open_handle
+is_singleton: false
+name: open_handle
+params: ( path, flags=IO::RDONLY, mode=0660 ) {|handle| ...}
+visibility: public

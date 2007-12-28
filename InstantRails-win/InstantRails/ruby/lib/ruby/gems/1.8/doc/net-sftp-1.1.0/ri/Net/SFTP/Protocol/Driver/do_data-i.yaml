@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is called internally when a data packet is received from the server. All SFTP packets are transfered as SSH data packets, so this parses the data packet to determine the SFTP packet type, and then sends the contents on to the active dispatcher for further processing. This routine correctly handles SFTP packets that span multiple SSH data packets.
+full_name: Net::SFTP::Protocol::Driver#do_data
+is_singleton: false
+name: do_data
+params: ( channel, data )
+visibility: public

@@ -1,0 +1,153 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INFINITE
+  value: "0xFFFFFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WAIT_OBJECT_0
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WAIT_TIMEOUT
+  value: "0x102"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WAIT_ABANDONED
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WAIT_FAILED
+  value: "0xFFFFFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATUS_WAIT_0
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATUS_ABANDONED_WAIT_0
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATUS_USER_APC
+  value: "192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATUS_TIMEOUT
+  value: "258"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATUS_PENDING
+  value: "259"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wake mask constants
+  name: QS_ALLEVENTS
+  value: "0x04BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_ALLINPUT
+  value: "0x04FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_ALLPOSTMESSAGE
+  value: "0x0100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_HOTKEY
+  value: "0x0080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_INPUT
+  value: "0x407"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_KEY
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_MOUSE
+  value: "0x0006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_MOUSEBUTTON
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_MOUSEMOVE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_PAINT
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_POSTMESSAGE
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_RAWINPUT
+  value: "0x0400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_SENDMESSAGE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: QS_TIMER
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wait type constants
+  name: MWMO_ALERTABLE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MWMO_INPUTAVAILABLE
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MWMO_WAITALL
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Access rights
+  name: EVENT_ALL_ACCESS
+  value: "0x1F0003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EVENT_MODIFY_STATE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MUTEX_ALL_ACCESS
+  value: "0x1F0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MUTEX_MODIFY_STATE
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEMAPHORE_ALL_ACCESS
+  value: "0x1F0003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEMAPHORE_MODIFY_STATE
+  value: "0x0002"
+full_name: Windows::Synchronize
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: HasOverlappedIoCompleted
+name: Synchronize
+superclass: 

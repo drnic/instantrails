@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current alignment [Integer]
+  name: alignment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The image [FXImage]
+  name: image
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXImageView widget displays a scrollable view of an image.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Image alignment styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_NORMAL+:"
+    body: Normal mode is centered
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_CENTER_X+:"
+    body: Centered horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_LEFT+:"
+    body: Left-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_RIGHT+:"
+    body: Right-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_CENTER_Y+:"
+    body: Centered vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_TOP+:"
+    body: Top-aligned
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGEVIEW_BOTTOM+:"
+    body: Bottom-aligned
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXImageView
+includes: []
+
+instance_methods: []
+
+name: FXImageView
+superclass: FXScrollArea

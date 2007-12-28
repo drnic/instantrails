@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Delegates to Net::SSH::Session#loop. Causes the underlying SSH connection to process events as long as the given block returns <tt>true</tt>, or (if no block is given) until there are no more open channels.
+full_name: Net::SFTP::Session#loop
+is_singleton: false
+name: loop
+params: ( &block )
+visibility: public

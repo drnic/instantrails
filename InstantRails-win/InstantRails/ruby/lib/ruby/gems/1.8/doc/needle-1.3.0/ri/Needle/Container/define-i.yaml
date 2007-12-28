@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: builder if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If a block is given, yields the container's builder instance to the block. Otherwise, simply returns the builder instance.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.define do |b|\n    b.foo { Bar.new }\n    b.baz { Baz.new }\n    ...\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Or:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.define.foo { Bar.new }\n  container.define.baz { Baz.new }\n"
+full_name: Needle::Container#define
+is_singleton: false
+name: define
+params: () {|builder if block_given?| ...}
+visibility: public

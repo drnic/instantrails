@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a simple selector given the statement and array of substitution values.
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash with the values <tt>tag_name</tt>, <tt>attributes</tt>, <tt>pseudo</tt> (classes) and <tt>negation</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: Called the first time with <tt>can_negate</tt> true to allow negation. Called a second time with false since negation cannot be negated.
+full_name: HTML::Selector#simple_selector
+is_singleton: false
+name: simple_selector
+params: (statement, values, can_negate = true)
+visibility: protected

@@ -1,0 +1,72 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The message identifier for this data target [Integer]
+  name: selector
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The message target object for this data target [FXObject]
+  name: target
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The data target's current value [Object]
+  name: value
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A data target allows a valuator widget such as an FXSlider or FXTextField to be directly connected with a variable in the program. Whenever the valuator control changes, the variable connected through the data target is automatically updated; conversely, whenever the program changes a variable, all the connected valuator widgets will be updated to reflect this new value on the display. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    data = FXDataTarget.new(&quot;Some Text&quot;)\n    textfield = FXTextField.new(p, 12, data, FXDataTarget::ID_VALUE)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Data targets also allow connecting other kinds of widgets (like FXRadioButton and FXMenuCommand) to a variable. In this case, the new value of the connected variable is computed by subtracting <tt>FXDataTarget::ID_OPTION</tt> from the message identifier. For example, to tie a group of radio buttons to a single data target's value (so that the buttons are mutually exclusive), use code like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    data = FXDataTarget.new(0)\n    radio1 = FXRadioButton.new(p, &quot;1st choice&quot;, data, FXDataTarget::ID_OPTION)\n    radio2 = FXRadioButton.new(p, &quot;2nd choice&quot;, data, FXDataTarget::ID_OPTION + 1)\n    radio3 = FXRadioButton.new(p, &quot;3rd choice&quot;, data, FXDataTarget::ID_OPTION + 2)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Note that if you'd like the data target to &quot;forward&quot; its <tt>SEL_COMMAND</tt> or <tt>SEL_CHANGED</tt> to some other target object after it has updated the data target value, you can do that just as you would for any other widget. For example, continuing the previous code snippet:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    data.connect(SEL_COMMAND) {\n      puts &quot;The new data target value is #{data.value}&quot;\n    }\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXDataTarget to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: Sent after the data target processes a <tt>SEL_COMMAND</tt> message itself
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: Sent after the data target processes a <tt>SEL_CHANGED</tt> message itself
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_VALUE+:"
+    body: Causes the FXDataTarget to ask sender for value
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPTION+:"
+    body: <tt>ID_OPTION</tt>+<em>i</em> will set the value to <em>i</em>, where -10000 &lt;= <em>i</em> &lt;= 10000
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDataTarget
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: FXDataTarget
+superclass: Object

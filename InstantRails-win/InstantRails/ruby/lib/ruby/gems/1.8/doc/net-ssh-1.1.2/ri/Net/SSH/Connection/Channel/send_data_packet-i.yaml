@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Send a data packet to the server, over the channel. Only sends as much of that data as the channel is currently capable of sending (based on window size and maximum packet size), and returns any data that could not be sent. Returns <tt>nil</tt> if all the data that was requested to be sent, was sent.
+full_name: Net::SSH::Connection::Channel#send_data_packet
+is_singleton: false
+name: send_data_packet
+params: ( data )
+visibility: public

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats a <tt>number</tt> with the specified level of <tt>precision</tt> (e.g., 112.32 has a precision of 2). The default level of precision is 3.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " number_with_precision(111.2345)     # =&gt; 111.235\n number_with_precision(111.2345, 2)  # =&gt; 111.24\n number_with_precision(13, 5)        # =&gt; 13.00000\n number_with_precision(389.32314, 0) # =&gt; 389\n"
+full_name: ActionView::Helpers::NumberHelper#number_with_precision
+is_singleton: false
+name: number_with_precision
+params: (number, precision=3)
+visibility: public

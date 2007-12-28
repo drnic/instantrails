@@ -1,0 +1,700 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Win32::EventLog</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Win32::EventLog</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/win32/eventlog_rb.html">
+                lib/win32/eventlog.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The <a href="EventLog.html">EventLog</a> class encapsulates an Event Log
+source and provides methods for interacting with that source.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000010">add_event_source</a>&nbsp;&nbsp;
+      <a href="#M000011">backup</a>&nbsp;&nbsp;
+      <a href="#M000012">clear</a>&nbsp;&nbsp;
+      <a href="#M000013">close</a>&nbsp;&nbsp;
+      <a href="#M000014">full?</a>&nbsp;&nbsp;
+      <a href="#M000008">new</a>&nbsp;&nbsp;
+      <a href="#M000017">notify_change</a>&nbsp;&nbsp;
+      <a href="#M000015">oldest_record_number</a>&nbsp;&nbsp;
+      <a href="#M000009">open_backup</a>&nbsp;&nbsp;
+      <a href="#M000019">read</a>&nbsp;&nbsp;
+      <a href="#M000020">read</a>&nbsp;&nbsp;
+      <a href="#M000021">report_event</a>&nbsp;&nbsp;
+      <a href="#M000018">tail</a>&nbsp;&nbsp;
+      <a href="#M000016">total_records</a>&nbsp;&nbsp;
+      <a href="#M000022">write</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Windows::Error</span>
+        <span class="include-name">Windows::EventLog</span>
+        <span class="include-name">Windows::Security</span>
+        <span class="include-name">Windows::Registry</span>
+        <span class="include-name">Windows::SystemInfo</span>
+        <span class="include-name">Windows::Library</span>
+        <span class="include-name">Windows::Synchronize</span>
+        <span class="include-name">Windows::Handle</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="EventLog/Error.html" class="link">Win32::EventLog::Error</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.4.6'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FORWARDS_READ</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_FORWARDS_READ</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Aliased <a href="EventLog.html#M000019">read</a> flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BACKWARDS_READ</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_BACKWARDS_READ</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEEK_READ</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_SEEK_READ</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEQUENTIAL_READ</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_SEQUENTIAL_READ</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUCCESS</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_SUCCESS</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Aliased event types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_ERROR_TYPE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WARN</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_WARNING_TYPE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INFO</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_INFORMATION_TYPE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AUDIT_SUCCESS</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_AUDIT_SUCCESS</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">AUDIT_FAILURE</td>
+          <td>=</td>
+          <td class="context-item-value">EVENTLOG_AUDIT_FAILURE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BUFFER_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">1024 * 64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_STRINGS</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BASE_KEY</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SYSTEM\\CurrentControlSet\\Services\\EventLog\\&quot;</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EventLogStruct</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new('EventLogStruct', :record_number,          :time_generated, :time_written, :event_id, :event_type, :category,          :source, :computer, :user, :string_inserts, :description</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The EventLogStruct encapsulates a single event log record.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">new</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">open</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">file</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The name of the file used in the <a
+href="EventLog.html#M000009">EventLog.open_backup</a> method. This is set
+to nil if the file was not opened using the <a
+href="EventLog.html#M000009">EventLog.open_backup</a> method.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">server</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The name of the server which the event log is reading from.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">source</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The name of the event log source. This will typically be
+&#8216;Application&#8217;, &#8216;System&#8217; or &#8216;Security&#8217;,
+but could also refer to a custom event log source.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000010.html');return false;">
+          <span class="method-name">add_event_source</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds an event source to the registry. The following are valid keys:
+</p>
+<ul>
+<li>source - Source name. Set to &quot;Application&quot; by default
+
+</li>
+<li>key_name - Name stored as the registry key
+
+</li>
+<li>category_count - Number of supported (custom) categories
+
+</li>
+<li>event_message_file - File (dll) that defines events
+
+</li>
+<li>category_message_file - File (dll) that defines categories
+
+</li>
+<li>supported_types - See the &#8216;event types&#8217; constants
+
+</li>
+</ul>
+<p>
+Of these keys, only <tt>key_name</tt> is mandatory. An ArgumentError is
+raised if you attempt to use an invalid key. If <tt>supported_types</tt> is
+not specified then the following value is used:
+</p>
+<p>
+EventLog::ERROR | EventLog::WARN | EventLog::INFO
+</p>
+<p>
+The <tt>event_message_file</tt> and <tt>category_message_file</tt> are
+typically, though not necessarily, the same file. See the documentation on
+.mc files for more details.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000008.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(source = 'Application', server = nil, file = nil) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Opens a handle to the <a href="EventLog.html#M000008">new</a> <a
+href="EventLog.html">EventLog</a> <tt>source</tt> on <tt>server</tt>, or
+the local machine if no host is specified. Typically, your source will be
+&#8216;Application, &#8216;Security&#8217; or &#8216;System&#8217;,
+although you can specify a custom log file as well.
+</p>
+<p>
+If a custom, registered log file name cannot be found, the event logging
+service opens the &#8216;Application&#8217; log file. This is the behavior
+of the underlying Windows function, not my own doing.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000009.html');return false;">
+          <span class="method-name">open_backup</span><span class="method-args">(file, source = 'Application', server = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Nearly identical to EventLog.open, except that the source is a <a
+href="EventLog.html#M000011">backup</a> file and not an event source (and
+there is no default).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000020" class="method-detail">
+        <a name="M000020"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000020.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000020.html');return false;">
+          <span class="method-name">read</span><span class="method-args">(source='Application', server=nil, flags=nil, offset=0) {|els| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This class method is nearly identical to the <a
+href="EventLog.html#M000019">EventLog#read</a> instance method, except that
+it takes a <tt>source</tt> and <tt>server</tt> as the first two arguments.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000011.html');return false;">
+          <span class="method-name">backup</span><span class="method-args">(file)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Backs up the event log to <tt>file</tt>. Note that you cannot <a
+href="EventLog.html#M000011">backup</a> to a file that already exists or a
+<a href="EventLog/Error.html">Error</a> will be raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000012.html');return false;">
+          <span class="method-name">clear</span><span class="method-args">(backup_file = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Clears the <a href="EventLog.html">EventLog</a>. If <tt>backup_file</tt> is
+provided, it backs up the event log to that file first.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000013.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Closes the <a href="EventLog.html">EventLog</a> handle. Automatically
+closed for you if you use the block form of <a
+href="EventLog.html#M000008">EventLog.new</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000014.html');return false;">
+          <span class="method-name">full?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicates whether or not the event log is full.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000017.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000017.html');return false;">
+          <span class="method-name">notify_change</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Yields an EventLogStruct every time a record is written to the event log.
+Unlike <a href="EventLog.html#M000018">EventLog#tail</a>, this method
+breaks out of the block after the event.
+</p>
+<p>
+Raises an <a href="EventLog/Error.html">Error</a> if no block is provided.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000015.html');return false;">
+          <span class="method-name">oldest_record_number</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the absolute record number of the oldest record. Note that this is
+not guaranteed to be 1 because event log records can be overwritten.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000019" class="method-detail">
+        <a name="M000019"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000019.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000019.html');return false;">
+          <span class="method-name">read</span><span class="method-args">(flags = nil, offset = 0) {|struct| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="EventLog.html#M000019">EventLog#read</a>(flags=nil, offset=0) <a
+href="EventLog.html#M000019">EventLog#read</a>(flags=nil, offset=0){ |log|
+&#8230; }
+</p>
+<p>
+Iterates over each record in the event log, yielding a EventLogStruct for
+each record. The offset value is only used when used in conjunction with
+the EventLog::SEEK_READ flag. Otherwise, it is ignored. If no flags are
+specified, then the default flags are:
+</p>
+<p>
+EventLog::SEQUENTIAL_READ | EventLog::FORWARDS_READ
+</p>
+<p>
+Note that, if you&#8216;re performing a SEEK_READ, then the offset must
+refer to a record number that actually exists. The default of 0 may or may
+not work for your particular event log.
+</p>
+<p>
+The EventLogStruct struct contains the following members:
+</p>
+<p>
+record_number # Fixnum time_generated # Time time_written # Time event_id #
+Fixnum event_type # <a href="../String.html">String</a> category # <a
+href="../String.html">String</a> source # <a
+href="../String.html">String</a> computer # <a
+href="../String.html">String</a> user # <a href="../String.html">String</a>
+or nil description # <a href="../String.html">String</a> or nil
+string_inserts # An array of Strings or nil
+</p>
+<p>
+If no block is given the method returns an array of EventLogStruct&#8216;s.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000021" class="method-detail">
+        <a name="M000021"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000021.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000021.html');return false;">
+          <span class="method-name">report_event</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="EventLog.html#M000021">EventLog#report_event</a>(key =&gt; value,
+&#8230;)
+</p>
+<p>
+Writes an event to the event log. The following are valid keys:
+</p>
+<p>
+source # Event log source name. Defaults to &quot;Application&quot;
+event_id # Event ID (defined in event message file) category # Event
+category (defined in category message file) data # <a
+href="../String.html">String</a> that is written to the log event_type #
+Type of event, e.g. EventLog::ERROR, etc.
+</p>
+<p>
+The <tt>event_type</tt> keyword is the only mandatory keyword. The others
+are optional. Although the <tt>source</tt> defaults to
+&quot;Application&quot;, I recommend that you create an application
+specific event source and use that instead. See the &#8216;<a
+href="EventLog.html#M000010">EventLog.add_event_source</a>&#8217; method
+for more details.
+</p>
+<p>
+The <tt>event_id</tt> and <tt>category</tt> values are defined in the
+message file(s) that you created for your application. See the tutorial.txt
+file for more details on how to create a message file.
+</p>
+<p>
+An ArgumentError is raised if you attempt to use an invalid key.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000018" class="method-detail">
+        <a name="M000018"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000018.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000018.html');return false;">
+          <span class="method-name">tail</span><span class="method-args">(frequency = 5) {|log| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Yields an EventLogStruct every time a record is written to the event log,
+once every <tt>frequency</tt> seconds. Unlike <a
+href="EventLog.html#M000017">EventLog#notify_change</a>, this method does
+not break out of the block after the event. The <a
+href="EventLog.html#M000019">read</a> <tt>frequency</tt> is set to 5
+seconds by default.
+</p>
+<p>
+Raises an <a href="EventLog/Error.html">Error</a> if no block is provided.
+</p>
+<p>
+The delay between reads is due to the nature of the Windows event log. It
+is not really designed to be tailed in the manner of a Unix syslog, for
+example, in that not nearly as many events are typically recorded.
+It&#8216;s just not designed to be polled that heavily.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <a href="EventLog.src/M000016.html" target="Code" class="method-signature"
+            onclick="popupCode('EventLog.src/M000016.html');return false;">
+          <span class="method-name">total_records</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the total number of records for the given event log.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000022" class="method-detail">
+        <a name="M000022"></a>
+
+        <div class="method-heading">
+          <span class="method-name">write</span><span class="method-args">(args)</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="EventLog.html#M000021">report_event</a>
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

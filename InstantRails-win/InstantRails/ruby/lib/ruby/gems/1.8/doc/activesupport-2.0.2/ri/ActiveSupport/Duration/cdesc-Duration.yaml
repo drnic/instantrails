@@ -1,0 +1,39 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: parts
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: value
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Provides accurate date and time measurements using Date#advance and Time#advance, respectively. It mainly supports the methods on Numeric, such as in this example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  1.month.ago       # equivalent to Time.now.advance(:months =&gt; -1)\n"
+constants: []
+
+full_name: ActiveSupport::Duration
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: +
+- !ruby/object:RI::MethodSummary 
+  name: "-"
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: ago
+- !ruby/object:RI::MethodSummary 
+  name: from_now
+- !ruby/object:RI::MethodSummary 
+  name: since
+- !ruby/object:RI::MethodSummary 
+  name: until
+name: Duration
+superclass: BasicObject

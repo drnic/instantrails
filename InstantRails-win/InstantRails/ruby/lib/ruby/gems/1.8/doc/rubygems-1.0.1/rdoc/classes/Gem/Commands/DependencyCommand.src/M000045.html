@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (Gem::Commands::DependencyCommand)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/commands/dependency_command.rb, line 45</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'.'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>].<span class="ruby-identifier">empty?</span>
+    <span class="ruby-identifier">specs</span> = {}
+
+    <span class="ruby-identifier">source_indexes</span> = []
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">local?</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">source_indexes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceIndex</span>.<span class="ruby-identifier">from_installed_gems</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">remote?</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceInfoCache</span>.<span class="ruby-identifier">cache_data</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">sice</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">source_indexes</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sice</span>.<span class="ruby-identifier">source_index</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:args</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+      <span class="ruby-identifier">new_specs</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">source_indexes</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source_index</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">new_specs</span> =  <span class="ruby-identifier">find_gems</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">source_index</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;No match found for #{name} (#{options[:version]})&quot;</span> <span class="ruby-keyword kw">if</span>
+        <span class="ruby-identifier">new_specs</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-identifier">specs</span> = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">merge</span> <span class="ruby-identifier">new_specs</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">reverse</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = [] }
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:reverse_dependencies</span>] <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">source_index</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">reverse</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>] = <span class="ruby-identifier">find_reverse_dependencies</span> <span class="ruby-identifier">spec</span>, <span class="ruby-identifier">source_index</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:pipe_format</span>] <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span> }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">dependencies</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">say</span> <span class="ruby-node">&quot;#{dep.name} --version '#{dep.version_requirements}'&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">response</span> = <span class="ruby-value str">''</span>
+
+      <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">values</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span> }.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>, <span class="ruby-identifier">spec</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">print_dependencies</span>(<span class="ruby-identifier">spec</span>)
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">reverse</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>].<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;  Used by\n&quot;</span>
+          <span class="ruby-identifier">reverse</span>[<span class="ruby-identifier">spec</span>.<span class="ruby-identifier">full_name</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sp</span>, <span class="ruby-identifier">dep</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;    #{sp} (#{dep})\n&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">response</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">say</span> <span class="ruby-identifier">response</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

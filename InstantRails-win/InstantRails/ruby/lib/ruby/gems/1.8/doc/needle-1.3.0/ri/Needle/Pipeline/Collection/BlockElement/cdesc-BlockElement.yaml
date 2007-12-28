@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Wraps a block as a new pipeline element. When the element is invoked, control is delegated to the block.
+constants: []
+
+full_name: Needle::Pipeline::Collection::BlockElement
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+name: BlockElement
+superclass: Element

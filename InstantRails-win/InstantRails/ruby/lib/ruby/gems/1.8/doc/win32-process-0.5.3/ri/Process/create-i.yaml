@@ -1,0 +1,109 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Process.create(key =&gt; value, ...) =&gt; ProcessInfo
+- !ruby/struct:SM::Flow::P 
+  body: "This is a wrapper for the CreateProcess() function. It executes a process, returning a ProcessInfo struct. It accepts a hash as an argument. There are six primary keys:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: app_name (mandatory)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "inherit (default: false)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "process_inherit (default: false)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "thread_inherit (default: false)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "creation_flags (default: 0)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "cwd (default: Dir.pwd)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "startup_info (default: nil)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "environment (default: nil)"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Of these, the 'app_name' must be specified or an error is raised.
+- !ruby/struct:SM::Flow::P 
+  body: The startup_info key takes a hash. Its keys are attributes that are part of the StartupInfo struct, and are generally only meaningful for GUI or console processes. See the documentation on CreateProcess() and the StartupInfo struct on MSDN for more information.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: desktop
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: title
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: y
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: x_size
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: y_size
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: x_count_chars
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: y_count_chars
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: fill_attribute
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: sw_flags
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: startf_flags
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: stdin
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: stdout
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: stderr
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The relevant constants for 'creation_flags', 'sw_flags' and 'startf_flags' are included in the Windows::Process, Windows::Console and Windows::Window modules. These come with the windows-pr package, a prerequisite of this package. Note that the 'stdin', 'stdout' and 'stderr' options can be either Ruby IO objects or file descriptors (i.e. a fileno). However, StringIO objects are not currently supported.
+- !ruby/struct:SM::Flow::P 
+  body: "The ProcessInfo struct contains the following members:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: process_handle - The handle to the newly created process.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: thread_handle - The handle to the primary thread of the process.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: process_id - Process ID.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: thread_id - Thread ID.
+  type: :BULLET
+full_name: Process#create
+is_singleton: false
+name: create
+params: (args)
+visibility: public

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an html image tag for the <tt>source</tt>. The <tt>source</tt> can be a full path or a file that exists in your public images directory.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: "You can add HTML attributes using the <tt>options</tt>. The <tt>options</tt> supports three additional keys for convenience and conformance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:alt</tt> - If no alt text is given, the file name part of the <tt>source</tt> is used (capitalized and without the extension)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:size</tt> - Supplied as &quot;{Width}x{Height}&quot;, so &quot;30x45&quot; becomes width=&quot;30&quot; and height=&quot;45&quot;. <tt>:size</tt> will be ignored if the value is not in the correct format.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:mouseover</tt> - Set an alternate image to be used when the onmouseover event is fired, and sets the original image to be replaced onmouseout. This can be used to implement an easy image toggle that fires on onmouseover.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " image_tag(&quot;icon&quot;)  # =&gt;\n   &lt;img src=&quot;/images/icon&quot; alt=&quot;Icon&quot; /&gt;\n image_tag(&quot;icon.png&quot;)  # =&gt;\n   &lt;img src=&quot;/images/icon.png&quot; alt=&quot;Icon&quot; /&gt;\n image_tag(&quot;icon.png&quot;, :size =&gt; &quot;16x10&quot;, :alt =&gt; &quot;Edit Entry&quot;)  # =&gt;\n   &lt;img src=&quot;/images/icon.png&quot; width=&quot;16&quot; height=&quot;10&quot; alt=&quot;Edit Entry&quot; /&gt;\n image_tag(&quot;/icons/icon.gif&quot;, :size =&gt; &quot;16x16&quot;)  # =&gt;\n   &lt;img src=&quot;/icons/icon.gif&quot; width=&quot;16&quot; height=&quot;16&quot; alt=&quot;Icon&quot; /&gt;\n image_tag(&quot;/icons/icon.gif&quot;, :height =&gt; '32', :width =&gt; '32') # =&gt;\n   &lt;img alt=&quot;Icon&quot; height=&quot;32&quot; src=&quot;/icons/icon.gif&quot; width=&quot;32&quot; /&gt;\n image_tag(&quot;/icons/icon.gif&quot;, :class =&gt; &quot;menu_icon&quot;) # =&gt;\n   &lt;img alt=&quot;Icon&quot; class=&quot;menu_icon&quot; src=&quot;/icons/icon.gif&quot; /&gt;\n image_tag(&quot;mouse.png&quot;, :mouseover =&gt; &quot;/images/mouse_over.png&quot;) # =&gt;\n   &lt;img src=&quot;/images/mouse.png&quot; onmouseover=&quot;this.src='/images/mouse_over.png'&quot; onmouseout=&quot;this.src='/images/mouse.png'&quot; alt=&quot;Mouse&quot; /&gt;\n image_tag(&quot;mouse.png&quot;, :mouseover =&gt; image_path(&quot;mouse_over.png&quot;)) # =&gt;\n   &lt;img src=&quot;/images/mouse.png&quot; onmouseover=&quot;this.src='/images/mouse_over.png'&quot; onmouseout=&quot;this.src='/images/mouse.png'&quot; alt=&quot;Mouse&quot; /&gt;\n"
+full_name: ActionView::Helpers::AssetTagHelper#image_tag
+is_singleton: false
+name: image_tag
+params: (source, options = {})
+visibility: public

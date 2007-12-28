@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Checks to see if the current thread has the mutex locked, and if it does, raises an exception. Otherwise, locks the mutex and sets the locking thread to Thread.current.
+full_name: Needle::QueryableMutex#lock
+is_singleton: false
+name: lock
+params: ()
+visibility: public

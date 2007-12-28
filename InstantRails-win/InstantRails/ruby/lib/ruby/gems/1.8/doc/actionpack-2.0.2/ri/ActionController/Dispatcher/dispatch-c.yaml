@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Backward-compatible class method takes CGI-specific args. Deprecated in favor of Dispatcher.new(output, request, response).dispatch.
+full_name: ActionController::Dispatcher::dispatch
+is_singleton: true
+name: dispatch
+params: (cgi = nil, session_options = CgiRequest::DEFAULT_SESSION_OPTIONS, output = $stdout)
+visibility: public

@@ -1,0 +1,68 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hue [Float]
+  name: hue
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Saturation [Float]
+  name: sat
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Value [Float]
+  name: val
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Color Wheel is a widget which controls the hue and saturation values of a color. It is most often used together with a Color Bar which controls the brightness.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXColorWheel to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously, while the color is changing; the message data is a 3-element array of floats containing the hue, saturation and value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the new color is set; the message data is a 3-element array of floats containing the hue, saturation and value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXColorWheel
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setHueSatVal
+name: FXColorWheel
+superclass: FXFrame

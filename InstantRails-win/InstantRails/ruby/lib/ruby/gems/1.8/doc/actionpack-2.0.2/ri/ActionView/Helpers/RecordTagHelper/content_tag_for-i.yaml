@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "content_tag_for creates an HTML element with id and class parameters that relate to the specified ActiveRecord object. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;% content_tag_for(:tr, @person) do %&gt;\n     &lt;td&gt;&lt;%=h @person.first_name %&gt;&lt;/td&gt;\n     &lt;td&gt;&lt;%=h @person.last_name %&gt;&lt;/td&gt;\n   &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "would produce hthe following HTML (assuming @person is an instance of a Person object, with an id value of 123):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;tr id=&quot;person_123&quot; class=&quot;person&quot;&gt;....&lt;/tr&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If you require the HTML id attribute to have a prefix, you can specify it:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;% content_tag_for(:tr, @person, :foo) do %&gt; ...\n"
+- !ruby/struct:SM::Flow::P 
+  body: "produces:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;tr id=&quot;foo_person_123&quot; class=&quot;person&quot;&gt;...\n"
+- !ruby/struct:SM::Flow::P 
+  body: "content_tag_for also accepts a hash of options, which will be converted to additional HTML attributes. If you specify a <tt>:class</tt> value, it will be combined with the default class name for your object. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;% content_tag_for(:li, @person, :class =&gt; &quot;bar&quot;) %&gt;...\n"
+- !ruby/struct:SM::Flow::P 
+  body: "produces:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;li id=&quot;person_123&quot; class=&quot;person bar&quot;&gt;...\n"
+full_name: ActionView::Helpers::RecordTagHelper#content_tag_for
+is_singleton: false
+name: content_tag_for
+params: (tag_name, record, *args, &block)
+visibility: public

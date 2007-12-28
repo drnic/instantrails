@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The object to which all messages are delegated [FXObject]
+  name: delegate
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A delegator forwards messages to a delegate object. Delegators are used when you need to multiplex messages toward any number of target objects. For example, many controls may be connected to FXDelegator, instead of directly to the document object. Changing the delegate in FXDelegator will then reconnect the controls with their new target.
+constants: []
+
+full_name: Fox::FXDelegator
+includes: []
+
+instance_methods: []
+
+name: FXDelegator
+superclass: FXObject

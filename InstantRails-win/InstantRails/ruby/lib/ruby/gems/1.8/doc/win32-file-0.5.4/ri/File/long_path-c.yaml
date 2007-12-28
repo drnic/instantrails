@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>file</tt> in long format. For example, if 'SOMEFI~1.TXT' was the argument provided, and the short representation for 'somefile.txt', then this method would return 'somefile.txt'.
+- !ruby/struct:SM::Flow::P 
+  body: Note that certain file system optimizations may prevent this method from working as expected. In that case, you will get back the file name in 8.3 format.
+full_name: File::long_path
+is_singleton: true
+name: long_path
+params: (file)
+visibility: public

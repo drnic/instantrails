@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sets the format that attributes are sent and received in from a mime type reference. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.format = :json\n  Person.find(1) # =&gt; GET /people/1.json\n\n  Person.format = ActiveResource::Formats::XmlFormat\n  Person.find(1) # =&gt; GET /people/1.xml\n"
+- !ruby/struct:SM::Flow::P 
+  body: Default format is :xml.
+full_name: ActiveResource::Base::format=
+is_singleton: true
+name: format=
+params: (mime_type_reference_or_format)
+visibility: public

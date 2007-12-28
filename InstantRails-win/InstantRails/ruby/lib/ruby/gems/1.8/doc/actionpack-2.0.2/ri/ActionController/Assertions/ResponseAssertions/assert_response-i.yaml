@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Asserts that the response is one of the following types:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:success</tt> - Status code was 200
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:redirect</tt> - Status code was in the 300-399 range
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:missing</tt> - Status code was 404
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:error</tt> - Status code was in the 500-599 range
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: You can also pass an explicit status number like assert_response(501) or its symbolic equivalent assert_response(:not_implemented). See ActionController::StatusCodes for a full list.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that the response was a redirection\n  assert_response :redirect\n\n  # assert that the response code was status code 401 (unauthorized)\n  assert_response 401\n"
+full_name: ActionController::Assertions::ResponseAssertions#assert_response
+is_singleton: false
+name: assert_response
+params: (type, message = nil)
+visibility: public

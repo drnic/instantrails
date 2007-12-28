@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>visual_effect (ActionView::Helpers::ScriptaculousHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/scriptaculous_helper.rb, line 44</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">visual_effect</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">element_id</span> = <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">js_options</span> = {})
+        <span class="ruby-identifier">element</span> = <span class="ruby-identifier">element_id</span> <span class="ruby-value">? </span><span class="ruby-identifier">element_id</span>.<span class="ruby-identifier">to_json</span> <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;element&quot;</span>
+        
+        <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">:queue</span>] = <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">:queue</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+          <span class="ruby-value str">'{'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">:queue</span>].<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">k</span>, <span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">k</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:limit</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{k}:#{v}&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{k}:'#{v}'&quot;</span> }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'}'</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">:queue</span>]
+          <span class="ruby-node">&quot;'#{js_options[:queue]}'&quot;</span>
+        <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">:queue</span>]
+        
+        [<span class="ruby-identifier">:endcolor</span>, <span class="ruby-identifier">:direction</span>, <span class="ruby-identifier">:startcolor</span>, <span class="ruby-identifier">:scaleMode</span>, <span class="ruby-identifier">:restorecolor</span>].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">option</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">option</span>] = <span class="ruby-node">&quot;'#{js_options[option]}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-identifier">option</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">TOGGLE_EFFECTS</span>.<span class="ruby-identifier">include?</span> <span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_sym</span>
+          <span class="ruby-node">&quot;Effect.toggle(#{element},'#{name.to_s.gsub(/^toggle_/,'')}',#{options_for_javascript(js_options)});&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-node">&quot;new Effect.#{name.to_s.camelize}(#{element},#{options_for_javascript(js_options)});&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

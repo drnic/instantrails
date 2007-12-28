@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Select and return all matching elements.
+- !ruby/struct:SM::Flow::P 
+  body: If called with a single argument, uses that argument as a selector to match all elements of the current page. Returns an empty array if no match is found.
+- !ruby/struct:SM::Flow::P 
+  body: If called with two arguments, uses the first argument as the base element and the second argument as the selector. Attempts to match the base element and any of its children. Returns an empty array if no match is found.
+- !ruby/struct:SM::Flow::P 
+  body: The selector may be a CSS selector expression (<tt>String</tt>), an expression with substitution values (<tt>Array</tt>) or an HTML::Selector object.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Selects all div tags\n  divs = css_select(&quot;div&quot;)\n\n  # Selects all paragraph tags and does something interesting\n  pars = css_select(&quot;p&quot;)\n  pars.each do |par|\n    # Do something fun with paragraphs here...\n  end\n\n  # Selects all list items in unordered lists\n  items = css_select(&quot;ul&gt;li&quot;)\n\n  # Selects all form tags and then all inputs inside the form\n  forms = css_select(&quot;form&quot;)\n  forms.each do |form|\n    inputs = css_select(form, &quot;input&quot;)\n    ...\n  end\n"
+full_name: ActionController::Assertions::SelectorAssertions#css_select
+is_singleton: false
+name: css_select
+params: |
+  css_select(selector) => array
+  css_select(element, selector) => array
+
+visibility: public

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Processes the authentication of the given username. The 'next_service' parameter should be set to the SSH service that will be requested once the authentication succeeds (usually 'ssh-connection').
+- !ruby/struct:SM::Flow::P 
+  body: This will return <tt>true</tt> if the user is accepted by the server, and <tt>false</tt> otherwise.
+full_name: Net::SSH::UserAuth::Driver#authenticate
+is_singleton: false
+name: authenticate
+params: ( next_service, username, password=nil )
+visibility: public

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Turns all URLs and e-mail addresses into clickable links. The <tt>link</tt> parameter will limit what should be linked. You can add HTML attributes to the links using <tt>href_options</tt>. Options for <tt>link</tt> are <tt>:all</tt> (default), <tt>:email_addresses</tt>, and <tt>:urls</tt>. If a block is given, each URL and e-mail address is yielded and the result is used as the link text.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  auto_link(&quot;Go to http://www.rubyonrails.org and say hello to david@loudthinking.com&quot;)\n  # =&gt; &quot;Go to &lt;a href=\\&quot;http://www.rubyonrails.org\\&quot;&gt;http://www.rubyonrails.org&lt;/a&gt; and\n  #     say hello to &lt;a href=\\&quot;mailto:david@loudthinking.com\\&quot;&gt;david@loudthinking.com&lt;/a&gt;&quot;\n\n  auto_link(&quot;Visit http://www.loudthinking.com/ or e-mail david@loudthinking.com&quot;, :urls)\n  # =&gt; &quot;Visit &lt;a href=\\&quot;http://www.loudthinking.com/\\&quot;&gt;http://www.loudthinking.com/&lt;/a&gt;\n  #     or e-mail david@loudthinking.com&quot;\n\n  auto_link(&quot;Visit http://www.loudthinking.com/ or e-mail david@loudthinking.com&quot;, :email_addresses)\n  # =&gt; &quot;Visit http://www.loudthinking.com/ or e-mail &lt;a href=\\&quot;mailto:david@loudthinking.com\\&quot;&gt;david@loudthinking.com&lt;/a&gt;&quot;\n\n  post_body = &quot;Welcome to my new blog at http://www.myblog.com/.  Please e-mail me at me@email.com.&quot;\n  auto_link(post_body, :all, :target =&gt; '_blank') do |text|\n    truncate(text, 15)\n  end\n  # =&gt; &quot;Welcome to my new blog at &lt;a href=\\&quot;http://www.myblog.com/\\&quot; target=\\&quot;_blank\\&quot;&gt;http://www.m...&lt;/a&gt;.\n        Please e-mail me at &lt;a href=\\&quot;mailto:me@email.com\\&quot;&gt;me@email.com&lt;/a&gt;.&quot;\n"
+full_name: ActionView::Helpers::TextHelper#auto_link
+is_singleton: false
+name: auto_link
+params: (text, link = :all, href_options = {}, &block)
+visibility: public

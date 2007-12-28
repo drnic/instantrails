@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Highlights one or more <tt>phrases</tt> everywhere in <tt>text</tt> by inserting it into a <tt>highlighter</tt> string. The highlighter can be specialized by passing <tt>highlighter</tt> as a single-quoted string with \1 where the phrase is to be inserted (defaults to '&lt;strong class=&quot;highlight&quot;&gt;\1&lt;/strong&gt;')
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  highlight('You searched for: rails', 'rails')\n  # =&gt; You searched for: &lt;strong class=&quot;highlight&quot;&gt;rails&lt;/strong&gt;\n\n  highlight('You searched for: ruby, rails, dhh', 'actionpack')\n  # =&gt; You searched for: ruby, rails, dhh\n\n  highlight('You searched for: rails', ['for', 'rails'], '<em>\\1</em>')\n  # =&gt; You searched <em>for</em>: <em>rails</em>\n\n  highlight('You searched for: rails', 'rails', &quot;&lt;a href='search?q=\\1'&gt;\\1&lt;/a&gt;&quot;)\n  # =&gt; You searched for: &lt;a href='search?q=rails&gt;rails&lt;/a&gt;\n"
+full_name: ActionView::Helpers::TextHelper#highlight
+is_singleton: false
+name: highlight
+params: (text, phrases, highlighter = '<strong class="highlight">\1</strong>')
+visibility: public

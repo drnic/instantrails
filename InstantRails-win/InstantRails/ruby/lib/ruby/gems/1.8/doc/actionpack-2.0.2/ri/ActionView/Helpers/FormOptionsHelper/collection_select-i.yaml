@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>&lt;select&gt;</tt> and <tt>&lt;option&gt;</tt> tags for the collection of existing return values of <tt>method</tt> for <tt>object</tt>'s class. The value returned from calling <tt>method</tt> on the instance <tt>object</tt> will be selected. If calling <tt>method</tt> returns <tt>nil</tt>, no selection is made without including <tt>:prompt</tt> or <tt>:include_blank</tt> in the <tt>options</tt> hash.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>:value_method</tt> and <tt>:text_method</tt> parameters are methods to be called on each member of <tt>collection</tt>. The return values are used as the <tt>value</tt> attribute and contents of each <tt>&lt;option&gt;</tt> tag, respectively.
+- !ruby/struct:SM::Flow::P 
+  body: "Example object structure for use with this method:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Post &lt; ActiveRecord::Base\n    belongs_to :author\n  end\n  class Author &lt; ActiveRecord::Base\n    has_many :posts\n    def name_with_initial\n      &quot;#{first_name.first}. #{last_name}&quot;\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Sample usage (selecting the associated <tt>Author</tt> for an instance of <tt>Post</tt>, <tt>@post</tt>):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  collection_select(:post, :author_id, Author.find(:all), :id, :name_with_initial, {:prompt =&gt; true})\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If <tt>@post.author_id</tt> is already <tt>1</tt>, this would return:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;select name=&quot;post[author_id]&quot;&gt;\n    &lt;option value=&quot;&quot;&gt;Please select&lt;/option&gt;\n    &lt;option value=&quot;1&quot; selected=&quot;selected&quot;&gt;D. Heinemeier Hansson&lt;/option&gt;\n    &lt;option value=&quot;2&quot;&gt;D. Thomas&lt;/option&gt;\n    &lt;option value=&quot;3&quot;&gt;M. Clark&lt;/option&gt;\n  &lt;/select&gt;\n"
+full_name: ActionView::Helpers::FormOptionsHelper#collection_select
+is_singleton: false
+name: collection_select
+params: (object, method, collection, value_method, text_method, options = {}, html_options = {})
+visibility: public

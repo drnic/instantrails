@@ -1,0 +1,69 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Settings class manages a key-value database. This is normally used as part of Registry, but can also be used separately in applications that need to maintain a key-value database in a file of their own. String values can contain any character, and will be escaped when written to the file.
+constants: []
+
+full_name: Fox::FXSettings
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: data
+- !ruby/object:RI::MethodSummary 
+  name: deleteEntry
+- !ruby/object:RI::MethodSummary 
+  name: deleteSection
+- !ruby/object:RI::MethodSummary 
+  name: each_section
+- !ruby/object:RI::MethodSummary 
+  name: each_section
+- !ruby/object:RI::MethodSummary 
+  name: existingEntry?
+- !ruby/object:RI::MethodSummary 
+  name: existingSection?
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: modified=
+- !ruby/object:RI::MethodSummary 
+  name: modified?
+- !ruby/object:RI::MethodSummary 
+  name: parseFile
+- !ruby/object:RI::MethodSummary 
+  name: readBoolEntry
+- !ruby/object:RI::MethodSummary 
+  name: readBoolEntry
+- !ruby/object:RI::MethodSummary 
+  name: readColorEntry
+- !ruby/object:RI::MethodSummary 
+  name: readIntEntry
+- !ruby/object:RI::MethodSummary 
+  name: readRealEntry
+- !ruby/object:RI::MethodSummary 
+  name: readStringEntry
+- !ruby/object:RI::MethodSummary 
+  name: readUnsignedEntry
+- !ruby/object:RI::MethodSummary 
+  name: unparseFile
+- !ruby/object:RI::MethodSummary 
+  name: writeBoolEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeBoolEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeColorEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeIntEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeRealEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeStringEntry
+- !ruby/object:RI::MethodSummary 
+  name: writeUnsignedEntry
+name: FXSettings
+superclass: Object

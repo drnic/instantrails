@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Toggles the visibility of the DOM elements with the given <tt>ids</tt>. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Show a few people\n # Generates: [&quot;person_14&quot;, &quot;person_12&quot;, &quot;person_23&quot;].each(Element.toggle);\n page.toggle 'person_14', 'person_12', 'person_23'      # Hides the elements\n page.toggle 'person_14', 'person_12', 'person_23'      # Shows the previously hidden elements\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#toggle
+is_singleton: false
+name: toggle
+params: (*ids)
+visibility: public

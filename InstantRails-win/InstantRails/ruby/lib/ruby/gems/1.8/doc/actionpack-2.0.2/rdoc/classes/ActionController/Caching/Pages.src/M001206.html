@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>cache_page (ActionController::Caching::Pages)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/caching.rb, line 140</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">cache_page</span>(<span class="ruby-identifier">content</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">options</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">perform_caching</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">caching_allowed</span>
+
+        <span class="ruby-identifier">path</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">options</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+            <span class="ruby-identifier">url_for</span>(<span class="ruby-identifier">options</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">:only_path</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:skip_relative_url_root</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-identifier">:format</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">params</span>[<span class="ruby-identifier">:format</span>]))
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+            <span class="ruby-identifier">options</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">request</span>.<span class="ruby-identifier">path</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">cache_page</span>(<span class="ruby-identifier">content</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">response</span>.<span class="ruby-identifier">body</span>, <span class="ruby-identifier">path</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

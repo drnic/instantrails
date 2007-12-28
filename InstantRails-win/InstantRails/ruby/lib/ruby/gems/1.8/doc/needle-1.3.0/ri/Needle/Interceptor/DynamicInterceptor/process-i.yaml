@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Process this link in the interceptor chain. This will invoke the wrapped callback, passing in the chain and context parameters. Before invoking the callback, the options and service point references that were given in #new are assigned to context data members (so they can be referenced inside the callback)."
+full_name: Needle::Interceptor::DynamicInterceptor#process
+is_singleton: false
+name: process
+params: ( chain, context )
+visibility: public

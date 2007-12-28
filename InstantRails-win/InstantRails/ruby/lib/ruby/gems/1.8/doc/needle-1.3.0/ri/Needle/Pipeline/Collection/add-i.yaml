@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a new pipeline element to this collection. If the first parameter is a symbol or a string, it is taken to be the name of the element to add. If no explicit implementation is given, then the implementation is looked up in the <tt>:pipeline_elements</tt> service, using the given name.
+- !ruby/struct:SM::Flow::P 
+  body: After the first parameter, if the next parameter is numeric, it is taken to mean the priority of the element. This overrides whatever default priority is given for the selected element.
+- !ruby/struct:SM::Flow::P 
+  body: If the next parameter responds to the <tt>:new</tt> message, it is taken to be an explicit implementation of the element. This is only valid if a block is not given. If a block is given, then it is always taken to be the implementation of the element.
+- !ruby/struct:SM::Flow::P 
+  body: If the last parameter is a Hash, it is taken to be a map of options that should be passed to the element when it is instantiated.
+- !ruby/struct:SM::Flow::P 
+  body: "This returns <tt>self</tt>, so that #add calls may be chained."
+full_name: Needle::Pipeline::Collection#add
+is_singleton: false
+name: add
+params: ( *args, &block )
+visibility: public

@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: AtomFeedBuilder.new(xml, self)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Full usage example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  config/routes.rb:\n    ActionController::Routing::Routes.draw do |map|\n      map.resources :posts\n      map.root :controller =&gt; &quot;posts&quot;\n    end\n\n  app/controllers/posts_controller.rb:\n    class PostsController &lt; ApplicationController::Base\n      # GET /posts.html\n      # GET /posts.atom\n      def index\n        @posts = Post.find(:all)\n\n        respond_to do |format|\n          format.html\n          format.atom\n        end\n      end\n    end\n\n  app/views/posts/index.atom.builder:\n    atom_feed do |feed|\n      feed.title(&quot;My great blog!&quot;)\n      feed.updated((@posts.first.created_at))\n\n      for post in @posts\n        feed.entry(post) do |entry|\n          entry.title(post.title)\n          entry.content(post.body, :type =&gt; 'html')\n\n          entry.author do |author|\n            author.name(&quot;DHH&quot;)\n          end\n        end\n      end\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The options are for atom_feed are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:language</tt>: Defaults to &quot;en-US&quot;."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:root_url</tt>: The HTML alternative that this feed is doubling for. Defaults to / on the current host."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:url</tt>: The URL for this feed. Defaults to the current URL."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: atom_feed yields a AtomFeedBuilder instance.
+full_name: ActionView::Helpers::AtomFeedHelper#atom_feed
+is_singleton: false
+name: atom_feed
+params: (options = {}, &block) {|AtomFeedBuilder.new(xml, self)| ...}
+visibility: public

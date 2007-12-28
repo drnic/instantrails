@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a textarea opening and closing tag set tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_area(:post, :body, :cols =&gt; 20, :rows =&gt; 40)\n  # =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;40&quot; id=&quot;post_body&quot; name=&quot;post[body]&quot;&gt;\n  #      #{@post.body}\n  #    &lt;/textarea&gt;\n\n  text_area(:comment, :text, :size =&gt; &quot;20x30&quot;)\n  # =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;30&quot; id=&quot;comment_text&quot; name=&quot;comment[text]&quot;&gt;\n  #      #{@comment.text}\n  #    &lt;/textarea&gt;\n\n  text_area(:application, :notes, :cols =&gt; 40, :rows =&gt; 15, :class =&gt; 'app_input')\n  # =&gt; &lt;textarea cols=&quot;40&quot; rows=&quot;15&quot; id=&quot;application_notes&quot; name=&quot;application[notes]&quot; class=&quot;app_input&quot;&gt;\n  #      #{@application.notes}\n  #    &lt;/textarea&gt;\n\n  text_area(:entry, :body, :size =&gt; &quot;20x20&quot;, :disabled =&gt; 'disabled')\n  # =&gt; &lt;textarea cols=&quot;20&quot; rows=&quot;20&quot; id=&quot;entry_body&quot; name=&quot;entry[body]&quot; disabled=&quot;disabled&quot;&gt;\n  #      #{@entry.body}\n  #    &lt;/textarea&gt;\n"
+full_name: ActionView::Helpers::FormHelper#text_area
+is_singleton: false
+name: text_area
+params: (object_name, method, options = {})
+visibility: public

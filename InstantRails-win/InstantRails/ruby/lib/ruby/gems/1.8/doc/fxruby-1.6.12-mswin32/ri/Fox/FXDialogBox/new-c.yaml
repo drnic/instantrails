@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theDialogBox
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct an empty dialog box. If the <em>owner</em> is an FXWindow instance, the dialog will always float over that window. If the <em>owner</em> is an FXApp instance, it will be a free-floating dialog.
+full_name: Fox::FXDialogBox::new
+is_singleton: true
+name: new
+params: (owner, title, opts=DECOR_TITLE|DECOR_BORDER, x=0, y=0, width=0, height=0, padLeft=10, padRight=10, padTop=10, padBottom=10, hSpacing=4, vSpacing=4) {|theDialogBox| ...}
+visibility: public

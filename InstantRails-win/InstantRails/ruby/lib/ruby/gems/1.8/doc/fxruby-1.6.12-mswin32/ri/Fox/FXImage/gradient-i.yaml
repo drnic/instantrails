@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fill image using a bilinear gradient.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+topleft+:"
+    body: pixel color for top-left corner [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+topright+:"
+    body: pixel color for top-right corner [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bottomleft+:"
+    body: pixel color for bottom-left corner [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bottomright+:"
+    body: pixel color for bottom-right corner [FXColor]
+  type: :NOTE
+full_name: Fox::FXImage#gradient
+is_singleton: false
+name: gradient
+params: (topleft, topright, bottomleft, bottomright)
+visibility: public

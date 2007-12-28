@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_name (Net::SFTP::Protocol::V_01::Impl)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/01/impl.rb, line 231</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_name</span>( <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">content</span> )
+      <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">has_on_name?</span>
+      <span class="ruby-identifier">id</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_long</span>
+      <span class="ruby-identifier">items</span> = []
+      <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_long</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+        <span class="ruby-identifier">items</span>.<span class="ruby-identifier">push</span>( <span class="ruby-constant">Name</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_string</span>, <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_string</span>,
+          <span class="ruby-ivar">@attr_factory</span>.<span class="ruby-identifier">from_buffer</span>( <span class="ruby-identifier">content</span> ) ) )
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">call_on_name</span>( <span class="ruby-identifier">driver</span>, <span class="ruby-identifier">id</span>, <span class="ruby-identifier">items</span> )
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Observes the form with the DOM ID specified by <tt>form_id</tt> and calls a callback when its contents have changed. The default callback is an Ajax call. By default all fields of the observed field are sent as parameters with the Ajax call.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>options</tt> for <tt>observe_form</tt> are the same as the options for <tt>observe_field</tt>. The JavaScript variable <tt>value</tt> available to the <tt>:with</tt> option is set to the serialized form by default.
+full_name: ActionView::Helpers::PrototypeHelper#observe_form
+is_singleton: false
+name: observe_form
+params: (form_id, options = {})
+visibility: public

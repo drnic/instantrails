@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Rails framework provides a large number of helpers for working with <tt>assets</tt>, <tt>dates</tt>, <tt>forms</tt>, <tt>numbers</tt> and <tt>ActiveRecord</tt> objects, to name a few. These helpers are available to all templates by default.
+- !ruby/struct:SM::Flow::P 
+  body: In addition to using the standard template helpers provided in the Rails framework, creating custom helpers to extract complicated logic or reusable functionality is strongly encouraged. By default, the controller will include a helper whose name matches that of the controller, e.g., <tt>MyController</tt> will automatically include <tt>MyHelper</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: Additional helpers can be specified using the <tt>helper</tt> class method in <tt>ActionController::Base</tt> or any controller which inherits from it.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::P 
+  body: "The <tt>to_s</tt> method from the <tt>Time</tt> class can be wrapped in a helper method to display a custom message if the Time object is blank:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  module FormattedTimeHelper\n    def format_time(time, format=:long, blank_message=&quot;&amp;nbsp;&quot;)\n      time.blank? ? blank_message : time.to_s(format)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>FormattedTimeHelper</tt> can now be included in a controller, using the <tt>helper</tt> class method:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class EventsController &lt; ActionController::Base\n    helper FormattedTimeHelper\n    def index\n      @events = Event.find(:all)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Then, in any view rendered by <tt>EventController</tt>, the <tt>format_time</tt> method can be called:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% @events.each do |event| -%&gt;\n    &lt;p&gt;\n      &lt;% format_time(event.time, :short, &quot;N/A&quot;) %&gt; | &lt;%= event.name %&gt;\n    &lt;/p&gt;\n  &lt;% end -%&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Finally, assuming we have two event instances, one which has a time and one which does not, the output might look like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  23 Aug 11:30 | Carolina Railhawks Soccer Match\n  N/A | Carolina Railhaws Training Workshop\n"
+constants: []
+
+full_name: ActionController::Helpers::ClassMethods
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: helper
+- !ruby/object:RI::MethodSummary 
+  name: helper_attr
+- !ruby/object:RI::MethodSummary 
+  name: helper_method
+name: ClassMethods
+superclass: 

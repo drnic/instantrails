@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Needle::Pipeline::Element</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Needle::Pipeline::Element</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/needle/pipeline/element_rb.html">
+                lib/needle/pipeline/element.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The base class of instantiation pipeline elements. All subclasses MUST
+implement is the <a href="Element.html#M000014">call</a> method, to define
+the logic that instances of that pipeline element should perform when
+invoked.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000013">&lt;=&gt;</a>&nbsp;&nbsp;
+      <a href="#M000016">[]</a>&nbsp;&nbsp;
+      <a href="#M000014">call</a>&nbsp;&nbsp;
+      <a href="#M000012">initialize_element</a>&nbsp;&nbsp;
+      <a href="#M000011">new</a>&nbsp;&nbsp;
+      <a href="#M000015">reset!</a>&nbsp;&nbsp;
+      <a href="#M000010">set_default_priority</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Comparable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default_priority</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The default priority to use for elements of this type.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">name</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The name of this element (may be <tt>nil</tt>).
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">options</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The hash of options that were given to this element.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">priority</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The priority of this element, used to determine ordering. Higher ordered
+elements are invoked before lower-ordered elements.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">service_point</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The service definition that this element belongs to.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">succ</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The next element in the chain. This value is only valid during pipeline
+execution&#8212;its value should not be relied upon at any other time.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000011.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( point, name=nil, priority=nil, options={} )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Element.html#M000011">new</a> element instance with the
+given name and priority. This will <a href="Element.html#M000014">call</a>
+<a href="Element.html#M000012">initialize_element</a>, so that subclasses
+only need to implement that method if they have any initialization logic to
+perform.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000010.html');return false;">
+          <span class="method-name">set_default_priority</span><span class="method-args">( priority )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the default priority for elements of this type. Subclasses may use this
+method to set their default priority.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000013.html');return false;">
+          <span class="method-name">&lt;=&gt;</span><span class="method-args">( element )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Orders elements by their priority.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000016" class="method-detail">
+        <a name="M000016"></a>
+
+        <div class="method-heading">
+          <span class="method-name">[]</span><span class="method-args">( *args )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Element.html#M000014">call</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000014" class="method-detail">
+        <a name="M000014"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000014.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000014.html');return false;">
+          <span class="method-name">call</span><span class="method-args">( *args )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoke this element&#8216;s logic.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000012.html');return false;">
+          <span class="method-name">initialize_element</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the constructor to perform any subclass-specific initialization
+logic.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000015" class="method-detail">
+        <a name="M000015"></a>
+
+        <div class="method-heading">
+          <a href="Element.src/M000015.html" target="Code" class="method-signature"
+            onclick="popupCode('Element.src/M000015.html');return false;">
+          <span class="method-name">reset!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by Pipeline::Collection#reset!. Subclasses of <a
+href="Element.html">Element</a> that save any kind of state should override
+this method to clear that state on demand.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

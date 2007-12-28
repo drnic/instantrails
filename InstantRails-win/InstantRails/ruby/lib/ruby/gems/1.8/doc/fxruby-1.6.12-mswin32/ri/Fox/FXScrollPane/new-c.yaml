@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theScrollPane
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXScrollPane instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: owner window for this menu pane [FXWindow]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+nvis+:"
+    body: maximum number of visible items [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: options [Integer]
+  type: :NOTE
+full_name: Fox::FXScrollPane::new
+is_singleton: true
+name: new
+params: (owner, nvis, opts=0) {|theScrollPane| ...}
+visibility: public

@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The buffer factory in use by this packet assistant, used to build the packets.
+  name: buffers
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The protocol driver that will be used to obtain request ids.
+  name: driver
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: packet
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the abstract base class for all packet assistant classes used by the supported SFTP protocol versions.
+constants: []
+
+full_name: Net::SFTP::Protocol::PacketAssistant
+includes: []
+
+instance_methods: []
+
+name: PacketAssistant
+superclass: Object

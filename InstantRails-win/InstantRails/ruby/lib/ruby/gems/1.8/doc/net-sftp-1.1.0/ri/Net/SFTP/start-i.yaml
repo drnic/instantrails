@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A convenience method for starting a standalone SFTP session. It will start up an SSH session using the given arguments (see the documentation for Net::SSH::Session for details), and will then start a new SFTP session with the SSH session. If a block is given, it will be passed to the SFTP session.
+full_name: Net::SFTP#start
+is_singleton: false
+name: start
+params: ( *args, &block )
+visibility: public

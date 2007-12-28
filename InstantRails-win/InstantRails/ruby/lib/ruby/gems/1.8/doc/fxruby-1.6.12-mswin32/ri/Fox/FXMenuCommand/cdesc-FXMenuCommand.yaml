@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Accelerator text [String]
+  name: accelText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXMenuCommand widget is used to invoke a command in the application from a menu. Menu commands may reflect the state of the application by graying out or becoming hidden. When activated, a menu command sends a <tt>SEL_COMMAND</tt> to its target.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXMenuCommand to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the command is activated
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMenuCommand
+includes: []
+
+instance_methods: []
+
+name: FXMenuCommand
+superclass: FXMenuCaption

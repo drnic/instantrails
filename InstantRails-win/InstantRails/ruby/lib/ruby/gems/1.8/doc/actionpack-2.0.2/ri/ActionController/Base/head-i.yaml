@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Return a response that has no content (merely headers). The options argument is interpreted to be a hash of header names and values. This allows you to easily return a response that consists only of significant headers:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  head :created, :location =&gt; person_path(@person)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "It can also be used to return exceptional conditions:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  return head(:method_not_allowed) unless request.post?\n  return head(:bad_request) unless valid_request?\n  render\n"
+full_name: ActionController::Base#head
+is_singleton: false
+name: head
+params: (*args)
+visibility: protected

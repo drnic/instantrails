@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes the resource from the remote service.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_id = 3\n  my_person = Person.find(my_id)\n  my_person.destroy\n  Person.find(my_id)\n  # =&gt; 404 (Resource Not Found)\n\n  new_person = Person.create(:name =&gt; 'James')\n  new_id = new_person.id\n  # =&gt; 7\n  new_person.destroy\n  Person.find(new_id)\n  # =&gt; 404 (Resource Not Found)\n"
+full_name: ActiveResource::Base#destroy
+is_singleton: false
+name: destroy
+params: ()
+visibility: public

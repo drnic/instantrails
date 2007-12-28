@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>simple_format (ActionView::Helpers::TextHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/text_helper.rb, line 275</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">simple_format</span>(<span class="ruby-identifier">text</span>)
+        <span class="ruby-identifier">content_tag</span> <span class="ruby-value str">'p'</span>, <span class="ruby-identifier">text</span>.<span class="ruby-identifier">to_s</span>.
+          <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\r\n?/</span>, <span class="ruby-value str">&quot;\n&quot;</span>).                    <span class="ruby-comment cmt"># \r\n and \r -&gt; \n</span>
+          <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/\n\n+/</span>, <span class="ruby-value str">&quot;&lt;/p&gt;\n\n&lt;p&gt;&quot;</span>).           <span class="ruby-comment cmt"># 2+ newline  -&gt; paragraph</span>
+          <span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/([^\n]\n)(?=[^\n])/</span>, <span class="ruby-value str">'\1&lt;br /&gt;'</span>)  <span class="ruby-comment cmt"># 1 newline   -&gt; br</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

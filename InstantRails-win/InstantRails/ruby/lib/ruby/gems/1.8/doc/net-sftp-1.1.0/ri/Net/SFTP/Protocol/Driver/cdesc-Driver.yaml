@@ -1,0 +1,49 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The underlying SSH channel supporting this SFTP connection.
+  name: channel
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current state of the driver. This will be one of <tt>unconfirmed</tt>, <tt>init</tt>, <tt>version</tt>, <tt>open</tt>, or <tt>closed</tt>.
+  name: state
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the driver object for the SFTP protocol. It manages the SSH channel used to communicate with the server, as well as the negotiation of the protocol. The operations themselves are specific to the protocol version in use, and are handled by protocol-version-specific dispatcher objects.
+constants: []
+
+full_name: Net::SFTP::Protocol::Driver
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: do_confirm
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_success
+- !ruby/object:RI::MethodSummary 
+  name: do_version
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: next_request_id
+- !ruby/object:RI::MethodSummary 
+  name: on_open
+- !ruby/object:RI::MethodSummary 
+  name: respond_to?
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+name: Driver
+superclass: Object

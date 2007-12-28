@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>parse_options (ActionController::RequestProfiler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/request_profiler.rb, line 97</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">parse_options</span>(<span class="ruby-identifier">args</span>)
+      <span class="ruby-constant">OptionParser</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">opt</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">banner</span> = <span class="ruby-node">&quot;USAGE: #{$0} [options] [session script path]&quot;</span>
+
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'-n'</span>, <span class="ruby-value str">'--times [0000]'</span>, <span class="ruby-value str">'How many requests to process. Defaults to 100.'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:n</span>] = <span class="ruby-identifier">v</span>.<span class="ruby-identifier">to_i</span> }
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'-b'</span>, <span class="ruby-value str">'--benchmark'</span>, <span class="ruby-value str">'Benchmark instead of profiling'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:benchmark</span>] = <span class="ruby-identifier">v</span> }
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'--open [CMD]'</span>, <span class="ruby-value str">'Command to open profile results. Defaults to &quot;open %s &amp;&quot;'</span>) { <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:open</span>] = <span class="ruby-identifier">v</span> }
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">on</span>(<span class="ruby-value str">'-h'</span>, <span class="ruby-value str">'--help'</span>, <span class="ruby-value str">'Show this help'</span>) { <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opt</span>; <span class="ruby-identifier">exit</span> }
+
+        <span class="ruby-identifier">opt</span>.<span class="ruby-identifier">parse</span> <span class="ruby-identifier">args</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-identifier">puts</span> <span class="ruby-identifier">opt</span>
+          <span class="ruby-identifier">exit</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:script</span>] = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

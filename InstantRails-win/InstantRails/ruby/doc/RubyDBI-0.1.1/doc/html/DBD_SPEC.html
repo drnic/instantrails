@@ -1,0 +1,258 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DBD Specification Version 0.1 (Draft)</title>
+<link href="rubyStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label-0" id="label-0">DBD Specification Version 0.2.2 (Draft)</a></h1><!-- RDLabel: "DBD Specification Version 0.2.2 (Draft)" -->
+<p>by Michael Neumann (mneumann@fantasy-coders.de)</p>
+<pre>$Id: DBD_SPEC.html,v 1.1.1.1 2006/01/04 02:03:16 francis Exp $</pre>
+<h2><a name="label-1" id="label-1">DBD Directory Layout</a></h2><!-- RDLabel: "DBD Directory Layout" -->
+<p>The directory layout is the following:</p>
+<pre>DBD/
+DBD/Driver1
+DBD/Driver1/Driver1.rb
+DBD/Driver1/helper.rb
+.
+.
+
+DBD/Driver2
+.
+.
+.</pre>
+<p>Where "Driver1" and "Driver2" are DBD driver names.
+For example, if you have two drivers installed named "Oracle" and 
+"Sybase", the layout would look like:</p>
+<pre>DBD/
+DBD/Oracle
+DBD/Oracle/Oracle.rb         # &lt;== this is the main driver
+DBD/Oracle/oracle.so         # &lt;== is used by Oracle.rb
+
+DBD/Sybase/Sybase.so         # &lt;== this is the main driver
+                             # has no helper files</pre>
+<p>When DBI loads a DBD driver, it searches all "DBD" directories in Ruby's
+LOAD_PATH ($:).</p>
+<p>Database dependent functions, that should be callable with <code>DBI::func</code>, must
+use the prefix "__" before their method names, to prevent nameclashes with 
+further versions of Ruby/DBI!</p>
+<h2><a name="label-2" id="label-2">Driver Name</a></h2><!-- RDLabel: "Driver Name" -->
+<p>The DBD driver is simply named after the Database, e.g., Oracle, DB2, etc.
+The suffix normally will be ".rb" but can be any other valid suffix that is
+possible for Ruby to load, e.g., ".so", ".sl" or ".dll", and depends
+for non-Ruby DBD driver on the underlying operating system.
+When I refer to the driver name, then I speak of the filename without
+the suffix, e.g., Oracle or DB2.</p>
+<p>The name specified in the DSN <a name="footmark-1" id="footmark-1" href="#foottext-1"><sup><small>*1</small></sup></a> 
+must be the same as the driver name. </p>
+<h2><a name="label-3" id="label-3">Classes provided by a DBD</a></h2><!-- RDLabel: "Classes provided by a DBD" -->
+<p>A DBD driver has to provide three classes in the namespace
+<code>DBI::DBD::</code><em>DriverName</em>, where <em>DriverName</em> is the name of the 
+driver, e.g., Oracle or DB2.</p>
+<p>The three classes must be named <code>Driver</code>, <code>Database</code> and <code>Statement</code>.</p>
+<h2><a name="label-4" id="label-4">Class Driver</a></h2><!-- RDLabel: "Class Driver" -->
+<p>This class must inherit from <code>DBI::BaseDriver</code>.</p>
+<h3><a name="label-5" id="label-5">Methods that must be provided by <code>Driver</code></a></h3><!-- RDLabel: "Methods that must be provided by Driver" -->
+<dl>
+<dt><a name="label-6" id="label-6"><code>connect( <var>dbname</var>, <var>user</var>, <var>auth</var>, <var>attr</var> )</code></a></dt><!-- RDLabel: "connect" -->
+<dd>
+Connects to a database and returns a newly created <code>Database</code> object.</dd>
+</dl>
+<h3><a name="label-7" id="label-7">Optional methods that can be specified by <code>Driver</code></a></h3><!-- RDLabel: "Optional methods that can be specified by Driver" -->
+<dl>
+<dt><a name="label-8" id="label-8"><code>default_user</code></a></dt><!-- RDLabel: "default_user" -->
+<dd>
+<p>Returns an array of the form <code>['username', 'password']</code> which represents
+the default user when no username and password were specified.</p>
+<p>Defaults to <code>['', '']</code> if not implemented.</p></dd>
+<dt><a name="label-9" id="label-9"><code>default_attributes</code></a></dt><!-- RDLabel: "default_attributes" -->
+<dd>
+<p>Returns a <code>Hash</code> containing the default attributes that are used
+in <a href="#label-6">connect</a> in addition to the ones the user specifies.</p>
+<p>Defaults to <code>{}</code> (empty hash) if not implemented.   </p></dd>
+<dt><a name="label-10" id="label-10"><code>data_sources</code></a></dt><!-- RDLabel: "data_sources" -->
+<dd>
+<p>Returns an array of all valid DSNs this driver can access.</p>
+<p>Defaults to <code>[]</code> (empty array) if not implemented.     </p></dd>
+<dt><a name="label-11" id="label-11"><code>disconnect_all</code></a></dt><!-- RDLabel: "disconnect_all" -->
+<dd>
+<p>Disconnects all connections made with this driver.</p>
+<p>If this method is not implemented,
+the default is to raise a NotImplementedError exception.</p></dd>
+</dl>
+<h2><a name="label-12" id="label-12">Class Database</a></h2><!-- RDLabel: "Class Database" -->
+<p>This class must inherit from <code>DBI::BaseDatabase</code>.</p>
+<h3><a name="label-13" id="label-13">Methods that must be provided by <code>Database</code></a></h3><!-- RDLabel: "Methods that must be provided by Database" -->
+<dl>
+<dt><a name="label-14" id="label-14"><code>disconnect</code></a></dt><!-- RDLabel: "disconnect" -->
+<dd>
+Disconnects from the database.
+But you must first roll back all outstanding transactions, so 
+all changes not yet committed get lost (are discarded).</dd>
+<dt><a name="label-15" id="label-15"><code>prepare( <var>statement</var> )</code></a></dt><!-- RDLabel: "prepare" -->
+<dd>
+Prepares the SQL <var>statement</var> and returns an object of class <code>Statement</code>.</dd>
+<dt><a name="label-16" id="label-16"><code>ping</code></a></dt><!-- RDLabel: "ping" -->
+<dd>
+<p>Pings the database to check whether the connection is alive.
+This can be implemented by executing a SQL statement like
+"SELECT 1 FROM DUAL" for Oracle database.
+For other databases,
+this should be a query on a table that normally always exists.</p>
+<p>Returns <code>true</code> if the connection is alive, otherwise <code>false</code>.</p></dd>
+</dl>
+<h3><a name="label-17" id="label-17">Optional methods that can be specified by <code>Database</code></a></h3><!-- RDLabel: "Optional methods that can be specified by Database" -->
+<dl>
+<dt><a name="label-18" id="label-18"><code>commit</code></a></dt><!-- RDLabel: "commit" -->
+<dt><a name="label-19" id="label-19"><code>rollback</code></a></dt><!-- RDLabel: "rollback" -->
+<dd>
+<p>Commits or rolls back the current transaction.</p>
+<p>The default is to raise a NotSupportedError exception, so if the database does not implement 
+transactions (mSQL, MySQL, CSV), do not overwrite this method.</p></dd>
+<dt><a name="label-20" id="label-20"><code>tables</code></a></dt><!-- RDLabel: "tables" -->
+<dd>
+<p>Returns an <code>Array</code> of all tables and views. </p>
+<p>The default is to return the empty <code>Array</code> (<code>[]</code>).</p></dd>
+<dt><a name="label-21" id="label-21"><code>columns( <var>table</var> )</code></a></dt><!-- RDLabel: "columns" -->
+<dd>
+<p>Returns more information about the columns of the table <var>table</var>. 
+Returns an <code>Array</code> of <code>Hash</code> objects, like <code>Statement#column_info</code> does.</p>
+<p>The default is to return an empty <code>Array</code> (<code>[]</code>).</p></dd>
+<dt><a name="label-22" id="label-22"><code>execute( <var>statement</var>, *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "execute" -->
+<dd>
+<p>Immediate execution (without preparation) of SQL <var>statement</var>
+after binding the values in <var>bindvars</var> to the placeholders in the statement.</p>
+<p>Returns a <code>Statement</code> object.</p>
+<p>Defaults to the call sequence of <code>Database#prepare()</code>, <code>Statement#bind_params()</code> and 
+<code>Statement#execute()</code>.</p></dd>
+<dt><a name="label-23" id="label-23"><code>do( <var>statement</var>, *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "do" -->
+<dd>
+<p>Execution of SQL <var>statement</var>, after binding the values given
+in <var>bindvars</var> to the placeholders in the statement, but without returning a <code>Statement</code> object.
+So this is used for 'INSERT', 'UPDATE', 'DELETE' as well as for DCL, which
+do not return a result set.</p>
+<p>Returns the RPC (Row Processed Count) or <code>nil</code> if no RPC is available.</p>
+<p>Defaults to <code>Database#execute()</code> and <code>Statement#rows()</code> followed by <code>Statement#finish()</code>. </p></dd>
+<dt><a name="label-24" id="label-24"><code>quote( <var>value</var> )</code></a></dt><!-- RDLabel: "quote" -->
+<dd>
+<p>Quotes the given value <var>value</var> in database-specific fashion and returns the result.</p>
+<p>NOTE: This method is not really useful, because of <code>Statement#bind_param</code>. </p></dd>
+<dt><a name="label-25" id="label-25"><code>[ <var>attr</var> ]</code></a></dt><!-- RDLabel: "[]" -->
+<dd>
+<p>Returns the value of the attribute <var>attr</var>.</p>
+<p>The default is to return the value of <code>@attr[attr]</code>.</p></dd>
+<dt><a name="label-26" id="label-26"><code>[<var>attr</var>] = <var>value</var></code></a></dt><!-- RDLabel: "[]=" -->
+<dd>
+<p>Sets the value of the attribute <var>attr</var> to <var>value</var>.
+An attribute is, e.g., "AutoCommit".
+Raises a NotSupportedError exception if the database does not support an attribute.</p>
+<p>The default implementation is to raise a NotSupportedError exception.</p></dd>
+</dl>
+<h2><a name="label-27" id="label-27">Class Statement</a></h2><!-- RDLabel: "Class Statement" -->
+<p>This class must inherit from <code>DBI::BaseStatement</code>.</p>
+<h3><a name="label-28" id="label-28">Methods that must be provided by <code>Statement</code></a></h3><!-- RDLabel: "Methods that must be provided by Statement" -->
+<dl>
+<dt><a name="label-29" id="label-29"><code>bind_param( <var>param</var>, <var>value</var>, <var>attribs</var> )</code></a></dt><!-- RDLabel: "bind_param" -->
+<dd>
+<p>Binds the value <var>value</var> to a placeholder.
+The placeholder is represented by <var>param</var>, which is either a
+<code>String</code> representing the name of the 
+placeholder used in the SQL statement (e.g., Oracle: "SELECT * FROM EMP WHERE ENAME = :ename") 
+or a <code>Fixnum</code> that indicates the number of the placeholder.
+Placeholder numbers begin at 1.</p>
+<p>If <var>value</var> is a <code>String</code>, then the default SQL type is <code>VARCHAR</code> or <code>CHAR</code>.
+If <var>value</var> is a <code>Fixnum</code> or <code>Bignum</code>, the default SQL type is <code>INT</code>.
+If <var>value</var> is a <code>Float</code>, the default SQL type is <code>FLOAT</code>.</p>
+<p><var>attribs</var> is not yet used in this version but could be a hash containing more information
+like parameter type, etc.</p></dd>
+<dt><a name="label-30" id="label-30"><code>execute</code></a></dt><!-- RDLabel: "execute" -->
+<dd>
+Execute the statement.</dd>
+<dt><a name="label-31" id="label-31"><code>finish</code></a></dt><!-- RDLabel: "finish" -->
+<dd>
+Free all the resources for the statement.
+After calling <a href="#label-31">finish</a>, no other operation on this
+statement is valid.</dd>
+<dt><a name="label-32" id="label-32"><code>fetch</code></a></dt><!-- RDLabel: "fetch" -->
+<dd>
+<p>Fetches the current row.
+Returns an <code>Array</code> containing all column data or <code>nil</code> if
+the last column has been read.</p>
+<p>Note: This method should not return a newly created object on each call; 
+instead, you should return one and the same <code>Array</code> object but with 
+changed data. </p></dd>
+<dt><a name="label-33" id="label-33"><code>column_info</code></a></dt><!-- RDLabel: "column_info" -->
+<dd>
+Returns an <code>Array</code> of <code>Hash</code> objects, one for each column.
+Each <code>Hash</code> object must have at least one key 'name' which 
+value is the name of that column.
+Further possible values are 'sql_type' (integer, e.g., DBI::SQL_INT), 
+'type_name' (string), 'precision' (= column size), 'scale' (= decimal digits),
+'default', 'nullable', 'indexed', 'primary' and 'unique'.</dd>
+<dt><a name="label-34" id="label-34"><code>rows</code></a></dt><!-- RDLabel: "rows" -->
+<dd>
+Returns the RPC (Row Processed Count) of the last executed statement, or
+<code>nil</code> if no such exists.</dd>
+</dl>
+<h3><a name="label-35" id="label-35">Optional methods that can be specified by <code>Statement</code></a></h3><!-- RDLabel: "Optional methods that can be specified by Statement" -->
+<dl>
+<dt><a name="label-36" id="label-36"><code>bind_params( *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "bind_params" -->
+<dd>
+<p>Binds the values in <var>bindvars</var> to the placeholders in the statement.</p>
+<p>Defaults to calling <a href="#label-29">bind_param</a> for each value, with <var>param</var> starting
+from 1 increasingly.</p></dd>
+<dt><a name="label-37" id="label-37"><code>cancel</code></a></dt><!-- RDLabel: "cancel" -->
+<dd>
+<p>Free any result set resources which were made after a call to <a href="#label-22">execute</a>.
+After calling this method, calls to any of the <em>fetch</em> methods are no longer valid.</p>
+<p>The default is to do nothing.</p></dd>
+<dt><a name="label-38" id="label-38"><code>fetch_scroll( <var>direction</var>, <var>offset</var> )</code></a></dt><!-- RDLabel: "fetch_scroll" -->
+<dd>
+<p><var>direction</var> is one of the following constants:</p>
+<ul>
+<li>SQL_FETCH_NEXT</li>
+<li>SQL_FETCH_PRIOR</li>
+<li>SQL_FETCH_FIRST</li>
+<li>SQL_FETCH_LAST</li>
+<li>SQL_FETCH_ABSOLUTE</li>
+<li>SQL_FETCH_RELATIVE</li>
+</ul>
+<p><var>offset</var> is a positive or negative number (only when SQL_FETCH_RELATIVE is used).</p>
+<p>By default, only SQL_FETCH_NEXT, SQL_FETCH_LAST, SQL_FETCH_RELATIVE (if positive) are
+implemented. Otherwise, this method raises a NotSupportedError exception.</p>
+<p>Note: This method should not return a newly created object on each call; 
+instead, you should return one and the same <code>Array</code> object but with 
+changed data. </p></dd>
+<dt><a name="label-39" id="label-39"><code>fetch_many( <var>cnt</var> )</code></a></dt><!-- RDLabel: "fetch_many" -->
+<dd>
+<p>Returns an <code>Array</code> of the next <var>cnt</var> rows, where a row is itself an <code>Array</code>.</p>
+<p>Note: Unlike <a href="#label-32">fetch</a>, this method should return a new <code>Array</code> object.</p>
+<p>If <var>cnt</var> rows are not available, return the rest (as many as are available).
+Returns <code>nil</code> if no rows are available.</p>
+<p>Defaults to multiple calls to <a href="#label-32">fetch</a>.</p></dd>
+<dt><a name="label-40" id="label-40"><code>fetch_all</code></a></dt><!-- RDLabel: "fetch_all" -->
+<dd>
+<p>Returns an <code>Array</code> of all rows that have not yet been fetched, where a row is 
+itself an <code>Array</code> (see <code>Statement#fetch_many</code>).</p>
+<p>Note: Unlike <a href="#label-32">fetch</a>, this method should return a new <code>Array</code> object.</p>
+<p>Returns <code>nil</code> if no rows are available.</p>
+<p>Defaults to multiple calls to <a href="#label-32">fetch</a>.</p></dd>
+<dt><a name="label-41" id="label-41"><code>[ <var>attr</var> ]</code></a></dt><!-- RDLabel: "[]" -->
+<dd>
+<p>Returns the value of the attribute <var>attr</var>.</p>
+<p>The default is to return the value of <code>@attr[attr]</code>.</p></dd>
+<dt><a name="label-42" id="label-42"><code>[<var>attr</var>] = <var>value</var></code></a></dt><!-- RDLabel: "[]=" -->
+<dd>
+<p>Set the value of the attribute <var>attr</var> to <var>value</var>.
+Raise a NotSupportedError exception if the database does not support an attribute.</p>
+<p>The default implementation is to raise a NotSupportedError exception.</p></dd>
+</dl>
+<hr />
+<p class="foottext">
+<a name="foottext-1" id="foottext-1" href="#footmark-1"><sup><small>*1</small></sup></a><small>Data Source Name, e.g., "dbi:Oracle:oracle.neumann"</small><br />
+</p>
+</body>
+</html>

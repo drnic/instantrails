@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::VERB 
+  body: " Break the sql string into parts.\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This is NOT a full lexer for SQL. It just breaks up the SQL string enough so that question marks, double question marks and quoted strings are separated. This is used when binding arguments to &quot;?&quot; in the SQL string. Note: comments are not handled."
+full_name: DB2::Statement#tokens
+is_singleton: false
+name: tokens
+params: (sql)
+visibility: public

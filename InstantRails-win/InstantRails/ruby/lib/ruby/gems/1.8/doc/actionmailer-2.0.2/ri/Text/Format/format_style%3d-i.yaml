@@ -1,0 +1,53 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Specifies the format style. Allowable values are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +LEFT_ALIGN+
+    body: Left justified, ragged right.
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "     |A paragraph that is|\n     |left aligned.|\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +RIGHT_ALIGN+
+    body: Right justified, ragged left.
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "     |A paragraph that is|\n     |     right aligned.|\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +RIGHT_FILL+
+    body: Left justified, right ragged, filled to width by spaces. (Essentially the same as <tt>LEFT_ALIGN</tt> except that lines are padded on the right.)
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "     |A paragraph that is|\n     |left aligned.      |\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: +JUSTIFY+
+    body: Fully justified, words filled to width by spaces.
+  type: :LABELED
+- !ruby/struct:SM::Flow::VERB 
+  body: "     |A paragraph  that|\n     |is     justified.|\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*Default*:"
+    body: <tt>Text::Format::LEFT_ALIGN</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "<b>Used in</b>:"
+    body: <tt>#format</tt>, <tt>#paragraphs</tt>
+  type: :NOTE
+full_name: Text::Format#format_style=
+is_singleton: false
+name: format_style=
+params: (fs)
+visibility: public

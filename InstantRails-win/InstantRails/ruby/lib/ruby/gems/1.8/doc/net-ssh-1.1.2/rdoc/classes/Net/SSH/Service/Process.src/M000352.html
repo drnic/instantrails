@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Service::Process)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/process/services.rb, line 24</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+
+          <span class="ruby-comment cmt"># All process management services are registered in their own</span>
+          <span class="ruby-comment cmt"># namespace.</span>
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:process</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-comment cmt"># The :open_manager service returns a proc object that can be used</span>
+            <span class="ruby-comment cmt"># to create new OpenManager instances for a given command.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">open_manager</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/process/open'</span>
+              <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>]
+              <span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>]
+              <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">cmd</span><span class="ruby-operator">|</span> <span class="ruby-constant">OpenManager</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">log</span>, <span class="ruby-identifier">cmd</span> ) }
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The :popen3_manager service returns a new POpen3Manager instance</span>
+            <span class="ruby-comment cmt"># for managing the execution of commands with a popen3-type</span>
+            <span class="ruby-comment cmt"># interface.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">popen3_manager</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/process/popen3'</span>
+              <span class="ruby-identifier">connection</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>]
+              <span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>]
+              <span class="ruby-constant">POpen3Manager</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">log</span> )
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The :driver controls access to all remote process management</span>
+            <span class="ruby-comment cmt"># services.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">driver</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/process/driver'</span>
+              <span class="ruby-constant">Driver</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>],
+                          <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>],
+                          <span class="ruby-identifier">:open</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:open_manager</span>],
+                          <span class="ruby-identifier">:popen3</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:popen3_manager</span>] )
+            <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

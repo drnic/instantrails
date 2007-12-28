@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: options
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: run
+comment: 
+constants: []
+
+full_name: ActionController::RequestProfiler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: benchmark
+- !ruby/object:RI::MethodSummary 
+  name: default_options
+- !ruby/object:RI::MethodSummary 
+  name: load_ruby_prof
+- !ruby/object:RI::MethodSummary 
+  name: parse_options
+- !ruby/object:RI::MethodSummary 
+  name: profile
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: show_profile_results
+- !ruby/object:RI::MethodSummary 
+  name: warmup
+name: RequestProfiler
+superclass: Object

@@ -1,0 +1,13 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: /
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Searches this node for all elements matching the CSS or XPath <tt>expr</tt>. Returns an Elements array containing the matching nodes. If <tt>blk</tt> is given, it is used to iterate through the matching set.
+full_name: Hpricot::Traverse#search
+is_singleton: false
+name: search
+params: (expr, &blk)
+visibility: public

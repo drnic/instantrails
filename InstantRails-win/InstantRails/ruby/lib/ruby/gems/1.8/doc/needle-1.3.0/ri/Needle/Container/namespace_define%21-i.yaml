@@ -1,0 +1,25 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: namespace!
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new namespace within the container, with the given name. The block (which is required) will be passed to Container#define! on the new namespace.
+- !ruby/struct:SM::Flow::P 
+  body: "For the curious, namespaces are simply services that are implemented by Container. The two statements are really identical:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.namespace( :calc )\n  container.register( :calc ) { |c,p| Needle::Container.new( c, p.name ) }\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that this means that namespaces may be singletons or prototypes, or have immediate or deferred instantiation, and so forth. (The default of immediate, singleton instantiation is sufficient for 99% of the things you'll use namespaces for.)
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.namespace_define!( :operations ) do\n    add { Adder.new }\n    ...\n  end\n\n  adder = container.calc.operations.add\n"
+- !ruby/struct:SM::Flow::P 
+  body: "<b>Note</b>: this method will immediately instantiate the new namespace, unlike #namespace. If you want instantiation of the namespace to be deferred, either use a deferring service model (like <tt>:singleton_deferred</tt>) or create the namespace via #namespace."
+full_name: Needle::Container#namespace_define!
+is_singleton: false
+name: namespace_define!
+params: ( name, opts={}, &block )
+visibility: public

@@ -1,0 +1,138 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Sort direction (<tt>FALSE</tt>, <tt>TRUE</tt> or <tt>MAYBE</tt>) [Integer]
+  name: arrowDir
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item's user data [Object]
+  name: data
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item's icon [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Icon position (one of <tt>BEFORE</tt>, <tt>AFTER</tt>, <tt>ABOVE</tt> or <tt>BELOW</tt>) [Integer]
+  name: iconPosition
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content justification (one of <tt>LEFT</tt>, <tt>RIGHT</tt>, <tt>CENTER_X</tt>, <tt>TOP</tt>, <tt>BOTTOM</tt> or <tt>CENTER_Y</tt>) [Integer]
+  name: justification
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current position [Integer]
+  name: pos
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Size [Integer]
+  name: size
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item's text label [String]
+  name: text
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Header item
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Alignment hints
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RIGHT+:"
+    body: Align on right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LEFT+:"
+    body: Align on left
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CENTER_X+:"
+    body: Align centered horizontally (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOP+:"
+    body: Align on top
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BOTTOM+:"
+    body: Align on bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CENTER_Y+:"
+    body: Align centered vertically (default)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Icon position
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BEFORE+:"
+    body: Icon before the text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+AFTER+:"
+    body: Icon after the text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ABOVE+:"
+    body: Icon above the text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BELOW+:"
+    body: Icon below the text
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Arrow
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ARROW_NONE+:"
+    body: No arrow
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ARROW_UP+:"
+    body: Arrow pointing up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ARROW_DOWN+:"
+    body: Arrow pointing down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PRESSED+:"
+    body: Pressed down
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXHeaderItem
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: detach
+- !ruby/object:RI::MethodSummary 
+  name: getHeight
+- !ruby/object:RI::MethodSummary 
+  name: getWidth
+- !ruby/object:RI::MethodSummary 
+  name: pressed=
+- !ruby/object:RI::MethodSummary 
+  name: pressed?
+name: FXHeaderItem
+superclass: FXObject

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "This allows new interceptors to be defined &quot;on-the-fly&quot;. The associated block must accept two parameters--an object representing the chain of interceptors, and the context of the current method invocation. The block should then invoke #process_next on the chain (passing the context as the lone parameter) when the next element of the chain should be invoked."
+- !ruby/struct:SM::Flow::P 
+  body: "You should only call #doing once per interceptor, and never after invoking #with on the same interceptor."
+full_name: Needle::Interceptor#doing
+is_singleton: false
+name: doing
+params: ( &block )
+visibility: public

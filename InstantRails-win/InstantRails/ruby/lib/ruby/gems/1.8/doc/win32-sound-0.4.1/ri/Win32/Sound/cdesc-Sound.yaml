@@ -1,0 +1,95 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: beep
+- !ruby/object:RI::MethodSummary 
+  name: devices
+- !ruby/object:RI::MethodSummary 
+  name: get_wave_volume
+- !ruby/object:RI::MethodSummary 
+  name: play
+- !ruby/object:RI::MethodSummary 
+  name: set_wave_volume
+- !ruby/object:RI::MethodSummary 
+  name: stop
+- !ruby/object:RI::MethodSummary 
+  name: wave_volume
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.4.1'"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOW_FREQUENCY
+  value: "37"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HIGH_FREQUENCY
+  value: "32767"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_VOLUME
+  value: "0xFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SYNC
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ASYNC
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NODEFAULT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MEMORY
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOOP
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NOSTOP
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NOWAIT
+  value: "8192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALIAS
+  value: "65536"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALIAS_ID
+  value: "1114112"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILENAME
+  value: "131072"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RESOURCE
+  value: "262148"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PURGE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: APPLICATION
+  value: "0x0080"
+full_name: Win32::Sound
+includes: []
+
+instance_methods: []
+
+name: Sound
+superclass: Object

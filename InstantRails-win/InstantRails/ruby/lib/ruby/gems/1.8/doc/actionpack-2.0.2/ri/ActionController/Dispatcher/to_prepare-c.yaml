@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a preparation callback. Preparation callbacks are run before every request in development mode, and before the first request in production mode.
+- !ruby/struct:SM::Flow::P 
+  body: An optional identifier may be supplied for the callback. If provided, to_prepare may be called again with the same identifier to replace the existing callback. Passing an identifier is a suggested practice if the code adding a preparation block may be reloaded.
+full_name: ActionController::Dispatcher::to_prepare
+is_singleton: true
+name: to_prepare
+params: (identifier = nil, &block)
+visibility: public

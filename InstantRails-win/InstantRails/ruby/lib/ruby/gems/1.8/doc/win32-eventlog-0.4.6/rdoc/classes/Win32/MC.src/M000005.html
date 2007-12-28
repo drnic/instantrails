@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_dll_file (Win32::MC)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/mc.rb, line 57</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_dll_file</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-ivar">@res_file</span>)
+                           <span class="ruby-identifier">raise</span> <span class="ruby-constant">MC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;No .res file found: #{@res_file}&quot;</span>
+         <span class="ruby-keyword kw">end</span>
+         <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;link -dll -noentry -out:#{@dll_file} #{@res_file}&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

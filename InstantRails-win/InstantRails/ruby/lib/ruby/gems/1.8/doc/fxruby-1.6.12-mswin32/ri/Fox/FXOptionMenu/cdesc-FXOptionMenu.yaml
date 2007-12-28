@@ -1,0 +1,67 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current option, or <tt>nil</tt> if none [FXOption]
+  name: current
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current option number, or -1 if none [Integer]
+  name: currentNo
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The pane which will be popped up [FXPopup]
+  name: menu
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Option Menu
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXOptionMenu to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when this an option is selected; the message data is the option number.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXOptionMenu
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getCurrent
+- !ruby/object:RI::MethodSummary 
+  name: getCurrentNo
+- !ruby/object:RI::MethodSummary 
+  name: popped?
+- !ruby/object:RI::MethodSummary 
+  name: setCurrent
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentNo
+name: FXOptionMenu
+superclass: FXLabel

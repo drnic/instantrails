@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns a string containing the error message attached to the <tt>method</tt> on the <tt>object</tt> if one exists. This error message is wrapped in a <tt>DIV</tt> tag, which can be extended to include a <tt>prepend_text</tt> and/or <tt>append_text</tt> (to properly explain the error), and a <tt>css_class</tt> to style it accordingly. <tt>object</tt> should either be the name of an instance variable or the actual object. As an example, let's say you have a model <tt>post</tt> that has an error message on the <tt>title</tt> attribute:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= error_message_on &quot;post&quot;, &quot;title&quot; %&gt; =&gt;\n    &lt;div class=&quot;formError&quot;&gt;can't be empty&lt;/div&gt;\n\n  &lt;%= error_message_on @post, &quot;title&quot; %&gt; =&gt;\n    &lt;div class=&quot;formError&quot;&gt;can't be empty&lt;/div&gt;\n\n  &lt;%= error_message_on &quot;post&quot;, &quot;title&quot;, &quot;Title simply &quot;, &quot; (or it won't work).&quot;, &quot;inputError&quot; %&gt; =&gt;\n    &lt;div class=&quot;inputError&quot;&gt;Title simply can't be empty (or it won't work).&lt;/div&gt;\n"
+full_name: ActionView::Helpers::ActiveRecordHelper#error_message_on
+is_singleton: false
+name: error_message_on
+params: (object, method, prepend_text = "", append_text = "", css_class = "formError")
+visibility: public

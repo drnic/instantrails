@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a hidden form input field used to transmit data that would be lost due to HTTP's statelessness or data that should be hidden from the user.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Creates standard HTML attributes for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hidden_field_tag 'tags_list'\n  # =&gt; &lt;input id=&quot;tags_list&quot; name=&quot;tags_list&quot; type=&quot;hidden&quot; /&gt;\n\n  hidden_field_tag 'token', 'VUBJKB23UIVI1UU1VOBVI@'\n  # =&gt; &lt;input id=&quot;token&quot; name=&quot;token&quot; type=&quot;hidden&quot; value=&quot;VUBJKB23UIVI1UU1VOBVI@&quot; /&gt;\n\n  hidden_field_tag 'collected_input', '', :onchange =&gt; &quot;alert('Input collected!')&quot;\n  # =&gt; &lt;input id=&quot;collected_input&quot; name=&quot;collected_input&quot; onchange=&quot;alert('Input collected!')&quot;\n  #    type=&quot;hidden&quot; value=&quot;&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#hidden_field_tag
+is_singleton: false
+name: hidden_field_tag
+params: (name, value = nil, options = {})
+visibility: public

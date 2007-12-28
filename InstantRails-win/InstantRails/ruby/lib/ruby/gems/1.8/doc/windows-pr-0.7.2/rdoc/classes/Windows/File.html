@@ -1,0 +1,850 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::File</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::File</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/file_rb.html">
+                lib/windows/file.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Unicode.html">Windows::Unicode</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_BEGIN</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CURRENT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_END</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_READONLY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> Attributes
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_HIDDEN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_DIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_ARCHIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_ENCRYPTED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_NORMAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_TEMPORARY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_SPARSE_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_REPARSE_POINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_COMPRESSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_OFFLINE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00001000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00002000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_UNKNOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_CHAR</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_PIPE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TYPE_REMOTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">APPLICATION_ERROR_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> security and access rights
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_SUCCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_INFORMATIONAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_WARNING</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ERROR_SEVERITY_ERROR</td>
+          <td>=</td>
+          <td class="context-item-value">0xc0000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_NONE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_DEFAULT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_FORMAT_LZNT1</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_ENGINE_STANDARD</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">COMPRESSION_ENGINE_MAXIMUM</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_ALLOWED_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_DENIED_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANYSIZE_ARRAY</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYSTEM_AUDIT_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYSTEM_ALARM_ACE_TYPE</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OBJECT_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CONTAINER_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NO_PROPAGATE_INHERIT_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INHERIT_ONLY_ACE</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VALID_INHERIT_FLAGS</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SUCCESSFUL_ACCESS_ACE_FLAG</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FAILED_ACCESS_ACE_FLAG</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DELETE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00010000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">READ_CONTROL</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WRITE_DAC</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WRITE_OWNER</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYNCHRONIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x100000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_REQUIRED</td>
+          <td>=</td>
+          <td class="context-item-value">0xf0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STANDARD_RIGHTS_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x1f0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SPECIFIC_RIGHTS_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0xffff</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ACCESS_SYSTEM_SECURITY</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAXIMUM_ALLOWED</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GENERIC_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_LIST_DIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ADD_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_APPEND_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ADD_SUBDIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CREATE_PIPE_INSTANCE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_EA</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_PROPERTIES</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_EA</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_PROPERTIES</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_TRAVERSE</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DELETE_CHILD</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_READ_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_WRITE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1ff</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_READ</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_READ |          FILE_READ_DATA |          FILE_READ_ATTRIBUTES |          FILE_READ_EA |          SYNCHRONIZE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_WRITE |          FILE_WRITE_DATA |          FILE_WRITE_ATTRIBUTES |          FILE_WRITE_EA |          FILE_APPEND_DATA |          SYNCHRONIZE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_GENERIC_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_EXECUTE |          FILE_READ_ATTRIBUTES |          FILE_EXECUTE |          SYNCHRONIZE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_READ</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SHARE_DELETE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_FILE_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_DIR_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_LAST_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_LAST_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_CREATION</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_NOTIFY_CHANGE_SECURITY</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAILSLOT_NO_MESSAGE</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAILSLOT_WAIT_FOREVER</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CASE_SENSITIVE_SEARCH</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_CASE_PRESERVED_NAMES</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_UNICODE_ON_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_PERSISTENT_ACLS</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FILE_COMPRESSION</td>
+          <td>=</td>
+          <td class="context-item-value">16</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_VOLUME_QUOTAS</td>
+          <td>=</td>
+          <td class="context-item-value">32</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_SPARSE_FILES</td>
+          <td>=</td>
+          <td class="context-item-value">64</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_REPARSE_POINTS</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_REMOTE_STORAGE</td>
+          <td>=</td>
+          <td class="context-item-value">256</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_VOLUME_IS_COMPRESSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_OBJECT_IDS</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_SUPPORTS_ENCRYPTION</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_WRITE_THROUGH</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OVERLAPPED</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_NO_BUFFERING</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_RANDOM_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_SEQUENTIAL_SCAN</td>
+          <td>=</td>
+          <td class="context-item-value">0x08000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_DELETE_ON_CLOSE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_BACKUP_SEMANTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x02000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_POSIX_SEMANTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x01000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OPEN_REPARSE_POINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00200000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_OPEN_NO_RECALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00100000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_FLAG_FIRST_PIPE_INSTANCE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00080000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="File.html">File</a> creation disposition
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_ALWAYS</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPEN_EXISTING</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OPEN_ALWAYS</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TRUNCATE_EXISTING</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_QUERY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_MAP_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_EXTEND_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SECTION_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">STANDARD_RIGHTS_REQUIRED |          SECTION_QUERY |          SECTION_MAP_WRITE |          SECTION_MAP_READ |          SECTION_MAP_EXECUTE |          SECTION_EXTEND_SIZE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_FILE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Errors
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_HANDLE_VALUE</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_SET_FILE_POINTER</td>
+          <td>=</td>
+          <td class="context-item-value">-1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">INVALID_FILE_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0xFFFFFFFF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOCKFILE_EXCLUSIVE_LOCK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Misc
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOCKFILE_FAIL_IMMEDIATELY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_REPLACE_EXISTING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_COPY_ALLOWED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_DELAY_UNTIL_REBOOT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_WRITE_THROUGH</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_CREATE_HARDLINK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MOVEFILE_FAIL_IF_NOT_TRACKABLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

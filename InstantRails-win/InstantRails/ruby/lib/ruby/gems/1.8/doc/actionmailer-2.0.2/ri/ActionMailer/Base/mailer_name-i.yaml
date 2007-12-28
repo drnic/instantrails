@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: controller_name
+- !ruby/object:RI::AliasName 
+  name: controller_path
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Override the mailer name, which defaults to an inflected version of the mailer's class name. If you want to use a template in a non-standard location, you can use this to specify that location.
+full_name: ActionMailer::Base#mailer_name
+is_singleton: false
+name: mailer_name
+params: (value = nil)
+visibility: public

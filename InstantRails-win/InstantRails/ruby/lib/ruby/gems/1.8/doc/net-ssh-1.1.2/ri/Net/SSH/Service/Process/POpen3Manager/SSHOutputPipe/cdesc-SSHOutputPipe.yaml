@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The channel used by this pipe.
+  name: channel
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An abstract class representing a writable stream on a channel. This is subclassed by SSHStdoutPipe and SSHStderrPipe.
+constants: []
+
+full_name: Net::SSH::Service::Process::POpen3Manager::SSHOutputPipe
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: data_available?
+- !ruby/object:RI::MethodSummary 
+  name: read
+name: SSHOutputPipe
+superclass: Object

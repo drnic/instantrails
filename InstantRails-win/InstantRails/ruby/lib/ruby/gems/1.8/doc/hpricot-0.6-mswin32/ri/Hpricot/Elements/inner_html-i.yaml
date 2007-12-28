@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: html
+- !ruby/object:RI::AliasName 
+  name: innerHTML
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an HTML fragment built of the contents of each element in this list.
+- !ruby/struct:SM::Flow::P 
+  body: If a HTML <tt>string</tt> is supplied, this method acts like inner_html=.
+full_name: Hpricot::Elements#inner_html
+is_singleton: false
+name: inner_html
+params: (*string)
+visibility: public

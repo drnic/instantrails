@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>all (TimeZone)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/values/time_zone.rb, line 94</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@@zones</span>
+        <span class="ruby-ivar">@@zones</span> = []
+        [[<span class="ruby-value">-43_200</span>, <span class="ruby-value str">&quot;International Date Line West&quot;</span> ],
+         [<span class="ruby-value">-39_600</span>, <span class="ruby-value str">&quot;Midway Island&quot;</span>, <span class="ruby-value str">&quot;Samoa&quot;</span> ],
+         [<span class="ruby-value">-36_000</span>, <span class="ruby-value str">&quot;Hawaii&quot;</span> ],
+         [<span class="ruby-value">-32_400</span>, <span class="ruby-value str">&quot;Alaska&quot;</span> ],
+         [<span class="ruby-value">-28_800</span>, <span class="ruby-value str">&quot;Pacific Time (US &amp; Canada)&quot;</span>, <span class="ruby-value str">&quot;Tijuana&quot;</span> ],
+         [<span class="ruby-value">-25_200</span>, <span class="ruby-value str">&quot;Mountain Time (US &amp; Canada)&quot;</span>, <span class="ruby-value str">&quot;Chihuahua&quot;</span>, <span class="ruby-value str">&quot;Mazatlan&quot;</span>, 
+                   <span class="ruby-value str">&quot;Arizona&quot;</span> ],
+         [<span class="ruby-value">-21_600</span>, <span class="ruby-value str">&quot;Central Time (US &amp; Canada)&quot;</span>, <span class="ruby-value str">&quot;Saskatchewan&quot;</span>, <span class="ruby-value str">&quot;Guadalajara&quot;</span>,
+                   <span class="ruby-value str">&quot;Mexico City&quot;</span>, <span class="ruby-value str">&quot;Monterrey&quot;</span>, <span class="ruby-value str">&quot;Central America&quot;</span> ],
+         [<span class="ruby-value">-18_000</span>, <span class="ruby-value str">&quot;Eastern Time (US &amp; Canada)&quot;</span>, <span class="ruby-value str">&quot;Indiana (East)&quot;</span>, <span class="ruby-value str">&quot;Bogota&quot;</span>,
+                   <span class="ruby-value str">&quot;Lima&quot;</span>, <span class="ruby-value str">&quot;Quito&quot;</span> ],
+         [<span class="ruby-value">-14_400</span>, <span class="ruby-value str">&quot;Atlantic Time (Canada)&quot;</span>, <span class="ruby-value str">&quot;Caracas&quot;</span>, <span class="ruby-value str">&quot;La Paz&quot;</span>, <span class="ruby-value str">&quot;Santiago&quot;</span> ],
+         [<span class="ruby-value">-12_600</span>, <span class="ruby-value str">&quot;Newfoundland&quot;</span> ],
+         [<span class="ruby-value">-10_800</span>, <span class="ruby-value str">&quot;Brasilia&quot;</span>, <span class="ruby-value str">&quot;Buenos Aires&quot;</span>, <span class="ruby-value str">&quot;Georgetown&quot;</span>, <span class="ruby-value str">&quot;Greenland&quot;</span> ],
+         [ <span class="ruby-value">-7_200</span>, <span class="ruby-value str">&quot;Mid-Atlantic&quot;</span> ],
+         [ <span class="ruby-value">-3_600</span>, <span class="ruby-value str">&quot;Azores&quot;</span>, <span class="ruby-value str">&quot;Cape Verde Is.&quot;</span> ],
+         [      <span class="ruby-value">0</span>, <span class="ruby-value str">&quot;Dublin&quot;</span>, <span class="ruby-value str">&quot;Edinburgh&quot;</span>, <span class="ruby-value str">&quot;Lisbon&quot;</span>, <span class="ruby-value str">&quot;London&quot;</span>, <span class="ruby-value str">&quot;Casablanca&quot;</span>,
+                   <span class="ruby-value str">&quot;Monrovia&quot;</span> ],
+         [  <span class="ruby-value">3_600</span>, <span class="ruby-value str">&quot;Belgrade&quot;</span>, <span class="ruby-value str">&quot;Bratislava&quot;</span>, <span class="ruby-value str">&quot;Budapest&quot;</span>, <span class="ruby-value str">&quot;Ljubljana&quot;</span>, <span class="ruby-value str">&quot;Prague&quot;</span>,
+                   <span class="ruby-value str">&quot;Sarajevo&quot;</span>, <span class="ruby-value str">&quot;Skopje&quot;</span>, <span class="ruby-value str">&quot;Warsaw&quot;</span>, <span class="ruby-value str">&quot;Zagreb&quot;</span>, <span class="ruby-value str">&quot;Brussels&quot;</span>,
+                   <span class="ruby-value str">&quot;Copenhagen&quot;</span>, <span class="ruby-value str">&quot;Madrid&quot;</span>, <span class="ruby-value str">&quot;Paris&quot;</span>, <span class="ruby-value str">&quot;Amsterdam&quot;</span>, <span class="ruby-value str">&quot;Berlin&quot;</span>,
+                   <span class="ruby-value str">&quot;Bern&quot;</span>, <span class="ruby-value str">&quot;Rome&quot;</span>, <span class="ruby-value str">&quot;Stockholm&quot;</span>, <span class="ruby-value str">&quot;Vienna&quot;</span>,
+                   <span class="ruby-value str">&quot;West Central Africa&quot;</span> ],
+         [  <span class="ruby-value">7_200</span>, <span class="ruby-value str">&quot;Bucharest&quot;</span>, <span class="ruby-value str">&quot;Cairo&quot;</span>, <span class="ruby-value str">&quot;Helsinki&quot;</span>, <span class="ruby-value str">&quot;Kyev&quot;</span>, <span class="ruby-value str">&quot;Riga&quot;</span>, <span class="ruby-value str">&quot;Sofia&quot;</span>,
+                   <span class="ruby-value str">&quot;Tallinn&quot;</span>, <span class="ruby-value str">&quot;Vilnius&quot;</span>, <span class="ruby-value str">&quot;Athens&quot;</span>, <span class="ruby-value str">&quot;Istanbul&quot;</span>, <span class="ruby-value str">&quot;Minsk&quot;</span>,
+                   <span class="ruby-value str">&quot;Jerusalem&quot;</span>, <span class="ruby-value str">&quot;Harare&quot;</span>, <span class="ruby-value str">&quot;Pretoria&quot;</span> ],
+         [ <span class="ruby-value">10_800</span>, <span class="ruby-value str">&quot;Moscow&quot;</span>, <span class="ruby-value str">&quot;St. Petersburg&quot;</span>, <span class="ruby-value str">&quot;Volgograd&quot;</span>, <span class="ruby-value str">&quot;Kuwait&quot;</span>, <span class="ruby-value str">&quot;Riyadh&quot;</span>,
+                   <span class="ruby-value str">&quot;Nairobi&quot;</span>, <span class="ruby-value str">&quot;Baghdad&quot;</span> ],
+         [ <span class="ruby-value">12_600</span>, <span class="ruby-value str">&quot;Tehran&quot;</span> ],
+         [ <span class="ruby-value">14_400</span>, <span class="ruby-value str">&quot;Abu Dhabi&quot;</span>, <span class="ruby-value str">&quot;Muscat&quot;</span>, <span class="ruby-value str">&quot;Baku&quot;</span>, <span class="ruby-value str">&quot;Tbilisi&quot;</span>, <span class="ruby-value str">&quot;Yerevan&quot;</span> ],
+         [ <span class="ruby-value">16_200</span>, <span class="ruby-value str">&quot;Kabul&quot;</span> ],
+         [ <span class="ruby-value">18_000</span>, <span class="ruby-value str">&quot;Ekaterinburg&quot;</span>, <span class="ruby-value str">&quot;Islamabad&quot;</span>, <span class="ruby-value str">&quot;Karachi&quot;</span>, <span class="ruby-value str">&quot;Tashkent&quot;</span> ],
+         [ <span class="ruby-value">19_800</span>, <span class="ruby-value str">&quot;Chennai&quot;</span>, <span class="ruby-value str">&quot;Kolkata&quot;</span>, <span class="ruby-value str">&quot;Mumbai&quot;</span>, <span class="ruby-value str">&quot;New Delhi&quot;</span> ],
+         [ <span class="ruby-value">20_700</span>, <span class="ruby-value str">&quot;Kathmandu&quot;</span> ],
+         [ <span class="ruby-value">21_600</span>, <span class="ruby-value str">&quot;Astana&quot;</span>, <span class="ruby-value str">&quot;Dhaka&quot;</span>, <span class="ruby-value str">&quot;Sri Jayawardenepura&quot;</span>, <span class="ruby-value str">&quot;Almaty&quot;</span>,
+                   <span class="ruby-value str">&quot;Novosibirsk&quot;</span> ],
+         [ <span class="ruby-value">23_400</span>, <span class="ruby-value str">&quot;Rangoon&quot;</span> ],
+         [ <span class="ruby-value">25_200</span>, <span class="ruby-value str">&quot;Bangkok&quot;</span>, <span class="ruby-value str">&quot;Hanoi&quot;</span>, <span class="ruby-value str">&quot;Jakarta&quot;</span>, <span class="ruby-value str">&quot;Krasnoyarsk&quot;</span> ],
+         [ <span class="ruby-value">28_800</span>, <span class="ruby-value str">&quot;Beijing&quot;</span>, <span class="ruby-value str">&quot;Chongqing&quot;</span>, <span class="ruby-value str">&quot;Hong Kong&quot;</span>, <span class="ruby-value str">&quot;Urumqi&quot;</span>,
+                   <span class="ruby-value str">&quot;Kuala Lumpur&quot;</span>, <span class="ruby-value str">&quot;Singapore&quot;</span>, <span class="ruby-value str">&quot;Taipei&quot;</span>, <span class="ruby-value str">&quot;Perth&quot;</span>, <span class="ruby-value str">&quot;Irkutsk&quot;</span>,
+                   <span class="ruby-value str">&quot;Ulaan Bataar&quot;</span> ],
+         [ <span class="ruby-value">32_400</span>, <span class="ruby-value str">&quot;Seoul&quot;</span>, <span class="ruby-value str">&quot;Osaka&quot;</span>, <span class="ruby-value str">&quot;Sapporo&quot;</span>, <span class="ruby-value str">&quot;Tokyo&quot;</span>, <span class="ruby-value str">&quot;Yakutsk&quot;</span> ],
+         [ <span class="ruby-value">34_200</span>, <span class="ruby-value str">&quot;Darwin&quot;</span>, <span class="ruby-value str">&quot;Adelaide&quot;</span> ],
+         [ <span class="ruby-value">36_000</span>, <span class="ruby-value str">&quot;Canberra&quot;</span>, <span class="ruby-value str">&quot;Melbourne&quot;</span>, <span class="ruby-value str">&quot;Sydney&quot;</span>, <span class="ruby-value str">&quot;Brisbane&quot;</span>, <span class="ruby-value str">&quot;Hobart&quot;</span>,
+                   <span class="ruby-value str">&quot;Vladivostok&quot;</span>, <span class="ruby-value str">&quot;Guam&quot;</span>, <span class="ruby-value str">&quot;Port Moresby&quot;</span> ],
+         [ <span class="ruby-value">39_600</span>, <span class="ruby-value str">&quot;Magadan&quot;</span>, <span class="ruby-value str">&quot;Solomon Is.&quot;</span>, <span class="ruby-value str">&quot;New Caledonia&quot;</span> ],
+         [ <span class="ruby-value">43_200</span>, <span class="ruby-value str">&quot;Fiji&quot;</span>, <span class="ruby-value str">&quot;Kamchatka&quot;</span>, <span class="ruby-value str">&quot;Marshall Is.&quot;</span>, <span class="ruby-value str">&quot;Auckland&quot;</span>,
+                   <span class="ruby-value str">&quot;Wellington&quot;</span> ],
+         [ <span class="ruby-value">46_800</span>, <span class="ruby-value str">&quot;Nuku'alofa&quot;</span> ]].
+        <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">offset</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">places</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">places</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">place</span><span class="ruby-operator">|</span> <span class="ruby-ivar">@@zones</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">place</span>, <span class="ruby-identifier">offset</span>).<span class="ruby-identifier">freeze</span> }
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@@zones</span>.<span class="ruby-identifier">sort!</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-ivar">@@zones</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

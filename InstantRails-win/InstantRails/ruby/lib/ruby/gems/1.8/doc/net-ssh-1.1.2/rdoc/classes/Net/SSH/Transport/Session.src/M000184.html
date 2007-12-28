@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>peer (Net::SSH::Transport::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/session.rb, line 111</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">peer</span>
+          <span class="ruby-ivar">@peer</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-identifier">addr</span> = <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">getpeername</span>
+            <span class="ruby-identifier">ip_address</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">getnameinfo</span>(<span class="ruby-identifier">addr</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">NI_NUMERICHOST</span> <span class="ruby-operator">|</span> <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">NI_NUMERICSERV</span>).<span class="ruby-identifier">first</span>
+            { <span class="ruby-identifier">:ip</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">ip_address</span>, <span class="ruby-identifier">:port</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@port</span>.<span class="ruby-identifier">to_i</span>, <span class="ruby-identifier">:host</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@host</span> }
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

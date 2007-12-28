@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theBitmap
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXBitmap instance. If a client-side pixel buffer (the <em>pixels</em> argument) has been specified, the bitmap does not own that pixel buffer unless the <tt>BITMAP_OWNED</tt> flag is set. If the <tt>BITMAP_OWNED</tt> flag <em>is</em> set, but a <tt>nil</tt> value for <em>pixels</em> is passed in, a pixel buffer will be automatically created and will be owned by the bitmap. The flags <tt>BITMAP_SHMI</tt> and <tt>BITMAP_SHMP</tt> may be specified for large bitmaps to instruct FXBitmap#render to use shared memory to communicate with the server.
+full_name: Fox::FXBitmap::new
+is_singleton: true
+name: new
+params: (app, pixels=nil, opts=0, width=1, height=1) {|theBitmap| ...}
+visibility: public

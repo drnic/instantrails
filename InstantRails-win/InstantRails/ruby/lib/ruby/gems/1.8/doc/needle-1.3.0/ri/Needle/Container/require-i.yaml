@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Require the given file, and then invoke the given registration method on the target module. The container will be passed as the sole parameter to the registration method. This allows you to easily decentralize the definition of services.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.require( &quot;app/services&quot;, &quot;App::Services&quot; )\n\n  # in app/services.rb:\n\n  module App\n    module Services\n\n      def register_services( container )\n        ...\n      end\n      module_function :register_services\n\n    end\n  end\n"
+full_name: Needle::Container#require
+is_singleton: false
+name: require
+params: ( file, target_name, registration_method=:register_services )
+visibility: public

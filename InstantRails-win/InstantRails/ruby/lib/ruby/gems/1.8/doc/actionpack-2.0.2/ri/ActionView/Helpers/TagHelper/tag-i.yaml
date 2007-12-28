@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an empty HTML tag of type <tt>name</tt> which by default is XHTML compliant. Set <tt>open</tt> to true to create an open tag compatible with HTML 4.0 and below. Add HTML attributes by passing an attributes hash to <tt>options</tt>. Set <tt>escape</tt> to false to disable attribute value escaping.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>options</tt> hash is used with attributes with no value like (<tt>disabled</tt> and <tt>readonly</tt>), which you can give a value of true in the <tt>options</tt> hash. You can use symbols or strings for the attribute names.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  tag(&quot;br&quot;)\n  # =&gt; &lt;br /&gt;\n\n  tag(&quot;br&quot;, nil, true)\n  # =&gt; &lt;br&gt;\n\n  tag(&quot;input&quot;, { :type =&gt; 'text', :disabled =&gt; true })\n  # =&gt; &lt;input type=&quot;text&quot; disabled=&quot;disabled&quot; /&gt;\n\n  tag(&quot;img&quot;, { :src =&gt; &quot;open &amp; shut.png&quot; })\n  # =&gt; &lt;img src=&quot;open &amp;amp; shut.png&quot; /&gt;\n\n  tag(&quot;img&quot;, { :src =&gt; &quot;open &amp;amp; shut.png&quot; }, false, false)\n  # =&gt; &lt;img src=&quot;open &amp;amp; shut.png&quot; /&gt;\n"
+full_name: ActionView::Helpers::TagHelper#tag
+is_singleton: false
+name: tag
+params: (name, options = nil, open = false, escape = true)
+visibility: public

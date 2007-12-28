@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>bind_param (SQLite3::Statement)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sqlite3/statement.rb, line 117</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">bind_param</span>( <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span> )
+      <span class="ruby-identifier">must_be_open!</span>
+      <span class="ruby-identifier">reset!</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">active?</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Fixnum</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">param</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">value</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Bignum</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_int64</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span> )
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Integer</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_int</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span> )
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Numeric</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_double</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_f</span> )
+          <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Blob</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_blob</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span> )
+          <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span> <span class="ruby-keyword kw">then</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_null</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span> )
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_text</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span>, <span class="ruby-identifier">value</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">param</span> = <span class="ruby-identifier">param</span>.<span class="ruby-identifier">to_s</span>
+        <span class="ruby-identifier">param</span> = <span class="ruby-node">&quot;:#{param}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">param</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?:</span>
+        <span class="ruby-identifier">index</span> = <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">bind_parameter_index</span>( <span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">param</span> )
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">Exception</span>, <span class="ruby-node">&quot;no such bind parameter '#{param}'&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">index</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">bind_param</span> <span class="ruby-identifier">index</span>, <span class="ruby-identifier">value</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

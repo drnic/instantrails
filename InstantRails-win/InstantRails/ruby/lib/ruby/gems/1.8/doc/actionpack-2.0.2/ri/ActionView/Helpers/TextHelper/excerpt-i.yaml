@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extracts an excerpt from <tt>text</tt> that matches the first instance of <tt>phrase</tt>. The <tt>radius</tt> expands the excerpt on each side of the first occurrence of <tt>phrase</tt> by the number of characters defined in <tt>radius</tt> (which defaults to 100). If the excerpt radius overflows the beginning or end of the <tt>text</tt>, then the <tt>excerpt_string</tt> will be prepended/appended accordingly. If the <tt>phrase</tt> isn't found, nil is returned.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  excerpt('This is an example', 'an', 5)\n  # =&gt; &quot;...s is an examp...&quot;\n\n  excerpt('This is an example', 'is', 5)\n  # =&gt; &quot;This is an...&quot;\n\n  excerpt('This is an example', 'is')\n  # =&gt; &quot;This is an example&quot;\n\n  excerpt('This next thing is an example', 'ex', 2)\n  # =&gt; &quot;...next t...&quot;\n\n  excerpt('This is also an example', 'an', 8, '&lt;chop&gt; ')\n  # =&gt; &quot;&lt;chop&gt; is also an example&quot;\n"
+full_name: ActionView::Helpers::TextHelper#excerpt
+is_singleton: false
+name: excerpt
+params: (text, phrase, radius = 100, excerpt_string = "...")
+visibility: public

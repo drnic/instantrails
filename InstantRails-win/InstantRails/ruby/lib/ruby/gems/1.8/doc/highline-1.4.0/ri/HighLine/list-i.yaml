@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method is a utility for quickly and easily laying out lists. It can be accessed within ERb replacements of any text that will be sent to the user.
+- !ruby/struct:SM::Flow::P 
+  body: "The only required parameter is <em>items</em>, which should be the Array of items to list. A specified <em>mode</em> controls how that list is formed and <em>option</em> has different effects, depending on the <em>mode</em>. Recognized modes are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:columns_across</tt>:"
+    body: <em>items</em> will be placed in columns, flowing from left to right. If given, <em>option</em> is the number of columns to be used. When absent, columns will be determined based on <em>wrap_at</em> or a default of 80 characters.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:columns_down</tt>:"
+    body: Identical to <tt>:columns_across</tt>, save flow goes down.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:inline</tt>:"
+    body: All <em>items</em> are placed on a single line. The last two <em>items</em> are separated by <em>option</em> or a default of &quot; or &quot;. All other <em>items</em> are separated by &quot;, &quot;.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:rows</tt>:"
+    body: The default mode. Each of the <em>items</em> is placed on it's own line. The <em>option</em> parameter is ignored in this mode.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: Each member of the <em>items</em> Array is passed through ERb and thus can contain their own expansions. Color escape expansions do not contribute to the final field width.
+full_name: HighLine#list
+is_singleton: false
+name: list
+params: ( items, mode = :rows, option = nil )
+visibility: public

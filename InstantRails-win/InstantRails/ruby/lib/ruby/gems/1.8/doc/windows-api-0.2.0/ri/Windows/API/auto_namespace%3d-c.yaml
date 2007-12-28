@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the value of the auto_namespace class nstance variable. The default is nil, i.e. none. Use in conjunction with the auto_constant and/or auto_method class variables, this method will automatically set a constant and/or method in <tt>namespace</tt> equal to the function name set in the constructor.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>namespace</tt> must refer to an existing module, not a class.
+full_name: Windows::API::auto_namespace=
+is_singleton: true
+name: auto_namespace=
+params: (namespace)
+visibility: public

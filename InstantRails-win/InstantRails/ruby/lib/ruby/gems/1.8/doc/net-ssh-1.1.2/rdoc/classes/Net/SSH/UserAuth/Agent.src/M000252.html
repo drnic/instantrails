@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>connect! (Net::SSH::UserAuth::Agent)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/agent.rb, line 69</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">connect!</span>
+          <span class="ruby-ivar">@socket</span> = <span class="ruby-ivar">@socket_factory</span>.<span class="ruby-identifier">open</span>( <span class="ruby-ivar">@socket_name</span> )
+
+          <span class="ruby-comment cmt"># determine what type of agent we're communicating with</span>
+          <span class="ruby-identifier">buffer</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+          <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Transport</span><span class="ruby-operator">::</span><span class="ruby-constant">Session</span>.<span class="ruby-identifier">version</span>
+          <span class="ruby-identifier">type</span>, <span class="ruby-identifier">body</span> = <span class="ruby-identifier">send_with_reply</span> <span class="ruby-constant">SSH2_AGENT_REQUEST_VERSION</span>, <span class="ruby-identifier">buffer</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">SSH2_AGENT_VERSION_RESPONSE</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-value str">&quot;SSH2 agents are not yet supported&quot;</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SSH_AGENT_RSA_IDENTITIES_ANSWER</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AgentError</span>,
+              <span class="ruby-node">&quot;unknown response from agent: #{type}, #{body.to_s.inspect}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,109 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Chdir
+  value: API.new('_chdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wchdir
+  value: API.new('_wchdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Chdrive
+  value: API.new('_chdrive', 'I', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getcwd
+  value: API.new('_getcwd', 'PI', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wgetcwd
+  value: API.new('_wgetcwd', 'PI', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getdcwd
+  value: API.new('_getdcwd', 'IPI', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wgetdcwd
+  value: API.new('_wgetdcwd', 'IPI', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getdiskfree
+  value: API.new('_getdiskfree', 'IP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getdrive
+  value: API.new('_getdrive', 'V', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getdrives
+  value: API.new('_getdrives', 'V', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mkdir
+  value: API.new('_mkdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wmkdir
+  value: API.new('_wmkdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Rmdir
+  value: API.new('_rmdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wrmdir
+  value: API.new('_wrmdir', 'P', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Searchenv
+  value: API.new('_searchenv', 'PPP', 'V', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wsearchenv
+  value: API.new('_wsearchenv', 'PPP', 'V', 'msvcrt')
+full_name: Windows::MSVCRT::Directory
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: chdir
+- !ruby/object:RI::MethodSummary 
+  name: chdrive
+- !ruby/object:RI::MethodSummary 
+  name: getcwd
+- !ruby/object:RI::MethodSummary 
+  name: getdcwd
+- !ruby/object:RI::MethodSummary 
+  name: getdiskfree
+- !ruby/object:RI::MethodSummary 
+  name: getdrive
+- !ruby/object:RI::MethodSummary 
+  name: getdrives
+- !ruby/object:RI::MethodSummary 
+  name: mkdir
+- !ruby/object:RI::MethodSummary 
+  name: rmdir
+- !ruby/object:RI::MethodSummary 
+  name: searchenv
+- !ruby/object:RI::MethodSummary 
+  name: wchdir
+- !ruby/object:RI::MethodSummary 
+  name: wgetcwd
+- !ruby/object:RI::MethodSummary 
+  name: wgetdcwd
+- !ruby/object:RI::MethodSummary 
+  name: wmkdir
+- !ruby/object:RI::MethodSummary 
+  name: wrmdir
+- !ruby/object:RI::MethodSummary 
+  name: wsearchenv
+name: Directory
+superclass: 

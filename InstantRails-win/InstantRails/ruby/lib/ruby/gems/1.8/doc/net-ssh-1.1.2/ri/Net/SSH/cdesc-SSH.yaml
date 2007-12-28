@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A registry of external (i.e., third-party) services that should be made available to any SSH session.
+  name: EXTERNAL_SERVICES
+  value: Hash.new
+full_name: Net::SSH
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: register_service
+- !ruby/object:RI::MethodSummary 
+  name: start
+name: SSH
+superclass: 

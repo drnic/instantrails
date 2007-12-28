@@ -1,0 +1,175 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File associations [FXFileDict]
+  name: associations
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current file [String]
+  name: currentFile
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current directory [String]
+  name: directory
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Image size for preview images [Integer]
+  name: imageSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard matching mode [Integer]
+  name: matchMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard matching pattern [String]
+  name: pattern
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A File List widget provides an icon rich view of the file system. It automatically updates itself periodically by re-scanning the file system for any changes. As it scans the displayed directory, it automatically determines the icons to be displayed by consulting the file associations registry settings. A number of messages can be sent to the File List to control the filter pattern, sort category, sorting order, case sensitivity, and hidden file display mode. The File list widget supports drags and drops of files.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: File List options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_SHOWHIDDEN+:"
+    body: Show hidden files or directories
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_SHOWDIRS+:"
+    body: Show only directories
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_SHOWFILES+:"
+    body: Show only files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_SHOWIMAGES+:"
+    body: Show preview of images
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_NO_OWN_ASSOC+:"
+    body: Do not create associations for files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILELIST_NO_PARENT+:"
+    body: Suppress display of '.' and '..'
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_NAME+:"
+    body: Sort by name
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_TYPE+:"
+    body: Sort by type
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_SIZE+:"
+    body: Sort by size
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_TIME+:"
+    body: Sort by access time
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_USER+:"
+    body: Sort by user name
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_BY_GROUP+:"
+    body: Sort by group name
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_REVERSE+:"
+    body: Reverse sort order
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRECTORY_UP+:"
+    body: Move up one directory
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SET_PATTERN+:"
+    body: Set match pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SET_DIRECTORY+:"
+    body: Set directory
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_HIDDEN+:"
+    body: Show hidden files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HIDE_HIDDEN+:"
+    body: Hide hidden files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_HIDDEN+:"
+    body: Toggle visibility of hidden files
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REFRESHTIMER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPENTIMER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_IMAGES+:"
+    body: Toggle display of images
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REFRESH+:"
+    body: Refresh immediately
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXFileList
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown=
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown?
+- !ruby/object:RI::MethodSummary 
+  name: hideParentDirs
+- !ruby/object:RI::MethodSummary 
+  name: imagesShown=
+- !ruby/object:RI::MethodSummary 
+  name: imagesShown?
+- !ruby/object:RI::MethodSummary 
+  name: itemAssoc
+- !ruby/object:RI::MethodSummary 
+  name: itemDirectory?
+- !ruby/object:RI::MethodSummary 
+  name: itemExecutable?
+- !ruby/object:RI::MethodSummary 
+  name: itemFile?
+- !ruby/object:RI::MethodSummary 
+  name: itemFilename
+- !ruby/object:RI::MethodSummary 
+  name: itemPathname
+- !ruby/object:RI::MethodSummary 
+  name: itemShare?
+- !ruby/object:RI::MethodSummary 
+  name: onlyDirectoriesShown=
+- !ruby/object:RI::MethodSummary 
+  name: onlyDirectoriesShown?
+- !ruby/object:RI::MethodSummary 
+  name: onlyFilesShown=
+- !ruby/object:RI::MethodSummary 
+  name: onlyFilesShown?
+- !ruby/object:RI::MethodSummary 
+  name: parentDirsShown=
+- !ruby/object:RI::MethodSummary 
+  name: parentDirsShown?
+- !ruby/object:RI::MethodSummary 
+  name: scan
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentFile
+- !ruby/object:RI::MethodSummary 
+  name: showParentDirs
+name: FXFileList
+superclass: Object

@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Matrix style [Integer]
+  name: matrixStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of columns [Integer]
+  name: numColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of rows [Integer]
+  name: numRows
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXMatrix layout manager automatically arranges its child windows in rows and columns. If the matrix style is <tt>MATRIX_BY_ROWS</tt>, then the matrix will have the given number of rows and the number of columns grows as more child windows are added; if the matrix style is <tt>MATRIX_BY_COLUMNS</tt>, then the number of columns is fixed and the number of rows grows as more children are added. If all children in a row (column) have the <tt>LAYOUT_FILL_ROW</tt> (<tt>LAYOUT_FILL_COLUMN</tt>) hint set, then the row (column) will be stretchable as the matrix layout manager itself is resized. If more than one row (column) is stretchable, the space is apportioned to each stretchable row (column) proportionally. Within each cell of the matrix, all other layout hints are observed. For example, a child having <tt>LAYOUT_CENTER_Y</tt> and <tt>LAYOUT_FILL_X</tt> hints will be centered in the Y-direction, while being stretched in the X-direction. Empty cells can be obtained by simply placing a borderless FXFrame widget as a space-holder.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Matrix packing options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MATRIX_BY_ROWS+:"
+    body: Fixed number of rows, add columns as needed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MATRIX_BY_COLUMNS+:"
+    body: Fixed number of columns, adding rows as needed
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMatrix
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: childAtRowCol
+- !ruby/object:RI::MethodSummary 
+  name: colOfChild
+- !ruby/object:RI::MethodSummary 
+  name: rowOfChild
+name: FXMatrix
+superclass: FXPacker

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:16 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>windows-pr</h1>
+<h2>Description</h2>
+<pre>
+   A collection of Windows functions predefined for you via Win32::API.
+   Hence the 'pr', for 'Pure Ruby'.
+</pre>
+<h2>Synopsis</h2>
+<pre>
+   require 'windows/path'
+
+   class Foo
+      include Windows::Path
+
+      if PathIsRoot.call(&quot;C:\\&quot;) &gt; 0
+         ...
+      end
+
+      # or
+
+      if PathIsRoot(&quot;C:\\&quot;)
+         ...
+      end
+   end
+</pre>
+<h2>Methods</h2>
+<pre>
+   Each of the various files included as part of this package provide a series
+   of constants corresponding to the equivalent Windows API function and
+   related numeric constants.  For example, if you require 'windows/path',
+   you now have PathIsRoot, PathIsUNC, etc, available to you as Win32::API
+   objects in the form of constants.
+
+   A wrapper has been provided for each method in order to avoid the
+   Win32::API#call method. So, instead of PathIsRoot.call(path) you can
+   invoke it as PathIsRoot(path). If the original function is lower case
+   then the wrapper method is lower case as well.  For example, instead of
+   doing 'Memcpy.call(dest, src, size)' you can do 'memcpy(dest, src, size)'.
+
+   Remember boys and girls, if you write 'PathIsRoot', you're referring to
+   the constant. If you write 'PathIsRoot()', you're calling the wrapper
+   method.
+
+   Boolean methods automatically perform a check for success or failure. So,
+   instead of having to do something like 'if PathIsRoot(path) &gt; 0' you can
+   just do 'if PathIsRoot(path)'. However, I do not add this nicety for the
+   MSVCRT functions that return int's because some functions have multiple
+   return values which you may want to inspect. So, rather than making you
+   guess, I have simply declared that you must inspect return values manually
+   for any MSVCRT module.
+
+   Source files contain related functions, by topic. For example, the
+   clipboard.rb file contains clip board related functions, such as
+   CloseClipboard(), as well as constants such as CF_TEXT, CF_BITMAP, etc.
+</pre>
+<h2>Wide character functions</h2>
+<pre>
+        I decided that the $KCODE handling was a bad idea, so most of the $KCODE
+        handling has been removed.  The only methods that change their behavior
+        based on $KCODE are the multi_to_wide and wide_to_multi helper methods
+        in the Windows::Unicode module.  If $KCODE is set to UTF8, then the code
+        point used is CP_UTF8.  Otherwise, CP_ACP is used.
+
+        The modules all come with explicit ANSI and Wide (Unicode) functions,
+        when available from MS Windows. By default, a function without an explicit
+        'A' at the end of the function name uses the ANSI version. It is up to you
+        to use the wide ('W') functions explicitly if you wish.
+</pre>
+<h2>Platform specific functions</h2>
+<pre>
+   Not all functions are defined on all platforms.  For example, the
+   AttachConsole() function is only defined on Windows XP and later.  If you
+   need to conditionally test for its existence, simply use the 'defined?'
+   method:
+
+   if defined? AttachConsole
+      # Do something
+   else
+      # Do something else
+   end
+</pre>
+<h2>Where are the tests, dude?</h2>
+<pre>
+   While I've made some effort to test these functions, there are simply too
+   many for me to effectively test them all.  We're ultimately talking about
+   hundreds, if not thousands, of functions, and I don't know what all of them
+   actually do.  That being said, I will add tests where and when I can.
+
+   If you find that I've declared the function prototype wrong for a given
+   function, please let me know ASAP and I'll fix it.  An example program
+   demonstrating the problem would be helpful, too.  Or, if you'd just like
+   to contribute some test cases, that's fine as well.
+</pre>
+<h2>What&#8216;s the point?</h2>
+<pre>
+   I became tired of redefining Windows functions over and over whenever I
+   wanted to use the Win32API package.  I thought it would be very handy to
+   have them predefined for me in a package with convenient wrapper methods
+   to boot.
+
+   While it's true that Moonwolf has a package on the RAA that includes many
+   of these functions defined already, there are a few issues with it.  First,
+   it puts *every* function and constant in one or two files.  That's a waste
+   of memory, hard to organize &amp; maintain, and impossible to test.  Second,
+   some of his function declarations are wrong.  Third, some of the functions
+   I needed for my own projects are missing.  Fourth, there's no gem.  Lastly,
+   I haven't seen an update in over 6 years, which leads me to believe it is
+   no longer maintained.
+</pre>
+<h2>Hey, I&#8216;m missing function X!</h2>
+<pre>
+   I have only defined a small subset of the overall Windows API.  It would
+   take me years to define them *all*.  I defined the ones I needed first,
+   plus some that I thought would be useful to others.  I will continue to
+   add functions in my spare time, or (especially) by request.
+</pre>
+<h2>Bugs</h2>
+<pre>
+   None that I'm aware of.  Please report any bugs on the project page at
+   http://www.rubyforge.org/projects/win32utils.
+
+   The only real bugs you could find are either bad prototype declarations
+   or bad constant values.  Sometimes I forget to wrap functions properly
+   that may not be defined on older Windows platforms.  But, please report
+   any of these issues on the project page should you stumble into them.
+</pre>
+<h2>Known Issues</h2>
+<pre>
+   In some cases the MSDN docs are wrong, and we have to learn it the hard
+   way. If you should happen to find a documentation bug on their site,
+   please contact them and let them know. They're generally good about fixing
+   them.
+
+   In other cases library functions are not exported by the dll. For example,
+   my version of shlwapi.dll does not export the PathIsHTMLFile() function,
+   despite being well past the minimum version for that DLL file.  There is
+   nothing you or I can do about it short of rebuilding the DLL file from
+   scratch and/or reporting the issue to Microsoft.
+</pre>
+<h2>Supported Platforms</h2>
+<pre>
+   I only support the Windows NT family of Windows, and really only Windows
+   2000 and later, though I'll make an effort to support NT 4 if there are
+   any NT 4 related issues and requests to support it.
+</pre>
+<h2>License</h2>
+<pre>
+   Ruby's
+</pre>
+<h2>Warranty</h2>
+<pre>
+   This package is provided &quot;as is&quot; and without any express or
+   implied warranties, including, without limitation, the implied
+   warranties of merchantability and fitness for a particular purpose.
+</pre>
+<h2>Copyright</h2>
+<pre>
+   (C) 2006, 2007, Daniel J. Berger
+   All Rights Reserved
+</pre>
+<h2>Author</h2>
+<pre>
+   Daniel Berger
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

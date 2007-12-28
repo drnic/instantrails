@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/windows/clipboard_rb.html">
+                lib/windows/clipboard.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/com_rb.html">
+                lib/windows/com.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/console_rb.html">
+                lib/windows/console.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/debug_rb.html">
+                lib/windows/debug.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/device_io_rb.html">
+                lib/windows/device_io.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/directory_rb.html">
+                lib/windows/directory.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/error_rb.html">
+                lib/windows/error.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/eventlog_rb.html">
+                lib/windows/eventlog.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/file_rb.html">
+                lib/windows/file.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/filesystem_rb.html">
+                lib/windows/filesystem.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/file_mapping_rb.html">
+                lib/windows/file_mapping.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/gdi/bitmap_rb.html">
+                lib/windows/gdi/bitmap.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/gdi/device_context_rb.html">
+                lib/windows/gdi/device_context.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/gdi/painting_drawing_rb.html">
+                lib/windows/gdi/painting_drawing.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/handle_rb.html">
+                lib/windows/handle.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/library_rb.html">
+                lib/windows/library.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/limits_rb.html">
+                lib/windows/limits.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/memory_rb.html">
+                lib/windows/memory.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/buffer_rb.html">
+                lib/windows/msvcrt/buffer.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/directory_rb.html">
+                lib/windows/msvcrt/directory.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/file_rb.html">
+                lib/windows/msvcrt/file.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/io_rb.html">
+                lib/windows/msvcrt/io.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/string_rb.html">
+                lib/windows/msvcrt/string.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/msvcrt/time_rb.html">
+                lib/windows/msvcrt/time.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/national_rb.html">
+                lib/windows/national.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/network_management_rb.html">
+                lib/windows/network_management.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/nio_rb.html">
+                lib/windows/nio.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/path_rb.html">
+                lib/windows/path.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/pipe_rb.html">
+                lib/windows/pipe.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/process_rb.html">
+                lib/windows/process.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/registry_rb.html">
+                lib/windows/registry.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/security_rb.html">
+                lib/windows/security.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/service_rb.html">
+                lib/windows/service.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/shell_rb.html">
+                lib/windows/shell.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/sound_rb.html">
+                lib/windows/sound.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/synchronize_rb.html">
+                lib/windows/synchronize.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/system_info_rb.html">
+                lib/windows/system_info.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/time_rb.html">
+                lib/windows/time.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/unicode_rb.html">
+                lib/windows/unicode.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/volume_rb.html">
+                lib/windows/volume.rb
+                </a>
+        <br />
+                <a href="../files/lib/windows/window_rb.html">
+                lib/windows/window.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+See WinUser.h
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Windows/COM.html" class="link">Windows::COM</a><br />
+Module <a href="Windows/Clipboard.html" class="link">Windows::Clipboard</a><br />
+Module <a href="Windows/Console.html" class="link">Windows::Console</a><br />
+Module <a href="Windows/Debug.html" class="link">Windows::Debug</a><br />
+Module <a href="Windows/DeviceIO.html" class="link">Windows::DeviceIO</a><br />
+Module <a href="Windows/Directory.html" class="link">Windows::Directory</a><br />
+Module <a href="Windows/Error.html" class="link">Windows::Error</a><br />
+Module <a href="Windows/EventLog.html" class="link">Windows::EventLog</a><br />
+Module <a href="Windows/File.html" class="link">Windows::File</a><br />
+Module <a href="Windows/FileMapping.html" class="link">Windows::FileMapping</a><br />
+Module <a href="Windows/FileSystem.html" class="link">Windows::FileSystem</a><br />
+Module <a href="Windows/GDI.html" class="link">Windows::GDI</a><br />
+Module <a href="Windows/Handle.html" class="link">Windows::Handle</a><br />
+Module <a href="Windows/Library.html" class="link">Windows::Library</a><br />
+Module <a href="Windows/Limits.html" class="link">Windows::Limits</a><br />
+Module <a href="Windows/MSVCRT.html" class="link">Windows::MSVCRT</a><br />
+Module <a href="Windows/Memory.html" class="link">Windows::Memory</a><br />
+Module <a href="Windows/NIO.html" class="link">Windows::NIO</a><br />
+Module <a href="Windows/National.html" class="link">Windows::National</a><br />
+Module <a href="Windows/NetworkManagement.html" class="link">Windows::NetworkManagement</a><br />
+Module <a href="Windows/Path.html" class="link">Windows::Path</a><br />
+Module <a href="Windows/Pipe.html" class="link">Windows::Pipe</a><br />
+Module <a href="Windows/Process.html" class="link">Windows::Process</a><br />
+Module <a href="Windows/Registry.html" class="link">Windows::Registry</a><br />
+Module <a href="Windows/Security.html" class="link">Windows::Security</a><br />
+Module <a href="Windows/Service.html" class="link">Windows::Service</a><br />
+Module <a href="Windows/Shell.html" class="link">Windows::Shell</a><br />
+Module <a href="Windows/Sound.html" class="link">Windows::Sound</a><br />
+Module <a href="Windows/Synchronize.html" class="link">Windows::Synchronize</a><br />
+Module <a href="Windows/SystemInfo.html" class="link">Windows::SystemInfo</a><br />
+Module <a href="Windows/Time.html" class="link">Windows::Time</a><br />
+Module <a href="Windows/Unicode.html" class="link">Windows::Unicode</a><br />
+Module <a href="Windows/Volume.html" class="link">Windows::Volume</a><br />
+Module <a href="Windows/Window.html" class="link">Windows::Window</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

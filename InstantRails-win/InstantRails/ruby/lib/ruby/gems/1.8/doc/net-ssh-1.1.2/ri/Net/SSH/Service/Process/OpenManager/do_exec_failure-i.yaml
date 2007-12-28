@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Invoked when the invocation of the command failed. This will call the <tt>on_failure</tt> callback, if registered, or will otherwise raise an exception.
+full_name: Net::SSH::Service::Process::OpenManager#do_exec_failure
+is_singleton: false
+name: do_exec_failure
+params: ( channel )
+visibility: public

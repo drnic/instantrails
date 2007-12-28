@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Creates a file upload field. If you are using file uploads then you will also need to set the multipart option for the form tag:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= form_tag { :action =&gt; &quot;post&quot; }, { :multipart =&gt; true } %&gt;\n    &lt;label for=&quot;file&quot;&gt;File to Upload&lt;/label&gt; &lt;%= file_field_tag &quot;file&quot; %&gt;\n    &lt;%= submit_tag %&gt;\n  &lt;%= end_form_tag %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: The specified URL will then be passed a File object containing the selected file, or if the field was left blank, a StringIO object.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Creates standard HTML attributes for the tag.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  file_field_tag 'attachment'\n  # =&gt; &lt;input id=&quot;attachment&quot; name=&quot;attachment&quot; type=&quot;file&quot; /&gt;\n\n  file_field_tag 'avatar', :class =&gt; 'profile-input'\n  # =&gt; &lt;input class=&quot;profile-input&quot; id=&quot;avatar&quot; name=&quot;avatar&quot; type=&quot;file&quot; /&gt;\n\n  file_field_tag 'picture', :disabled =&gt; true\n  # =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;picture&quot; name=&quot;picture&quot; type=&quot;file&quot; /&gt;\n\n  file_field_tag 'resume', :value =&gt; '~/resume.doc'\n  # =&gt; &lt;input id=&quot;resume&quot; name=&quot;resume&quot; type=&quot;file&quot; value=&quot;~/resume.doc&quot; /&gt;\n\n  file_field_tag 'user_pic', :accept =&gt; 'image/png,image/gif,image/jpeg'\n  # =&gt; &lt;input accept=&quot;image/png,image/gif,image/jpeg&quot; id=&quot;user_pic&quot; name=&quot;user_pic&quot; type=&quot;file&quot; /&gt;\n\n  file_field_tag 'file', :accept =&gt; 'text/html', :class =&gt; 'upload', :value =&gt; 'index.html'\n  # =&gt; &lt;input accept=&quot;text/html&quot; class=&quot;upload&quot; id=&quot;file&quot; name=&quot;file&quot; type=&quot;file&quot; value=&quot;index.html&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#file_field_tag
+is_singleton: false
+name: file_field_tag
+params: (name, options = {})
+visibility: public

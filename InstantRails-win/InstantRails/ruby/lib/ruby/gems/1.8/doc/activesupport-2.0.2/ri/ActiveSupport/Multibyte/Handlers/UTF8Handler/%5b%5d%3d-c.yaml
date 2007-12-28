@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Works just like the indexed replace method on string, except instead of byte offsets you specify character offsets.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  s = &quot;M\xC3\xBCller&quot;\n  s.chars[2] = &quot;e&quot; # Replace character with offset 2\n  s\n  #=&gt; &quot;M\xC3\xBCeler&quot;\n\n  s = &quot;M\xC3\xBCller&quot;\n  s.chars[1, 2] = &quot;\xC3\xB6&quot; # Replace 2 characters at character offset 1\n  s\n  #=&gt; &quot;M\xC3\xB6ler&quot;\n"
+full_name: ActiveSupport::Multibyte::Handlers::UTF8Handler::[]=
+is_singleton: true
+name: "[]="
+params: (str, *args)
+visibility: public

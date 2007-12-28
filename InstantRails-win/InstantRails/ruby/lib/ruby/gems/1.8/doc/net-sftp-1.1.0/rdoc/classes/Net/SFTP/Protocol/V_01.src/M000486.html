@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SFTP::Protocol::V_01)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/01/services.rb, line 19</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+    <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:v_01</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+
+      <span class="ruby-comment cmt"># The packet assistant to use for formatting SFTP packets.</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">packet_assistant</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/sftp/protocol/01/packet-assistant'</span>
+        <span class="ruby-constant">PacketAssistant</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>],
+                             <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:driver</span>] )
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># The attribute factory to use to obtain attribute object instances.</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">attr_factory</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/sftp/protocol/01/attributes'</span>
+        <span class="ruby-constant">Attributes</span>.<span class="ruby-identifier">init</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>] )
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># The version implementation to use.</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">impl</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/sftp/protocol/01/impl'</span>
+        <span class="ruby-constant">Impl</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>],
+                  <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:driver</span>], <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:packet_assistant</span>],
+                  <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:attr_factory</span>] )
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Compile the provided source code for the given argument names and with the given initial line number. The identifier should be unique to this source.
+- !ruby/struct:SM::Flow::P 
+  body: The file_name, if provided will appear in backtraces. If not provided, the file_name defaults to the identifier.
+- !ruby/struct:SM::Flow::P 
+  body: This method will return the selector for the compiled version of this method.
+full_name: ActionView::CompiledTemplates#compile_source
+is_singleton: false
+name: compile_source
+params: (identifier, arg_names, source, initial_line_number = 0, file_name = nil)
+visibility: public

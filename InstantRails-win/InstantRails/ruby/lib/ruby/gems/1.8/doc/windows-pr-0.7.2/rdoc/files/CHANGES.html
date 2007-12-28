@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:16 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>0.7.2 - 15-Oct-2007</h1>
+<ul>
+<li>Added the <a
+href="../classes/Windows/MSVCRT/Time.html">Windows::MSVCRT::Time</a>
+module.
+
+</li>
+<li>Added the <a
+href="../classes/Windows/MSVCRT/Directory.html">Windows::MSVCRT::Directory</a>
+module.
+
+</li>
+<li>Added some SID related security constants to the <a
+href="../classes/Windows/Security.html">Windows::Security</a> module.
+
+</li>
+<li>Added more constants and the HasOverlappedIoCompleted macro to the <a
+href="../classes/Windows/Synchronize.html">Windows::Synchronize</a> module.
+
+</li>
+<li>Added some &#8216;find&#8217; methods to the <a
+href="../classes/Windows/File.html">Windows::File</a> module.
+
+</li>
+<li>Some prototype fixes for the &#8216;Virtual&#8217; functions in <a
+href="../classes/Windows/Memory.html">Windows::Memory</a>.
+
+</li>
+</ul>
+<h1>0.7.1 - 21-Sep-2007</h1>
+<ul>
+<li>Added USN (changejournal) macros to <a
+href="../classes/Windows/DeviceIO.html">Windows::DeviceIO</a>.
+
+</li>
+<li>Added the Heap functions to <a
+href="../classes/Windows/Memory.html">Windows::Memory</a>.
+
+</li>
+<li>Added the <a href="../classes/Windows/Time.html">Windows::Time</a> module.
+
+</li>
+<li>Added a Rakefile with tasks for installation and testing.
+
+</li>
+<li>Added and refactored some tests.
+
+</li>
+</ul>
+<h1>0.7.0 - 9-Aug-2007</h1>
+<ul>
+<li>All modules now use the windows-api library behind the scenes.
+
+</li>
+<li>Added the <a href="../classes/Windows/NIO.html">Windows::NIO</a> module.
+This contains native <a href="../classes/Windows.html">Windows</a> IO
+functions.
+
+</li>
+<li>Added several more functions to the Windows::GDI::PaintDrawing module.
+
+</li>
+<li>Fixed the prototype for the GetWindowsDirectory function in the <a
+href="../classes/Windows/SystemInfo.html">Windows::SystemInfo</a> module.
+
+</li>
+</ul>
+<h1>0.6.6 - 3-May-2007</h1>
+<ul>
+<li>Added the <a
+href="../classes/Windows/MSVCRT/IO.html">Windows::MSVCRT::IO</a> module.
+
+</li>
+<li>Removed the SetConsoleCommandHistoryMode method from the <a
+href="../classes/Windows/Console.html">Windows::Console</a> module. This
+was a preliminary function for Vista only, and it has since been removed.
+Thanks go to Drew Colthorp for the spot.
+
+</li>
+</ul>
+<h1>0.6.5 - 28-Feb-2007</h1>
+<ul>
+<li>Important bug fixes for the <a
+href="../classes/Windows/Directory.html">Windows::Directory</a>, <a
+href="../classes/Windows/Memory.html">Windows::Memory</a>, <a
+href="../classes/Windows/Synchronize.html">Windows::Synchronize</a> and <a
+href="../classes/Windows/Volume.html">Windows::Volume</a> modules. These
+were either fixes for the function declaration or the wrapper method.
+Thanks go to Katsuyuki Miyamuko for the spot and the patches.
+
+</li>
+</ul>
+<h1>0.6.4 - 28-Feb-2007</h1>
+<ul>
+<li>Add more string functions to the <a
+href="../classes/Windows/MSVCRT/String.html">Windows::MSVCRT::String</a>
+module.
+
+</li>
+<li>Minor enhancement to the multi_to_wide and wide_to_multi helper methods in
+the <a href="../classes/Windows/Unicode.html">Windows::Unicode</a> module.
+You can now pass an explicit encoding as an optional second argument.
+
+</li>
+<li>Added several more methods to the <a
+href="../classes/Windows/National.html">Windows::National</a> module.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Volume.html">Windows::Volume</a> module. Thanks go
+to Dave Rose for the spot.
+
+</li>
+</ul>
+<h1>0.6.3 - 2-Feb-2007</h1>
+<ul>
+<li>Fixed the DLL for SetLastErrorEx in the <a
+href="../classes/Windows/Error.html">Windows::Error</a> module.
+
+</li>
+<li>Fixed an unitialized constant bug in the <a
+href="../classes/Windows/DeviceIO.html">Windows::DeviceIO</a> module.
+
+</li>
+<li>Fixed a bug in the NetWkstaSetInfo() method, from the <a
+href="../classes/Windows/NetworkManagement.html">Windows::NetworkManagement</a>
+module. Thanks go to Richard (???) for the spot.
+
+</li>
+<li>Added more security related methods and constants to the <a
+href="../classes/Windows/Security.html">Windows::Security</a> module.
+
+</li>
+<li>Fixed a bug in the GetComputerName method in the <a
+href="../classes/Windows/SystemInfo.html">Windows::SystemInfo</a> module.
+Thanks go to Russell Christopher for the spot and the fix.
+
+</li>
+<li>Changed method prototype for GetUserName and GetUserNameEx in the <a
+href="../classes/Windows/SystemInfo.html">Windows::SystemInfo</a> module.
+
+</li>
+<li>Added the PIPE_UNLIMITED_INSTANCES constant to the <a
+href="../classes/Windows/Pipe.html">Windows::Pipe</a> module.
+
+</li>
+<li>Altered the prototype for the ConvertSidToStringSid() and
+ConvertStringSidToSid() methods from the <a
+href="../classes/Windows/Security.html">Windows::Security</a> module.
+
+</li>
+</ul>
+<h1>0.6.2 - 21-Dec-2006</h1>
+<ul>
+<li>Added file related constants from sys/stat.h to the <a
+href="../classes/Windows/MSVCRT/File.html">Windows::MSVCRT::File</a>
+module.
+
+</li>
+<li>Added the open_osfhandle method to the <a
+href="../classes/Windows/Handle.html">Windows::Handle</a> module.
+
+</li>
+<li>Changed the signatures for the VirtualFree and VirtualFreeEx functions in
+the <a href="../classes/Windows/Memory.html">Windows::Memory</a> module.
+
+</li>
+<li>Added the <a
+href="../classes/Windows/GDI/Bitmap.html">Windows::GDI::Bitmap</a>, <a
+href="../classes/Windows/GDI/DeviceContext.html">Windows::GDI::DeviceContext</a>
+and <a
+href="../classes/Windows/GDI/PaintingDrawing.html">Windows::GDI::PaintingDrawing</a>
+modules.
+
+</li>
+</ul>
+<h1>0.6.1 - 22-Nov-2006</h1>
+<ul>
+<li>Changed the signature for VirtualAlloc and VirtualAllocEx in the <a
+href="../classes/Windows/Memory.html">Windows::Memory</a> module (long
+instead of pointer for first argument).
+
+</li>
+<li>Added the get_osfhandle method to the <a
+href="../classes/Windows/Handle.html">Windows::Handle</a> module.
+
+</li>
+</ul>
+<h1>0.6.0 - 5-Nov-2006</h1>
+<ul>
+<li>Added the <a href="../classes/Windows/Volume.html">Windows::Volume</a>
+module.
+
+</li>
+</ul>
+<h1>0.5.6 - 22-Oct-2006</h1>
+<ul>
+<li>Modified the memcpy method in <a
+href="../classes/Windows/MSVCRT/Buffer.html">Windows::MSVCRT::Buffer</a> to
+do the right thing based on the type of the parameters, as well as
+automatically set the default size to the size of the source being copied.
+
+</li>
+</ul>
+<h1>0.5.5 - 11-Oct-2006</h1>
+<ul>
+<li>Prototype modification for VirtualQuery and VirtualQueryEx in the <a
+href="../classes/Windows/Memory.html">Windows::Memory</a> module.
+
+</li>
+</ul>
+<h1>0.5.4 - 8-Sep-2006</h1>
+<ul>
+<li>Added the <a
+href="../classes/Windows/NetworkManagement.html">Windows::NetworkManagement</a>
+module, which contains methods like NetUserAdd(), etc.
+
+</li>
+<li>Fixed bugs in SetLastError and SetLastErrorEx declarations.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Library.html">Windows::Library</a> module.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Console.html">Windows::Console</a> module.
+
+</li>
+<li>Added a test case for the <a
+href="../classes/Windows/Library.html">Windows::Library</a> module.
+
+</li>
+<li>Added the LOCKFILE_EXCLUSIVE_LOCK and LOCKFILE_FAIL_IMMEDIATELY constants
+to the <a href="../classes/Windows/File.html">Windows::File</a> module.
+
+</li>
+</ul>
+<h1>0.5.3 - 10-Aug-2006</h1>
+<ul>
+<li>Added wide character functions to the EventLog module.
+
+</li>
+<li>Added a test suite for the EventLog module.
+
+</li>
+<li>Fixed method wrapper for MapViewOfFileEx.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Registry.html">Windows::Registry</a> module (the
+RegSaveKeyEx might not be defined).
+
+</li>
+</ul>
+<h1>0.5.2 - 29-Jul-2006</h1>
+<ul>
+<li>Prototype fixes/changes for CreateProcess, GlobalLock,
+GlobalMemoryStatusEx, and CreateFileMapping.
+
+</li>
+<li>Finer grained method wrapping/checking for the <a
+href="../classes/Windows/Process.html">Windows::Process</a> module (only
+two methods might not be defined).
+
+</li>
+<li>Added method wrappers for the Handle constants.
+
+</li>
+<li>Added mmap related methods and constants.
+
+</li>
+<li>Added more test cases.
+
+</li>
+<li>Added wide character methods to the <a
+href="../classes/Windows/Directory.html">Windows::Directory</a> class.
+
+</li>
+<li>Added wide character helper methods.
+
+</li>
+<li>Added a few more methods to MSVCRT::String.
+
+</li>
+</ul>
+<h1>0.5.1 - 26-May-2006</h1>
+<ul>
+<li>Minor updates and fixes for the Unicode and DeviceIO modules.
+
+</li>
+<li>Added some wide character support, based on $KCODE values (which should not
+be used at this time).
+
+</li>
+</ul>
+<h1>0.5.0 - 23-May-2006</h1>
+<ul>
+<li>Added the Registry module
+
+</li>
+<li>Added the EventLog module
+
+</li>
+<li>Added the National module
+
+</li>
+<li>Added the SystemInfo module
+
+</li>
+</ul>
+<h1>0.4.0 - 7-May-2006</h1>
+<ul>
+<li>Bug fix for the WaitForMultipleObjects method in synchronize.rb
+
+</li>
+<li>Added the Window module (just a few constants for now)
+
+</li>
+<li>Added the Console module (AttachConsole, etc)
+
+</li>
+<li>Added the Library module (LoadLibrary, etc)
+
+</li>
+<li>Added the Directory module (CreateDirectory, etc)
+
+</li>
+<li>Added the Shell module (some constants, a few methods for now)
+
+</li>
+<li>Added the Unicode module (WideCharToMultiByte, etc)
+
+</li>
+<li>Added process creation, priority and startf flags to the Process module
+
+</li>
+</ul>
+<h1>0.3.0 - 22-Apr-2006</h1>
+<ul>
+<li>Added the Limits module.
+
+</li>
+<li>Added the Security module.
+
+</li>
+<li>Fixed a signature bug in the MSVCRT/Buffer module.
+
+</li>
+</ul>
+<h1>0.2.0 - 13-Apr-2006</h1>
+<ul>
+<li>Added the FileSystem module.
+
+</li>
+<li>Fixed signature and dll mistakes in the File module.
+
+</li>
+</ul>
+<h1>0.1.0 - 4-Apr-2006</h1>
+<ul>
+<li>Initial release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: If <tt>true</tt>, the drag corner is shown [Boolean]
+  name: cornerStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The drag corner widget [FXDragCorner]
+  name: dragCorner
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The status line widget [FXStatusLine]
+  name: statusLine
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Status bar
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Status bar options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATUSBAR_WITH_DRAGCORNER+:"
+    body: Causes the drag corner to be shown
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXStatusBar
+includes: []
+
+instance_methods: []
+
+name: FXStatusBar
+superclass: FXHorizontalFrame

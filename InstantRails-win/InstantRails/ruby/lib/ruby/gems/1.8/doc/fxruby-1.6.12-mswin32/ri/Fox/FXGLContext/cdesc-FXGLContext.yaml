@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The visual [FXGLVisual]
+  name: visual
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A GL context is an object representing the OpenGL state information. Multiple GL context may share display lists to conserve memory. When drawing multiple windows, it may be advantageous to share not only display lists, but also GL contexts. Since the GL context is created for a certain frame-buffer configuration, sharing of GL contexts is only possible if the windows sharing the GL context all have the same GL visual. However, display lists may be shared between different GL contexts.
+constants: []
+
+full_name: Fox::FXGLContext
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: begin
+- !ruby/object:RI::MethodSummary 
+  name: end
+- !ruby/object:RI::MethodSummary 
+  name: shared?
+- !ruby/object:RI::MethodSummary 
+  name: swapBuffers
+- !ruby/object:RI::MethodSummary 
+  name: swapSubBuffers
+name: FXGLContext
+superclass: FXId

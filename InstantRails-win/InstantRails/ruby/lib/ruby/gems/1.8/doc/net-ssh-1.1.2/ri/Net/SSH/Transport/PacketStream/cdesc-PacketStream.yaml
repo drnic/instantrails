@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the sequence number of the next packet to be processed.
+  name: sequence_number
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the setter for setting the socket to use for IO communication
+  name: socket
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The abstract parent of IncomingPacketStream and OutgoingPacketStream. It represents the common interface of its subclasses.
+constants: []
+
+full_name: Net::SSH::Transport::PacketStream
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: compute_hmac
+- !ruby/object:RI::MethodSummary 
+  name: set_algorithms
+name: PacketStream
+superclass: Object

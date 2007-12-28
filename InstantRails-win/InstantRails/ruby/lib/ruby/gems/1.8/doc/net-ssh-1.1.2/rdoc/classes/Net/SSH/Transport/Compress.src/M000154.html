@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Transport::Compress)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/compress/services.rb, line 24</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">parent</span> )
+
+          <span class="ruby-comment cmt"># These services all go in their own namespace.</span>
+          <span class="ruby-identifier">parent</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:compress</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">zlib_compressor</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/compress/zlib-compressor'</span>
+              <span class="ruby-constant">ZLibCompressor</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">none_compressor</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/compress/none-compressor'</span>
+              <span class="ruby-constant">NoneCompressor</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">zlib_decompressor</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/compress/zlib-decompressor'</span>
+              <span class="ruby-constant">ZLibDecompressor</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">none_decompressor</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/compress/none-decompressor'</span>
+              <span class="ruby-constant">NoneDecompressor</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># Add the compressor services to the hash of available</span>
+            <span class="ruby-comment cmt"># compression algorithms.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">compression_algorithms</span>.<span class="ruby-identifier">update</span>(
+              <span class="ruby-value str">&quot;zlib&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">zlib_compressor</span>,
+              <span class="ruby-value str">&quot;none&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">none_compressor</span>
+            )
+
+            <span class="ruby-comment cmt"># Add the decompressor services to the hash of available</span>
+            <span class="ruby-comment cmt"># decompression algorithms.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">decompression_algorithms</span>.<span class="ruby-identifier">update</span>(
+              <span class="ruby-value str">&quot;zlib&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">zlib_decompressor</span>,
+              <span class="ruby-value str">&quot;none&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">none_decompressor</span>
+            )
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Checks for errors on an object (i.e., is resource.errors empty?).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_person = Person.create(params[:person])\n  my_person.valid?\n  # =&gt; true\n\n  my_person.errors.add('login', 'can not be empty') if my_person.login == ''\n  my_person.valid?\n  # =&gt; false\n"
+full_name: ActiveResource::Validations#valid?
+is_singleton: false
+name: valid?
+params: ()
+visibility: public

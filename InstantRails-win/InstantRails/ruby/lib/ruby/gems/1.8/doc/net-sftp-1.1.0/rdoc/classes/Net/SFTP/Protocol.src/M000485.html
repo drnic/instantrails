@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SFTP::Protocol)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/services.rb, line 19</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+    <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:protocol</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+
+      <span class="ruby-comment cmt"># The maximum version of the SFTP protocol supported by this</span>
+      <span class="ruby-comment cmt"># implementation. Clients may set this to a lower value to force the</span>
+      <span class="ruby-comment cmt"># usage of a specific SFTP version. It should _not_ be set higher than</span>
+      <span class="ruby-comment cmt"># the value that is given below.</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">version</span> { <span class="ruby-value">5</span> }
+
+      <span class="ruby-comment cmt"># A proc object that, when invoked, returns a dispatcher object capable</span>
+      <span class="ruby-comment cmt"># of handling the requested protocol version.</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">dispatcher_factory</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+        <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">version</span>, <span class="ruby-identifier">extensions</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">version</span> = <span class="ruby-value str">&quot;%02d&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">version</span>
+          <span class="ruby-identifier">c</span>.<span class="ruby-identifier">require</span> <span class="ruby-node">&quot;net/sftp/protocol/#{version}/services&quot;</span>,
+            <span class="ruby-node">&quot;#{self}::V_#{version}&quot;</span>
+          <span class="ruby-identifier">impl</span> = <span class="ruby-identifier">c</span>[<span class="ruby-node">&quot;v_#{version}&quot;</span>.<span class="ruby-identifier">to_sym</span>][<span class="ruby-identifier">:impl</span>]
+          <span class="ruby-identifier">impl</span>.<span class="ruby-identifier">extensions</span> = <span class="ruby-identifier">extensions</span>
+          <span class="ruby-identifier">impl</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># The driver service that manages the SFTP protocol-level communications</span>
+      <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">driver</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/sftp/protocol/driver'</span>
+        <span class="ruby-constant">Driver</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>],
+                    <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>],
+                    <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:version</span>],
+                    <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:dispatcher_factory</span>],
+                    <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>] )
+      <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

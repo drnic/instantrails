@@ -1,0 +1,61 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INVALID_HANDLE_VALUE
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANDLE_FLAG_INHERIT
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANDLE_FLAG_PROTECT_FROM_CLOSE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CloseHandle
+  value: API.new('CloseHandle', 'L', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DuplicateHandle
+  value: API.new('DuplicateHandle', 'LLLLLIL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetHandleInformation
+  value: API.new('GetHandleInformation', 'LL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SetHandleInformation
+  value: API.new('SetHandleInformation', 'LLL', 'I')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GetOSFHandle
+  value: API.new('_get_osfhandle', 'I', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OpenOSFHandle
+  value: API.new('_open_osfhandle', 'LI', 'I', 'msvcrt')
+full_name: Windows::Handle
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: CloseHandle
+- !ruby/object:RI::MethodSummary 
+  name: DuplicateHandle
+- !ruby/object:RI::MethodSummary 
+  name: GetHandleInformation
+- !ruby/object:RI::MethodSummary 
+  name: SetHandleInformation
+- !ruby/object:RI::MethodSummary 
+  name: get_osfhandle
+- !ruby/object:RI::MethodSummary 
+  name: open_osfhandle
+name: Handle
+superclass: 

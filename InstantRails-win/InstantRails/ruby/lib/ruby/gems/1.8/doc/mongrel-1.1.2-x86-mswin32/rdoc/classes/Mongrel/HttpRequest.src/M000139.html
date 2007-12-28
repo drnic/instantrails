@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Mongrel::HttpRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/http_request.rb, line 25</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">params</span>, <span class="ruby-identifier">socket</span>, <span class="ruby-identifier">dispatchers</span>)
+      <span class="ruby-ivar">@params</span> = <span class="ruby-identifier">params</span>
+      <span class="ruby-ivar">@socket</span> = <span class="ruby-identifier">socket</span>
+      <span class="ruby-ivar">@dispatchers</span> = <span class="ruby-identifier">dispatchers</span>
+      <span class="ruby-identifier">content_length</span> = <span class="ruby-ivar">@params</span>[<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">CONTENT_LENGTH</span>].<span class="ruby-identifier">to_i</span>
+      <span class="ruby-identifier">remain</span> = <span class="ruby-identifier">content_length</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span>.<span class="ruby-identifier">length</span>
+      
+      <span class="ruby-comment cmt"># tell all dispatchers the request has begun</span>
+      <span class="ruby-ivar">@dispatchers</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">dispatcher</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">dispatcher</span>.<span class="ruby-identifier">request_begins</span>(<span class="ruby-ivar">@params</span>) 
+      <span class="ruby-keyword kw">end</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@dispatchers</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@dispatchers</span>.<span class="ruby-identifier">empty?</span>
+
+      <span class="ruby-comment cmt"># Some clients (like FF1.0) report 0 for body and then send a body.  This will probably truncate them but at least the request goes through usually.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">remain</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">0</span>
+        <span class="ruby-comment cmt"># we've got everything, pack it up</span>
+        <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">write</span> <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span>
+        <span class="ruby-identifier">update_request_progress</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">content_length</span>)
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">remain</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+        <span class="ruby-comment cmt"># must read more data to complete body</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">remain</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">MAX_BODY</span>
+          <span class="ruby-comment cmt"># huge body, put it in a tempfile</span>
+          <span class="ruby-ivar">@body</span> = <span class="ruby-constant">Tempfile</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">MONGREL_TMP_BASE</span>)
+          <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">binmode</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># small body, just use that</span>
+          <span class="ruby-ivar">@body</span> = <span class="ruby-constant">StringIO</span>.<span class="ruby-identifier">new</span> 
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">write</span> <span class="ruby-ivar">@params</span>.<span class="ruby-identifier">http_body</span>
+        <span class="ruby-identifier">read_body</span>(<span class="ruby-identifier">remain</span>, <span class="ruby-identifier">content_length</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@body</span>.<span class="ruby-identifier">rewind</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An implementation of a socket factory that returns a socket which will tunnel the connection through a SOCKS4 proxy. It allows explicit specification of the user, but if it is not given it will look in the SOCKS_USER and CONNECT_USER environment variables as well.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_VERSION
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_CMD_CONNECT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_GRANTED
+  value: "90"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_REJECTED
+  value: "91"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_IDENTD_REJECT
+  value: "92"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_IDENTD_BAD
+  value: "93"
+full_name: Net::SSH::Proxy::SOCKS4
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: open
+name: SOCKS4
+superclass: Object

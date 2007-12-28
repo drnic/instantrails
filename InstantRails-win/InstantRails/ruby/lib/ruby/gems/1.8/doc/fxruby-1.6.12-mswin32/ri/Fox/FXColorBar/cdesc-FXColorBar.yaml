@@ -1,0 +1,85 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Color bar style (one of <tt>COLORBAR_HORIZONTAL</tt> or <tt>COLORBAR_VERTICAL</tt>) [Integer]
+  name: barStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hue [Float]
+  name: hue
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Saturation [Float]
+  name: sat
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Value [Float]
+  name: val
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Color Bar is a widget which controls the brightness (value) of a color by means of the hue, saturation, value specification system. It is most useful when used together with the Color Wheel which controls the hue and saturation. The options <tt>COLORBAR_HORIZONTAL</tt> and <tt>COLORBAR_VERTICAL</tt> control the orientation of the bar.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXColorBar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously while the user is dragging the spot around; the message data is a three-element array containing the hue, saturation and value values.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the user releases the mouse button and &quot;drops&quot; the spot at its new location; the message data is a three-element array containing the hue, saturation and value values.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Color bar orientation
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COLORBAR_HORIZONTAL+:"
+    body: Color bar shown horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COLORBAR_VERTICAL+:"
+    body: Color bar shown vertically
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXColorBar
+includes: []
+
+instance_methods: []
+
+name: FXColorBar
+superclass: FXFrame

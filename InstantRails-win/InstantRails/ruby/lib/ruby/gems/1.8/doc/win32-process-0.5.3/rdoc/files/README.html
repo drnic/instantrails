@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:14 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<pre>
+   This package provides the fork, wait, wait2, waitpid, and waitpid2 methods
+   for MS Windows.  In addition, it provides a different implementation of the
+   kill method.
+</pre>
+<h1>Prerequisites</h1>
+<pre>
+   Ruby 1.8.2 or later.
+   The 'windows-pr' library, 0.5.2 or later.
+   The 'sys-proctable' library, 0.7.0 or later (test suite only).
+</pre>
+<h1>Supported Platforms</h1>
+<pre>
+   This code is supported on Windows NT, Windows 2000 or Windows XP Pro only.
+   It may work on Windows XP Home, but it is not officially supported for that
+   platform.
+</pre>
+<h1>Installation Instructions</h1>
+<pre>
+   rake test (optional)
+   rake install (non-gem) or rake install_gem (gem)
+</pre>
+<h1>Synopsis</h1>
+<pre>
+   require 'win32/process'
+
+   Process.fork{
+      3.times{
+         puts 'In the child'
+         sleep 1
+      }
+   }
+
+   Process.wait
+   puts 'Done'
+</pre>
+<h1>Developer&#8216;s Notes</h1>
+<h2>The fork and wait methods</h2>
+<pre>
+   The fork method is emulated on Win32 by spawning a another Ruby process
+   against $PROGRAM_NAME via the CreateProcess() Win32 API function.  It will
+   use its parent's environment and starting directory.
+
+   The various wait methods are a wrapper for the WaitForSingleObject() or
+   WaitForMultipleObjects() Win32 API functions, for the wait* and waitpid*
+   methods, respectively.  In the case of wait2 and waitpid2, the exit value
+   is returned via the GetExitCodeProcess() Win32API function.
+
+   For now the waitpid and waitpid2 calls do not accept a second argument.
+   That's because we haven't yet determined if there's a signal we should
+   allow to be sent.
+
+   IMPORTANT!
+   Note that because fork is calling CreateProcess($PROGRAM_NAME), it will
+   start again from the top of the script instead of from the point of the
+   call.  We will try to address this in a future release, if possible.
+</pre>
+<h2>The kill method</h2>
+<pre>
+   Initially, the kill method will try to get a HANDLE on the PID using the
+   OpenProcess() function.  If that succeeds, we know the process is running.
+
+   In the event of signal 2 or signal 3, the GenerateConsoleCtrlEvent()
+   function is used to send a signal to that process.  These will not kill
+   GUI processes.  It will not (currently) send a signal to remote
+   processes.
+
+   In the event of signal 1 or 4-8, the CreateRemoteThread() function is used
+   after the HANDLE's process has been identified to create a thread
+   within that process.  The ExitProcess() function is then sent to that
+   thread.
+
+   In the event of signal 9, the TerminateProcess() function is called.  This
+   will almost certainly kill the process, but doesn't give the process a
+   chance to necessarily do any cleanup it might otherwise do.
+</pre>
+<h2>Differences between Ruby&#8216;s kill and the Win32 Utils kill</h2>
+<pre>
+   Ruby does not currently use the CreateRemoteThread() + ExitProcess()
+   approach which is, according to everything I've read, a cleaner approach.
+   This includes not only online research but also Jeffrey Richter's
+   &quot;Advanced Windows Programming, 3rd Edition.&quot;
+
+   Also, the way kill handles multiple pids works slightly differently (and
+   better IMHO) in the Win32 Utils version than the way Ruby currently
+   provides.
+
+   The reason Process.kill was originally added, in case anyone cares for
+   historical trivia, is that Ruby 1.6.x did not support Process.kill on
+   Windows at all.
+</pre>
+<h2>Notes</h2>
+<pre>
+   It is unlikely you will be able to kill system processes with this module.
+   It's probably better that you don't.
+
+   You will see some warnings about redefined methods if you run your code
+   with warnings enabled. Yup, we redefined some methods. :)
+</pre>
+<h2>Known Bugs</h2>
+<pre>
+   None known (though please see the +Details+ section for quirks).  Any
+   bugs should be reported on the project page at
+   http://rubyforge.org/projects/win32utils.
+</pre>
+<h2>Future Plans</h2>
+<pre>
+   Train Process.fork to execute from the point of the call rather than the
+   top of the script (if possible).
+
+   Other suggestions welcome.
+</pre>
+<h2>License</h2>
+<pre>
+   Ruby's
+</pre>
+<h2>Copyright</h2>
+<pre>
+   (C) 2003-2007 Daniel J. Berger
+   All Rights Reserved
+</pre>
+<h2>Warranty</h2>
+<pre>
+   This package is provided &quot;as is&quot; and without any express or
+   implied warranties, including, without limitation, the implied
+   warranties of merchantability and fitness for a particular purpose.
+</pre>
+<h2>Author(s)</h2>
+<pre>
+   Park Heesob
+   Daniel J. Berger
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

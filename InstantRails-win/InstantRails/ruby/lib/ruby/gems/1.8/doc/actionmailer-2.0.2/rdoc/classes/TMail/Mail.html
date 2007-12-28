@@ -1,0 +1,3474 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: TMail::Mail</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">TMail::Mail</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/attachments_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/attachments.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/facade_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/facade.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/interface_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/interface.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/mail_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/mail.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/net_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/net.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/obsolete_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/obsolete.rb
+                </a>
+        <br />
+                <a href="../../files/lib/action_mailer/vendor/tmail-1_1_0/tmail/quoting_rb.html">
+                lib/action_mailer/vendor/tmail-1.1.0/tmail/quoting.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+facade.rb
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001829">[]</a>&nbsp;&nbsp;
+      <a href="#M001832">[]=</a>&nbsp;&nbsp;
+      <a href="#M001827">accept</a>&nbsp;&nbsp;
+      <a href="#M001864">add_date</a>&nbsp;&nbsp;
+      <a href="#M001863">add_message_id</a>&nbsp;&nbsp;
+      <a href="#M001680">attachment?</a>&nbsp;&nbsp;
+      <a href="#M001681">attachments</a>&nbsp;&nbsp;
+      <a href="#M001745">base64_decode</a>&nbsp;&nbsp;
+      <a href="#M001815">base64_decode</a>&nbsp;&nbsp;
+      <a href="#M001744">base64_encode</a>&nbsp;&nbsp;
+      <a href="#M001814">base64_encode</a>&nbsp;&nbsp;
+      <a href="#M001764">bcc</a>&nbsp;&nbsp;
+      <a href="#M001694">bcc</a>&nbsp;&nbsp;
+      <a href="#M001767">bcc=</a>&nbsp;&nbsp;
+      <a href="#M001697">bcc=</a>&nbsp;&nbsp;
+      <a href="#M001688">bcc_addrs</a>&nbsp;&nbsp;
+      <a href="#M001758">bcc_addrs</a>&nbsp;&nbsp;
+      <a href="#M001761">bcc_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001691">bcc_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001891">body</a>&nbsp;&nbsp;
+      <a href="#M001852">body=</a>&nbsp;&nbsp;
+      <a href="#M001849">body_port</a>&nbsp;&nbsp;
+      <a href="#M001887">boundary</a>&nbsp;&nbsp;
+      <a href="#M001763">cc</a>&nbsp;&nbsp;
+      <a href="#M001693">cc</a>&nbsp;&nbsp;
+      <a href="#M001766">cc=</a>&nbsp;&nbsp;
+      <a href="#M001696">cc=</a>&nbsp;&nbsp;
+      <a href="#M001687">cc_addrs</a>&nbsp;&nbsp;
+      <a href="#M001757">cc_addrs</a>&nbsp;&nbsp;
+      <a href="#M001690">cc_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001760">cc_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001798">charset</a>&nbsp;&nbsp;
+      <a href="#M001728">charset</a>&nbsp;&nbsp;
+      <a href="#M001729">charset=</a>&nbsp;&nbsp;
+      <a href="#M001799">charset=</a>&nbsp;&nbsp;
+      <a href="#M001841">clear</a>&nbsp;&nbsp;
+      <a href="#M001737">content_disposition</a>&nbsp;&nbsp;
+      <a href="#M001807">content_disposition</a>&nbsp;&nbsp;
+      <a href="#M001741">content_disposition=</a>&nbsp;&nbsp;
+      <a href="#M001811">content_disposition=</a>&nbsp;&nbsp;
+      <a href="#M001804">content_transfer_encoding</a>&nbsp;&nbsp;
+      <a href="#M001734">content_transfer_encoding</a>&nbsp;&nbsp;
+      <a href="#M001805">content_transfer_encoding=</a>&nbsp;&nbsp;
+      <a href="#M001735">content_transfer_encoding=</a>&nbsp;&nbsp;
+      <a href="#M001722">content_type</a>&nbsp;&nbsp;
+      <a href="#M001792">content_type</a>&nbsp;&nbsp;
+      <a href="#M001796">content_type=</a>&nbsp;&nbsp;
+      <a href="#M001726">content_type=</a>&nbsp;&nbsp;
+      <a href="#M001870">create_empty_mail</a>&nbsp;&nbsp;
+      <a href="#M001873">create_forward</a>&nbsp;&nbsp;
+      <a href="#M001871">create_reply</a>&nbsp;&nbsp;
+      <a href="#M001743">create_reply</a>&nbsp;&nbsp;
+      <a href="#M001813">create_reply</a>&nbsp;&nbsp;
+      <a href="#M001753">date</a>&nbsp;&nbsp;
+      <a href="#M001683">date</a>&nbsp;&nbsp;
+      <a href="#M001684">date=</a>&nbsp;&nbsp;
+      <a href="#M001754">date=</a>&nbsp;&nbsp;
+      <a href="#M001842">delete</a>&nbsp;&nbsp;
+      <a href="#M001843">delete_if</a>&nbsp;&nbsp;
+      <a href="#M001862">delete_no_send_fields</a>&nbsp;&nbsp;
+      <a href="#M001746">destinations</a>&nbsp;&nbsp;
+      <a href="#M001816">destinations</a>&nbsp;&nbsp;
+      <a href="#M001806">disposition</a>&nbsp;&nbsp;
+      <a href="#M001736">disposition</a>&nbsp;&nbsp;
+      <a href="#M001739">disposition=</a>&nbsp;&nbsp;
+      <a href="#M001809">disposition=</a>&nbsp;&nbsp;
+      <a href="#M001812">disposition_param</a>&nbsp;&nbsp;
+      <a href="#M001742">disposition_param</a>&nbsp;&nbsp;
+      <a href="#M001850">each</a>&nbsp;&nbsp;
+      <a href="#M001748">each_dest</a>&nbsp;&nbsp;
+      <a href="#M001886">each_dest</a>&nbsp;&nbsp;
+      <a href="#M001818">each_dest</a>&nbsp;&nbsp;
+      <a href="#M001747">each_destination</a>&nbsp;&nbsp;
+      <a href="#M001817">each_destination</a>&nbsp;&nbsp;
+      <a href="#M001838">each_field</a>&nbsp;&nbsp;
+      <a href="#M001834">each_header</a>&nbsp;&nbsp;
+      <a href="#M001836">each_header_name</a>&nbsp;&nbsp;
+      <a href="#M001837">each_key</a>&nbsp;&nbsp;
+      <a href="#M001835">each_pair</a>&nbsp;&nbsp;
+      <a href="#M001857">each_part</a>&nbsp;&nbsp;
+      <a href="#M001839">each_value</a>&nbsp;&nbsp;
+      <a href="#M001732">encoding</a>&nbsp;&nbsp;
+      <a href="#M001802">encoding</a>&nbsp;&nbsp;
+      <a href="#M001733">encoding=</a>&nbsp;&nbsp;
+      <a href="#M001803">encoding=</a>&nbsp;&nbsp;
+      <a href="#M001854">epilogue</a>&nbsp;&nbsp;
+      <a href="#M001855">epilogue=</a>&nbsp;&nbsp;
+      <a href="#M001750">error_reply_addresses</a>&nbsp;&nbsp;
+      <a href="#M001820">error_reply_addresses</a>&nbsp;&nbsp;
+      <a href="#M001831">fetch</a>&nbsp;&nbsp;
+      <a href="#M001702">friendly_from</a>&nbsp;&nbsp;
+      <a href="#M001772">friendly_from</a>&nbsp;&nbsp;
+      <a href="#M001700">from</a>&nbsp;&nbsp;
+      <a href="#M001770">from</a>&nbsp;&nbsp;
+      <a href="#M001771">from=</a>&nbsp;&nbsp;
+      <a href="#M001701">from=</a>&nbsp;&nbsp;
+      <a href="#M001880">from_addr</a>&nbsp;&nbsp;
+      <a href="#M001881">from_address</a>&nbsp;&nbsp;
+      <a href="#M001882">from_address=</a>&nbsp;&nbsp;
+      <a href="#M001698">from_addrs</a>&nbsp;&nbsp;
+      <a href="#M001768">from_addrs</a>&nbsp;&nbsp;
+      <a href="#M001769">from_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001699">from_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001883">from_phrase</a>&nbsp;&nbsp;
+      <a href="#M001679">has_attachments?</a>&nbsp;&nbsp;
+      <a href="#M001876">has_key?</a>&nbsp;&nbsp;
+      <a href="#M001879">has_value?</a>&nbsp;&nbsp;
+      <a href="#M001828">header</a>&nbsp;&nbsp;
+      <a href="#M001682">header_string</a>&nbsp;&nbsp;
+      <a href="#M001752">header_string</a>&nbsp;&nbsp;
+      <a href="#M001716">in_reply_to</a>&nbsp;&nbsp;
+      <a href="#M001786">in_reply_to</a>&nbsp;&nbsp;
+      <a href="#M001717">in_reply_to=</a>&nbsp;&nbsp;
+      <a href="#M001787">in_reply_to=</a>&nbsp;&nbsp;
+      <a href="#M001875">include?</a>&nbsp;&nbsp;
+      <a href="#M001847">indexes</a>&nbsp;&nbsp;
+      <a href="#M001848">indices</a>&nbsp;&nbsp;
+      <a href="#M001825">inspect</a>&nbsp;&nbsp;
+      <a href="#M001845">key?</a>&nbsp;&nbsp;
+      <a href="#M001844">keys</a>&nbsp;&nbsp;
+      <a href="#M001822">load</a>&nbsp;&nbsp;
+      <a href="#M001793">main_type</a>&nbsp;&nbsp;
+      <a href="#M001723">main_type</a>&nbsp;&nbsp;
+      <a href="#M001714">message_id</a>&nbsp;&nbsp;
+      <a href="#M001784">message_id</a>&nbsp;&nbsp;
+      <a href="#M001715">message_id=</a>&nbsp;&nbsp;
+      <a href="#M001785">message_id=</a>&nbsp;&nbsp;
+      <a href="#M001865">mime_encode</a>&nbsp;&nbsp;
+      <a href="#M001868">mime_encode_binary</a>&nbsp;&nbsp;
+      <a href="#M001869">mime_encode_multipart</a>&nbsp;&nbsp;
+      <a href="#M001866">mime_encode_singlepart</a>&nbsp;&nbsp;
+      <a href="#M001867">mime_encode_text</a>&nbsp;&nbsp;
+      <a href="#M001790">mime_version</a>&nbsp;&nbsp;
+      <a href="#M001720">mime_version</a>&nbsp;&nbsp;
+      <a href="#M001721">mime_version=</a>&nbsp;&nbsp;
+      <a href="#M001791">mime_version=</a>&nbsp;&nbsp;
+      <a href="#M001884">msgid</a>&nbsp;&nbsp;
+      <a href="#M001888">msgid</a>&nbsp;&nbsp;
+      <a href="#M001885">msgid=</a>&nbsp;&nbsp;
+      <a href="#M001751">multipart?</a>&nbsp;&nbsp;
+      <a href="#M001821">multipart?</a>&nbsp;&nbsp;
+      <a href="#M001824">new</a>&nbsp;&nbsp;
+      <a href="#M001840">ordered_each</a>&nbsp;&nbsp;
+      <a href="#M001823">parse</a>&nbsp;&nbsp;
+      <a href="#M001856">parts</a>&nbsp;&nbsp;
+      <a href="#M001853">preamble=</a>&nbsp;&nbsp;
+      <a href="#M001851">quoted_body</a>&nbsp;&nbsp;
+      <a href="#M001712">quoted_subject</a>&nbsp;&nbsp;
+      <a href="#M001782">quoted_subject</a>&nbsp;&nbsp;
+      <a href="#M001861">ready_to_send</a>&nbsp;&nbsp;
+      <a href="#M001788">references</a>&nbsp;&nbsp;
+      <a href="#M001718">references</a>&nbsp;&nbsp;
+      <a href="#M001789">references=</a>&nbsp;&nbsp;
+      <a href="#M001719">references=</a>&nbsp;&nbsp;
+      <a href="#M001819">reply_addresses</a>&nbsp;&nbsp;
+      <a href="#M001749">reply_addresses</a>&nbsp;&nbsp;
+      <a href="#M001775">reply_to</a>&nbsp;&nbsp;
+      <a href="#M001705">reply_to</a>&nbsp;&nbsp;
+      <a href="#M001706">reply_to=</a>&nbsp;&nbsp;
+      <a href="#M001776">reply_to=</a>&nbsp;&nbsp;
+      <a href="#M001773">reply_to_addrs</a>&nbsp;&nbsp;
+      <a href="#M001703">reply_to_addrs</a>&nbsp;&nbsp;
+      <a href="#M001704">reply_to_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001774">reply_to_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001859">send_text_to</a>&nbsp;&nbsp;
+      <a href="#M001858">send_to</a>&nbsp;&nbsp;
+      <a href="#M001860">send_to_0</a>&nbsp;&nbsp;
+      <a href="#M001709">sender</a>&nbsp;&nbsp;
+      <a href="#M001779">sender</a>&nbsp;&nbsp;
+      <a href="#M001710">sender=</a>&nbsp;&nbsp;
+      <a href="#M001780">sender=</a>&nbsp;&nbsp;
+      <a href="#M001777">sender_addr</a>&nbsp;&nbsp;
+      <a href="#M001707">sender_addr</a>&nbsp;&nbsp;
+      <a href="#M001708">sender_addr=</a>&nbsp;&nbsp;
+      <a href="#M001778">sender_addr=</a>&nbsp;&nbsp;
+      <a href="#M001740">set_content_disposition</a>&nbsp;&nbsp;
+      <a href="#M001810">set_content_disposition</a>&nbsp;&nbsp;
+      <a href="#M001795">set_content_type</a>&nbsp;&nbsp;
+      <a href="#M001725">set_content_type</a>&nbsp;&nbsp;
+      <a href="#M001738">set_disposition</a>&nbsp;&nbsp;
+      <a href="#M001808">set_disposition</a>&nbsp;&nbsp;
+      <a href="#M001874">setup_forward</a>&nbsp;&nbsp;
+      <a href="#M001872">setup_reply</a>&nbsp;&nbsp;
+      <a href="#M001833">store</a>&nbsp;&nbsp;
+      <a href="#M001755">strftime</a>&nbsp;&nbsp;
+      <a href="#M001685">strftime</a>&nbsp;&nbsp;
+      <a href="#M001830">sub_header</a>&nbsp;&nbsp;
+      <a href="#M001794">sub_type</a>&nbsp;&nbsp;
+      <a href="#M001724">sub_type</a>&nbsp;&nbsp;
+      <a href="#M001711">subject</a>&nbsp;&nbsp;
+      <a href="#M001781">subject</a>&nbsp;&nbsp;
+      <a href="#M001889">subject</a>&nbsp;&nbsp;
+      <a href="#M001713">subject=</a>&nbsp;&nbsp;
+      <a href="#M001783">subject=</a>&nbsp;&nbsp;
+      <a href="#M001692">to</a>&nbsp;&nbsp;
+      <a href="#M001762">to</a>&nbsp;&nbsp;
+      <a href="#M001765">to=</a>&nbsp;&nbsp;
+      <a href="#M001695">to=</a>&nbsp;&nbsp;
+      <a href="#M001756">to_addrs</a>&nbsp;&nbsp;
+      <a href="#M001686">to_addrs</a>&nbsp;&nbsp;
+      <a href="#M001759">to_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001689">to_addrs=</a>&nbsp;&nbsp;
+      <a href="#M001730">transfer_encoding</a>&nbsp;&nbsp;
+      <a href="#M001800">transfer_encoding</a>&nbsp;&nbsp;
+      <a href="#M001731">transfer_encoding=</a>&nbsp;&nbsp;
+      <a href="#M001801">transfer_encoding=</a>&nbsp;&nbsp;
+      <a href="#M001797">type_param</a>&nbsp;&nbsp;
+      <a href="#M001727">type_param</a>&nbsp;&nbsp;
+      <a href="#M001890">unquoted_body</a>&nbsp;&nbsp;
+      <a href="#M001878">value?</a>&nbsp;&nbsp;
+      <a href="#M001877">values</a>&nbsp;&nbsp;
+      <a href="#M001846">values_at</a>&nbsp;&nbsp;
+      <a href="#M001826">write_back</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="TextUtils.html">TextUtils</a></span>
+        <span class="include-name"><a href="TextUtils.html">TextUtils</a></span>
+        <span class="include-name"><a href="StrategyInterface.html">StrategyInterface</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALLOW_MULTIPLE</td>
+          <td>=</td>
+          <td class="context-item-value">{       'received'          =&gt; true,       'resent-date'       =&gt; true,       'resent-from'       =&gt; true,       'resent-sender'     =&gt; true,       'resent-to'         =&gt; true,       'resent-cc'         =&gt; true,       'resent-bcc'        =&gt; true,       'resent-message-id' =&gt; true,       'comments'          =&gt; true,       'keywords'          =&gt; true</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Mail.html#M001828">header</a>
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">USE_ARRAY</td>
+          <td>=</td>
+          <td class="context-item-value">ALLOW_MULTIPLE</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FIELD_ORDER</td>
+          <td>=</td>
+          <td class="context-item-value">%w(       return-path received       resent-date resent-from resent-sender resent-to       resent-cc resent-bcc resent-message-id       date from sender reply-to to cc bcc       message-id in-reply-to references       subject comments keywords       mime-version content-type content-transfer-encoding       content-disposition content-description     )</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOSEND_FIELDS</td>
+          <td>=</td>
+          <td class="context-item-value">%w(       received       bcc     )</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">load</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">load_from</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">load</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">loadfrom</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">body</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">preamble</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">port</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001887" class="method-detail">
+        <a name="M001887"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001887.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001887.html');return false;">
+          <span class="method-name">boundary</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001822" class="method-detail">
+        <a name="M001822"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001822.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001822.html');return false;">
+          <span class="method-name">load</span><span class="method-args">( fname )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001888" class="method-detail">
+        <a name="M001888"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001888.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001888.html');return false;">
+          <span class="method-name">msgid</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001824" class="method-detail">
+        <a name="M001824"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001824.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001824.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( port = nil, conf = DEFAULT_CONFIG )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001823" class="method-detail">
+        <a name="M001823"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001823.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001823.html');return false;">
+          <span class="method-name">parse</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001829" class="method-detail">
+        <a name="M001829"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001829.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001829.html');return false;">
+          <span class="method-name">[]</span><span class="method-args">( key )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001832" class="method-detail">
+        <a name="M001832"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001832.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001832.html');return false;">
+          <span class="method-name">[]=</span><span class="method-args">( key, val )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001827" class="method-detail">
+        <a name="M001827"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001827.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001827.html');return false;">
+          <span class="method-name">accept</span><span class="method-args">( strategy )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001864" class="method-detail">
+        <a name="M001864"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001864.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001864.html');return false;">
+          <span class="method-name">add_date</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001863" class="method-detail">
+        <a name="M001863"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001863.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001863.html');return false;">
+          <span class="method-name">add_message_id</span><span class="method-args">( fqdn = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001680" class="method-detail">
+        <a name="M001680"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001680.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001680.html');return false;">
+          <span class="method-name">attachment?</span><span class="method-args">(part)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001681" class="method-detail">
+        <a name="M001681"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001681.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001681.html');return false;">
+          <span class="method-name">attachments</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001745" class="method-detail">
+        <a name="M001745"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001745.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001745.html');return false;">
+          <span class="method-name">base64_decode</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001815" class="method-detail">
+        <a name="M001815"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001815.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001815.html');return false;">
+          <span class="method-name">base64_decode</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001744" class="method-detail">
+        <a name="M001744"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001744.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001744.html');return false;">
+          <span class="method-name">base64_encode</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001814" class="method-detail">
+        <a name="M001814"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001814.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001814.html');return false;">
+          <span class="method-name">base64_encode</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001764" class="method-detail">
+        <a name="M001764"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001764.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001764.html');return false;">
+          <span class="method-name">bcc</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001694" class="method-detail">
+        <a name="M001694"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001694.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001694.html');return false;">
+          <span class="method-name">bcc</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001767" class="method-detail">
+        <a name="M001767"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001767.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001767.html');return false;">
+          <span class="method-name">bcc=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001697" class="method-detail">
+        <a name="M001697"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001697.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001697.html');return false;">
+          <span class="method-name">bcc=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001688" class="method-detail">
+        <a name="M001688"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001688.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001688.html');return false;">
+          <span class="method-name">bcc_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001758" class="method-detail">
+        <a name="M001758"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001758.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001758.html');return false;">
+          <span class="method-name">bcc_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001761" class="method-detail">
+        <a name="M001761"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001761.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001761.html');return false;">
+          <span class="method-name">bcc_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001691" class="method-detail">
+        <a name="M001691"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001691.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001691.html');return false;">
+          <span class="method-name">bcc_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001891" class="method-detail">
+        <a name="M001891"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001891.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001891.html');return false;">
+          <span class="method-name">body</span><span class="method-args">(to_charset = 'utf-8', &amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001852" class="method-detail">
+        <a name="M001852"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001852.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001852.html');return false;">
+          <span class="method-name">body=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001849" class="method-detail">
+        <a name="M001849"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001849.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001849.html');return false;">
+          <span class="method-name">body_port</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Mail.html#M001891">body</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001763" class="method-detail">
+        <a name="M001763"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001763.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001763.html');return false;">
+          <span class="method-name">cc</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001693" class="method-detail">
+        <a name="M001693"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001693.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001693.html');return false;">
+          <span class="method-name">cc</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001766" class="method-detail">
+        <a name="M001766"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001766.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001766.html');return false;">
+          <span class="method-name">cc=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001696" class="method-detail">
+        <a name="M001696"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001696.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001696.html');return false;">
+          <span class="method-name">cc=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001687" class="method-detail">
+        <a name="M001687"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001687.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001687.html');return false;">
+          <span class="method-name">cc_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001757" class="method-detail">
+        <a name="M001757"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001757.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001757.html');return false;">
+          <span class="method-name">cc_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001690" class="method-detail">
+        <a name="M001690"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001690.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001690.html');return false;">
+          <span class="method-name">cc_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001760" class="method-detail">
+        <a name="M001760"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001760.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001760.html');return false;">
+          <span class="method-name">cc_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001798" class="method-detail">
+        <a name="M001798"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001798.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001798.html');return false;">
+          <span class="method-name">charset</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001728" class="method-detail">
+        <a name="M001728"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001728.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001728.html');return false;">
+          <span class="method-name">charset</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001729" class="method-detail">
+        <a name="M001729"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001729.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001729.html');return false;">
+          <span class="method-name">charset=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001799" class="method-detail">
+        <a name="M001799"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001799.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001799.html');return false;">
+          <span class="method-name">charset=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001841" class="method-detail">
+        <a name="M001841"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001841.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001841.html');return false;">
+          <span class="method-name">clear</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001737" class="method-detail">
+        <a name="M001737"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_disposition</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001736">disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001807" class="method-detail">
+        <a name="M001807"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_disposition</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001736">disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001741" class="method-detail">
+        <a name="M001741"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_disposition=</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001811" class="method-detail">
+        <a name="M001811"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_disposition=</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001804" class="method-detail">
+        <a name="M001804"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_transfer_encoding</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001734" class="method-detail">
+        <a name="M001734"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_transfer_encoding</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001805" class="method-detail">
+        <a name="M001805"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_transfer_encoding=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001735" class="method-detail">
+        <a name="M001735"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_transfer_encoding=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001722" class="method-detail">
+        <a name="M001722"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001722.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001722.html');return false;">
+          <span class="method-name">content_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001792" class="method-detail">
+        <a name="M001792"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001792.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001792.html');return false;">
+          <span class="method-name">content_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001796" class="method-detail">
+        <a name="M001796"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_type=</span><span class="method-args">( str, sub = nil, param = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001725">set_content_type</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001726" class="method-detail">
+        <a name="M001726"></a>
+
+        <div class="method-heading">
+          <span class="method-name">content_type=</span><span class="method-args">( str, sub = nil, param = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001725">set_content_type</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001870" class="method-detail">
+        <a name="M001870"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001870.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001870.html');return false;">
+          <span class="method-name">create_empty_mail</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001873" class="method-detail">
+        <a name="M001873"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001873.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001873.html');return false;">
+          <span class="method-name">create_forward</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001871" class="method-detail">
+        <a name="M001871"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001871.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001871.html');return false;">
+          <span class="method-name">create_reply</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001743" class="method-detail">
+        <a name="M001743"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001743.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001743.html');return false;">
+          <span class="method-name">create_reply</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+utils
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001813" class="method-detail">
+        <a name="M001813"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001813.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001813.html');return false;">
+          <span class="method-name">create_reply</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+utils
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001753" class="method-detail">
+        <a name="M001753"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001753.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001753.html');return false;">
+          <span class="method-name">date</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Mail.html#M001683">date</a> time
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001683" class="method-detail">
+        <a name="M001683"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001683.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001683.html');return false;">
+          <span class="method-name">date</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Mail.html#M001683">date</a> time
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001684" class="method-detail">
+        <a name="M001684"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001684.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001684.html');return false;">
+          <span class="method-name">date=</span><span class="method-args">( time )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001754" class="method-detail">
+        <a name="M001754"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001754.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001754.html');return false;">
+          <span class="method-name">date=</span><span class="method-args">( time )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001842" class="method-detail">
+        <a name="M001842"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001842.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001842.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">( key )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001843" class="method-detail">
+        <a name="M001843"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001843.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001843.html');return false;">
+          <span class="method-name">delete_if</span><span class="method-args">() {|key, v| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001862" class="method-detail">
+        <a name="M001862"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001862.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001862.html');return false;">
+          <span class="method-name">delete_no_send_fields</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001746" class="method-detail">
+        <a name="M001746"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001746.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001746.html');return false;">
+          <span class="method-name">destinations</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001816" class="method-detail">
+        <a name="M001816"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001816.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001816.html');return false;">
+          <span class="method-name">destinations</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001806" class="method-detail">
+        <a name="M001806"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001806.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001806.html');return false;">
+          <span class="method-name">disposition</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001736" class="method-detail">
+        <a name="M001736"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001736.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001736.html');return false;">
+          <span class="method-name">disposition</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001739" class="method-detail">
+        <a name="M001739"></a>
+
+        <div class="method-heading">
+          <span class="method-name">disposition=</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001809" class="method-detail">
+        <a name="M001809"></a>
+
+        <div class="method-heading">
+          <span class="method-name">disposition=</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001812" class="method-detail">
+        <a name="M001812"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001812.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001812.html');return false;">
+          <span class="method-name">disposition_param</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001742" class="method-detail">
+        <a name="M001742"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001742.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001742.html');return false;">
+          <span class="method-name">disposition_param</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001850" class="method-detail">
+        <a name="M001850"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001850.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001850.html');return false;">
+          <span class="method-name">each</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001748" class="method-detail">
+        <a name="M001748"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_dest</span><span class="method-args">( &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001747">each_destination</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001886" class="method-detail">
+        <a name="M001886"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_dest</span><span class="method-args">( &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001747">each_destination</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001818" class="method-detail">
+        <a name="M001818"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_dest</span><span class="method-args">( &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001747">each_destination</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001747" class="method-detail">
+        <a name="M001747"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001747.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001747.html');return false;">
+          <span class="method-name">each_destination</span><span class="method-args">( ) {|i| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001817" class="method-detail">
+        <a name="M001817"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001817.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001817.html');return false;">
+          <span class="method-name">each_destination</span><span class="method-args">( ) {|i| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001838" class="method-detail">
+        <a name="M001838"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001838.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001838.html');return false;">
+          <span class="method-name">each_field</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001834" class="method-detail">
+        <a name="M001834"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001834.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001834.html');return false;">
+          <span class="method-name">each_header</span><span class="method-args">() {|key, v| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001836" class="method-detail">
+        <a name="M001836"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001836.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001836.html');return false;">
+          <span class="method-name">each_header_name</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001837" class="method-detail">
+        <a name="M001837"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_key</span><span class="method-args">( &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001836">each_header_name</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001835" class="method-detail">
+        <a name="M001835"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_pair</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001834">each_header</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001857" class="method-detail">
+        <a name="M001857"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001857.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001857.html');return false;">
+          <span class="method-name">each_part</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001839" class="method-detail">
+        <a name="M001839"></a>
+
+        <div class="method-heading">
+          <span class="method-name">each_value</span><span class="method-args">( &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001838">each_field</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001732" class="method-detail">
+        <a name="M001732"></a>
+
+        <div class="method-heading">
+          <span class="method-name">encoding</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001802" class="method-detail">
+        <a name="M001802"></a>
+
+        <div class="method-heading">
+          <span class="method-name">encoding</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001733" class="method-detail">
+        <a name="M001733"></a>
+
+        <div class="method-heading">
+          <span class="method-name">encoding=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001803" class="method-detail">
+        <a name="M001803"></a>
+
+        <div class="method-heading">
+          <span class="method-name">encoding=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001730">transfer_encoding</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001854" class="method-detail">
+        <a name="M001854"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001854.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001854.html');return false;">
+          <span class="method-name">epilogue</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001855" class="method-detail">
+        <a name="M001855"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001855.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001855.html');return false;">
+          <span class="method-name">epilogue=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001750" class="method-detail">
+        <a name="M001750"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001750.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001750.html');return false;">
+          <span class="method-name">error_reply_addresses</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001820" class="method-detail">
+        <a name="M001820"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001820.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001820.html');return false;">
+          <span class="method-name">error_reply_addresses</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001831" class="method-detail">
+        <a name="M001831"></a>
+
+        <div class="method-heading">
+          <span class="method-name">fetch</span><span class="method-args">( key )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for #[]
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001702" class="method-detail">
+        <a name="M001702"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001702.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001702.html');return false;">
+          <span class="method-name">friendly_from</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001772" class="method-detail">
+        <a name="M001772"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001772.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001772.html');return false;">
+          <span class="method-name">friendly_from</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001700" class="method-detail">
+        <a name="M001700"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001700.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001700.html');return false;">
+          <span class="method-name">from</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001770" class="method-detail">
+        <a name="M001770"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001770.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001770.html');return false;">
+          <span class="method-name">from</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001771" class="method-detail">
+        <a name="M001771"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001771.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001771.html');return false;">
+          <span class="method-name">from=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001701" class="method-detail">
+        <a name="M001701"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001701.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001701.html');return false;">
+          <span class="method-name">from=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001880" class="method-detail">
+        <a name="M001880"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001880.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001880.html');return false;">
+          <span class="method-name">from_addr</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001881" class="method-detail">
+        <a name="M001881"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001881.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001881.html');return false;">
+          <span class="method-name">from_address</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001882" class="method-detail">
+        <a name="M001882"></a>
+
+        <div class="method-heading">
+          <span class="method-name">from_address=</span><span class="method-args">( arg )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001698">from_addrs</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001698" class="method-detail">
+        <a name="M001698"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001698.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001698.html');return false;">
+          <span class="method-name">from_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+originator
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001768" class="method-detail">
+        <a name="M001768"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001768.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001768.html');return false;">
+          <span class="method-name">from_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+originator
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001769" class="method-detail">
+        <a name="M001769"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001769.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001769.html');return false;">
+          <span class="method-name">from_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001699" class="method-detail">
+        <a name="M001699"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001699.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001699.html');return false;">
+          <span class="method-name">from_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001883" class="method-detail">
+        <a name="M001883"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001883.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001883.html');return false;">
+          <span class="method-name">from_phrase</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001679" class="method-detail">
+        <a name="M001679"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001679.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001679.html');return false;">
+          <span class="method-name">has_attachments?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001876" class="method-detail">
+        <a name="M001876"></a>
+
+        <div class="method-heading">
+          <span class="method-name">has_key?</span><span class="method-args">( key )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for key?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001879" class="method-detail">
+        <a name="M001879"></a>
+
+        <div class="method-heading">
+          <span class="method-name">has_value?</span><span class="method-args">( val )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for value?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001828" class="method-detail">
+        <a name="M001828"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001828.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001828.html');return false;">
+          <span class="method-name">header</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001682" class="method-detail">
+        <a name="M001682"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001682.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001682.html');return false;">
+          <span class="method-name">header_string</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001752" class="method-detail">
+        <a name="M001752"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001752.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001752.html');return false;">
+          <span class="method-name">header_string</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001716" class="method-detail">
+        <a name="M001716"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001716.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001716.html');return false;">
+          <span class="method-name">in_reply_to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001786" class="method-detail">
+        <a name="M001786"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001786.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001786.html');return false;">
+          <span class="method-name">in_reply_to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001717" class="method-detail">
+        <a name="M001717"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001717.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001717.html');return false;">
+          <span class="method-name">in_reply_to=</span><span class="method-args">( *idstrs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001787" class="method-detail">
+        <a name="M001787"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001787.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001787.html');return false;">
+          <span class="method-name">in_reply_to=</span><span class="method-args">( *idstrs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001875" class="method-detail">
+        <a name="M001875"></a>
+
+        <div class="method-heading">
+          <span class="method-name">include?</span><span class="method-args">( key )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for key?
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001847" class="method-detail">
+        <a name="M001847"></a>
+
+        <div class="method-heading">
+          <span class="method-name">indexes</span><span class="method-args">( *args )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001846">values_at</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001848" class="method-detail">
+        <a name="M001848"></a>
+
+        <div class="method-heading">
+          <span class="method-name">indices</span><span class="method-args">( *args )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001846">values_at</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001825" class="method-detail">
+        <a name="M001825"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001825.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001825.html');return false;">
+          <span class="method-name">inspect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001845" class="method-detail">
+        <a name="M001845"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001845.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001845.html');return false;">
+          <span class="method-name">key?</span><span class="method-args">( key )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001844" class="method-detail">
+        <a name="M001844"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001844.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001844.html');return false;">
+          <span class="method-name">keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001793" class="method-detail">
+        <a name="M001793"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001793.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001793.html');return false;">
+          <span class="method-name">main_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001723" class="method-detail">
+        <a name="M001723"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001723.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001723.html');return false;">
+          <span class="method-name">main_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001714" class="method-detail">
+        <a name="M001714"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001714.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001714.html');return false;">
+          <span class="method-name">message_id</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+identity &amp; threading
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001784" class="method-detail">
+        <a name="M001784"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001784.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001784.html');return false;">
+          <span class="method-name">message_id</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+identity &amp; threading
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001715" class="method-detail">
+        <a name="M001715"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001715.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001715.html');return false;">
+          <span class="method-name">message_id=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001785" class="method-detail">
+        <a name="M001785"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001785.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001785.html');return false;">
+          <span class="method-name">message_id=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001865" class="method-detail">
+        <a name="M001865"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001865.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001865.html');return false;">
+          <span class="method-name">mime_encode</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001868" class="method-detail">
+        <a name="M001868"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001868.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001868.html');return false;">
+          <span class="method-name">mime_encode_binary</span><span class="method-args">( body )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001869" class="method-detail">
+        <a name="M001869"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001869.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001869.html');return false;">
+          <span class="method-name">mime_encode_multipart</span><span class="method-args">( top = true )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001866" class="method-detail">
+        <a name="M001866"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001866.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001866.html');return false;">
+          <span class="method-name">mime_encode_singlepart</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001867" class="method-detail">
+        <a name="M001867"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001867.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001867.html');return false;">
+          <span class="method-name">mime_encode_text</span><span class="method-args">( body )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001790" class="method-detail">
+        <a name="M001790"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001790.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001790.html');return false;">
+          <span class="method-name">mime_version</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+MIME headers
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001720" class="method-detail">
+        <a name="M001720"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001720.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001720.html');return false;">
+          <span class="method-name">mime_version</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+MIME headers
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001721" class="method-detail">
+        <a name="M001721"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001721.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001721.html');return false;">
+          <span class="method-name">mime_version=</span><span class="method-args">( m, opt = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001791" class="method-detail">
+        <a name="M001791"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001791.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001791.html');return false;">
+          <span class="method-name">mime_version=</span><span class="method-args">( m, opt = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001884" class="method-detail">
+        <a name="M001884"></a>
+
+        <div class="method-heading">
+          <span class="method-name">msgid</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001714">message_id</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001885" class="method-detail">
+        <a name="M001885"></a>
+
+        <div class="method-heading">
+          <span class="method-name">msgid=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001714">message_id</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001751" class="method-detail">
+        <a name="M001751"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001751.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001751.html');return false;">
+          <span class="method-name">multipart?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001821" class="method-detail">
+        <a name="M001821"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001821.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001821.html');return false;">
+          <span class="method-name">multipart?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001840" class="method-detail">
+        <a name="M001840"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001840.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001840.html');return false;">
+          <span class="method-name">ordered_each</span><span class="method-args">() {|name, v| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001856" class="method-detail">
+        <a name="M001856"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001856.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001856.html');return false;">
+          <span class="method-name">parts</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001853" class="method-detail">
+        <a name="M001853"></a>
+
+        <div class="method-heading">
+          <span class="method-name">preamble=</span><span class="method-args">( str )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001891">body</a>=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001851" class="method-detail">
+        <a name="M001851"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001851.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001851.html');return false;">
+          <span class="method-name">quoted_body</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001712" class="method-detail">
+        <a name="M001712"></a>
+
+        <div class="method-heading">
+          <span class="method-name">quoted_subject</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001711">subject</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001782" class="method-detail">
+        <a name="M001782"></a>
+
+        <div class="method-heading">
+          <span class="method-name">quoted_subject</span><span class="method-args">( default = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001711">subject</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001861" class="method-detail">
+        <a name="M001861"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001861.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001861.html');return false;">
+          <span class="method-name">ready_to_send</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001788" class="method-detail">
+        <a name="M001788"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001788.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001788.html');return false;">
+          <span class="method-name">references</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001718" class="method-detail">
+        <a name="M001718"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001718.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001718.html');return false;">
+          <span class="method-name">references</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001789" class="method-detail">
+        <a name="M001789"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001789.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001789.html');return false;">
+          <span class="method-name">references=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001719" class="method-detail">
+        <a name="M001719"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001719.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001719.html');return false;">
+          <span class="method-name">references=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001819" class="method-detail">
+        <a name="M001819"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001819.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001819.html');return false;">
+          <span class="method-name">reply_addresses</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001749" class="method-detail">
+        <a name="M001749"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001749.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001749.html');return false;">
+          <span class="method-name">reply_addresses</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001775" class="method-detail">
+        <a name="M001775"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001775.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001775.html');return false;">
+          <span class="method-name">reply_to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001705" class="method-detail">
+        <a name="M001705"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001705.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001705.html');return false;">
+          <span class="method-name">reply_to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001706" class="method-detail">
+        <a name="M001706"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001706.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001706.html');return false;">
+          <span class="method-name">reply_to=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001776" class="method-detail">
+        <a name="M001776"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001776.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001776.html');return false;">
+          <span class="method-name">reply_to=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001773" class="method-detail">
+        <a name="M001773"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001773.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001773.html');return false;">
+          <span class="method-name">reply_to_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001703" class="method-detail">
+        <a name="M001703"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001703.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001703.html');return false;">
+          <span class="method-name">reply_to_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001704" class="method-detail">
+        <a name="M001704"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001704.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001704.html');return false;">
+          <span class="method-name">reply_to_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001774" class="method-detail">
+        <a name="M001774"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001774.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001774.html');return false;">
+          <span class="method-name">reply_to_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001859" class="method-detail">
+        <a name="M001859"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001859.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001859.html');return false;">
+          <span class="method-name">send_text_to</span><span class="method-args">( smtp )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001858" class="method-detail">
+        <a name="M001858"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001858.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001858.html');return false;">
+          <span class="method-name">send_to</span><span class="method-args">( smtp )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001860" class="method-detail">
+        <a name="M001860"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001860.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001860.html');return false;">
+          <span class="method-name">send_to_0</span><span class="method-args">( smtp, from, to )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001709" class="method-detail">
+        <a name="M001709"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001709.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001709.html');return false;">
+          <span class="method-name">sender</span><span class="method-args">( default )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001779" class="method-detail">
+        <a name="M001779"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001779.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001779.html');return false;">
+          <span class="method-name">sender</span><span class="method-args">( default )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001710" class="method-detail">
+        <a name="M001710"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001710.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001710.html');return false;">
+          <span class="method-name">sender=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001780" class="method-detail">
+        <a name="M001780"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001780.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001780.html');return false;">
+          <span class="method-name">sender=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001777" class="method-detail">
+        <a name="M001777"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001777.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001777.html');return false;">
+          <span class="method-name">sender_addr</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001707" class="method-detail">
+        <a name="M001707"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001707.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001707.html');return false;">
+          <span class="method-name">sender_addr</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001708" class="method-detail">
+        <a name="M001708"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001708.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001708.html');return false;">
+          <span class="method-name">sender_addr=</span><span class="method-args">( addr )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001778" class="method-detail">
+        <a name="M001778"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001778.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001778.html');return false;">
+          <span class="method-name">sender_addr=</span><span class="method-args">( addr )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001740" class="method-detail">
+        <a name="M001740"></a>
+
+        <div class="method-heading">
+          <span class="method-name">set_content_disposition</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001810" class="method-detail">
+        <a name="M001810"></a>
+
+        <div class="method-heading">
+          <span class="method-name">set_content_disposition</span><span class="method-args">( str, params = nil )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Mail.html#M001738">set_disposition</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001795" class="method-detail">
+        <a name="M001795"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001795.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001795.html');return false;">
+          <span class="method-name">set_content_type</span><span class="method-args">( str, sub = nil, param = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001725" class="method-detail">
+        <a name="M001725"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001725.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001725.html');return false;">
+          <span class="method-name">set_content_type</span><span class="method-args">( str, sub = nil, param = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001738" class="method-detail">
+        <a name="M001738"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001738.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001738.html');return false;">
+          <span class="method-name">set_disposition</span><span class="method-args">( str, params = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001808" class="method-detail">
+        <a name="M001808"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001808.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001808.html');return false;">
+          <span class="method-name">set_disposition</span><span class="method-args">( str, params = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001874" class="method-detail">
+        <a name="M001874"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001874.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001874.html');return false;">
+          <span class="method-name">setup_forward</span><span class="method-args">( mail )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001872" class="method-detail">
+        <a name="M001872"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001872.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001872.html');return false;">
+          <span class="method-name">setup_reply</span><span class="method-args">( m )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001833" class="method-detail">
+        <a name="M001833"></a>
+
+        <div class="method-heading">
+          <span class="method-name">store</span><span class="method-args">( key, val )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for #[]=
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001755" class="method-detail">
+        <a name="M001755"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001755.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001755.html');return false;">
+          <span class="method-name">strftime</span><span class="method-args">( fmt, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001685" class="method-detail">
+        <a name="M001685"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001685.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001685.html');return false;">
+          <span class="method-name">strftime</span><span class="method-args">( fmt, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001830" class="method-detail">
+        <a name="M001830"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001830.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001830.html');return false;">
+          <span class="method-name">sub_header</span><span class="method-args">(key, param)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001794" class="method-detail">
+        <a name="M001794"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001794.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001794.html');return false;">
+          <span class="method-name">sub_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001724" class="method-detail">
+        <a name="M001724"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001724.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001724.html');return false;">
+          <span class="method-name">sub_type</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001711" class="method-detail">
+        <a name="M001711"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001711.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001711.html');return false;">
+          <span class="method-name">subject</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Mail.html#M001711">subject</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001781" class="method-detail">
+        <a name="M001781"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001781.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001781.html');return false;">
+          <span class="method-name">subject</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Mail.html#M001711">subject</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001889" class="method-detail">
+        <a name="M001889"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001889.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001889.html');return false;">
+          <span class="method-name">subject</span><span class="method-args">(to_charset = 'utf-8')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001713" class="method-detail">
+        <a name="M001713"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001713.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001713.html');return false;">
+          <span class="method-name">subject=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001783" class="method-detail">
+        <a name="M001783"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001783.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001783.html');return false;">
+          <span class="method-name">subject=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001692" class="method-detail">
+        <a name="M001692"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001692.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001692.html');return false;">
+          <span class="method-name">to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001762" class="method-detail">
+        <a name="M001762"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001762.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001762.html');return false;">
+          <span class="method-name">to</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001765" class="method-detail">
+        <a name="M001765"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001765.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001765.html');return false;">
+          <span class="method-name">to=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001695" class="method-detail">
+        <a name="M001695"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001695.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001695.html');return false;">
+          <span class="method-name">to=</span><span class="method-args">( *strs )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001756" class="method-detail">
+        <a name="M001756"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001756.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001756.html');return false;">
+          <span class="method-name">to_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+destination
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001686" class="method-detail">
+        <a name="M001686"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001686.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001686.html');return false;">
+          <span class="method-name">to_addrs</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+destination
+</p>
+        </div>
+      </div>
+
+      <div id="method-M001759" class="method-detail">
+        <a name="M001759"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001759.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001759.html');return false;">
+          <span class="method-name">to_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001689" class="method-detail">
+        <a name="M001689"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001689.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001689.html');return false;">
+          <span class="method-name">to_addrs=</span><span class="method-args">( arg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001730" class="method-detail">
+        <a name="M001730"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001730.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001730.html');return false;">
+          <span class="method-name">transfer_encoding</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001800" class="method-detail">
+        <a name="M001800"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001800.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001800.html');return false;">
+          <span class="method-name">transfer_encoding</span><span class="method-args">( default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001731" class="method-detail">
+        <a name="M001731"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001731.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001731.html');return false;">
+          <span class="method-name">transfer_encoding=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001801" class="method-detail">
+        <a name="M001801"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001801.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001801.html');return false;">
+          <span class="method-name">transfer_encoding=</span><span class="method-args">( str )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001797" class="method-detail">
+        <a name="M001797"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001797.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001797.html');return false;">
+          <span class="method-name">type_param</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001727" class="method-detail">
+        <a name="M001727"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001727.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001727.html');return false;">
+          <span class="method-name">type_param</span><span class="method-args">( name, default = nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001890" class="method-detail">
+        <a name="M001890"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001890.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001890.html');return false;">
+          <span class="method-name">unquoted_body</span><span class="method-args">(to_charset = 'utf-8')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001878" class="method-detail">
+        <a name="M001878"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001878.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001878.html');return false;">
+          <span class="method-name">value?</span><span class="method-args">( val )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001877" class="method-detail">
+        <a name="M001877"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001877.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001877.html');return false;">
+          <span class="method-name">values</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001846" class="method-detail">
+        <a name="M001846"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001846.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001846.html');return false;">
+          <span class="method-name">values_at</span><span class="method-args">( *args )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M001826" class="method-detail">
+        <a name="M001826"></a>
+
+        <div class="method-heading">
+          <a href="Mail.src/M001826.html" target="Code" class="method-signature"
+            onclick="popupCode('Mail.src/M001826.html');return false;">
+          <span class="method-name">write_back</span><span class="method-args">( eol = &quot;\n&quot;, charset = 'e' )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAJOR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MINOR
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TINY
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The version of the Needle library in use.
+  name: STRING
+  value: "[ MAJOR, MINOR, TINY ].join( \".\" )"
+full_name: Needle::Version
+includes: []
+
+instance_methods: []
+
+name: Version
+superclass: 

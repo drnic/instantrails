@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: In version 4, stat accepts a flags parameter. If flags is <tt>nil</tt>, it will default to returning all attributes. Otherwise, the flags parameter should be a bitwise combination of the F_xxx constants of Net::SFTP::Protocol::V_04::Attributes.
+full_name: Net::SFTP::Protocol::V_04::Impl#stat
+is_singleton: false
+name: stat
+params: ( id, filename, flags=nil )
+visibility: public

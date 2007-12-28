@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to perform public-key authentication for the given username, trying each identity known to the key manager. If any of them succeed, returns <tt>true</tt>, otherwise returns <tt>false</tt>. The data hash must contain a UserKeyManager instance under the <tt>:key_manager</tt> key.
+full_name: Net::SSH::UserAuth::Methods::PublicKey#authenticate
+is_singleton: false
+name: authenticate
+params: ( next_service, username, data={} )
+visibility: public

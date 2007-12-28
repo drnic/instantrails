@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Used by third-parties to register a service that should be made available to any SSH session when the session is constructed. The block should take a two parameters--the dependency injection container that should contain the services, and the service-point for the service being registered.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>name</tt> parameter should be a symbol.
+full_name: Net::SSH#register_service
+is_singleton: false
+name: register_service
+params: ( name, &block )
+visibility: public

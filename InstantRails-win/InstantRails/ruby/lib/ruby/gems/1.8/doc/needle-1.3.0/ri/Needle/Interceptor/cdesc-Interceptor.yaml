@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The set of options that were given to this interceptor via the #with_options method."
+  name: options
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This represents the definition of an interceptor as it is attached to a service point. Instances of Interceptor are also used for configuring themselves programmatically.
+- !ruby/struct:SM::Flow::P 
+  body: "You will almost never instantiate an Interceptor object directly. Instead, use the Container#intercept method. You can then configure the new interceptor by chaining methods of the new object together, quite readably:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.intercept( :foo ).with! { some_interceptor }.\n    with_options( :arg =&gt; :value )\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can also create new interceptors on the fly via the Interceptor#doing method.
+constants: []
+
+full_name: Needle::Interceptor
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: action
+- !ruby/object:RI::MethodSummary 
+  name: doing
+- !ruby/object:RI::MethodSummary 
+  name: with
+- !ruby/object:RI::MethodSummary 
+  name: with!
+- !ruby/object:RI::MethodSummary 
+  name: with_options
+name: Interceptor
+superclass: Object

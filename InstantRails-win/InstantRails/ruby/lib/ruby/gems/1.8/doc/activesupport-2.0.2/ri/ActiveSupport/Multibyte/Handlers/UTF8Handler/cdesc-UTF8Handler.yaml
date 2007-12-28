@@ -1,0 +1,161 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: capitalize
+- !ruby/object:RI::MethodSummary 
+  name: center
+- !ruby/object:RI::MethodSummary 
+  name: compose
+- !ruby/object:RI::MethodSummary 
+  name: compose_codepoints
+- !ruby/object:RI::MethodSummary 
+  name: consumes?
+- !ruby/object:RI::MethodSummary 
+  name: decompose
+- !ruby/object:RI::MethodSummary 
+  name: decompose_codepoints
+- !ruby/object:RI::MethodSummary 
+  name: downcase
+- !ruby/object:RI::MethodSummary 
+  name: g_length
+- !ruby/object:RI::MethodSummary 
+  name: g_pack
+- !ruby/object:RI::MethodSummary 
+  name: g_unpack
+- !ruby/object:RI::MethodSummary 
+  name: in_char_class?
+- !ruby/object:RI::MethodSummary 
+  name: index
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: justify
+- !ruby/object:RI::MethodSummary 
+  name: ljust
+- !ruby/object:RI::MethodSummary 
+  name: lstrip
+- !ruby/object:RI::MethodSummary 
+  name: normalize
+- !ruby/object:RI::MethodSummary 
+  name: padding
+- !ruby/object:RI::MethodSummary 
+  name: reorder_characters
+- !ruby/object:RI::MethodSummary 
+  name: reverse
+- !ruby/object:RI::MethodSummary 
+  name: rjust
+- !ruby/object:RI::MethodSummary 
+  name: rstrip
+- !ruby/object:RI::MethodSummary 
+  name: size
+- !ruby/object:RI::MethodSummary 
+  name: slice
+- !ruby/object:RI::MethodSummary 
+  name: strip
+- !ruby/object:RI::MethodSummary 
+  name: tidy_bytes
+- !ruby/object:RI::MethodSummary 
+  name: to_case
+- !ruby/object:RI::MethodSummary 
+  name: translate_offset
+- !ruby/object:RI::MethodSummary 
+  name: u_unpack
+- !ruby/object:RI::MethodSummary 
+  name: upcase
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: UTF8Handler implements Unicode aware operations for strings, these operations will be used by the Chars proxy when $KCODE is set to 'UTF8'.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hangul character boundaries and properties
+  name: HANGUL_SBASE
+  value: "0xAC00"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_LBASE
+  value: "0x1100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_VBASE
+  value: "0x1161"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_TBASE
+  value: "0x11A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_LCOUNT
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_VCOUNT
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_TCOUNT
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_NCOUNT
+  value: HANGUL_VCOUNT * HANGUL_TCOUNT
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_SCOUNT
+  value: "11172"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_SLAST
+  value: HANGUL_SBASE + HANGUL_SCOUNT
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_JAMO_FIRST
+  value: "0x1100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANGUL_JAMO_LAST
+  value: "0x11FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: All the unicode whitespace
+  name: UNICODE_WHITESPACE
+  value: "[       (0x0009..0x000D).to_a,  # White_Space # Cc   [5] <control-0009>..<control-000D>       0x0020,          # White_Space # Zs       SPACE       0x0085,          # White_Space # Cc       <control-0085>       0x00A0,          # White_Space # Zs       NO-BREAK SPACE       0x1680,          # White_Space # Zs       OGHAM SPACE MARK       0x180E,          # White_Space # Zs       MONGOLIAN VOWEL SEPARATOR       (0x2000..0x200A).to_a, # White_Space # Zs  [11] EN QUAD..HAIR SPACE       0x2028,          # White_Space # Zl       LINE SEPARATOR       0x2029,          # White_Space # Zp       PARAGRAPH SEPARATOR       0x202F,          # White_Space # Zs       NARROW NO-BREAK SPACE       0x205F,          # White_Space # Zs       MEDIUM MATHEMATICAL SPACE       0x3000,          # White_Space # Zs       IDEOGRAPHIC SPACE     ].flatten.freeze"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: BOM (byte order mark) can also be seen as whitespace, it's a non-rendering character used to distinguish between little and big endian. This is not an issue in utf-8, so it must be ignored.
+  name: UNICODE_LEADERS_AND_TRAILERS
+  value: UNICODE_WHITESPACE + [65279]
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Borrowed from the Kconv library by Shinji KONO - (also as seen on the W3C site)
+  name: UTF8_PAT
+  value: "/\\A(?:                    [\\x00-\\x7f]                                     |                    [\\xc2-\\xdf] [\\x80-\\xbf]                         |                    \\xe0        [\\xa0-\\xbf] [\\x80-\\xbf]             |                    [\\xe1-\\xef] [\\x80-\\xbf] [\\x80-\\xbf]             |                    \\xf0        [\\x90-\\xbf] [\\x80-\\xbf] [\\x80-\\xbf] |                    [\\xf1-\\xf3] [\\x80-\\xbf] [\\x80-\\xbf] [\\x80-\\xbf] |                    \\xf4        [\\x80-\\x8f] [\\x80-\\xbf] [\\x80-\\xbf]                   )*\\z/xn"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNICODE_TRAILERS_PAT
+  value: /(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+\Z/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNICODE_LEADERS_PAT
+  value: /\A(#{codepoints_to_pattern(UNICODE_LEADERS_AND_TRAILERS)})+/
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: UniCode Database
+  name: UCD
+  value: UnicodeDatabase.new
+full_name: ActiveSupport::Multibyte::Handlers::UTF8Handler
+includes: []
+
+instance_methods: []
+
+name: UTF8Handler
+superclass: Object

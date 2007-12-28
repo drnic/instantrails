@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Constructor method for new resources; the optional <tt>attributes</tt> parameter takes a <tt>Hash</tt> of attributes for the new resource.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_course = Course.new\n  my_course.name = &quot;Western Civilization&quot;\n  my_course.lecturer = &quot;Don Trotter&quot;\n  my_course.save\n\n  my_other_course = Course.new(:name =&gt; &quot;Philosophy: Reason and Being&quot;, :lecturer =&gt; &quot;Ralph Cling&quot;)\n  my_other_course.save\n"
+full_name: ActiveResource::Base::new
+is_singleton: true
+name: new
+params: (attributes = {})
+visibility: public

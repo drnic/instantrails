@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A module to support custom REST methods and sub-resources, allowing you to break out of the &quot;default&quot; REST methods with your own custom resource requests. For example, say you use Rails to expose a REST service and configure your routes with:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   map.resources :people, :new =&gt; { :register =&gt; :post },\n                          :element =&gt; { :promote =&gt; :put, :deactivate =&gt; :delete }\n                          :collection =&gt; { :active =&gt; :get }\n\n This route set creates routes for the following http requests:\n\n   POST    /people/new/register.xml #=&gt; PeopleController.register\n   PUT     /people/1/promote.xml    #=&gt; PeopleController.promote with :id =&gt; 1\n   DELETE  /people/1/deactivate.xml #=&gt; PeopleController.deactivate with :id =&gt; 1\n   GET     /people/active.xml       #=&gt; PeopleController.active\n"
+- !ruby/struct:SM::Flow::P 
+  body: Using this module, Active Resource can use these custom REST methods just like the standard methods.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveResource::Base\n    self.site = &quot;http://37s.sunrise.i:3000&quot;\n  end\n\n  Person.new(:name =&gt; 'Ryan).post(:register)  # POST /people/new/register.xml\n  # =&gt; { :id =&gt; 1, :name =&gt; 'Ryan' }\n\n  Person.find(1).put(:promote, :position =&gt; 'Manager') # PUT /people/1/promote.xml\n  Person.find(1).delete(:deactivate) # DELETE /people/1/deactivate.xml\n\n  Person.get(:active)  # GET /people/active.xml\n  # =&gt; [{:id =&gt; 1, :name =&gt; 'Ryan'}, {:id =&gt; 2, :name =&gt; 'Joe'}]\n"
+constants: []
+
+full_name: ActiveResource
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Validations
+- !ruby/object:RI::IncludedModule 
+  name: CustomMethods
+instance_methods: []
+
+name: ActiveResource
+superclass: 

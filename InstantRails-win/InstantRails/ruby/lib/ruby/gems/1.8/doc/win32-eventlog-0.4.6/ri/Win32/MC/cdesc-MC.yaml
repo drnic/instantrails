@@ -1,0 +1,39 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: dll_file
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: mc_file
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: res_file
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.1.3'"
+full_name: Win32::MC
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clean
+- !ruby/object:RI::MethodSummary 
+  name: create_all
+- !ruby/object:RI::MethodSummary 
+  name: create_dll_file
+- !ruby/object:RI::MethodSummary 
+  name: create_header
+- !ruby/object:RI::MethodSummary 
+  name: create_res_file
+name: MC
+superclass: Object

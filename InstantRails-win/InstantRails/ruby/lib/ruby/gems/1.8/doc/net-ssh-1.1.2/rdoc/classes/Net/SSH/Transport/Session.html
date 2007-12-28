@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SSH::Transport::Session</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SSH::Transport::Session</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/net/ssh/transport/session_rb.html">
+                lib/net/ssh/transport/session.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Represents a low-level <a href="../../SSH.html">SSH</a> session, at the
+transport protocol level. This handles the algorithm negotiation and key
+exchange for any <a href="../../SSH.html">SSH</a> connection.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000185">client_name</a>&nbsp;&nbsp;
+      <a href="#M000186">close</a>&nbsp;&nbsp;
+      <a href="#M000183">new</a>&nbsp;&nbsp;
+      <a href="#M000184">peer</a>&nbsp;&nbsp;
+      <a href="#M000190">ping!</a>&nbsp;&nbsp;
+      <a href="#M000189">reader_ready?</a>&nbsp;&nbsp;
+      <a href="#M000188">send_message</a>&nbsp;&nbsp;
+      <a href="#M000182">version</a>&nbsp;&nbsp;
+      <a href="#M000187">wait_for_message</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Constants.html">Constants</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NAME</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;Ruby/Net::SSH&quot;</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The name that <a href="../../SSH.html">Net::SSH</a> reports for itself
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROTOCOL</td>
+          <td>=</td>
+          <td class="context-item-value">&quot;SSH-2.0&quot;</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The <a href="../../SSH.html">SSH</a> protocol supported by <a
+href="../../SSH.html">Net::SSH</a>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VALID_OPTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">[ :port, :host_key, :kex, :encryption, :hmac,                           :compression, :languages, :compression_level, :proxy,                           :timeout ]</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">algorithm_negotiator</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">algorithms</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+the collection of algorithms currently being used
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ciphers</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">compressors</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">decompressors</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">default_port</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">hmacs</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">host</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+the hostname that was requested
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">kexs</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">logger</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">packet_receiver</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">packet_sender</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">port</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+the port that was requested
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">session_id</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+the unique session identifier
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">socket_factory</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">version_negotiator</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000183" class="method-detail">
+        <a name="M000183"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000183.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000183.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( host, options={} ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Session.html#M000183">new</a> connection to the given
+host. This will negotiate the algorithms to use and exchange the keys. A
+block must be given. The uninitialized <tt>self</tt> will be passed to the
+block, so that dependencies may be injected.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000182" class="method-detail">
+        <a name="M000182"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000182.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000182.html');return false;">
+          <span class="method-name">version</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Session.html#M000182">version</a> string of this
+client.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000185" class="method-detail">
+        <a name="M000185"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000185.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000185.html');return false;">
+          <span class="method-name">client_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the name of the client&#8216;s host, as reported by the socket.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000186" class="method-detail">
+        <a name="M000186"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000186.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000186.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Closes the connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000184" class="method-detail">
+        <a name="M000184"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000184.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000184.html');return false;">
+          <span class="method-name">peer</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns info about the remote <a href="Session.html#M000184">peer</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000190" class="method-detail">
+        <a name="M000190"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000190.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000190.html');return false;">
+          <span class="method-name">ping!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends an IGNORE packet to the server, as a way to ping the connection and
+make sure the server knows the client is still active.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000189" class="method-detail">
+        <a name="M000189"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000189.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000189.html');return false;">
+          <span class="method-name">reader_ready?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if there are bytes to be read on the socket. Note that this
+only means there is an encrypted packet ready to be read, not that there is
+data available to any particular <a href="../../SSH.html">SSH</a> channel.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000188" class="method-detail">
+        <a name="M000188"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000188.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000188.html');return false;">
+          <span class="method-name">send_message</span><span class="method-args">( message )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends the given payload, using the currently configured <a
+href="OutgoingPacketStream.html">OutgoingPacketStream</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000187" class="method-detail">
+        <a name="M000187"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000187.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000187.html');return false;">
+          <span class="method-name">wait_for_message</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for the next message from the server, handling common requests like
+DISCONNECT, IGNORE, DEBUG, and KEXINIT in the background. The next message
+is returned as a [ type, buffer ] tuple, where the buffer is a <a
+href="../Util/ReaderBuffer.html">Net::SSH::Util::ReaderBuffer</a>.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

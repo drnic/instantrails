@@ -1,0 +1,89 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Base color [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border width [Integer]
+  name: borderWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Frame style [Integer]
+  name: frameStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current grab owner [FXWindow]
+  name: grabOwner
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Popup orientation [Integer]
+  name: orientation
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shrinkwrap mode [Boolean]
+  name: shrinkWrap
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Popup window
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Popup internal orientation
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+POPUP_VERTICAL+:"
+    body: Vertical orientation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+POPUP_HORIZONTAL+:"
+    body: Horizontal orientation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+POPUP_SHRINKWRAP+:"
+    body: Shrinkwrap to content
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXPopup
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: popdown
+- !ruby/object:RI::MethodSummary 
+  name: popup
+name: FXPopup
+superclass: FXShell

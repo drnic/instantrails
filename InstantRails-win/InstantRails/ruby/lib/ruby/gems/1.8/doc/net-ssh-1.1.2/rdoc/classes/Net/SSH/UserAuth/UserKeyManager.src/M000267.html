@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sign (Net::SSH::UserAuth::UserKeyManager)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/userkeys.rb, line 184</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sign</span>( <span class="ruby-identifier">identity</span>, <span class="ruby-identifier">data</span> )
+          <span class="ruby-identifier">info</span> = <span class="ruby-identifier">find_identity</span>( <span class="ruby-identifier">identity</span> )
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:key</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:from</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:file</span>
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:key</span>] = <span class="ruby-ivar">@keys</span>.<span class="ruby-identifier">load_private_key</span>( <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:file</span>] )
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span> 
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserKeyManagerError</span>,
+                    <span class="ruby-value str">&quot;the given identity is known, &quot;</span> <span class="ruby-operator">+</span>
+                    <span class="ruby-value str">&quot;but the private key could not be loaded &quot;</span> <span class="ruby-operator">+</span>
+                    <span class="ruby-node">&quot;(#{e.message} [#{e.class}])&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:key</span>]
+            <span class="ruby-identifier">sig_blob</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+            <span class="ruby-identifier">sig_blob</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">identity</span>.<span class="ruby-identifier">ssh_type</span>
+            <span class="ruby-identifier">sig_blob</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:key</span>].<span class="ruby-identifier">ssh_do_sign</span>( <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_s</span> )
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">sig_blob</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">info</span>[<span class="ruby-identifier">:from</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">:agent</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserKeyManagerError</span>,
+              <span class="ruby-value str">&quot;the agent is no longer available&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@agent</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@agent</span>.<span class="ruby-identifier">sign</span>( <span class="ruby-identifier">identity</span>, <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_s</span> )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">UserKeyManagerError</span>,
+            <span class="ruby-node">&quot;[BUG] can't determine identity origin (#{info.inspect})&quot;</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

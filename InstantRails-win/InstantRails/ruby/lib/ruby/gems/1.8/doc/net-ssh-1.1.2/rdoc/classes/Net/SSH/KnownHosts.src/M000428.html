@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>hostfile_locations (Net::SSH::KnownHosts)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/known-hosts.rb, line 33</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">hostfile_locations</span>
+        <span class="ruby-ivar">@hostfile_locations</span> <span class="ruby-operator">||=</span> [
+          <span class="ruby-node">&quot;#{home_directory}/.ssh/known_hosts&quot;</span>,
+          <span class="ruby-node">&quot;#{home_directory}/.ssh/known_hosts2&quot;</span>,
+          <span class="ruby-value str">&quot;/etc/ssh/ssh_known_hosts&quot;</span>,
+          <span class="ruby-value str">&quot;/etc/ssh/ssh_known_hosts2&quot;</span>
+        ]
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,31 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Getting dates in different convenient string representations and other objects
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_FORMATS
+  value: "{           :short        => \"%e %b\",           :long         => \"%B %e, %Y\",           :db           => \"%Y-%m-%d\",           :long_ordinal => lambda { |date| date.strftime(\"%B #{date.day.ordinalize}, %Y\") }, # => \"April 25th, 2007\"           :rfc822       => \"%e %b %Y\""
+full_name: ActiveSupport::CoreExtensions::Date::Conversions
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: readable_inspect
+- !ruby/object:RI::MethodSummary 
+  name: to_date
+- !ruby/object:RI::MethodSummary 
+  name: to_datetime
+- !ruby/object:RI::MethodSummary 
+  name: to_formatted_s
+- !ruby/object:RI::MethodSummary 
+  name: to_time
+- !ruby/object:RI::MethodSummary 
+  name: xmlschema
+name: Conversions
+superclass: 

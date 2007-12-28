@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: SQLite3::Driver::Native::Driver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">SQLite3::Driver::Native::Driver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/sqlite3/driver/native/driver_rb.html">
+                lib/sqlite3/driver/native/driver.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000049">api_delegate</a>&nbsp;&nbsp;
+      <a href="#M000041">bind_text</a>&nbsp;&nbsp;
+      <a href="#M000035">busy_handler</a>&nbsp;&nbsp;
+      <a href="#M000043">column_decltype</a>&nbsp;&nbsp;
+      <a href="#M000042">column_name</a>&nbsp;&nbsp;
+      <a href="#M000044">column_text</a>&nbsp;&nbsp;
+      <a href="#M000034">complete?</a>&nbsp;&nbsp;
+      <a href="#M000045">create_function</a>&nbsp;&nbsp;
+      <a href="#M000039">errmsg</a>&nbsp;&nbsp;
+      <a href="#M000033">new</a>&nbsp;&nbsp;
+      <a href="#M000038">open</a>&nbsp;&nbsp;
+      <a href="#M000040">prepare</a>&nbsp;&nbsp;
+      <a href="#M000048">result_error</a>&nbsp;&nbsp;
+      <a href="#M000047">result_text</a>&nbsp;&nbsp;
+      <a href="#M000036">set_authorizer</a>&nbsp;&nbsp;
+      <a href="#M000037">trace</a>&nbsp;&nbsp;
+      <a href="#M000046">value_text</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000049.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000049.html');return false;">
+          <span class="method-name">api_delegate</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000033" class="method-detail">
+        <a name="M000033"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000033.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000033.html');return false;">
+          <span class="method-name">new</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000041" class="method-detail">
+        <a name="M000041"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000041.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000041.html');return false;">
+          <span class="method-name">bind_text</span><span class="method-args">( stmt, index, value, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000035" class="method-detail">
+        <a name="M000035"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000035.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000035.html');return false;">
+          <span class="method-name">busy_handler</span><span class="method-args">( db, data=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000043" class="method-detail">
+        <a name="M000043"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000043.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000043.html');return false;">
+          <span class="method-name">column_decltype</span><span class="method-args">( stmt, index, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000042" class="method-detail">
+        <a name="M000042"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000042.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000042.html');return false;">
+          <span class="method-name">column_name</span><span class="method-args">( stmt, index, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000044.html');return false;">
+          <span class="method-name">column_text</span><span class="method-args">( stmt, index, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000034" class="method-detail">
+        <a name="M000034"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000034.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000034.html');return false;">
+          <span class="method-name">complete?</span><span class="method-args">( sql, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000045.html');return false;">
+          <span class="method-name">create_function</span><span class="method-args">( db, name, args, text, cookie, func, step, final )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000039" class="method-detail">
+        <a name="M000039"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000039.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000039.html');return false;">
+          <span class="method-name">errmsg</span><span class="method-args">( db, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000038" class="method-detail">
+        <a name="M000038"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000038.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000038.html');return false;">
+          <span class="method-name">open</span><span class="method-args">( filename, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000040" class="method-detail">
+        <a name="M000040"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000040.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000040.html');return false;">
+          <span class="method-name">prepare</span><span class="method-args">( db, sql, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000048.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000048.html');return false;">
+          <span class="method-name">result_error</span><span class="method-args">( context, value, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000047.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000047.html');return false;">
+          <span class="method-name">result_text</span><span class="method-args">( context, result, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000036" class="method-detail">
+        <a name="M000036"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000036.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000036.html');return false;">
+          <span class="method-name">set_authorizer</span><span class="method-args">( db, data=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000037" class="method-detail">
+        <a name="M000037"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000037.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000037.html');return false;">
+          <span class="method-name">trace</span><span class="method-args">( db, data=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000046.html');return false;">
+          <span class="method-name">value_text</span><span class="method-args">( value, utf16=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

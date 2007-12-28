@@ -1,0 +1,585 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_BEGIN
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_CURRENT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_END
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File Attributes
+  name: FILE_ATTRIBUTE_READONLY
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_HIDDEN
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_SYSTEM
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_DIRECTORY
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_ARCHIVE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_ENCRYPTED
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_NORMAL
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_TEMPORARY
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_SPARSE_FILE
+  value: "0x00000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_REPARSE_POINT
+  value: "0x00000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_COMPRESSED
+  value: "0x00000800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_OFFLINE
+  value: "0x00001000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ATTRIBUTE_NOT_CONTENT_INDEXED
+  value: "0x00002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File types
+  name: FILE_TYPE_UNKNOWN
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_TYPE_DISK
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_TYPE_CHAR
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_TYPE_PIPE
+  value: "0x0003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_TYPE_REMOTE
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File security and access rights
+  name: APPLICATION_ERROR_MASK
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEVERITY_SUCCESS
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEVERITY_INFORMATIONAL
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEVERITY_WARNING
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEVERITY_ERROR
+  value: "0xc0000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSION_FORMAT_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSION_FORMAT_DEFAULT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSION_FORMAT_LZNT1
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSION_ENGINE_STANDARD
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSION_ENGINE_MAXIMUM
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACCESS_ALLOWED_ACE_TYPE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACCESS_DENIED_ACE_TYPE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ANYSIZE_ARRAY
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SYSTEM_AUDIT_ACE_TYPE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SYSTEM_ALARM_ACE_TYPE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OBJECT_INHERIT_ACE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONTAINER_INHERIT_ACE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NO_PROPAGATE_INHERIT_ACE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INHERIT_ONLY_ACE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_INHERIT_FLAGS
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUCCESSFUL_ACCESS_ACE_FLAG
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FAILED_ACCESS_ACE_FLAG
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DELETE
+  value: "0x00010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: READ_CONTROL
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WRITE_DAC
+  value: "0x40000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WRITE_OWNER
+  value: "0x80000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SYNCHRONIZE
+  value: "0x100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STANDARD_RIGHTS_REQUIRED
+  value: "0xf0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STANDARD_RIGHTS_READ
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STANDARD_RIGHTS_WRITE
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STANDARD_RIGHTS_EXECUTE
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STANDARD_RIGHTS_ALL
+  value: "0x1f0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPECIFIC_RIGHTS_ALL
+  value: "0xffff"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACCESS_SYSTEM_SECURITY
+  value: "0x1000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAXIMUM_ALLOWED
+  value: "0x2000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_READ
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_WRITE
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_EXECUTE
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GENERIC_ALL
+  value: "0x10000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_READ_DATA
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_LIST_DIRECTORY
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_WRITE_DATA
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ADD_FILE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_APPEND_DATA
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ADD_SUBDIRECTORY
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_CREATE_PIPE_INSTANCE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_READ_EA
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_READ_PROPERTIES
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_WRITE_EA
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_WRITE_PROPERTIES
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_EXECUTE
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_TRAVERSE
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_DELETE_CHILD
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_READ_ATTRIBUTES
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_WRITE_ATTRIBUTES
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_ALL_ACCESS
+  value: STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0x1ff
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_GENERIC_READ
+  value: STANDARD_RIGHTS_READ |          FILE_READ_DATA |          FILE_READ_ATTRIBUTES |          FILE_READ_EA |          SYNCHRONIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_GENERIC_WRITE
+  value: STANDARD_RIGHTS_WRITE |          FILE_WRITE_DATA |          FILE_WRITE_ATTRIBUTES |          FILE_WRITE_EA |          FILE_APPEND_DATA |          SYNCHRONIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_GENERIC_EXECUTE
+  value: STANDARD_RIGHTS_EXECUTE |          FILE_READ_ATTRIBUTES |          FILE_EXECUTE |          SYNCHRONIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SHARE_READ
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SHARE_WRITE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SHARE_DELETE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_FILE_NAME
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_DIR_NAME
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_ATTRIBUTES
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_SIZE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_LAST_WRITE
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_LAST_ACCESS
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_CREATION
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_NOTIFY_CHANGE_SECURITY
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAILSLOT_NO_MESSAGE
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAILSLOT_WAIT_FOREVER
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_CASE_SENSITIVE_SEARCH
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_CASE_PRESERVED_NAMES
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_UNICODE_ON_DISK
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_PERSISTENT_ACLS
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FILE_COMPRESSION
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_VOLUME_QUOTAS
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SUPPORTS_SPARSE_FILES
+  value: "64"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SUPPORTS_REPARSE_POINTS
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SUPPORTS_REMOTE_STORAGE
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_VOLUME_IS_COMPRESSED
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SUPPORTS_OBJECT_IDS
+  value: "0x10000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_SUPPORTS_ENCRYPTION
+  value: "0x20000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File flags
+  name: FILE_FLAG_WRITE_THROUGH
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_OVERLAPPED
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_NO_BUFFERING
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_RANDOM_ACCESS
+  value: "0x10000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_SEQUENTIAL_SCAN
+  value: "0x08000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_DELETE_ON_CLOSE
+  value: "0x04000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_BACKUP_SEMANTICS
+  value: "0x02000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_POSIX_SEMANTICS
+  value: "0x01000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_OPEN_REPARSE_POINT
+  value: "0x00200000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_OPEN_NO_RECALL
+  value: "0x00100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FILE_FLAG_FIRST_PIPE_INSTANCE
+  value: "0x00080000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File creation disposition
+  name: CREATE_NEW
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CREATE_ALWAYS
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPEN_EXISTING
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPEN_ALWAYS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TRUNCATE_EXISTING
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_QUERY
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_MAP_WRITE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_MAP_READ
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_MAP_EXECUTE
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_EXTEND_SIZE
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECTION_ALL_ACCESS
+  value: STANDARD_RIGHTS_REQUIRED |          SECTION_QUERY |          SECTION_MAP_WRITE |          SECTION_MAP_READ |          SECTION_MAP_EXECUTE |          SECTION_EXTEND_SIZE
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Errors
+  name: INVALID_FILE_ATTRIBUTES
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INVALID_HANDLE_VALUE
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INVALID_SET_FILE_POINTER
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INVALID_FILE_SIZE
+  value: "0xFFFFFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Misc
+  name: LOCKFILE_EXCLUSIVE_LOCK
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCKFILE_FAIL_IMMEDIATELY
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_REPLACE_EXISTING
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_COPY_ALLOWED
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_DELAY_UNTIL_REBOOT
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_WRITE_THROUGH
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_CREATE_HARDLINK
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MOVEFILE_FAIL_IF_NOT_TRACKABLE
+  value: "0x00000020"
+full_name: Windows::File
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Unicode
+instance_methods: []
+
+name: File
+superclass: 

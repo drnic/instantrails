@@ -1,0 +1,86 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Create a new SSH session. This method polymorphically accepts a variable number of parameters, as follows:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "1 parameter: must be the hostname to connect to."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "2 parameters: must be the hostname, and either the port (as an integer) or the username to connect as."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "3 parameters: must be the hostname, and either the port (as an integer) and username, or the username and the password."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "4 parameters: must be the hostname, port, username, and password."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Any scenario above that omits the username assumes that the USER environment variable is set to the user's name. Any scenario above that omits the password assumes that the user will log in without a password (ie, using a public key). Any scenario above that omits the port number assumes a port number of 22 (the default for SSH).
+- !ruby/struct:SM::Flow::P 
+  body: Any of the above scenarios may also accept a Hash as the last parameter, specifying a list of additional options to be used to initialize the session. (See Net::SSH::Session.add_options).
+- !ruby/struct:SM::Flow::P 
+  body: "Alternatively, named parameters may be used, in which case the first parameter is positional and is always the host to connect to, following which you may specify any of the following named parameters (as symbols):"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":port"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":username"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":password"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Any additional parameters are treated as options that configure how the connection behaves.
+- !ruby/struct:SM::Flow::P 
+  body: "Allowed options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":keys (the list of filenames identifying the user's keys)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":host_keys (the list of filenames identifying the host's keys)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":auth_methods (a list of authentication methods to use)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":crypto_backend (defaults to :ossl, and specifies the cryptography backend to use)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":registry_options (a hash of options to use when creating the registry)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":container (the registry to use. If not specified, a new registry will be created)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":verbose (how verbose the logging output should be. Defaults to :warn)."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":log (the name of the file, or the IO object, to which messages will be logged. Defaults to STDERR.)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":forward_agent (true or false, whether or not to forward requests for the authentication agent. Defaults to false.)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: ":paranoid (either false, in which case server fingerprints are not verified, true, in which case they are verified and mismatches result in a warning and a prompt, or an object responding to :allow?, which will be invoked and should return true or false for whether or not to allow the connection. Defaults to true.)"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Also, any options recognized by Net::SSH::Transport::Session may be given, and will be passed through to initialize the transport session.
+- !ruby/struct:SM::Flow::P 
+  body: If a block is given to this method, then it is called with the new session object. The session object is then closed when the block terminates. If a block is not given, then the session object is returned (and must be closed explicitly).
+full_name: Net::SSH::Session::new
+is_singleton: true
+name: new
+params: ( *args ) {|self| ...}
+visibility: public

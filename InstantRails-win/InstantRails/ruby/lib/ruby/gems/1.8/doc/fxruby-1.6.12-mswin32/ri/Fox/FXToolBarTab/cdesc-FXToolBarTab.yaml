@@ -1,0 +1,81 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The active color [FXColor]
+  name: activeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The tab style [Integer]
+  name: tabStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tooltip message [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A toolbar tab is used to collapse or uncollapse a sibling widget. The sibling affected is the widget immediately following the toolbar tab or, if the toolbar tab is the last widget in the list, the widget immediately preceding the toolbar tab. Typically, the toolbar tab is paired with just one sibling widget inside a paired container, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    FXHorizontalFrame.new(...) do |p|\n      FXToolBarTab.new(p)\n      FXLabel.new(p, &quot;Hideable label&quot;, nil, LAYOUT_FILL_X)\n    end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXToolBarTab to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: Sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: Sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: Sent after the toolbar tab is collapsed (or uncollapsed). The message data indicates the new collapsed state (i.e. it's <tt>true</tt> if the toolbar tab is now collapsed, <tt>false</tt> if it is now uncollapsed).
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Toolbar tab styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOOLBARTAB_HORIZONTAL+:"
+    body: Default is for horizontal toolbar
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOOLBARTAB_VERTICAL+:"
+    body: For vertical toolbar
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLLAPSE+:"
+    body: Collapse the toolbar tab
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UNCOLLAPSE+:"
+    body: Uncollapse the toolbar tab
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXToolBarTab
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: collapse
+- !ruby/object:RI::MethodSummary 
+  name: collapsed?
+name: FXToolBarTab
+superclass: FXFrame

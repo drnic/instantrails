@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A proxy class to aid in deferred instantiation of service points. This is used primarily by the &quot;deferred&quot; service models.
+constants: []
+
+full_name: Needle::Lifecycle::Proxy
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+name: Proxy
+superclass: Object

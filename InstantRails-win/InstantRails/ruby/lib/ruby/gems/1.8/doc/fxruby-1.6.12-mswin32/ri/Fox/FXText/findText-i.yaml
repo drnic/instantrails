@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search for <em>string</em> in text buffer, and return the extent of the string as a two-element array of arrays. The first array contains the beginning index (or indices) and the second array contains the ending index (or indices). The search starts from the given <em>start</em> position, scans forward (<tt>SEARCH_FORWARD</tt>) or backward (<tt>SEARCH_BACKWARD</tt>), and wraps around if <tt>SEARCH_WRAP</tt> has been specified. The search type is either a plain search (<tt>SEARCH_EXACT</tt>), case insensitive search (<tt>SEARCH_IGNORECASE</tt>), or regular expression search (<tt>SEARCH_REGEX</tt>).
+full_name: Fox::FXText#findText
+is_singleton: false
+name: findText
+params: (string, start=0, flags=SEARCH_FORWARD|SEARCH_WRAP|SEARCH_EXACT)
+visibility: public

@@ -1,0 +1,86 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The attribute-factory used by this dispatcher.
+  name: attr_factory
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The protocol driver that drives this dispatcher.
+  name: driver
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The protocol extensions specified when the protocol version was negotiated.
+  name: extensions
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: callback
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: operation
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The implementing class for version 1 of the SFTP protocol. It implements the various operations and callbacks available to this level of the protocol. Other protocol versions will typically extend this class, adding (or modifying) methods as needed to bring the implementation into sync with the needed version.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Name
+  value: Struct.new( :filename, :longname, :attributes )
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_APPEND
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_CREAT
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_TRUNC
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_EXCL
+  value: "0x00000020"
+full_name: Net::SFTP::Protocol::V_01::Impl
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dispatch
+- !ruby/object:RI::MethodSummary 
+  name: do_attrs
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_handle
+- !ruby/object:RI::MethodSummary 
+  name: do_name
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: fstat
+- !ruby/object:RI::MethodSummary 
+  name: lstat
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: stat
+name: Impl
+superclass: Object

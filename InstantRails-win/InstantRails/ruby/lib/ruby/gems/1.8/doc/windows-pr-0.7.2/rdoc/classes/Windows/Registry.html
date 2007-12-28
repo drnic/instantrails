@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Registry</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Registry</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/registry_rb.html">
+                lib/windows/registry.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="File.html">Windows::File</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_CLASSES_ROOT</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_CURRENT_USER</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_LOCAL_MACHINE</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_USERS</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_PERFORMANCE_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_PERFORMANCE_TEXT</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000050</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_PERFORMANCE_NLSTEXT</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000060</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_CURRENT_CONFIG</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000005</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HKEY_DYN_DATA</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000006</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_QUERY_VALUE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_SET_VALUE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_CREATE_SUB_KEY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_ENUMERATE_SUB_KEYS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_NOTIFY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_CREATE_LINK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_WOW64_32KEY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_WOW64_64KEY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_WOW64_RES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0300</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_READ</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_READ|KEY_QUERY_VALUE|KEY_ENUMERATE_SUB_KEYS|                   KEY_NOTIFY) &amp; (~SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_WRITE|KEY_SET_VALUE|                   KEY_CREATE_SUB_KEY) &amp; (~SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">KEY_READ &amp; (~SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">KEY_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">(STANDARD_RIGHTS_ALL|KEY_QUERY_VALUE|KEY_SET_VALUE|                   KEY_CREATE_SUB_KEY|KEY_ENUMERATE_SUB_KEYS|KEY_NOTIFY|                   KEY_CREATE_LINK) &amp; (~SYNCHRONIZE)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_RESERVED</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_NON_VOLATILE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_VOLATILE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_CREATE_LINK</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_BACKUP_RESTORE</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPTION_OPEN_LINK</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_LEGAL_OPTION</td>
+          <td>=</td>
+          <td class="context-item-value">REG_OPTION_RESERVED|REG_OPTION_NON_VOLATILE|          REG_OPTION_VOLATILE|REG_OPTION_CREATE_LINK|REG_OPTION_BACKUP_RESTORE|          REG_OPTION_OPEN_LINK</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_CREATED_NEW_KEY</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_OPENED_EXISTING_KEY</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_STANDARD_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_LATEST_FORMAT</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NO_COMPRESSION</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_WHOLE_HIVE_VOLATILE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_REFRESH_HIVE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NO_LAZY_FLUSH</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_FORCE_RESTORE</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_FORCE_UNLOAD</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NOTIFY_CHANGE_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NOTIFY_CHANGE_ATTRIBUTES</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NOTIFY_CHANGE_LAST_SET</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NOTIFY_CHANGE_SECURITY</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_LEGAL_CHANGE_FILTER</td>
+          <td>=</td>
+          <td class="context-item-value">REG_NOTIFY_CHANGE_NAME|          REG_NOTIFY_CHANGE_ATTRIBUTES|REG_NOTIFY_CHANGE_LAST_SET|          REG_NOTIFY_CHANGE_SECURITY</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_NONE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_SZ</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_EXPAND_SZ</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_BINARY</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_DWORD</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_DWORD_LITTLE_ENDIAN</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_DWORD_BIG_ENDIAN</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_LINK</td>
+          <td>=</td>
+          <td class="context-item-value">6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_MULTI_SZ</td>
+          <td>=</td>
+          <td class="context-item-value">7</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_RESOURCE_LIST</td>
+          <td>=</td>
+          <td class="context-item-value">8</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_FULL_RESOURCE_DESCRIPTOR</td>
+          <td>=</td>
+          <td class="context-item-value">9</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_RESOURCE_REQUIREMENTS_LIST</td>
+          <td>=</td>
+          <td class="context-item-value">10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_QWORD</td>
+          <td>=</td>
+          <td class="context-item-value">11</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REG_QWORD_LITTLE_ENDIAN</td>
+          <td>=</td>
+          <td class="context-item-value">11</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

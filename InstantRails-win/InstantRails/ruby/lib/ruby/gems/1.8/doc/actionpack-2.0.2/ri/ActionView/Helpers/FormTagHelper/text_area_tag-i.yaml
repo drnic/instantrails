@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a text input area; use a textarea for longer text inputs such as blog posts or descriptions.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:size</tt> - A string specifying the dimensions (columns by rows) of the textarea (e.g., &quot;25x10&quot;).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:rows</tt> - Specify the number of rows in the textarea
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:cols</tt> - Specify the number of columns in the textarea
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML attributes for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_area_tag 'post'\n  # =&gt; &lt;textarea id=&quot;post&quot; name=&quot;post&quot;&gt;&lt;/textarea&gt;\n\n  text_area_tag 'bio', @user.bio\n  # =&gt; &lt;textarea id=&quot;bio&quot; name=&quot;bio&quot;&gt;This is my biography.&lt;/textarea&gt;\n\n  text_area_tag 'body', nil, :rows =&gt; 10, :cols =&gt; 25\n  # =&gt; &lt;textarea cols=&quot;25&quot; id=&quot;body&quot; name=&quot;body&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;\n\n  text_area_tag 'body', nil, :size =&gt; &quot;25x10&quot;\n  # =&gt; &lt;textarea name=&quot;body&quot; id=&quot;body&quot; cols=&quot;25&quot; rows=&quot;10&quot;&gt;&lt;/textarea&gt;\n\n  text_area_tag 'description', &quot;Description goes here.&quot;, :disabled =&gt; true\n  # =&gt; &lt;textarea disabled=&quot;disabled&quot; id=&quot;description&quot; name=&quot;description&quot;&gt;Description goes here.&lt;/textarea&gt;\n\n  text_area_tag 'comment', nil, :class =&gt; 'comment_input'\n  # =&gt; &lt;textarea class=&quot;comment_input&quot; id=&quot;comment&quot; name=&quot;comment&quot;&gt;&lt;/textarea&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#text_area_tag
+is_singleton: false
+name: text_area_tag
+params: (name, content = nil, options = {})
+visibility: public

@@ -1,0 +1,205 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window background color [FXColor]
+  name: backColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Combo box style [Integer]
+  name: comboStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index of current item, or -1 if no current item [Integer]
+  name: currentItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Editable state [Boolean]
+  name: editable
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text justification mode; default is <tt>JUSTIFY_LEFT</tt> [Integer]
+  name: justify
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of columns [Integer]
+  name: numColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of items in the list [Integer]
+  name: numItems
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible items in the drop-down list [Integer]
+  name: numVisible
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Background color for selected items [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color for selected items [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXComboBox provides a way to select a string from a list of strings. Unless <tt>COMBOBOX_STATIC</tt> is passed, it also allows the user to enter a new string into the text field, for example if the desired entry is not in the list of strings. Passing <tt>COMBOBOX_REPLACE</tt>, <tt>COMBOBOX_INSERT_BEFORE</tt>, <tt>COMBOBOX_INSERT_AFTER</tt>, <tt>COMBOBOX_INSERT_FIRST</tt>, or <tt>COMBOBOX_INSERT_LAST</tt> causes a newly entered text to replace the current one in the list, or be added before or after the current entry, or to be added at the beginning or end of the list. FXComboBox is intended to enter text; if you need to enter a choice from a list of options, it is recommended that the FXListBox widget is used instead. When the text in the field is changed, a <tt>SEL_COMMAND</tt> will be send to the target. The FXComboBox can also receive <tt>ID_GETSTRINGVALUE</tt> and <tt>ID_SETSTRINGVALUE</tt> and so on, which will behave similar to FXTextField in that they will retrieve or update the value of the field.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXComboBox to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the text in the text field changes; the message data is a String containing the new text.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a new item is selected from the list, or when a command message is sent from the text field; the message data is a String containing the new text.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: ComboBox styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_NO_REPLACE+:"
+    body: Leave the list the same
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_REPLACE+:"
+    body: Replace current item with typed text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_INSERT_BEFORE+:"
+    body: Typed text inserted before current
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_INSERT_AFTER+:"
+    body: Typed text inserted after current
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_INSERT_FIRST+:"
+    body: Typed text inserted at begin of list
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_INSERT_LAST+:"
+    body: Typed text inserted at end of list
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_STATIC+:"
+    body: Unchangable text box
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COMBOBOX_NORMAL+:"
+    body: Default options for comboboxes
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LIST+:"
+    body: identifier associated with the embedded FXList instance
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TEXT+:"
+    body: identifier associated with the embedded FXTextField instance
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXComboBox
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: editable?
+- !ruby/object:RI::MethodSummary 
+  name: fillItems
+- !ruby/object:RI::MethodSummary 
+  name: findItem
+- !ruby/object:RI::MethodSummary 
+  name: findItemByData
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: itemCurrent?
+- !ruby/object:RI::MethodSummary 
+  name: moveItem
+- !ruby/object:RI::MethodSummary 
+  name: paneShown?
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: retrieveItem
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentItem
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: sortItems
+name: FXComboBox
+superclass: Object

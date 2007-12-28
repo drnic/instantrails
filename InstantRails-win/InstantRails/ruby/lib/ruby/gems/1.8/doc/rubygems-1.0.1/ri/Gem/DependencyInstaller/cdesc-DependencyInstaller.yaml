@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: gems_to_install
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: installed_gems
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_OPTIONS
+  value: "{     :env_shebang => false,     :domain => :both, # HACK dup     :force => false,     :format_executable => false, # HACK dup     :ignore_dependencies => false,     :security_policy => nil, # HACK NoSecurity requires OpenSSL.  AlmostNo? Low?     :wrappers => true"
+full_name: Gem::DependencyInstaller
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Gem::UserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: download
+- !ruby/object:RI::MethodSummary 
+  name: find_gems_with_sources
+- !ruby/object:RI::MethodSummary 
+  name: gather_dependencies
+- !ruby/object:RI::MethodSummary 
+  name: install
+name: DependencyInstaller
+superclass: Object

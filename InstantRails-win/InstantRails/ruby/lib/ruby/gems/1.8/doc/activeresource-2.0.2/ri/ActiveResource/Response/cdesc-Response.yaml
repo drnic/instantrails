@@ -1,0 +1,38 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: body
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: code
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: headers
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: message
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: ActiveResource::Response
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: success?
+name: Response
+superclass: Object

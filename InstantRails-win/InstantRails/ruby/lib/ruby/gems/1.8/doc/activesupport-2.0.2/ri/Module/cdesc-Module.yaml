@@ -1,0 +1,17 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Also, modules included into Object need to be scanned and have their instance methods removed from blank slate. In theory, modules included into Kernel would have to be removed as well, but a &quot;feature&quot; of Ruby prevents late includes into modules from being exposed in the first place.
+constants: []
+
+full_name: Module
+includes: []
+
+instance_methods: []
+
+name: Module
+superclass: Object

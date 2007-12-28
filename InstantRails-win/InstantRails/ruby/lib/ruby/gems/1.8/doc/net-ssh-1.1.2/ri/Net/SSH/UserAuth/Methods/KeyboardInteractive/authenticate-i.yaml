@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempt to authenticate the given user for the given service. The data hash must specify a <tt>:password</tt> value, otherwise this will always return false.
+full_name: Net::SSH::UserAuth::Methods::KeyboardInteractive#authenticate
+is_singleton: false
+name: authenticate
+params: ( next_service, username, data={} )
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theGLContext
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct an OpenGL context. If <em>other</em> is a reference to an existing FXGLContext, this context will share display lists with that other context. Otherwise, this context will use its own private display list.
+full_name: Fox::FXGLContext::new
+is_singleton: true
+name: new
+params: (app, visual, other=nil) {|theGLContext| ...}
+visibility: public

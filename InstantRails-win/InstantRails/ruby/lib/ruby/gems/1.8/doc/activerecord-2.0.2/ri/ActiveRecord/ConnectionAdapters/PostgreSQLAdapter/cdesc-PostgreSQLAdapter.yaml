@@ -1,0 +1,109 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The PostgreSQL adapter works both with the native C (http://ruby.scripting.ca/postgres/) and the pure Ruby (available both as gem and from http://rubyforge.org/frs/?group_id=234&amp;release_id=1944) drivers.
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- Defaults to localhost
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:port</tt> -- Defaults to 5432
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:username</tt> -- Defaults to nothing
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Defaults to nothing
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:database</tt> -- The name of the database. No default, must be provided.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:schema_search_path</tt> -- An optional schema search path for the connection given as a string of comma-separated schema names. This is backward-compatible with the :schema_order option.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:encoding</tt> -- An optional client encoding that is used in a SET client_encoding TO &lt;encoding&gt; call on the connection.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:min_messages</tt> -- An optional client min messages that is used in a SET client_min_messages TO &lt;min_messages&gt; call on the connection.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:allow_concurrency</tt> -- If true, use async query methods so Ruby threads don't deadlock; otherwise, use blocking query methods.
+  type: :BULLET
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: adapter_name
+- !ruby/object:RI::MethodSummary 
+  name: add_column
+- !ruby/object:RI::MethodSummary 
+  name: begin_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: change_column
+- !ruby/object:RI::MethodSummary 
+  name: change_column_default
+- !ruby/object:RI::MethodSummary 
+  name: change_column_null
+- !ruby/object:RI::MethodSummary 
+  name: client_min_messages
+- !ruby/object:RI::MethodSummary 
+  name: client_min_messages=
+- !ruby/object:RI::MethodSummary 
+  name: columns
+- !ruby/object:RI::MethodSummary 
+  name: commit_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: disconnect!
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: insert
+- !ruby/object:RI::MethodSummary 
+  name: postgresql_version
+- !ruby/object:RI::MethodSummary 
+  name: reconnect!
+- !ruby/object:RI::MethodSummary 
+  name: remove_index
+- !ruby/object:RI::MethodSummary 
+  name: rename_column
+- !ruby/object:RI::MethodSummary 
+  name: rename_table
+- !ruby/object:RI::MethodSummary 
+  name: rollback_db_transaction
+- !ruby/object:RI::MethodSummary 
+  name: schema_search_path
+- !ruby/object:RI::MethodSummary 
+  name: schema_search_path=
+- !ruby/object:RI::MethodSummary 
+  name: select_rows
+- !ruby/object:RI::MethodSummary 
+  name: supports_migrations?
+- !ruby/object:RI::MethodSummary 
+  name: supports_standard_conforming_strings?
+- !ruby/object:RI::MethodSummary 
+  name: table_alias_length
+- !ruby/object:RI::MethodSummary 
+  name: tables
+- !ruby/object:RI::MethodSummary 
+  name: type_to_sql
+- !ruby/object:RI::MethodSummary 
+  name: update_sql
+name: PostgreSQLAdapter
+superclass: AbstractAdapter

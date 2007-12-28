@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dispatches the given packet type to the appropriate handler method. If a new protocol version adds a new packet type, it should override this method, performing its own checking first, followed by calling <tt>super</tt>.
+full_name: Net::SFTP::Protocol::V_01::Impl#dispatch
+is_singleton: false
+name: dispatch
+params: ( channel, type, content )
+visibility: public

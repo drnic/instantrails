@@ -1,0 +1,315 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NERR_Success
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_PREFERRED_LENGTH
+  value: "-1"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Taken from LMServer.h
+  name: SV_TYPE_WORKSTATION
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SQLSERVER
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_CTRL
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_BAKCTRL
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_TIME_SOURCE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_AFP
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_NOVELL
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_MEMBER
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_PRINTQ_SERVER
+  value: "0x00000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DIALIN_SERVER
+  value: "0x00000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_XENIX_SERVER
+  value: "0x00000800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_UNIX
+  value: SV_TYPE_XENIX_SERVER
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_NT
+  value: "0x00001000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_WFW
+  value: "0x00002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_MFPN
+  value: "0x00004000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_NT
+  value: "0x00008000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_POTENTIAL_BROWSER
+  value: "0x00010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_BACKUP_BROWSER
+  value: "0x00020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_MASTER_BROWSER
+  value: "0x00040000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_MASTER
+  value: "0x00080000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_OSF
+  value: "0x00100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_SERVER_VMS
+  value: "0x00200000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_WINDOWS
+  value: "0x00400000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DFS
+  value: "0x00800000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_CLUSTER_NT
+  value: "0x01000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_TERMINALSERVER
+  value: "0x02000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_CLUSTER_VS_NT
+  value: "0x04000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DCE
+  value: "0x10000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_ALTERNATE_XPORT
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_LOCAL_LIST_ONLY
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_DOMAIN_ENUM
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SV_TYPE_ALL
+  value: "0xFFFFFFFF"
+full_name: Windows::NetworkManagement
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: GetNetScheduleAccountInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetAlertRaise
+- !ruby/object:RI::MethodSummary 
+  name: NetAlertRaiseEx
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferAllocate
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferFree
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferReallocate
+- !ruby/object:RI::MethodSummary 
+  name: NetApiBufferSize
+- !ruby/object:RI::MethodSummary 
+  name: NetGetAnyDCName
+- !ruby/object:RI::MethodSummary 
+  name: NetGetDCName
+- !ruby/object:RI::MethodSummary 
+  name: NetGetDisplayInformationIndex
+- !ruby/object:RI::MethodSummary 
+  name: NetGetJoinInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetGetJoinableOUs
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupAddUser
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupDel
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupDelUser
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupGetUsers
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetGroupSetUsers
+- !ruby/object:RI::MethodSummary 
+  name: NetJoinDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupAddMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupDel
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupDelMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupGetMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetLocalGroupSetMembers
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageBufferSend
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameDel
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetMessageNameGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetQueryDisplayInformation
+- !ruby/object:RI::MethodSummary 
+  name: NetRemoteComputerSupports
+- !ruby/object:RI::MethodSummary 
+  name: NetRemoteTOD
+- !ruby/object:RI::MethodSummary 
+  name: NetRenameMachineInDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobDel
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetScheduleJobGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerComputerNameAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetServerComputerNameDel
+- !ruby/object:RI::MethodSummary 
+  name: NetServerDiskEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetServerEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetServerGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportAddEx
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportDel
+- !ruby/object:RI::MethodSummary 
+  name: NetServerTransportEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUnjoinDomain
+- !ruby/object:RI::MethodSummary 
+  name: NetUseAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetUseDel
+- !ruby/object:RI::MethodSummary 
+  name: NetUseEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUseGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetUserAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetUserChangePassword
+- !ruby/object:RI::MethodSummary 
+  name: NetUserDel
+- !ruby/object:RI::MethodSummary 
+  name: NetUserEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetUserGetLocalGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserModalsGet
+- !ruby/object:RI::MethodSummary 
+  name: NetUserModalsSet
+- !ruby/object:RI::MethodSummary 
+  name: NetUserSetGroups
+- !ruby/object:RI::MethodSummary 
+  name: NetUserSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetValidateName
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportAdd
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportDel
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaTransportEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserEnum
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserGetInfo
+- !ruby/object:RI::MethodSummary 
+  name: NetWkstaUserSetInfo
+- !ruby/object:RI::MethodSummary 
+  name: SetNetScheduleAccountInformation
+name: NetworkManagement
+superclass: 

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hidden input tag tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>. These options will be tagged onto the HTML as an HTML element attribute as in the example shown.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  hidden_field(:signup, :pass_confirm)\n  # =&gt; &lt;input type=&quot;hidden&quot; id=&quot;signup_pass_confirm&quot; name=&quot;signup[pass_confirm]&quot; value=&quot;#{@signup.pass_confirm}&quot; /&gt;\n\n  hidden_field(:post, :tag_list)\n  # =&gt; &lt;input type=&quot;hidden&quot; id=&quot;post_tag_list&quot; name=&quot;post[tag_list]&quot; value=&quot;#{@post.tag_list}&quot; /&gt;\n\n  hidden_field(:user, :token)\n  # =&gt; &lt;input type=&quot;hidden&quot; id=&quot;user_token&quot; name=&quot;user[token]&quot; value=&quot;#{@user.token}&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#hidden_field
+is_singleton: false
+name: hidden_field
+params: (object_name, method, options = {})
+visibility: public

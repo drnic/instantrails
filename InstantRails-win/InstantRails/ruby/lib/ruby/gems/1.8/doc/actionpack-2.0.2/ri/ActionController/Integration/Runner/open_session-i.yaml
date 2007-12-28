@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: session if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open a new session instance. If a block is given, the new session is yielded to the block before being returned.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  session = open_session do |sess|\n    sess.extend(CustomAssertions)\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: By default, a single session is automatically created for you, but you can use this method to open multiple sessions that ought to be tested simultaneously.
+full_name: ActionController::Integration::Runner#open_session
+is_singleton: false
+name: open_session
+params: () {|session if block_given?| ...}
+visibility: public

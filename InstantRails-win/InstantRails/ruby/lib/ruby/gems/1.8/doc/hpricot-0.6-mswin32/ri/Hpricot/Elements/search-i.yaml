@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: /
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Searches this list for any elements (or children of these elements) matching the CSS or XPath expression <tt>expr</tt>. Root is assumed to be the element scanned.
+- !ruby/struct:SM::Flow::P 
+  body: See Hpricot::Container::Trav.search for more.
+full_name: Hpricot::Elements#search
+is_singleton: false
+name: search
+params: (*expr,&blk)
+visibility: public

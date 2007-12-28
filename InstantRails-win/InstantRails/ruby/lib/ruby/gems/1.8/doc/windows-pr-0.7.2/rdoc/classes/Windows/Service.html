@@ -1,0 +1,548 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Service</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Service</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/service_rb.html">
+                lib/windows/service.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0xF003F</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+SCM access rights
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_CREATE_SERVICE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_CONNECT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_ENUMERATE_SERVICE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_LOCK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_MODIFY_BOOT_CONFIG</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_MANAGER_QUERY_LOCK_STATUS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_STATUS_PROCESS_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_ENUM_PROCESS_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_ACTION_NONE</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> control action types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_ACTION_REBOOT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_ACTION_RESTART</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SC_ACTION_RUN_COMMAND</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0xF01FF</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> access rights
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CHANGE_CONFIG</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ENUMERATE_DEPENDENTS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_INTERROGATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_PAUSE_CONTINUE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_QUERY_CONFIG</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_QUERY_STATUS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_START</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_STOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_USER_DEFINED_CONTROL</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_KERNEL_DRIVER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_FILE_SYSTEM_DRIVER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ADAPTER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_RECOGNIZER_DRIVER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_WIN32_OWN_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_WIN32_SHARE_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_WIN32</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000030</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_INTERACTIVE_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_DRIVER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000B</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_TYPE_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000013F</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ERROR_IGNORE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Error.html">Error</a> control
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ERROR_NORMAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ERROR_SEVERE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ERROR_CRITICAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_BOOT_START</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Start types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_SYSTEM_START</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_AUTO_START</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_DEMAND_START</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_DISABLED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_STOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> control
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_PAUSE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_CONTINUE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_INTERROGATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_PARAMCHANGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000006</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_NETBINDADD</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000007</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_NETBINDREMOVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_NETBINDENABLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000009</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTROL_NETBINDDISABLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000A</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_STOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> controls accepted
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_PAUSE_CONTINUE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_SHUTDOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_PARAMCHANGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_NETBINDCHANGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_HARDWAREPROFILECHANGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_POWEREVENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACCEPT_SESSIONCHANGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_ACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> states
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_INACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_STATE_ALL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_STOPPED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Service.html">Service</a> current states
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_START_PENDING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_STOP_PENDING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_RUNNING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONTINUE_PENDING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000005</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_PAUSE_PENDING</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000006</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_PAUSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000007</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_DESCRIPTION</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Info levels
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_FAILURE_ACTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_DELAYED_AUTO_START_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_FAILURE_ACTIONS_FLAG</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_SERVICE_SID_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SERVICE_CONFIG_PRESHUTDOWN_INFO</td>
+          <td>=</td>
+          <td class="context-item-value">7</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

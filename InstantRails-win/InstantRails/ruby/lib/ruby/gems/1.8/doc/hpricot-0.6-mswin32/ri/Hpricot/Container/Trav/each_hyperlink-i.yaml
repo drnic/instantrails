@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: text
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>each_hyperlink</tt> traverses hyperlinks such as HTML href attribute of A element.
+- !ruby/struct:SM::Flow::P 
+  body: It yields Hpricot::Text.
+- !ruby/struct:SM::Flow::P 
+  body: Note that <tt>each_hyperlink</tt> yields HTML href attribute of BASE element.
+full_name: Hpricot::Container::Trav#each_hyperlink
+is_singleton: false
+name: each_hyperlink
+params: ( {|text| ...}
+visibility: public

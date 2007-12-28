@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Take the basename of the upload's original filename. This handles the full Windows paths given by Internet Explorer (and perhaps other broken user agents) without affecting those which give the lone filename. The Windows regexp is adapted from Perl's File::Basename.
+full_name: ActionController::UploadedFile#original_filename
+is_singleton: false
+name: original_filename
+params: ()
+visibility: public

@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a standard text field; use these text fields to input smaller chunks of text like a username or a search query.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:size</tt> - The number of visible characters that will fit in the input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:maxlength</tt> - The maximum number of characters that the browser will allow the user to enter.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML attributes for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_field_tag 'name'\n  # =&gt; &lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; /&gt;\n\n  text_field_tag 'query', 'Enter your search query here'\n  # =&gt; &lt;input id=&quot;query&quot; name=&quot;query&quot; type=&quot;text&quot; value=&quot;Enter your search query here&quot; /&gt;\n\n  text_field_tag 'request', nil, :class =&gt; 'special_input'\n  # =&gt; &lt;input class=&quot;special_input&quot; id=&quot;request&quot; name=&quot;request&quot; type=&quot;text&quot; /&gt;\n\n  text_field_tag 'address', '', :size =&gt; 75\n  # =&gt; &lt;input id=&quot;address&quot; name=&quot;address&quot; size=&quot;75&quot; type=&quot;text&quot; value=&quot;&quot; /&gt;\n\n  text_field_tag 'zip', nil, :maxlength =&gt; 5\n  # =&gt; &lt;input id=&quot;zip&quot; maxlength=&quot;5&quot; name=&quot;zip&quot; type=&quot;text&quot; /&gt;\n\n  text_field_tag 'payment_amount', '$0.00', :disabled =&gt; true\n  # =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;payment_amount&quot; name=&quot;payment_amount&quot; type=&quot;text&quot; value=&quot;$0.00&quot; /&gt;\n\n  text_field_tag 'ip', '0.0.0.0', :maxlength =&gt; 15, :size =&gt; 20, :class =&gt; &quot;ip-input&quot;\n  # =&gt; &lt;input class=&quot;ip-input&quot; id=&quot;ip&quot; maxlength=&quot;15&quot; name=&quot;ip&quot; size=&quot;20&quot; type=&quot;text&quot; value=&quot;0.0.0.0&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#text_field_tag
+is_singleton: false
+name: text_field_tag
+params: (name, value = nil, options = {})
+visibility: public

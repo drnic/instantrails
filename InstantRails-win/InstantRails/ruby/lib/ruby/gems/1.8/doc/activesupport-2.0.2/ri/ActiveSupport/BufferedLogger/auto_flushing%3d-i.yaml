@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the auto-flush period. Set to true to flush after every log message, to an integer to flush every N messages, or to false, nil, or zero to never auto-flush. If you turn auto-flushing off, be sure to regularly flush the log yourself -- it will eat up memory until you do.
+full_name: ActiveSupport::BufferedLogger#auto_flushing=
+is_singleton: false
+name: auto_flushing=
+params: (period)
+visibility: public

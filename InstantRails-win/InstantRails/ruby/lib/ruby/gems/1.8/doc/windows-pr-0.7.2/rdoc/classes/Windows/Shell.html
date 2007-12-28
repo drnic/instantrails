@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Shell</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Shell</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/shell_rb.html">
+                lib/windows/shell.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_DESKTOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+CSIDL constants
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_INTERNET</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROGRAMS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_CONTROLS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PRINTERS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PERSONAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x0005</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_FAVORITES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0006</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_STARTUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0007</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_RECENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_SENDTO</td>
+          <td>=</td>
+          <td class="context-item-value">0x0009</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_BITBUCKET</td>
+          <td>=</td>
+          <td class="context-item-value">0x000a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_STARTMENU</td>
+          <td>=</td>
+          <td class="context-item-value">0x000b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_MYDOCUMENTS</td>
+          <td>=</td>
+          <td class="context-item-value">0x000c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_MYMUSIC</td>
+          <td>=</td>
+          <td class="context-item-value">0x000d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_MYVIDEO</td>
+          <td>=</td>
+          <td class="context-item-value">0x000e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_DESKTOPDIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_DRIVES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0011</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_NETWORK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0012</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_NETHOOD</td>
+          <td>=</td>
+          <td class="context-item-value">0x0013</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_FONTS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0014</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_TEMPLATES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0015</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_STARTMENU</td>
+          <td>=</td>
+          <td class="context-item-value">0x0016</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_PROGRAMS</td>
+          <td>=</td>
+          <td class="context-item-value">0X0017</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_STARTUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0018</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_FAVORITES</td>
+          <td>=</td>
+          <td class="context-item-value">0x001f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_DESKTOPDIRECTORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0019</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_APPDATA</td>
+          <td>=</td>
+          <td class="context-item-value">0x001a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PRINTHOOD</td>
+          <td>=</td>
+          <td class="context-item-value">0x001b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_LOCAL_APPDATA</td>
+          <td>=</td>
+          <td class="context-item-value">0x001c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_ALTSTARTUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x001d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_ALTSTARTUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x001e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_INTERNET_CACHE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COOKIES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0021</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_HISTORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0022</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_APPDATA</td>
+          <td>=</td>
+          <td class="context-item-value">0x0023</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_WINDOWS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0024</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x0025</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROGRAM_FILES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0026</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_MYPICTURES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0027</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROFILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0028</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_SYSTEMX86</td>
+          <td>=</td>
+          <td class="context-item-value">0x0029</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROGRAM_FILESX86</td>
+          <td>=</td>
+          <td class="context-item-value">0x002a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROGRAM_FILES_COMMON</td>
+          <td>=</td>
+          <td class="context-item-value">0x002b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_PROGRAM_FILES_COMMONX86</td>
+          <td>=</td>
+          <td class="context-item-value">0x002c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_TEMPLATES</td>
+          <td>=</td>
+          <td class="context-item-value">0x002d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_DOCUMENTS</td>
+          <td>=</td>
+          <td class="context-item-value">0x002e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_CONNECTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0031</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_MUSIC</td>
+          <td>=</td>
+          <td class="context-item-value">0x0035</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_PICTURES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0036</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_VIDEO</td>
+          <td>=</td>
+          <td class="context-item-value">0x0037</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_RESOURCES</td>
+          <td>=</td>
+          <td class="context-item-value">0x0038</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_RESOURCES_LOCALIZED</td>
+          <td>=</td>
+          <td class="context-item-value">0x0039</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_OEM_LINKS</td>
+          <td>=</td>
+          <td class="context-item-value">0x003a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_CDBURN_AREA</td>
+          <td>=</td>
+          <td class="context-item-value">0x003b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_COMMON_ADMINTOOLS</td>
+          <td>=</td>
+          <td class="context-item-value">0x002f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CSIDL_ADMINTOOLS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0030</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">S_FALSE</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Return codes
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">E_FAIL</td>
+          <td>=</td>
+          <td class="context-item-value">2147500037</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">E_INVALIDARG</td>
+          <td>=</td>
+          <td class="context-item-value">2147483651</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SHGFP_TYPE_CURRENT</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SHGFP_TYPE_DEFAULT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

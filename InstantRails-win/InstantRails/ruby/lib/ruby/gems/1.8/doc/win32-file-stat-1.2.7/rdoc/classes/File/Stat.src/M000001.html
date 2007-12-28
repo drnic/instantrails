@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (File::Stat)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file/stat.rb, line 50</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-ivar">@file</span> = <span class="ruby-identifier">file</span>
+      
+      <span class="ruby-ivar">@file_type</span> = <span class="ruby-identifier">get_file_type</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-ivar">@chardev</span> = <span class="ruby-ivar">@file_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FILE_TYPE_CHAR</span>
+
+      <span class="ruby-keyword kw">case</span> <span class="ruby-constant">GetDriveType</span>(<span class="ruby-identifier">file</span>)
+         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">DRIVE_REMOVABLE</span>, <span class="ruby-constant">DRIVE_CDROM</span>, <span class="ruby-constant">DRIVE_RAMDISK</span>
+            <span class="ruby-ivar">@blockdev</span> = <span class="ruby-keyword kw">true</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-ivar">@blockdev</span> = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">stat_buf</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'ISSssssIIQQQQ'</span>)
+      
+      <span class="ruby-comment cmt"># The stat64 function doesn't seem to like character devices</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">stat64</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">stat_buf</span>) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@chardev</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Some bytes skipped (padding for struct alignment)</span>
+      <span class="ruby-ivar">@dev</span>   = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">0</span>, <span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'I'</span>).<span class="ruby-identifier">first</span>  <span class="ruby-comment cmt"># Drive number</span>
+      <span class="ruby-ivar">@ino</span>   = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">4</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'S'</span>).<span class="ruby-identifier">first</span>  <span class="ruby-comment cmt"># Meaningless</span>
+      <span class="ruby-ivar">@mode</span>  = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">6</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'S'</span>).<span class="ruby-identifier">first</span>  <span class="ruby-comment cmt"># File mode bit mask</span>
+      <span class="ruby-ivar">@nlink</span> = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">8</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'s'</span>).<span class="ruby-identifier">first</span>  <span class="ruby-comment cmt"># Always 1</span>
+      <span class="ruby-ivar">@uid</span>   = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">10</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'s'</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment cmt"># Always 0</span>
+      <span class="ruby-ivar">@gid</span>   = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">12</span>, <span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'s'</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment cmt"># Always 0</span>
+      <span class="ruby-ivar">@rdev</span>  = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">16</span>, <span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'I'</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment cmt"># Same as dev</span>
+      <span class="ruby-ivar">@size</span>  = <span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">24</span>, <span class="ruby-value">8</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'Q'</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment cmt"># Size of file in bytes</span>
+      
+      <span class="ruby-comment cmt"># This portion can fail in rare, FS related instances. If it does, set</span>
+      <span class="ruby-comment cmt"># the various times to Time.at(0).</span>
+      <span class="ruby-keyword kw">begin</span>
+         <span class="ruby-ivar">@atime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">32</span>, <span class="ruby-value">8</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'Q'</span>).<span class="ruby-identifier">first</span>) <span class="ruby-comment cmt"># Access time</span>
+         <span class="ruby-ivar">@mtime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">40</span>, <span class="ruby-value">8</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'Q'</span>).<span class="ruby-identifier">first</span>) <span class="ruby-comment cmt"># Mod time</span>
+         <span class="ruby-ivar">@ctime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">stat_buf</span>[<span class="ruby-value">48</span>, <span class="ruby-value">8</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'Q'</span>).<span class="ruby-identifier">first</span>) <span class="ruby-comment cmt"># Creation time</span>
+      <span class="ruby-keyword kw">rescue</span>
+         <span class="ruby-ivar">@atime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+         <span class="ruby-ivar">@mtime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+         <span class="ruby-ivar">@ctime</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-value">0</span>)
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-ivar">@mode</span> = <span class="ruby-value">33188</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@chardev</span>
+
+      <span class="ruby-identifier">attr</span> = <span class="ruby-constant">GetFileAttributes</span>(<span class="ruby-identifier">file</span>)
+      <span class="ruby-identifier">error_num</span> = <span class="ruby-constant">GetLastError</span>()
+      
+      <span class="ruby-comment cmt"># Ignore errors caused by empty/open/used block devices.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attr</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_FILE_ATTRIBUTES</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">error_num</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ERROR_NOT_READY</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>(<span class="ruby-identifier">error_num</span>)
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-ivar">@blksize</span> = <span class="ruby-identifier">get_blksize</span>(<span class="ruby-identifier">file</span>)
+      
+      <span class="ruby-comment cmt"># This is a reasonable guess</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@blksize</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-ivar">@blocks</span> = <span class="ruby-keyword kw">nil</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-value">0</span>
+            <span class="ruby-ivar">@blocks</span> = <span class="ruby-value">0</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-ivar">@blocks</span>  = (<span class="ruby-ivar">@size</span>.<span class="ruby-identifier">to_f</span> <span class="ruby-operator">/</span> <span class="ruby-ivar">@blksize</span>.<span class="ruby-identifier">to_f</span>).<span class="ruby-identifier">ceil</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-ivar">@readonly</span>      = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_READONLY</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@hidden</span>        = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_HIDDEN</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@system</span>        = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_SYSTEM</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@archive</span>       = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_ARCHIVE</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@directory</span>     = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_DIRECTORY</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@encrypted</span>     = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_ENCRYPTED</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@normal</span>        = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_NORMAL</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@temporary</span>     = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_TEMPORARY</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@sparse</span>        = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_SPARSE_FILE</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@reparse_point</span> = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_REPARSE_POINT</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@compressed</span>    = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_COMPRESSED</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@offline</span>       = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">FILE_ATTRIBUTE_OFFLINE</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      <span class="ruby-ivar">@indexed</span>       = <span class="ruby-identifier">attr</span> <span class="ruby-operator">&amp;</span> <span class="ruby-operator">~</span><span class="ruby-constant">FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      
+      <span class="ruby-ivar">@executable</span> = <span class="ruby-constant">GetBinaryType</span>(<span class="ruby-identifier">file</span>, <span class="ruby-value str">''</span>)
+      <span class="ruby-ivar">@regular</span>    = <span class="ruby-ivar">@file_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FILE_TYPE_DISK</span>
+      <span class="ruby-ivar">@pipe</span>       = <span class="ruby-ivar">@file_type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">FILE_TYPE_PIPE</span>
+      
+      <span class="ruby-comment cmt"># Not supported and/or meaningless</span>
+      <span class="ruby-ivar">@dev_major</span>     = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@dev_minor</span>     = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@grpowned</span>      = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@owned</span>         = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@readable</span>      = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@readable_real</span> = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@rdev_major</span>    = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@rdev_minor</span>    = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-ivar">@setgid</span>        = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@setuid</span>        = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@sticky</span>        = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@symlink</span>       = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@writable</span>      = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-ivar">@writable_real</span> = <span class="ruby-keyword kw">true</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

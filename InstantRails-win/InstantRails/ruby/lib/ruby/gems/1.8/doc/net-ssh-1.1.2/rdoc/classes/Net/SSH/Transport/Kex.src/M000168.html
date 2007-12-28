@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Transport::Kex)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/kex/services.rb, line 25</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:kex</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-comment cmt"># The :dh service is a standard Diffie-Hellman key exchange</span>
+            <span class="ruby-comment cmt"># algorithm using Group-1 and SHA-1.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">dh</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/kex/dh'</span>
+              <span class="ruby-identifier">dh</span> = <span class="ruby-constant">DiffieHellmanGroup1SHA1</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bns</span>, <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digesters</span> )
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">keys</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">keys</span>
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffers</span>
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">host_key_verifier</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">host_key_verifier</span>
+              <span class="ruby-identifier">dh</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The :dh_gex service is a standard Diffie-Hellman key exchange</span>
+            <span class="ruby-comment cmt"># algorithm using SHA-1 and a negotiated group.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">dh_gex</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/kex/dh-gex'</span>
+              <span class="ruby-identifier">dh</span> = <span class="ruby-constant">DiffieHellmanGroupExchangeSHA1</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bns</span>, <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digesters</span> )
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">keys</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">keys</span>
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffers</span>
+              <span class="ruby-identifier">dh</span>.<span class="ruby-identifier">host_key_verifier</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">host_key_verifier</span>
+              <span class="ruby-identifier">dh</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># Add these services to the hash of available kex algorithms.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">kex_names</span>.<span class="ruby-identifier">update</span>(
+              <span class="ruby-value str">&quot;diffie-hellman-group-exchange-sha1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">dh_gex</span>,
+              <span class="ruby-value str">&quot;diffie-hellman-group1-sha1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">b</span>.<span class="ruby-identifier">dh</span>
+            )
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

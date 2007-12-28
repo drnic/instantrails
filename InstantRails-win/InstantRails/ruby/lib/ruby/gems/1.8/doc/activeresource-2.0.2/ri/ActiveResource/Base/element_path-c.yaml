@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Gets the element path for the given ID in <tt>id</tt>. If the <tt>query_options</tt> parameter is omitted, Rails will split from the prefix options.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+prefix_options+:"
+    body: A hash to add a prefix to the request for nested URL's (e.g., <tt>:account_id =&gt; 19</tt> would yield a URL like <tt>/accounts/19/purchases.xml</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+query_options+:"
+    body: A hash to add items to the query string for the request.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.element_path(1)\n  # =&gt; /posts/1.xml\n\n  Comment.element_path(1, :post_id =&gt; 5)\n  # =&gt; /posts/5/comments/1.xml\n\n  Comment.element_path(1, :post_id =&gt; 5, :active =&gt; 1)\n  # =&gt; /posts/5/comments/1.xml?active=1\n\n  Comment.element_path(1, {:post_id =&gt; 5}, {:active =&gt; 1})\n  # =&gt; /posts/5/comments/1.xml?active=1\n"
+full_name: ActiveResource::Base::element_path
+is_singleton: true
+name: element_path
+params: (id, prefix_options = {}, query_options = nil)
+visibility: public

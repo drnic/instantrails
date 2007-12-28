@@ -1,0 +1,125 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: expand
+- !ruby/object:RI::MethodSummary 
+  name: filter
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Once you've matched a list of elements, you will often need to handle them as a group. Or you may want to perform the same action on each of them. Hpricot::Elements is an extension of Ruby's array class, with some methods added for altering elements contained in the array.
+- !ruby/struct:SM::Flow::P 
+  body: "If you need to create an element array from regular elements:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Hpricot::Elements[ele1, ele2, ele3]\n"
+- !ruby/struct:SM::Flow::P 
+  body: Assuming that ele1, ele2 and ele3 contain element objects (Hpricot::Elem, Hpricot::Doc, etc.)
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Continuing Searches
+- !ruby/struct:SM::Flow::P 
+  body: Usually the Hpricot::Elements you're working on comes from a search you've done. Well, you can continue searching the list by using the same <tt>at</tt> and <tt>search</tt> methods you can use on plain elements.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  elements = doc.search(&quot;/div/p&quot;)\n  elements = elements.search(&quot;/a[@href='http://hoodwink.d/']&quot;)\n  elements = elements.at(&quot;img&quot;)\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Altering Elements
+- !ruby/struct:SM::Flow::P 
+  body: When you're altering elements in the list, your changes will be reflected in the document you started searching from.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc = Hpricot(&quot;That's my <b>spoon</b>, Tyler.&quot;)\n  doc.at(&quot;b&quot;).swap(&quot;<em>fork</em>&quot;)\n  doc.to_html\n    #=&gt; &quot;That's my <em>fork</em>, Tyler.&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Getting More Detailed
+- !ruby/struct:SM::Flow::P 
+  body: If you can't find a method here that does what you need, you may need to loop through the elements and find a method in Hpricot::Container::Trav which can do what you need.
+- !ruby/struct:SM::Flow::P 
+  body: "For example, you may want to search for all the H3 header tags in a document and grab all the tags underneath the header, but not inside the header. A good method for this is <tt>next_sibling</tt>:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc.search(&quot;h3&quot;).each do |h3|\n    while ele = h3.next_sibling\n      ary &lt;&lt; ele   # stuff away all the elements under the h3\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Most of the useful element methods are in the mixins Hpricot::Traverse and Hpricot::Container::Trav.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ATTR_RE
+  value: "%r!\\[ *(?:(@)([\\w\\(\\)-]+)|([\\w\\(\\)-]+\\(\\))) *([~\\!\\|\\*$\\^=]*) *'?\"?([^\\]'\"]*)'?\"? *\\]!i"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BRACK_RE
+  value: "%r!(\\[) *([^\\]]*) *\\]+!i"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FUNC_RE
+  value: "%r!(:)?([a-zA-Z0-9\\*_-]*)\\( *[\\\"']?([^ \\)]*?)['\\\"]? *\\)!"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CUST_RE
+  value: "%r!(:)([a-zA-Z0-9\\*_-]*)()!"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CATCH_RE
+  value: "%r!([:\\.#]*)([a-zA-Z0-9\\*_-]+)!"
+full_name: Hpricot::Elements
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "%"
+- !ruby/object:RI::MethodSummary 
+  name: /
+- !ruby/object:RI::MethodSummary 
+  name: add_class
+- !ruby/object:RI::MethodSummary 
+  name: after
+- !ruby/object:RI::MethodSummary 
+  name: append
+- !ruby/object:RI::MethodSummary 
+  name: at
+- !ruby/object:RI::MethodSummary 
+  name: attr
+- !ruby/object:RI::MethodSummary 
+  name: before
+- !ruby/object:RI::MethodSummary 
+  name: empty
+- !ruby/object:RI::MethodSummary 
+  name: filter
+- !ruby/object:RI::MethodSummary 
+  name: html
+- !ruby/object:RI::MethodSummary 
+  name: html=
+- !ruby/object:RI::MethodSummary 
+  name: innerHTML
+- !ruby/object:RI::MethodSummary 
+  name: innerHTML=
+- !ruby/object:RI::MethodSummary 
+  name: inner_html
+- !ruby/object:RI::MethodSummary 
+  name: inner_html=
+- !ruby/object:RI::MethodSummary 
+  name: inner_text
+- !ruby/object:RI::MethodSummary 
+  name: not
+- !ruby/object:RI::MethodSummary 
+  name: prepend
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: remove_attr
+- !ruby/object:RI::MethodSummary 
+  name: remove_class
+- !ruby/object:RI::MethodSummary 
+  name: search
+- !ruby/object:RI::MethodSummary 
+  name: set
+- !ruby/object:RI::MethodSummary 
+  name: text
+- !ruby/object:RI::MethodSummary 
+  name: to_html
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+- !ruby/object:RI::MethodSummary 
+  name: wrap
+name: Elements
+superclass: Array

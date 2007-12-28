@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is a utility class used internally by Forward::Driver. It manages the network server instance for each locally forwarded port, and is passed as the handler to Driver#direct_channel by Forward::Driver#forward_local. Other clients may desire to extend this class and pass the modified class to Forward::Driver#direct_channel for their own purposes, but in general this class will rarely be used outside of Forward::Driver.
+constants: []
+
+full_name: Net::SSH::Service::Forward::LocalNetworkHandler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: on_eof
+- !ruby/object:RI::MethodSummary 
+  name: on_receive
+- !ruby/object:RI::MethodSummary 
+  name: process
+name: LocalNetworkHandler
+superclass: Object

@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method for caching fragments of a view rather than an entire action or page. This technique is useful caching pieces like menus, lists of news topics, static HTML fragments, and so on. This method takes a block that contains the content you wish to cache. See ActionController::Caching::Fragments for more information.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::P 
+  body: If you wanted to cache a navigation menu, you could do the following.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% cache do %&gt;\n    &lt;%= render :partial =&gt; &quot;menu&quot; %&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can also cache static content...
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% cache do %&gt;\n     &lt;p&gt;Hello users!  Welcome to our website!&lt;/p&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...and static content mixed with RHTML content.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   &lt;% cache do %&gt;\n     Topics:\n     &lt;%= render :partial =&gt; &quot;topics&quot;, :collection =&gt; @topic_list %&gt;\n     <em>Topics listed alphabetically</em>\n   &lt;% end %&gt;\n"
+full_name: ActionView::Helpers::CacheHelper#cache
+is_singleton: false
+name: cache
+params: (name = {}, &block)
+visibility: public

@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current image being displayed [FXImage]
+  name: image
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current justification mode, some combination of the flags <tt>JUSTIFY_LEFT</tt>, <tt>JUSTIFY_RIGHT</tt>, <tt>JUSTIFY_TOP</tt> and <tt>JUSTIFY_BOTTOM</tt> [Integer]
+  name: justify
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXImageFrame is a simple frame widget that displays an FXImage image.
+constants: []
+
+full_name: Fox::FXImageFrame
+includes: []
+
+instance_methods: []
+
+name: FXImageFrame
+superclass: FXFrame

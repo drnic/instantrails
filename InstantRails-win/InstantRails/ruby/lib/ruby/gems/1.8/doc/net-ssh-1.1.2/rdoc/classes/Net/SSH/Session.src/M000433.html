@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Net::SSH::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/session.rb, line 100</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+        <span class="ruby-ivar">@open</span> = <span class="ruby-keyword kw">false</span>
+        <span class="ruby-ivar">@agent_forwarded</span> = <span class="ruby-keyword kw">false</span>
+
+        <span class="ruby-identifier">process_arguments</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+
+        <span class="ruby-ivar">@registry</span>.<span class="ruby-identifier">define</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">crypto_backend</span> { <span class="ruby-ivar">@crypto_backend</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">transport_host</span> { <span class="ruby-ivar">@host</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">transport_options</span> { <span class="ruby-ivar">@options</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">userauth_keys</span> { <span class="ruby-ivar">@keys</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">userauth_host_keys</span> { <span class="ruby-ivar">@host_keys</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">userauth_method_order</span> { <span class="ruby-ivar">@auth_methods</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">host_key_verifier</span> { <span class="ruby-ivar">@host_key_verifier</span> }
+
+          <span class="ruby-comment cmt"># Register myself with the registry, so that other services may</span>
+          <span class="ruby-comment cmt"># access me.</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">session</span>( <span class="ruby-identifier">:pipeline</span> =<span class="ruby-operator">&gt;</span> [] ) { <span class="ruby-keyword kw">self</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">prompter</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/util/prompter'</span>
+            <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Util</span><span class="ruby-operator">::</span><span class="ruby-constant">Prompter</span>.<span class="ruby-identifier">new</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/services'</span>, <span class="ruby-value str">&quot;Net::SSH::Transport&quot;</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/connection/services'</span>, <span class="ruby-value str">&quot;Net::SSH::Connection&quot;</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/services'</span>, <span class="ruby-value str">&quot;Net::SSH::UserAuth&quot;</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/services'</span>, <span class="ruby-value str">&quot;Net::SSH::Service&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">userauth</span> = <span class="ruby-ivar">@registry</span>[<span class="ruby-identifier">:userauth</span>][<span class="ruby-identifier">:driver</span>]
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">userauth</span>.<span class="ruby-identifier">authenticate</span>( <span class="ruby-value str">&quot;ssh-connection&quot;</span>, <span class="ruby-ivar">@username</span>, <span class="ruby-ivar">@password</span> )
+          <span class="ruby-ivar">@open</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-ivar">@connection</span> = <span class="ruby-ivar">@registry</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>]
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span>
+            <span class="ruby-identifier">close</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-ivar">@registry</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:session</span>].<span class="ruby-identifier">close</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">AuthenticationFailed</span>, <span class="ruby-ivar">@username</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>load_private_key (Net::SSH::Transport::OSSL::KeyFactory)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/ossl/key-factory.rb, line 60</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load_private_key</span>( <span class="ruby-identifier">filename</span> )
+            <span class="ruby-identifier">file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>( <span class="ruby-identifier">filename</span> )
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">match</span>( <span class="ruby-regexp re">/-----BEGIN DSA PRIVATE KEY-----/</span> )
+              <span class="ruby-identifier">key_type</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DSA</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">match</span>( <span class="ruby-regexp re">/-----BEGIN RSA PRIVATE KEY-----/</span> )
+              <span class="ruby-identifier">key_type</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>
+            <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">match</span>( <span class="ruby-regexp re">/-----BEGIN (.*) PRIVATE KEY-----/</span> )
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">PKeyError</span>, <span class="ruby-node">&quot;not a supported key type '#{$1}'&quot;</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">PKeyError</span>, <span class="ruby-node">&quot;not a private key (#{filename})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">encrypted_key</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">match</span>( <span class="ruby-regexp re">/ENCRYPTED/</span> )
+            <span class="ruby-identifier">password</span> = <span class="ruby-identifier">encrypted_key</span> <span class="ruby-value">? </span><span class="ruby-value str">'nil'</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-identifier">tries</span> = <span class="ruby-value">0</span>
+
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">key_type</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">file</span>, <span class="ruby-identifier">password</span> )
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSAError</span>, <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DSAError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">encrypted_key</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@prompter</span>
+                <span class="ruby-identifier">tries</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+                <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">tries</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-value">3</span>
+                  <span class="ruby-identifier">password</span> = <span class="ruby-ivar">@prompter</span>.<span class="ruby-identifier">password</span>(
+                    <span class="ruby-node">&quot;Enter password for #{filename}: &quot;</span> )
+                  <span class="ruby-keyword kw">retry</span>
+                <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">raise</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

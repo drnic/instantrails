@@ -1,0 +1,48 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Validates whether the value of the specified attributes are unique across the system. Useful for making sure that only one user can be named &quot;davidhh&quot;.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveRecord::Base\n    validates_uniqueness_of :user_name, :scope =&gt; :account_id\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: It can also validate whether the value of the specified attributes are unique based on multiple scope parameters. For example, making sure that a teacher can only be on the schedule once per semester for a particular class.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class TeacherSchedule &lt; ActiveRecord::Base\n    validates_uniqueness_of :teacher_id, :scope =&gt; [:semester_id, :class_id]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: When the record is created, a check is performed to make sure that no record exists in the database with the given value for the specified attribute (that maps to a column). When the record is updated, the same check is made but disregarding the record itself.
+- !ruby/struct:SM::Flow::P 
+  body: Because this check is performed outside the database there is still a chance that duplicate values will be inserted in two parallel transactions. To guarantee against this you should create a unique index on the field. See <tt>create_index</tt> for more information.
+- !ruby/struct:SM::Flow::P 
+  body: "Configuration options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>message</tt> - Specifies a custom error message (default is: &quot;has already been taken&quot;)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>scope</tt> - One or more columns by which to limit the scope of the uniquness constraint.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>case_sensitive</tt> - Looks for an exact match. Ignored by non-text columns (true by default).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>allow_nil</tt> - If set to true, skips this validation if the attribute is null (default is: false)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>allow_blank</tt> - If set to true, skips this validation if the attribute is blank (default is: false)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>if</tt> - Specifies a method, proc or string to call to determine if the validation should occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user| user.signup_step &gt; 2 }). The method, proc or string should return or evaluate to a true or false value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>unless</tt> - Specifies a method, proc or string to call to determine if the validation should not occur (e.g. :unless =&gt; :skip_validation, or :unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }). The method, proc or string should return or evaluate to a true or false value.
+  type: :BULLET
+full_name: ActiveRecord::Validations::ClassMethods#validates_uniqueness_of
+is_singleton: false
+name: validates_uniqueness_of
+params: (*attr_names)
+visibility: public

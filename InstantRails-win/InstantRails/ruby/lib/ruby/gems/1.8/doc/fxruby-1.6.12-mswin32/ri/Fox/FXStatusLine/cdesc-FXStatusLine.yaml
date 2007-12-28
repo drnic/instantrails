@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Permanent status message [String]
+  name: normalText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Temporary status message [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text color [FXColor]
+  name: textHighlightColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The status line normally shows its permanent or &quot;normal&quot; message; when moving the mouse over a widget which provides status line help, the status line temporarily replaces its normal message with the help information; the status line obtains this help message by sending the widget a <tt>ID_QUERY_HELP</tt> message with type <tt>SEL_UPDATE</tt>. If this query does not result in a new status string, the target of the status line is tried via an ordinary <tt>SEL_UPDATE</tt> message. If <em>none</em> of the above work, the status line will display the normal text (i.e. the string set via the #normalText= accessor method). If the message contains a newline character, then the part before the newline will be displayed in the highlight color, while the part after the newline will be shown using the normal text color."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXStatusLine to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_UPDATE+:"
+    body: Sent when the widget currently under the mouse cursor doesn't respond to a <tt>SEL_UPDATE</tt> message with identifier <tt>ID_QUERY_HELP</tt>, as described above.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXStatusLine
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: FXStatusLine
+superclass: FXFrame

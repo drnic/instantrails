@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the text with all the Textile[http://www.textism.com/tools/textile] codes turned into HTML tags.
+- !ruby/struct:SM::Flow::P 
+  body: You can learn more about Textile's syntax at its website[http://www.textism.com/tools/textile]. <em>This method is only available if RedCloth[http://whytheluckystiff.net/ruby/redcloth/] is available</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  textilize(&quot;*This is Textile!*  Rejoice!&quot;)\n  # =&gt; &quot;&lt;p&gt;&lt;strong&gt;This is Textile!&lt;/strong&gt;  Rejoice!&lt;/p&gt;&quot;\n\n  textilize(&quot;I <em>love</em> ROR(Ruby on Rails)!&quot;)\n  # =&gt; &quot;&lt;p&gt;I <em>love</em> &lt;acronym title=&quot;Ruby on Rails&quot;&gt;ROR&lt;/acronym&gt;!&lt;/p&gt;&quot;\n\n  textilize(&quot;h2. Textile makes markup -easy- simple!&quot;)\n  # =&gt; &quot;&lt;h2&gt;Textile makes markup &lt;del&gt;easy&lt;/del&gt; simple!&lt;/h2&gt;&quot;\n\n  textilize(&quot;Visit the Rails website &quot;here&quot;:http://www.rubyonrails.org/.)\n  # =&gt; &quot;&lt;p&gt;Visit the Rails website &lt;a href=&quot;http://www.rubyonrails.org/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;&quot;\n"
+full_name: ActionView::Helpers::TextHelper#textilize
+is_singleton: false
+name: textilize
+params: (text)
+visibility: public

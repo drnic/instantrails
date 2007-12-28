@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Check to see if the method is defined in the model or any of its subclasses that also derive from ActiveRecord. Raise DangerousAttributeError if the method is defined by ActiveRecord though.
+full_name: ActiveRecord::AttributeMethods::ClassMethods#instance_method_already_implemented?
+is_singleton: false
+name: instance_method_already_implemented?
+params: (method_name)
+visibility: public

@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handles the compression and encryption of outgoing packets.
+constants: []
+
+full_name: Net::SSH::Transport::OutgoingPacketStream
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: send
+- !ruby/object:RI::MethodSummary 
+  name: set_algorithms
+name: OutgoingPacketStream
+superclass: PacketStream

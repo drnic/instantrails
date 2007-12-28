@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This method is a concession to the required interceptor factory interface. It should return the new interceptor, configured to be attached to the given service point, and with the given options. It will always return <tt>self</tt>.
+full_name: Needle::Interceptor::DynamicInterceptor#new
+is_singleton: false
+name: new
+params: ( point, opts )
+visibility: public

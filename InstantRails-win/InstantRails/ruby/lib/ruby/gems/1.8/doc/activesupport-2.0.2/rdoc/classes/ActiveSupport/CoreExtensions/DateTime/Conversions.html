@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveSupport::CoreExtensions::DateTime::Conversions</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveSupport::CoreExtensions::DateTime::Conversions</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/active_support/core_ext/date_time/conversions_rb.html">
+                lib/active_support/core_ext/date_time/conversions.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Getting datetimes in different convenient string representations and other
+objects
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000485">included</a>&nbsp;&nbsp;
+      <a href="#M000487">readable_inspect</a>&nbsp;&nbsp;
+      <a href="#M000488">to_date</a>&nbsp;&nbsp;
+      <a href="#M000490">to_datetime</a>&nbsp;&nbsp;
+      <a href="#M000486">to_formatted_s</a>&nbsp;&nbsp;
+      <a href="#M000489">to_time</a>&nbsp;&nbsp;
+      <a href="#M000491">xmlschema</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000485" class="method-detail">
+        <a name="M000485"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000485.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000485.html');return false;">
+          <span class="method-name">included</span><span class="method-args">(base)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000487" class="method-detail">
+        <a name="M000487"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000487.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000487.html');return false;">
+          <span class="method-name">readable_inspect</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Overrides the default inspect method with a human readable one, e.g.,
+&quot;Mon, 21 Feb 2005 14:30:00 +0000&quot;
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000488" class="method-detail">
+        <a name="M000488"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000488.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000488.html');return false;">
+          <span class="method-name">to_date</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts self to a Ruby Date object; time portion is discarded
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000490" class="method-detail">
+        <a name="M000490"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000490.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000490.html');return false;">
+          <span class="method-name">to_datetime</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+To be able to keep Times, Dates and DateTimes interchangeable on
+conversions
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000486" class="method-detail">
+        <a name="M000486"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000486.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000486.html');return false;">
+          <span class="method-name">to_formatted_s</span><span class="method-args">(format = :default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Convert to a formatted string - see DATE_FORMATS for predefined formats.
+You can also add your own formats to the DATE_FORMATS constant and use them
+with this method.
+</p>
+<p>
+This method is also aliased as <tt>to_s</tt>.
+</p>
+<h3>Examples:</h3>
+<pre>
+  datetime = DateTime.civil(2007, 12, 4, 0, 0, 0, 0)   # =&gt; Tue, 04 Dec 2007 00:00:00 +0000
+
+  datetime.to_formatted_s(:db)            # =&gt; &quot;2007-12-04 00:00:00&quot;
+  datetime.to_s(:db)                      # =&gt; &quot;2007-12-04 00:00:00&quot;
+  datetime.to_s(:number)                  # =&gt; &quot;20071204000000&quot;
+  datetime.to_formatted_s(:short)         # =&gt; &quot;04 Dec 00:00&quot;
+  datetime.to_formatted_s(:long)          # =&gt; &quot;December 04, 2007 00:00&quot;
+  datetime.to_formatted_s(:long_ordinal)  # =&gt; &quot;December 4th, 2007 00:00&quot;
+  datetime.to_formatted_s(:rfc822)        # =&gt; &quot;Tue, 04 Dec 2007 00:00:00 +0000&quot;
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000489" class="method-detail">
+        <a name="M000489"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000489.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000489.html');return false;">
+          <span class="method-name">to_time</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Attempts to convert self to a Ruby Time object; returns self if out of
+range of Ruby Time class If self has an offset other than 0, self will just
+be returned unaltered, since there&#8216;s no clean way to map it to a Time
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000491" class="method-detail">
+        <a name="M000491"></a>
+
+        <div class="method-heading">
+          <a href="Conversions.src/M000491.html" target="Code" class="method-signature"
+            onclick="popupCode('Conversions.src/M000491.html');return false;">
+          <span class="method-name">xmlschema</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Converts datetime to an appropriate format for use in XML
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

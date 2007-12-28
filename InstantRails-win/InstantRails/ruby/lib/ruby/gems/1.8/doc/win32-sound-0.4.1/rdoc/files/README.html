@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:27 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>Description</h2>
+<pre>
+   A package for playing with sound on Windows.
+</pre>
+<h2>Prerequisites</h2>
+<pre>
+   This package requires Ruby 1.8.0 or later. Ruby 1.8.2 or later is
+   recommended.
+</pre>
+<h2>Installation instructions</h2>
+<pre>
+   rake test (optional)
+   rake install (non-gem) or rake install_gem (gem)
+</pre>
+<h2>Synopsis</h2>
+<pre>
+   require 'win32/sound'
+   include Win32
+
+   # Get the current volume of the waveform-audio output device.
+   p Sound.volume.join(&quot;, &quot;) # left channel, right channel
+
+   # Play a system sound
+   Sound.play(&quot;SystemAsterisk&quot;,Sound::ALIAS)
+
+   # Play a wav file
+   Sound.play(&quot;somefile.wav&quot;)
+</pre>
+<h2>Acknowledgements</h2>
+<pre>
+   API ideas derived (or not) from Perl's Win32::Sound module and Python's
+   winsound package.
+</pre>
+<h2>Known Bugs</h2>
+<pre>
+   None that I'm aware of. Please report any bugs on the Win32 Utils home
+   page at http://rubyforge.org/projects/win32utils.
+</pre>
+<h2>Questions and Comments</h2>
+<pre>
+   Please post questions and/or comments on one of the forums on the project
+   page at http://rubyforge.org/projects/win32utils. Click the 'Forums' tab.
+</pre>
+<h2>Future Plans</h2>
+<pre>
+   Add ability to retrieve information about WAV files.
+   Add MIDI support?
+</pre>
+<h2>Developer&#8216;s Notes</h2>
+<pre>
+   The MessageBeep() function, which the Python &quot;winsound&quot; module contains,
+   is intentionally omitted here. I felt it was redundant, because you can
+   achieve the same effect with something like
+   Sound.play(&quot;SystemAsterisk&quot;, Sound::ALIAS).
+</pre>
+<h2>License</h2>
+<pre>
+   Ruby's
+</pre>
+<h2>Copyright</h2>
+<pre>
+   (C) 2004-2007, Daniel J. Berger, All Rights Reserved
+</pre>
+<h2>Warranty</h2>
+<pre>
+   This package is provided &quot;as is&quot; and without any express or
+   implied warranties, including, without limitation, the implied
+   warranties of merchantability and fitness for a particular purpose.
+</pre>
+<h2>Author(s)</h2>
+<pre>
+   Daniel Berger
+   djberg96 at nospam at gmail dot com
+   imperator on IRC (irc.freenode.net)
+
+   Park Heesob
+   phasis at nospam at nownuri dot net
+   phasis68 on IRC (irc.freenode.net)
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Requests that a new channel be opened on the remote host. This will return immediately, but the <tt>on_confirm_open</tt> callback will be invoked when the remote host confirms that the channel has been successfully opened.
+full_name: Net::SSH::Connection::Channel::open
+is_singleton: true
+name: open
+params: ( connection, log, buffers, type, data=nil )
+visibility: public

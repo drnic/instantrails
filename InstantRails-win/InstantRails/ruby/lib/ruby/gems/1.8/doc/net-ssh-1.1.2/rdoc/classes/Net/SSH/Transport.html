@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Net::SSH::Transport</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Net::SSH::Transport</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/net/ssh/transport/algorithm-negotiator_rb.html">
+                lib/net/ssh/transport/algorithm-negotiator.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/compressor_rb.html">
+                lib/net/ssh/transport/compress/compressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/decompressor_rb.html">
+                lib/net/ssh/transport/compress/decompressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/none-compressor_rb.html">
+                lib/net/ssh/transport/compress/none-compressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/none-decompressor_rb.html">
+                lib/net/ssh/transport/compress/none-decompressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/services_rb.html">
+                lib/net/ssh/transport/compress/services.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/zlib-compressor_rb.html">
+                lib/net/ssh/transport/compress/zlib-compressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/compress/zlib-decompressor_rb.html">
+                lib/net/ssh/transport/compress/zlib-decompressor.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/constants_rb.html">
+                lib/net/ssh/transport/constants.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/errors_rb.html">
+                lib/net/ssh/transport/errors.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/identity-cipher_rb.html">
+                lib/net/ssh/transport/identity-cipher.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/kex/dh-gex_rb.html">
+                lib/net/ssh/transport/kex/dh-gex.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/kex/dh_rb.html">
+                lib/net/ssh/transport/kex/dh.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/kex/services_rb.html">
+                lib/net/ssh/transport/kex/services.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/buffer-factory_rb.html">
+                lib/net/ssh/transport/ossl/buffer-factory.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/buffer_rb.html">
+                lib/net/ssh/transport/ossl/buffer.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/cipher-factory_rb.html">
+                lib/net/ssh/transport/ossl/cipher-factory.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/digest-factory_rb.html">
+                lib/net/ssh/transport/ossl/digest-factory.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/hmac_rb.html">
+                lib/net/ssh/transport/ossl/hmac/hmac.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/md5-96_rb.html">
+                lib/net/ssh/transport/ossl/hmac/md5-96.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/md5_rb.html">
+                lib/net/ssh/transport/ossl/hmac/md5.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/none_rb.html">
+                lib/net/ssh/transport/ossl/hmac/none.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/services_rb.html">
+                lib/net/ssh/transport/ossl/hmac/services.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/sha1-96_rb.html">
+                lib/net/ssh/transport/ossl/hmac/sha1-96.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac/sha1_rb.html">
+                lib/net/ssh/transport/ossl/hmac/sha1.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/hmac-factory_rb.html">
+                lib/net/ssh/transport/ossl/hmac-factory.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/key-factory_rb.html">
+                lib/net/ssh/transport/ossl/key-factory.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/ossl/services_rb.html">
+                lib/net/ssh/transport/ossl/services.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/packet-stream_rb.html">
+                lib/net/ssh/transport/packet-stream.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/services_rb.html">
+                lib/net/ssh/transport/services.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/session_rb.html">
+                lib/net/ssh/transport/session.rb
+                </a>
+        <br />
+                <a href="../../../files/lib/net/ssh/transport/version-negotiator_rb.html">
+                lib/net/ssh/transport/version-negotiator.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000123">register_services</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Module <a href="Transport/Compress.html" class="link">Net::SSH::Transport::Compress</a><br />
+Module <a href="Transport/Constants.html" class="link">Net::SSH::Transport::Constants</a><br />
+Module <a href="Transport/DisconnectReasons.html" class="link">Net::SSH::Transport::DisconnectReasons</a><br />
+Module <a href="Transport/Kex.html" class="link">Net::SSH::Transport::Kex</a><br />
+Module <a href="Transport/OSSL.html" class="link">Net::SSH::Transport::OSSL</a><br />
+Class <a href="Transport/AlgorithmNegotiator.html" class="link">Net::SSH::Transport::AlgorithmNegotiator</a><br />
+Class <a href="Transport/CipherNotFound.html" class="link">Net::SSH::Transport::CipherNotFound</a><br />
+Class <a href="Transport/DigestTypeNotFound.html" class="link">Net::SSH::Transport::DigestTypeNotFound</a><br />
+Class <a href="Transport/Disconnect.html" class="link">Net::SSH::Transport::Disconnect</a><br />
+Class <a href="Transport/Exception.html" class="link">Net::SSH::Transport::Exception</a><br />
+Class <a href="Transport/HMACAlgorithmNotFound.html" class="link">Net::SSH::Transport::HMACAlgorithmNotFound</a><br />
+Class <a href="Transport/IdentityCipher.html" class="link">Net::SSH::Transport::IdentityCipher</a><br />
+Class <a href="Transport/IncomingPacketStream.html" class="link">Net::SSH::Transport::IncomingPacketStream</a><br />
+Class <a href="Transport/KeyTypeNotFound.html" class="link">Net::SSH::Transport::KeyTypeNotFound</a><br />
+Class <a href="Transport/OutgoingPacketStream.html" class="link">Net::SSH::Transport::OutgoingPacketStream</a><br />
+Class <a href="Transport/PacketStream.html" class="link">Net::SSH::Transport::PacketStream</a><br />
+Class <a href="Transport/Session.html" class="link">Net::SSH::Transport::Session</a><br />
+Class <a href="Transport/VersionNegotiator.html" class="link">Net::SSH::Transport::VersionNegotiator</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000123" class="method-detail">
+        <a name="M000123"></a>
+
+        <div class="method-heading">
+          <a href="Transport.src/M000123.html" target="Code" class="method-signature"
+            onclick="popupCode('Transport.src/M000123.html');return false;">
+          <span class="method-name">register_services</span><span class="method-args">( container )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the services that together implement the <a
+href="../SSH.html">SSH</a> transport layer.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

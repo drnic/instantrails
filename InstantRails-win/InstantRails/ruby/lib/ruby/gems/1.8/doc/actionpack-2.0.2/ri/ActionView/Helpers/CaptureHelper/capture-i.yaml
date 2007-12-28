@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The capture method allows you to extract part of a template into a variable. You can then use this variable anywhere in your templates or layout.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::P 
+  body: The capture method can be used in ERb templates...
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% @greeting = capture do %&gt;\n    Welcome to my shiny new web page!  The date and time is\n    &lt;%= Time.now %&gt;\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...and Builder (RXML) templates.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  @timestamp = capture do\n    &quot;The current timestamp is #{Time.now}.&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can then use that variable anywhere else. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;html&gt;\n  &lt;head&gt;&lt;title&gt;&lt;%= @greeting %&gt;&lt;/title&gt;&lt;/head&gt;\n  &lt;body&gt;\n  <b>&lt;%= @greeting %&gt;</b>\n  &lt;/body&gt;&lt;/html&gt;\n"
+full_name: ActionView::Helpers::CaptureHelper#capture
+is_singleton: false
+name: capture
+params: (*args, &block)
+visibility: public

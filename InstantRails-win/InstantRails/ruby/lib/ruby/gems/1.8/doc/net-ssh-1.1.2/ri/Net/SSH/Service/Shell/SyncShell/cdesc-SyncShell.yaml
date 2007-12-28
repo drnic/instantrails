@@ -1,0 +1,38 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A version of Shell::Shell that acts synchronously, allowing clients to execute a command via a shell, wait for it to finish, and then inspect both the stdout and stderr from the command, as well as the exit status.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A struct representing the result of executing a command.
+  name: CommandOutput
+  value: Struct.new( :stdout, :stderr, :status )
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The unique confirmation string that is used to recognize the end of a command's execution.
+  name: CONFIRMATION
+  value: "\"2357foobarbazzabraboof7532\""
+full_name: Net::SSH::Service::Shell::SyncShell
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: open?
+- !ruby/object:RI::MethodSummary 
+  name: send_command
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+- !ruby/object:RI::MethodSummary 
+  name: send_extended_data
+name: SyncShell
+superclass: Object

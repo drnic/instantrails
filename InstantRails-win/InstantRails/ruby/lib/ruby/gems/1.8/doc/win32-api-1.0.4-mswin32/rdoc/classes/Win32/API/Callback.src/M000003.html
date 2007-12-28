@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Win32::API::Callback)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq:
+ *    Win32::API::Callback.new(prototype, return='L')
+ * 
+ * Creates and returns a new Win32::API::Callback object. The +function+ is
+ * the name of the Windows function.
+ * 
+ * The +prototype+ is the function prototype for the callback function. This
+ * is a string. The possible valid characters are 'I' (integer), 'L' (long),
+ * 'V' (void), or 'P' (pointer). Unlike API objects, API::Callback objects
+ * do not have a default prototype.
+ * 
+ * The +return+ argument is the return type for the callback function. The
+ * valid characters are the same as for the +prototype+. The default is
+ * 'L' (long).
+ */
+static VALUE callback_init(int argc, VALUE* argv, VALUE self)
+{
+   VALUE v_proto, v_return, v_proc;
+   int i;
+    
+   rb_scan_args(argc, argv, &quot;11&quot;, &amp;v_proto, &amp;v_return);
+   
+   /* Validate prototype characters */
+   for(i = 0; i &lt; RSTRING(v_proto)-&gt;len; i++){
+      switch(RSTRING(v_proto)-&gt;ptr[i]){
+         case 'I': case 'L': case 'P': case 'V':
+            break;
+         default:
+            rb_raise(cCallbackError, &quot;Illegal prototype '%c'&quot;,
+               RSTRING(v_proto)-&gt;ptr[i]);
+      }
+   }
+
+   if(NIL_P(v_return) || RARRAY(v_return)-&gt;len == 0)
+      v_return = rb_str_new2(&quot;L&quot;);
+
+   if(rb_block_given_p())
+      v_proc = rb_block_proc();
+   else
+      v_proc = Qnil;
+
+    rb_iv_set(self, &quot;@function&quot;, v_proc);
+    rb_iv_set(self, &quot;@prototype&quot;, v_proto);
+    rb_iv_set(self, &quot;@return_type&quot;, v_return);
+    
+    return self;
+}</pre>
+</body>
+</html>

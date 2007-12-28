@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>form_authenticity_token (ActionController::RequestForgeryProtection)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/request_forgery_protection.rb, line 99</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">form_authenticity_token</span>
+        <span class="ruby-ivar">@form_authenticity_token</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">request_forgery_protection_options</span>[<span class="ruby-identifier">:secret</span>]
+          <span class="ruby-identifier">authenticity_token_from_session_id</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:dbman</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">dbman</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:generate_digest</span>)
+          <span class="ruby-identifier">authenticity_token_from_cookie_session</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">session</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidAuthenticityToken</span>, <span class="ruby-value str">&quot;Request Forgery Protection requires a valid session.  Use #allow_forgery_protection to disable it, or use a valid session.&quot;</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidAuthenticityToken</span>, <span class="ruby-value str">&quot;No :secret given to the #protect_from_forgery call.  Set that or use a session store capable of generating its own keys (Cookie Session Store).&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

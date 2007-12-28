@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a button input tag with the element name of <tt>name</tt> and a value (i.e., display text) of <tt>value</tt> that will submit form using XMLHttpRequest in the background instead of a regular POST request that reloads the page.
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Create a button that submits to the create action\n #\n # Generates: &lt;input name=&quot;create_btn&quot; onclick=&quot;new Ajax.Request('/testing/create',\n #     {asynchronous:true, evalScripts:true, parameters:Form.serialize(this.form)});\n #     return false;&quot; type=&quot;button&quot; value=&quot;Create&quot; /&gt;\n &lt;%= submit_to_remote 'create_btn', 'Create', :url =&gt; { :action =&gt; 'create' } %&gt;\n\n # Submit to the remote action update and update the DIV succeed or fail based\n # on the success or failure of the request\n #\n # Generates: &lt;input name=&quot;update_btn&quot; onclick=&quot;new Ajax.Updater({success:'succeed',failure:'fail'},\n #      '/testing/update', {asynchronous:true, evalScripts:true, parameters:Form.serialize(this.form)});\n #      return false;&quot; type=&quot;button&quot; value=&quot;Update&quot; /&gt;\n &lt;%= submit_to_remote 'update_btn', 'Update', :url =&gt; { :action =&gt; 'update' },\n    :update =&gt; { :success =&gt; &quot;succeed&quot;, :failure =&gt; &quot;fail&quot; }\n"
+- !ruby/struct:SM::Flow::P 
+  body: <tt>options</tt> argument is the same as in form_remote_tag.
+full_name: ActionView::Helpers::PrototypeHelper#submit_to_remote
+is_singleton: false
+name: submit_to_remote
+params: (name, value, options = {})
+visibility: public

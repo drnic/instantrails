@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>request_method (ActionController::AbstractRequest)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/request.rb, line 20</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">request_method</span>
+      <span class="ruby-ivar">@request_method</span> <span class="ruby-operator">||=</span> <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-identifier">method</span> = ((<span class="ruby-ivar">@env</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'POST'</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span><span class="ruby-identifier">parameters</span>[<span class="ruby-identifier">:_method</span>].<span class="ruby-identifier">blank?</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">parameters</span>[<span class="ruby-identifier">:_method</span>].<span class="ruby-identifier">to_s</span> <span class="ruby-operator">:</span> <span class="ruby-ivar">@env</span>[<span class="ruby-value str">'REQUEST_METHOD'</span>]).<span class="ruby-identifier">downcase</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ACCEPTED_HTTP_METHODS</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method</span>)
+          <span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_sym</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">UnknownHttpMethod</span>, <span class="ruby-node">&quot;#{method}, accepted HTTP methods are #{ACCEPTED_HTTP_METHODS.to_a.to_sentence}&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

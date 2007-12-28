@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A helper method for defining new operations supported by this implementation. This will create one method for each named operation. By default, the method simply formats the packet (using the packet assistant), and then sends the data via the driver. It will then return the request id used for this operation.
+full_name: Net::SFTP::Protocol::V_01::Impl::operation
+is_singleton: true
+name: operation
+params: ( *names )
+visibility: public

@@ -1,0 +1,59 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the message format string to the given string. This also pre-parses the format for faster processing.
+- !ruby/struct:SM::Flow::P 
+  body: "The format string is a printf-formatted string, which supports the following format specifiers:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "c:"
+    body: the unqualified name of the logger
+  - !ruby/struct:SM::Flow::LI 
+    label: "C:"
+    body: the fully-qualified name of the logger
+  - !ruby/struct:SM::Flow::LI 
+    label: "d:"
+    body: "the date/time string (as formatted by the #datetime_format string)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "F:"
+    body: the filename of the calling routine
+  - !ruby/struct:SM::Flow::LI 
+    label: "l:"
+    body: the location of the calling routine
+  - !ruby/struct:SM::Flow::LI 
+    label: "L:"
+    body: the line number of the calling routine
+  - !ruby/struct:SM::Flow::LI 
+    label: "m:"
+    body: the message to log
+  - !ruby/struct:SM::Flow::LI 
+    label: "M:"
+    body: the name of the calling method
+  - !ruby/struct:SM::Flow::LI 
+    label: "n:"
+    body: the newline character
+  - !ruby/struct:SM::Flow::LI 
+    label: "p:"
+    body: the name of the priority (or severity) used to log this method
+  - !ruby/struct:SM::Flow::LI 
+    label: "t:"
+    body: the id of the current thread
+  - !ruby/struct:SM::Flow::LI 
+    label: "%:"
+    body: a percentage character
+  - !ruby/struct:SM::Flow::LI 
+    label: "P:"
+    body: the progname that was passed to the logger method
+  - !ruby/struct:SM::Flow::LI 
+    label: "$:"
+    body: the current process id
+  type: :NOTE
+full_name: Needle::Logger#message_format=
+is_singleton: false
+name: message_format=
+params: ( format )
+visibility: public

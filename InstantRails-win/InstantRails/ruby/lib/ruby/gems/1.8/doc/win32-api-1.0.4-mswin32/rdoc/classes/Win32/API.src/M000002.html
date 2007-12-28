@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>call (Win32::API)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>/*
+ * call-seq:
+ *    Win32::API#call(arg1, arg2, ...)
+ * 
+ * Calls the function pointer with the given arguments (if any). Note that,
+ * while this method will catch some prototype mismatches (raising a TypeError
+ * in the process), it is not fulproof.  It is ultimately your job to make
+ * sure the arguments match the +prototype+ specified in the constructor.
+ * 
+ * For convenience, nil is converted to NULL, true is converted to TRUE (1)
+ * and false is converted to FALSE (0).
+ */
+static VALUE api_call(int argc, VALUE* argv, VALUE self){
+</pre>
+</body>
+</html>

@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Transparency color [FXColor]
+  name: transparentColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "An Icon is an image with two additional server-side resources: a shape bitmap, which is used to mask those pixels where the background should be preserved during the drawing, and a etch bitmap, which is used to draw the icon when it is disabled."
+constants: []
+
+full_name: Fox::FXIcon
+includes: []
+
+instance_methods: []
+
+name: FXIcon
+superclass: FXImage

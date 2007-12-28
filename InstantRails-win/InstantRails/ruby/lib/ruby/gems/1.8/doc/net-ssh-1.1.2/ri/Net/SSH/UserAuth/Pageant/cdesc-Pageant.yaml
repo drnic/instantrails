@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module encapsulates the implementation of a socket factory that uses the PuTTY &quot;pageant&quot; utility to obtain information about SSH identities.
+- !ruby/struct:SM::Flow::P 
+  body: "This code is a slightly modified version of the original implementation by Guillaume Mar\xE7ais (guillaume.marcais@free.fr). It is used and relicensed by permission."
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: From Putty pageant.c
+  name: AGENT_MAX_MSGLEN
+  value: "8192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AGENT_COPYDATA_ID
+  value: "0x804e50ba"
+full_name: Net::SSH::UserAuth::Pageant
+includes: []
+
+instance_methods: []
+
+name: Pageant
+superclass: 

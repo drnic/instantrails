@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Asserts that the provided options can be used to generate the provided path. This is the inverse of #assert_recognizes. The <tt>extras</tt> parameter is used to tell the request the names and values of additional request parameters that would be in a query string. The <tt>message</tt> parameter allows you to specify a custom error message for assertion failures."
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>defaults</tt> parameter is unused.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Asserts that the default action is generated for a route with no action\n  assert_generates(&quot;/items&quot;, :controller =&gt; &quot;items&quot;, :action =&gt; &quot;index&quot;)\n\n  # Tests that the list action is properly routed\n  assert_generates(&quot;/items/list&quot;, :controller =&gt; &quot;items&quot;, :action =&gt; &quot;list&quot;)\n\n  # Tests the generation of a route with a parameter\n  assert_generates(&quot;/items/list/1&quot;, { :controller =&gt; &quot;items&quot;, :action =&gt; &quot;list&quot;, :id =&gt; &quot;1&quot; })\n\n  # Asserts that the generated route gives us our custom route\n  assert_generates &quot;changesets/12&quot;, { :controller =&gt; 'scm', :action =&gt; 'show_diff', :revision =&gt; &quot;12&quot; }\n"
+full_name: ActionController::Assertions::RoutingAssertions#assert_generates
+is_singleton: false
+name: assert_generates
+params: (expected_path, options, defaults={}, extras = {}, message=nil)
+visibility: public

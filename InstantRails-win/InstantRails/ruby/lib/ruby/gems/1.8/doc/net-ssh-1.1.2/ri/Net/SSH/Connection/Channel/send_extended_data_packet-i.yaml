@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Send an extended data packet to the server, over the channel. Extended data always has a numeric type associated with it. The only predefined type is 1, whic corresponds to <tt>stderr</tt> data.
+full_name: Net::SSH::Connection::Channel#send_extended_data_packet
+is_singleton: false
+name: send_extended_data_packet
+params: ( type, data )
+visibility: public

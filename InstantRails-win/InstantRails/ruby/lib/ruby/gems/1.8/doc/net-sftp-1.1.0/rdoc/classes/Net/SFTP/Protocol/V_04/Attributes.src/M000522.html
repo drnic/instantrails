@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>from_buffer (Net::SFTP::Protocol::V_04::Attributes)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/04/attributes.rb, line 73</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">from_buffer</span>( <span class="ruby-identifier">buffer</span> )
+      <span class="ruby-identifier">flags</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span>
+
+      <span class="ruby-identifier">type</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_byte</span>
+      <span class="ruby-identifier">size</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_int64</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_SIZE</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">owner</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_OWNERGROUP</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">group</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_OWNERGROUP</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-identifier">permissions</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_PERMISSIONS</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_ACCESSTIME</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">atime</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_int64</span>
+        <span class="ruby-identifier">atime_nseconds</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_SUBSECOND_TIMES</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_CREATETIME</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">ctime</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_int64</span>
+        <span class="ruby-identifier">ctime_nseconds</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_SUBSECOND_TIMES</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_MODIFYTIME</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">mtime</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_int64</span>
+        <span class="ruby-identifier">mtime_nseconds</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span> <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_SUBSECOND_TIMES</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_ACL</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">acl_buf</span> = <span class="ruby-identifier">buffers</span>.<span class="ruby-identifier">reader</span>( <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span> )
+        <span class="ruby-identifier">acl</span> = []
+        <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">read_long</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">acl</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ACL</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">read_long</span>,
+                          <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">read_long</span>,
+                          <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">read_long</span>,
+                          <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">read_string</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> ( <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">F_EXTENDED</span> ) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+        <span class="ruby-identifier">extended</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+        <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span>.<span class="ruby-identifier">times</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">extended</span>[ <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span> ] = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">new</span>( <span class="ruby-identifier">type</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">owner</span>, <span class="ruby-identifier">group</span>, <span class="ruby-identifier">permissions</span>, <span class="ruby-identifier">atime</span>, <span class="ruby-identifier">atime_nseconds</span>,
+        <span class="ruby-identifier">ctime</span>, <span class="ruby-identifier">ctime_nseconds</span>, <span class="ruby-identifier">mtime</span>, <span class="ruby-identifier">mtime_nseconds</span>, <span class="ruby-identifier">acl</span>, <span class="ruby-identifier">extended</span> )
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

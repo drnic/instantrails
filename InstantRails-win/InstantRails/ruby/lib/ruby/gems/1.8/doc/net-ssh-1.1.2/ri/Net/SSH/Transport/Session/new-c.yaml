@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new connection to the given host. This will negotiate the algorithms to use and exchange the keys. A block must be given. The uninitialized <tt>self</tt> will be passed to the block, so that dependencies may be injected.
+full_name: Net::SSH::Transport::Session::new
+is_singleton: true
+name: new
+params: ( host, options={} ) {|self| ...}
+visibility: public

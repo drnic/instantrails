@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Cease forwarding connections from the given local port (and interface). The parameters must match those given to a prior call to #local. Existing forwarded connections are not affected by this call, but no more connections will be accepted on the local port."
+full_name: Net::SSH::Service::Forward::Driver#cancel_local
+is_singleton: false
+name: cancel_local
+params: ( local_port, bind_address="127.0.0.1" )
+visibility: public

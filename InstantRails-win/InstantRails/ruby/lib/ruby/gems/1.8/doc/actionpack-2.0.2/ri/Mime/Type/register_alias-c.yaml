@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Registers an alias that's not used on mime type lookup, but can be referenced directly. Especially useful for rendering different HTML versions depending on the user agent, like an iPhone.
+full_name: Mime::Type::register_alias
+is_singleton: true
+name: register_alias
+params: (string, symbol, extension_synonyms = [])
+visibility: public

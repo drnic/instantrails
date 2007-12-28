@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new service point that references the given container and has the given name. The associated callback will be used to instantiate the service on demand.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>:model</tt> option is used to tell Needle which style of life-cycle management should be used for the service. It defaults to <tt>:singleton</tt>. The model must be a symbol that refers to a service model that has been registered in the root <tt>:service_models</tt> service.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>:pipeline</tt> option is mutually exclusive with <tt>:model</tt>. It must be an array of symbols (or strings) that define the instantiation pipeline to use for this service. Each element must correspond to an entry in the <tt>:pipeline_elements</tt> service.
+full_name: Needle::ServicePoint::new
+is_singleton: true
+name: new
+params: ( container, name, opts={}, &callback )
+visibility: public

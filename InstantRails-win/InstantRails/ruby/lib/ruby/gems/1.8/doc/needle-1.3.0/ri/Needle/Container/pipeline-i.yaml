@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the pipeline object for the named service, which allows clients to explicitly manipulate the service's instantiation pipeline.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.pipeline( :calc ).\n    add( :initialize ).\n    add( :custom ) { |me,*args| me.succ.call( *args ) }\n"
+full_name: Needle::Container#pipeline
+is_singleton: false
+name: pipeline
+params: ( name )
+visibility: public

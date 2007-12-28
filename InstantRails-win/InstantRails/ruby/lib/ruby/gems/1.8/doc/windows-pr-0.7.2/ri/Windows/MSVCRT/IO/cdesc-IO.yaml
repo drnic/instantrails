@@ -1,0 +1,229 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFMT
+  value: "0170000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFDIR
+  value: "0040000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFCHR
+  value: "0020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFIFO
+  value: "0010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFREG
+  value: "0100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IREAD
+  value: "0000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IWRITE
+  value: "0000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IEXEC
+  value: "0000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Clearerr
+  value: API.new('clearerr', 'I', 'V', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Close
+  value: API.new('_close', 'I', 'V', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fclose
+  value: API.new('fclose', 'I', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fcloseall
+  value: API.new('_fcloseall', 'V', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fdopen
+  value: API.new('_fdopen', 'IP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Feof
+  value: API.new('feof', 'I', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Ferror
+  value: API.new('ferror', 'L', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fflush
+  value: API.new('fflush', 'I', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fgetc
+  value: API.new('fgetc', 'L', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fgetpos
+  value: API.new('fgetpos', 'LP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fgetwc
+  value: API.new('fgetwc', 'L', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fgets
+  value: API.new('fgets', 'PIL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fgetws
+  value: API.new('fgetws', 'PIL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fileno
+  value: API.new('_fileno', 'I', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Flushall
+  value: API.new('_flushall', 'V', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fopen
+  value: API.new('fopen', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fputs
+  value: API.new('fputs', 'PL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Fputws
+  value: API.new('fputws', 'PL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getc
+  value: API.new('getc', 'L', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Getwc
+  value: API.new('getwc', 'L', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Open
+  value: API.new('_open', 'PPI', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Rmtmp
+  value: API.new('_rmtmp', 'V', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Tempnam
+  value: API.new('_tempnam', 'PP', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Tmpfile
+  value: API.new('tmpfile', 'V', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Tmpnam
+  value: API.new('tmpnam', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wopen
+  value: API.new('_wopen', 'PPI', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wfdopen
+  value: API.new('_wfdopen', 'IP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wfopen
+  value: API.new('_wfopen', 'PPI', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wtempnam
+  value: API.new('_wtempnam', 'PP', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wtmpnam
+  value: API.new('_wtmpnam', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Tmpfile_s
+  value: API.new('_tmpfile_s', 'P', 'L', 'msvcrt')
+full_name: Windows::MSVCRT::IO
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clearerr
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: fclose
+- !ruby/object:RI::MethodSummary 
+  name: fcloseall
+- !ruby/object:RI::MethodSummary 
+  name: fdopen
+- !ruby/object:RI::MethodSummary 
+  name: feof
+- !ruby/object:RI::MethodSummary 
+  name: ferror
+- !ruby/object:RI::MethodSummary 
+  name: fflush
+- !ruby/object:RI::MethodSummary 
+  name: fgetc
+- !ruby/object:RI::MethodSummary 
+  name: fgetpos
+- !ruby/object:RI::MethodSummary 
+  name: fgets
+- !ruby/object:RI::MethodSummary 
+  name: fgetwc
+- !ruby/object:RI::MethodSummary 
+  name: fgetws
+- !ruby/object:RI::MethodSummary 
+  name: fileno
+- !ruby/object:RI::MethodSummary 
+  name: flushall
+- !ruby/object:RI::MethodSummary 
+  name: fopen
+- !ruby/object:RI::MethodSummary 
+  name: fputs
+- !ruby/object:RI::MethodSummary 
+  name: fputws
+- !ruby/object:RI::MethodSummary 
+  name: getc
+- !ruby/object:RI::MethodSummary 
+  name: getwc
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: tempnam
+- !ruby/object:RI::MethodSummary 
+  name: tmpfile
+- !ruby/object:RI::MethodSummary 
+  name: tmpfile_s
+- !ruby/object:RI::MethodSummary 
+  name: tmpnam
+- !ruby/object:RI::MethodSummary 
+  name: wfdopen
+- !ruby/object:RI::MethodSummary 
+  name: wfopen
+- !ruby/object:RI::MethodSummary 
+  name: wopen
+- !ruby/object:RI::MethodSummary 
+  name: wtempnam
+- !ruby/object:RI::MethodSummary 
+  name: wtmpnam
+name: IO
+superclass: 

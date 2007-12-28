@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:08 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<pre>
+   This is a wrapper for Win32::API that simplifies various idioms typically
+   used by people who use Win32::API.
+</pre>
+<h1>Synopsis</h1>
+<pre>
+   require 'windows/api'
+   include Windows
+
+   # Defaults to 'V' prototype, 'L' return type and 'kernel32' library
+   GetVersion = API.new('GetVersion')
+
+   # Defaults to 'L' return type and 'kernel32' library
+   CloseHandle = API.new('CloseHandle', 'L')
+
+   # Defaults to 'kernel32' library
+   GetWindowsDirectory = API.new('GetWindowsDirectory', 'LI', 'I')
+
+   # Explicitly state every argument
+   GetComputerNameEx = API.new('GetComputerNameEx', 'PPP', 'I', 'kernel32')
+
+   # Attributes for possible inspection
+   puts GetVersion.dll_name      # 'kernel32'
+   puts GetVersion.function_name # 'GetVersion'
+   puts GetVersion.prototype     # ['V']
+   puts GetVersion.return_type   # 'L'
+
+   # Automatic method generation
+
+   # This code....
+   module Windows
+      module Foo
+         API.auto_namespace = 'Windows::Foo'
+         API.new('GetComputerName', 'PP', 'B')
+      end
+   end
+
+   # Is the same as this code...
+   module Windows
+      module Foo
+         GetComputerName  = Win32API.new('kernel32', 'GetComputerName', 'PP', 'I')
+         GetComputerNameA = Win32API.new('kernel32', GetComputerNameA', 'PP', 'I')
+         GetComputerNameW = Win32API.new('kernel32', 'GetComputerNameW', 'PP', 'I')
+
+         def GetComputerName(p1, p2)
+            GetComputerName.call(p1, p2) != 0
+         end
+
+         def GetComputerNameA(p1, p2)
+            GetComputerName.call(p1, p2) != 0
+         end
+
+         def GetComputerNameW(p1, p2)
+            GetComputerName.call(p1, p2) != 0
+         end
+      end
+   end
+</pre>
+<h1>Advantages over plain Win32::API</h1>
+<pre>
+   * Automatic constant generation.
+   * Automatic definition of ANSI and Unicode method wrappers, including
+     special handling for boolean methods.
+   * Most arguments to the constructor are optional, with sensible defaults.
+   * Four attributes added to API objects - dll_name, function_name, prototype
+     and return_type.
+</pre>
+<h1>More documentation</h1>
+<pre>
+   See the RDoc documentation, which should have been automatically generated
+   if you installed this as a gem.
+</pre>
+<h1>Bugs</h1>
+<pre>
+   None that I'm aware of. Please submit any bugs to the project page at
+   http://www.rubyforge.org/projects/win32utils.
+</pre>
+<h1>Copyright</h1>
+<pre>
+   (C) 2007, Daniel J. Berger
+</pre>
+<h1>License</h1>
+<pre>
+   Ruby's
+</pre>
+<h1>Author</h1>
+<pre>
+   Daniel Berger
+   djberg96 at gmail dot com
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

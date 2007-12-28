@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: define
+- !ruby/object:RI::MethodSummary 
+  name: define!
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Registry is a specialization of Container, with additional functionality for bootstrapping basic services into a new registry. It also supports a #define! method for easily registering new services."
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'needle'\n\n  registry = Needle::Registry.new\n  registry.register( :foo ) { Foo.new }\n  registry.register( :bar ) { |c| Bar.new( c.foo ) }\n\n  bar = registry.bar\n"
+constants: []
+
+full_name: Needle::Registry
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fullname
+name: Registry
+superclass: Container

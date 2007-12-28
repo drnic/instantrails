@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A subclass of Mutex that allows clients to discover which thread has the mutex locked. This is necessary for (among other things) discovering cycles in the dependency graph of services.
+constants: []
+
+full_name: Needle::QueryableMutex
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: lock
+- !ruby/object:RI::MethodSummary 
+  name: self_locked?
+- !ruby/object:RI::MethodSummary 
+  name: try_lock
+- !ruby/object:RI::MethodSummary 
+  name: unlock
+name: QueryableMutex
+superclass: Mutex

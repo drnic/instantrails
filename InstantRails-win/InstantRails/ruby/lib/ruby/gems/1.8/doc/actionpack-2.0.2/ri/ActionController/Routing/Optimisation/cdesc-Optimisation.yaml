@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Much of the slow performance from routes comes from the complexity of expiry, :requirements matching, defaults providing and figuring out which url pattern to use. With named routes we can avoid the expense of finding the right route. So if they've provided the right number of arguments, and have no :requirements, we can just build up a string and return it.
+- !ruby/struct:SM::Flow::P 
+  body: To support building optimisations for other common cases, the generation code is separated into several classes
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPTIMISERS
+  value: "[PositionalArguments, PositionalArgumentsWithAdditionalParams]"
+full_name: ActionController::Routing::Optimisation
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: generate_optimisation_block
+name: Optimisation
+superclass: 

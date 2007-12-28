@@ -1,0 +1,94 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Renders the content that will be returned to the browser as the response body.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering an action
+- !ruby/struct:SM::Flow::P 
+  body: Action rendering is the most common form and the type used automatically by Action Controller when nothing else is specified. By default, actions are rendered within the current layout (if one exists).
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders the template for the action &quot;goal&quot; within the current controller\n  render :action =&gt; &quot;goal&quot;\n\n  # Renders the template for the action &quot;short_goal&quot; within the current controller,\n  # but without the current active layout\n  render :action =&gt; &quot;short_goal&quot;, :layout =&gt; false\n\n  # Renders the template for the action &quot;long_goal&quot; within the current controller,\n  # but with a custom layout\n  render :action =&gt; &quot;long_goal&quot;, :layout =&gt; &quot;spectacular&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering partials
+- !ruby/struct:SM::Flow::P 
+  body: Partial rendering in a controller is most commonly used together with Ajax calls that only update one or a few elements on a page without reloading. Rendering of partials from the controller makes it possible to use the same partial template in both the full-page rendering (by calling it from within the template) and when sub-page updates happen (from the controller action responding to Ajax calls). By default, the current layout is not used.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders the same partial with a local variable.\n  render :partial =&gt; &quot;person&quot;, :locals =&gt; { :name =&gt; &quot;david&quot; }\n\n  # Renders the partial, making @new_person available through\n  # the local variable 'person'\n  render :partial =&gt; &quot;person&quot;, :object =&gt; @new_person\n\n  # Renders a collection of the same partial by making each element\n  # of @winners available through the local variable &quot;person&quot; as it\n  # builds the complete response.\n  render :partial =&gt; &quot;person&quot;, :collection =&gt; @winners\n\n  # Renders the same collection of partials, but also renders the\n  # person_divider partial between each person partial.\n  render :partial =&gt; &quot;person&quot;, :collection =&gt; @winners, :spacer_template =&gt; &quot;person_divider&quot;\n\n  # Renders a collection of partials located in a view subfolder\n  # outside of our current controller.  In this example we will be\n  # rendering app/views/shared/_note.r(html|xml)  Inside the partial\n  # each element of @new_notes is available as the local var &quot;note&quot;.\n  render :partial =&gt; &quot;shared/note&quot;, :collection =&gt; @new_notes\n\n  # Renders the partial with a status code of 500 (internal error).\n  render :partial =&gt; &quot;broken&quot;, :status =&gt; 500\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that the partial filename must also be a valid Ruby variable name, so e.g. 2005 and register-user are invalid.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Automatic etagging
+- !ruby/struct:SM::Flow::P 
+  body: Rendering will automatically insert the etag header on 200 OK responses. The etag is calculated using MD5 of the response body. If a request comes in that has a matching etag, the response will be changed to a 304 Not Modified and the response body will be set to an empty string. No etag header will be inserted if it's already set.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering a template
+- !ruby/struct:SM::Flow::P 
+  body: Template rendering works just like action rendering except that it takes a path relative to the template root. The current layout is automatically applied.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders the template located in [TEMPLATE_ROOT]/weblog/show.r(html|xml) (in Rails, app/views/weblog/show.erb)\n  render :template =&gt; &quot;weblog/show&quot;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering a file
+- !ruby/struct:SM::Flow::P 
+  body: File rendering works just like action rendering except that it takes a filesystem path. By default, the path is assumed to be absolute, and the current layout is not applied.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders the template located at the absolute filesystem path\n  render :file =&gt; &quot;/path/to/some/template.erb&quot;\n  render :file =&gt; &quot;c:/path/to/some/template.erb&quot;\n\n  # Renders a template within the current layout, and with a 404 status code\n  render :file =&gt; &quot;/path/to/some/template.erb&quot;, :layout =&gt; true, :status =&gt; 404\n  render :file =&gt; &quot;c:/path/to/some/template.erb&quot;, :layout =&gt; true, :status =&gt; 404\n\n  # Renders a template relative to the template root and chooses the proper file extension\n  render :file =&gt; &quot;some/template&quot;, :use_full_path =&gt; true\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering text
+- !ruby/struct:SM::Flow::P 
+  body: Rendering of text is usually used for tests or for rendering prepared content, such as a cache. By default, text rendering is not done within the active layout.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders the clear text &quot;hello world&quot; with status code 200\n  render :text =&gt; &quot;hello world!&quot;\n\n  # Renders the clear text &quot;Explosion!&quot;  with status code 500\n  render :text =&gt; &quot;Explosion!&quot;, :status =&gt; 500\n\n  # Renders the clear text &quot;Hi there!&quot; within the current active layout (if one exists)\n  render :text =&gt; &quot;Hi there!&quot;, :layout =&gt; true\n\n  # Renders the clear text &quot;Hi there!&quot; within the layout\n  # placed in &quot;app/views/layouts/special.r(html|xml)&quot;\n  render :text =&gt; &quot;Hi there!&quot;, :layout =&gt; &quot;special&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: The :text option can also accept a Proc object, which can be used to manually control the page generation. This should generally be avoided, as it violates the separation between code and content, and because almost everything that can be done with this method can also be done more cleanly using one of the other rendering methods, most notably templates.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders &quot;Hello from code!&quot;\n  render :text =&gt; proc { |response, output| output.write(&quot;Hello from code!&quot;) }\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering JSON
+- !ruby/struct:SM::Flow::P 
+  body: Rendering JSON sets the content type to application/json and optionally wraps the JSON in a callback. It is expected that the response will be parsed (or eval'd) for use as a data structure.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders '{&quot;name&quot;: &quot;David&quot;}'\n  render :json =&gt; {:name =&gt; &quot;David&quot;}.to_json\n"
+- !ruby/struct:SM::Flow::P 
+  body: "It's not necessary to call <tt>to_json</tt> on the object you want to render, since <tt>render</tt> will automatically do that for you:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Also renders '{&quot;name&quot;: &quot;David&quot;}'\n  render :json =&gt; {:name =&gt; &quot;David&quot;}\n"
+- !ruby/struct:SM::Flow::P 
+  body: Sometimes the result isn't handled directly by a script (such as when the request comes from a SCRIPT tag), so the <tt>:callback</tt> option is provided for these cases.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders 'show({&quot;name&quot;: &quot;David&quot;})'\n  render :json =&gt; {:name =&gt; &quot;David&quot;}.to_json, :callback =&gt; 'show'\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering an inline template
+- !ruby/struct:SM::Flow::P 
+  body: Rendering of an inline template works as a cross between text and action rendering where the source for the template is supplied inline, like text, but its interpreted with ERb or Builder, like action. By default, ERb is used for rendering and the current layout is not used.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Renders &quot;hello, hello, hello, again&quot;\n  render :inline =&gt; &quot;&lt;%= 'hello, ' * 3 + 'again' %&gt;&quot;\n\n  # Renders &quot;&lt;p&gt;Good seeing you!&lt;/p&gt;&quot; using Builder\n  render :inline =&gt; &quot;xml.p { 'Good seeing you!' }&quot;, :type =&gt; :builder\n\n  # Renders &quot;hello david&quot;\n  render :inline =&gt; &quot;&lt;%= 'hello ' + name %&gt;&quot;, :locals =&gt; { :name =&gt; &quot;david&quot; }\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering inline JavaScriptGenerator page updates
+- !ruby/struct:SM::Flow::P 
+  body: In addition to rendering JavaScriptGenerator page updates with Ajax in RJS templates (see ActionView::Base for details), you can also pass the <tt>:update</tt> parameter to <tt>render</tt>, along with a block, to render page updates inline.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  render :update do |page|\n    page.replace_html  'user_list', :partial =&gt; 'user', :collection =&gt; @users\n    page.visual_effect :highlight, 'user_list'\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Rendering with status and location headers
+- !ruby/struct:SM::Flow::P 
+  body: "All renders take the :status and :location options and turn them into headers. They can even be used together:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  render :xml =&gt; post.to_xml, :status =&gt; :created, :location =&gt; post_url(post)\n"
+full_name: ActionController::Base#render
+is_singleton: false
+name: render
+params: (options = nil, &block)
+visibility: protected

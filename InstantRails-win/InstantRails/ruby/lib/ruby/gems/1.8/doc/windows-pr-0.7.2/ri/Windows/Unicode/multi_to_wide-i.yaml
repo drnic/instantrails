@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Maps a wide character string to a new character string using the specified <tt>encoding</tt>. If no encoding is specified, then CP_UTF8 iss used if $KCODE is set to UTF8. Otherwise, CP_ACP is used.
+- !ruby/struct:SM::Flow::P 
+  body: If the function fails it simply returns the string as-is.
+- !ruby/struct:SM::Flow::P 
+  body: Maps a string to a wide (unicode) string using <tt>encoding</tt>. If no encoding is specified, then CP_UTF8 is used if $KCODE is set to UTF8. Otherwise, CP_ACP is used.
+- !ruby/struct:SM::Flow::P 
+  body: If the function fails it simply returns the string as-is.
+full_name: Windows::Unicode#multi_to_wide
+is_singleton: false
+name: multi_to_wide
+params: (string, encoding=nil)
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A callback for SFTP status packets. By default, raises an exception unless the status is FX_OK, in which case the registered callback is invoked.
+full_name: Net::SFTP::Operations::Abstract#do_status
+is_singleton: false
+name: do_status
+params: ( code, message, language )
+visibility: public

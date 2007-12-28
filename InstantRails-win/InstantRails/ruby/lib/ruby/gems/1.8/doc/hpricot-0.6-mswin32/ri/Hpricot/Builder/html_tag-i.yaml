@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Every HTML tag method goes through an html_tag call. So, calling <tt>div</tt> is equivalent to calling <tt>html_tag(:div)</tt>. All HTML tags in Hpricot's list are given generated wrappers for this method.
+- !ruby/struct:SM::Flow::P 
+  body: If the @auto_validation setting is on, this method will check for many common mistakes which could lead to invalid XHTML.
+full_name: Hpricot::Builder#html_tag
+is_singleton: false
+name: html_tag
+params: (sym, *args, &block)
+visibility: public

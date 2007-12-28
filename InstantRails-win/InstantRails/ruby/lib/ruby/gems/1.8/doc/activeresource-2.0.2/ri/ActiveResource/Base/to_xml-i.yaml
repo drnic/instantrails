@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to convert the the resource to an XML string.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>options</tt> parameter is handed off to the <tt>to_xml</tt> method on each attribute, so it has the same options as the <tt>to_xml</tt> methods in ActiveSupport.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "indent:"
+    body: Set the indent level for the XML output (default is +2+).
+  - !ruby/struct:SM::Flow::LI 
+    label: "dasherize:"
+    body: Boolean option to determine whether or not element names should replace underscores with dashes (default is <tt>false</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "skip_instruct:"
+    body: Toggle skipping the +instruct!+ call on the XML builder that generates the XML declaration (default is <tt>false</tt>).
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_group = SubsidiaryGroup.find(:first)\n  my_group.to_xml\n  # =&gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  #    &lt;subsidiary_group&gt; [...] &lt;/subsidiary_group&gt;\n\n  my_group.to_xml(:dasherize =&gt; true)\n  # =&gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;\n  #    &lt;subsidiary-group&gt; [...] &lt;/subsidiary-group&gt;\n\n  my_group.to_xml(:skip_instruct =&gt; true)\n  # =&gt; &lt;subsidiary_group&gt; [...] &lt;/subsidiary_group&gt;\n"
+full_name: ActiveResource::Base#to_xml
+is_singleton: false
+name: to_xml
+params: (options={})
+visibility: public

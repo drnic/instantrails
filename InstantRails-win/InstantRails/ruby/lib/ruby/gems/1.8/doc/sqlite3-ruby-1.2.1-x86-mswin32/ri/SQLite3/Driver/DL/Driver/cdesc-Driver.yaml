@@ -1,0 +1,62 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: api_delegate
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: STATIC
+  value: "::DL::PtrData.new(0)"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TRANSIENT
+  value: "::DL::PtrData.new(-1)"
+full_name: SQLite3::Driver::DL::Driver
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: aggregate_context
+- !ruby/object:RI::MethodSummary 
+  name: bind_blob
+- !ruby/object:RI::MethodSummary 
+  name: bind_text
+- !ruby/object:RI::MethodSummary 
+  name: busy_handler
+- !ruby/object:RI::MethodSummary 
+  name: column_blob
+- !ruby/object:RI::MethodSummary 
+  name: column_decltype
+- !ruby/object:RI::MethodSummary 
+  name: column_name
+- !ruby/object:RI::MethodSummary 
+  name: column_text
+- !ruby/object:RI::MethodSummary 
+  name: commit_hook
+- !ruby/object:RI::MethodSummary 
+  name: complete?
+- !ruby/object:RI::MethodSummary 
+  name: create_function
+- !ruby/object:RI::MethodSummary 
+  name: errmsg
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: progress_handler
+- !ruby/object:RI::MethodSummary 
+  name: result_text
+- !ruby/object:RI::MethodSummary 
+  name: set_authorizer
+- !ruby/object:RI::MethodSummary 
+  name: trace
+- !ruby/object:RI::MethodSummary 
+  name: value_blob
+- !ruby/object:RI::MethodSummary 
+  name: value_text
+name: Driver
+superclass: Object

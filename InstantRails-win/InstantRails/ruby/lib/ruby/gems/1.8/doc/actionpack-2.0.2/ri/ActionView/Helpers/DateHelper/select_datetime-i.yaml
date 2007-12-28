@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a set of html select-tags (one for year, month, day, hour, and minute) pre-selected with the <tt>datetime</tt>. It's also possible to explicitly set the order of the tags using the <tt>:order</tt> option with an array of symbols <tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in the desired order. If you do not supply a Symbol, it will be appended onto the <tt>:order</tt> passed in. You can also add <tt>:date_separator</tt> and <tt>:time_separator</tt> keys to the <tt>options</tt> to control visual display of the elements.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_date_time = Time.now + 4.days\n\n  # Generates a datetime select that defaults to the datetime in my_date_time (four days after today)\n  select_datetime(my_date_time)\n\n  # Generates a datetime select that defaults to today (no specified datetime)\n  select_datetime()\n\n  # Generates a datetime select that defaults to the datetime in my_date_time (four days after today)\n  # with the fields ordered year, month, day rather than month, day, year.\n  select_datetime(my_date_time, :order =&gt; [:year, :month, :day])\n\n  # Generates a datetime select that defaults to the datetime in my_date_time (four days after today)\n  # with a '/' between each date field.\n  select_datetime(my_date_time, :date_separator =&gt; '/')\n\n  # Generates a datetime select that discards the type of the field and defaults to the datetime in\n  # my_date_time (four days after today)\n  select_datetime(my_date_time, :discard_type =&gt; true)\n\n  # Generates a datetime select that defaults to the datetime in my_date_time (four days after today)\n  # prefixed with 'payday' rather than 'date'\n  select_datetime(my_date_time, :prefix =&gt; 'payday')\n"
+full_name: ActionView::Helpers::DateHelper#select_datetime
+is_singleton: false
+name: select_datetime
+params: (datetime = Time.now, options = {})
+visibility: public

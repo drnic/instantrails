@@ -1,0 +1,121 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current dial style [Integer]
+  name: dialStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this dial [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Center notch color [FXColor]
+  name: notchColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The notch offset is the position of the center notch; the value should be tenths of degrees in the range [-3600,3600]. [Integer]
+  name: notchOffset
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The spacing for the small notches; this should be set in tenths of degrees in the range [1,3600], and the value should be a divisor of 3600, so as to make the notches come out evenly. [Integer]
+  name: notchSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dial range [Range]
+  name: range
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The revolution increment is the amount of change in the position for revolution of the dial; the dial may go through multiple revolutions to go through its whole range. By default it takes one 360 degree turn of the dial to go from the lower to the upper range. [Integer]
+  name: revolutionIncrement
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message for this dial
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dial value [Integer]
+  name: value
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Dial widget is a valuator widget which is able to provide a cyclic value range when the <tt>DIAL_CYCLIC</tt> is passed, or a simple linear value range. While being turned, the dial sends a <tt>SEL_CHANGED</tt> message to its target; at the end of the interaction, a <tt>SEL_COMMAND</tt> message is sent. The message data represents the current value (an integer). The options <tt>DIAL_VERTICAL</tt> and <tt>DIAL_HORIZONTAL</tt> control the orientation of the dial. An optional notch can be used to indicate the zero-position of the dial; display of the notch is controlled by the <tt>DIAL_HAS_NOTCH</tt> option.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXDial to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the dial's value changes; the message data is the new value (an integer).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the user stops changing the dial's value and releases the mouse button; the message data is the new value (an integer).
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Dial style options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIAL_VERTICAL+:"
+    body: Vertically oriented
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIAL_HORIZONTAL+:"
+    body: Horizontal oriented
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIAL_CYCLIC+:"
+    body: Value wraps around
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIAL_HAS_NOTCH+:"
+    body: Dial has a Center Notch
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIAL_NORMAL+:"
+    body: same a <tt>DIAL_VERTICAL</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDial
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setRange
+- !ruby/object:RI::MethodSummary 
+  name: setValue
+name: FXDial
+superclass: FXFrame

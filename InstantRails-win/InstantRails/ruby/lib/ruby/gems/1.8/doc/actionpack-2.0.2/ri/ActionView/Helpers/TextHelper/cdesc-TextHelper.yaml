@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The TextHelper module provides a set of methods for filtering, formatting and transforming strings, which can reduce the amount of inline Ruby code in your views. These helper methods extend ActionView making them callable within your template files.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AUTO_LINK_RE
+  value: "%r{                         (                          # leading text                           <\\w+.*?>|                # leading HTML tag, or                           [^=!:'\"/]|               # leading punctuation, or                            ^                        # beginning of line                         )                         (                           (?:https?://)|           # protocol spec, or                           (?:www\\.)                # www.*                         )                          (                           [-\\w]+                   # subdomain or domain                           (?:\\.[-\\w]+)*            # remaining subdomains or domain                           (?::\\d+)?                # port                           (?:/(?:(?:[~\\w\\+@%-]|(?:[,.;:][^\\s$]))+)?)* # path                           (?:\\?[\\w\\+@%&=.;-]+)?     # query string                           (?:\\#[\\w\\-]*)?           # trailing anchor                         )                         ([[:punct:]]|\\s|<|$)       # trailing text                        }x unless const_defined?(:AUTO_LINK_RE)"
+full_name: ActionView::Helpers::TextHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: auto_link
+- !ruby/object:RI::MethodSummary 
+  name: concat
+- !ruby/object:RI::MethodSummary 
+  name: cycle
+- !ruby/object:RI::MethodSummary 
+  name: excerpt
+- !ruby/object:RI::MethodSummary 
+  name: highlight
+- !ruby/object:RI::MethodSummary 
+  name: markdown
+- !ruby/object:RI::MethodSummary 
+  name: pluralize
+- !ruby/object:RI::MethodSummary 
+  name: reset_cycle
+- !ruby/object:RI::MethodSummary 
+  name: simple_format
+- !ruby/object:RI::MethodSummary 
+  name: textilize
+- !ruby/object:RI::MethodSummary 
+  name: textilize_without_paragraph
+- !ruby/object:RI::MethodSummary 
+  name: truncate
+- !ruby/object:RI::MethodSummary 
+  name: word_wrap
+name: TextHelper
+superclass: 

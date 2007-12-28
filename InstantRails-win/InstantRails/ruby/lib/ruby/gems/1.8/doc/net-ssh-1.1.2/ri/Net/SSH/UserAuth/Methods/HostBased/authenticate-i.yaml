@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to perform host-based authorization of the user. The data hash must contain a <tt>:key_manager</tt> key or the call will fail.
+full_name: Net::SSH::UserAuth::Methods::HostBased#authenticate
+is_singleton: false
+name: authenticate
+params: ( next_service, username, data={} )
+visibility: public

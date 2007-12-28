@@ -1,0 +1,139 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Attachment [Integer]
+  name: attachment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Menu button style [Integer]
+  name: buttonStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The popup menu [FXPopup]
+  name: menu
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Popup style [Integer]
+  name: popupStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: X-offset where menu pops up relative to button [Integer]
+  name: xOffset
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Y-offset where menu pops up relative to button [Integer]
+  name: yOffset
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXMenuButton posts a popup menu when clicked. There are many ways to control the placement where the popup will appear; first, the popup may be placed on either of the four sides relative to the menu button; this is controlled by the flags <tt>MENUBUTTON_DOWN</tt>, etc. Next, there are several attachment modes; the popup's left/bottom edge may attach to the menu button's left/top edge, or the popup's right/top edge may attach to the menu button's right/bottom edge, or both. Also, the popup may appear centered relative to the menu button. Finally, a small offset may be specified to displace the location of the popup by a few pixels so as to account for borders and so on. Normally, the menu button shows an arrow pointing to the direction where the popup is set to appear; this can be turned off by passing the option <tt>MENUBUTTON_NOARROWS</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXMenuButton to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Menu Button Style Flags
+- !ruby/struct:SM::Flow::P 
+  body: Any combination of the following flags can be assigned as the menu button style flags.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_AUTOGRAY+:"
+    body: Automatically gray out when no target
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_AUTOHIDE+:"
+    body: Automatically hide when no target
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_TOOLBAR+:"
+    body: Toolbar style
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_NOARROWS+:"
+    body: Do not show arrows
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Menu Button Popup Style
+- !ruby/struct:SM::Flow::P 
+  body: Any one of the following options can be assigned as the menu button's popup style.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_DOWN+:"
+    body: Popup window appears below menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_UP+:"
+    body: Popup window appears above menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_LEFT+:"
+    body: Popup window to the left of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_RIGHT+:"
+    body: Popup window to the right of the menu button
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Menu Button Attachment
+- !ruby/struct:SM::Flow::P 
+  body: Any combination of the following flags can be assigned as the menu button's attachment flags.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_LEFT+:"
+    body: Popup attaches to the left side of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_TOP+:"
+    body: Popup attaches to the top of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_RIGHT+:"
+    body: Popup attaches to the right side of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_BOTTOM+:"
+    body: Popup attaches to the bottom of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_CENTER+:"
+    body: Popup attaches to the center of the menu button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENUBUTTON_ATTACH_BOTH+:"
+    body: Popup attaches to both sides of the menu button
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMenuButton
+includes: []
+
+instance_methods: []
+
+name: FXMenuButton
+superclass: FXLabel

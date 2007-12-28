@@ -1,0 +1,82 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Adds the following methods for retrieval and query of a single associated object: <tt>association</tt> is replaced with the symbol passed as the first argument, so <tt>has_one :manager</tt> would add among others <tt>manager.nil?</tt>."
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association(force_reload = false)</tt> - returns the associated object. <tt>nil</tt> is returned if none is found.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association=(associate)</tt> - assigns the associate object, extracts the primary key, sets it as the foreign key, and saves the associate object.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association.nil?</tt> - returns <tt>true</tt> if there is no associated object.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>build_association(attributes = {})</tt> - returns a new object of the associated type that has been instantiated with <tt>attributes</tt> and linked to this object through a foreign key, but has not yet been saved. Note: This ONLY works if an association already exists. It will NOT work if the association is <tt>nil</tt>."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>create_association(attributes = {})</tt> - returns a new object of the associated type that has been instantiated with <tt>attributes</tt>, linked to this object through a foreign key, and that has already been saved (if it passed the validation).
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Example: An Account class declares <tt>has_one :beneficiary</tt>, which will add:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>Account#beneficiary</tt> (similar to <tt>Beneficiary.find(:first, :conditions =&gt; &quot;account_id = #{id}&quot;)</tt>)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Account#beneficiary=(beneficiary)</tt> (similar to <tt>beneficiary.account_id = account.id; beneficiary.save</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Account#beneficiary.nil?</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Account#build_beneficiary</tt> (similar to <tt>Beneficiary.new(&quot;account_id&quot; =&gt; id)</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Account#create_beneficiary</tt> (similar to <tt>b = Beneficiary.new(&quot;account_id&quot; =&gt; id); b.save; b</tt>)
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The declaration can also include an options hash to specialize the behavior of the association.
+- !ruby/struct:SM::Flow::P 
+  body: "Options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:class_name</tt> - specify the class name of the association. Use it only if that name can't be inferred from the association name. So <tt>has_one :manager</tt> will by default be linked to the <tt>Manager</tt> class, but if the real class name is <tt>Person</tt>, you'll have to specify it with this option.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:conditions</tt> - specify the conditions that the associated object must meet in order to be included as a <tt>WHERE</tt> SQL fragment, such as <tt>rank = 5</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:order</tt> - specify the order in which the associated objects are returned as an <tt>ORDER BY</tt> SQL fragment, such as <tt>last_name, first_name DESC</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:dependent</tt> - if set to <tt>:destroy</tt>, the associated object is destroyed when this object is. If set to <tt>:delete</tt>, the associated object is deleted <b>without</b> calling its destroy method. If set to <tt>:nullify</tt>, the associated object's foreign key is set to <tt>NULL</tt>. Also, association is assigned.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:foreign_key</tt> - specify the foreign key used for the association. By default this is guessed to be the name of this class in lower-case and <tt>_id</tt> suffixed. So a <tt>Person</tt> class that makes a <tt>has_one</tt> association will use <tt>person_id</tt> as the default <tt>foreign_key</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:include</tt> - specify second-order associations that should be eager loaded when this object is loaded.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:as</tt>: Specifies a polymorphic interface (See <tt>#belongs_to</tt>)."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Option examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  has_one :credit_card, :dependent =&gt; :destroy  # destroys the associated credit card\n  has_one :credit_card, :dependent =&gt; :nullify  # updates the associated records foreign key value to NULL rather than destroying it\n  has_one :last_comment, :class_name =&gt; &quot;Comment&quot;, :order =&gt; &quot;posted_on&quot;\n  has_one :project_manager, :class_name =&gt; &quot;Person&quot;, :conditions =&gt; &quot;role = 'project_manager'&quot;\n  has_one :attachment, :as =&gt; :attachable\n"
+full_name: ActiveRecord::Associations::ClassMethods#has_one
+is_singleton: false
+name: has_one
+params: (association_id, options = {})
+visibility: public

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a field set for grouping HTML form elements.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>legend</tt> will become the fieldset's title (optional as per W3C).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% field_set_tag do %&gt;\n    &lt;p&gt;&lt;%= text_field_tag 'name' %&gt;&lt;/p&gt;\n  &lt;% end %&gt;\n  # =&gt; &lt;fieldset&gt;&lt;p&gt;&lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; /&gt;&lt;/p&gt;&lt;/fieldset&gt;\n\n  &lt;% field_set_tag 'Your details' do %&gt;\n    &lt;p&gt;&lt;%= text_field_tag 'name' %&gt;&lt;/p&gt;\n  &lt;% end %&gt;\n  # =&gt; &lt;fieldset&gt;&lt;legend&gt;Your details&lt;/legend&gt;&lt;p&gt;&lt;input id=&quot;name&quot; name=&quot;name&quot; type=&quot;text&quot; /&gt;&lt;/p&gt;&lt;/fieldset&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#field_set_tag
+is_singleton: false
+name: field_set_tag
+params: (legend = nil, &block)
+visibility: public

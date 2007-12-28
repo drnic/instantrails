@@ -1,0 +1,59 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The status of the last synchronously executed operation. This is either <tt>nil</tt>, or an object that responds to <tt>:code</tt>, <tt>:message</tt>, and <tt>:language</tt>.
+  name: status
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a single SFTP session, running atop an SSH session.
+constants: []
+
+full_name: Net::SFTP::Session
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Protocol::Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: channel
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: close_channel
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: do_attrs
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_handle
+- !ruby/object:RI::MethodSummary 
+  name: do_name
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: get_file
+- !ruby/object:RI::MethodSummary 
+  name: loop
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: open_handle
+- !ruby/object:RI::MethodSummary 
+  name: put_file
+- !ruby/object:RI::MethodSummary 
+  name: register
+- !ruby/object:RI::MethodSummary 
+  name: respond_to?
+- !ruby/object:RI::MethodSummary 
+  name: state
+- !ruby/object:RI::MethodSummary 
+  name: support?
+name: Session
+superclass: Object

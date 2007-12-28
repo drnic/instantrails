@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActiveRecord::AttributeMethods::ClassMethods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActiveRecord::AttributeMethods::ClassMethods</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/active_record/attribute_methods_rb.html">
+                lib/active_record/attribute_methods.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Declare and check for suffixed attribute methods.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000701">attribute_method_suffix</a>&nbsp;&nbsp;
+      <a href="#M000709">cache_attribute?</a>&nbsp;&nbsp;
+      <a href="#M000707">cache_attributes</a>&nbsp;&nbsp;
+      <a href="#M000708">cached_attributes</a>&nbsp;&nbsp;
+      <a href="#M000704">define_attribute_methods</a>&nbsp;&nbsp;
+      <a href="#M000706">define_read_methods</a>&nbsp;&nbsp;
+      <a href="#M000703">generated_methods?</a>&nbsp;&nbsp;
+      <a href="#M000705">instance_method_already_implemented?</a>&nbsp;&nbsp;
+      <a href="#M000702">match_attribute_method?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000701" class="method-detail">
+        <a name="M000701"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000701.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000701.html');return false;">
+          <span class="method-name">attribute_method_suffix</span><span class="method-args">(*suffixes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Declare a method available for all attributes with the given suffix. Uses
+method_missing and respond_to? to rewrite the method
+</p>
+<pre>
+  #{attr}#{suffix}(*args, &amp;block)
+</pre>
+<p>
+to
+</p>
+<pre>
+  attribute#{suffix}(#{attr}, *args, &amp;block)
+</pre>
+<p>
+An attribute#{suffix} instance method must exist and accept at least the
+attr argument.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  class Person &lt; ActiveRecord::Base
+    attribute_method_suffix '_changed?'
+
+    private
+      def attribute_changed?(attr)
+        ...
+      end
+  end
+
+  person = Person.find(1)
+  person.name_changed?    # =&gt; false
+  person.name = 'Hubert'
+  person.name_changed?    # =&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000709" class="method-detail">
+        <a name="M000709"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000709.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000709.html');return false;">
+          <span class="method-name">cache_attribute?</span><span class="method-args">(attr_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000707" class="method-detail">
+        <a name="M000707"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000707.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000707.html');return false;">
+          <span class="method-name">cache_attributes</span><span class="method-args">(*attribute_names)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<tt><a href="ClassMethods.html#M000707">cache_attributes</a></tt> allows
+you to declare which converted attribute values should be cached. Usually
+caching only pays off for attributes with expensive conversion methods,
+like date columns (e.g. created_at, updated_at).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000708" class="method-detail">
+        <a name="M000708"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000708.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000708.html');return false;">
+          <span class="method-name">cached_attributes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+returns the attributes where
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000704" class="method-detail">
+        <a name="M000704"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000704.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000704.html');return false;">
+          <span class="method-name">define_attribute_methods</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+generates all the attribute related methods for columns in the database
+accessors, mutators and query methods
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000706" class="method-detail">
+        <a name="M000706"></a>
+
+        <div class="method-heading">
+          <span class="method-name">define_read_methods</span><span class="method-args">()</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="ClassMethods.html#M000704">define_attribute_methods</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000703" class="method-detail">
+        <a name="M000703"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000703.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000703.html');return false;">
+          <span class="method-name">generated_methods?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000705" class="method-detail">
+        <a name="M000705"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000705.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000705.html');return false;">
+          <span class="method-name">instance_method_already_implemented?</span><span class="method-args">(method_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Check to see if the method is defined in the model or any of its subclasses
+that also derive from ActiveRecord. Raise <a
+href="../DangerousAttributeError.html">DangerousAttributeError</a> if the
+method is defined by ActiveRecord though.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000702" class="method-detail">
+        <a name="M000702"></a>
+
+        <div class="method-heading">
+          <a href="ClassMethods.src/M000702.html" target="Code" class="method-signature"
+            onclick="popupCode('ClassMethods.src/M000702.html');return false;">
+          <span class="method-name">match_attribute_method?</span><span class="method-args">(method_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns MatchData if method_name is an attribute method.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

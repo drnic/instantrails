@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXScrollWindow widget scrolls an arbitrary child window. Use the scroll window when parts of the user interface itself need to be scrolled, for example when applications need to run on small screens. The scroll window observes some layout hints of its content-window; it observes <tt>LAYOUT_FIX_WIDTH</tt>, <tt>LAYOUT_FIX_HEIGHT</tt> at all times. The hints <tt>LAYOUT_FILL_X</tt>, <tt>LAYOUT_LEFT</tt>, <tt>LAYOUT_RIGHT</tt>, <tt>LAYOUT_CENTER_X</tt>, as well as <tt>LAYOUT_FILL_Y</tt>, <tt>LAYOUT_TOP</tt>, <tt>LAYOUT_BOTTOM</tt>, <tt>LAYOUT_CENTER_Y</tt> are however only interpreted if the content size is smaller than the viewport size, because if the content size is larger than the viewport size, then content must be scrolled. Note that this means that the content window's position is not necessarily equal to the scroll position of the scroll window!
+constants: []
+
+full_name: Fox::FXScrollWindow
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: contentWindow
+name: FXScrollWindow
+superclass: FXScrollArea

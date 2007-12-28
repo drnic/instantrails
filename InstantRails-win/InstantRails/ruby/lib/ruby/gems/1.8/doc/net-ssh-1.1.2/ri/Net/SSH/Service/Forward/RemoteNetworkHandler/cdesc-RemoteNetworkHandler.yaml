@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A helper class for managing ports forwarded from a remote host to the local host.
+constants: []
+
+full_name: Net::SSH::Service::Forward::RemoteNetworkHandler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: on_close
+- !ruby/object:RI::MethodSummary 
+  name: on_eof
+- !ruby/object:RI::MethodSummary 
+  name: on_open
+- !ruby/object:RI::MethodSummary 
+  name: on_receive
+name: RemoteNetworkHandler
+superclass: Object

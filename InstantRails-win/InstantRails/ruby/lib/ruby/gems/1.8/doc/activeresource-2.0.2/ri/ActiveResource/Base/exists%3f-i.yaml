@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Evaluates to <tt>true</tt> if this resource is not +new?+ and is found on the remote service. Using this method, you can check for resources that may have been deleted between the object's instantiation and actions on it.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.create(:name =&gt; 'Theodore Roosevelt')\n  that_guy = Person.find(:first)\n  that_guy.exists?\n  # =&gt; true\n\n  that_lady = Person.new(:name =&gt; 'Paul Bean')\n  that_lady.exists?\n  # =&gt; false\n\n  guys_id = that_guy.id\n  Person.delete(guys_id)\n  that_guy.exists?\n  # =&gt; false\n"
+full_name: ActiveResource::Base#exists?
+is_singleton: false
+name: exists?
+params: ()
+visibility: public

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>wait (Process)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/process.rb, line 420</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wait</span>
+      <span class="ruby-identifier">handles</span> = []
+      
+      <span class="ruby-comment cmt"># Windows 2000 or earlier</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">GetProcessId</span>
+         <span class="ruby-identifier">pids</span> = []
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">each_with_index</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">pid</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+         <span class="ruby-identifier">handles</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-constant">OpenProcess</span>(<span class="ruby-constant">PROCESS_ALL_ACCESS</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">pid</span>)
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handles</span>[<span class="ruby-identifier">i</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_HANDLE_VALUE</span>
+            <span class="ruby-identifier">err</span> = <span class="ruby-node">&quot;unable to get HANDLE on process associated with pid #{pid}&quot;</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">err</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">GetProcessId</span>
+            <span class="ruby-identifier">pids</span>[<span class="ruby-identifier">i</span>] = <span class="ruby-identifier">pid</span>
+         <span class="ruby-keyword kw">end</span>      
+      }
+    
+      <span class="ruby-identifier">wait</span> = <span class="ruby-constant">WaitForMultipleObjects</span>(
+         <span class="ruby-identifier">handles</span>.<span class="ruby-identifier">size</span>,
+         <span class="ruby-identifier">handles</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L*'</span>),
+         <span class="ruby-value">0</span>,
+         <span class="ruby-constant">INFINITE</span>
+      )
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">wait</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-constant">WAIT_OBJECT_0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">wait</span> <span class="ruby-operator">&lt;=</span> <span class="ruby-constant">WAIT_OBJECT_0</span> <span class="ruby-operator">+</span> <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">size</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+         <span class="ruby-identifier">index</span> = <span class="ruby-identifier">wait</span> <span class="ruby-operator">-</span> <span class="ruby-constant">WAIT_OBJECT_0</span>         
+         <span class="ruby-identifier">handle</span> = <span class="ruby-identifier">handles</span>[<span class="ruby-identifier">index</span>]
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-constant">GetProcessId</span>
+            <span class="ruby-identifier">pid</span> = <span class="ruby-constant">GetProcessId</span>(<span class="ruby-identifier">handle</span>)
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">pid</span> = <span class="ruby-identifier">pids</span>[<span class="ruby-identifier">index</span>]
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-identifier">pid</span>)
+         <span class="ruby-identifier">handles</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">handle</span><span class="ruby-operator">|</span> <span class="ruby-constant">CloseHandle</span>(<span class="ruby-identifier">handle</span>) }
+         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">pid</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">nil</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

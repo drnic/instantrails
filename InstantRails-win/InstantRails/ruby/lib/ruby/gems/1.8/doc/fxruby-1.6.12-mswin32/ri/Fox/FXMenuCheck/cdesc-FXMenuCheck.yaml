@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Box background color [FXColor]
+  name: boxColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Check state, one of <tt>TRUE</tt>, <tt>FALSE</tt> or <tt>MAYBE</tt>
+  name: check
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXMenuCheck widget is used to change a state in the application from a menu. Menu checks may reflect the state of the application by graying out, becoming hidden, or by a check mark. When activated, a menu check sends a <tt>SEL_COMMAND</tt> message to its target; the message data contains the new state (one of <tt>TRUE</tt>, <tt>FALSE</tt> or <tt>MAYBE</tt>).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXMenuCheck to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the command is activated
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMenuCheck
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: checked?
+- !ruby/object:RI::MethodSummary 
+  name: maybe?
+- !ruby/object:RI::MethodSummary 
+  name: unchecked?
+name: FXMenuCheck
+superclass: Object

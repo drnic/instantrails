@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Updates a single attribute and saves the record. This is especially useful for boolean flags on existing records. Note: This method is overwritten by the Validation module that'll make sure that updates made with this method aren't subjected to validation checks. Hence, attributes can be updated even if the full object isn't valid."
+full_name: ActiveRecord::Base#update_attribute
+is_singleton: false
+name: update_attribute
+params: (name, value)
+visibility: public

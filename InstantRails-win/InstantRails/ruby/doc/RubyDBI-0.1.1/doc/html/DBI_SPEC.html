@@ -1,0 +1,341 @@
+<?xml version="1.0" ?>
+<!DOCTYPE html 
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>DBI Specification Version 0.5 (Draft)</title>
+<link href="rubyStyle.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<h1><a name="label-0" id="label-0">DBI Interface Specification Version 0.2.2 (Draft)</a></h1><!-- RDLabel: "DBI Interface Specification Version 0.2.2 (Draft)" -->
+<p>by Michael Neumann (mneumann@fantasy-coders.de)</p>
+<pre>$Id: DBI_SPEC.html,v 1.1.1.1 2006/01/04 02:03:17 francis Exp $</pre>
+<h2><a name="label-1" id="label-1">Module DBD</a></h2><!-- RDLabel: "Module DBD" -->
+<h3><a name="label-2" id="label-2">Constants</a></h3><!-- RDLabel: "Constants" -->
+<dl>
+<dt><a name="label-3" id="label-3"><code>API_VERSION</code></a></dt><!-- RDLabel: "API_VERSION" -->
+<dd>
+Use this in your DBD driver to ensure it is used with the correct DBD API-Version</dd>
+</dl>
+<h2><a name="label-4" id="label-4">Module DBI</a></h2><!-- RDLabel: "Module DBI" -->
+<h3><a name="label-5" id="label-5">Constants</a></h3><!-- RDLabel: "Constants" -->
+<dl>
+<dt><a name="label-6" id="label-6"><code>VERSION</code></a></dt><!-- RDLabel: "VERSION" -->
+<dd>
+Version of the DBI Interface</dd>
+<dt><a name="label-7" id="label-7"><code>SQL_FETCH_NEXT</code></a></dt><!-- RDLabel: "SQL_FETCH_NEXT" -->
+<dt><a name="label-8" id="label-8"><code>SQL_FETCH_PRIOR</code></a></dt><!-- RDLabel: "SQL_FETCH_PRIOR" -->
+<dt><a name="label-9" id="label-9"><code>SQL_FETCH_FIRST</code></a></dt><!-- RDLabel: "SQL_FETCH_FIRST" -->
+<dt><a name="label-10" id="label-10"><code>SQL_FETCH_LAST</code></a></dt><!-- RDLabel: "SQL_FETCH_LAST" -->
+<dt><a name="label-11" id="label-11"><code>SQL_FETCH_ABSOLUTE</code></a></dt><!-- RDLabel: "SQL_FETCH_ABSOLUTE" -->
+<dd>
+Constants for <code>StatementHandle#fetch_scroll</code>.</dd>
+<dt><a name="label-12" id="label-12"><code>SQL_BIT</code></a></dt><!-- RDLabel: "SQL_BIT" -->
+<dt><a name="label-13" id="label-13"><code>SQL_TINYINT</code></a></dt><!-- RDLabel: "SQL_TINYINT" -->
+<dt><a name="label-14" id="label-14"><code>SQL_SMALLINT</code></a></dt><!-- RDLabel: "SQL_SMALLINT" -->
+<dt><a name="label-15" id="label-15"><code>SQL_INTEGER</code></a></dt><!-- RDLabel: "SQL_INTEGER" -->
+<dt><a name="label-16" id="label-16"><code>SQL_BIGINT</code></a></dt><!-- RDLabel: "SQL_BIGINT" -->
+<dt><a name="label-17" id="label-17"><code>SQL_FLOAT</code></a></dt><!-- RDLabel: "SQL_FLOAT" -->
+<dt><a name="label-18" id="label-18"><code>SQL_REAL</code></a></dt><!-- RDLabel: "SQL_REAL" -->
+<dt><a name="label-19" id="label-19"><code>SQL_DOUBLE</code></a></dt><!-- RDLabel: "SQL_DOUBLE" -->
+<dt><a name="label-20" id="label-20"><code>SQL_NUMERIC</code></a></dt><!-- RDLabel: "SQL_NUMERIC" -->
+<dt><a name="label-21" id="label-21"><code>SQL_DECIMAL</code></a></dt><!-- RDLabel: "SQL_DECIMAL" -->
+<dt><a name="label-22" id="label-22"><code>SQL_CHAR</code></a></dt><!-- RDLabel: "SQL_CHAR" -->
+<dt><a name="label-23" id="label-23"><code>SQL_VARCHAR</code></a></dt><!-- RDLabel: "SQL_VARCHAR" -->
+<dt><a name="label-24" id="label-24"><code>SQL_LONGVARCHAR</code></a></dt><!-- RDLabel: "SQL_LONGVARCHAR" -->
+<dt><a name="label-25" id="label-25"><code>SQL_DATE</code></a></dt><!-- RDLabel: "SQL_DATE" -->
+<dt><a name="label-26" id="label-26"><code>SQL_TIME</code></a></dt><!-- RDLabel: "SQL_TIME" -->
+<dt><a name="label-27" id="label-27"><code>SQL_TIMESTAMP</code></a></dt><!-- RDLabel: "SQL_TIMESTAMP" -->
+<dt><a name="label-28" id="label-28"><code>SQL_BINARY</code></a></dt><!-- RDLabel: "SQL_BINARY" -->
+<dt><a name="label-29" id="label-29"><code>SQL_VARBINARY</code></a></dt><!-- RDLabel: "SQL_VARBINARY" -->
+<dt><a name="label-30" id="label-30"><code>SQL_LONGVARBINARY</code></a></dt><!-- RDLabel: "SQL_LONGVARBINARY" -->
+<dt><a name="label-31" id="label-31"><code>SQL_OTHER</code></a></dt><!-- RDLabel: "SQL_OTHER" -->
+<dd>
+Constants representing SQL types.</dd>
+</dl>
+<h3><a name="label-32" id="label-32">Exceptions</a></h3><!-- RDLabel: "Exceptions" -->
+<p>Exception classes were "borrowed" from Python API 2.0.</p>
+<dl>
+<dt><a name="label-33" id="label-33"><code>Warning &lt; <var>RuntimeError</var></code></a></dt><!-- RDLabel: "Warning < RuntimeError" -->
+<dd>
+For important warnings such as data truncation, etc.</dd>
+<dt><a name="label-34" id="label-34"><code>Error &lt; <var>RuntimeError</var></code></a></dt><!-- RDLabel: "Error < RuntimeError" -->
+<dd>
+Base class of all other error exceptions.
+Use this to catch all errors.</dd>
+<dt><a name="label-35" id="label-35"><code>InterfaceError &lt; <var>Error</var></code></a></dt><!-- RDLabel: "InterfaceError < Error" -->
+<dd>
+Exception for errors related to the DBI interface rather 
+than the database itself.</dd>
+<dt><a name="label-36" id="label-36"><code>NotImplementedError &lt; <var>InterfaceError</var></code></a></dt><!-- RDLabel: "NotImplementedError < InterfaceError" -->
+<dd>
+Exception raised if the DBD driver has not specified
+a mandatory method (not in Python API 2.0).</dd>
+<dt><a name="label-37" id="label-37"><code>DatabaseError &lt; <var>Error</var></code></a></dt><!-- RDLabel: "DatabaseError < Error" -->
+<dd>
+<p>Exception for errors related to the database.</p>
+<p>Has three attributes: <var>err</var>, <var>errstr</var> and <var>state</var>.</p></dd>
+<dt><a name="label-38" id="label-38"><code>DataError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "DataError < DatabaseError" -->
+<dd>
+Exception for errors due to problems with the processed 
+data, such ase division by zero, numeric value out of range, etc.</dd>
+<dt><a name="label-39" id="label-39"><code>OperationalError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "OperationalError < DatabaseError" -->
+<dd>
+Exception for errors related to the database's operation which
+are not necessarily under the control of the programmer, such as
+unexpected disconnect, datasource name not found, transaction
+could not be processed, a memory allocation error occurred during
+processing, etc.</dd>
+<dt><a name="label-40" id="label-40"><code>IntegrityError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "IntegrityError < DatabaseError" -->
+<dd>
+Exception raised when the relational integrity of the database
+is affected, e.g., a foreign key check fails.</dd>
+<dt><a name="label-41" id="label-41"><code>InternalError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "InternalError < DatabaseError" -->
+<dd>
+Exception raised when the database encounters an internal error, 
+e.g., the cursor is not valid anymore, the transaction is out of sync.</dd>
+<dt><a name="label-42" id="label-42"><code>ProgrammingError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "ProgrammingError < DatabaseError" -->
+<dd>
+Exception raised for programming errors, e.g., table not found
+or already exists, syntax error in SQL statement, wrong number
+of parameters specified, etc.</dd>
+<dt><a name="label-43" id="label-43"><code>NotSupportedError &lt; <var>DatabaseError</var></code></a></dt><!-- RDLabel: "NotSupportedError < DatabaseError" -->
+<dd>
+Raised if, e.g., <a href="#label-71">commit</a> is called for a database that does not
+support transactions.</dd>
+</dl>
+<h3><a name="label-44" id="label-44">Module functions</a></h3><!-- RDLabel: "Module functions" -->
+<dl>
+<dt><a name="label-45" id="label-45"><code>DBI.connect( <var>driver_url</var>, <var>user</var>=<var>nil</var>, <var>auth</var>=<var>nil</var>, <var>params</var>=<var>nil</var> )</code></a></dt><!-- RDLabel: "DBI.connect" -->
+<dd>
+<p>Connect to the database specified by <var>driver_url</var>, which may
+look like "dbi:Oracle:oracle.neumann".</p>
+<p>Returns a <code>DBI::DatabaseHandle</code> object, or if called with a code-block,
+calls this block with the new <code>DBI::DatabaseHandle</code> as parameter and
+calls <a href="#label-59">disconnect</a> after calling the block if it was not yet disconnected by
+the user.</p></dd>
+<dt><a name="label-46" id="label-46"><code>DBI.available_drivers</code></a></dt><!-- RDLabel: "DBI.available_drivers" -->
+<dd>
+Returns an <code>Array</code> of all available DBD drivers.
+The strings which represent the DBD drivers are partial DSNs
+(e.g., "dbi:Oracle:").</dd>
+<dt><a name="label-47" id="label-47"><code>DBI.data_sources( <var>driver</var> )</code></a></dt><!-- RDLabel: "DBI.data_sources" -->
+<dd>
+Returns all available DSNs for the <var>driver</var>, which
+is a partial DSN (e.g., "dbi:Oracle:").</dd>
+<dt><a name="label-48" id="label-48"><code>DBI.disconnect_all( <var>driver</var>=<var>nil</var> )</code></a></dt><!-- RDLabel: "DBI.disconnect_all" -->
+<dd>
+Disconnects all active connections of <var>driver</var> or
+all drivers if <var>driver</var> is <code>nil</code>.</dd>
+<dt><a name="label-49" id="label-49"><code>DBI.trace(<var>mode</var>=<var>nil</var>, <var>output</var>=<var>nil</var>)</code></a></dt><!-- RDLabel: "DBI.trace" -->
+<dd>
+<p>Sets the trace mode for all subsequently created Handles to these values.</p>
+<p>If a parameter is <code>nil</code>, the value is not changed.
+<var>mode</var> defaults to 2 if it is <code>nil</code>, and <var>output</var> to <code>STDERR</code> if a value was not
+previously set.
+For <var>mode</var>, the values 0, 1, 2 or 3 are allowed.</p>
+<p>Note: Tracing is only activated if you load the module "dbi/trace", because tracing currently
+depends on AspectR &gt; 0.3.3.</p></dd>
+</dl>
+<h2><a name="label-50" id="label-50">Class DBI::Handle</a></h2><!-- RDLabel: "Class DBI::Handle" -->
+<p>Abstract base class for all "Handles" (DriverHandle, DatabaseHandle, StatementHandle).</p>
+<h3><a name="label-51" id="label-51">Instance Methods</a></h3><!-- RDLabel: "Instance Methods" -->
+<dl>
+<dt><a name="label-52" id="label-52"><code>func( <var>function</var>, *<var>values</var> )</code></a></dt><!-- RDLabel: "func" -->
+<dd>
+Calls the driver-specific extension function named by
+<var>function</var> with <var>values</var> as parameters.</dd>
+<dt><a name="label-53" id="label-53"><code>trace(<var>mode</var>=<var>nil</var>, <var>output</var>=<var>nil</var>)</code></a></dt><!-- RDLabel: "trace" -->
+<dd>
+<p>Sets the trace mode for this handle as well as for all sub-handles (in the case of DriverHandle and 
+DatabaseHandle).</p>
+<p>If a parameter is <code>nil</code>, the value is not changed.
+<var>mode</var> defaults to 2 if it is <code>nil</code>, and <var>output</var> to <code>STDERR</code> if a value was not
+previously set.
+For <var>mode</var>, the values 0, 1, 2 or 3 are allowed.</p>
+<p>Note: Tracing is only activated if you load the module "dbi/trace", because tracing currently
+depends on AspectR &gt; 0.3.3.</p></dd>
+</dl>
+<h2><a name="label-54" id="label-54">Class DBI::DatabaseHandle</a></h2><!-- RDLabel: "Class DBI::DatabaseHandle" -->
+<h3><a name="label-55" id="label-55">Superclass</a></h3><!-- RDLabel: "Superclass" -->
+<dl>
+<dt><a name="label-56" id="label-56"><code>DBI::Handle</code></a></dt><!-- RDLabel: "DBI::Handle" -->
+</dl>
+<h3><a name="label-57" id="label-57">Instance Methods</a></h3><!-- RDLabel: "Instance Methods" -->
+<dl>
+<dt><a name="label-58" id="label-58"><code>connected?</code></a></dt><!-- RDLabel: "connected?" -->
+<dd>
+Returns <code>true</code> if the connection was not yet disconnected
+by calling <a href="#label-59">disconnect</a>, otherwise <code>false</code>.</dd>
+<dt><a name="label-59" id="label-59"><code>disconnect</code></a></dt><!-- RDLabel: "disconnect" -->
+<dd>
+Disconnects the connection.</dd>
+<dt><a name="label-60" id="label-60"><code>prepare( <var>stmt</var> )</code></a></dt><!-- RDLabel: "prepare" -->
+<dt><a name="label-61" id="label-61"><code>prepare( <var>stmt</var> ) {|<var>statement_handle</var>| <var>aBlock</var>}</code></a></dt><!-- RDLabel: "prepare" -->
+<dd>
+Prepares the SQL statement <var>stmt</var> and returns a
+<code>DBI::StatementHandle</code>, or if called with a code-block,
+calls the block with the handle as its parameter and after that
+calls <code>#finish</code> onto the handle to free all resources</dd>
+<dt><a name="label-62" id="label-62"><code>execute( <var>stmt</var>, *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "execute" -->
+<dt><a name="label-63" id="label-63"><code>execute( <var>stmt</var>, *<var>bindvars</var> ) {|<var>statement_handle</var>| <var>aBlock</var>}</code></a></dt><!-- RDLabel: "execute" -->
+<dd>
+<p>Immediately executes the SQL statement <var>stmt</var> after binding
+the values in <var>bindvars</var> to the placeholders in the statement.</p>
+<p>Returns a <code>DBI::StatementHandle</code>, or if called with a code-block,
+calls the block with the handle as its parameter and after that
+calls <code>#finish</code> onto the handle to free all resources.</p></dd>
+<dt><a name="label-64" id="label-64"><code>do( <var>stmt</var>, *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "do" -->
+<dd>
+Same as <a href="#label-62">execute</a> except the RPC (Row Processed Count) is returned
+rather than a <code>DBI::StatementHandle</code>.</dd>
+<dt><a name="label-65" id="label-65"><code>select_one( <var>stmt</var>, *<var>bindvars</var>)</code></a></dt><!-- RDLabel: "select_one" -->
+<dd>
+Executes the statement after binding the values to the placeholders in the statement, then returns the
+first row as a reference to a <code>DBI::Row</code> object. </dd>
+<dt><a name="label-66" id="label-66"><code>select_all( <var>stmt</var>, *<var>bindvars</var>)</code></a></dt><!-- RDLabel: "select_all" -->
+<dd>
+<p>Executes the statement after binding the values to the parameters, then returns all
+resulting rows as an array of <code>DBI::Row</code> objects. </p>
+<p>If called as an iterator, the passed <code>DBI::Row</code> objects are only references.</p></dd>
+<dt><a name="label-67" id="label-67"><code>tables</code></a></dt><!-- RDLabel: "tables" -->
+<dd>
+Returns a list of all tables and views.</dd>
+<dt><a name="label-68" id="label-68"><code>columns( <var>table</var> )</code></a></dt><!-- RDLabel: "columns" -->
+<dd>
+Gets more information about the columns of the table <var>table</var>. 
+Returns an array containing a <code>DBI::ColumnInfo</code> object for each column
+in the table.</dd>
+<dt><a name="label-69" id="label-69"><code>ping</code></a></dt><!-- RDLabel: "ping" -->
+<dd>
+<p>Returns <code>true</code> if the connection is active, otherwise <code>false</code>.</p>
+<p>In contrast to <a href="#label-58">connected?</a>, <a href="#label-69">ping</a> tests if the connection is
+still active by executing some SQL or doing something else.</p></dd>
+<dt><a name="label-70" id="label-70"><code>quote( <var>value</var> )</code></a></dt><!-- RDLabel: "quote" -->
+<dd>
+Quotes the given value <var>value</var> in database-specific fashion and returns the result.</dd>
+<dt><a name="label-71" id="label-71"><code>commit</code></a></dt><!-- RDLabel: "commit" -->
+<dd>
+Commits the current transaction.</dd>
+<dt><a name="label-72" id="label-72"><code>rollback</code></a></dt><!-- RDLabel: "rollback" -->
+<dd>
+Rolls back the current transaction.</dd>
+<dt><a name="label-73" id="label-73"><code>transaction {|<var>database_handle</var>| <var>aBlock</var>}</code></a></dt><!-- RDLabel: "transaction" -->
+<dd>
+First commits the current transaction, then
+executes the given block where the parameter is
+the object itself (the database handle). If the
+block raises an exception, then it rolls back the transaction;
+otherwise, it commits the transaction.</dd>
+<dt><a name="label-74" id="label-74"><code>[<var>attr</var>]</code></a></dt><!-- RDLabel: "[]" -->
+<dt><a name="label-75" id="label-75"><code>[<var>attr</var>] = <var>val</var></code></a></dt><!-- RDLabel: "[]=" -->
+<dd>
+Gets or sets the attribute <var>attr</var>.
+An attribute can for example be "AutoCommit", which can be set to 
+<code>true</code> or <code>false</code>. Attributes are database dependent.</dd>
+</dl>
+<h2><a name="label-76" id="label-76">Class DBI::StatementHandle</a></h2><!-- RDLabel: "Class DBI::StatementHandle" -->
+<h3><a name="label-77" id="label-77">Superclass</a></h3><!-- RDLabel: "Superclass" -->
+<dl>
+<dt><a name="label-78" id="label-78"><code>DBI::Handle</code></a></dt><!-- RDLabel: "DBI::Handle" -->
+</dl>
+<h3><a name="label-79" id="label-79">Mixins</a></h3><!-- RDLabel: "Mixins" -->
+<dl>
+<dt><a name="label-80" id="label-80"><code>Enumerable</code></a></dt><!-- RDLabel: "Enumerable" -->
+</dl>
+<h3><a name="label-81" id="label-81">Instance Methods</a></h3><!-- RDLabel: "Instance Methods" -->
+<dl>
+<dt><a name="label-82" id="label-82"><code>bind_param( <var>param</var>, <var>value</var>, <var>attribs</var>=<var>nil</var> )</code></a></dt><!-- RDLabel: "bind_param" -->
+<dd>
+<p>Binds the value <var>value</var> to a placeholder.
+The placeholder is represented by <var>param</var>, which is either a
+<code>String</code> representing the name of the 
+placeholder used in the SQL statement (e.g., Oracle: "SELECT * FROM EMP WHERE ENAME = :ename"),
+or an integer that indicates the number of the placeholder.
+Placeholder numbers begin at 1.</p>
+<p><var>attribs</var> is not yet used in this version, but could later be a hash containing more information
+like parameter type, etc.</p></dd>
+<dt><a name="label-83" id="label-83"><code>execute( *<var>bindvars</var> )</code></a></dt><!-- RDLabel: "execute" -->
+<dd>
+Executes the statement after binding the values in <var>bindvars</var> to the placeholders in the statement.</dd>
+<dt><a name="label-84" id="label-84"><code>finish</code></a></dt><!-- RDLabel: "finish" -->
+<dd>
+Frees the resources for the statement.
+After calling <a href="#label-84">finish</a>, no other operation on this
+statement is valid.</dd>
+<dt><a name="label-85" id="label-85"><code>cancel</code></a></dt><!-- RDLabel: "cancel" -->
+<dd>
+Frees any result set resources which were made after a call 
+to <a href="#label-62">execute</a>.
+After calling this method, calls to any of the <em>fetch</em> methods 
+are no longer valid.</dd>
+<dt><a name="label-86" id="label-86"><code>column_names</code></a></dt><!-- RDLabel: "column_names" -->
+<dd>
+Returns an <code>Array</code> of all column names.</dd>
+<dt><a name="label-87" id="label-87"><code>column_info</code></a></dt><!-- RDLabel: "column_info" -->
+<dd>
+Returns an <code>Array</code> containing a <code>DBI::ColumnInfo</code> object for each column
+in the result set.</dd>
+<dt><a name="label-88" id="label-88"><code>rows</code></a></dt><!-- RDLabel: "rows" -->
+<dd>
+Returns the RPC (Row Processed Count) of the last executed statement, or
+<code>nil</code> if no such exists.</dd>
+<dt><a name="label-89" id="label-89"><code>fetchable?</code></a></dt><!-- RDLabel: "fetchable?" -->
+<dd>
+Returns <code>true</code> if you can fetch rows using <a href="#label-90">fetch</a>, etc.</dd>
+<dt><a name="label-90" id="label-90"><code>fetch</code></a></dt><!-- RDLabel: "fetch" -->
+<dd>
+<p>Returns a <code>DBI::Row</code> object, or <code>nil</code> if there are
+no more rows to fetch.</p>
+<p>When called as an iterator, the block is called for each row
+until no more rows are available. Each row is passed to the
+block as a <code>DBI::Row</code> object.</p>
+<p>Note that the returned or passed <code>DBI::Row</code> object is only a reference and
+should be copied (dup) if it is stored elsewhere.</p></dd>
+<dt><a name="label-91" id="label-91"><code>each  {|<var>row</var>| <var>aBlock</var> }</code></a></dt><!-- RDLabel: "each" -->
+<dd>
+Same as <a href="#label-90">fetch</a> called as an iterator.</dd>
+<dt><a name="label-92" id="label-92"><code>fetch_array</code></a></dt><!-- RDLabel: "fetch_array" -->
+<dd>
+<p>Returns the current row as an <code>Array</code> or <code>nil</code> if no more
+rows are available.</p>
+<p>Can also be called as an iterator.</p></dd>
+<dt><a name="label-93" id="label-93"><code>fetch_hash</code></a></dt><!-- RDLabel: "fetch_hash" -->
+<dd>
+<p>Returns the current row as a <code>Hash</code> or <code>nil</code> if no more
+rows are available.</p>
+<p>Can also be called as an iterator.</p></dd>
+<dt><a name="label-94" id="label-94"><code>fetch_many( <var>cnt</var> )</code></a></dt><!-- RDLabel: "fetch_many" -->
+<dd>
+<p>Returns an <code>Array</code> of the next <var>cnt</var> rows, which are
+stored as <code>DBI::Row</code> objects. </p>
+<p>Returns the empty array <code>[]</code> if there are no more rows.</p></dd>
+<dt><a name="label-95" id="label-95"><code>fetch_all</code></a></dt><!-- RDLabel: "fetch_all" -->
+<dd>
+Same as <a href="#label-94">fetch_many</a> except that all rows are returned.</dd>
+<dt><a name="label-96" id="label-96"><code>fetch_scroll( <var>direction</var>, <var>offset</var>=<var>1</var> )</code></a></dt><!-- RDLabel: "fetch_scroll" -->
+<dd>
+<p><var>direction</var> is one of the following constants:</p>
+<ul>
+<li>SQL_FETCH_NEXT</li>
+<li>SQL_FETCH_PRIOR</li>
+<li>SQL_FETCH_FIRST</li>
+<li>SQL_FETCH_LAST</li>
+<li>SQL_FETCH_ABSOLUTE</li>
+<li>SQL_FETCH_RELATIVE</li>
+</ul>
+<p><var>offset</var> is a positive or negative number (only when SQL_FETCH_RELATIVE is used).</p>
+<p><a href="#label-96">fetch_scroll</a> does not automatically free the result set if no more rows are available,
+e.g., if you get the last row. </p>
+<p>Returns a <code>DBI::Row</code> object, or <code>nil</code> if no row is available.</p>
+<p>Note that the returned <code>DBI::Row</code> object is only a reference and
+should be copied (dup) if it is stored elsewhere.</p></dd>
+<dt><a name="label-97" id="label-97"><code>[<var>attr</var>]</code></a></dt><!-- RDLabel: "[]" -->
+<dt><a name="label-98" id="label-98"><code>[<var>attr</var>] = <var>val</var></code></a></dt><!-- RDLabel: "[]=" -->
+<dd>
+Gets or sets the attribute <var>attr</var>.</dd>
+</dl>
+
+</body>
+</html>

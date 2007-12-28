@@ -1,0 +1,82 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The agent factory to use when a new agent instance is needed.
+  name: agent_factory
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The buffer manager to use for providing new buffer instances.
+  name: buffers
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The list of host key files that will be examined
+  name: host_key_files
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The object that will be used to test whether a given key file is readable. This object must only respond to &quot;readable?&quot; with one parameter, the file to test the readability of.
+  name: key_existence_tester
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The list of user key files that will be examined
+  name: key_files
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The key manager instance to use for managing keys
+  name: keys
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The logger instance to use for logging messages
+  name: log
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class encapsulates all operations done by clients on a user's private keys. In practice, the client should never need a reference to a private key; instead, they grab a list of &quot;identities&quot; (public keys) that are available from the UserKeyManager, and then use the UserKeyManager to do various private key operations using those identities.
+- !ruby/struct:SM::Flow::P 
+  body: The UserKeyManager also uses the Agent class to encapsulate the ssh-agent. Thus, from a client's perspective it is completely hidden whether an identity comes from the ssh-agent or from a file on disk.
+constants: []
+
+full_name: Net::SSH::UserAuth::UserKeyManager
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "<<"
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: add_host_key
+- !ruby/object:RI::MethodSummary 
+  name: clear!
+- !ruby/object:RI::MethodSummary 
+  name: clear_host!
+- !ruby/object:RI::MethodSummary 
+  name: finish
+- !ruby/object:RI::MethodSummary 
+  name: host_identities
+- !ruby/object:RI::MethodSummary 
+  name: identities
+- !ruby/object:RI::MethodSummary 
+  name: sign
+- !ruby/object:RI::MethodSummary 
+  name: use_agent=
+- !ruby/object:RI::MethodSummary 
+  name: use_agent?
+name: UserKeyManager
+superclass: Object

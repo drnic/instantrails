@@ -1,0 +1,351 @@
+------------------------------------------------------------------------
+r417 | thomas | 2006-06-17 21:35:12 +0200 (Sat, 17 Jun 2006) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* fixed spelling error
+------------------------------------------------------------------------
+r416 | thomas | 2006-06-17 21:32:55 +0200 (Sat, 17 Jun 2006) | 7 lines
+Changed paths:
+   A /trunk/cmdparse/.emacs.desktop
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/doc/src/index.page
+   M /trunk/cmdparse/doc/src/tutorial.page
+   M /trunk/cmdparse/lib/cmdparse.rb
+   M /trunk/cmdparse/net.rb
+   A /trunk/cmdparse/test
+   A /trunk/cmdparse/test/tc_commandhash.rb
+
+* included patches #4756 and #4729 from Assaph Mehr and slightly modified them
+* added the test file for CommandHash from Assaph Mehr
+* updated Rakefile to run test the test file
+* updated the tutorial to include information about partial command matching
+* minor update to index page
+* update sampe net.rb script to use partial command matching
+* added emacs desktop file
+------------------------------------------------------------------------
+r397 | thomas | 2006-04-05 16:12:46 +0200 (Wed, 05 Apr 2006) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/tutorial.page
+
+* small changes
+------------------------------------------------------------------------
+r396 | thomas | 2006-04-04 17:43:24 +0200 (Tue, 04 Apr 2006) | 3 lines
+Changed paths:
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/TODO
+   M /trunk/cmdparse/doc/src/default.template
+   D /trunk/cmdparse/doc/src/documentation.page
+   M /trunk/cmdparse/doc/src/index.page
+   A /trunk/cmdparse/doc/src/tutorial.page (from /trunk/cmdparse/doc/src/documentation.page:340)
+   M /trunk/cmdparse/lib/cmdparse.rb
+
+* bumped version number to 2.0.1
+* fixed bug with GemSpec reported by Marcus Werne: lib/cmdparse.rb get automatically loaded now
+* split documentation page into main docu page and tutorial page
+------------------------------------------------------------------------
+r332 | thomas | 2005-08-16 10:54:01 +0200 (Tue, 16 Aug 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* updated index.page
+------------------------------------------------------------------------
+r331 | thomas | 2005-08-16 10:51:46 +0200 (Tue, 16 Aug 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/Rakefile
+
+* corrected Rakefile
+------------------------------------------------------------------------
+r329 | thomas | 2005-08-14 17:39:05 +0200 (Sun, 14 Aug 2005) | 7 lines
+Changed paths:
+   M /trunk/cmdparse/README
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/TODO
+   A /trunk/cmdparse/doc/config.yaml
+   M /trunk/cmdparse/doc/plugin/extract.rb
+   M /trunk/cmdparse/doc/src/about.page
+   M /trunk/cmdparse/doc/src/default.template
+   M /trunk/cmdparse/doc/src/documentation.page
+   M /trunk/cmdparse/doc/src/download.page
+   M /trunk/cmdparse/doc/src/features.page
+   M /trunk/cmdparse/doc/src/index.page
+   A /trunk/cmdparse/lib/cmdparse
+   A /trunk/cmdparse/lib/cmdparse/wrappers
+   A /trunk/cmdparse/lib/cmdparse/wrappers/optparse.rb
+   M /trunk/cmdparse/lib/cmdparse.rb
+   A /trunk/cmdparse/net.rb (from /trunk/cmdparse/test.rb:284)
+   D /trunk/cmdparse/test.rb
+
+* updated Rakefile
+* added config.yaml for documentation sothat html files get validated
+* updated documentation
+* bumped version number to 2.0.0
+* updated cmdparse.rb
+* added optparse wrapper
+* updated README file
+------------------------------------------------------------------------
+r328 | thomas | 2005-07-05 16:10:02 +0200 (Tue, 05 Jul 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/doc/src/index.page
+   M /trunk/cmdparse/lib/cmdparse.rb
+
+* added possibility to parse global options, command and local options separately
+------------------------------------------------------------------------
+r302 | thomas | 2005-06-16 12:02:37 +0200 (Thu, 16 Jun 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* updated index.page
+------------------------------------------------------------------------
+r298 | thomas | 2005-06-14 11:31:47 +0200 (Tue, 14 Jun 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* updated docu
+------------------------------------------------------------------------
+r297 | thomas | 2005-06-14 11:30:22 +0200 (Tue, 14 Jun 2005) | 3 lines
+Changed paths:
+   M /trunk/cmdparse/lib/cmdparse.rb
+
+* bumped version number to 1.0.4
+* bug fix for older ruby versions
+* fixed bug: OptionParser::ParseError not caught when command executed
+------------------------------------------------------------------------
+r291 | thomas | 2005-06-09 12:24:24 +0200 (Thu, 09 Jun 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* small docu change
+------------------------------------------------------------------------
+r290 | thomas | 2005-06-09 12:19:20 +0200 (Thu, 09 Jun 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/default.template
+
+
+------------------------------------------------------------------------
+r285 | thomas | 2005-05-21 14:05:54 +0200 (Sat, 21 May 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/default.template
+
+* added validation images to default.template
+------------------------------------------------------------------------
+r284 | thomas | 2005-05-21 13:16:15 +0200 (Sat, 21 May 2005) | 3 lines
+Changed paths:
+   M /trunk/cmdparse/README
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/TODO
+   A /trunk/cmdparse/doc/plugin
+   A /trunk/cmdparse/doc/plugin/extract.rb
+   A /trunk/cmdparse/doc/src/about.page
+   M /trunk/cmdparse/doc/src/default.css
+   M /trunk/cmdparse/doc/src/default.template
+   A /trunk/cmdparse/doc/src/documentation.page
+   M /trunk/cmdparse/doc/src/download.page
+   M /trunk/cmdparse/doc/src/features.page
+   M /trunk/cmdparse/doc/src/index.page
+   M /trunk/cmdparse/doc/src/meta.info
+   M /trunk/cmdparse/lib/cmdparse.rb
+   M /trunk/cmdparse/test.rb
+
+* added optional graceful exception handling to CommandParser
+* added two doc pages: about.page and documentation.page
+* uniformed naming: only <cmdparse> valid anymore
+------------------------------------------------------------------------
+r265 | thomas | 2005-04-21 12:57:51 +0200 (Thu, 21 Apr 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/doc/src/index.page
+
+* updated doc
+------------------------------------------------------------------------
+r246 | thomas | 2005-04-13 15:36:19 +0200 (Wed, 13 Apr 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/lib/cmdparse.rb
+   M /trunk/cmdparse/test.rb
+
+* splitted parsing of the arguments and executing the command into two methods
+------------------------------------------------------------------------
+r242 | thomas | 2005-04-13 13:42:24 +0200 (Wed, 13 Apr 2005) | 1 line
+Changed paths:
+   M /trunk/cmdparse/README
+
+
+------------------------------------------------------------------------
+r241 | thomas | 2005-04-13 13:41:16 +0200 (Wed, 13 Apr 2005) | 3 lines
+Changed paths:
+   M /trunk/cmdparse/README
+   M /trunk/cmdparse/Rakefile
+   M /trunk/cmdparse/TODO
+   A /trunk/cmdparse/logo.svg
+   M /trunk/cmdparse/test.rb
+
+* added logo.svg
+* adapted test.rb
+* minor modifcation in Rakefile
+------------------------------------------------------------------------
+r240 | thomas | 2005-04-13 13:40:39 +0200 (Wed, 13 Apr 2005) | 4 lines
+Changed paths:
+   M /trunk/cmdparse/lib/cmdparse.rb
+
+* added NoCommandGivenError class
+* renamed class InvalidCommand to InvalidCommandError
+* added option for specifying default command
+* bumped version number to 1.0.1
+------------------------------------------------------------------------
+r239 | thomas | 2005-04-13 13:38:04 +0200 (Wed, 13 Apr 2005) | 3 lines
+Changed paths:
+   M /trunk/cmdparse/doc/src/default.css
+   M /trunk/cmdparse/doc/src/default.template
+   M /trunk/cmdparse/doc/src/download.page
+   M /trunk/cmdparse/doc/src/features.page
+   M /trunk/cmdparse/doc/src/index.page
+   A /trunk/cmdparse/doc/src/logo.png
+   M /trunk/cmdparse/doc/src/meta.info
+
+* added logo
+* converted pages to use textile markup
+* added news section on homepage
+------------------------------------------------------------------------
+r238 | thomas | 2005-04-13 12:06:31 +0200 (Wed, 13 Apr 2005) | 2 lines
+Changed paths:
+   M /trunk/cmdparse/doc/src/default.css
+   M /trunk/cmdparse/doc/src/default.template
+   D /trunk/cmdparse/doc/src/download.fragment
+   A /trunk/cmdparse/doc/src/download.page (from /trunk/cmdparse/doc/src/download.fragment:235)
+   D /trunk/cmdparse/doc/src/features.fragment
+   A /trunk/cmdparse/doc/src/features.page (from /trunk/cmdparse/doc/src/features.fragment:235)
+   D /trunk/cmdparse/doc/src/index.fragment
+   A /trunk/cmdparse/doc/src/index.page (from /trunk/cmdparse/doc/src/index.fragment:235)
+   A /trunk/cmdparse/doc/src/meta.info (from /trunk/cmdparse/doc/src/metainfo.backing:235)
+   D /trunk/cmdparse/doc/src/metainfo.backing
+
+* updated documentation pages to webgen 0.3.1
+* added new default.template and css file
+------------------------------------------------------------------------
+r235 | thomas | 2005-04-13 11:17:35 +0200 (Wed, 13 Apr 2005) | 1 line
+Changed paths:
+   A /trunk/cmdparse (from /trunk/commandparser:165)
+
+* renamed commandparser dir to cmdparse
+------------------------------------------------------------------------
+r165 | thomas | 2005-01-13 17:33:02 +0100 (Thu, 13 Jan 2005) | 1 line
+Changed paths:
+   D /temp
+   A /trunk (from /temp:163)
+
+add finally arrived at the destination
+------------------------------------------------------------------------
+r163 | thomas | 2005-01-13 17:31:39 +0100 (Thu, 13 Jan 2005) | 1 line
+Changed paths:
+   A /temp
+   A /temp/commandparser (from /trunk/commandparser/trunk:162)
+   A /temp/programs (from /trunk/miscprograms/trunk:162)
+   A /temp/rubyquiz (from /trunk/rubyquiz:162)
+   A /temp/webgen (from /trunk/webgen/trunk:162)
+   A /temp/xmlresume2x (from /trunk/xmlresume2x/trunk:162)
+   D /trunk/commandparser/trunk
+   D /trunk/miscprograms/trunk
+   D /trunk/rubyquiz
+   D /trunk/webgen/trunk
+   D /trunk/webgen/versions/webgen-0.1.0
+   D /trunk/webgen/versions/webgen-0.2.0
+   D /trunk/xmlresume2x/trunk
+   D /trunk/xmlresume2x/versions/xmlresume2x-0.1.0
+   D /trunk/xmlresume2x/versions/xmlresume2x-0.2.0
+   D /trunk/xmlresume2x/versions/xmlresume2x-0.2.1
+   A /versions
+   A /versions/webgen-0.1.0 (from /trunk/webgen/versions/webgen-0.1.0:162)
+   A /versions/webgen-0.2.0 (from /trunk/webgen/versions/webgen-0.2.0:162)
+   A /versions/xmlresume2x-0.1.0 (from /trunk/xmlresume2x/versions/xmlresume2x-0.1.0:162)
+   A /versions/xmlresume2x-0.2.0 (from /trunk/xmlresume2x/versions/xmlresume2x-0.2.0:162)
+   A /versions/xmlresume2x-0.2.1 (from /trunk/xmlresume2x/versions/xmlresume2x-0.2.1:162)
+
+moved stuff around and around
+------------------------------------------------------------------------
+r14 | thomas | 2004-09-30 17:54:54 +0200 (Thu, 30 Sep 2004) | 2 lines
+Changed paths:
+   M /trunk/commandparser/trunk/lib/cmdparse.rb
+   M /trunk/commandparser/trunk/test.rb
+
+* added the directory lib to the loadpath of test.rb
+* the "--help" and "-h" global options now take a command as optional argument
+------------------------------------------------------------------------
+r12 | thomas | 2004-09-27 18:46:38 +0200 (Mon, 27 Sep 2004) | 1 line
+Changed paths:
+   M /trunk/commandparser/trunk/Rakefile
+   M /trunk/commandparser/trunk/doc/src/download.fragment
+
+* corrected an error in the <Download> page and in the Rakefile
+------------------------------------------------------------------------
+r10 | thomas | 2004-09-27 18:22:39 +0200 (Mon, 27 Sep 2004) | 3 lines
+Changed paths:
+   M /trunk/commandparser/trunk/Rakefile
+   M /trunk/commandparser/trunk/doc/src/default.template
+   M /trunk/commandparser/trunk/lib/cmdparse.rb
+
+* changed version to 1.0.0
+* updated Rakefile
+* minor change in documentation template
+------------------------------------------------------------------------
+r9 | thomas | 2004-09-27 18:11:36 +0200 (Mon, 27 Sep 2004) | 1 line
+Changed paths:
+   M /trunk/commandparser/trunk/README
+   M /trunk/commandparser/trunk/Rakefile
+   A /trunk/commandparser/trunk/doc/src/default.css
+   A /trunk/commandparser/trunk/doc/src/default.template
+   A /trunk/commandparser/trunk/doc/src/download.fragment
+   A /trunk/commandparser/trunk/doc/src/features.fragment
+   A /trunk/commandparser/trunk/doc/src/index.fragment
+   A /trunk/commandparser/trunk/doc/src/metainfo.backing
+   M /trunk/commandparser/trunk/lib/cmdparse.rb
+
+* added some documentation to the doc folder
+------------------------------------------------------------------------
+r8 | thomas | 2004-09-27 17:45:02 +0200 (Mon, 27 Sep 2004) | 2 lines
+Changed paths:
+   A /trunk/commandparser/trunk/doc/src
+   M /trunk/commandparser/trunk/lib/cmdparse.rb
+   M /trunk/commandparser/trunk/test.rb
+
+* added VersionCommand class
+* added example to rdoc documentation
+------------------------------------------------------------------------
+r7 | thomas | 2004-09-26 18:27:54 +0200 (Sun, 26 Sep 2004) | 3 lines
+Changed paths:
+   A /trunk/commandparser/trunk/COPYING
+   A /trunk/commandparser/trunk/README
+   A /trunk/commandparser/trunk/Rakefile
+   D /trunk/commandparser/trunk/cmdparse.rb
+   A /trunk/commandparser/trunk/doc
+   A /trunk/commandparser/trunk/lib
+   A /trunk/commandparser/trunk/lib/cmdparse.rb (from /trunk/commandparser/trunk/cmdparse.rb:6)
+   A /trunk/commandparser/trunk/setup.rb
+
+* added standard files: COPYING, README, Rakefile, setup.rb
+* moved cmdparse.rb into lib directory
+* added documentation
+------------------------------------------------------------------------
+r6 | thomas | 2004-09-23 17:19:11 +0200 (Thu, 23 Sep 2004) | 3 lines
+Changed paths:
+   M /trunk/commandparser/trunk/TODO
+   M /trunk/commandparser/trunk/cmdparse.rb
+   M /trunk/commandparser/trunk/test.rb
+
+* remove error checking in main part so that error fall threw
+* added new commands to OptionParser class to get unchanged values
+* added <good> behaviour for usage and banner lines
+------------------------------------------------------------------------
+r5 | thomas | 2004-09-22 20:16:29 +0200 (Wed, 22 Sep 2004) | 1 line
+Changed paths:
+   A /trunk/commandparser/trunk/TODO
+   A /trunk/commandparser/trunk/cmdparse.rb
+   A /trunk/commandparser/trunk/test.rb
+
+* initial import
+------------------------------------------------------------------------
+r3 | thomas | 2004-09-22 20:15:42 +0200 (Wed, 22 Sep 2004) | 1 line
+Changed paths:
+   A /trunk/commandparser/trunk
+
+
+------------------------------------------------------------------------

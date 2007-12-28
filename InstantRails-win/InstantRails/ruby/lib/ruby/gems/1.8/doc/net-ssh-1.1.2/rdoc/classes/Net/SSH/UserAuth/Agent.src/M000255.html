@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sign (Net::SSH::UserAuth::Agent)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/agent.rb, line 151</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sign</span>( <span class="ruby-identifier">key</span>, <span class="ruby-identifier">data</span> )
+          <span class="ruby-identifier">blob</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+          <span class="ruby-identifier">blob</span>.<span class="ruby-identifier">write_key</span> <span class="ruby-identifier">key</span>
+
+          <span class="ruby-identifier">packet_data</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+          <span class="ruby-identifier">packet_data</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">blob</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-identifier">packet_data</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-identifier">packet_data</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-value">0</span>
+
+          <span class="ruby-identifier">type</span>, <span class="ruby-identifier">reply</span> = <span class="ruby-identifier">send_with_reply</span> <span class="ruby-constant">SSH2_AGENT_SIGN_REQUEST</span>, <span class="ruby-identifier">packet_data</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">agent_failed</span>( <span class="ruby-identifier">type</span> )
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AgentError</span>,
+              <span class="ruby-value str">&quot;agent could not sign data with requested identity&quot;</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">SSH2_AGENT_SIGN_RESPONSE</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">AgentError</span>, <span class="ruby-node">&quot;bad authentication response #{type}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">reply</span>.<span class="ruby-identifier">read_string</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

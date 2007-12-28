@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>write_to (Needle::LogFactory)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/needle/log-factory.rb, line 141</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">write_to</span>( <span class="ruby-identifier">device</span>, <span class="ruby-identifier">shift_age</span> = <span class="ruby-value">0</span>, <span class="ruby-identifier">shift_size</span> = <span class="ruby-value">1048576</span> )
+      <span class="ruby-identifier">saved_critical</span> = <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span>
+      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span> = <span class="ruby-keyword kw">true</span>
+
+      <span class="ruby-ivar">@device</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@device</span> <span class="ruby-keyword kw">unless</span> [ <span class="ruby-identifier">$stdout</span>, <span class="ruby-identifier">$stderr</span> ].<span class="ruby-identifier">include?</span>( <span class="ruby-ivar">@device</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">device</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:write</span> ) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">device</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:close</span> )
+        <span class="ruby-ivar">@device</span> = <span class="ruby-identifier">device</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@device</span> = <span class="ruby-constant">Logger</span><span class="ruby-operator">::</span><span class="ruby-constant">LogDevice</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">device</span>.<span class="ruby-identifier">to_str</span>,
+          <span class="ruby-identifier">:shift_age</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">shift_age</span>, 
+          <span class="ruby-identifier">:shift_size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">shift_size</span> )
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@loggers</span>.<span class="ruby-identifier">each_value</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">logger</span><span class="ruby-operator">|</span> <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">write_to</span>( <span class="ruby-ivar">@device</span> ) }
+      <span class="ruby-identifier">device</span>
+
+    <span class="ruby-keyword kw">ensure</span>
+      <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">critical</span> = <span class="ruby-identifier">saved_critical</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Remove all elements in this list from the document which contains them.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc = Hpricot(&quot;&lt;html&gt;Remove this: <b>here</b>&lt;/html&gt;&quot;)\n  doc.search(&quot;b&quot;).remove\n  doc.to_html\n    =&gt; &quot;&lt;html&gt;Remove this: &lt;/html&gt;&quot;\n"
+full_name: Hpricot::Elements#remove
+is_singleton: false
+name: remove
+params: ()
+visibility: public

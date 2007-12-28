@@ -1,0 +1,76 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Advance&quot; button [FXButton]
+  name: advanceButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The button frame [FXHorizontalFrame]
+  name: buttonFrame
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Cancel&quot; button [FXButton]
+  name: cancelButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The container used as parent for the sub-panels [FXSwitcher]
+  name: container
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Finish&quot; button [FXButton]
+  name: finishButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The image being displayed [FXImage]
+  name: image
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Retreat&quot; button [FXButton]
+  name: retreatButton
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXWizard widget guides the user through a number of panels in a predefined sequence; each step must be completed before moving on to the next step. For example, an FXWizard may be used to install software components, and ask various questions at each step in the installation.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NEXT+:"
+    body: Move to the next panel in the wizard
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BACK+:"
+    body: Move to the previous panel in the wizard
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXWizard
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: currentPanel
+- !ruby/object:RI::MethodSummary 
+  name: currentPanel=
+- !ruby/object:RI::MethodSummary 
+  name: numPanels
+name: FXWizard
+superclass: FXDialogBox

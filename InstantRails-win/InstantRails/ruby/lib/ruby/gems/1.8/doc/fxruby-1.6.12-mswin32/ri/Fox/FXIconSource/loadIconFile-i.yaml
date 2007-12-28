@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Load an icon from the file <em>filename</em>. By default, the file extension is stripped and used as the icon <em>type</em>; if an explicit icon type is forced, then that type is used and the extension is ignored. For example, loadIcon(&quot;icon&quot;, &quot;gif&quot;) will try to load a CompuServe GIF file, since the filename does not give any clue as to the type of the icon. Returns a reference to the icon.
+full_name: Fox::FXIconSource#loadIconFile
+is_singleton: false
+name: loadIconFile
+params: (filename, type=nil)
+visibility: public

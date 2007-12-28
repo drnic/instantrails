@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The AlgorithmNegotiator is used for negotiating the algorithms to be employed for a specific SSH session.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Algorithms
+  value: Struct.new( :server_packet,                                  :client_packet,                                  :kex,                                  :host_key,                                  :encryption_c2s,                                  :encryption_s2c,                                  :mac_c2s,                                  :mac_s2c,                                  :compression_c2s,                                  :compression_s2c,                                  :language_c2s,                                  :language_s2c,                                  :compression_level )
+full_name: Net::SSH::Transport::AlgorithmNegotiator
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: negotiate
+name: AlgorithmNegotiator
+superclass: Object

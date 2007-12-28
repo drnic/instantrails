@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Append a (possibly subclassed) item to the list and return the index of the appended item. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_INSERTED</tt> message is sent to the header's message target after the item is appended.
+full_name: Fox::FXHeader#appendItem
+is_singleton: false
+name: appendItem
+params: (item, notify=false)
+visibility: public

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Publicize the CGI's internal input stream so we can lazy-read request.body. Make it writable so we don't have to play $stdin games.
+constants: []
+
+full_name: ActionController::CgiExt::Stdinput
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: initialize_with_stdinput
+name: Stdinput
+superclass: 

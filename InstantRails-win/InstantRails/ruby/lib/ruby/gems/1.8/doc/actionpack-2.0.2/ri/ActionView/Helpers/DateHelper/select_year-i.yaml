@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a select tag with options for each of the five years on each side of the current, which is selected. The five year radius can be changed using the <tt>:start_year</tt> and <tt>:end_year</tt> keys in the <tt>options</tt>. Both ascending and descending year lists are supported by making <tt>:start_year</tt> less than or greater than <tt>:end_year</tt>. The <tt>date</tt> can also be substituted for a year given as a number. Override the field name using the <tt>:field_name</tt> option, 'year' by default.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Generates a select field for years that defaults to the current year that\n  # has ascending year values\n  select_year(Date.today, :start_year =&gt; 1992, :end_year =&gt; 2007)\n\n  # Generates a select field for years that defaults to the current year that\n  # is named 'birth' rather than 'year'\n  select_year(Date.today, :field_name =&gt; 'birth')\n\n  # Generates a select field for years that defaults to the current year that\n  # has descending year values\n  select_year(Date.today, :start_year =&gt; 2005, :end_year =&gt; 1900)\n\n  # Generates a select field for years that defaults to the year 2006 that\n  # has ascending year values\n  select_year(2006, :start_year =&gt; 2000, :end_year =&gt; 2010)\n"
+full_name: ActionView::Helpers::DateHelper#select_year
+is_singleton: false
+name: select_year
+params: (date, options = {})
+visibility: public

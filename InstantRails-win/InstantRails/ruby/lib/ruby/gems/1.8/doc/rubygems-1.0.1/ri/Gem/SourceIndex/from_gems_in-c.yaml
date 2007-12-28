@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Factory method to construct a source index instance for a
+- !ruby/struct:SM::Flow::VERB 
+  body: "  given path.\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "spec_dirs:"
+    body: List of directories to search for specifications. Each directory should have a &quot;specifications&quot; subdirectory containing the gem specifications.
+  - !ruby/struct:SM::Flow::LI 
+    label: "return:"
+    body: SourceIndex instance
+  type: :NOTE
+full_name: Gem::SourceIndex::from_gems_in
+is_singleton: true
+name: from_gems_in
+params: (*spec_dirs)
+visibility: public

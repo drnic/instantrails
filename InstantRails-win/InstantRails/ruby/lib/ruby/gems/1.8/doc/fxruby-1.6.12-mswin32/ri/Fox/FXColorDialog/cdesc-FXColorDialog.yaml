@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Only opaque colors allowed [Boolean]
+  name: opaqueOnly
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color [FXColor]
+  name: rgba
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FXColorDialog is a standard dialog panel used to edit colors. Colors can be edited via RGB (Red, Green, Blue additive color model), via HSV (Hue, Saturation, Value color modal), via CMY (Cyan, Magenta, Yellow subtractive color model), or by name. Commonly used colors can be dragged into a number of small color wells to be used repeatedly; colors dropped into the small color wells are automatically saved into the registry for future use.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXColorDialog to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously, while the color selector's color is changing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the new color is set
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLORSELECTOR+:"
+    body: used internally to identify messages from the FXColorSelector
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXColorDialog
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: opaqueOnly?
+name: FXColorDialog
+superclass: FXDialogBox

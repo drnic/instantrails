@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fade an image to a certain color by a certain factor. The <em>factor</em> is some integer value between 0 and 255 inclusive, where a factor of 255 indicates no fading and a factor of zero indicates that the image is completely faded to the fade <em>color</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+color+:"
+    body: the fade color [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+factor+:"
+    body: fading factor [Integer]
+  type: :NOTE
+full_name: Fox::FXImage#fade
+is_singleton: false
+name: fade
+params: (color, factor=255)
+visibility: public

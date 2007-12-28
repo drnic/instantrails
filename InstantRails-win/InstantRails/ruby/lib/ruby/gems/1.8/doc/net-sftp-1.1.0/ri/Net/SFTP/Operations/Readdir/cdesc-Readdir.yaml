@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements the <tt>readdir</tt> operation. This will handle the continuous calls to <tt>readdir</tt> until the entire contents of the directory have been read, returning them in a single array.
+constants: []
+
+full_name: Net::SFTP::Operations::Readdir
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_name
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: perform
+name: Readdir
+superclass: Abstract

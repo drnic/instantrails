@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Close the process. All streams (<tt>stdin</tt>, <tt>stdout</tt>, <tt>stderr</tt>) will be closed. Any output that the process had already produced will still be sent, but it will be shut down as soon as possible. This will return immediately.
+full_name: Net::SSH::Service::Process::OpenManager#close
+is_singleton: false
+name: close
+params: ()
+visibility: public

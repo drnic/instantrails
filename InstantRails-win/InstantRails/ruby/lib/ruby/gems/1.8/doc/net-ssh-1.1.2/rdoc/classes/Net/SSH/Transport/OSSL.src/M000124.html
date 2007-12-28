@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Transport::OSSL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/ossl/services.rb, line 25</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+          <span class="ruby-comment cmt"># make sure the user has a valid Ruby and OpenSSL installed.</span>
+          <span class="ruby-identifier">version_check</span>
+
+          <span class="ruby-comment cmt"># Register all OpenSSL services in the :ossl namespace.</span>
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:ossl</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-comment cmt"># The list of known sources of HMAC algorithm implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">hmac_algorithm_sources</span> { <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span> }
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/hmac/services'</span>, <span class="ruby-node">&quot;#{self}::HMAC&quot;</span>
+
+            <span class="ruby-comment cmt"># The hash mapping SSH2 cipher names to OpenSSL cipher names.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">cipher_names</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;3des-cbc&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;des-ede3-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;blowfish-cbc&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;bf-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;aes256-cbc&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;aes-256-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;aes192-cbc&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;aes-192-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;aes128-cbc&quot;</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;aes-128-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;idea-cbc&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;idea-cbc&quot;</span>,
+                    <span class="ruby-value str">&quot;none&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;none&quot;</span> ]
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The hash mapping key names to OpenSSL key implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_names</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;dh&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DH</span>,
+                    <span class="ruby-value str">&quot;rsa&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>,
+                    <span class="ruby-value str">&quot;dsa&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DSA</span> ]
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The hash mapping digest names to OpenSSL digest implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digest_names</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;sha1&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>,
+                    <span class="ruby-value str">&quot;md5&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">MD5</span> ]
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The factory for converting cipher names to cipher implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">cipher_factory</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/cipher-factory'</span>
+              <span class="ruby-identifier">svc</span> = <span class="ruby-constant">CipherFactory</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">cipher_names</span> )
+              <span class="ruby-identifier">svc</span>.<span class="ruby-identifier">identity_cipher</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">identity_cipher</span>
+              <span class="ruby-identifier">svc</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The factory for converting HMAC names to HMAC implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">hmac_factory</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/hmac-factory'</span>
+              <span class="ruby-constant">HMACFactory</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">hmac_algorithm_sources</span> )
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The factory for obtaining OpenSSL-specific buffer implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffer_factory</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/buffer-factory'</span>
+              <span class="ruby-constant">BufferFactory</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The factory for converting key names to key implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_factory</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/key-factory'</span>
+              <span class="ruby-identifier">svc</span> = <span class="ruby-constant">KeyFactory</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">key_names</span> )
+              <span class="ruby-identifier">svc</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">buffer_factory</span>
+              <span class="ruby-identifier">svc</span>.<span class="ruby-identifier">prompter</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">prompter</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">knows_key?</span>( <span class="ruby-identifier">:prompter</span> )
+              <span class="ruby-identifier">svc</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The factory for creating OpenSSL::BN (big number) instances.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bn_factory</span> { <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">BN</span> }
+
+            <span class="ruby-comment cmt"># The factory for converting digest names to digest implementations.</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digest_factory</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/digest-factory'</span>
+              <span class="ruby-constant">DigestFactory</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">digest_names</span> )
+            <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># Register each of the factories defined above in the corresponding</span>
+          <span class="ruby-comment cmt"># factory map, under the :ossl key.</span>
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">define</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">cipher_factories</span>[<span class="ruby-identifier">:ossl</span>] = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">cipher_factory</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">hmac_factories</span>[<span class="ruby-identifier">:ossl</span>]   = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">hmac_factory</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_factories</span>[<span class="ruby-identifier">:ossl</span>]    = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">key_factory</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffer_factories</span>[<span class="ruby-identifier">:ossl</span>] = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">buffer_factory</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bn_factories</span>[<span class="ruby-identifier">:ossl</span>]     = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">bn_factory</span>
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digest_factories</span>[<span class="ruby-identifier">:ossl</span>] = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ossl</span>.<span class="ruby-identifier">digest_factory</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

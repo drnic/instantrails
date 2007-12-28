@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Relative height [Integer]
+  name: relativeHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Relative width [Integer]
+  name: relativeWidth
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The spring widgets, when properly embedded side by side in a horizontal frame or vertical frame widget, behave like a set of connected springs of various lengths.
+- !ruby/struct:SM::Flow::P 
+  body: The third and fourth arguments to the FXSpring.new method (<tt>relw</tt> and <tt>relh</tt>) determine the &quot;length&quot; of the spring. You can also change these settings after the widget is constructed using the FXSpring#relativeWidth and FXSpring#relativeHeight accessor methods. The actual length that you specify is not really important; the only thing that counts is the relative length of one spring widget to that of another, although the length does determine the default size. The special value zero may be given for <tt>relw</tt> (or <tt>relh</tt>) to cause the spring to calculate its default width (height) normally, just like the FXPacker base class does.
+- !ruby/struct:SM::Flow::P 
+  body: In a typical scenario, either the relative width or height is set to zero, an the flag <tt>LAYOUT_FILL_X</tt> or <tt>LAYOUT_FILL_Y</tt> is passed. When placed inside a horizontal frame, the <tt>LAYOUT_FILL_X</tt> together with the relative widths of the springs will cause a fixed width-ratio between the springs.
+- !ruby/struct:SM::Flow::P 
+  body: You also can mix normal controls and springs together in a horizontal or vertical frames to provide arbitrary stretchable spacing between widgets; in this case, the springs do not need to have any children. Since the spring widget is derived from the FXPacker layout manager, it provides the same layout behavior as FXPacker.
+constants: []
+
+full_name: Fox::FXSpring
+includes: []
+
+instance_methods: []
+
+name: FXSpring
+superclass: FXPacker

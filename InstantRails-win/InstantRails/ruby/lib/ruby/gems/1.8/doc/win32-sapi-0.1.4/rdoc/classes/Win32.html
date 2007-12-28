@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Win32</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Win32</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/win32/sapi5_rb.html">
+                lib/win32/sapi5.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The <a href="Win32.html">Win32</a> module serves as a namespace only.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Win32/SAPI5.html" class="link">Win32::SAPI5</a><br />
+Class <a href="Win32/SpAudioFormat.html" class="link">Win32::SpAudioFormat</a><br />
+Class <a href="Win32/SpCustomStream.html" class="link">Win32::SpCustomStream</a><br />
+Class <a href="Win32/SpFileStream.html" class="link">Win32::SpFileStream</a><br />
+Class <a href="Win32/SpInProcRecoContext.html" class="link">Win32::SpInProcRecoContext</a><br />
+Class <a href="Win32/SpInProcRecognizer.html" class="link">Win32::SpInProcRecognizer</a><br />
+Class <a href="Win32/SpLexicon.html" class="link">Win32::SpLexicon</a><br />
+Class <a href="Win32/SpMMAudioIn.html" class="link">Win32::SpMMAudioIn</a><br />
+Class <a href="Win32/SpMMAudioOut.html" class="link">Win32::SpMMAudioOut</a><br />
+Class <a href="Win32/SpMemoryStream.html" class="link">Win32::SpMemoryStream</a><br />
+Class <a href="Win32/SpObjectToken.html" class="link">Win32::SpObjectToken</a><br />
+Class <a href="Win32/SpObjectTokenCategory.html" class="link">Win32::SpObjectTokenCategory</a><br />
+Class <a href="Win32/SpPhoneConverter.html" class="link">Win32::SpPhoneConverter</a><br />
+Class <a href="Win32/SpPhraseInfoBuilder.html" class="link">Win32::SpPhraseInfoBuilder</a><br />
+Class <a href="Win32/SpSharedRecoContext.html" class="link">Win32::SpSharedRecoContext</a><br />
+Class <a href="Win32/SpSharedRecognizer.html" class="link">Win32::SpSharedRecognizer</a><br />
+Class <a href="Win32/SpTextSelectionInformation.html" class="link">Win32::SpTextSelectionInformation</a><br />
+Class <a href="Win32/SpUnCompressedLexicon.html" class="link">Win32::SpUnCompressedLexicon</a><br />
+Class <a href="Win32/SpVoice.html" class="link">Win32::SpVoice</a><br />
+Class <a href="Win32/SpWaveFormatEx.html" class="link">Win32::SpWaveFormatEx</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible items [Integer]
+  name: numVisible
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index of top-most menu item [Integer]
+  name: topItem
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Scroll Pane is a menu pane which provides scrolling of menu entries. It is useful when menus are populated programmatically and it is not known in advance how many entries will be added.
+constants: []
+
+full_name: Fox::FXScrollPane
+includes: []
+
+instance_methods: []
+
+name: FXScrollPane
+superclass: FXMenuPane

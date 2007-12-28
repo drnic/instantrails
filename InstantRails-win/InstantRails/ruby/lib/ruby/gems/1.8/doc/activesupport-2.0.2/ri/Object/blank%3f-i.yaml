@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An object is blank if it's nil, empty, or a whitespace string. For example, &quot;&quot;, &quot; &quot;, nil, [], and {} are blank.
+- !ruby/struct:SM::Flow::P 
+  body: This simplifies
+- !ruby/struct:SM::Flow::VERB 
+  body: "  if !address.nil? &amp;&amp; !address.empty?\n"
+- !ruby/struct:SM::Flow::P 
+  body: to
+- !ruby/struct:SM::Flow::VERB 
+  body: "  if !address.blank?\n"
+full_name: Object#blank?
+is_singleton: false
+name: blank?
+params: ()
+visibility: public

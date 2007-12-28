@@ -1,0 +1,109 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application associated with this recent files group [FXApp]
+  name: app
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Group name [String]
+  name: groupName
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum number of files to track [Integer]
+  name: maxFiles
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Message identifier [Integer]
+  name: selector
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Message target [FXObject]
+  name: target
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The recent files object manages a most recently used file list by means of the standard system registry. When connected to a widget, like a menu command, the recent files object updates the menu commands label to the associated recent file name; when the menu command is invoked, the recent file object sends its target a <tt>SEL_COMMAND</tt> message with the message data set to the associated file name (a String). When adding or removing file names, the recent files object automatically updates the system registry to record these changes.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXRecentFiles to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when one of the recent files in this list is selected, usually as a result of being selected from a menu command. The message data is a String containing the name of the file.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_CLEAR</tt>:"
+    body: Clear the list of files
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_ANYFILES</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_1</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_2</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_3</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_4</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_5</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_6</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_7</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_8</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_9</tt>:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>ID_FILE_10</tt>:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXRecentFiles
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendFile
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: removeFile
+name: FXRecentFiles
+superclass: FXObject

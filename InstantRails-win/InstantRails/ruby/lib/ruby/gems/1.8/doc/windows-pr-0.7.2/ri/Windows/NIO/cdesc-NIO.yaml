@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: OpenFile() constants
+  name: OF_READ
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_WRITE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_READWRITE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_SHARE_COMPAT
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_SHARE_EXCLUSIVE
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_SHARE_DENY_WRITE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_SHARE_DENY_READ
+  value: "0x00000030"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_SHARE_DENY_NONE
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_PARSE
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_DELETE
+  value: "0x00000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_VERIFY
+  value: "0x00000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_CANCEL
+  value: "0x00000800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_CREATE
+  value: "0x00001000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_PROMPT
+  value: "0x00002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_EXIST
+  value: "0x00004000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OF_REOPEN
+  value: "0x00008000"
+full_name: Windows::NIO
+includes: []
+
+instance_methods: []
+
+name: NIO
+superclass: 

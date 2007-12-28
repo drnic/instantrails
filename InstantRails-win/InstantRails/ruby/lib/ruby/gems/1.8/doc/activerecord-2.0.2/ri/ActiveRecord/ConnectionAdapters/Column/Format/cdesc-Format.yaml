@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ISO_DATE
+  value: /\A(\d{4})-(\d\d)-(\d\d)\z/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ISO_DATETIME
+  value: /\A(\d{4})-(\d\d)-(\d\d) (\d\d):(\d\d):(\d\d)(\.\d+)?\z/
+full_name: ActiveRecord::ConnectionAdapters::Column::Format
+includes: []
+
+instance_methods: []
+
+name: Format
+superclass: 

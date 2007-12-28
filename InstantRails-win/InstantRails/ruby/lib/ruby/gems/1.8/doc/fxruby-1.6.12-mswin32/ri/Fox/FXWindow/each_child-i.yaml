@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: child
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Iterate over the child windows for this window. Note that this only reaches the direct child windows for this window and no deeper descendants. To traverse the entire widget tree, use #each_child_recursive."
+full_name: Fox::FXWindow#each_child
+is_singleton: false
+name: each_child
+params: ( {|child| ...}
+visibility: public

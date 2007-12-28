@@ -1,0 +1,69 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Makes the element with the DOM ID specified by <tt>element_id</tt> sortable by drag-and-drop and make an Ajax call whenever the sort order has changed. By default, the action called gets the serialized sortable element as parameters.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= sortable_element(&quot;my_list&quot;, :url =&gt; { :action =&gt; &quot;order&quot; }) %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: In the example, the action gets a &quot;my_list&quot; array parameter containing the values of the ids of elements the sortable consists of, in the current order.
+- !ruby/struct:SM::Flow::P 
+  body: "Important: For this to work, the sortable elements must have id attributes in the form &quot;string_identifier&quot;. For example, &quot;item_1&quot;. Only the identifier part of the id attribute will be serialized."
+- !ruby/struct:SM::Flow::P 
+  body: "Additional <tt>options</tt> are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:format</tt>:"
+    body: A regular expression to determine what to send as the serialized id to the server (the default is <tt>/^[^_]*_(.*)$/</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:constraint</tt>:"
+    body: Whether to constrain the dragging to either <tt>:horizontal</tt> or <tt>:vertical</tt> (or false to make it unconstrained).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:overlap</tt>:"
+    body: Calculate the item overlap in the <tt>:horizontal</tt> or <tt>:vertical</tt> direction.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:tag</tt>:"
+    body: Which children of the container element to treat as sortable (default is <tt>li</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:containment</tt>:"
+    body: Takes an element or array of elements to treat as potential drop targets (defaults to the original target element).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:only</tt>:"
+    body: A CSS class name or arry of class names used to filter out child elements as candidates.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:scroll</tt>:"
+    body: Determines whether to scroll the list during drag operationsif the list runs past the visual border.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:tree</tt>:"
+    body: Determines whether to treat nested lists as part of the main sortable list. This means that you can create multi- layer lists, and not only sort items at the same level, but drag and sort items between levels.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:hoverclass</tt>:"
+    body: If set, the Droppable will have this additional CSS class when an accepted Draggable is hovered over it.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:handle</tt>:"
+    body: Sets whether the element should only be draggable by an embedded handle. The value may be a string referencing a CSS class value (as of script.aculo.us V1.5). The first child/grandchild/etc. element found within the element that has this CSS class value will be used as the handle.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:ghosting</tt>:"
+    body: Clones the element and drags the clone, leaving the original in place until the clone is dropped (defaut is <tt>false</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:dropOnEmpty</tt>:"
+    body: If set to true, the Sortable container will be made into a Droppable, that can receive a Draggable (as according to the containment rules) as a child element when there are no more elements inside (defaut is <tt>false</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:onChange</tt>:"
+    body: Called whenever the sort order changes while dragging. When dragging from one Sortable to another, the callback is called once on each Sortable. Gets the affected element as its parameter.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:onUpdate</tt>:"
+    body: Called when the drag ends and the Sortable's order is changed in any way. When dragging from one Sortable to another, the callback is called once on each Sortable. Gets the container as its parameter.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: See http://script.aculo.us for more documentation.
+full_name: ActionView::Helpers::ScriptaculousHelper#sortable_element
+is_singleton: false
+name: sortable_element
+params: (element_id, options = {})
+visibility: public

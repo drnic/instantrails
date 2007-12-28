@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An Uninstaller.
+constants: []
+
+full_name: Gem::Uninstaller
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Gem::UserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ask_if_ok
+- !ruby/object:RI::MethodSummary 
+  name: ok_to_remove?
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: remove_all
+- !ruby/object:RI::MethodSummary 
+  name: remove_executables
+- !ruby/object:RI::MethodSummary 
+  name: uninstall
+name: Uninstaller
+superclass: Object

@@ -1,0 +1,101 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Pixel data [FXMemoryBuffer]
+  name: data
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Option flags [Integer]
+  name: options
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "An Image is a rectangular array of pixels. It supports two representations of these pixels: a client-side pixel buffer which is stored as an array of FXColor, and a server-side pixmap which is stored in an organization directly compatible with the screen, for fast drawing onto the device. The server-side representation is not directly accessible from the current process as it lives in the process of the X Server or GDI."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Image rendering hints
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_KEEP+:"
+    body: Keep pixel data in client. By default, FOX discards of the client-side pixel data for an image after you call create() for that image. When the <tt>IMAGE_KEEP</tt> option is set for FXImage (or one of its subclasses), the client-side buffer is maintained. You will typically want to set this option if you intend to do repeated re-rendering of the image after it has been created.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_OWNED+:"
+    body: If the <tt>IMAGE_OWNED</tt> option is set, the FXImage object assumes ownership of its client-side pixel data (if any).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_DITHER+:"
+    body: Dither image to look better
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_NEAREST+:"
+    body: Turn off dithering and map to nearest color
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_OPAQUE+:"
+    body: Force opaque background
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_ALPHACOLOR+:"
+    body: By default, FOX will use the transparency color obtained from the image file as the transparency (alpha) color. If you pass the <tt>IMAGE_ALPHACOLOR</tt> flag, the user-specified transparency color will be used instead.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_SHMI+:"
+    body: Using shared memory image
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_SHMP+:"
+    body: Using shared memory pixmap
+  - !ruby/struct:SM::Flow::LI 
+    label: "+IMAGE_ALPHAGUESS+:"
+    body: Guess transparency color from corners
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXImage
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: blend
+- !ruby/object:RI::MethodSummary 
+  name: crop
+- !ruby/object:RI::MethodSummary 
+  name: fade
+- !ruby/object:RI::MethodSummary 
+  name: fill
+- !ruby/object:RI::MethodSummary 
+  name: getPixel
+- !ruby/object:RI::MethodSummary 
+  name: gradient
+- !ruby/object:RI::MethodSummary 
+  name: hasAlpha?
+- !ruby/object:RI::MethodSummary 
+  name: hgradient
+- !ruby/object:RI::MethodSummary 
+  name: loadPixels
+- !ruby/object:RI::MethodSummary 
+  name: mirror
+- !ruby/object:RI::MethodSummary 
+  name: release
+- !ruby/object:RI::MethodSummary 
+  name: render
+- !ruby/object:RI::MethodSummary 
+  name: restore
+- !ruby/object:RI::MethodSummary 
+  name: rotate
+- !ruby/object:RI::MethodSummary 
+  name: savePixels
+- !ruby/object:RI::MethodSummary 
+  name: scale
+- !ruby/object:RI::MethodSummary 
+  name: setPixel
+- !ruby/object:RI::MethodSummary 
+  name: vgradient
+- !ruby/object:RI::MethodSummary 
+  name: xshear
+- !ruby/object:RI::MethodSummary 
+  name: yshear
+name: FXImage
+superclass: FXDrawable

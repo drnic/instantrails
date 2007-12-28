@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Assert that no emails have been sent.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def test_emails\n    assert_no_emails\n    ContactMailer.deliver_contact\n    assert_emails 1\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: If a block is passed, that block should not cause any emails to be sent.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def test_emails_again\n    assert_no_emails do\n      # No emails should be sent from this block\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Note: This assertion is simply a shortcut for:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_emails 0\n"
+full_name: ActionMailer::TestHelper#assert_no_emails
+is_singleton: false
+name: assert_no_emails
+params: (&block)
+visibility: public

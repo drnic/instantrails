@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Process</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Process</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../files/lib/win32/process_rb.html">
+                lib/win32/process.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000004">create</a>&nbsp;&nbsp;
+      <a href="#M000007">fork</a>&nbsp;&nbsp;
+      <a href="#M000003">kill</a>&nbsp;&nbsp;
+      <a href="#M000005">wait</a>&nbsp;&nbsp;
+      <a href="#M000006">wait2</a>&nbsp;&nbsp;
+      <a href="#M000001">waitpid</a>&nbsp;&nbsp;
+      <a href="#M000002">waitpid2</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Windows::Process</span>
+        <span class="include-name">Windows::Error</span>
+        <span class="include-name">Windows::Library</span>
+        <span class="include-name">Windows::Console</span>
+        <span class="include-name">Windows::Handle</span>
+        <span class="include-name">Windows::Synchronize</span>
+        <span class="include-name">Windows::Window</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WIN32_PROCESS_VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.5.3'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ProcessInfo</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new(&quot;ProcessInfo&quot;,       :process_handle,       :thread_handle,       :process_id,       :thread_id</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Used by <a href="Process.html#M000004">Process.create</a>
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000004.html');return false;">
+          <span class="method-name">create</span><span class="method-args">(args)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="Process.html#M000004">Process.create</a>(key =&gt; value, &#8230;)
+=&gt; ProcessInfo
+</p>
+<p>
+This is a wrapper for the CreateProcess() function. It executes a process,
+returning a ProcessInfo struct. It accepts a hash as an argument. There are
+six primary keys:
+</p>
+<ul>
+<li>app_name (mandatory)
+
+</li>
+<li>inherit (default: false)
+
+</li>
+<li>process_inherit (default: false)
+
+</li>
+<li>thread_inherit (default: false)
+
+</li>
+<li>creation_flags (default: 0)
+
+</li>
+<li>cwd (default: Dir.pwd)
+
+</li>
+<li>startup_info (default: nil)
+
+</li>
+<li>environment (default: nil)
+
+</li>
+</ul>
+<p>
+Of these, the &#8216;app_name&#8217; must be specified or an error is
+raised.
+</p>
+<p>
+The startup_info key takes a hash. Its keys are attributes that are part of
+the StartupInfo struct, and are generally only meaningful for GUI or
+console processes. See the documentation on CreateProcess() and the
+StartupInfo struct on MSDN for more information.
+</p>
+<ul>
+<li>desktop
+
+</li>
+<li>title
+
+</li>
+<li>x
+
+</li>
+<li>y
+
+</li>
+<li>x_size
+
+</li>
+<li>y_size
+
+</li>
+<li>x_count_chars
+
+</li>
+<li>y_count_chars
+
+</li>
+<li>fill_attribute
+
+</li>
+<li>sw_flags
+
+</li>
+<li>startf_flags
+
+</li>
+<li>stdin
+
+</li>
+<li>stdout
+
+</li>
+<li>stderr
+
+</li>
+</ul>
+<p>
+The relevant constants for &#8216;creation_flags&#8217;,
+&#8216;sw_flags&#8217; and &#8216;startf_flags&#8217; are included in the
+Windows::Process, Windows::Console and Windows::Window modules. These come
+with the windows-pr package, a prerequisite of this package. Note that the
+&#8216;stdin&#8217;, &#8216;stdout&#8217; and &#8216;stderr&#8217; options
+can be either Ruby IO objects or file descriptors (i.e. a fileno). However,
+StringIO objects are not currently supported.
+</p>
+<p>
+The ProcessInfo struct contains the following members:
+</p>
+<ul>
+<li>process_handle - The handle to the newly created process.
+
+</li>
+<li>thread_handle - The handle to the primary thread of the process.
+
+</li>
+<li>process_id - <a href="Process.html">Process</a> ID.
+
+</li>
+<li>thread_id - Thread ID.
+
+</li>
+</ul>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000007.html');return false;">
+          <span class="method-name">fork</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Creates the equivalent of a subshell via the CreateProcess() function. This
+behaves in a manner that is similar, but not identical to, the <a
+href="Kernel.html#M000008">Kernel.fork</a> method for Unix.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000003.html');return false;">
+          <span class="method-name">kill</span><span class="method-args">(signal, *pids)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends the given <tt>signal</tt> to an array of process id&#8216;s. The
+<tt>signal</tt> may be any value from 0 to 9, or the special strings
+&#8216;SIGINT&#8217; (or &#8216;INT&#8217;), &#8216;SIGBRK&#8217; (or
+&#8216;BRK&#8217;) and &#8216;SIGKILL&#8217; (or &#8216;KILL&#8217;). An
+array of successfully killed pids is returned.
+</p>
+<p>
+Signal 0 merely tests if the process is running without killing it. Signal
+2 sends a CTRL_C_EVENT to the process. Signal 3 sends a CTRL_BRK_EVENT to
+the process. Signal 9 kills the process in a harsh manner. Signals 1 and
+4-8 <a href="Process.html#M000003">kill</a> the process in a nice manner.
+</p>
+<p>
+SIGINT/INT corresponds to signal 2 SIGBRK/BRK corresponds to signal 3
+SIGKILL/KILL corresponds to signal 9
+</p>
+<p>
+Signals 2 and 3 only affect console processes, and then only if the process
+was created with the CREATE_NEW_PROCESS_GROUP flag.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000005.html');return false;">
+          <span class="method-name">wait</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for any child process to exit and returns the process id of that
+child.
+</p>
+<p>
+Note that the $? (Process::Status) global variable is NOT set. This may be
+addressed in a future release.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000006.html');return false;">
+          <span class="method-name">wait2</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for any child process to exit and returns an array containing the
+process id and the exit status of that child.
+</p>
+<p>
+Note that the $? (Process::Status) global variable is NOT set. This may be
+addressed in a future release.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000001.html');return false;">
+          <span class="method-name">waitpid</span><span class="method-args">(pid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for the given child process to exit and returns that pid.
+</p>
+<p>
+Note that the $? (Process::Status) global variable is NOT set. This may be
+addressed in a future release.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Process.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Process.src/M000002.html');return false;">
+          <span class="method-name">waitpid2</span><span class="method-args">(pid)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for the given child process to exit and returns an array containing
+the process id and the exit status.
+</p>
+<p>
+Note that the $? (Process::Status) global variable is NOT set. This may be
+addressed in a future release.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

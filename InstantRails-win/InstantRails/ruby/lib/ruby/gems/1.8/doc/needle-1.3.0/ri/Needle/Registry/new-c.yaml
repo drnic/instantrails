@@ -1,0 +1,38 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ( self )
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Instantiate a new Registry. The options hash may include the following keys:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:logs</tt>:"
+    body: options used to initialize the logger factory. The value to this key should be another hash.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:parent</tt>:"
+    body: The parent container of this registry.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:name</tt>:"
+    body: The name of this registry.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: If a block is given, the constructed registry instance is yielded to it.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  registry = Needle::Registry.new\n"
+- !ruby/struct:SM::Flow::P 
+  body: or
+- !ruby/struct:SM::Flow::VERB 
+  body: "  registry = Needle::Registry.new do |reg|\n    reg.register( :add ) { Adder.new }\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: or
+- !ruby/struct:SM::Flow::VERB 
+  body: "  registry = Needle::Registry.new(\n    :logs =&gt; { :filename =&gt; &quot;/dev/null&quot; }\n  )\n"
+full_name: Needle::Registry::new
+is_singleton: true
+name: new
+params: ( opts={} ) {|self| ...}
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Perform the operation. Only CHUNK_SIZE portions of the <tt>data</tt> parameter will be written at a time, with subsequent chunks being writteni automatically when prior chunks complete.
+full_name: Net::SFTP::Operations::Write#perform
+is_singleton: false
+name: perform
+params: ( handle, data, offset=0 )
+visibility: public

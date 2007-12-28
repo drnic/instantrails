@@ -1,0 +1,61 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The Date Helper primarily creates select/option tags for different kinds of dates and date elements. All of the select-type methods share a number of common options that are as follows:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:prefix</tt> - overwrites the default prefix of &quot;date&quot; used for the select names. So specifying &quot;birthday&quot; would give birthday[month] instead of date[month] if passed to the select_month method.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:include_blank</tt> - set to true if it should be possible to set an empty date.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:discard_type</tt> - set to true if you want to discard the type part of the select name. If set to true, the select_month method would use simply &quot;date&quot; (which can be overwritten using <tt>:prefix</tt>) instead of &quot;date[month]&quot;.
+  type: :BULLET
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_PREFIX
+  value: "'date' unless const_defined?('DEFAULT_PREFIX')"
+full_name: ActionView::Helpers::DateHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: date_select
+- !ruby/object:RI::MethodSummary 
+  name: datetime_select
+- !ruby/object:RI::MethodSummary 
+  name: distance_of_time_in_words
+- !ruby/object:RI::MethodSummary 
+  name: distance_of_time_in_words_to_now
+- !ruby/object:RI::MethodSummary 
+  name: select_date
+- !ruby/object:RI::MethodSummary 
+  name: select_datetime
+- !ruby/object:RI::MethodSummary 
+  name: select_day
+- !ruby/object:RI::MethodSummary 
+  name: select_hour
+- !ruby/object:RI::MethodSummary 
+  name: select_minute
+- !ruby/object:RI::MethodSummary 
+  name: select_month
+- !ruby/object:RI::MethodSummary 
+  name: select_second
+- !ruby/object:RI::MethodSummary 
+  name: select_time
+- !ruby/object:RI::MethodSummary 
+  name: select_year
+- !ruby/object:RI::MethodSummary 
+  name: time_ago_in_words
+- !ruby/object:RI::MethodSummary 
+  name: time_select
+name: DateHelper
+superclass: 

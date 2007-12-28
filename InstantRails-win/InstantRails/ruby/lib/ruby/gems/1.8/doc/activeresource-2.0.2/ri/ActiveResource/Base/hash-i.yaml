@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Delegates to id in order to allow two resources of the same type and id to work with something like:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  [Person.find(1), Person.find(2)] &amp; [Person.find(1), Person.find(4)] # =&gt; [Person.find(1)]\n"
+full_name: ActiveResource::Base#hash
+is_singleton: false
+name: hash
+params: ()
+visibility: public

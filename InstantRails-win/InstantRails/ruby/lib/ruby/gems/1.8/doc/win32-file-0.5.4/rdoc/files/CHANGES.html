@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:44 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>0.5.4 - 8-Apr-2007</h2>
+<ul>
+<li>Now runs -w clean.
+
+</li>
+<li>Added a Rakefile. Manual installation and testing should now be handled by
+the Rake tasks.
+
+</li>
+<li>Some updates to the README file.
+
+</li>
+</ul>
+<h2>0.5.3 - 2-Nov-2006</h2>
+<ul>
+<li>Added the <a href="../classes/File.html#M000012">File.lstat</a> method.
+It&#8216;s abscence caused problems for cross platform packages (such as
+the &#8216;find&#8217; module) which were expecting a result for <a
+href="../classes/File.html#M000012">File.lstat</a>. Thanks go to
+&quot;Oliver&quot; (python152) from the mailing list for the spot.
+
+</li>
+</ul>
+<h2>0.5.2 - 12-May-2006</h2>
+<ul>
+<li>Added explicit <a href="../classes/File.html#M000011">File.stat</a> and <a
+href="../classes/File.html#M000011">File#stat</a> methods to ensure that
+the File::Stat object returned is the one defined in the win32-file-stat
+package.
+
+</li>
+</ul>
+<h2>0.5.1 - 27-Apr-2006</h2>
+<ul>
+<li>Added the File.content_indexed? alias for File.indexed?
+
+</li>
+<li>Added the corresponding File::CONTENT_INDEXED constant alias.
+
+</li>
+<li>Fixed an issue with the Windows::Error module not being extended the way it
+should have been.
+
+</li>
+<li>Updated the ts_all.rb file to actually include <b>all</b> the tests.
+
+</li>
+</ul>
+<h2>0.5.0 - 22-Apr-2006</h2>
+<ul>
+<li>Replaced C version with pure Ruby version.
+
+</li>
+<li>Added a gem.
+
+</li>
+<li>Requires the win32-file-stat package. Some methods are just a facade for
+File::Stat methods.
+
+</li>
+<li>Removed the native IO methods and related attributes - nread, nwrite,
+flags, creation_mode, share_mode, access_mode. These will be moved into
+their own package (win32-io) eventually.
+
+</li>
+<li>The <a href="../classes/File.html#M000003">File.get_permissions</a> method
+now takes an optional hostname as the second argument. If it isn&#8216;t
+provided, it defaults to localhost.
+
+</li>
+<li>The File.set_attr method was renamed to <a
+href="../classes/File.html#M000030">File.set_attributes</a> (though an
+alias has been provided for backwards compatibility).
+
+</li>
+<li>The File.unset_attr method was renamed to <a
+href="../classes/File.html#M000031">File.remove_attributes</a>. Again, an
+alias was created for backwards compatibility.
+
+</li>
+<li>The File.content_indexed? method is now just File.indexed? Likewise, the
+File::CONTENT_INDEXED constant is now just File::INDEXED.
+
+</li>
+</ul>
+<h2>0.4.6 - 20-Nov-2005</h2>
+<ul>
+<li>Fixed potential segfaults caused by passing invalid types. This affects
+most methods.
+
+</li>
+<li>Added more tests to look for explicit TypeError&#8216;s.
+
+</li>
+</ul>
+<h2>0.4.5 - 17-Sep-2005</h2>
+<ul>
+<li>Fixed bug in <a href="../classes/File.html#M000006">File.basename</a> and
+<a href="../classes/File.html#M000007">File.dirname</a> where receiver was
+being modified.
+
+</li>
+<li>Overrode the <a href="../classes/File.html#M000010">File.split</a> method
+to handle UNC paths properly.
+
+</li>
+<li>More tests.
+
+</li>
+</ul>
+<h2>0.4.4 - 20-Aug-2005</h2>
+<ul>
+<li>Fixed some bugs in the <a
+href="../classes/File.html#M000006">File.basename</a> method.
+
+</li>
+<li>Added more tests for the <a
+href="../classes/File.html#M000006">File.basename</a> method.
+
+</li>
+</ul>
+<h2>0.4.3 - 25-May-2005</h2>
+<ul>
+<li>Added custom versions of <a
+href="../classes/File.html#M000006">File.basename</a> and <a
+href="../classes/File.html#M000007">File.dirname</a> so that they work with
+UNC paths correctly. This requires linking against libshlwapi, which was
+added in the extconf.rb file.
+
+</li>
+<li>Better Unicode support (I think).
+
+</li>
+<li>Added some safe string handling.
+
+</li>
+<li>Tests added for <a href="../classes/File.html#M000006">File.basename</a>
+and <a href="../classes/File.html#M000007">File.dirname</a>.
+
+</li>
+<li>Removed the file.rd file. You can run rdoc over the file.txt file to
+generate html documentation if you wish.
+
+</li>
+</ul>
+<h2>0.4.2 - 1-Feb-2005</h2>
+<ul>
+<li>Added a macro check for EncryptFile(), which turns out to only be supported
+on Windows 2000 or later. Thanks go to Takaaki Tateishi for the spot.
+
+</li>
+</ul>
+<h2>0.4.1 - 30-Nov-2004</h2>
+<ul>
+<li>Added working implementations for File.blockdev? and File.chardev?
+
+</li>
+<li>Corresponding test suite and doc additions.
+
+</li>
+<li>Corrected the release date for 0.4.0.
+
+</li>
+</ul>
+<h2>0.4.0 - 26-Nov-2004</h2>
+<ul>
+<li>Added the File.nopen class method, and File#nread and File#nwrite instance
+methods. These are wrappers for Window&#8216;s native methods. See
+documentation for more details. Also see some examples in the
+&#8216;examples&#8217; directory.
+
+</li>
+<li>Added my own implementation of <a
+href="../classes/File.html#M000016">File.size</a>, because the current
+version is not 64 bit aware (i.e. does not return correct values for sizes
+over 2 GB). I will remove this once Ruby has been updated.
+
+</li>
+<li>Modified File#path to use GetFullPathName() internally if Ruby&#8216;s own
+File#path method fails. This was mostly done for internal usage, but it has
+the effect of making File#path a little more robust on Windows I think.
+
+</li>
+</ul>
+<h2>0.3.0 - 10-Nov-2004</h2>
+<ul>
+<li>Added the archive=, hidden=, normal=, compressed=, content_indexed=,
+offline=, readonly=, sparse=, system=, and temporary= instance methods.
+
+</li>
+<li>Changed set_permission to set_permissions, and get_permission to
+get_permissions, respectively.
+
+</li>
+<li>Moved the examples directory to the toplevel directory.
+
+</li>
+<li>Added and/or modified some files to be rdoc friendly.
+
+</li>
+<li>Documentation and test suite updates.
+
+</li>
+</ul>
+<h2>0.2.2 - 17-Aug-2004</h2>
+<ul>
+<li>Added the encrypt() and decrypt() class methods. These are wrappers for the
+EncryptFile() and DecryptFile() Win32 functions.
+
+</li>
+<li>Corresponding test suite and documentation additions.
+
+</li>
+<li>Added a crypt and decrypt test example, crypt_test.rb, under doc/examples.
+
+</li>
+</ul>
+<h2>0.2.1 - 10-Aug-2004</h2>
+<ul>
+<li>Replaced all occurrences of the deprecated STR2CSTR() function with
+StringValuePtr(). That means that, as of this release, this package
+requires Ruby 1.8.0 or later.
+
+</li>
+<li>Added the long_path method (may not be supported on NT).
+
+</li>
+<li>Documentation and test suite additions
+
+</li>
+<li>Some code cleanup and reorganization.
+
+</li>
+<li>Moved sample scripts to doc/examples.
+
+</li>
+<li>Removed the file.html file from the doc directory. You can generate the
+html documentation with rd2 if you like.
+
+</li>
+</ul>
+<h2>0.2.0 - 8-May-2004</h2>
+<ul>
+<li>Removed the toplevel Win32 module/namespace (except for the require line).
+I felt that having to put &quot;Win32::&quot; in front of all the methods
+was too painful.
+
+</li>
+<li>Added the CACLS attribute getter and setter (Park).
+
+</li>
+<li>Updated docs to reflect changes, added warranty information.
+
+</li>
+<li>Moved the pure ruby version to its own directory. In lieu of the installer
+now available for our packages, this version is no longer guaranteed to be
+maintained, but I&#8216;ll leave it in the package for now.
+
+</li>
+</ul>
+<h2>0.1.1 - 3-Nov-2003</h2>
+<ul>
+<li>Added the content_indexed? method
+
+</li>
+<li>Added the set_attr and unset_attr methods
+
+</li>
+<li>Added constants that apply to set_attr and unset_attr
+
+</li>
+<li>Replaced GetFileAttributesEx() with the simpler GetFileAttributes(). The
+former provides no additional information that isn&#8216;t already covered
+by File::Stat.
+
+</li>
+<li>Test suite additions
+
+</li>
+<li>Documentation additions
+
+</li>
+</ul>
+<h2>0.1.0 - 29-Oct-2003</h2>
+<ul>
+<li>Initial release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

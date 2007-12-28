@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Resize the table content to <em>numRows</em> rows and <em>numCols</em> columns. Note that all existing items in the table will be destroyed and new items will be constructed. If <em>notify</em> is <tt>true</tt>, then
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: a <tt>SEL_DELETED</tt> message will be sent to the table's message target indicating which cells (if any) are about to be destroyed as a result of the resize;
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: a <tt>SEL_INSERTED</tt> message will be sent to the table's message target indicating which cells (if any) were added as a result of the resize; and,
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: a <tt>SEL_CHANGED</tt> message will be sent to the table's message target indicating the new current cell.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Raises ArgError if either <em>numRows</em> or <em>numCols</em> is less than zero.
+full_name: Fox::FXTable#setTableSize
+is_singleton: false
+name: setTableSize
+params: (numRows, numCols, notify=false)
+visibility: public

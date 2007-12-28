@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Writes the .gemspec specification (in Ruby) to the supplied spec_path.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "spec:"
+    body: "[Gem::Specification] The Gem specification to output"
+  - !ruby/struct:SM::Flow::LI 
+    label: "spec_path:"
+    body: "[String] The location (path) to write the gemspec to"
+  type: :NOTE
+full_name: Gem::Installer#write_spec
+is_singleton: false
+name: write_spec
+params: ()
+visibility: public

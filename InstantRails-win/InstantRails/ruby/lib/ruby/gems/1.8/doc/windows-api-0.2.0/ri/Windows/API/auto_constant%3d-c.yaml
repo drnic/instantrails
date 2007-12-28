@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Automatically sets a constant to match the function name.
+- !ruby/struct:SM::Flow::P 
+  body: "The standard practice for defining Windows::API objects is to use a constant that matches the function name. For example, this is a typical idiom:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   module Windows\n      module File\n         GetFileAttributes = API.new('GetFileAttributes', 'P','L')\n      end\n   end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "With the API.auto_constant value set to true you can avoid the assignment step and the matching constant name will be automatically set for you in the namespace defined in API.auto_namespace. In other words, this example is identical to the one above:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "   module Windows\n      module File\n         API.auto_constant  = true\n         API.auto_namespace = 'Windows::File'\n         API.new('GetFileAttributes', 'P', 'L')\n      end\n   end\n"
+- !ruby/struct:SM::Flow::P 
+  body: If the auto_constant class variable is set to true, but no auto_namespace is set, an error will be raised. Note that the namespace must refer to an existing module (not a class).
+full_name: Windows::API::auto_constant=
+is_singleton: true
+name: auto_constant=
+params: (bool)
+visibility: public

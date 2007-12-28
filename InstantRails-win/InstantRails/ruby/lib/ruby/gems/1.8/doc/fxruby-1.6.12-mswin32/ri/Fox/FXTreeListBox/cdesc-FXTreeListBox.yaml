@@ -1,0 +1,166 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current item, if any [FXTreeItem]
+  name: currentItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First root-level item [FXTreeItem]
+  name: firstItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this tree list box [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Last root-level item [FXTreeItem]
+  name: lastItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tree list box style
+  name: listStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of items [Integer]
+  name: numItems
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible items [Integer]
+  name: numVisible
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip text for this tree list box [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Tree List Box behaves very much like a List Box, except that it supports a hierarchical, tree structured display of the items. When an item is selected it issues a <tt>SEL_COMMAND</tt> message with the pointer to the item. While manipulating the tree list, it may send <tt>SEL_CHANGED</tt> messages to indicate which item the cursor is hovering over.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTreeListBox to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the current list item changes; the message data is a reference to the new tree item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the current list item changes; the message data is a reference to the new tree item.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Tree list box styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELISTBOX_NORMAL+:"
+    body: Normal style
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TREE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_FIELD+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTreeListBox
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: extractItem
+- !ruby/object:RI::MethodSummary 
+  name: fillItems
+- !ruby/object:RI::MethodSummary 
+  name: findItem
+- !ruby/object:RI::MethodSummary 
+  name: findItemByData
+- !ruby/object:RI::MethodSummary 
+  name: getItemClosedIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemOpenIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: itemCurrent?
+- !ruby/object:RI::MethodSummary 
+  name: itemLeaf?
+- !ruby/object:RI::MethodSummary 
+  name: moveItem
+- !ruby/object:RI::MethodSummary 
+  name: paneShown?
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItems
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemClosedIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemOpenIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: sortChildItems
+- !ruby/object:RI::MethodSummary 
+  name: sortItems
+- !ruby/object:RI::MethodSummary 
+  name: sortRootItems
+name: FXTreeListBox
+superclass: Object

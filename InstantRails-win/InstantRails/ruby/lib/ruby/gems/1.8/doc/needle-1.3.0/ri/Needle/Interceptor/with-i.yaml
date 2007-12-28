@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Sets the action for this interceptor to be that defined by the interceptor returned when the block is executed. You can only invoke #with once, and never after previously invoking #doing on the same interceptor instance."
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.intercept( :foo ).\n    with { |c| c.logging_interceptor }\n"
+full_name: Needle::Interceptor#with
+is_singleton: false
+name: with
+params: ( &block )
+visibility: public

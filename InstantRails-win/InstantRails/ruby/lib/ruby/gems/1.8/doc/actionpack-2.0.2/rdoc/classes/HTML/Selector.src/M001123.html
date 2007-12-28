@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>simple_selector (HTML::Selector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/vendor/html-scanner/html/selector.rb, line 520</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">simple_selector</span>(<span class="ruby-identifier">statement</span>, <span class="ruby-identifier">values</span>, <span class="ruby-identifier">can_negate</span> = <span class="ruby-keyword kw">true</span>)
+      <span class="ruby-identifier">tag_name</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">attributes</span> = []
+      <span class="ruby-identifier">pseudo</span> = []
+      <span class="ruby-identifier">negation</span> = []
+
+      <span class="ruby-comment cmt"># Element name. (Note that in negation, this can come at</span>
+      <span class="ruby-comment cmt"># any order, but for simplicity we allow if only first).</span>
+      <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^(\*|[[:alpha:]][\w\-]*)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">match</span>.<span class="ruby-identifier">strip!</span>
+        <span class="ruby-identifier">tag_name</span> = <span class="ruby-identifier">match</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">match</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;*&quot;</span>
+        <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">match</span>
+        <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Get identifier, class, attribute name, pseudo or negation.</span>
+      <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">true</span>
+        <span class="ruby-comment cmt"># Element identifier.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^#(\?|[\w\-]+)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">id</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">id</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span>
+            <span class="ruby-identifier">id</span> = <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;##{id}&quot;</span>
+          <span class="ruby-identifier">id</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^#{Regexp.escape(id.to_s)}$&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">id</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
+          <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">&quot;id&quot;</span>, <span class="ruby-identifier">id</span>]
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Class name.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\.([\w\-]+)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">class_name</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;.#{class_name}&quot;</span>
+          <span class="ruby-identifier">class_name</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;(^|\s)#{Regexp.escape(class_name)}($|\s)&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">class_name</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
+          <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-value str">&quot;class&quot;</span>, <span class="ruby-identifier">class_name</span>]
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Attribute value.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\[\s*([[:alpha:]][\w\-]*)\s*((?:[~|^$*])?=)?\s*('[^']*'|&quot;[^*]&quot;|[^\]]*)\s*\]/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">name</span>, <span class="ruby-identifier">equality</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">$1</span>, <span class="ruby-identifier">$2</span>, <span class="ruby-identifier">$3</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span>
+            <span class="ruby-identifier">value</span> = <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-comment cmt"># Handle single and double quotes.</span>
+            <span class="ruby-identifier">value</span>.<span class="ruby-identifier">strip!</span>
+            <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">value</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">value</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?'</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">value</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">value</span>[<span class="ruby-value">-1</span>]
+              <span class="ruby-identifier">value</span> = <span class="ruby-identifier">value</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>]
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;[#{name}#{equality}'#{value}']&quot;</span>
+          <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&lt;&lt;</span> [<span class="ruby-identifier">name</span>.<span class="ruby-identifier">downcase</span>.<span class="ruby-identifier">strip</span>, <span class="ruby-identifier">attribute_match</span>(<span class="ruby-identifier">equality</span>, <span class="ruby-identifier">value</span>)]
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Root element only.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:root/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">element</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">element</span>.<span class="ruby-identifier">parent</span>.<span class="ruby-identifier">tag?</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;:root&quot;</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Nth-child including last and of-type.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:nth-(last-)?(child|of-type)\((odd|even|(\d+|\?)|(-?\d*|\?)?n([+\-]\d+|\?)?)\)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">reverse</span> = <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;last-&quot;</span>
+          <span class="ruby-identifier">of_type</span> = <span class="ruby-identifier">$2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;of-type&quot;</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:nth-#{$1}#{$2}(&quot;</span>
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">$3</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;odd&quot;</span>
+              <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nth_child</span>(<span class="ruby-value">2</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">of_type</span>, <span class="ruby-identifier">reverse</span>)
+              <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;odd)&quot;</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;even&quot;</span>
+              <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nth_child</span>(<span class="ruby-value">2</span>, <span class="ruby-value">2</span>, <span class="ruby-identifier">of_type</span>, <span class="ruby-identifier">reverse</span>)
+              <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;even)&quot;</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^(\d+|\?)$/</span>  <span class="ruby-comment cmt"># b only</span>
+              <span class="ruby-identifier">b</span> = (<span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$1</span>).<span class="ruby-identifier">to_i</span>
+              <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nth_child</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">of_type</span>, <span class="ruby-identifier">reverse</span>)
+              <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{b})&quot;</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-regexp re">/^(-?\d*|\?)?n([+\-]\d+|\?)?$/</span>
+              <span class="ruby-identifier">a</span> = (<span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span>
+                   <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-value">1</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;-&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-value">-1</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$1</span>).<span class="ruby-identifier">to_i</span>
+              <span class="ruby-identifier">b</span> = (<span class="ruby-identifier">$2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">$2</span>).<span class="ruby-identifier">to_i</span>
+              <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nth_child</span>(<span class="ruby-identifier">a</span>, <span class="ruby-identifier">b</span>, <span class="ruby-identifier">of_type</span>, <span class="ruby-identifier">reverse</span>)
+              <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> (<span class="ruby-identifier">b</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-node">&quot;#{a}n+#{b})&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-node">&quot;#{a}n#{b})&quot;</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Invalid nth-child #{match}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># First/last child (of type).</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:(first|last)-(child|of-type)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">reverse</span> = <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;last&quot;</span>
+          <span class="ruby-identifier">of_type</span> = <span class="ruby-identifier">$2</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;of-type&quot;</span>
+          <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">nth_child</span>(<span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">of_type</span>, <span class="ruby-identifier">reverse</span>)
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:#{$1}-#{$2}&quot;</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># Only child (of type).</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:only-(child|of-type)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">of_type</span> = <span class="ruby-identifier">$1</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;of-type&quot;</span>
+          <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">only_child</span>(<span class="ruby-identifier">of_type</span>)
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:only-#{$1}&quot;</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Empty: no child elements or meaningful content (whitespaces</span>
+        <span class="ruby-comment cmt"># are ignored).</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:empty/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">empty</span> = <span class="ruby-keyword kw">true</span>
+            <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">child</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">children</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">tag?</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">child</span>.<span class="ruby-identifier">content</span>.<span class="ruby-identifier">strip</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-identifier">empty</span> = <span class="ruby-keyword kw">false</span>
+                <span class="ruby-keyword kw">break</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">empty</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;:empty&quot;</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-comment cmt"># Content: match the text content of the element, stripping</span>
+        <span class="ruby-comment cmt"># leading and trailing spaces.</span>
+        <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:content\(\s*(\?|'[^']*'|&quot;[^&quot;]*&quot;|[^)]*)\s*\)/</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">content</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">content</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;?&quot;</span>
+            <span class="ruby-identifier">content</span> = <span class="ruby-identifier">values</span>.<span class="ruby-identifier">shift</span>
+          <span class="ruby-keyword kw">elsif</span> (<span class="ruby-identifier">content</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?&quot;</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">content</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?'</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">content</span>[<span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">content</span>[<span class="ruby-value">-1</span>]
+            <span class="ruby-identifier">content</span> = <span class="ruby-identifier">content</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-2</span>]
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;:content('#{content}')&quot;</span>
+          <span class="ruby-identifier">content</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^#{Regexp.escape(content.to_s)}$&quot;</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>)
+          <span class="ruby-identifier">pseudo</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">text</span> = <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">child</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">children</span>
+              <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">tag?</span>
+                <span class="ruby-identifier">text</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">child</span>.<span class="ruby-identifier">content</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">text</span>.<span class="ruby-identifier">strip</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">content</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-value str">&quot;&quot;</span> <span class="ruby-comment cmt"># Remove</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Negation. Create another simple selector to handle it.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^:not\(\s*/</span>, <span class="ruby-value str">&quot;&quot;</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Double negatives are not missing feature&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">can_negate</span>
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;:not(&quot;</span>
+          <span class="ruby-identifier">negation</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">simple_selector</span>(<span class="ruby-identifier">statement</span>, <span class="ruby-identifier">values</span>, <span class="ruby-keyword kw">false</span>)
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">&quot;Negation not closed&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">statement</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-regexp re">/^\s*\)/</span>, <span class="ruby-value str">&quot;&quot;</span>)
+          <span class="ruby-ivar">@source</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;)&quot;</span>
+          <span class="ruby-keyword kw">next</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># No match: moving on.</span>
+        <span class="ruby-keyword kw">break</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Return hash. The keys are mapped to instance variables.</span>
+      {<span class="ruby-identifier">:tag_name=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">tag_name</span>, <span class="ruby-identifier">:attributes=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">attributes</span>, <span class="ruby-identifier">:pseudo=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">pseudo</span>, <span class="ruby-identifier">:negation=</span><span class="ruby-operator">&gt;</span><span class="ruby-identifier">negation</span>}
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

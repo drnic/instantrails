@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the cached reference for the given arguments, if it has been previously cached. Otherwise, invokes the next element in the pipeline and caches the result. The cached reference is returned.
+full_name: Needle::Lifecycle::Multiton#call
+is_singleton: false
+name: call
+params: ( container, point, *args )
+visibility: public

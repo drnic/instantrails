@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to save (<tt>POST</tt>) or update (<tt>PUT</tt>) a resource. It delegates to <tt>create</tt> if a new object, <tt>update</tt> if it is existing. If the response to the save includes a body, it will be assumed that this body is XML for the final object as it looked after the save (which would include attributes like <tt>created_at</tt> that weren't part of the original submit).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_company = Company.new(:name =&gt; 'RoleModel Software', :owner =&gt; 'Ken Auer', :size =&gt; 2)\n  my_company.new?\n  # =&gt; true\n  my_company.save\n  # =&gt; POST /companies/ (create)\n\n  my_company.new?\n  # =&gt; false\n  my_company.size = 10\n  my_company.save\n  # =&gt; PUT /companies/1 (update)\n"
+full_name: ActiveResource::Base#save
+is_singleton: false
+name: save
+params: ()
+visibility: public

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::MSVCRT::Buffer</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::MSVCRT::Buffer</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/windows/msvcrt/buffer_rb.html">
+                lib/windows/msvcrt/buffer.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000105">memccpy</a>&nbsp;&nbsp;
+      <a href="#M000106">memchr</a>&nbsp;&nbsp;
+      <a href="#M000107">memcmp</a>&nbsp;&nbsp;
+      <a href="#M000104">memcpy</a>&nbsp;&nbsp;
+      <a href="#M000108">memicmp</a>&nbsp;&nbsp;
+      <a href="#M000109">memmove</a>&nbsp;&nbsp;
+      <a href="#M000110">memset</a>&nbsp;&nbsp;
+      <a href="#M000111">swab</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memcpy</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcpy', 'PLL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memccpy</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('_memccpy', 'PPIL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memchr</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memchr', 'PIL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memcmp</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcmp', 'PPL', 'I', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memicmp</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('_memicmp', 'PPL', 'I', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memmove</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memmove', 'PPL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Memset</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memset', 'PLL', 'L', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Swab</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('_swab', 'PPI', 'V', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MemcpyPLL</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcpy', 'PLL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MemcpyLPL</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcpy', 'LPL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MemcpyLLL</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcpy', 'LLL', 'P', 'msvcrt')</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MemcpyPPL</td>
+          <td>=</td>
+          <td class="context-item-value">API.new('memcpy', 'PPL', 'P', 'msvcrt')</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000105" class="method-detail">
+        <a name="M000105"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000105.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000105.html');return false;">
+          <span class="method-name">memccpy</span><span class="method-args">(dest, src, char, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000106" class="method-detail">
+        <a name="M000106"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000106.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000106.html');return false;">
+          <span class="method-name">memchr</span><span class="method-args">(buf, char, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000107" class="method-detail">
+        <a name="M000107"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000107.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000107.html');return false;">
+          <span class="method-name">memcmp</span><span class="method-args">(buf1, buf2, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000104" class="method-detail">
+        <a name="M000104"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000104.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000104.html');return false;">
+          <span class="method-name">memcpy</span><span class="method-args">(dest, src, size = src.length)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Wrapper for the <a href="Buffer.html#M000104">memcpy</a>() function. Both
+the <tt>dest</tt> and <tt>src</tt> can be either a string or a memory
+address. If <tt>size</tt> is omitted, it defaults to the length of
+<tt>src</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000108" class="method-detail">
+        <a name="M000108"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000108.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000108.html');return false;">
+          <span class="method-name">memicmp</span><span class="method-args">(buf1, buf2, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000109" class="method-detail">
+        <a name="M000109"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000109.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000109.html');return false;">
+          <span class="method-name">memmove</span><span class="method-args">(dest, src, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000110" class="method-detail">
+        <a name="M000110"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000110.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000110.html');return false;">
+          <span class="method-name">memset</span><span class="method-args">(dest, char, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000111" class="method-detail">
+        <a name="M000111"></a>
+
+        <div class="method-heading">
+          <a href="Buffer.src/M000111.html" target="Code" class="method-signature"
+            onclick="popupCode('Buffer.src/M000111.html');return false;">
+          <span class="method-name">swab</span><span class="method-args">(src, dest, count)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

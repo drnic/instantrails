@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Indicate that no more data will be sent to the process (sends an EOF to the process). The process may continue to send data, but the <tt>stdin</tt> stream is effectively closed. This will return immediately.
+full_name: Net::SSH::Service::Process::OpenManager#close_input
+is_singleton: false
+name: close_input
+params: ()
+visibility: public

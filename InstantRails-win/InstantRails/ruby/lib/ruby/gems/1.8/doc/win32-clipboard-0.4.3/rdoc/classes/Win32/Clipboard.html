@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Win32::Clipboard</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Win32::Clipboard</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/win32/clipboard_rb.html">
+                lib/win32/clipboard.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000002">data</a>&nbsp;&nbsp;
+      <a href="#M000003">empty</a>&nbsp;&nbsp;
+      <a href="#M000005">format_available?</a>&nbsp;&nbsp;
+      <a href="#M000006">format_name</a>&nbsp;&nbsp;
+      <a href="#M000007">formats</a>&nbsp;&nbsp;
+      <a href="#M000004">num_formats</a>&nbsp;&nbsp;
+      <a href="#M000008">register_format</a>&nbsp;&nbsp;
+      <a href="#M000001">set_data</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Windows::Clipboard</span>
+        <span class="include-name">Windows::Memory</span>
+        <span class="include-name">Windows::Error</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Clipboard/Error.html" class="link">Win32::Clipboard::Error</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.4.3'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TEXT</td>
+          <td>=</td>
+          <td class="context-item-value">CF_TEXT</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Clipboard.html">Clipboard</a> <a
+href="Clipboard.html#M000002">data</a> types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OEMTEXT</td>
+          <td>=</td>
+          <td class="context-item-value">CF_OEMTEXT</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">UNICODETEXT</td>
+          <td>=</td>
+          <td class="context-item-value">CF_UNICODETEXT</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">data</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">get_data</td>
+        </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000002.html');return false;">
+          <span class="method-name">data</span><span class="method-args">(format = TEXT)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Clipboard.html#M000002">data</a> currently in the
+clipboard. If <tt>format</tt> is specified, it will attempt to retrieve the
+<a href="Clipboard.html#M000002">data</a> in that format. The default is
+Clipboard::TEXT.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000003.html');return false;">
+          <span class="method-name">empty</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Empties the contents of the clipboard.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000005.html');return false;">
+          <span class="method-name">format_available?</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns whether or not <tt>format</tt> (an int) is currently available.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000006.html');return false;">
+          <span class="method-name">format_name</span><span class="method-args">(format_num)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the corresponding name for the given <tt>format_num</tt>, or nil if
+it does not exist. You cannot specify any of the predefined clipboard <a
+href="Clipboard.html#M000007">formats</a> (or nil is returned), only
+registered <a href="Clipboard.html#M000007">formats</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000007.html');return false;">
+          <span class="method-name">formats</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a hash of all the current <a
+href="Clipboard.html#M000007">formats</a>, with the format number as the
+key and the format name as the value for that key.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000004.html');return false;">
+          <span class="method-name">num_formats</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the number of different <a href="Clipboard.html#M000002">data</a>
+<a href="Clipboard.html#M000007">formats</a> currently on the clipboard.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000008.html');return false;">
+          <span class="method-name">register_format</span><span class="method-args">(format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers the given <tt>format</tt> (a String) as a clipboard format, which
+can then be used as a valid clipboard format.
+</p>
+<p>
+If a registered format with the specified name already exists, a new format
+is not registered and the return value identifies the existing format. This
+enables more than one application to copy and paste <a
+href="Clipboard.html#M000002">data</a> using the same registered clipboard
+format. Note that the format name comparison is case-insensitive.
+</p>
+<p>
+Registered clipboard <a href="Clipboard.html#M000007">formats</a> are
+identified by values in the range 0xC000 through 0xFFFF.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Clipboard.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Clipboard.src/M000001.html');return false;">
+          <span class="method-name">set_data</span><span class="method-args">(clip_data, format = TEXT)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the clipboard contents to the <a
+href="Clipboard.html#M000002">data</a> that you specify. You may optionally
+specify a clipboard format. The default is Clipboard::TEXT.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

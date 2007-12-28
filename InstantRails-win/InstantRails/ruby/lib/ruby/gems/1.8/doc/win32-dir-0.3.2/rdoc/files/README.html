@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:00 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<pre>
+   A series of extra constants for the Dir class that define special folders
+   on Win32 systems, as well as methods for creating and detecting junctions
+   (i.e. symlinks for directories).
+</pre>
+<h1>Installation</h1>
+<pre>
+   rake test (optional)
+   rake install (non-gem) or rake install_gem (gem).
+</pre>
+<h1>Notes</h1>
+<pre>
+   Some tests may fail. That is expected, because not all constants are
+   necessarily defined on your system.
+</pre>
+<h1>Synopsis</h1>
+<pre>
+   require &quot;win32/dir&quot;
+
+   # C:\WINNT or C:\WINDOWS
+   puts Dir::WINDOWS
+
+   # C:\Documents and Settings\Daniel\Start Menu\Programs\Administrative Tools
+   puts Dir::ADMINTOOLS
+
+   Dir.mkdir('C:\from')
+   Dir.create_junction('C:\to', 'C:\from')
+</pre>
+<h1>Constants</h1>
+<pre>
+   Not all of these are guaranteed to be defined on your system. Also note
+   that the directories are merely defined. It doesn't necessarily mean they
+   actually exist.
+</pre>
+<h2>The following constants should be defined:</h2>
+<p>
+Dir::ADMINTOOLS
+</p>
+<pre>
+   The file system directory that is used to store administrative tools for an
+   individual user. The Microsoft Management Console (MMC) will save
+   customized consoles to this directory, and it will roam with the user.
+</pre>
+<p>
+Dir::COMMON_ADMINTOOLS
+</p>
+<pre>
+   The file system directory containing administrative tools for all users
+   of the computer.
+</pre>
+<p>
+Dir::APPDATA
+</p>
+<pre>
+   The file system directory that serves as a common repository for
+   application-specific data. A typical path is
+   C:\Documents and Settings\username\Application Data.
+
+   This CSIDL is supported by the redistributable Shfolder.dll for
+   systems that do not have the Microsoft Internet Explorer 4.0
+   integrated Shell installed.
+</pre>
+<p>
+Dir::COMMON_APPDATA
+</p>
+<pre>
+   The file system directory containing application data for all users. A
+   typical path is C:\Documents and Settings\All Users\Application Data.
+</pre>
+<p>
+Dir::COMMON_DOCUMENTS
+</p>
+<pre>
+   The file system directory that contains documents that are common to all
+   users. A typical paths is C:\Documents and Settings\All Users\Documents.
+</pre>
+<p>
+Dir::COOKIES
+</p>
+<pre>
+   The file system directory that serves as a common repository for Internet
+   cookies. A typical path is C:\Documents and Settings\username\Cookies.
+</pre>
+<p>
+Dir::HISTORY
+</p>
+<pre>
+   The file system directory that serves as a common repository for Internet
+   history items.
+</pre>
+<p>
+Dir::INTERNET_CACHE
+</p>
+<pre>
+   The file system directory that serves as a common repository for temporary
+   Internet files. A typical path is
+   C:\Documents and Settings\username\Local Settings\Temporary Internet Files.
+</pre>
+<p>
+Dir::LOCAL_APPDATA
+</p>
+<pre>
+   The file system directory that serves as a data repository for local
+   (nonroaming) applications. A typical path is
+   C:\Documents and Settings\username\Local Settings\Application Data.
+</pre>
+<p>
+Dir::MYPICTURES
+</p>
+<pre>
+   The file system directory that serves as a common repository for image
+   files. A typical path is
+   C:\Documents and Settings\username\My Documents\My Pictures.
+</pre>
+<p>
+Dir::PERSONAL
+</p>
+<pre>
+   The virtual folder representing the My Documents desktop item. This is
+   equivalent to Dir::MYDOCUMENTS.
+</pre>
+<p>
+Dir::PROGRAM_FILES
+</p>
+<pre>
+   The Program Files folder. A typical path is C:\Program Files.
+</pre>
+<p>
+Dir::PROGRAM_FILES_COMMON
+</p>
+<pre>
+   A folder for components that are shared across applications. A typical path
+   is C:\Program Files\Common.
+</pre>
+<p>
+Dir::SYSTEM
+</p>
+<pre>
+   The Windows System folder. A typical path is C:\Windows\System32.
+</pre>
+<p>
+Dir::WINDOWS
+</p>
+<pre>
+   The Windows directory or SYSROOT. This corresponds to the %windir% or
+   %SYSTEMROOT% environment variables. A typical path is C:\Windows.
+</pre>
+<h2>The following constants may or may not be defined:</h2>
+<pre>
+   Dir::ALTSTARTUP
+   The file system directory that corresponds to the user's nonlocalized
+   Startup program group.
+</pre>
+<p>
+Dir::BITBUCKET
+</p>
+<pre>
+   The virtual folder containing the objects in the user's Recycle Bin.
+</pre>
+<p>
+Dir::CDBURN_AREA
+</p>
+<pre>
+   The file system directory acting as a staging area for files waiting to
+   be written to CD.
+</pre>
+<p>
+Dir::COMMON_ALTSTARTUP
+</p>
+<pre>
+   The file system directory that corresponds to the nonlocalized Startup
+   program group for all users.
+</pre>
+<p>
+Dir::COMMON_DESKTOPDIRECTORY
+</p>
+<pre>
+   The file system directory that contains files and folders that appear on
+   the desktop for all users. A typical path is
+   C:\Documents and Settings\All Users\Desktop.
+</pre>
+<p>
+Dir::COMMON_FAVORITES
+</p>
+<pre>
+   The file system directory that serves as a common repository for favorite
+   items common to all users.
+</pre>
+<p>
+Dir::COMMON_MUSIC
+</p>
+<pre>
+   The file system directory that serves as a repository for music files
+   common to all users.
+</pre>
+<p>
+Dir::COMMON_PICTURES
+</p>
+<pre>
+   The file system directory that serves as a repository for image files
+   common to all users.
+</pre>
+<p>
+Dir::COMMON_PROGRAMS
+</p>
+<pre>
+   The file system directory that contains the directories for the common
+   program groups that appear on the Start menu for all users.
+</pre>
+<p>
+Dir::COMMON_STARTMENU
+</p>
+<pre>
+   The file system directory that contains the programs and folders that
+   appear on the Start menu for all users.
+</pre>
+<p>
+Dir::COMMON_STARTUP
+</p>
+<pre>
+   The file system directory that contains the programs that appear in the
+   Startup folder for all users.
+</pre>
+<p>
+Dir::COMMON_TEMPLATES
+</p>
+<pre>
+   The file system directory that contains the templates that are available
+   to all users.
+</pre>
+<p>
+Dir::COMMON_VIDEO
+</p>
+<pre>
+   The file system directory that serves as a repository for video files
+   common to all users.
+</pre>
+<p>
+Dir::CONTROLS
+</p>
+<pre>
+   The virtual folder containing icons for the Control Panel applications.
+</pre>
+<p>
+Dir::DESKTOP
+</p>
+<pre>
+   The virtual folder representing the Windows desktop, the root of the
+   namespace.
+</pre>
+<p>
+Dir::DESKTOPDIRECTORY
+</p>
+<pre>
+   The file system directory used to physically store file objects on the
+   desktop (not to be confused with the desktop folder itself).
+</pre>
+<p>
+Dir::DRIVES
+</p>
+<pre>
+   The virtual folder representing My Computer, containing everything on
+   the local computer: storage devices, printers, and Control Panel. The
+   folder may also contain mapped network drives.
+</pre>
+<p>
+Dir::FAVORITES
+</p>
+<pre>
+   The file system directory that serves as a common repository for the
+   user's favorite items.
+</pre>
+<p>
+Dir::FONTS
+</p>
+<pre>
+   A virtual folder containing fonts.
+</pre>
+<p>
+Dir::INTERNET
+</p>
+<pre>
+   A virtual folder representing the Internet.
+</pre>
+<p>
+Dir::MYDOCUMENTS
+</p>
+<pre>
+   The virtual folder representing the My Documents desktop item.  See also
+   Dir::PERSONAL.
+</pre>
+<p>
+Dir::MYMUSIC
+</p>
+<pre>
+   The file system directory that serves as a common repository for music
+   files.
+</pre>
+<p>
+Dir::MYVIDEO
+</p>
+<pre>
+   The file system directory that serves as a common repository for video
+   files.
+</pre>
+<p>
+Dir::NETHOOD
+</p>
+<pre>
+   A file system directory containing the link objects that may exist in the
+   My Network Places virtual folder. It is not the same as Dir::NETWORK, which
+   represents the network namespace root.
+</pre>
+<p>
+Dir::NETWORK
+</p>
+<pre>
+   A virtual folder representing Network Neighborhood, the root of the network
+   namespace hierarchy.
+</pre>
+<p>
+Dir::PRINTERS
+</p>
+<pre>
+   The virtual folder containing installed printers.
+</pre>
+<p>
+Dir::PRINTHOOD
+</p>
+<pre>
+   The file system directory that contains the link objects that can exist in
+   the &quot;Printers&quot; virtual folder.
+</pre>
+<p>
+Dir::PROFILE
+</p>
+<pre>
+   The user's profile folder.
+</pre>
+<p>
+Dir::PROFILES
+</p>
+<pre>
+   The file system directory containing user profile folders.
+</pre>
+<p>
+Dir::PROGRAMS
+</p>
+<pre>
+   The file system directory that contains the user's program groups (which
+   are themselves file system directories).
+</pre>
+<p>
+Dir::RECENT
+</p>
+<pre>
+   The file system directory that contains shortcuts to the user's most
+   recently used documents.
+</pre>
+<p>
+Dir::SENDTO
+</p>
+<pre>
+   The file system directory that contains Send To menu items.
+</pre>
+<p>
+Dir::STARTMENU
+</p>
+<pre>
+   The file system directory containing Start menu items.
+</pre>
+<p>
+Dir::STARTUP
+</p>
+<pre>
+   The file system directory that corresponds to the user's Startup program
+   group.
+</pre>
+<p>
+Dir::TEMPLATES
+</p>
+<pre>
+   The file system directory that serves as a common repository for document
+   templates.
+</pre>
+<h2>Developer&#8216;s Notes</h2>
+<pre>
+   The SHGetFolderPath() documentation on MSDN is somewhat vague about which
+   CSIDL constants are guaranteed to be defined.  However, there are 15 which
+   *should* be defined (see docs above). The rest I cannot vouch for. On
+   my own Windows XP SP 2 system, all but 7 were defined.
+</pre>
+<h2>Known Bugs</h2>
+<pre>
+   The Unicode support is not quite there for Dir.create_junction. It creates
+   the directory and junction fine, but the +to+ name appears to get garbled
+   with regards to the character set.
+
+   Please log any other bug reports on the RubyForge project page at
+   http://www.rubyforge.net/projects/win32utils.
+</pre>
+<h2>Future Plans</h2>
+<pre>
+   Fix the Unicode issue with Dir.create_junction.
+   Other suggestions welcome.
+</pre>
+<h2>Acknowledgements</h2>
+<pre>
+   Shashank Date and Zach Dennis for the suggestion and supporting comments
+   on the mailing list.
+
+   Timothy Byrd and Autrijus Tang for help (directly or indirectly) with the
+   junction methods.  Timothy provided a pure Ruby version of the junction
+   code that I later borrowed from.
+
+   Most of the documentation was copied from the MSDN web site.
+</pre>
+<h2>License</h2>
+<pre>
+   Ruby's
+</pre>
+<h2>Copyright</h2>
+<pre>
+   (C) 2003-2007 Daniel J. Berger, All Rights Reserved
+</pre>
+<h2>Warranty</h2>
+<pre>
+   This package is provided &quot;as is&quot; and without any express or
+   implied warranties, including, without limitation, the implied
+   warranties of merchantability and fitness for a particular purpose.
+</pre>
+<h2>Authors</h2>
+<pre>
+   Daniel J. Berger
+   Park Heesob
+</pre>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

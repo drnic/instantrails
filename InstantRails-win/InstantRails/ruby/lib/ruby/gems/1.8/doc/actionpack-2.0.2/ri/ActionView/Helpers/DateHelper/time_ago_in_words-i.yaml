@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: distance_of_time_in_words_to_now
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Like distance_of_time_in_words, but where <tt>to_time</tt> is fixed to <tt>Time.now</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  time_ago_in_words(3.minutes.from_now)       # =&gt; 3 minutes\n  time_ago_in_words(Time.now - 15.hours)      # =&gt; 15 hours\n  time_ago_in_words(Time.now)                 # =&gt; less than a minute\n\n  from_time = Time.now - 3.days - 14.minutes - 25.seconds     # =&gt; 3 days\n"
+full_name: ActionView::Helpers::DateHelper#time_ago_in_words
+is_singleton: false
+name: time_ago_in_words
+params: (from_time, include_seconds = false)
+visibility: public

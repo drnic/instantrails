@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The stat operation is special, since later versions of the protocol add support for 'flags'. These flags are ignored in this version, but the parameter exists to allow a program written for one version of the protocol to work with later versions.
+full_name: Net::SFTP::Protocol::V_01::Impl#stat
+is_singleton: false
+name: stat
+params: ( id, filename, flags=nil )
+visibility: public

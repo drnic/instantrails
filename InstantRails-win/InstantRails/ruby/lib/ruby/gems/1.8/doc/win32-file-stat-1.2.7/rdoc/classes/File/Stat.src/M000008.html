@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>ftype (File::Stat)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file/stat.rb, line 193</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ftype</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-value str">'directory'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">directory?</span>
+      <span class="ruby-keyword kw">case</span> <span class="ruby-ivar">@file_type</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FILE_TYPE_CHAR</span>
+            <span class="ruby-value str">'characterSpecial'</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FILE_TYPE_DISK</span>
+            <span class="ruby-value str">'file'</span>
+         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">FILE_TYPE_PIPE</span>
+            <span class="ruby-value str">'socket'</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blockdev?</span>
+               <span class="ruby-value str">'blockSpecial'</span>
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-value str">'unknown'</span>
+            <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

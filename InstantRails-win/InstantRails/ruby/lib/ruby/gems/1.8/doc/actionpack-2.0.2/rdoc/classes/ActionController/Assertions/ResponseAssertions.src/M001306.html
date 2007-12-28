@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>assert_response (ActionController::Assertions::ResponseAssertions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/assertions/response_assertions.rb, line 27</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_response</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">message</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">clean_backtrace</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-keyword kw">if</span> [ <span class="ruby-identifier">:success</span>, <span class="ruby-identifier">:missing</span>, <span class="ruby-identifier">:redirect</span>, <span class="ruby-identifier">:error</span> ].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">type</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">send</span>(<span class="ruby-node">&quot;#{type}?&quot;</span>)
+            <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Fixnum</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">type</span>
+            <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+          <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">StatusCodes</span><span class="ruby-operator">::</span><span class="ruby-constant">SYMBOL_TO_STATUS_CODE</span>[<span class="ruby-identifier">type</span>]
+            <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">assert_block</span>(<span class="ruby-identifier">build_message</span>(<span class="ruby-identifier">message</span>, <span class="ruby-value str">&quot;Expected response to be a &lt;?&gt;, but was &lt;?&gt;&quot;</span>, <span class="ruby-identifier">type</span>, <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">response_code</span>)) { <span class="ruby-keyword kw">false</span> }
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

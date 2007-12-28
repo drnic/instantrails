@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Waits for the underlying driver to reach a state of :open (or :closed). This makes it easier to use the SFTP routines synchronously without using the block form:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  sftp = Net::SFTP::Session.new( ssh_session )\n  sftp.connect\n  puts sftp.realpath( &quot;.&quot; )\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Without the call to #connect, the call to #realpath would fail because the SFTP protocol has not yet been negotiated and no underlying driver has been selected."
+- !ruby/struct:SM::Flow::P 
+  body: If no block is given, it returns <tt>self</tt>, so it can be chained easily to other method calls. If a block <em>is</em> given, the session is yielded to the block as soon as the driver successfully reports it's state as <tt>open</tt>, with the session's channel being closed automatically when the block finishes.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'net/ssh'\n  require 'net/sftp'\n\n  Net::SSH.start( 'localhost' ) do |session|\n    session.sftp.connect do |sftp|\n      puts sftp.realpath( &quot;.&quot; )\n    end\n  end\n"
+full_name: Net::SFTP::Session#connect
+is_singleton: false
+name: connect
+params: () {|self| ...}
+visibility: public

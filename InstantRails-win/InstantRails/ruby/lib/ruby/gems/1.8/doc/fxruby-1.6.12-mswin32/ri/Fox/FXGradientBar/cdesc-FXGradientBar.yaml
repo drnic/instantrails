@@ -1,0 +1,208 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Gradient bar style, some combination of <tt>GRADIENTBAR_HORIZONTAL</tt>, <tt>GRADIENTBAR_VERTICAL</tt>, <tt>GRADIENTBAR_NO_CONTROLS</tt>, <tt>GRADIENTBAR_CONTROLS_TOP</tt>, <tt>GRADIENTBAR_CONTROLS_BOTTOM</tt>, <tt>GRADIENTBAR_CONTROLS_LEFT</tt> and <tt>GRADIENTBAR_CONTROLS_RIGHT</tt>.
+  name: barStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selection color [FXColor]
+  name: selectColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip text [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXGradientBar is a control that is used to edit color gradient, such as used in texture mapping and shape filling.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXGradientBar to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when anything about a segment changes; the message data is an integer indicating the segment number
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent when one or more segments are selected.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent when one or more segments are deselected.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Gradient bar orientation
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_HORIZONTAL+:"
+    body: Gradient bar shown horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_VERTICAL+:"
+    body: Gradient bar shown vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_NO_CONTROLS+:"
+    body: No controls shown
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_CONTROLS_TOP+:"
+    body: Controls on top
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_CONTROLS_BOTTOM+:"
+    body: Controls on bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_CONTROLS_LEFT+:"
+    body: Controls on left
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENTBAR_CONTROLS_RIGHT+:"
+    body: Controls on right
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Blend modes
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENT_BLEND_LINEAR+:"
+    body: Linear blend
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENT_BLEND_POWER+:"
+    body: Power law blend
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENT_BLEND_SINE+:"
+    body: Sine blend
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENT_BLEND_INCREASING+:"
+    body: Quadratic increasing blend
+  - !ruby/struct:SM::Flow::LI 
+    label: "+GRADIENT_BLEND_DECREASING+:"
+    body: Quadratic decreasing blend
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LOWER_COLOR+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UPPER_COLOR+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BLEND_LINEAR+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BLEND_POWER+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BLEND_SINE+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BLEND_INCREASING+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BLEND_DECREASING+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RECENTER+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SPLIT+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MERGE+:"
+    body: write me
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UNIFORM+:"
+    body: write me
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXGradientBar
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: anchorSegment
+- !ruby/object:RI::MethodSummary 
+  name: anchorSegment=
+- !ruby/object:RI::MethodSummary 
+  name: blendSegments
+- !ruby/object:RI::MethodSummary 
+  name: deselectSegments
+- !ruby/object:RI::MethodSummary 
+  name: getCurrentSegment
+- !ruby/object:RI::MethodSummary 
+  name: getGrip
+- !ruby/object:RI::MethodSummary 
+  name: getSegment
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentBlend
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentLower
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentLowerColor
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentMiddle
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentUpper
+- !ruby/object:RI::MethodSummary 
+  name: getSegmentUpperColor
+- !ruby/object:RI::MethodSummary 
+  name: gradient
+- !ruby/object:RI::MethodSummary 
+  name: gradients
+- !ruby/object:RI::MethodSummary 
+  name: gradients=
+- !ruby/object:RI::MethodSummary 
+  name: mergeSegments
+- !ruby/object:RI::MethodSummary 
+  name: moveSegmentLower
+- !ruby/object:RI::MethodSummary 
+  name: moveSegmentMiddle
+- !ruby/object:RI::MethodSummary 
+  name: moveSegmentUpper
+- !ruby/object:RI::MethodSummary 
+  name: moveSegments
+- !ruby/object:RI::MethodSummary 
+  name: numSegments
+- !ruby/object:RI::MethodSummary 
+  name: segmentSelected?
+- !ruby/object:RI::MethodSummary 
+  name: selectSegments
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentSegment
+- !ruby/object:RI::MethodSummary 
+  name: setSegmentLowerColor
+- !ruby/object:RI::MethodSummary 
+  name: setSegmentUpperColor
+- !ruby/object:RI::MethodSummary 
+  name: splitSegments
+- !ruby/object:RI::MethodSummary 
+  name: uniformSegments
+name: FXGradientBar
+superclass: FXFrame

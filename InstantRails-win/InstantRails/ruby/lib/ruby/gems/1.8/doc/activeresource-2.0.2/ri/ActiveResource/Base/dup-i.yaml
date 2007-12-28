@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Duplicate the current resource without saving it.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_invoice = Invoice.create(:customer =&gt; 'That Company')\n  next_invoice = my_invoice.dup\n  next_invoice.new?\n  # =&gt; true\n\n  next_invoice.save\n  next_invoice == my_invoice\n  # =&gt; false (different id attributes)\n\n  my_invoice.customer\n  # =&gt; That Company\n  next_invoice.customer\n  # =&gt; That Company\n"
+full_name: ActiveResource::Base#dup
+is_singleton: false
+name: dup
+params: ()
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Request that a pty be opened for this channel. Valid options are :term, :chars_wide, :chars_high, :pixels_wide, :pixels_high, :modes, and :want_reply. :modes is a Hash, where the keys are constants from Net::SSH::Service::Term, and values are integers describing the corresponding key.
+full_name: Net::SSH::Connection::Channel#request_pty
+is_singleton: false
+name: request_pty
+params: ( opts = {} )
+visibility: public

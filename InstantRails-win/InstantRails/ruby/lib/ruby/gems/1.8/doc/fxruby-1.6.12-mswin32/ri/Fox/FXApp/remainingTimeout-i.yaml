@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the time remaining (in milliseconds) until the given timer fires. If the timer is past due, zero is returned. If there is no such timer, infinity (UINT_MAX) is returned.
+- !ruby/struct:SM::Flow::P 
+  body: "For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    timeout = app.addTimeout(ms, ...)\n    time_left = app.remainingTimeout(timeout)\n"
+full_name: Fox::FXApp#remainingTimeout
+is_singleton: false
+name: remainingTimeout
+params: (*args)
+visibility: public

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Is called <em>after</em> <tt>Base.save</tt> (regardless of whether it's a <tt>create</tt> or <tt>update</tt> save).
+- !ruby/struct:SM::Flow::VERB 
+  body: " class Contact &lt; ActiveRecord::Base\n   after_save { logger.info( 'New contact saved!' ) }\n end\n"
+full_name: ActiveRecord::Callbacks#after_save
+is_singleton: false
+name: after_save
+params: ()
+visibility: public

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: "[]"
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Retrieves the named service, if it exists. Ancestors are searched if the service is not defined by the current container (see #find_definition). If the named service does not exist, ServiceNotFound is raised."
+- !ruby/struct:SM::Flow::P 
+  body: Note that this returns the instantiated service, not the service point.
+- !ruby/struct:SM::Flow::P 
+  body: Also, if any pipeline element in the instantiation pipeline does not support extra parameters when extra parameters have been given, then an error will be raised.
+full_name: Needle::Container#get
+is_singleton: false
+name: get
+params: ( name, *args )
+visibility: public

@@ -1,0 +1,47 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The delay before hiding the splash window, in milliseconds [Integer]
+  name: delay
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The splash window's icon [FXIcon]
+  name: icon
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Splash Window is a window typically shown during startup of an application. It comprises a large icon, which is also used as the shape of the window if <tt>SPLASH_SHAPED</tt> is passed; with the <tt>SPLASH_SIMPLE</tt> option the window will be simply rectangular.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Splash window options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SPLASH_SIMPLE+:"
+    body: Simple rectangular splash window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SPLASH_SHAPED+:"
+    body: Shaped splash window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SPLASH_OWNS_ICON+:"
+    body: Splash window will own the icon and destroy it
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SPLASH_DESTROY+:"
+    body: Splash window will destroy itself when timer expires
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXSplashWindow
+includes: []
+
+instance_methods: []
+
+name: FXSplashWindow
+superclass: FXTopWindow

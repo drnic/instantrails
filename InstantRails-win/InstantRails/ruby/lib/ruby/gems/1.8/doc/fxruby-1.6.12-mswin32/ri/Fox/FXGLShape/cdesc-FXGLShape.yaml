@@ -1,0 +1,114 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Position [FXVec3f]
+  name: position
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message for this shape [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: OpenGL shape object.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Shape drawing options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SURFACE_SINGLESIDED+:"
+    body: Single-sided [both sides same]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SURFACE_DUALSIDED+:"
+    body: Dual-sided surface
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SHADING_NONE+:"
+    body: No light source
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SHADING_SMOOTH+:"
+    body: Smooth shaded
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SHADING_FLAT+:"
+    body: Flag shaded
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FACECULLING_OFF+:"
+    body: No face culling
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FACECULLING_ON+:"
+    body: Cull backward facing surfaces
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_SURFACE+:"
+    body: Draw filled surfaces
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_WIREFRAME+:"
+    body: Draw wire frame
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_POINTS+:"
+    body: Draw as points
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_BOUNDBOX+:"
+    body: Draw bounding box
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHADEOFF+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHADEON+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHADESMOOTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_SIDED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_CULLING+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_STYLE_POINTS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_STYLE_WIREFRAME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_STYLE_SURFACE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_STYLE_BOUNDINGBOX+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_FRONT_MATERIAL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BACK_MATERIAL+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXGLShape
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: drawshape
+- !ruby/object:RI::MethodSummary 
+  name: getMaterial
+- !ruby/object:RI::MethodSummary 
+  name: setMaterial
+- !ruby/object:RI::MethodSummary 
+  name: setRange
+name: FXGLShape
+superclass: FXGLObject

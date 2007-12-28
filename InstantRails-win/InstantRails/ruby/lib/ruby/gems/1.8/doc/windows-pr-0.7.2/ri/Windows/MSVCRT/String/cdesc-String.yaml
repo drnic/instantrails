@@ -1,0 +1,85 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strcmp
+  value: API.new('strcmp', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strcpy
+  value: API.new('strcpy', 'PL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strlen
+  value: API.new('strlen', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strrev
+  value: API.new('_strrev', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbscmp
+  value: API.new('_mbscmp', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbscpy
+  value: API.new('_mbscpy', 'PL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbslen
+  value: API.new('_mbslen', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mbsrev
+  value: API.new('_mbsrev', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcscmp
+  value: API.new('wcscmp', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcscpy
+  value: API.new('wcscpy', 'PL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcslen
+  value: API.new('wcslen', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcsrev
+  value: API.new('_wcsrev', 'P', 'P', 'msvcrt')
+full_name: Windows::MSVCRT::String
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: mbscmp
+- !ruby/object:RI::MethodSummary 
+  name: mbscpy
+- !ruby/object:RI::MethodSummary 
+  name: mbslen
+- !ruby/object:RI::MethodSummary 
+  name: mbsrev
+- !ruby/object:RI::MethodSummary 
+  name: strcmp
+- !ruby/object:RI::MethodSummary 
+  name: strcpy
+- !ruby/object:RI::MethodSummary 
+  name: strlen
+- !ruby/object:RI::MethodSummary 
+  name: strrev
+- !ruby/object:RI::MethodSummary 
+  name: wcscmp
+- !ruby/object:RI::MethodSummary 
+  name: wcscpy
+- !ruby/object:RI::MethodSummary 
+  name: wcslen
+- !ruby/object:RI::MethodSummary 
+  name: wcsrev
+name: String
+superclass: 

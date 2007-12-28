@@ -1,0 +1,152 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Accept&quot; button [FXButton]
+  name: acceptButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Cancel&quot; button [FXButton]
+  name: cancelButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Only opaque colors allowed [Boolean]
+  name: opaqueOnly
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color [FXColor]
+  name: rgba
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Color selection widget
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXColorSelector to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent continuously, while the color is changing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the new color is set
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CUSTOM_FIRST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CUSTOM_LAST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_RED_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_GREEN_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_BLUE_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_RED_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_GREEN_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RGB_BLUE_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_HUE_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_SATURATION_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_VALUE_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_HUE_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_SATURATION_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSV_VALUE_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_CYAN_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_MAGENTA_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_YELLOW_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_CYAN_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_MAGENTA_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CMY_YELLOW_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIAL_WHEEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLOR_BAR+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLOR_LIST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_WELL_CHANGED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLOR+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ACTIVEPANE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ALPHA_SLIDER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ALPHA_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ALPHA_LABEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLORPICK+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXColorSelector
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: opaqueOnly?
+name: FXColorSelector
+superclass: FXPacker

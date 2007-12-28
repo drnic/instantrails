@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Takes an HttpRequest and HttpResponse object, plus any additional arguments normally passed to CGI. These are used internally to create a wrapper around the real CGI while maintaining Mongrel's view of the world.
+full_name: Mongrel::CGIWrapper::new
+is_singleton: true
+name: new
+params: (request, response, *args)
+visibility: public

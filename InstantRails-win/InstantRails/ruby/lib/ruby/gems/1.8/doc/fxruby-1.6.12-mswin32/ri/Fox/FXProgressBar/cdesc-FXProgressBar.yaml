@@ -1,0 +1,97 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bar background color [FXColor]
+  name: barBGColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bar color [FXColor]
+  name: barColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bar width [Integer]
+  name: barSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Progress bar style [Integer]
+  name: barStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Amount of progress [Integer]
+  name: progress
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Alternate text color [FXColor]
+  name: textAltColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum value for progress [Integer]
+  name: total
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Progress bar widget
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Progress bar styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSBAR_HORIZONTAL+:"
+    body: Horizontal display
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSBAR_VERTICAL+:"
+    body: Vertical display
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSBAR_PERCENTAGE+:"
+    body: Show percentage done
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSBAR_DIAL+:"
+    body: Show as a dial instead of bar
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSBAR_NORMAL+:"
+    body: same as <tt>FRAME_SUNKEN|FRAME_THICK</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXProgressBar
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: hideNumber
+- !ruby/object:RI::MethodSummary 
+  name: increment
+- !ruby/object:RI::MethodSummary 
+  name: showNumber
+name: FXProgressBar
+superclass: FXFrame

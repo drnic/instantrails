@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Constructs an Uninstaller instance
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "gem:"
+    body: "[String] The Gem name to uninstall"
+  type: :NOTE
+full_name: Gem::Uninstaller::new
+is_singleton: true
+name: new
+params: (gem, options)
+visibility: public

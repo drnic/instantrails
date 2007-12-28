@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>action (Needle::Interceptor)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/needle/interceptor.rb, line 93</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">action</span>
+      <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@with</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@with</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">InterceptorConfigurationError</span>,
+        <span class="ruby-value str">&quot;You must specify either 'with' or 'doing'&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@doing</span>
+
+      <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-constant">DynamicInterceptor</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@doing</span> ) }
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The setter for the buffer factory to use.
+  name: buffers
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The setter for describing which prompter service to use when prompting the user for a key passphrase.
+  name: prompter
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A factory class for returning new Key algorithm factories (actually classes).
+constants: []
+
+full_name: Net::SSH::Transport::OSSL::KeyFactory
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: load_private_key
+- !ruby/object:RI::MethodSummary 
+  name: load_public_key
+name: KeyFactory
+superclass: Object

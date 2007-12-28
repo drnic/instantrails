@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The prototype, returned as an array of characters
+  name: prototype
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The return type, returned as a single character, P, L, I, V or B
+  name: return_type
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The API::Callback class encapsulates a Windows CALLBACK function
+constants: []
+
+full_name: Win32::API::Callback
+includes: []
+
+instance_methods: []
+
+name: Callback
+superclass: Object

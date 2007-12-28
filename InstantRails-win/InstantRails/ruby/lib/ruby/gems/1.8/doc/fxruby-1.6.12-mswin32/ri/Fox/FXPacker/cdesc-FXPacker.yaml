@@ -1,0 +1,95 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Base GUI color [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border width, in pixels [Integer]
+  name: borderWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current frame style [Integer]
+  name: frameStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal inter-child spacing, in pixels [Integer]
+  name: hSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Packing hints [Integer]
+  name: packingHints
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom padding, in pixels [Integer]
+  name: padBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left padding, in pixels [Integer]
+  name: padLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right padding, in pixels [Integer]
+  name: padRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top padding, in pixels [Integer]
+  name: padTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical inter-child spacing, in pixels [Integer]
+  name: vSpacing
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FXPacker is a layout manager which automatically places child windows inside its area against the left, right, top, or bottom side. Each time a child is placed, the remaining space is decreased by the amount of space taken by the child window. The side against which a child is placed is determined by the <tt>LAYOUT_SIDE_TOP</tt>, <tt>LAYOUT_SIDE_BOTTOM</tt>, <tt>LAYOUT_SIDE_LEFT</tt>, and <tt>LAYOUT_SIDE_RIGHT</tt> hints given by the child window. Other layout hints from the child are observed as far as sensible. So for example, a child placed against the right edge can still have <tt>LAYOUT_FILL_Y</tt> or <tt>LAYOUT_TOP</tt>, and so on. The last child may have both <tt>LAYOUT_FILL_X</tt> and <tt>LAYOUT_FILL_Y</tt>, in which case it will be placed to take all remaining space.
+constants: []
+
+full_name: Fox::FXPacker
+includes: []
+
+instance_methods: []
+
+name: FXPacker
+superclass: FXComposite

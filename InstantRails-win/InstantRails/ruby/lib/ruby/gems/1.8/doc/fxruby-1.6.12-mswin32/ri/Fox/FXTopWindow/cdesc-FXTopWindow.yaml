@@ -1,0 +1,215 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title and border decorations (see above) [Integer]
+  name: decorations
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal spacing between child widgets, in pixels [Integer]
+  name: hSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window icon [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window mini (title) icon [FXIcon]
+  name: miniIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Packing hints for child widgets [Integer]
+  name: packingHints
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom padding, in pixels [Integer]
+  name: padBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left padding, in pixels [Integer]
+  name: padLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right padding, in pixels [Integer]
+  name: padRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top padding, in pixels [Integer]
+  name: padTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window title [String]
+  name: title
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical spacing between child widgets, in pixels [Integer]
+  name: vSpacing
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Abstract base class for all top-level windows.
+- !ruby/struct:SM::Flow::P 
+  body: TopWindows are usually managed by a Window Manager under X11 and therefore borders and window-menus and other decorations like resize- handles are subject to the Window Manager's interpretation of the decoration hints. When a TopWindow is closed, it sends a SEL_CLOSE message to its target. The target should return 0 in response to this message if there is no objection to proceed with the closing of the window, and return 1 otherwise. After the SEL_CLOSE message has been sent and no objection was raised, the window will delete itself. When the session is closed, the window will send a SEL_SESSION_NOTIFY message to its target, allowing the application to write any unsaved data to the disk. If the target returns 0, then the system will proceed to close the session. Subsequently a SEL_SESSION_CLOSED will be received which causes the window to be closed with prejudice by calling the function close(FALSE). When receiving a SEL_UPDATE, the target can update the title string of the window, so that the title of the window reflects the name of the document, for example. For convenience, TopWindow provides the same layout behavior as the Packer widget, as well as docking and undocking of toolbars. TopWindows can be owned by other windows, or be free-floating. Owned TopWindows will usually remain stacked on top of the owner windows. The lifetime of an owned window should not exceed that of the owner.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTopWindow to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MINIMIZE+:"
+    body: sent when the user clicks the minimize button in the upper right-hand corner of the top-level window.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MAXIMIZE+:"
+    body: sent when the user clicks the maximize button in the upper right-hand corner of the top-level window.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RESTORE+:"
+    body: sent when the user clicks the restore button in the upper right-hand corner of the top-level window.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLOSE+:"
+    body: sent when the user clicks the close button in the upper right-hand corner of the top-level window.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>SEL_SESSION_NOTIFY</tt>:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  sent when the session is closed.:\n"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SESSION_CLOSED+:"
+    body: sent after the session is closed.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Title and border decorations
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_NONE+:"
+    body: Borderless window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_TITLE+:"
+    body: Window title
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MINIMIZE+:"
+    body: Minimize button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MAXIMIZE+:"
+    body: Maximize button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_CLOSE+:"
+    body: Close button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_BORDER+:"
+    body: Border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_SHRINKABLE+:"
+    body: Window can become smaller
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_STRETCHABLE+:"
+    body: Window can become larger
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_RESIZE+:"
+    body: Resize handles
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_MENU+:"
+    body: Window menu
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DECOR_ALL+:"
+    body: All of the above
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Initial window placement
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_DEFAULT+:"
+    body: Place it at the default size and location
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_VISIBLE+:"
+    body: Place window to be fully visible
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_CURSOR+:"
+    body: Place it under the cursor position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_OWNER+:"
+    body: Place it centered on its owner
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_SCREEN+:"
+    body: Place it centered on the screen
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PLACEMENT_MAXIMIZED+:"
+    body: Place it maximized to the screen size
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MAXIMIZE+:"
+    body: Maximize the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MINIMIZE+:"
+    body: Minimize the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RESTORE+:"
+    body: Restore the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CLOSE+:"
+    body: Close the window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_QUERY_DOCK+:"
+    body: Toolbar asks to dock
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTopWindow
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: getWMBorders
+- !ruby/object:RI::MethodSummary 
+  name: maximize
+- !ruby/object:RI::MethodSummary 
+  name: maximized?
+- !ruby/object:RI::MethodSummary 
+  name: minimize
+- !ruby/object:RI::MethodSummary 
+  name: minimized?
+- !ruby/object:RI::MethodSummary 
+  name: place
+- !ruby/object:RI::MethodSummary 
+  name: restore
+- !ruby/object:RI::MethodSummary 
+  name: show
+name: FXTopWindow
+superclass: FXShell

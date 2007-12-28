@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The record identifier encapsulates a number of naming conventions for dealing with records, like Active Records or Active Resources or pretty much any other model type that has an id. These patterns are then used to try elevate the view actions to a higher logical level. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # routes\n  map.resources :posts\n\n  # view\n  &lt;% div_for(post) do %&gt;     &lt;div id=&quot;post_45&quot; class=&quot;post&quot;&gt;\n    &lt;%= post.body %&gt;           What a wonderful world!\n  &lt;% end %&gt;                  &lt;/div&gt;\n\n  # controller\n  def destroy\n    post = Post.find(params[:id])\n    post.destroy\n\n    respond_to do |format|\n      format.html { redirect_to(post) } # Calls polymorphic_url(post) which in turn calls post_url(post)\n      format.js do\n        # Calls: new Effect.fade('post_45');\n        render(:update) { |page| page[post].visual_effect(:fade) }\n      end\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: As the example above shows, you can stop caring to a large extent what the actual id of the post is. You just know that one is being assigned and that the subsequent calls in redirect_to and the RJS expect that same naming convention and allows you to write less code if you follow it.
+constants: []
+
+full_name: ActionController::RecordIdentifier
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dom_class
+- !ruby/object:RI::MethodSummary 
+  name: dom_id
+- !ruby/object:RI::MethodSummary 
+  name: partial_path
+- !ruby/object:RI::MethodSummary 
+  name: plural_class_name
+- !ruby/object:RI::MethodSummary 
+  name: singular_class_name
+name: RecordIdentifier
+superclass: 

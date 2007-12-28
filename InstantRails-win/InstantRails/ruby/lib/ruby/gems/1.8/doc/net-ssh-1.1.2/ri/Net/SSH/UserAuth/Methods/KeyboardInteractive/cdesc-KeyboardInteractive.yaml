@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The messenger to use when communicating.
+  name: messenger
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements the &quot;keyboard-interactive&quot; SSH authentication method.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Represents an information request from the server
+  name: InfoRequest
+  value: Struct.new( :name, :instruction, :password, :prompts )
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Represents a single prompt in an InfoRequest.
+  name: Prompt
+  value: Struct.new( :prompt, :echo )
+- !ruby/object:RI::Constant 
+  comment: 
+  name: USERAUTH_INFO_REQUEST
+  value: "60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: USERAUTH_INFO_RESPONSE
+  value: "61"
+full_name: Net::SSH::UserAuth::Methods::KeyboardInteractive
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Net::SSH::UserAuth::Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: authenticate
+name: KeyboardInteractive
+superclass: Object

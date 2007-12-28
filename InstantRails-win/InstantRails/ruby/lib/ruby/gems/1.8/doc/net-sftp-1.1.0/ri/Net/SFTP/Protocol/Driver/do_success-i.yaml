@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The callback used internally to indicate that the SFTP subsystem was successfully requested. This may only be called when the driver's state is <tt>init</tt>. It sends an INIT packet containing the highest supported SFTP protocol version to the server, and moves the driver's state to <tt>version</tt>.
+full_name: Net::SFTP::Protocol::Driver#do_success
+is_singleton: false
+name: do_success
+params: ( channel )
+visibility: public

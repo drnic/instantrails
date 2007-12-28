@@ -1,0 +1,258 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: X arrow position, relative to document position [Integer]
+  name: arrowPosX
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Y arrow position in document, relative to document position [Integer]
+  name: arrowPosY
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current document color [FXColor]
+  name: documentColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document height [Integer]
+  name: documentHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document width [Integer]
+  name: documentWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Get document position X [Integer]
+  name: documentX
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Get document position Y [Integer]
+  name: documentY
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal alignment; the default is <tt>RULER_ALIGN_NORMAL</tt> [Integer]
+  name: hAlignment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal edge spacing around document [Integer]
+  name: hEdgeSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal major ticks [Integer]
+  name: hMajorTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal lower margin [Integer]
+  name: hMarginLower
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal upper margin [Integer]
+  name: hMarginUpper
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal medium ticks [Integer]
+  name: hMediumTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal document number placement [Integer]
+  name: hNumberTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal pixels per tick spacing [Float]
+  name: hPixelsPerTick
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal ruler font [FXFont]
+  name: hRulerFont
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal ruler style[Integer]
+  name: hRulerStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Horizontal tiny ticks [Integer]
+  name: hTinyTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Return a reference to the horizontal ruler [FXRuler]
+  name: horizontalRuler
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical alignment; the default is <tt>RULER_ALIGN_NORMAL</tt> [Integer]
+  name: vAlignment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical edge spacing around document [Integer]
+  name: vEdgeSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical major ticks [Integer]
+  name: vMajorTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical lower margin [Integer]
+  name: vMarginLower
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical upper margin [Integer]
+  name: vMarginUpper
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical medium ticks [Integer]
+  name: vMediumTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical document number placement [Integer]
+  name: vNumberTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical pixels per tick spacing [Float]
+  name: vPixelsPerTick
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical ruler font [FXFont]
+  name: vRulerFont
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical ruler style [Integer]
+  name: vRulerStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vertical tiny ticks [Integer]
+  name: vTinyTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Return a reference to the vertical ruler [FXRuler]
+  name: verticalRuler
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Ruler View provides viewing of a document with rulers. It is intended to be subclassed in order to draw actual contents and provide editing behavior for the document. The ruler view itself simply manages the geometry of the document being edited, and coordinates the movement of the ruler displays as the document is being scrolled.
+constants: []
+
+full_name: Fox::FXRulerView
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setDocumentHeight
+- !ruby/object:RI::MethodSummary 
+  name: setDocumentWidth
+- !ruby/object:RI::MethodSummary 
+  name: setHAlignment
+- !ruby/object:RI::MethodSummary 
+  name: setHEdgeSpacing
+- !ruby/object:RI::MethodSummary 
+  name: setHMajorTicks
+- !ruby/object:RI::MethodSummary 
+  name: setHMarginLower
+- !ruby/object:RI::MethodSummary 
+  name: setHMarginUpper
+- !ruby/object:RI::MethodSummary 
+  name: setHMediumTicks
+- !ruby/object:RI::MethodSummary 
+  name: setHNumberTicks
+- !ruby/object:RI::MethodSummary 
+  name: setHPixelsPerTick
+- !ruby/object:RI::MethodSummary 
+  name: setHRulerFont
+- !ruby/object:RI::MethodSummary 
+  name: setHTinyTicks
+- !ruby/object:RI::MethodSummary 
+  name: setVAlignment
+- !ruby/object:RI::MethodSummary 
+  name: setVEdgeSpacing
+- !ruby/object:RI::MethodSummary 
+  name: setVMajorTicks
+- !ruby/object:RI::MethodSummary 
+  name: setVMarginLower
+- !ruby/object:RI::MethodSummary 
+  name: setVMarginUpper
+- !ruby/object:RI::MethodSummary 
+  name: setVMediumTicks
+- !ruby/object:RI::MethodSummary 
+  name: setVNumberTicks
+- !ruby/object:RI::MethodSummary 
+  name: setVPixelsPerTick
+- !ruby/object:RI::MethodSummary 
+  name: setVRulerFont
+- !ruby/object:RI::MethodSummary 
+  name: setVTinyTicks
+name: FXRulerView
+superclass: FXScrollArea

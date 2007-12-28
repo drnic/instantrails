@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the text with all the Markdown codes turned into HTML tags. <em>This method is only available if BlueCloth[http://www.deveiate.org/projects/BlueCloth] is available</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  markdown(&quot;We are using <em>Markdown</em> now!&quot;)\n  # =&gt; &quot;&lt;p&gt;We are using &lt;strong&gt;Markdown&lt;/strong&gt; now!&lt;/p&gt;&quot;\n\n  markdown(&quot;We like to <em>write</em> `code`, not just <em>read</em> it!&quot;)\n  # =&gt; &quot;&lt;p&gt;We like to <em>write</em> <tt>code</tt>, not just <em>read</em> it!&lt;/p&gt;&quot;\n\n  markdown(&quot;The [Markdown website](http://daringfireball.net/projects/markdown/) has more information.&quot;)\n  # =&gt; &quot;&lt;p&gt;The &lt;a href=&quot;http://daringfireball.net/projects/markdown/&quot;&gt;Markdown website&lt;/a&gt;\n  #     has more information.&lt;/p&gt;&quot;\n\n  markdown('![The ROR logo](http://rubyonrails.com/images/rails.png &quot;Ruby on Rails&quot;)')\n  # =&gt; '&lt;p&gt;&lt;img src=&quot;http://rubyonrails.com/images/rails.png&quot; alt=&quot;The ROR logo&quot; title=&quot;Ruby on Rails&quot; /&gt;&lt;/p&gt;'\n"
+full_name: ActionView::Helpers::TextHelper#markdown
+is_singleton: false
+name: markdown
+params: (text)
+visibility: public

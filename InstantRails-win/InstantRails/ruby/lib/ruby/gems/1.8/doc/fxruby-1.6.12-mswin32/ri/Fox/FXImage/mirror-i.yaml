@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Mirror image horizontally and/or vertically.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+horizontal+:"
+    body: if <tt>true</tt>, the image will be flipped from left to right [Boolean]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+vertical+:"
+    body: if <tt>true</tt>, the image will be flipped from top to bottom [Boolean]
+  type: :NOTE
+full_name: Fox::FXImage#mirror
+is_singleton: false
+name: mirror
+params: (horizontal, vertical)
+visibility: public

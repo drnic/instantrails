@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_permissions (File)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file.rb, line 247</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_permissions</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">host</span>=<span class="ruby-keyword kw">nil</span>)
+         <span class="ruby-identifier">current_length</span> = <span class="ruby-value">0</span>
+         <span class="ruby-identifier">length_needed</span>  = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">sec_buf</span> = <span class="ruby-value str">''</span>
+
+         <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">bool</span> = <span class="ruby-constant">GetFileSecurity</span>(
+               <span class="ruby-identifier">file</span>,
+               <span class="ruby-constant">DACL_SECURITY_INFORMATION</span>,
+               <span class="ruby-identifier">sec_buf</span>,
+               <span class="ruby-identifier">sec_buf</span>.<span class="ruby-identifier">length</span>,
+               <span class="ruby-identifier">length_needed</span>
+            )
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">bool</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">GetLastError</span>() <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_INSUFFICIENT_BUFFER</span>
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">sec_buf</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-identifier">length_needed</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>
+            <span class="ruby-identifier">sec_buf</span> <span class="ruby-operator">+=</span> <span class="ruby-value str">' '</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">length_needed</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">control</span>  = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">revision</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">GetSecurityDescriptorControl</span>(<span class="ruby-identifier">sec_buf</span>, <span class="ruby-identifier">control</span>, <span class="ruby-identifier">revision</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-comment cmt"># No DACL exists</span>
+         <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">control</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">SE_DACL_PRESENT</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">'No DACL present: explicit deny all'</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">dacl_present</span>   = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">dacl_defaulted</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">dacl_ptr</span>       = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+
+         <span class="ruby-identifier">val</span> = <span class="ruby-constant">GetSecurityDescriptorDacl</span>(
+            <span class="ruby-identifier">sec_buf</span>,
+            <span class="ruby-identifier">dacl_present</span>,
+            <span class="ruby-identifier">dacl_ptr</span>,
+            <span class="ruby-identifier">dacl_defaulted</span>
+         )
+
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">acl_buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">8</span> <span class="ruby-comment cmt"># byte, byte, word, word, word (struct ACL)</span>
+         <span class="ruby-identifier">memcpy</span>(<span class="ruby-identifier">acl_buf</span>, <span class="ruby-identifier">dacl_ptr</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">size</span>)
+
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'CCSSS'</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-value str">'DACL is NULL: implicit access grant'</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">ace_ptr</span>   = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">ace_count</span> = <span class="ruby-identifier">acl_buf</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'CCSSS'</span>)[<span class="ruby-value">3</span>]
+
+         <span class="ruby-identifier">perms_hash</span> = {}
+         <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-identifier">ace_count</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">GetAce</span>(<span class="ruby-identifier">dacl_ptr</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-identifier">i</span>, <span class="ruby-identifier">ace_ptr</span>)
+               <span class="ruby-keyword kw">next</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">ace_buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">12</span> <span class="ruby-comment cmt"># ACE_HEADER, dword, dword (ACCESS_ALLOWED_ACE)</span>
+            <span class="ruby-identifier">memcpy</span>(<span class="ruby-identifier">ace_buf</span>, <span class="ruby-identifier">ace_ptr</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-identifier">ace_buf</span>.<span class="ruby-identifier">size</span>)
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">ace_buf</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'CCS'</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">==</span> <span class="ruby-constant">ACCESS_ALLOWED_ACE_TYPE</span>
+               <span class="ruby-identifier">name</span>        = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MAX_PATH</span>
+               <span class="ruby-identifier">name_size</span>   = [<span class="ruby-identifier">name</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+               <span class="ruby-identifier">domain</span>      = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">MAX_PATH</span>
+               <span class="ruby-identifier">domain_size</span> = [<span class="ruby-identifier">domain</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+               <span class="ruby-identifier">snu_ptr</span>     = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">4</span>
+               
+               <span class="ruby-identifier">val</span> = <span class="ruby-constant">LookupAccountSid</span>(
+                  <span class="ruby-identifier">host</span>,
+                  <span class="ruby-identifier">ace_ptr</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span> <span class="ruby-operator">+</span> <span class="ruby-value">8</span>, <span class="ruby-comment cmt"># address of ace_ptr-&gt;SidStart</span>
+                  <span class="ruby-identifier">name</span>,
+                  <span class="ruby-identifier">name_size</span>,
+                  <span class="ruby-identifier">domain</span>,
+                  <span class="ruby-identifier">domain_size</span>,
+                  <span class="ruby-identifier">snu_ptr</span>
+               )
+               
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-identifier">name</span>   = <span class="ruby-identifier">name</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">name_size</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>)[<span class="ruby-value">0</span>]
+               <span class="ruby-identifier">domain</span> = <span class="ruby-identifier">domain</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-identifier">domain_size</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>)[<span class="ruby-value">0</span>]
+               <span class="ruby-identifier">mask</span>   = <span class="ruby-identifier">ace_buf</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'LLL'</span>)[<span class="ruby-value">1</span>]
+               
+               <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">domain</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">domain</span>.<span class="ruby-identifier">empty?</span>
+                  <span class="ruby-identifier">name</span> = <span class="ruby-identifier">domain</span> <span class="ruby-operator">+</span> <span class="ruby-value str">'\\'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">name</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-identifier">perms_hash</span>[<span class="ruby-identifier">name</span>] = <span class="ruby-identifier">mask</span>
+            <span class="ruby-keyword kw">end</span>
+         }
+         <span class="ruby-identifier">perms_hash</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

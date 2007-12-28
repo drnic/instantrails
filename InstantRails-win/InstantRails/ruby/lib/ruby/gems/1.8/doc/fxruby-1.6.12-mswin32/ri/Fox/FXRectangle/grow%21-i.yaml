@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Grow the rectangle by some amount and return a reference to the rectangle.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+margin+:"
+    body: number of units to grow on each side [Integer]
+  type: :NOTE
+full_name: Fox::FXRectangle#grow!
+is_singleton: false
+name: grow!
+params: (margin)
+visibility: public

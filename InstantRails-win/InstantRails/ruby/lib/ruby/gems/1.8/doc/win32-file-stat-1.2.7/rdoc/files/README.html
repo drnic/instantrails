@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:37 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<p>
+A redefinition of the <a href="../classes/File/Stat.html">File::Stat</a>
+class for MS Windows.
+</p>
+<h1>Prerequisites</h1>
+<ul>
+<li>Ruby 1.8.0 or later.
+
+</li>
+<li>windows-pr 0.6.0 or later.
+
+</li>
+</ul>
+<h1>Installation</h1>
+<p>
+rake install (non-gem) OR rake install_gem (gems)
+</p>
+<h1>Synopsis</h1>
+<pre>
+   # Don't 'require' like this in practice - see 'Known Issues' below
+   require 'win32/file/stat'
+
+   stat = File::Stat.new('file.txt')
+   stat.size
+   stat.readonly?
+   stat.hidden?
+</pre>
+<h1>Differences between Ruby&#8216;s <a href="../classes/File/Stat.html">File::Stat</a> and this version:</h1>
+<ul>
+<li>The File::Stat#blksize method returns a meaningful value.
+
+</li>
+<li>The File::Stat#blockdev method works more accurately.
+
+</li>
+<li>The File::Stat#blocks method returns a meaningful value.
+
+</li>
+<li>The File::Stat#dev method returns a drive letter, not a number.
+
+</li>
+<li>The File::Stat#executable? method works properly.
+
+</li>
+<li>The File::Stat#executable_real? returns the same value as
+File::Stat#executable? (which now works properly).
+
+</li>
+<li>The File::Stat#file? method works properly.
+
+</li>
+<li>The File::Stat#ftype method works more accurately.
+
+</li>
+<li>The File::Stat#pipe method works properly.
+
+</li>
+<li>The File::Stat#size method handles file sizes greater than 2 gigabytes
+correctly.
+
+</li>
+<li>The File::Stat#socket method works more accurately.
+
+</li>
+<li>Allows you to get file attributes specific to MS Windows, e.g. archive,
+hidden, etc.
+
+</li>
+<li>The pp (pretty print) output has been customized.
+
+</li>
+</ul>
+<h1>Known issues</h1>
+<p>
+You should not require &#8216;win32/file/stat&#8217; directly. Instead,
+require the win32-file package which will, in turn, require
+win32-file-stat. This is the preferred approach because some modules (i.e.
+&#8216;find&#8217;) use the pass-through methods of the <a
+href="../classes/File.html">File</a> class, such as File.lstat. Many of the
+pass through methods have been redefined in the win32-file package to work
+in conjunction with the custom <a
+href="../classes/File/Stat.html">File::Stat</a> objects created by this
+package.
+</p>
+<p>
+Failure to follow these instructions could lead to cases where the core
+Ruby <a href="../classes/File.html">File</a> class attempts to use the
+custom <a href="../classes/File/Stat.html">File::Stat</a> object defined in
+this class, which will likely cause problems.
+</p>
+<h1>Known bugs</h1>
+<p>
+None that I&#8216;m aware of. Please report any bugs you find on the
+project page at <a
+href="http://www.rubyforge.org/projects/win32utils">www.rubyforge.org/projects/win32utils</a>.
+</p>
+<h1>Miscellaneous</h1>
+<p>
+I had to require &#8216;pp&#8217; explicitly in order to deal with the fact
+that pp.rb has a builtin pretty_print method for <a
+href="../classes/File/Stat.html">File::Stat</a>. If I didn&#8216;t do this
+you would end up using the pretty_print in pp.rb, which would break.
+</p>
+<h1>License</h1>
+<p>
+Ruby&#8216;s
+</p>
+<h1>Warranty</h1>
+<p>
+This package is provided &quot;as is&quot; and without any express or
+implied warranties, including, without limitation, the implied warranties
+of merchantability and fitness for a particular purpose.
+</p>
+<h1>Author</h1>
+<p>
+Daniel J. Berger
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

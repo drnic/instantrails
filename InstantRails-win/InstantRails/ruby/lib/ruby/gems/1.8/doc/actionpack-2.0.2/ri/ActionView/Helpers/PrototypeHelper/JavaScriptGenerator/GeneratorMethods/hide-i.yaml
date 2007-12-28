@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Hides the visible DOM elements with the given <tt>ids</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Hide a few people\n # Generates: [&quot;person_29&quot;, &quot;person_9&quot;, &quot;person_0&quot;].each(Element.hide);\n page.hide 'person_29', 'person_9', 'person_0'\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#hide
+is_singleton: false
+name: hide
+params: (*ids)
+visibility: public

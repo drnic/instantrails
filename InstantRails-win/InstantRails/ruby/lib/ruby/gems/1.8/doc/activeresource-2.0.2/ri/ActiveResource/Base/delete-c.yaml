@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes the resources with the ID in the <tt>id</tt> parameter.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: All options specify prefix and query parameters.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Event.delete(2)\n  # =&gt; DELETE /events/2\n\n  Event.create(:name =&gt; 'Free Concert', :location =&gt; 'Community Center')\n  my_event = Event.find(:first)\n  # =&gt; Events (id: 7)\n  Event.delete(my_event.id)\n  # =&gt; DELETE /events/7\n\n  # Let's assume a request to events/5/cancel.xml\n  Event.delete(params[:id])\n  # =&gt; DELETE /events/5\n"
+full_name: ActiveResource::Base::delete
+is_singleton: true
+name: delete
+params: (id, options = {})
+visibility: public

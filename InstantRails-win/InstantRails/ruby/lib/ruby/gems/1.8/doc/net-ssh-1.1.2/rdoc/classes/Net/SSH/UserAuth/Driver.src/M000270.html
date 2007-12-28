@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Net::SSH::UserAuth::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/driver.rb, line 44</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">log</span>, <span class="ruby-identifier">buffers</span>, <span class="ruby-identifier">methods</span>, <span class="ruby-identifier">order</span> )
+          <span class="ruby-ivar">@log</span> = <span class="ruby-identifier">log</span>
+          <span class="ruby-ivar">@buffers</span> = <span class="ruby-identifier">buffers</span>
+          <span class="ruby-ivar">@methods</span> = <span class="ruby-identifier">methods</span>
+          <span class="ruby-ivar">@on_banner</span> = <span class="ruby-identifier">proc</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span>,<span class="ruby-identifier">lang</span><span class="ruby-operator">|</span> }
+          <span class="ruby-ivar">@order</span> = <span class="ruby-identifier">order</span>.<span class="ruby-identifier">dup</span>
+          <span class="ruby-ivar">@allowed_auth_methods</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

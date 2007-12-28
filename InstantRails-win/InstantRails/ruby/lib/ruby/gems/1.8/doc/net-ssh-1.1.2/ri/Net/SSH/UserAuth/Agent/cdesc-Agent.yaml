@@ -1,0 +1,102 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The buffer factory to use to obtain buffer instances.
+  name: buffers
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The key factory to use to obtain key instances.
+  name: keys
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The socket factory used to connect to the agent process. It must respond to #open, and accept a single parameter (the name of the socket to open)."
+  name: socket_factory
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the socket to open.
+  name: socket_name
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The version of the SSH protocol version to report.
+  name: version
+  rw: W
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This class implements a simple client for the ssh-agent protocol. It does not implement any specific protocol, but instead copies the behavior of the ssh-agent functions in the OpenSSH library (3.8).
+- !ruby/struct:SM::Flow::P 
+  body: This means that although it behaves like a SSH1 client, it also has some SSH2 functionality (like signing data).
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_REQUEST_VERSION
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_REQUEST_IDENTITIES
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_IDENTITIES_ANSWER
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_SIGN_REQUEST
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_SIGN_RESPONSE
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_FAILURE
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH2_AGENT_VERSION_RESPONSE
+  value: "103"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH_COM_AGENT2_FAILURE
+  value: "102"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH_AGENT_REQUEST_RSA_IDENTITIES
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH_AGENT_RSA_IDENTITIES_ANSWER
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SSH_AGENT_FAILURE
+  value: "5"
+full_name: Net::SSH::UserAuth::Agent
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: connect!
+- !ruby/object:RI::MethodSummary 
+  name: identities
+- !ruby/object:RI::MethodSummary 
+  name: read_raw_packet
+- !ruby/object:RI::MethodSummary 
+  name: send_raw_packet
+- !ruby/object:RI::MethodSummary 
+  name: sign
+name: Agent
+superclass: Object

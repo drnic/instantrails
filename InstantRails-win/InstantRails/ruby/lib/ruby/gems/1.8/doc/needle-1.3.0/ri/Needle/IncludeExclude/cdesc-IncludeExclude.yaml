@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A module encapsulating the functionality of a service with include/exclude functionality. Such functionality involves a the ability to specify a pair of include and exclude arrays, each of which must be an array of method names that should be included or excluded from some kind of processing.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This is the regular expression for parsing elements in an include or exclude array.
+  name: PATTERN
+  value: "/^                (.*?)        (?# this matches the method name pattern)                (?:          (?# begin optional arity section)                  \\(         (?# begin parenthesized section)                    ([<=>])? (?# optional comparator character)                    (\\d+)    (?# arity specification)                  \\)         (?# end parenthesized section)                )?           (?# end optional arity section)                $/x"
+full_name: Needle::IncludeExclude
+includes: []
+
+instance_methods: []
+
+name: IncludeExclude
+superclass: 

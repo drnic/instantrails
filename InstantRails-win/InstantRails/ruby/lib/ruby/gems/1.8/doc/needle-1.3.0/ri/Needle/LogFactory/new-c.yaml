@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Create a new LogFactory using the given initialization parameters. The valid options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:device</tt>: the device (pseudo-IO object) to write log messages to. Either this, or <tt>:filename</tt> must be specified."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:filename</tt>: the filename of the log to write to."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:roll_age</tt>: the number of days before the log should be rolled."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:roll_frequency</tt>: either 'daily', 'weekly', or 'monthly'."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:roll_size</tt>: the maximum size of a log file."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:default_date_format</tt>: the default date format string for the log."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:default_message_format</tt>: the default message format string for the log."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:default_level</tt>: the default log level for the log."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:levels</tt>: a hash of patterns that map to a hash of 'level' 'date_format', and 'message_format' keys, specifying the log level, date format, and message format for any log whose name matches the key."
+  type: :BULLET
+full_name: Needle::LogFactory::new
+is_singleton: true
+name: new
+params: ( opts={} )
+visibility: public

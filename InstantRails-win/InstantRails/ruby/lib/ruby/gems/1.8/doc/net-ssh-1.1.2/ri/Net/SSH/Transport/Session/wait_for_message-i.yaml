@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Waits for the next message from the server, handling common requests like DISCONNECT, IGNORE, DEBUG, and KEXINIT in the background. The next message is returned as a [ type, buffer ] tuple, where the buffer is a Net::SSH::Util::ReaderBuffer.
+full_name: Net::SSH::Transport::Session#wait_for_message
+is_singleton: false
+name: wait_for_message
+params: ()
+visibility: public

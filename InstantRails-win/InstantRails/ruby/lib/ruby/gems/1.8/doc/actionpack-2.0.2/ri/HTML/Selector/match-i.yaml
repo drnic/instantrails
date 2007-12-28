@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Matches an element against the selector.
+- !ruby/struct:SM::Flow::P 
+  body: For a simple selector this method returns an array with the element if the element matches, nil otherwise.
+- !ruby/struct:SM::Flow::P 
+  body: For a complex selector (sibling and descendant) this method returns an array with all matching elements, nil if no match is found.
+- !ruby/struct:SM::Flow::P 
+  body: Use +first_only=true+ if you are only interested in the first element.
+- !ruby/struct:SM::Flow::P 
+  body: "For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  if selector.match(element)\n    puts &quot;Element is a login form&quot;\n  end\n"
+full_name: HTML::Selector#match
+is_singleton: false
+name: match
+params: |
+  match(element, first?) => array or nil
+
+visibility: public

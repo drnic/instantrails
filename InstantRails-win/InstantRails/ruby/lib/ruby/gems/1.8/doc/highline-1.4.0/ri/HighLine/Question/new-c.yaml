@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: self if block_given?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an instance of HighLine::Question. Expects a <em>question</em> to ask (can be <tt>&quot;&quot;</tt>) and an <em>answer_type</em> to convert the answer to. The <em>answer_type</em> parameter must be a type recongnized by Question.convert(). If given, a block is yeilded the new Question object to allow custom initializaion.
+full_name: HighLine::Question::new
+is_singleton: true
+name: new
+params: ( question, answer_type ) {|self if block_given?| ...}
+visibility: public

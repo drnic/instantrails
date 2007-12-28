@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>direct_channel (Net::SSH::Service::Forward::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/forward/driver.rb, line 79</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">direct_channel</span>( <span class="ruby-identifier">local_port</span>, <span class="ruby-identifier">remote_host</span>, <span class="ruby-identifier">remote_port</span>,
+            <span class="ruby-identifier">handler</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">data</span> )
+          <span class="ruby-comment cmt"># begin</span>
+            <span class="ruby-identifier">writer</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+            <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">remote_host</span>
+            <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">remote_port</span>.<span class="ruby-identifier">to_i</span>
+            <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-value str">&quot;127.0.0.1&quot;</span>
+            <span class="ruby-identifier">writer</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">local_port</span>.<span class="ruby-identifier">to_i</span>
+
+            <span class="ruby-ivar">@direct_channel_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+            <span class="ruby-ivar">@open_direct_channel_count</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+              <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;opening direct channel for &quot;</span> <span class="ruby-operator">+</span>
+                <span class="ruby-node">&quot;#{local_port}:#{remote_host}:#{remote_port}&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">c</span> = <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">open_channel</span>( <span class="ruby-value str">'direct-tcpip'</span>, <span class="ruby-identifier">writer</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">channel</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;direct channel confirmed for &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-node">&quot;#{local_port}:#{remote_host}:#{remote_port}&quot;</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_receive</span> )
+                <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_data</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">handler</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">:on_receive</span>) )
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_eof</span> )
+                <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_eof</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">handler</span>.<span class="ruby-identifier">method</span>(<span class="ruby-identifier">:on_eof</span>) )
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_close</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ch</span><span class="ruby-operator">|</span>
+                <span class="ruby-ivar">@open_direct_channel_count</span> <span class="ruby-operator">-=</span> <span class="ruby-value">1</span>
+                <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">on_close</span>( <span class="ruby-identifier">ch</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:on_close</span> )
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:confirm</span> )
+                <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">confirm</span>( <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">local_port</span>, <span class="ruby-identifier">remote_host</span>,
+                  <span class="ruby-identifier">remote_port</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">data</span> )
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">respond_to?</span>( <span class="ruby-identifier">:process</span> )
+                <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> { <span class="ruby-identifier">handler</span>.<span class="ruby-identifier">process</span>( <span class="ruby-identifier">channel</span> ) }
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">on_confirm_failed</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">channel</span>, <span class="ruby-identifier">code</span>,<span class="ruby-identifier">desc</span>,<span class="ruby-identifier">lang</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-value str">&quot;could not open direct channel for &quot;</span> <span class="ruby-operator">+</span>
+                <span class="ruby-node">&quot;#{local_port}:#{remote_host}:#{remote_port} (#{code}, #{desc})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">nil</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

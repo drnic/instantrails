@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>method_missing (Needle::Lifecycle::Proxy)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/needle/lifecycle/proxy.rb, line 45</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_missing</span>( <span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@instance</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@instantiation_failed</span>
+          <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@instance</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@instantiation_failed</span>
+              <span class="ruby-keyword kw">begin</span>
+                <span class="ruby-ivar">@instance</span> = <span class="ruby-ivar">@callback</span>.<span class="ruby-identifier">call</span>( <span class="ruby-operator">*</span><span class="ruby-ivar">@args</span> )
+              <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+                <span class="ruby-ivar">@instantiation_failed</span> = <span class="ruby-keyword kw">true</span>
+                <span class="ruby-identifier">raise</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@instantiation_failed</span>
+          <span class="ruby-ivar">@instance</span>.<span class="ruby-identifier">__send__</span> <span class="ruby-identifier">sym</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># just return nil... this way, a failed instantiation won't barf</span>
+          <span class="ruby-comment cmt"># more than once... I hope...</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

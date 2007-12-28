@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: decode
+- !ruby/object:RI::MethodSummary 
+  name: encode
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: matches YAML-formatted dates
+  name: DATE_REGEX
+  value: /^\d{4}-\d{2}-\d{2}|\d{4}-\d{1,2}-\d{1,2}[ \t]+\d{1,2}:\d{2}:\d{2}(\.[0-9]*)?(([ \t]*)Z|[-+]\d{2}?(:\d{2})?)?$/
+full_name: ActiveSupport::JSON
+includes: []
+
+instance_methods: []
+
+name: JSON
+superclass: 

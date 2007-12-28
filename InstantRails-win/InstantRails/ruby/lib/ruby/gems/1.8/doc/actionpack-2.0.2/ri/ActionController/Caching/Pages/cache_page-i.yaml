@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Manually cache the <tt>content</tt> in the key determined by <tt>options</tt>. If no content is provided, the contents of response.body is used If no options are provided, the requested url is used. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  cache_page &quot;I'm the cached content&quot;, :controller =&gt; &quot;lists&quot;, :action =&gt; &quot;show&quot;\n"
+full_name: ActionController::Caching::Pages#cache_page
+is_singleton: false
+name: cache_page
+params: (content = nil, options = nil)
+visibility: public

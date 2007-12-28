@@ -1,0 +1,215 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Base color [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content window [FXWindow]
+  name: contentWindow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window icon [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Iconified height [Integer]
+  name: iconHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Iconified width [Integer]
+  name: iconWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Iconified position x-coordinate [Integer]
+  name: iconX
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Iconified position y-coordinate [Integer]
+  name: iconY
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window menu [FXPopup]
+  name: menu
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal (restored) height [Integer]
+  name: normalHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal (restored) width [Integer]
+  name: normalWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal (restored) position x-coordinate [Integer]
+  name: normalX
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal (restored) position y-coordinate [Integer]
+  name: normalY
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window title [String]
+  name: title
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title background color [FXColor]
+  name: titleBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Title color [FXColor]
+  name: titleColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The MDI child window contains the application work area in a Multiple Document Interface application. GUI Controls are connected to the MDI child via delegation through the MDI client, which forwards messages it receives to the active MDI child. The MDI child itself tries to further delegate messages to its single content window, and if not handled there, to its target object. When the MDI child is maximized, it sends a SEL_MAXIMIZE message; when the MDI child is minimized, it sends a SEL_MINIMIZE message. When it is restored, it sends a SEL_RESTORE message to its target. The MDI child also notifies its target when it becomes the active MDI child, via the SEL_SELECTED message. The void* in the SEL_SELECTED message refers to the previously active MDI child, if any. When an MDI child ceases to be the active one, a SEL_DESELECTED message is sent. The void* in the SEL_DESELECTED message refers to the newly activated MDI child, if any. Thus, interception of SEL_SELECTED and SEL_DESELECTED allows the target object to determine whether the user switched between MDI windows of the same document (target) or between MDI windows belonging to the same document. When the MDI child is closed, it sends a SEL_CLOSE message to its target. The target has an opportunity to object to the closing; if the MDI child should not be closed, it should return 1 (objection). If the MDI child should be closed, the target can either just return 0 or simply not handle the SEL_CLOSE message. The SEL_UPDATE message can be used to modify the MDI child's title (via ID_SETSTRINGVALUE), and window icon (via ID_SETICONVALUE).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXMDIChild to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONPRESS+:"
+    body: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONRELEASE+:"
+    body: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent when the window is selected; the message data is a reference to the MDI client's previous active child window, or <tt>nil</tt> if there was no active child window.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent when the window is deselected; the message data is a reference to the MDI client's new active child window, or <tt>nil</tt> if there is no active child window.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MAXIMIZE+:"
+    body: sent when the window is maximized
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MINIMIZE+:"
+    body: sent when the window is minimized
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RESTORE+:"
+    body: sent when the window is restored to its normal size and position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLOSE+:"
+    body: sent when the user is trying to close this window. The message handler for this message should return 1 (or true) if the target objects to closing the window; otherwise it should just return false (or zero).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETE+:"
+    body: sent immediately before this window is destroyed
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: MDI Child Window styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MDI_NORMAL+:"
+    body: Normal display mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MDI_MAXIMIZED+:"
+    body: Window appears maximized
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MDI_MINIMIZED+:"
+    body: Window is iconified or minimized
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MDI_TRACKING+:"
+    body: Track continuously during dragging
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMDIChild
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getTracking
+- !ruby/object:RI::MethodSummary 
+  name: isTracking?
+- !ruby/object:RI::MethodSummary 
+  name: maximize
+- !ruby/object:RI::MethodSummary 
+  name: maximized?
+- !ruby/object:RI::MethodSummary 
+  name: minimize
+- !ruby/object:RI::MethodSummary 
+  name: minimized?
+- !ruby/object:RI::MethodSummary 
+  name: restore
+- !ruby/object:RI::MethodSummary 
+  name: setTracking
+- !ruby/object:RI::MethodSummary 
+  name: tracking
+- !ruby/object:RI::MethodSummary 
+  name: tracking=
+name: FXMDIChild
+superclass: FXComposite

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>on_open (Net::SSH::Service::Forward::RemoteNetworkHandler)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/forward/remote-network-handler.rb, line 40</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">on_open</span>( <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">c_addr</span>, <span class="ruby-identifier">c_port</span>, <span class="ruby-identifier">o_addr</span>, <span class="ruby-identifier">o_port</span> )
+            <span class="ruby-ivar">@client</span> = <span class="ruby-constant">TCPSocket</span>.<span class="ruby-identifier">new</span>( <span class="ruby-ivar">@local_host</span>, <span class="ruby-ivar">@local_port</span> )
+
+            <span class="ruby-constant">Thread</span>.<span class="ruby-identifier">new</span> <span class="ruby-keyword kw">do</span>
+              <span class="ruby-keyword kw">begin</span>
+                <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+                  <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">channel</span>[<span class="ruby-identifier">:eof</span>]
+                  <span class="ruby-identifier">data</span> = <span class="ruby-value str">&quot;&quot;</span>
+                  <span class="ruby-keyword kw">while</span> <span class="ruby-constant">IO</span>.<span class="ruby-identifier">select</span>([<span class="ruby-ivar">@client</span>],<span class="ruby-keyword kw">nil</span>,<span class="ruby-keyword kw">nil</span>,<span class="ruby-value">0</span><span class="ruby-value">.01</span>)
+                    <span class="ruby-identifier">data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@client</span>.<span class="ruby-identifier">recv</span>(<span class="ruby-ivar">@block_size</span>)
+                  <span class="ruby-keyword kw">end</span>
+                  <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">send_data</span> <span class="ruby-identifier">data</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">empty?</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+                <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;error while forwarding remote port: &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-node">&quot;#{e.class}: #{e.message}\n  &quot;</span> <span class="ruby-operator">+</span>
+                  <span class="ruby-identifier">e</span>.<span class="ruby-identifier">backtrace</span>.<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;\n  &quot;</span> )
+              <span class="ruby-keyword kw">ensure</span>
+                <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">close</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

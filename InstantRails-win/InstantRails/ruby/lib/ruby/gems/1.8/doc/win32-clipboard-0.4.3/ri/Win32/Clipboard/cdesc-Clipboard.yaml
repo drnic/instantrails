@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: data
+- !ruby/object:RI::MethodSummary 
+  name: empty
+- !ruby/object:RI::MethodSummary 
+  name: format_available?
+- !ruby/object:RI::MethodSummary 
+  name: format_name
+- !ruby/object:RI::MethodSummary 
+  name: formats
+- !ruby/object:RI::MethodSummary 
+  name: num_formats
+- !ruby/object:RI::MethodSummary 
+  name: register_format
+- !ruby/object:RI::MethodSummary 
+  name: set_data
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.4.3'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Clipboard data types
+  name: TEXT
+  value: CF_TEXT
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OEMTEXT
+  value: CF_OEMTEXT
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNICODETEXT
+  value: CF_UNICODETEXT
+full_name: Win32::Clipboard
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Clipboard
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Memory
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+instance_methods: []
+
+name: Clipboard
+superclass: Object

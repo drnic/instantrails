@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Periodically calls the specified url (<tt>options[:url]</tt>) every <tt>options[:frequency]</tt> seconds (default is 10). Usually used to update a specified div (<tt>options[:update]</tt>) with the results of the remote call. The options for specifying the target with :url and defining callbacks is the same as link_to_remote. Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Call get_averages and put its results in 'avg' every 10 seconds\n # Generates:\n #      new PeriodicalExecuter(function() {new Ajax.Updater('avg', '/grades/get_averages',\n #      {asynchronous:true, evalScripts:true})}, 10)\n periodically_call_remote(:url =&gt; { :action =&gt; 'get_averages' }, :update =&gt; 'avg')\n\n # Call invoice every 10 seconds with the id of the customer\n # If it succeeds, update the invoice DIV; if it fails, update the error DIV\n # Generates:\n #      new PeriodicalExecuter(function() {new Ajax.Updater({success:'invoice',failure:'error'},\n #      '/testing/invoice/16', {asynchronous:true, evalScripts:true})}, 10)\n periodically_call_remote(:url =&gt; { :action =&gt; 'invoice', :id =&gt; customer.id },\n    :update =&gt; { :success =&gt; &quot;invoice&quot;, :failure =&gt; &quot;error&quot; }\n\n # Call update every 20 seconds and update the new_block DIV\n # Generates:\n # new PeriodicalExecuter(function() {new Ajax.Updater('news_block', 'update', {asynchronous:true, evalScripts:true})}, 20)\n periodically_call_remote(:url =&gt; 'update', :frequency =&gt; '20', :update =&gt; 'news_block')\n"
+full_name: ActionView::Helpers::PrototypeHelper#periodically_call_remote
+is_singleton: false
+name: periodically_call_remote
+params: (options = {})
+visibility: public

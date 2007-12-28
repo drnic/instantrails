@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theTreeList
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct a new, initially empty tree list.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this tree list [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+target+:"
+    body: the message target, if any, for this tree list [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+selector+:"
+    body: the message identifier for this tree list [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: tree list options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: initial x-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: initial y-position [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: initial width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: initial height [Integer]
+  type: :NOTE
+full_name: Fox::FXTreeList::new
+is_singleton: true
+name: new
+params: (p, target=nil, selector=0, opts=TREELIST_NORMAL, x=0, y=0, width=0, height=0) {|theTreeList| ...}
+visibility: public

@@ -1,0 +1,29 @@
+= Parameters
+Long:    'N' or 'L'
+Integer: 'I'
+Pointer: 'P'
+Void:    'V'
+
+= Windows Data Types
+BOOL  		=> 'I'
+DWORD 		=> 'L'
+HANDLE		=> 'L'
+LPDWORD		=> 'P' (or 'L')
+LPTSTR 		=> 'P'
+UINT  		=> 'I'
+VOID        => 'V'
+WORD        => 'I'
+LPVOID      => 'L' (or 'P')
+
+= C Data Types
+void     	=> 'V'
+void*    	=> 'P'
+char*    	=> 'P'
+const char* => 'L'
+int			=> 'I'
+long        => 'L'
+struct      => 'P'
+struct*     => 'P'
+
+In practice most LPVOID types should be designated as 'L' because this
+usually means the function is looking for an address.

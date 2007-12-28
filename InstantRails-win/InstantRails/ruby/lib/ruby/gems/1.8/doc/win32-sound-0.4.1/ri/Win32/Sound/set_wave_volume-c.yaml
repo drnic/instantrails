@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Sets the volume for the left and right channel. If the <tt>right_channel</tt> is omitted, the volume is set for <b>both</b> channels.
+- !ruby/struct:SM::Flow::P 
+  body: You may optionally pass a single Integer rather than an Array, in which case it is assumed you are setting both channels to the same value.
+full_name: Win32::Sound::set_wave_volume
+is_singleton: true
+name: set_wave_volume
+params: (left_channel, right_channel = nil)
+visibility: public

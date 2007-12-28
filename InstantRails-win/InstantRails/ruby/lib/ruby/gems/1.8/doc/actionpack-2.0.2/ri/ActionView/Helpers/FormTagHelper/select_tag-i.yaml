@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a dropdown selection box, or if the <tt>:multiple</tt> option is set to true, a multiple choice selection box.
+- !ruby/struct:SM::Flow::P 
+  body: Helpers::FormOptions can be used to create common select boxes such as countries, time zones, or associated records. <tt>option_tags</tt> is a string containing the option tags for the select box.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:multiple</tt> - If set to true the selection will allow multiple choices.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML attributes for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  select_tag &quot;people&quot;, &quot;&lt;option&gt;David&lt;/option&gt;&quot;\n  # =&gt; &lt;select id=&quot;people&quot; name=&quot;people&quot;&gt;&lt;option&gt;David&lt;/option&gt;&lt;/select&gt;\n\n  select_tag &quot;count&quot;, &quot;&lt;option&gt;1&lt;/option&gt;&lt;option&gt;2&lt;/option&gt;&lt;option&gt;3&lt;/option&gt;&lt;option&gt;4&lt;/option&gt;&quot;\n  # =&gt; &lt;select id=&quot;count&quot; name=&quot;count&quot;&gt;&lt;option&gt;1&lt;/option&gt;&lt;option&gt;2&lt;/option&gt;\n  #    &lt;option&gt;3&lt;/option&gt;&lt;option&gt;4&lt;/option&gt;&lt;/select&gt;\n\n  select_tag &quot;colors&quot;, &quot;&lt;option&gt;Red&lt;/option&gt;&lt;option&gt;Green&lt;/option&gt;&lt;option&gt;Blue&lt;/option&gt;&quot;, :multiple =&gt; true\n  # =&gt; &lt;select id=&quot;colors&quot; multiple=&quot;multiple&quot; name=&quot;colors&quot;&gt;&lt;option&gt;Red&lt;/option&gt;\n  #    &lt;option&gt;Green&lt;/option&gt;&lt;option&gt;Blue&lt;/option&gt;&lt;/select&gt;\n\n  select_tag &quot;locations&quot;, &quot;&lt;option&gt;Home&lt;/option&gt;&lt;option selected=&quot;selected&quot;&gt;Work&lt;/option&gt;&lt;option&gt;Out&lt;/option&gt;&quot;\n  # =&gt; &lt;select id=&quot;locations&quot; name=&quot;locations&quot;&gt;&lt;option&gt;Home&lt;/option&gt;&lt;option selected='selected'&gt;Work&lt;/option&gt;\n  #    &lt;option&gt;Out&lt;/option&gt;&lt;/select&gt;\n\n  select_tag &quot;access&quot;, &quot;&lt;option&gt;Read&lt;/option&gt;&lt;option&gt;Write&lt;/option&gt;&quot;, :multiple =&gt; true, :class =&gt; 'form_input'\n  # =&gt; &lt;select class=&quot;form_input&quot; id=&quot;access&quot; multiple=&quot;multiple&quot; name=&quot;access&quot;&gt;&lt;option&gt;Read&lt;/option&gt;\n  #    &lt;option&gt;Write&lt;/option&gt;&lt;/select&gt;\n\n  select_tag &quot;destination&quot;, &quot;&lt;option&gt;NYC&lt;/option&gt;&lt;option&gt;Paris&lt;/option&gt;&lt;option&gt;Rome&lt;/option&gt;&quot;, :disabled =&gt; true\n  # =&gt; &lt;select disabled=&quot;disabled&quot; id=&quot;destination&quot; name=&quot;destination&quot;&gt;&lt;option&gt;NYC&lt;/option&gt;\n  #    &lt;option&gt;Paris&lt;/option&gt;&lt;option&gt;Rome&lt;/option&gt;&lt;/select&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#select_tag
+is_singleton: false
+name: select_tag
+params: (name, option_tags = nil, options = {})
+visibility: public

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Wraps each element in the list inside the element created by HTML <tt>str</tt>. If more than one element is found in the string, Hpricot locates the deepest spot inside the first element.
+- !ruby/struct:SM::Flow::VERB 
+  body: " doc.search(&quot;a[@href]&quot;).\n     wrap(%{&lt;div class=&quot;link&quot;&gt;&lt;div class=&quot;link_inner&quot;&gt;&lt;/div&gt;&lt;/div&gt;})\n"
+- !ruby/struct:SM::Flow::P 
+  body: This code wraps every link on the page inside a +div.link+ and a +div.link_inner+ nest.
+full_name: Hpricot::Elements#wrap
+is_singleton: false
+name: wrap
+params: (str = nil, &blk)
+visibility: public

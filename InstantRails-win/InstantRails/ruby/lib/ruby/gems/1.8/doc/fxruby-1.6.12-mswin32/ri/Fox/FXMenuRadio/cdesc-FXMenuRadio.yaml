@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio button state, one of <tt>TRUE</tt>, <tt>FALSE</tt> or <tt>MAYBE</tt>
+  name: check
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio background color [FXColor]
+  name: radioColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXMenuRadio widget is used to change a state in the application from a menu. Menu radio commands may reflect the state of the application by graying out, becoming hidden, or by displaying a bullet. When activated, a menu radio sends a <tt>SEL_COMMAND</tt> to its target; the message data contains the new state. A collection of menu radio widgets which belong to each other is supposed to be updated by a common <tt>SEL_UPDATE</tt> handler to properly maintain the state between them.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXMenuRadio to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the command is activated
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMenuRadio
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: checked?
+- !ruby/object:RI::MethodSummary 
+  name: maybe?
+- !ruby/object:RI::MethodSummary 
+  name: unchecked?
+name: FXMenuRadio
+superclass: Object

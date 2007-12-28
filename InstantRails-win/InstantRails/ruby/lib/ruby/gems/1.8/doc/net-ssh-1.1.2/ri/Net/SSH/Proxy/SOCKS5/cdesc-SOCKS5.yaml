@@ -1,0 +1,90 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An implementation of a socket factory that returns a socket which will tunnel the connection through a SOCKS5 proxy. It allows explicit specification of the user and password, but if none are given it will look in the SOCKS_USER/SOCKS_PASSWORD and CONNECT_USER/CONNECT_PASSWORD environment variables as well.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_VERSION
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_METHOD_NO_AUTH
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_METHOD_GSSAPI
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_METHOD_PASSWD
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_METHOD_NONE
+  value: "0xFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_CMD_CONNECT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_ATYP_IPV4
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_ATYP_DOMAIN
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_ATYP_IPV6
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_SUCCESS
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_FAILURE
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_NOT_ALLOWED
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_NETWORK_UNREACHABLE
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_HOST_UNREACHABLE
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_REFUSED
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_TTL_EXPIRED
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_CMD_NOT_SUPPORTED
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SOCKS_ADDR_NOT_SUPPORTED
+  value: "8"
+full_name: Net::SSH::Proxy::SOCKS5
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: open
+name: SOCKS5
+superclass: Object

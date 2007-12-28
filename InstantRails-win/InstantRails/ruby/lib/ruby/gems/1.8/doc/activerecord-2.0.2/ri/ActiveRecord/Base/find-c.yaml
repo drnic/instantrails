@@ -1,0 +1,80 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Find operates with three different retrieval approaches:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "Find by id: This can either be a specific id (1), a list of ids (1, 5, 6), or an array of ids ([5, 6, 10]). If no record can be found for all of the listed ids, then RecordNotFound will be raised."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "Find first: This will return the first record matched by the options used. These options can either be specific conditions or merely an order. If no record can be matched, nil is returned."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "Find all: This will return all the records matched by the options used. If no records are found, an empty array is returned."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "All approaches accept an options hash as their last parameter. The options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:conditions</tt>: An SQL fragment like &quot;administrator = 1&quot; or [ &quot;user_name = ?&quot;, username ]. See conditions in the intro."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:order</tt>: An SQL fragment like &quot;created_at DESC, name&quot;."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:group</tt>: An attribute name by which the result should be grouped. Uses the GROUP BY SQL-clause."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:limit</tt>: An integer determining the limit on the number of rows that should be returned."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:offset</tt>: An integer determining the offset from where the rows should be fetched. So at 5, it would skip rows 0 through 4."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:joins</tt>: Either an SQL fragment for additional joins like &quot;LEFT JOIN comments ON comments.post_id = id&quot; (rarely needed) or named associations in the same form used for the :include option, which will perform an INNER JOIN on the associated table(s). If the value is a string, then the records will be returned read-only since they will have attributes that do not correspond to the table's columns. Pass :readonly =&gt; false to override."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:include</tt>: Names associations that should be loaded alongside using LEFT OUTER JOINs. The symbols named refer to already defined associations. See eager loading under Associations."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:select</tt>: By default, this is * as in SELECT * FROM, but can be changed if you, for example, want to do a join but not include the joined columns."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:from</tt>: By default, this is the table name of the class, but can be changed to an alternate table name (or even the name of a database view)."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:readonly</tt>: Mark the returned records read-only so they cannot be saved or updated."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:lock</tt>: An SQL fragment like &quot;FOR UPDATE&quot; or &quot;LOCK IN SHARE MODE&quot;. :lock =&gt; true gives connection's default exclusive lock, usually &quot;FOR UPDATE&quot;."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Examples for find by id:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.find(1)       # returns the object for ID = 1\n  Person.find(1, 2, 6) # returns an array for objects with IDs in (1, 2, 6)\n  Person.find([7, 17]) # returns an array for objects with IDs in (7, 17)\n  Person.find([1])     # returns an array for the object with ID = 1\n  Person.find(1, :conditions =&gt; &quot;administrator = 1&quot;, :order =&gt; &quot;created_on DESC&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Note that returned records may not be in the same order as the ids you provide since database rows are unordered. Give an explicit :order to ensure the results are sorted.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples for find first:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.find(:first) # returns the first object fetched by SELECT * FROM people\n  Person.find(:first, :conditions =&gt; [ &quot;user_name = ?&quot;, user_name])\n  Person.find(:first, :order =&gt; &quot;created_on DESC&quot;, :offset =&gt; 5)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Examples for find all:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.find(:all) # returns an array of objects for all the rows fetched by SELECT * FROM people\n  Person.find(:all, :conditions =&gt; [ &quot;category IN (?)&quot;, categories], :limit =&gt; 50)\n  Person.find(:all, :offset =&gt; 10, :limit =&gt; 10)\n  Person.find(:all, :include =&gt; [ :account, :friends ])\n  Person.find(:all, :group =&gt; &quot;category&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Example for find with a lock. Imagine two concurrent transactions: each will read person.visits == 2, add 1 to it, and save, resulting in two saves of person.visits = 3. By locking the row, the second transaction has to wait until the first is finished; we get the expected person.visits == 4."
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.transaction do\n    person = Person.find(1, :lock =&gt; true)\n    person.visits += 1\n    person.save!\n  end\n"
+full_name: ActiveRecord::Base::find
+is_singleton: true
+name: find
+params: (*args)
+visibility: public

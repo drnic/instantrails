@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SFTP::Session</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SFTP::Session</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/net/sftp/session_rb.html">
+                lib/net/sftp/session.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Represents a single <a href="../SFTP.html">SFTP</a> session, running atop
+an SSH session.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000543">channel</a>&nbsp;&nbsp;
+      <a href="#M000545">close</a>&nbsp;&nbsp;
+      <a href="#M000544">close_channel</a>&nbsp;&nbsp;
+      <a href="#M000548">connect</a>&nbsp;&nbsp;
+      <a href="#M000556">do_attrs</a>&nbsp;&nbsp;
+      <a href="#M000552">do_data</a>&nbsp;&nbsp;
+      <a href="#M000554">do_handle</a>&nbsp;&nbsp;
+      <a href="#M000555">do_name</a>&nbsp;&nbsp;
+      <a href="#M000553">do_status</a>&nbsp;&nbsp;
+      <a href="#M000550">get_file</a>&nbsp;&nbsp;
+      <a href="#M000547">loop</a>&nbsp;&nbsp;
+      <a href="#M000557">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000541">new</a>&nbsp;&nbsp;
+      <a href="#M000549">open_handle</a>&nbsp;&nbsp;
+      <a href="#M000551">put_file</a>&nbsp;&nbsp;
+      <a href="#M000546">register</a>&nbsp;&nbsp;
+      <a href="#M000558">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M000542">state</a>&nbsp;&nbsp;
+      <a href="#M000559">support?</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Protocol/Constants.html">Protocol::Constants</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">status</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc">
+The status of the last synchronously executed operation. This is either
+<tt>nil</tt>, or an object that responds to <tt>:code</tt>,
+<tt>:message</tt>, and <tt>:language</tt>.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000541" class="method-detail">
+        <a name="M000541"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000541.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000541.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( session ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Session.html#M000541">new</a> <a
+href="../SFTP.html">SFTP</a> session on top of the given SSH session.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000543" class="method-detail">
+        <a name="M000543"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000543.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000543.html');return false;">
+          <span class="method-name">channel</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the underlying SSH <a href="Session.html#M000543">channel</a> that
+supports this <a href="../SFTP.html">SFTP</a> connection. Useful for adding
+custom callbacks for some events, or for accessing the underlying
+connection beneath the <a href="Session.html#M000543">channel</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000545" class="method-detail">
+        <a name="M000545"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000545.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000545.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Closes the underlying SSH connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000544" class="method-detail">
+        <a name="M000544"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000544.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000544.html');return false;">
+          <span class="method-name">close_channel</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Closes the <a href="../SFTP.html">SFTP</a> connection, but leaves the SSH
+connection open.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000548" class="method-detail">
+        <a name="M000548"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000548.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000548.html');return false;">
+          <span class="method-name">connect</span><span class="method-args">() {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Waits for the underlying driver to reach a <a
+href="Session.html#M000542">state</a> of :open (or :closed). This makes it
+easier to use the <a href="../SFTP.html">SFTP</a> routines synchronously
+without using the block form:
+</p>
+<pre>
+  sftp = Net::SFTP::Session.new( ssh_session )
+  sftp.connect
+  puts sftp.realpath( &quot;.&quot; )
+</pre>
+<p>
+Without the call to <a href="Session.html#M000548">connect</a>, the call to
+realpath would fail because the <a href="../SFTP.html">SFTP</a> protocol
+has not yet been negotiated and no underlying driver has been selected.
+</p>
+<p>
+If no block is given, it returns <tt>self</tt>, so it can be chained easily
+to other method calls. If a block <em>is</em> given, the session is yielded
+to the block as soon as the driver successfully reports it&#8216;s <a
+href="Session.html#M000542">state</a> as <tt>open</tt>, with the
+session&#8216;s <a href="Session.html#M000543">channel</a> being closed
+automatically when the block finishes.
+</p>
+<pre>
+  require 'net/ssh'
+  require 'net/sftp'
+
+  Net::SSH.start( 'localhost' ) do |session|
+    session.sftp.connect do |sftp|
+      puts sftp.realpath( &quot;.&quot; )
+    end
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000556" class="method-detail">
+        <a name="M000556"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000556.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000556.html');return false;">
+          <span class="method-name">do_attrs</span><span class="method-args">( driver, id, attributes )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the underlying <a href="../SFTP.html">SFTP</a> protocol layer
+when a <a href="../SFTP.html">SFTP</a> attrs packet is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000552" class="method-detail">
+        <a name="M000552"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000552.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000552.html');return false;">
+          <span class="method-name">do_data</span><span class="method-args">( driver, id, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the underlying <a href="../SFTP.html">SFTP</a> protocol layer
+when a <a href="../SFTP.html">SFTP</a> data packet is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000554" class="method-detail">
+        <a name="M000554"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000554.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000554.html');return false;">
+          <span class="method-name">do_handle</span><span class="method-args">( driver, id, handle )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the underlying <a href="../SFTP.html">SFTP</a> protocol layer
+when a <a href="../SFTP.html">SFTP</a> handle packet is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000555" class="method-detail">
+        <a name="M000555"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000555.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000555.html');return false;">
+          <span class="method-name">do_name</span><span class="method-args">( driver, id, items )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the underlying <a href="../SFTP.html">SFTP</a> protocol layer
+when a <a href="../SFTP.html">SFTP</a> name packet is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000553" class="method-detail">
+        <a name="M000553"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000553.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000553.html');return false;">
+          <span class="method-name">do_status</span><span class="method-args">( driver, id, code, message, language )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked by the underlying <a href="../SFTP.html">SFTP</a> protocol layer
+when a <a href="../SFTP.html">SFTP</a> status packet is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000550" class="method-detail">
+        <a name="M000550"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000550.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000550.html');return false;">
+          <span class="method-name">get_file</span><span class="method-args">( remote_path, local_path )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves the given remote file to the given local path. This will
+overwrite any file at the local path name. The remote file must exist.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000547" class="method-detail">
+        <a name="M000547"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000547.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000547.html');return false;">
+          <span class="method-name">loop</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to <a href="Session.html#M000547">Net::SSH::Session#loop</a>.
+Causes the underlying SSH connection to process events as long as the given
+block returns <tt>true</tt>, or (if no block is given) until there are no
+more open channels.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000557" class="method-detail">
+        <a name="M000557"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000557.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000557.html');return false;">
+          <span class="method-name">method_missing</span><span class="method-args">( sym, *args, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates the message to the operation that has been registered with the
+given name. If no such operation exists, control is passed to the
+superclass&#8217; implementation of <a
+href="Session.html#M000557">method_missing</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000549" class="method-detail">
+        <a name="M000549"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000549.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000549.html');return false;">
+          <span class="method-name">open_handle</span><span class="method-args">( path, flags=IO::RDONLY, mode=0660 ) {|handle| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Opens the given remote file and returns a handle to it, which may be used
+with other operations (read, write, etc.). If a block is given, the handle
+will be yielded to it and closed when the block finishes, otherwise the
+handle will be returned. If the flags parameter is a numeric value, it must
+be a combination of IO constants, otherwise, it should be a string such as
+given to File.open.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000551" class="method-detail">
+        <a name="M000551"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000551.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000551.html');return false;">
+          <span class="method-name">put_file</span><span class="method-args">( local_path, remote_path )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This stores the given local file at the given remote path. This will
+overwrite any file at the remote path name. The local file must exist.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000546" class="method-detail">
+        <a name="M000546"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000546.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000546.html');return false;">
+          <span class="method-name">register</span><span class="method-args">( id, handler )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Registers the given handler with the given request id. This is used
+internally by the operations, so that the session knows who to delegate a
+response to that has been received from the server.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000558" class="method-detail">
+        <a name="M000558"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000558.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000558.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">( sym )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the object responds to the given symbol, or if
+there is an operation registered under the given symbol.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000542" class="method-detail">
+        <a name="M000542"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000542.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000542.html');return false;">
+          <span class="method-name">state</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the <a href="Session.html#M000542">state</a> of the <a
+href="../SFTP.html">SFTP</a> connection. (See
+Net::SFTP::Protocol::Driver#state.)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000559" class="method-detail">
+        <a name="M000559"></a>
+
+        <div class="method-heading">
+          <a href="Session.src/M000559.html" target="Code" class="method-signature"
+            onclick="popupCode('Session.src/M000559.html');return false;">
+          <span class="method-name">support?</span><span class="method-args">( sym )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if the underlying driver responds to the given
+symbol. This can be used by clients to determine whether the <a
+href="../SFTP.html">SFTP</a> protocol version in use supports a particular
+operation.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

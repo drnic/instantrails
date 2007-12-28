@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a collection of pipeline elements. Elements may be added to the pipeline, and then returned as a single object representing the chain of pipeline elements.
+constants: []
+
+full_name: Needle::Pipeline::Collection
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: chain_to
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+name: Collection
+superclass: Object

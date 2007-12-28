@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application [FXApp]
+  name: app
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: User data [Object]
+  name: userData
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: XID handle for the server-side resource [Integer]
+  name: xid
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Encapsulates a server side resource.
+constants: []
+
+full_name: Fox::FXId
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: created?
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: detach
+name: FXId
+superclass: FXObject

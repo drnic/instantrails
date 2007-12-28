@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>assert_select_rjs (ActionController::Assertions::SelectorAssertions)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/assertions/selector_assertions.rb, line 397</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert_select_rjs</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">args</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">rjs_type</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">arg</span>      = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+
+        <span class="ruby-comment cmt"># If the first argument is a symbol, it's the type of RJS statement we're looking</span>
+        <span class="ruby-comment cmt"># for (update, replace, insertion, etc). Otherwise, we're looking for just about</span>
+        <span class="ruby-comment cmt"># any RJS statement.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Symbol</span>)
+          <span class="ruby-identifier">rjs_type</span> = <span class="ruby-identifier">arg</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rjs_type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">:insert</span>
+            <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+            <span class="ruby-identifier">insertion</span> = <span class="ruby-node">&quot;insert_#{arg}&quot;</span>.<span class="ruby-identifier">to_sym</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unknown RJS insertion type #{arg}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">RJS_STATEMENTS</span>[<span class="ruby-identifier">insertion</span>]
+            <span class="ruby-identifier">statement</span> = <span class="ruby-node">&quot;(#{RJS_STATEMENTS[insertion]})&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;Unknown RJS statement type #{rjs_type}&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">RJS_STATEMENTS</span>[<span class="ruby-identifier">rjs_type</span>]
+            <span class="ruby-identifier">statement</span> = <span class="ruby-node">&quot;(#{RJS_STATEMENTS[rjs_type]})&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">statement</span> = <span class="ruby-node">&quot;#{RJS_STATEMENTS[:any]}&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Next argument we're looking for is the element identifier. If missing, we pick</span>
+        <span class="ruby-comment cmt"># any element.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+          <span class="ruby-identifier">id</span> = <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">quote</span>(<span class="ruby-identifier">arg</span>)
+          <span class="ruby-identifier">arg</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">id</span> = <span class="ruby-value str">&quot;[^\&quot;]*&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">pattern</span> =
+          <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rjs_type</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:chained_replace</span>, <span class="ruby-identifier">:chained_replace_html</span>
+              <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;\\$\\(\&quot;#{id}\&quot;\\)#{statement}\\(#{RJS_PATTERN_HTML}\\)&quot;</span>, <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTILINE</span>)
+            <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:remove</span>, <span class="ruby-identifier">:show</span>, <span class="ruby-identifier">:hide</span>, <span class="ruby-identifier">:toggle</span>
+              <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{statement}\\(\&quot;#{id}\&quot;\\)&quot;</span>)
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{statement}\\(\&quot;#{id}\&quot;, #{RJS_PATTERN_HTML}\\)&quot;</span>, <span class="ruby-constant">Regexp</span><span class="ruby-operator">::</span><span class="ruby-constant">MULTILINE</span>)
+          <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Duplicate the body since the next step involves destroying it.</span>
+        <span class="ruby-identifier">matches</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">rjs_type</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:remove</span>, <span class="ruby-identifier">:show</span>, <span class="ruby-identifier">:hide</span>, <span class="ruby-identifier">:toggle</span>
+            <span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">pattern</span>)
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-ivar">@response</span>.<span class="ruby-identifier">body</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-identifier">pattern</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">html</span> = <span class="ruby-identifier">unescape_rjs</span>(<span class="ruby-identifier">$2</span>)
+              <span class="ruby-identifier">matches</span> <span class="ruby-operator">||=</span> []
+              <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">concat</span> <span class="ruby-constant">HTML</span><span class="ruby-operator">::</span><span class="ruby-constant">Document</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">html</span>).<span class="ruby-identifier">root</span>.<span class="ruby-identifier">children</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">n</span><span class="ruby-operator">|</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">tag?</span> }
+              <span class="ruby-value str">&quot;&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span>
+          <span class="ruby-identifier">assert_block</span>(<span class="ruby-value str">&quot;&quot;</span>) { <span class="ruby-keyword kw">true</span> } <span class="ruby-comment cmt"># to count the assertion</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-operator">!</span>([<span class="ruby-identifier">:remove</span>, <span class="ruby-identifier">:show</span>, <span class="ruby-identifier">:hide</span>, <span class="ruby-identifier">:toggle</span>].<span class="ruby-identifier">include?</span> <span class="ruby-identifier">rjs_type</span>)
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-identifier">in_scope</span>, <span class="ruby-ivar">@selected</span> = <span class="ruby-ivar">@selected</span>, <span class="ruby-identifier">matches</span>
+              <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">matches</span>
+            <span class="ruby-keyword kw">ensure</span>
+              <span class="ruby-ivar">@selected</span> = <span class="ruby-identifier">in_scope</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">matches</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-comment cmt"># RJS statement not found.</span>
+          <span class="ruby-identifier">flunk</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">shift</span> <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;No RJS statement that replaces or inserts HTML content.&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

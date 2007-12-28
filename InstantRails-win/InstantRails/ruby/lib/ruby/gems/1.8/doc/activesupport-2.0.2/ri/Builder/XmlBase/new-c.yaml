@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create an XML markup builder.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "out:"
+    body: Object receiving the markup. <tt>out</tt> must respond to <tt>&lt;&lt;</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "indent:"
+    body: Number of spaces used for indentation (0 implies no indentation and no line breaks).
+  - !ruby/struct:SM::Flow::LI 
+    label: "initial:"
+    body: Level of initial indentation.
+  type: :NOTE
+full_name: Builder::XmlBase::new
+is_singleton: true
+name: new
+params: (indent=0, initial=0)
+visibility: public

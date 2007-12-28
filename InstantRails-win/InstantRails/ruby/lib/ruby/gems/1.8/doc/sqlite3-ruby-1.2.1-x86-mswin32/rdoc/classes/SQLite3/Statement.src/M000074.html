@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (SQLite3::Statement)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sqlite3/statement.rb, line 65</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">db</span>, <span class="ruby-identifier">sql</span>, <span class="ruby-identifier">utf16</span>=<span class="ruby-keyword kw">false</span> )
+      <span class="ruby-ivar">@db</span> = <span class="ruby-identifier">db</span>
+      <span class="ruby-ivar">@driver</span> = <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">driver</span>
+      <span class="ruby-ivar">@closed</span> = <span class="ruby-keyword kw">false</span>
+      <span class="ruby-ivar">@results</span> = <span class="ruby-ivar">@columns</span> = <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-identifier">result</span>, <span class="ruby-ivar">@handle</span>, <span class="ruby-ivar">@remainder</span> = <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">prepare</span>( <span class="ruby-ivar">@db</span>.<span class="ruby-identifier">handle</span>, <span class="ruby-identifier">sql</span> )
+      <span class="ruby-constant">Error</span>.<span class="ruby-identifier">check</span>( <span class="ruby-identifier">result</span>, <span class="ruby-ivar">@db</span> )
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

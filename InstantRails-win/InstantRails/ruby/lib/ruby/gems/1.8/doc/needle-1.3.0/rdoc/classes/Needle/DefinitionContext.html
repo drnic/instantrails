@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Needle::DefinitionContext</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Needle::DefinitionContext</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/needle/definition-context_rb.html">
+                lib/needle/definition-context.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This class is used by the <a
+href="Container.html#M000053">Container#define</a>! and <a
+href="Container.html#M000056">Container#namespace</a>! methods to allow an
+<tt>instance_eval</tt>&#8216;d block to create <a
+href="DefinitionContext.html#M000084">new</a> service points simply by
+invoking imaginary methods. It is basically an empty shell, with almost all
+of the builtin methods removed from it. (This allows services like
+&quot;hash&quot; and &quot;print&quot; to be defined, where they would
+normally conflict with the Kernel methods of the same name.)
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000094">has_key?</a>&nbsp;&nbsp;
+      <a href="#M000086">intercept</a>&nbsp;&nbsp;
+      <a href="#M000095">knows_key?</a>&nbsp;&nbsp;
+      <a href="#M000096">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000087">namespace</a>&nbsp;&nbsp;
+      <a href="#M000089">namespace!</a>&nbsp;&nbsp;
+      <a href="#M000090">namespace_define</a>&nbsp;&nbsp;
+      <a href="#M000088">namespace_define!</a>&nbsp;&nbsp;
+      <a href="#M000084">new</a>&nbsp;&nbsp;
+      <a href="#M000091">require</a>&nbsp;&nbsp;
+      <a href="#M000085">this_container</a>&nbsp;&nbsp;
+      <a href="#M000092">use</a>&nbsp;&nbsp;
+      <a href="#M000093">use!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000084" class="method-detail">
+        <a name="M000084"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000084.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000084.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( container )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="DefinitionContext.html#M000084">new</a> <a
+href="DefinitionContext.html">DefinitionContext</a> that wraps the given
+container. All operations performed on this context will be delegated to
+the container.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000094" class="method-detail">
+        <a name="M000094"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000094.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000094.html');return false;">
+          <span class="method-name">has_key?</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to Container#has_key?.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000086" class="method-detail">
+        <a name="M000086"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000086.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000086.html');return false;">
+          <span class="method-name">intercept</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000060">Container#intercept</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000095" class="method-detail">
+        <a name="M000095"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000095.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000095.html');return false;">
+          <span class="method-name">knows_key?</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to Container#knows_key?.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000096" class="method-detail">
+        <a name="M000096"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000096.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000096.html');return false;">
+          <span class="method-name">method_missing</span><span class="method-args">( sym, *args, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Any method invocation with no block and no parameters is interpreted to be
+a service reference on the wrapped container, and delegates to <a
+href="Container.html">Container</a>#[]. If the block is not given but the
+args are not empty, a NoMethodError will be raised.
+</p>
+<p>
+If a block is given, this delegates to <a
+href="Container.html#M000055">Container#register</a>, leaving all
+parameters in place.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000087" class="method-detail">
+        <a name="M000087"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000087.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000087.html');return false;">
+          <span class="method-name">namespace</span><span class="method-args">( *parms, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000056">Container#namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000089" class="method-detail">
+        <a name="M000089"></a>
+
+        <div class="method-heading">
+          <span class="method-name">namespace!</span><span class="method-args">( *parms, &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="DefinitionContext.html#M000090">namespace_define</a>!
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000090" class="method-detail">
+        <a name="M000090"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000090.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000090.html');return false;">
+          <span class="method-name">namespace_define</span><span class="method-args">( *parms, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000053">Container#define</a> on the <a
+href="DefinitionContext.html#M000084">new</a> <a
+href="DefinitionContext.html#M000087">namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000088" class="method-detail">
+        <a name="M000088"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000088.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000088.html');return false;">
+          <span class="method-name">namespace_define!</span><span class="method-args">( *parms, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a
+href="Container.html#M000059">Container#namespace_define</a>!.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000091" class="method-detail">
+        <a name="M000091"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000091.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000091.html');return false;">
+          <span class="method-name">require</span><span class="method-args">( *parms )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000068">Container#require</a> on the
+current container.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000085" class="method-detail">
+        <a name="M000085"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000085.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000085.html');return false;">
+          <span class="method-name">this_container</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A way to access the container reference being operated on from within the
+context.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000092" class="method-detail">
+        <a name="M000092"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000092.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000092.html');return false;">
+          <span class="method-name">use</span><span class="method-args">( opts, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000071">Container#use</a> on the
+current container, but yields the definition context instead of the
+container.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000093" class="method-detail">
+        <a name="M000093"></a>
+
+        <div class="method-heading">
+          <a href="DefinitionContext.src/M000093.html" target="Code" class="method-signature"
+            onclick="popupCode('DefinitionContext.src/M000093.html');return false;">
+          <span class="method-name">use!</span><span class="method-args">( opts ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegate to <a href="Container.html#M000071">Container#use</a>! on the
+current container, but yields the definition context instead of the
+container.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

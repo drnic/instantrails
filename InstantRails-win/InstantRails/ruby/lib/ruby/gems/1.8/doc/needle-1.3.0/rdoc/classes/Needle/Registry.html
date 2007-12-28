@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Needle::Registry</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Needle::Registry</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/needle/registry_rb.html">
+                lib/needle/registry.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Container.html">
+                Container
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Registry.html">Registry</a> is a specialization of <a
+href="Container.html">Container</a>, with additional functionality for
+bootstrapping basic services into a <a href="Registry.html#M000046">new</a>
+registry. It also supports a <a href="Registry.html#M000045">define</a>!
+method for easily registering <a href="Registry.html#M000046">new</a>
+services.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  require 'needle'
+
+  registry = Needle::Registry.new
+  registry.register( :foo ) { Foo.new }
+  registry.register( :bar ) { |c| Bar.new( c.foo ) }
+
+  bar = registry.bar
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000045">define</a>&nbsp;&nbsp;
+      <a href="#M000044">define!</a>&nbsp;&nbsp;
+      <a href="#M000047">fullname</a>&nbsp;&nbsp;
+      <a href="#M000046">new</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000045" class="method-detail">
+        <a name="M000045"></a>
+
+        <div class="method-heading">
+          <a href="Registry.src/M000045.html" target="Code" class="method-signature"
+            onclick="popupCode('Registry.src/M000045.html');return false;">
+          <span class="method-name">define</span><span class="method-args">( *parms, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Instantiate a <a href="Registry.html#M000046">new</a> <a
+href="Registry.html">Registry</a> (via <a
+href="Registry.html#M000046">new</a>) and immediately invoke <a
+href="Registry.html#M000045">define</a> using the given block.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  registry = Needle::Registry.define do |b|
+    b.add { Adder.new }
+    ...
+  end
+
+  adder = registry.add
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000044" class="method-detail">
+        <a name="M000044"></a>
+
+        <div class="method-heading">
+          <a href="Registry.src/M000044.html" target="Code" class="method-signature"
+            onclick="popupCode('Registry.src/M000044.html');return false;">
+          <span class="method-name">define!</span><span class="method-args">( *parms, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Instantiate a <a href="Registry.html#M000046">new</a> <a
+href="Registry.html">Registry</a> (via <a
+href="Registry.html#M000046">new</a>) and immediately invoke <a
+href="Registry.html#M000045">define</a>! using the given block.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  registry = Needle::Registry.define! do
+    add { Adder.new }
+    ...
+  end
+
+  adder = registry.add
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000046" class="method-detail">
+        <a name="M000046"></a>
+
+        <div class="method-heading">
+          <a href="Registry.src/M000046.html" target="Code" class="method-signature"
+            onclick="popupCode('Registry.src/M000046.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( opts={} ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Instantiate a <a href="Registry.html#M000046">new</a> <a
+href="Registry.html">Registry</a>. The options hash may include the
+following keys:
+</p>
+<table>
+<tr><td valign="top"><tt>:logs</tt>:</td><td>options used to initialize the logger factory. The value to this key should
+be another hash.
+
+</td></tr>
+<tr><td valign="top"><tt>:parent</tt>:</td><td>The parent container of this registry.
+
+</td></tr>
+<tr><td valign="top"><tt>:name</tt>:</td><td>The name of this registry.
+
+</td></tr>
+</table>
+<p>
+If a block is given, the constructed registry instance is yielded to it.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  registry = Needle::Registry.new
+</pre>
+<p>
+or
+</p>
+<pre>
+  registry = Needle::Registry.new do |reg|
+    reg.register( :add ) { Adder.new }
+  end
+</pre>
+<p>
+or
+</p>
+<pre>
+  registry = Needle::Registry.new(
+    :logs =&gt; { :filename =&gt; &quot;/dev/null&quot; }
+  )
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000047" class="method-detail">
+        <a name="M000047"></a>
+
+        <div class="method-heading">
+          <a href="Registry.src/M000047.html" target="Code" class="method-signature"
+            onclick="popupCode('Registry.src/M000047.html');return false;">
+          <span class="method-name">fullname</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>nil</tt>, unless the registry has a parent, in which case it
+acts like <a href="Container.html#M000051">Container#fullname</a>.
+Registries are usually unnamed containers.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Module to allow validation of ActiveResource objects, which creates an Errors instance for every resource. Methods are implemented by overriding +Base#validate+ or its variants Each of these methods can inspect the state of the object, which usually means ensuring that a number of attributes have a certain value (such as not empty, within a given range, matching a certain regular expression and so on).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveResource::Base\n     self.site = &quot;http://www.localhost.com:3000/&quot;\n     protected\n       def validate\n         errors.add_on_empty %w( first_name last_name )\n         errors.add(&quot;phone_number&quot;, &quot;has invalid format&quot;) unless phone_number =~ /[0-9]*/\n       end\n\n       def validate_on_create # is only run the first time a new object is saved\n         unless valid_member?(self)\n           errors.add(&quot;membership_discount&quot;, &quot;has expired&quot;)\n         end\n       end\n\n       def validate_on_update\n         errors.add_to_base(&quot;No changes have occurred&quot;) if unchanged_attributes?\n       end\n  end\n\n  person = Person.new(&quot;first_name&quot; =&gt; &quot;Jim&quot;, &quot;phone_number&quot; =&gt; &quot;I will not tell you.&quot;)\n  person.save                         # =&gt; false (and doesn't do the save)\n  person.errors.empty?                # =&gt; false\n  person.errors.count                 # =&gt; 2\n  person.errors.on &quot;last_name&quot;        # =&gt; &quot;can't be empty&quot;\n  person.attributes = { &quot;last_name&quot; =&gt; &quot;Halpert&quot;, &quot;phone_number&quot; =&gt; &quot;555-5555&quot; }\n  person.save                         # =&gt; true (and person is now saved to the remote service)\n"
+constants: []
+
+full_name: ActiveResource::Validations
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: errors
+- !ruby/object:RI::MethodSummary 
+  name: save_with_validation
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+name: Validations
+superclass: 

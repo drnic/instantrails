@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Net::SFTP::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/session.rb, line 36</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>( <span class="ruby-identifier">session</span> )
+      <span class="ruby-ivar">@session</span> = <span class="ruby-identifier">session</span>
+      <span class="ruby-ivar">@log</span> = <span class="ruby-ivar">@session</span>.<span class="ruby-identifier">registry</span>.<span class="ruby-identifier">log_for</span>( <span class="ruby-value str">&quot;sftp.session&quot;</span> )
+
+      <span class="ruby-ivar">@session</span>.<span class="ruby-identifier">registry</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:sftp</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/sftp/protocol/services&quot;</span>, <span class="ruby-value str">&quot;Net::SFTP::Protocol&quot;</span>
+        <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/sftp/operations/services&quot;</span>, <span class="ruby-value str">&quot;Net::SFTP::Operations&quot;</span>
+
+        <span class="ruby-comment cmt"># register a reference to myself for other services to be able to</span>
+        <span class="ruby-comment cmt"># access me.</span>
+        <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">session</span>( <span class="ruby-identifier">:pipeline</span> =<span class="ruby-operator">&gt;</span> [] ) { <span class="ruby-keyword kw">self</span> }
+
+        <span class="ruby-ivar">@driver</span> = <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">protocol</span>.<span class="ruby-identifier">driver</span>
+        <span class="ruby-ivar">@driver</span>.<span class="ruby-identifier">on_open</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">d</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">d</span>.<span class="ruby-identifier">on_attrs</span>( <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>( <span class="ruby-identifier">:do_attrs</span>  ))
+          <span class="ruby-identifier">d</span>.<span class="ruby-identifier">on_data</span>(  <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>( <span class="ruby-identifier">:do_data</span>   ))
+          <span class="ruby-identifier">d</span>.<span class="ruby-identifier">on_handle</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>( <span class="ruby-identifier">:do_handle</span> ))
+          <span class="ruby-identifier">d</span>.<span class="ruby-identifier">on_name</span>(  <span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>( <span class="ruby-identifier">:do_name</span>   ))
+          <span class="ruby-identifier">d</span>.<span class="ruby-identifier">on_status</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">method</span>( <span class="ruby-identifier">:do_status</span> ))
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span>
+            <span class="ruby-keyword kw">ensure</span>
+              <span class="ruby-identifier">d</span>.<span class="ruby-identifier">close</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-ivar">@operations</span> = <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">operations</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@requests</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+
+      <span class="ruby-ivar">@session</span>.<span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

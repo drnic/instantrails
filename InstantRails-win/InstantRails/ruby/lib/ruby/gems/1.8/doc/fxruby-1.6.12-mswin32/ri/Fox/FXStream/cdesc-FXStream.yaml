@@ -1,0 +1,131 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Parent object [FXObject]
+  name: container
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Stream direction, one of <tt>FXStreamSave</tt>, <tt>FXStreamLoad</tt> or <tt>FXStreamDead</tt>.
+  name: direction
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Stream position (an offset from the beginning of the stream) [Integer]
+  name: position
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Available buffer space
+  name: space
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Stream status [Integer]
+  name: status
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A stream is a way to serialize data and objects into a byte stream. Each item of data that is saved or loaded from the stream may be byte-swapped, thus allowing little-endian machines to read data produced on big endian ones and vice-versa. Data is serialized exactly as-is. There are no tags or other markers inserted into the stream; thus, the stream may be used to save or load arbitrary binary data. Objects derived from FXObjects may be serialized also; whenever a reference to an object is serialized, a table is consulted to determine if the same object has been encountered previously; if not, the object is added to the table and then its contents are serialized. If the object has been encountered before, only a reference to the object is serialized. When loading back a serialized object, new instances are constructed using the default constructor, and subsequently the object's contents are loaded. A special container object may be passed in which is placed in the table as if it had been encountered before; this will cause only references to this object to be saved. The container object is typically the top-level document object which manages all objects contained by it. Additional objects may be added using addObject(); these will not be actually saved or loaded.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Stream status codes
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamOK+:"
+    body: OK
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamEnd+:"
+    body: Try read past end of stream
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamFull+:"
+    body: Filled up stream buffer or disk full
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamNoWrite+:"
+    body: Unable to open for write
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamNoRead+:"
+    body: Unable to open for read
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamFormat+:"
+    body: Stream format error
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamUnknown+:"
+    body: Trying to read unknown class
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamAlloc+:"
+    body: Alloc failed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamFailure+:"
+    body: General failure
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Stream data flow direction
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamDead+:"
+    body: Unopened stream
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamSave+:"
+    body: Saving stuff to stream
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXStreamLoad+:"
+    body: Loading stuff from stream
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Stream seeking
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXFromStart+:"
+    body: Seek from start position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXFromCurrent+:"
+    body: Seek from current position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FXFromEnd+:"
+    body: Seek from end position
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXStream
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: bigEndian=
+- !ruby/object:RI::MethodSummary 
+  name: bigEndian?
+- !ruby/object:RI::MethodSummary 
+  name: bytesSwapped=
+- !ruby/object:RI::MethodSummary 
+  name: bytesSwapped?
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: eof?
+- !ruby/object:RI::MethodSummary 
+  name: error=
+- !ruby/object:RI::MethodSummary 
+  name: flush
+- !ruby/object:RI::MethodSummary 
+  name: getSpace
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: setSpace
+name: FXStream
+superclass: Object

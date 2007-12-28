@@ -1,0 +1,157 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: acl
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: atime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: atime_nseconds
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ctime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ctime_nseconds
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: extended
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: group
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: mtime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: mtime_nseconds
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: owner
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: permissions
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: size
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: type
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: buffers
+- !ruby/object:RI::MethodSummary 
+  name: empty
+- !ruby/object:RI::MethodSummary 
+  name: from_buffer
+- !ruby/object:RI::MethodSummary 
+  name: from_hash
+- !ruby/object:RI::MethodSummary 
+  name: init
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Version 4 of the SFTP protocol made some pretty significant alterations to the File Attributes data type. This encapsulates those changes.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_SIZE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_PERMISSIONS
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_ACCESSTIME
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_CREATETIME
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_MODIFYTIME
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_ACL
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_OWNERGROUP
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_SUBSECOND_TIMES
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_EXTENDED
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ACL
+  value: Struct.new( :type, :flag, :mask, :who )
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_REGULAR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_DIRECTORY
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_SYMLINK
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_SPECIAL
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_UNKNOWN
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_SOCKET
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_CHAR_DEVICE
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_BLOCK_DEVICE
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: T_FIFO
+  value: "9"
+full_name: Net::SFTP::Protocol::V_04::Attributes
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: buffers
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: Attributes
+superclass: Object

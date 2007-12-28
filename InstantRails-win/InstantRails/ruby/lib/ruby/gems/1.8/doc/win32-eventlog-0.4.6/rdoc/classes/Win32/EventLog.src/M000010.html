@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>add_event_source (Win32::EventLog)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/eventlog.rb, line 165</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">add_event_source</span>(<span class="ruby-identifier">args</span>)
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+         
+         <span class="ruby-identifier">hkey</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         
+         <span class="ruby-identifier">valid_keys</span> = <span class="ruby-node">%w/source key_name category_count event_message_file
+            category_message_file supported_types/</span>
+
+         <span class="ruby-identifier">key_base</span> = <span class="ruby-value str">&quot;SYSTEM\\CurrentControlSet\\Services\\EventLog\\&quot;</span>
+
+         <span class="ruby-comment cmt"># Default values</span>
+         <span class="ruby-identifier">hash</span> = {
+            <span class="ruby-value str">'source'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'Application'</span>,
+            <span class="ruby-value str">'supported_types'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-constant">ERROR</span> <span class="ruby-operator">|</span> <span class="ruby-constant">WARN</span> <span class="ruby-operator">|</span> <span class="ruby-constant">INFO</span>
+         }
+         
+         <span class="ruby-comment cmt"># Validate the keys, and convert symbols and case to lowercase strings.     </span>
+         <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;invalid key '#{key}'&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+         }
+         
+         <span class="ruby-comment cmt"># The key_name must be specified</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'key_name'</span>]
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-value str">'no event_type specified'</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key_base</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'source'</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\\&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'key_name'</span>]
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RegCreateKey</span>(<span class="ruby-constant">HKEY_LOCAL_MACHINE</span>, <span class="ruby-identifier">key</span>, <span class="ruby-identifier">hkey</span>) <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_SUCCESS</span>
+            <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegCreateKey() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">hkey</span> = <span class="ruby-identifier">hkey</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>]
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'category_count'</span>]
+            <span class="ruby-identifier">data</span> = [<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'category_count'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+            
+            <span class="ruby-identifier">rv</span> = <span class="ruby-constant">RegSetValueEx</span>(
+               <span class="ruby-identifier">hkey</span>,
+               <span class="ruby-value str">'CategoryCount'</span>,
+               <span class="ruby-value">0</span>,
+               <span class="ruby-constant">REG_DWORD</span>,
+               <span class="ruby-identifier">data</span>,
+               <span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span>
+            )
+            
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_SUCCESS</span>
+               <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegSetValueEx() failed: '</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-constant">RegCloseKey</span>(<span class="ruby-identifier">hkey</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'category_message_file'</span>]
+            <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'category_message_file'</span>])
+            
+            <span class="ruby-identifier">rv</span> = <span class="ruby-constant">RegSetValueEx</span>(
+               <span class="ruby-identifier">hkey</span>,
+               <span class="ruby-value str">'CategoryMessageFile'</span>,
+               <span class="ruby-value">0</span>,
+               <span class="ruby-constant">REG_EXPAND_SZ</span>,
+               <span class="ruby-identifier">data</span>,
+               <span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span>
+            )
+            
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_SUCCESS</span>
+               <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegSetValueEx() failed: '</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-constant">RegCloseKey</span>(<span class="ruby-identifier">hkey</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'event_message_file'</span>]
+            <span class="ruby-identifier">data</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'event_message_file'</span>])
+            
+            <span class="ruby-identifier">rv</span> = <span class="ruby-constant">RegSetValueEx</span>(
+               <span class="ruby-identifier">hkey</span>,
+               <span class="ruby-value str">'EventMessageFile'</span>,
+               <span class="ruby-value">0</span>,
+               <span class="ruby-constant">REG_EXPAND_SZ</span>,
+               <span class="ruby-identifier">data</span>,
+               <span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span>
+            )
+            
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_SUCCESS</span>
+               <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegSetValueEx() failed: '</span>, <span class="ruby-identifier">get_last_error</span>
+               <span class="ruby-constant">RegCloseKey</span>(<span class="ruby-identifier">hkey</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">data</span> = [<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'supported_types'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">rv</span> = <span class="ruby-constant">RegSetValueEx</span>(
+            <span class="ruby-identifier">hkey</span>,
+            <span class="ruby-value str">'TypesSupported'</span>,
+            <span class="ruby-value">0</span>,
+            <span class="ruby-constant">REG_DWORD</span>,
+            <span class="ruby-identifier">data</span>,
+            <span class="ruby-identifier">data</span>.<span class="ruby-identifier">size</span>
+         )
+            
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">!=</span> <span class="ruby-constant">ERROR_SUCCESS</span>
+            <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegSetValueEx() failed: '</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-constant">RegCloseKey</span>(<span class="ruby-identifier">hkey</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-constant">RegCloseKey</span>(<span class="ruby-identifier">hkey</span>)
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

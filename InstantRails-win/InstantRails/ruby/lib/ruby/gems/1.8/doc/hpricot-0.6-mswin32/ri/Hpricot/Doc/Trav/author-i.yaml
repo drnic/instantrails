@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>author</tt> searches author and return it as a text. It returns nil if not found.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>author</tt> searchs following information.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "-"
+    body: "&lt;meta name=&quot;author&quot; content=&quot;author-name&quot;&gt; in HTML"
+  - !ruby/struct:SM::Flow::LI 
+    label: "-"
+    body: "&lt;link rev=&quot;made&quot; title=&quot;author-name&quot;&gt; in HTML"
+  - !ruby/struct:SM::Flow::LI 
+    label: "-"
+    body: "&lt;dc:creator&gt;author-name&lt;/dc:creator&gt; in RSS"
+  - !ruby/struct:SM::Flow::LI 
+    label: "-"
+    body: "&lt;dc:publisher&gt;author-name&lt;/dc:publisher&gt; in RSS"
+  type: :BULLET
+full_name: Hpricot::Doc::Trav#author
+is_singleton: false
+name: author
+params: ()
+visibility: public

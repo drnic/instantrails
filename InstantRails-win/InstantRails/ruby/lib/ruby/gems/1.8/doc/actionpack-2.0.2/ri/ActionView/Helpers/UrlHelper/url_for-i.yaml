@@ -1,0 +1,54 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the URL for the set of <tt>options</tt> provided. This takes the same options as url_for in ActionController (see the documentation for ActionController::Base#url_for). Note that by default <tt>:only_path</tt> is <tt>true</tt> so you'll get the relative /controller/action instead of the fully qualified URL like http://example.com/controller/action.
+- !ruby/struct:SM::Flow::P 
+  body: When called from a view, url_for returns an HTML escaped url. If you need an unescaped url, pass :escape =&gt; false in the <tt>options</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:anchor</tt> -- specifies the anchor name to be appended to the path.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:only_path</tt> -- if true, returns the relative URL (omitting the protocol, host name, and port) (<tt>true</tt> by default unless <tt>:host</tt> is specified)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:trailing_slash</tt> -- if true, adds a trailing slash, as in &quot;/archive/2005/&quot;. Note that this is currently not recommended since it breaks caching.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:host</tt> -- overrides the default (current) host if provided
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:protocol</tt> -- overrides the default (current) protocol if provided
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:user</tt> -- Inline HTTP authentication (only plucked out if :password is also present)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:password</tt> -- Inline HTTP authentication (only plucked out if :user is also present)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:escape</tt> -- Determines whether the returned URL will be HTML escaped or not (<tt>true</tt> by default)
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Relying on named routes
+- !ruby/struct:SM::Flow::P 
+  body: If you instead of a hash pass a record (like an Active Record or Active Resource) as the options parameter, you'll trigger the named route for that record. The lookup will happen on the name of the class. So passing a Workshop object will attempt to use the workshop_path route. If you have a nested route, such as admin_workshop_path you'll have to call that explicitly (it's impossible for url_for to guess that route).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= url_for(:action =&gt; 'index') %&gt;\n  # =&gt; /blog/\n\n  &lt;%= url_for(:action =&gt; 'find', :controller =&gt; 'books') %&gt;\n  # =&gt; /books/find\n\n  &lt;%= url_for(:action =&gt; 'login', :controller =&gt; 'members', :only_path =&gt; false, :protocol =&gt; 'https') %&gt;\n  # =&gt; https://www.railsapplication.com/members/login/\n\n  &lt;%= url_for(:action =&gt; 'play', :anchor =&gt; 'player') %&gt;\n  # =&gt; /messages/play/#player\n\n  &lt;%= url_for(:action =&gt; 'checkout', :anchor =&gt; 'tax&amp;ship') %&gt;\n  # =&gt; /testing/jump/#tax&amp;amp;ship\n\n  &lt;%= url_for(:action =&gt; 'checkout', :anchor =&gt; 'tax&amp;ship', :escape =&gt; false) %&gt;\n  # =&gt; /testing/jump/#tax&amp;ship\n\n  &lt;%= url_for(Workshop.new) %&gt;\n  # relies on Workshop answering a new_record? call (and in this case returning true)\n  # =&gt; /workshops\n\n  &lt;%= url_for(@workshop) %&gt;\n  # calls @workshop.to_s\n  # =&gt; /workshops/5\n"
+full_name: ActionView::Helpers::UrlHelper#url_for
+is_singleton: false
+name: url_for
+params: (options = {})
+visibility: public

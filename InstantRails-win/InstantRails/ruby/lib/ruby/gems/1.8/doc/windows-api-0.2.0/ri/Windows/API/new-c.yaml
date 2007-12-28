@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates and returns a new Windows::API object. The <tt>func</tt> is the name of the Windows function.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>proto</tt> is the function prototype for <tt>func</tt>. This can be a string or an array of characters. The possible valid characters are 'I' (integer), 'B' (BOOL), 'L' (long), 'V' (void), or 'P' (pointer). The default is void ('V').
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>rtype</tt> argument is the return type for the function. The valid characters are the same as for the <tt>proto</tt>. The default is long ('L').
+- !ruby/struct:SM::Flow::P 
+  body: The 'B' (BOOL) return type is the same as 'I' (Integer). This is significant only if the API.auto_method option is set to true, in which case it alters the generated method definition slightly. See the API.auto_method= class method for more information.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>dll</tt> is the name of the DLL file that the function is exported from. The default is 'kernel32'.
+- !ruby/struct:SM::Flow::P 
+  body: If the function cannot be found then an API::Error is raised (a subclass of RuntimeError).
+full_name: Windows::API::new
+is_singleton: true
+name: new
+params: |
+  API.new(func, proto='V', rtype='L', dll='kernel32')
+
+visibility: public

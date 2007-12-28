@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new SFTP protocol driver object on the given SSH connection. <tt>buffers</tt> is a reference to a buffer factory, <tt>version</tt> is the highest supported SFTP protocol version, <tt>dispatchers</tt> is a Proc object that returns a dispatcher instance for a specific protocol version, and <tt>log</tt> is a logger instance.
+- !ruby/struct:SM::Flow::P 
+  body: The new protocol driver will be in an <tt>unconfirmed</tt> state, initially. When the server validates the requested channel, the driver goes to the <tt>init</tt> state, and requests the SFTP subsystem. When the subsystem has been accepted, the driver sends its supported protocol version to the server, and goes to the <tt>version</tt> state. Lastly, when the server responds with its supported protocol version and the version to use has been successfully negotiated, the driver will go to the <tt>open</tt> state, after which SFTP operations may be successfully performed on the driver.
+full_name: Net::SFTP::Protocol::Driver::new
+is_singleton: true
+name: new
+params: ( connection, buffers, version, dispatchers, log )
+visibility: public

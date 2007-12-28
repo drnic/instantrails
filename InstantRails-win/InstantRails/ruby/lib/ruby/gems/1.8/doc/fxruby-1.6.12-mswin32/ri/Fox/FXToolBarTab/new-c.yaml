@@ -1,0 +1,42 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theToolBarTab
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXToolBarTab instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this toolbar tab [FXWindow]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+target+:"
+    body: the message target [FXObject]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+selector+:"
+    body: the message identifier [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: the options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate of window upper left corner [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate of window upper left corner [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: window width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: window height [Integer]
+  type: :NOTE
+full_name: Fox::FXToolBarTab::new
+is_singleton: true
+name: new
+params: (p, target=nil, selector=0, opts=FRAME_RAISED, x=0, y=0, width=0, height=0) {|theToolBarTab| ...}
+visibility: public

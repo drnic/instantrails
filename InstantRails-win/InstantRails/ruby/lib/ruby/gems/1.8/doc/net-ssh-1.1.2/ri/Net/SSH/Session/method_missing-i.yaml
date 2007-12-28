@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Provides convenient access to services that have been registered with the session, such as &quot;process&quot; and &quot;forward&quot;.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  session.forward.local(...)\n"
+full_name: Net::SSH::Session#method_missing
+is_singleton: false
+name: method_missing
+params: ( sym, *args, &block )
+visibility: public

@@ -1,0 +1,20 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The instantiation pipeline element that implements calling a separate initialization method on the instantiated service. This should always be placed in the pipeline as close to the service implementation as possible (hence, the low default priority).
+constants: []
+
+full_name: Needle::Lifecycle::Initialize
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: initialize_element
+name: Initialize
+superclass: Needle::Pipeline::Element

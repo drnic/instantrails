@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns true or false if a request is verified. Checks:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: is the format restricted? By default, only HTML and AJAX requests are checked.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: is it a GET request? Gets should be safe and idempotent
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Does the form_authenticity_token match the given _token value from the params?
+  type: :BULLET
+full_name: ActionController::RequestForgeryProtection#verified_request?
+is_singleton: false
+name: verified_request?
+params: ()
+visibility: protected

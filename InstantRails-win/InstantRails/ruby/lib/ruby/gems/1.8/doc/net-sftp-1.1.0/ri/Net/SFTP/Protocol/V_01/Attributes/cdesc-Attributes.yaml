@@ -1,0 +1,77 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: atime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: extended
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: gid
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: mtime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: permissions
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: size
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: uid
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: buffers
+- !ruby/object:RI::MethodSummary 
+  name: empty
+- !ruby/object:RI::MethodSummary 
+  name: from_buffer
+- !ruby/object:RI::MethodSummary 
+  name: from_hash
+- !ruby/object:RI::MethodSummary 
+  name: init
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A class representing the attributes of a file or directory on the server. It may be used to specify new attributes, or to query existing attributes.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_SIZE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_UIDGID
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_PERMISSIONS
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_ACMODTIME
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_EXTENDED
+  value: "0x80000000"
+full_name: Net::SFTP::Protocol::V_01::Attributes
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: buffers
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: Attributes
+superclass: Object

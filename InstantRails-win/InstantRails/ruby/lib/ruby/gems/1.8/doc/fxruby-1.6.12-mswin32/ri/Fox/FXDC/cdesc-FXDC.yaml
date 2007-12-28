@@ -1,0 +1,463 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application [FXApp]
+  name: app
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Background drawing color [FXColor]
+  name: background
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height of clip rectangle, in pixels [Integer]
+  name: clipHeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Clip rectangle [FXRectangle]
+  name: clipRectangle
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Clip region [FXRegion]
+  name: clipRegion
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width of clip rectangle, in pixels [Integer]
+  name: clipWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: X-coordinate of clip rectangle [Integer]
+  name: clipX
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Y-coordinate of clip rectangle [Integer]
+  name: clipY
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dash length [Integer]
+  name: dashLength
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dash offset [Integer]
+  name: dashOffset
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Dash pattern [String]
+  name: dashPattern
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Fill rule, one of <tt>RULE_EVEN_ODD</tt> or <tt>RULE_WINDING</tt> [Integer]
+  name: fillRule
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Fill style, one of <tt>FILL_SOLID</tt>, <tt>FILL_TILED</tt>, <tt>FILL_STIPPLED</tt> or <tt>FILL_OPAQUESTIPPLED</tt> [Integer]
+  name: fillStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Font to draw text with [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Foreground drawing color [FXColor]
+  name: foreground
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Raster op function, one of <tt>BLT_CLR</tt>, <tt>BLT_SRC</tt>, <tt>BLT_DST</tt>, etc. (see list above) [Integer]
+  name: function
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line cap style, one of <tt>CAP_NOT_LAST</tt>, <tt>CAP_BUTT</tt>, <tt>CAP_ROUND</tt> or <tt>CAP_PROJECTING</tt> [Integer]
+  name: lineCap
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line join style, one of <tt>JOIN_MITER</tt>, <tt>JOIN_ROUND</tt> or <tt>JOIN_BEVEL</tt> [Integer]
+  name: lineJoin
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line style, one of <tt>LINE_SOLID</tt>, <tt>LINE_ONOFF_DASH</tt> or <tt>LINE_DOUBLE_DASH</tt> [Integer]
+  name: lineStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line width; a line width of zero means thinnest and fastest possible [Integer]
+  name: lineWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Stipple pattern [FXBitmap or Integer]
+  name: stipple
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tile image [FXImage]
+  name: tile
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A device context is used to maintain the state of the graphics drawing system. Defining your drawing code in terms of the Abstract Device Context allows the drawing commands to be rendered on different types of surfaces, such as windows and images (FXDCWindow), or on paper (FXDCPrint). WYSYWYG may be obtained by using the same identical drawing code in your application regardless of the actual device surface being utilized.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Drawing (BITBLT) functions
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_CLR+:"
+    body: D := 0
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC_AND_DST+:"
+    body: D := S &amp; D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC_AND_NOT_DST+:"
+    body: D := S &amp; ~D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC+:"
+    body: D := S
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC_AND_DST+:"
+    body: D := ~S &amp; D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_DST+:"
+    body: D := D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC_XOR_DST+:"
+    body: D := S ^ D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC_OR_DST+:"
+    body: D := S | D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC_AND_NOT_DST+:"
+    body: D := ~S &amp; ~D == D := ~(S | D)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC_XOR_DST+:"
+    body: D := ~S ^ D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_DST+:"
+    body: D := ~D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SRC_OR_NOT_DST+:"
+    body: D := S | ~D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC+:"
+    body: D := ~S
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC_OR_DST+:"
+    body: D := ~S | D
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_NOT_SRC_OR_NOT_DST+:"
+    body: D := ~S | ~D == ~(S &amp; D)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BLT_SET+:"
+    body: D := 1
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Line Styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LINE_SOLID+:"
+    body: Solid lines
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LINE_ONOFF_DASH+:"
+    body: On-off dashed lines
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LINE_DOUBLE_DASH+:"
+    body: Double dashed lines
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Line Cap Styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CAP_NOT_LAST+:"
+    body: Don't include last end cap
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CAP_BUTT+:"
+    body: Butting line end caps
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CAP_ROUND+:"
+    body: Round line end caps
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CAP_PROJECTING+:"
+    body: Projecting line end caps
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Line Join Styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JOIN_MITER+:"
+    body: Mitered or pointy joints
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JOIN_ROUND+:"
+    body: Round line joints
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JOIN_BEVEL+:"
+    body: Beveled or flat joints
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Fill Styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILL_SOLID+:"
+    body: Fill with solid color
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILL_TILED+:"
+    body: Fill with tiled bitmap
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILL_STIPPLED+:"
+    body: Fill where stipple mask is 1
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FILL_OPAQUESTIPPLED+:"
+    body: Fill with foreground where mask is 1, background otherwise
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Fill Rules
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULE_EVEN_ODD+:"
+    body: Even odd polygon filling
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULE_WINDING+:"
+    body: Winding rule polygon filling
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Stipple/dither patterns
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_0</tt>:"
+    body: Stipple pattern 0
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_NONE</tt>:"
+    body: Stipple pattern 0
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_BLACK</tt>:"
+    body: All ones
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_1</tt>:"
+    body: Stipple pattern 1
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_2</tt>:"
+    body: Stipple pattern 2
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_3</tt>:"
+    body: Stipple pattern 3
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_4</tt>:"
+    body: Stipple pattern 4
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_5</tt>:"
+    body: Stipple pattern 5
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_6</tt>:"
+    body: Stipple pattern 6
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_7</tt>:"
+    body: Stipple pattern 7
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_8</tt>:"
+    body: Stipple pattern 8
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_GRAY</tt>:"
+    body: 50% gray
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_9</tt>:"
+    body: Stipple pattern 9
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_10</tt>:"
+    body: Stipple pattern 10
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_11</tt>:"
+    body: Stipple pattern 11
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_12</tt>:"
+    body: Stipple pattern 12
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_13</tt>:"
+    body: Stipple pattern 13
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_14</tt>:"
+    body: Stipple pattern 14
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_15</tt>:"
+    body: Stipple pattern 15
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_16</tt>:"
+    body: Stipple pattern 16
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_WHITE</tt>:"
+    body: All zeroes
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_HORZ</tt>:"
+    body: Horizontal hatch pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_VERT</tt>:"
+    body: Vertical hatch pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_CROSS</tt>:"
+    body: Cross-hatch pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_DIAG</tt>:"
+    body: Diagonal // hatch pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_REVDIAG</tt>:"
+    body: Reverse diagonal \ hatch pattern
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>STIPPLE_CROSSDIAG</tt>:"
+    body: Cross-diagonal hatch pattern
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDC
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: clearClipMask
+- !ruby/object:RI::MethodSummary 
+  name: clearClipRectangle
+- !ruby/object:RI::MethodSummary 
+  name: clipChildren
+- !ruby/object:RI::MethodSummary 
+  name: drawArc
+- !ruby/object:RI::MethodSummary 
+  name: drawArcs
+- !ruby/object:RI::MethodSummary 
+  name: drawArea
+- !ruby/object:RI::MethodSummary 
+  name: drawArea
+- !ruby/object:RI::MethodSummary 
+  name: drawBitmap
+- !ruby/object:RI::MethodSummary 
+  name: drawCircle
+- !ruby/object:RI::MethodSummary 
+  name: drawEllipse
+- !ruby/object:RI::MethodSummary 
+  name: drawFocusRectangle
+- !ruby/object:RI::MethodSummary 
+  name: drawHashBox
+- !ruby/object:RI::MethodSummary 
+  name: drawIcon
+- !ruby/object:RI::MethodSummary 
+  name: drawIconShaded
+- !ruby/object:RI::MethodSummary 
+  name: drawIconSunken
+- !ruby/object:RI::MethodSummary 
+  name: drawImage
+- !ruby/object:RI::MethodSummary 
+  name: drawImageText
+- !ruby/object:RI::MethodSummary 
+  name: drawLine
+- !ruby/object:RI::MethodSummary 
+  name: drawLineSegments
+- !ruby/object:RI::MethodSummary 
+  name: drawLines
+- !ruby/object:RI::MethodSummary 
+  name: drawLinesRel
+- !ruby/object:RI::MethodSummary 
+  name: drawPoint
+- !ruby/object:RI::MethodSummary 
+  name: drawPoints
+- !ruby/object:RI::MethodSummary 
+  name: drawPointsRel
+- !ruby/object:RI::MethodSummary 
+  name: drawRectangle
+- !ruby/object:RI::MethodSummary 
+  name: drawRectangles
+- !ruby/object:RI::MethodSummary 
+  name: drawRoundRectangle
+- !ruby/object:RI::MethodSummary 
+  name: drawText
+- !ruby/object:RI::MethodSummary 
+  name: fillArc
+- !ruby/object:RI::MethodSummary 
+  name: fillArcs
+- !ruby/object:RI::MethodSummary 
+  name: fillChord
+- !ruby/object:RI::MethodSummary 
+  name: fillChords
+- !ruby/object:RI::MethodSummary 
+  name: fillCircle
+- !ruby/object:RI::MethodSummary 
+  name: fillComplexPolygon
+- !ruby/object:RI::MethodSummary 
+  name: fillComplexPolygonRel
+- !ruby/object:RI::MethodSummary 
+  name: fillConcavePolygon
+- !ruby/object:RI::MethodSummary 
+  name: fillConcavePolygonRel
+- !ruby/object:RI::MethodSummary 
+  name: fillEllipse
+- !ruby/object:RI::MethodSummary 
+  name: fillPolygon
+- !ruby/object:RI::MethodSummary 
+  name: fillPolygonRel
+- !ruby/object:RI::MethodSummary 
+  name: fillRectangle
+- !ruby/object:RI::MethodSummary 
+  name: fillRectangles
+- !ruby/object:RI::MethodSummary 
+  name: fillRoundRectangle
+- !ruby/object:RI::MethodSummary 
+  name: readPixel
+- !ruby/object:RI::MethodSummary 
+  name: setClipMask
+- !ruby/object:RI::MethodSummary 
+  name: setClipRectangle
+- !ruby/object:RI::MethodSummary 
+  name: setClipRectangle
+- !ruby/object:RI::MethodSummary 
+  name: setDashes
+name: FXDC
+superclass: Object

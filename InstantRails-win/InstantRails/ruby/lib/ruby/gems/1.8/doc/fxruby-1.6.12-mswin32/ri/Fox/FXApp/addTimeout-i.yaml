@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Add a timeout message to be sent to target object in <em>ms</em> milliseconds. By default, the timer fires only once after the interval expires. The last argument is optional user data which will be passed along as the <em>ptr</em> argument of the message handler. If a timer with the same target and message already exists, it will be rescheduled.
+- !ruby/struct:SM::Flow::P 
+  body: "There are several forms for #addTimeout; the original form (from FOX) takes three arguments:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    timeout = app.addTimeout(delay, tgt, sel)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Here, <em>delay</em> is the time interval (in milliseconds) to wait before firing this timeout. The second and third arguments are the target object and message identifier for the message to be sent when this timeout fires.
+- !ruby/struct:SM::Flow::P 
+  body: "A second form of #addTimeout takes a Method instance as its single argument:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    timeout = app.addTimeout(delay, mthd)\n"
+- !ruby/struct:SM::Flow::P 
+  body: For this form, the method should have the standard argument list for a FOX message handler. That is, the method should take three arguments, for the message <em>sender</em> (an FXObject), the message <em>selector</em>, and the message <em>data</em> (if any).
+- !ruby/struct:SM::Flow::P 
+  body: "The last form of #addTimeout takes a block:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    timeout = app.addTimeout(delay) do |sender, sel, data|\n        ... handle the timeout ...\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "All of these return a reference to an opaque object (actually, a hash) that can be passed to #removeTimeout if it is necessary to remove the timeout before it fires."
+- !ruby/struct:SM::Flow::P 
+  body: For the last two forms, you can pass in the optional +:repeat+ parameter to cause the timeout to be re-registered after it fires, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    timeout = app.addTimeout(delay, :repeat =&gt; true) do |sender, sel, data|\n        ... handle the timeout ...\n        ... re-add the timeout with the same delay ...\n    end\n"
+full_name: Fox::FXApp#addTimeout
+is_singleton: false
+name: addTimeout
+params: (ms, *args, &block)
+visibility: public

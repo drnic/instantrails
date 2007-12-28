@@ -1,0 +1,89 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this menu [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The icon for this menu [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selection background color [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selection text color [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text for this menu [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message for this menu [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The menu caption is a widget which can be used as a caption above a number of menu commands in a menu.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Menu caption options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENU_AUTOGRAY+:"
+    body: Automatically gray out when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MENU_AUTOHIDE+:"
+    body: Automatically hide button when not updated
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMenuCaption
+includes: []
+
+instance_methods: []
+
+name: FXMenuCaption
+superclass: FXWindow

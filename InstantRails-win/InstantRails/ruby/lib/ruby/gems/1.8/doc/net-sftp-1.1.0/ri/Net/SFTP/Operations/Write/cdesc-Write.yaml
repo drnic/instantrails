@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements the <tt>write</tt> operation. Handles, automatically, the looping necessary to write a large data set.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum size of data that will be written at one time.
+  name: CHUNK_SIZE
+  value: 32 * 1024
+full_name: Net::SFTP::Operations::Write
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: perform
+name: Write
+superclass: Abstract

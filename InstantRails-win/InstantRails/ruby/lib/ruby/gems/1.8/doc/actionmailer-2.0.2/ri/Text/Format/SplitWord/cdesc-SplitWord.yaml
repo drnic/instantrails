@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The first part of the word that was split.
+  name: first
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The remainder of the word that was split.
+  name: rest
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The word that was split.
+  name: word
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Words forcibly split by Text::Format will be stored as split words. This class represents a word forcibly split.
+constants: []
+
+full_name: Text::Format::SplitWord
+includes: []
+
+instance_methods: []
+
+name: SplitWord
+superclass: Object

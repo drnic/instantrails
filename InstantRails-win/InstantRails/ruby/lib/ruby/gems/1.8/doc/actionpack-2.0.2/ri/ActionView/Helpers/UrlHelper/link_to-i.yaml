@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a link tag of the given <tt>name</tt> using a URL created by the set of <tt>options</tt>. See the valid options in the documentation for url_for. It's also possible to pass a string instead of an options hash to get a link tag that uses the value of the string as the href for the link, or use +:back+ to link to the referrer - a JavaScript back link will be used in place of a referrer if none exists. If nil is passed as a name, the link itself will become the name.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:confirm =&gt; 'question?'</tt> -- This will add a JavaScript confirm prompt with the question specified. If the user accepts, the link is processed normally, otherwise no action is taken.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:popup =&gt; true || array of window options</tt> -- This will force the link to open in a popup window. By passing true, a default browser window will be opened with the URL. You can also specify an array of options that are passed-thru to JavaScripts window.open method.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:method =&gt; symbol of HTTP verb</tt> -- This modifier will dynamically create an HTML form and immediately submit the form for processing using the HTTP verb specified. Useful for having links perform a POST operation in dangerous actions like deleting a record (which search bots can follow while spidering your site). Supported verbs are :post, :delete and :put. Note that if the user has JavaScript disabled, the request will fall back to using GET. If you are relying on the POST behavior, you should check for it in your controller's action by using the request object's methods for post?, delete? or put?.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: The <tt>html_options</tt> will accept a hash of html attributes for the link tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Note that if the user has JavaScript disabled, the request will fall back to using GET. If :href=&gt;'#' is used and the user has JavaScript disabled clicking the link will have no effect. If you are relying on the POST behavior, your should check for it in your controller's action by using the request object's methods for post?, delete? or put?.
+- !ruby/struct:SM::Flow::P 
+  body: You can mix and match the <tt>html_options</tt> with the exception of :popup and :method which will raise an ActionView::ActionViewError exception.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  link_to &quot;Visit Other Site&quot;, &quot;http://www.rubyonrails.org/&quot;, :confirm =&gt; &quot;Are you sure?&quot;\n  # =&gt; &lt;a href=&quot;http://www.rubyonrails.org/&quot; onclick=&quot;return confirm('Are you sure?');&quot;&gt;Visit Other Site&lt;/a&gt;\n\n  link_to &quot;Help&quot;, { :action =&gt; &quot;help&quot; }, :popup =&gt; true\n  # =&gt; &lt;a href=&quot;/testing/help/&quot; onclick=&quot;window.open(this.href);return false;&quot;&gt;Help&lt;/a&gt;\n\n  link_to &quot;View Image&quot;, { :action =&gt; &quot;view&quot; }, :popup =&gt; ['new_window_name', 'height=300,width=600']\n  # =&gt; &lt;a href=&quot;/testing/view/&quot; onclick=&quot;window.open(this.href,'new_window_name','height=300,width=600');return false;&quot;&gt;View Image&lt;/a&gt;\n\n  link_to &quot;Delete Image&quot;, { :action =&gt; &quot;delete&quot;, :id =&gt; @image.id }, :confirm =&gt; &quot;Are you sure?&quot;, :method =&gt; :delete\n  # =&gt; &lt;a href=&quot;/testing/delete/9/&quot; onclick=&quot;if (confirm('Are you sure?')) { var f = document.createElement('form');\n       f.style.display = 'none'; this.parentNode.appendChild(f); f.method = 'POST'; f.action = this.href;\n       var m = document.createElement('input'); m.setAttribute('type', 'hidden'); m.setAttribute('name', '_method');\n       m.setAttribute('value', 'delete'); f.appendChild(m);f.submit(); };return false;&quot;&gt;Delete Image&lt;/a&gt;\n"
+full_name: ActionView::Helpers::UrlHelper#link_to
+is_singleton: false
+name: link_to
+params: (name, options = {}, html_options = nil)
+visibility: public

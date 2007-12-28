@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a set of html select-tags (one for hour and minute) You can set <tt>:time_separator</tt> key to format the output, and the <tt>:include_seconds</tt> option to include an input for seconds.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_time = Time.now + 5.days + 7.hours + 3.minutes + 14.seconds\n\n  # Generates a time select that defaults to the time in my_time\n  select_time(my_time)\n\n  # Generates a time select that defaults to the current time (no specified time)\n  select_time()\n\n  # Generates a time select that defaults to the time in my_time,\n  # which has fields separated by ':'\n  select_time(my_time, :time_separator =&gt; ':')\n\n  # Generates a time select that defaults to the time in my_time,\n  # that also includes an input for seconds\n  select_time(my_time, :include_seconds =&gt; true)\n\n  # Generates a time select that defaults to the time in my_time, that has fields\n  # separated by ':' and includes an input for seconds\n  select_time(my_time, :time_separator =&gt; ':', :include_seconds =&gt; true)\n"
+full_name: ActionView::Helpers::DateHelper#select_time
+is_singleton: false
+name: select_time
+params: (datetime = Time.now, options = {})
+visibility: public

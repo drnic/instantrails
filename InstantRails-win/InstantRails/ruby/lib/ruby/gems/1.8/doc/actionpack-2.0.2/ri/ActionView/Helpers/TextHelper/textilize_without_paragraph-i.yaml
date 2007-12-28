@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns the text with all the Textile codes turned into HTML tags, but without the bounding &lt;p&gt; tag that RedCloth adds.
+- !ruby/struct:SM::Flow::P 
+  body: You can learn more about Textile's syntax at its website[http://www.textism.com/tools/textile]. <em>This method is only available if RedCloth[http://whytheluckystiff.net/ruby/redcloth/] is available</em>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  textilize_without_paragraph(&quot;*This is Textile!*  Rejoice!&quot;)\n  # =&gt; &quot;&lt;strong&gt;This is Textile!&lt;/strong&gt;  Rejoice!&quot;\n\n  textilize_without_paragraph(&quot;I <em>love</em> ROR(Ruby on Rails)!&quot;)\n  # =&gt; &quot;I <em>love</em> &lt;acronym title=&quot;Ruby on Rails&quot;&gt;ROR&lt;/acronym&gt;!&quot;\n\n  textilize_without_paragraph(&quot;h2. Textile makes markup -easy- simple!&quot;)\n  # =&gt; &quot;&lt;h2&gt;Textile makes markup &lt;del&gt;easy&lt;/del&gt; simple!&lt;/h2&gt;&quot;\n\n  textilize_without_paragraph(&quot;Visit the Rails website &quot;here&quot;:http://www.rubyonrails.org/.)\n  # =&gt; &quot;Visit the Rails website &lt;a href=&quot;http://www.rubyonrails.org/&quot;&gt;here&lt;/a&gt;.&quot;\n"
+full_name: ActionView::Helpers::TextHelper#textilize_without_paragraph
+is_singleton: false
+name: textilize_without_paragraph
+params: (text)
+visibility: public

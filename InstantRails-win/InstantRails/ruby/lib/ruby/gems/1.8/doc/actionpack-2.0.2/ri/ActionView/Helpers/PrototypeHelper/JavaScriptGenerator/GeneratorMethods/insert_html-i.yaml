@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Inserts HTML at the specified <tt>position</tt> relative to the DOM element identified by the given <tt>id</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>position</tt> may be one of:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:top</tt>:"
+    body: HTML is inserted inside the element, before the element's existing content.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:bottom</tt>:"
+    body: HTML is inserted inside the element, after the element's existing content.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:before</tt>:"
+    body: HTML is inserted immediately preceding the element.
+  - !ruby/struct:SM::Flow::LI 
+    label: "<tt>:after</tt>:"
+    body: HTML is inserted immediately following the element.
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>options_for_render</tt> may be either a string of HTML to insert, or a hash of options to be passed to ActionView::Base#render. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Insert the rendered 'navigation' partial just before the DOM\n  # element with ID 'content'.\n  # Generates: new Insertion.Before(&quot;content&quot;, &quot;-- Contents of 'navigation' partial --&quot;);\n  insert_html :before, 'content', :partial =&gt; 'navigation'\n\n  # Add a list item to the bottom of the &lt;ul&gt; with ID 'list'.\n  # Generates: new Insertion.Bottom(&quot;list&quot;, &quot;&lt;li&gt;Last item&lt;/li&gt;&quot;);\n  insert_html :bottom, 'list', '&lt;li&gt;Last item&lt;/li&gt;'\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#insert_html
+is_singleton: false
+name: insert_html
+params: (position, id, *options_for_render)
+visibility: public

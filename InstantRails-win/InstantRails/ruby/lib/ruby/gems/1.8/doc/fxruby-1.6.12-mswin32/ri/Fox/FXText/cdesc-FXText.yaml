@@ -1,0 +1,459 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Active background color [FXColor]
+  name: activeBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Anchor position [Integer]
+  name: anchorPos
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bar color [FXColor]
+  name: barColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of columns used for line numbers [Integer]
+  name: barColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cursor column [Integer]
+  name: cursorCol
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cursor color [FXColor]
+  name: cursorColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cursor position [Integer]
+  name: cursorPos
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cursor row [Integer]
+  name: cursorRow
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Word delimiters [String]
+  name: delimiters
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether text is editable [Boolean]
+  name: editable
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text background color [FXColor]
+  name: hiliteBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Brace and parenthesis match highlighting time, in milliseconds [Integer]. A <em>hiliteMatchTime</em> of 0 disables brace matching.
+  name: hiliteMatchTime
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Array of hilite styles [an Array of FXHiliteStyle instances]
+  name: hiliteStyles
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text color [FXColor]
+  name: hiliteTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The length of the text buffer [Integer]
+  name: length
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom margin [Integer]
+  name: marginBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left margin [Integer]
+  name: marginLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right margin [Integer]
+  name: marginRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top margin [Integer]
+  name: marginTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether text is modified [Boolean]
+  name: modified
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line number color [FXColor]
+  name: numberColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text background color [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selection end position [Integer]
+  name: selEndPos
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selection start position [Integer]
+  name: selStartPos
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text color [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether text is styled [Boolean]
+  name: styled
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tab columns [Integer]
+  name: tabColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text buffer [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text widget style [Integer]
+  name: textStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible columns [Integer]
+  name: visibleColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible rows [Integer]
+  name: visibleRows
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wrap columns [Integer]
+  name: wrapColumns
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The text widget supports editing of multiple lines of text. An optional style table can provide text coloring based on the contents of an optional parallel style buffer, which is maintained as text is edited. In a typical scenario, the contents of the style buffer is either directly written when the text is added to the widget, or is continually modified by editing the text via syntax-based highlighting engine which colors the text based on syntactical patterns.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXText to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key is pressed; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key is released; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONPRESS+:"
+    body: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONRELEASE+:"
+    body: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_INSERTED+:"
+    body: sent after text is inserted into the text buffer; the message data is a reference to an FXTextChange instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETED+:"
+    body: sent after text is removed from the text buffer; the message data is a reference to an FXTextChange instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_REPLACED+:"
+    body: sent after some text is replaced in the text buffer; the message data is a reference to an FXTextChange instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the contents of the text buffer change in any way; the message data is an integer indicating the cursor position.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent after text is selected; the message data is a two-element array indicating the starting position of the selected text and the number of characters selected.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent before text is deselected; the message data is a two-element array indicating the starting position of the deselected text and the number of characters deselected.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Text widget options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_READONLY+:"
+    body: Text is <em>not</em> editable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_WORDWRAP+:"
+    body: Wrap at word breaks
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_OVERSTRIKE+:"
+    body: Overstrike mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_FIXEDWRAP+:"
+    body: Fixed wrap columns
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_NO_TABS+:"
+    body: Insert spaces for tabs
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_AUTOINDENT+:"
+    body: Autoindent
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_SHOWACTIVE+:"
+    body: Show active line
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_AUTOSCROLL+:"
+    body: Logging mode, keeping last line visible
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Selection modes
+- !ruby/struct:SM::Flow::P 
+  body: <tt>SELECT_CHARS</tt> <tt>SELECT_WORDS</tt> <tt>SELECT_LINES</tt>
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Text styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_UNDERLINE+:"
+    body: underline text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_STRIKEOUT+:"
+    body: strike out text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STYLE_BOLD_+:"
+    body: bold text
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>ID_CURSOR_TOP</tt>:: <tt>ID_CURSOR_BOTTOM</tt>:: <tt>ID_CURSOR_HOME</tt>:: <tt>ID_CURSOR_END</tt>:: <tt>ID_CURSOR_RIGHT</tt>:: <tt>ID_CURSOR_LEFT</tt>:: <tt>ID_CURSOR_UP</tt>:: <tt>ID_CURSOR_DOWN</tt>:: <tt>ID_CURSOR_WORD_LEFT</tt>:: <tt>ID_CURSOR_WORD_RIGHT</tt>:: <tt>ID_CURSOR_PAGEDOWN</tt>:: <tt>ID_CURSOR_PAGEUP</tt>:: <tt>ID_CURSOR_SCRNTOP</tt>:: <tt>ID_CURSOR_SCRNBTM</tt>:: <tt>ID_CURSOR_SCRNCTR</tt>:: <tt>ID_CURSOR_PAR_HOME</tt>:: <tt>ID_CURSOR_PAR_END</tt>:: <tt>ID_SCROLL_UP</tt>:: <tt>ID_SCROLL_DOWN</tt>:: <tt>ID_MARK</tt>:: <tt>ID_EXTEND</tt>:: <tt>ID_OVERST_STRING</tt>:: <tt>ID_INSERT_STRING</tt>:: <tt>ID_INSERT_NEWLINE</tt>:: <tt>ID_INSERT_TAB</tt>:: <tt>ID_CUT_SEL</tt>:: <tt>ID_COPY_SEL</tt>:: <tt>ID_PASTE_SEL</tt>:: <tt>ID_DELETE_SEL</tt>:: <tt>ID_SELECT_CHAR</tt>:: <tt>ID_SELECT_WORD</tt>:: <tt>ID_SELECT_LINE</tt>:: <tt>ID_SELECT_ALL</tt>:: <tt>ID_SELECT_MATCHING</tt>:: <tt>ID_SELECT_BRACE</tt>:: <tt>ID_SELECT_BRACK</tt>:: <tt>ID_SELECT_PAREN</tt>:: <tt>ID_SELECT_ANG</tt>:: <tt>ID_DESELECT_ALL</tt>:: <tt>ID_BACKSPACE</tt>:: <tt>ID_BACKSPACE_WORD</tt>:: <tt>ID_BACKSPACE_BOL</tt>:: <tt>ID_DELETE</tt>:: <tt>ID_DELETE_WORD</tt>:: <tt>ID_DELETE_EOL</tt>:: <tt>ID_DELETE_LINE</tt>:: <tt>ID_TOGGLE_EDITABLE</tt>:: <tt>ID_TOGGLE_OVERSTRIKE</tt>:: <tt>ID_CURSOR_ROW</tt>:: <tt>ID_CURSOR_COLUMN</tt>:: <tt>ID_CLEAN_INDENT</tt>:: <tt>ID_SHIFT_LEFT</tt>:: <tt>ID_SHIFT_RIGHT</tt>:: <tt>ID_SHIFT_TABLEFT</tt>:: <tt>ID_SHIFT_TABRIGHT</tt>:: <tt>ID_UPPER_CASE</tt>:: <tt>ID_LOWER_CASE</tt>:: <tt>ID_GOTO_MATCHING</tt>:: <tt>ID_GOTO_SELECTED</tt>:: <tt>ID_GOTO_LINE</tt>:: <tt>ID_SEARCH_FORW_SEL</tt>:: <tt>ID_SEARCH_BACK_SEL</tt>:: <tt>ID_SEARCH</tt>:: <tt>ID_REPLACE</tt>:: <tt>ID_LEFT_BRACE</tt>:: <tt>ID_LEFT_BRACK</tt>:: <tt>ID_LEFT_PAREN</tt>:: <tt>ID_LEFT_ANG</tt>:: <tt>ID_RIGHT_BRACE</tt>:: <tt>ID_RIGHT_BRACK</tt>:: <tt>ID_RIGHT_PAREN</tt>:: <tt>ID_RIGHT_ANG</tt>:: <tt>ID_BLINK</tt>:: <tt>ID_FLASH</tt>::"
+constants: []
+
+full_name: Fox::FXText
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendStyledText
+- !ruby/object:RI::MethodSummary 
+  name: appendText
+- !ruby/object:RI::MethodSummary 
+  name: changeStyle
+- !ruby/object:RI::MethodSummary 
+  name: changeStyle
+- !ruby/object:RI::MethodSummary 
+  name: countCols
+- !ruby/object:RI::MethodSummary 
+  name: countLines
+- !ruby/object:RI::MethodSummary 
+  name: countRows
+- !ruby/object:RI::MethodSummary 
+  name: dec
+- !ruby/object:RI::MethodSummary 
+  name: editable?
+- !ruby/object:RI::MethodSummary 
+  name: extendSelection
+- !ruby/object:RI::MethodSummary 
+  name: extractStyle
+- !ruby/object:RI::MethodSummary 
+  name: extractText
+- !ruby/object:RI::MethodSummary 
+  name: findText
+- !ruby/object:RI::MethodSummary 
+  name: getBottomLine
+- !ruby/object:RI::MethodSummary 
+  name: getByte
+- !ruby/object:RI::MethodSummary 
+  name: getChar
+- !ruby/object:RI::MethodSummary 
+  name: getCharLen
+- !ruby/object:RI::MethodSummary 
+  name: getPosAt
+- !ruby/object:RI::MethodSummary 
+  name: getStyle
+- !ruby/object:RI::MethodSummary 
+  name: getTopLine
+- !ruby/object:RI::MethodSummary 
+  name: inc
+- !ruby/object:RI::MethodSummary 
+  name: insertStyledText
+- !ruby/object:RI::MethodSummary 
+  name: insertText
+- !ruby/object:RI::MethodSummary 
+  name: killHighlight
+- !ruby/object:RI::MethodSummary 
+  name: killSelection
+- !ruby/object:RI::MethodSummary 
+  name: leftWord
+- !ruby/object:RI::MethodSummary 
+  name: lineEnd
+- !ruby/object:RI::MethodSummary 
+  name: lineStart
+- !ruby/object:RI::MethodSummary 
+  name: makePositionVisible
+- !ruby/object:RI::MethodSummary 
+  name: modified?
+- !ruby/object:RI::MethodSummary 
+  name: nextLine
+- !ruby/object:RI::MethodSummary 
+  name: nextRow
+- !ruby/object:RI::MethodSummary 
+  name: numRows
+- !ruby/object:RI::MethodSummary 
+  name: overstrike=
+- !ruby/object:RI::MethodSummary 
+  name: overstrike?
+- !ruby/object:RI::MethodSummary 
+  name: positionSelected?
+- !ruby/object:RI::MethodSummary 
+  name: positionVisible?
+- !ruby/object:RI::MethodSummary 
+  name: prevLine
+- !ruby/object:RI::MethodSummary 
+  name: prevRow
+- !ruby/object:RI::MethodSummary 
+  name: removeText
+- !ruby/object:RI::MethodSummary 
+  name: replaceStyledText
+- !ruby/object:RI::MethodSummary 
+  name: replaceText
+- !ruby/object:RI::MethodSummary 
+  name: rightWord
+- !ruby/object:RI::MethodSummary 
+  name: rowEnd
+- !ruby/object:RI::MethodSummary 
+  name: rowStart
+- !ruby/object:RI::MethodSummary 
+  name: selectAll
+- !ruby/object:RI::MethodSummary 
+  name: setBottomLine
+- !ruby/object:RI::MethodSummary 
+  name: setCenterLine
+- !ruby/object:RI::MethodSummary 
+  name: setCursorCol
+- !ruby/object:RI::MethodSummary 
+  name: setCursorPos
+- !ruby/object:RI::MethodSummary 
+  name: setCursorRow
+- !ruby/object:RI::MethodSummary 
+  name: setHighlight
+- !ruby/object:RI::MethodSummary 
+  name: setSelection
+- !ruby/object:RI::MethodSummary 
+  name: setStyledText
+- !ruby/object:RI::MethodSummary 
+  name: setText
+- !ruby/object:RI::MethodSummary 
+  name: setTopLine
+- !ruby/object:RI::MethodSummary 
+  name: shiftText
+- !ruby/object:RI::MethodSummary 
+  name: styled?
+- !ruby/object:RI::MethodSummary 
+  name: validPos
+- !ruby/object:RI::MethodSummary 
+  name: wordEnd
+- !ruby/object:RI::MethodSummary 
+  name: wordStart
+name: FXText
+superclass: FXScrollArea

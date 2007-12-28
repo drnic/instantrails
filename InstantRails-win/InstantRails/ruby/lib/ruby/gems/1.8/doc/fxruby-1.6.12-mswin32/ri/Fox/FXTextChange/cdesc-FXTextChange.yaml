@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text deleted at <em>pos</em> [String]
+  name: del
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text inserted at <em>pos</em> [String]
+  name: ins
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of characters deleted at <em>pos</em> [Integer]
+  name: ndel
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of characters inserted at <em>pos</em> [Integer]
+  name: nins
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Position in buffer [Integer]
+  name: pos
+  rw: RW
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Text mutation callback data passed with the SEL_INSERTED, SEL_REPLACED, and SEL_DELETED messages; both old and new text is available on behalf of the undo system as well as syntax highlighting.
+constants: []
+
+full_name: Fox::FXTextChange
+includes: []
+
+instance_methods: []
+
+name: FXTextChange
+superclass: Object

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Return item user data; this is equivalent to:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  getItem(index).data\n"
+- !ruby/struct:SM::Flow::P 
+  body: Raises IndexError if <em>index</em> is out of bounds.
+full_name: Fox::FXList#getItemData
+is_singleton: false
+name: getItemData
+params: (index)
+visibility: public

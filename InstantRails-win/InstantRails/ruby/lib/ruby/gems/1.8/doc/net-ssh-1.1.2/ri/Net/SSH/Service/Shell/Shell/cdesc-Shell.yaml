@@ -1,0 +1,33 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A service class for interacting with a user's shell on a remote machine. The shell may be interacted with either with or without a pty.
+constants: []
+
+full_name: Net::SSH::Service::Shell::Shell
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: open?
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+- !ruby/object:RI::MethodSummary 
+  name: send_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: stderr
+- !ruby/object:RI::MethodSummary 
+  name: stderr?
+- !ruby/object:RI::MethodSummary 
+  name: stdout
+- !ruby/object:RI::MethodSummary 
+  name: stdout?
+name: Shell
+superclass: Object

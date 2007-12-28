@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A shortcut to HighLine.ask() a question that only accepts &quot;yes&quot; or &quot;no&quot; answers (&quot;y&quot; and &quot;n&quot; are allowed) and returns <tt>true</tt> or <tt>false</tt> (<tt>true</tt> for &quot;yes&quot;). If provided a <tt>true</tt> value, <em>character</em> will cause HighLine to fetch a single character response.
+- !ruby/struct:SM::Flow::P 
+  body: Raises EOFError if input is exhausted.
+full_name: HighLine#agree
+is_singleton: false
+name: agree
+params: ( yes_or_no_question, character = nil )
+visibility: public

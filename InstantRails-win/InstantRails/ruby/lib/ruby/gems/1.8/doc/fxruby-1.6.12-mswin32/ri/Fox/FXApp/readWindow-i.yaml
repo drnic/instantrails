@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Read a window and its children from the stream store, and append it under father; note it is initially not created yet. Return a reference to the new window.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+store+:"
+    body: "[FXStream]"
+  - !ruby/struct:SM::Flow::LI 
+    label: "+father+:"
+    body: "[FXWindow]"
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: "[FXWindow]"
+  type: :NOTE
+full_name: Fox::FXApp#readWindow
+is_singleton: false
+name: readWindow
+params: (store, father, owner)
+visibility: public

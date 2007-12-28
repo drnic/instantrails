@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Send the given signal to process on the other side of the channel. The parameter should be one of the Channel::SIGxxx constants.
+full_name: Net::SSH::Connection::Channel#send_signal
+is_singleton: false
+name: send_signal
+params: ( sig, want_reply=false )
+visibility: public

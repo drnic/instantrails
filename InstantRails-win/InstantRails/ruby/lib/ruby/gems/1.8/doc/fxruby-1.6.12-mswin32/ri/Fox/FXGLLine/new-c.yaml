@@ -1,0 +1,20 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXGLLine instance.
+- !ruby/struct:SM::Flow::P 
+  body: "If no arguments are passed to #new, the initial starting and ending points for the line are (-0.5, 0.0, 0.0) and (0.5, 0.0, 0.0), respectively. You can specify different initial start and end points by passing in another FXGLLine instance from which to copy the start and end point values, e.g."
+- !ruby/struct:SM::Flow::VERB 
+  body: "    aLine = FXGLLine.new(anotherLine)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "or by passing in the x, y and z coordinates individually:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    aLine = FXGLLine.new(x0, y0, z0, x1, y1, z1)\n"
+full_name: Fox::FXGLLine::new
+is_singleton: true
+name: new
+params: (*args)
+visibility: public

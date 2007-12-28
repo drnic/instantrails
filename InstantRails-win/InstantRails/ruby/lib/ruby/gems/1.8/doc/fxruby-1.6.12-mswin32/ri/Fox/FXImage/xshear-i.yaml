@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Shear image horizontally; the number of pixels is equal to the <em>shear</em> parameter times 256. The area outside the image is filled with transparent black, unless another <em>color</em> is specified.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+shear+:"
+    body: how far to shear [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+color+:"
+    body: fill color for areas outside the sheared image [FXColor]
+  type: :NOTE
+full_name: Fox::FXImage#xshear
+is_singleton: false
+name: xshear
+params: (shear, color=0)
+visibility: public

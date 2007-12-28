@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calls the JavaScript <tt>function</tt>, optionally with the given <tt>arguments</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: If a block is given, the block will be passed to a new JavaScriptGenerator; the resulting JavaScript code will then be wrapped inside <tt>function() { ... }</tt> and passed as the called function's final argument.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Generates: Element.replace(my_element, &quot;My content to replace with.&quot;)\n page.call 'Element.replace', 'my_element', &quot;My content to replace with.&quot;\n\n # Generates: alert('My message!')\n page.call 'alert', 'My message!'\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#call
+is_singleton: false
+name: call
+params: (function, *arguments, &block)
+visibility: public

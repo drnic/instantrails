@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>text</tt> is longer than <tt>length</tt>, <tt>text</tt> will be truncated to the length of <tt>length</tt> (defaults to 30) and the last characters will be replaced with the <tt>truncate_string</tt> (defaults to &quot;...&quot;).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  truncate(&quot;Once upon a time in a world far far away&quot;, 14)\n  # =&gt; Once upon a...\n\n  truncate(&quot;Once upon a time in a world far far away&quot;)\n  # =&gt; Once upon a time in a world f...\n\n  truncate(&quot;And they found that many people were sleeping better.&quot;, 25, &quot;(clipped)&quot;)\n  # =&gt; And they found that many (clipped)\n\n  truncate(&quot;And they found that many people were sleeping better.&quot;, 15, &quot;... (continued)&quot;)\n  # =&gt; And they found... (continued)\n"
+full_name: ActionView::Helpers::TextHelper#truncate
+is_singleton: false
+name: truncate
+params: (text, length = 30, truncate_string = "...")
+visibility: public

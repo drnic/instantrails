@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: key, value
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Replace sensitive parameter data from the request log. Filters parameters that have any of the arguments as a substring. Looks in all subhashes of the param hash for keys to filter. If a block is given, each key and value of the parameter hash and all subhashes is passed to it, the value or key can be replaced using String#replace or similar method.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  filter_parameter_logging\n  =&gt; Does nothing, just slows the logging process down\n\n  filter_parameter_logging :password\n  =&gt; replaces the value to all keys matching /password/i with &quot;[FILTERED]&quot;\n\n  filter_parameter_logging :foo, &quot;bar&quot;\n  =&gt; replaces the value to all keys matching /foo|bar/i with &quot;[FILTERED]&quot;\n\n  filter_parameter_logging { |k,v| v.reverse! if k =~ /secret/i }\n  =&gt; reverses the value to all keys matching /secret/i\n\n  filter_parameter_logging(:foo, &quot;bar&quot;) { |k,v| v.reverse! if k =~ /secret/i }\n  =&gt; reverses the value to all keys matching /secret/i, and\n     replaces the value to all keys matching /foo|bar/i with &quot;[FILTERED]&quot;\n"
+full_name: ActionController::Base::filter_parameter_logging
+is_singleton: true
+name: filter_parameter_logging
+params: (*filter_words, &block) {|key, value| ...}
+visibility: public

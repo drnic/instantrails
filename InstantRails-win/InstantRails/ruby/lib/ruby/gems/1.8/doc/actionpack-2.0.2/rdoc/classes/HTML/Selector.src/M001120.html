@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>select (HTML::Selector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/vendor/html-scanner/html/selector.rb, line 453</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select</span>(<span class="ruby-identifier">root</span>)
+      <span class="ruby-identifier">matches</span> = []
+      <span class="ruby-identifier">stack</span> = [<span class="ruby-identifier">root</span>]
+      <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">node</span> = <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">pop</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">node</span>.<span class="ruby-identifier">tag?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">subset</span> = <span class="ruby-identifier">match</span>(<span class="ruby-identifier">node</span>, <span class="ruby-keyword kw">false</span>)
+          <span class="ruby-identifier">subset</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">match</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">matches</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">match</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">item</span><span class="ruby-operator">|</span> <span class="ruby-identifier">item</span>.<span class="ruby-identifier">equal?</span>(<span class="ruby-identifier">match</span>) }
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">children</span> = <span class="ruby-identifier">node</span>.<span class="ruby-identifier">children</span>
+          <span class="ruby-identifier">stack</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">children</span>.<span class="ruby-identifier">reverse</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">matches</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

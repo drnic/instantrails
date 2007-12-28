@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a radio button tag for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). If the current value of <tt>method</tt> is <tt>tag_value</tt> the radio button will be checked. Additional options on the input tag can be passed as a hash with <tt>options</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Let's say that @post.category returns &quot;rails&quot;:\n  radio_button(&quot;post&quot;, &quot;category&quot;, &quot;rails&quot;)\n  radio_button(&quot;post&quot;, &quot;category&quot;, &quot;java&quot;)\n  # =&gt; &lt;input type=&quot;radio&quot; id=&quot;post_category&quot; name=&quot;post[category]&quot; value=&quot;rails&quot; checked=&quot;checked&quot; /&gt;\n  #    &lt;input type=&quot;radio&quot; id=&quot;post_category&quot; name=&quot;post[category]&quot; value=&quot;java&quot; /&gt;\n\n  radio_button(&quot;user&quot;, &quot;receive_newsletter&quot;, &quot;yes&quot;)\n  radio_button(&quot;user&quot;, &quot;receive_newsletter&quot;, &quot;no&quot;)\n  # =&gt; &lt;input type=&quot;radio&quot; id=&quot;user_receive_newsletter&quot; name=&quot;user[receive_newsletter]&quot; value=&quot;yes&quot; /&gt;\n  #    &lt;input type=&quot;radio&quot; id=&quot;user_receive_newsletter&quot; name=&quot;user[receive_newsletter]&quot; value=&quot;no&quot; checked=&quot;checked&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#radio_button
+is_singleton: false
+name: radio_button
+params: (object_name, method, tag_value, options = {})
+visibility: public

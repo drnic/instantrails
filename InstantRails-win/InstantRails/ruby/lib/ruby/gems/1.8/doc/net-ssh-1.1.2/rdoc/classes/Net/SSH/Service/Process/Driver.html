@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SSH::Service::Process::Driver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SSH::Service::Process::Driver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../../files/lib/net/ssh/service/process/driver_rb.html">
+                lib/net/ssh/service/process/driver.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Represents a process executing on the remote machine. It also provides a
+simple interface for interacting with such a remote process.
+</p>
+<p>
+It may be used in either of two ways. The first allows multiple processes
+to be invoked on the remote machine and run in parallel over the same
+session. Because of this, it is a bit complicated to set up:
+</p>
+<pre>
+  require 'net/ssh'
+
+  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|
+    process = session.process.open( &quot;bc&quot; )
+    dialog = [ &quot;5+5&quot;, &quot;7*12&quot;, &quot;1+2*5/(7+3)&quot; ]
+
+    process.on_success do |p|
+      puts &quot;requesting computation of '#{dialog.first}'&quot;
+      p.puts dialog.shift
+    end
+
+    process.on_failure do |p, status|
+      puts &quot;process failed to start (#{status})&quot;
+    end
+
+    process.on_stdout do |p, data|
+      puts &quot;--&gt; #{data}&quot;
+      if dialog.empty?
+        p.close_input
+      else
+        puts &quot;requesting computation of '#{dialog.first}'&quot;
+        p.puts dialog.shift
+      end
+    end
+
+    process.on_stderr do |p, data|
+      puts &quot;[stderr]--&gt; #{data}&quot;
+    end
+
+    process.on_exit do |p, status|
+      puts &quot;process finished with exit status: #{status}&quot;
+    end
+
+    session.loop
+  end
+</pre>
+<p>
+Naturally, not all of the callbacks used above are required. If you omit
+any of them, they will simply not be called. However, you <b>should</b> do
+something when the process is successfully started (<tt>on_success</tt>),
+and you <b>should</b> do something when data is recieved over stdout
+(<tt>on_stdout</tt>). Lastly, you <b>must</b> execute <tt>session.loop</tt>
+in order to process the connection.
+</p>
+<p>
+The simpler way to use this service is only available when you are not
+handling multiple parallel processes&#8212;you can only use it when the
+process you are executing is the only task you are using the <a
+href="../../../SSH.html">SSH</a> connection for. It is reminiscent of the
+popen interface: you invoke a command and get three pseudo-IO objects
+back&#8212;one for the command&#8216;s &quot;stdin&quot; stream, one for
+it&#8216;s &quot;stdout&quot; stream, and one for it&#8216;s
+&quot;stderr&quot; stream. You may then write to the &quot;stdin&quot;
+stream, and read from the &quot;stdout&quot; and &quot;stderr&quot;
+streams.
+</p>
+<p>
+For example:
+</p>
+<pre>
+  require 'net/ssh'
+
+  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|
+    input, output, error = session.process.popen3( &quot;bc&quot; )
+    input.puts &quot;5+5&quot;
+    puts &quot;5+5=#{output.read}&quot;
+    input.puts &quot;7*12&quot;
+    puts &quot;7*12=#{output.read}&quot;
+    input.puts &quot;1+2*5/(7+3)&quot;
+    puts &quot;1+2*5/(7+3)=#{output.read}&quot;
+    input.puts &quot;quit&quot;
+  end
+</pre>
+<p>
+One caveat with this format: the process cannot be explicitly terminated
+from the client side&#8212;the process must terminate on its own (for
+example, by recieving a &quot;quit&quot; command, as used above). If the
+command does not support any means of gracefully aborting it, then the only
+way to kill the command is to terminate the connection.
+</p>
+<p>
+A slightly cleaner approach uses blocks to denote the lifespan of the
+process. When the block terminates, the process is killed (if it is still
+running):
+</p>
+<pre>
+  require 'net/ssh'
+
+  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|
+    session.process.popen3( &quot;cat&quot; ) do |input, output, error|
+      input.puts &quot;hello&quot;
+      puts &quot;echo: #{output.read}&quot;
+      input.puts &quot;world&quot;
+      puts &quot;echo: #{output.read}&quot;
+    end
+  end
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000382">new</a>&nbsp;&nbsp;
+      <a href="#M000383">open</a>&nbsp;&nbsp;
+      <a href="#M000384">popen3</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000382" class="method-detail">
+        <a name="M000382"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000382.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000382.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( connection, log, handlers )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Driver.html#M000382">new</a> <a
+href="Driver.html">Driver</a> instance, using the given log and handlers
+hash.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000383" class="method-detail">
+        <a name="M000383"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000383.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000383.html');return false;">
+          <span class="method-name">open</span><span class="method-args">( command ) {|process| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000384" class="method-detail">
+        <a name="M000384"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000384.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000384.html');return false;">
+          <span class="method-name">popen3</span><span class="method-args">( command, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

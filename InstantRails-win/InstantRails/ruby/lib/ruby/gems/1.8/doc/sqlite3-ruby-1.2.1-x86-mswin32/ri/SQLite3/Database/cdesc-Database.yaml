@@ -1,0 +1,107 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A reference to the underlying SQLite3 driver used by this database.
+  name: driver
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The low-level opaque database handle that this object wraps.
+  name: handle
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A boolean that indicates whether rows in result sets should be returned as hashes or not. By default, rows are returned as arrays.
+  name: results_as_hash
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A boolean indicating whether or not type translation is enabled for this database.
+  name: type_translation
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: quote
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The Database class encapsulates a single connection to a SQLite3 database. Its usage is very straightforward:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'sqlite3'\n\n  db = SQLite3::Database.new( &quot;data.db&quot; )\n\n  db.execute( &quot;select * from table&quot; ) do |row|\n    p row\n  end\n\n  db.close\n"
+- !ruby/struct:SM::Flow::P 
+  body: It wraps the lower-level methods provides by the selected driver, and includes the Pragmas module for access to various pragma convenience methods.
+- !ruby/struct:SM::Flow::P 
+  body: The Database class provides type translation services as well, by which the SQLite3 data types (which are all represented as strings) may be converted into their corresponding types (as defined in the schemas for their tables). This translation only occurs when querying data from the database--insertions and updates are all still typeless.
+- !ruby/struct:SM::Flow::P 
+  body: Furthermore, the Database class has been designed to work well with the ArrayFields module from Ara Howard. If you require the ArrayFields module before performing a query, and if you have not enabled results as hashes, then the results will all be indexible by field name.
+constants: []
+
+full_name: SQLite3::Database
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Pragmas
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: authorizer
+- !ruby/object:RI::MethodSummary 
+  name: busy_handler
+- !ruby/object:RI::MethodSummary 
+  name: busy_timeout
+- !ruby/object:RI::MethodSummary 
+  name: changes
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: closed?
+- !ruby/object:RI::MethodSummary 
+  name: commit
+- !ruby/object:RI::MethodSummary 
+  name: complete?
+- !ruby/object:RI::MethodSummary 
+  name: create_aggregate
+- !ruby/object:RI::MethodSummary 
+  name: create_aggregate_handler
+- !ruby/object:RI::MethodSummary 
+  name: create_function
+- !ruby/object:RI::MethodSummary 
+  name: errcode
+- !ruby/object:RI::MethodSummary 
+  name: errmsg
+- !ruby/object:RI::MethodSummary 
+  name: execute
+- !ruby/object:RI::MethodSummary 
+  name: execute2
+- !ruby/object:RI::MethodSummary 
+  name: execute_batch
+- !ruby/object:RI::MethodSummary 
+  name: get_first_row
+- !ruby/object:RI::MethodSummary 
+  name: get_first_value
+- !ruby/object:RI::MethodSummary 
+  name: interrupt
+- !ruby/object:RI::MethodSummary 
+  name: last_insert_row_id
+- !ruby/object:RI::MethodSummary 
+  name: prepare
+- !ruby/object:RI::MethodSummary 
+  name: query
+- !ruby/object:RI::MethodSummary 
+  name: rollback
+- !ruby/object:RI::MethodSummary 
+  name: total_changes
+- !ruby/object:RI::MethodSummary 
+  name: trace
+- !ruby/object:RI::MethodSummary 
+  name: transaction
+- !ruby/object:RI::MethodSummary 
+  name: transaction_active?
+- !ruby/object:RI::MethodSummary 
+  name: translator
+name: Database
+superclass: Object

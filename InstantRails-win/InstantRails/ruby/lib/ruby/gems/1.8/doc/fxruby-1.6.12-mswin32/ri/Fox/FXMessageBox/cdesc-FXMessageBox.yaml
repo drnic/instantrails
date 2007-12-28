@@ -1,0 +1,86 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: error
+- !ruby/object:RI::MethodSummary 
+  name: information
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: question
+- !ruby/object:RI::MethodSummary 
+  name: warning
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A Message Box is a convenience class which provides a dialog for very simple common yes/no type interactions with the user. The message box has an optional icon, a title string, and the question which is presented to the user. It also has up to three buttons which furnish standard responses to the question. Message boxes are usually run modally: the question must be answered before the program may continue."
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message box buttons
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_OK+:"
+    body: Message box has a only an <b>Ok</b> button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_OK_CANCEL+:"
+    body: Message box has <b>Ok</b> and <b>Cancel</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_YES_NO+:"
+    body: Message box has <b>Yes</b> and <b>No</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_YES_NO_CANCEL+:"
+    body: Message box has <b>Yes</b>, <b>No</b>, and <b>Cancel</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_QUIT_CANCEL+:"
+    body: Message box has <b>Quit</b> and <b>Cancel</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_QUIT_SAVE_CANCEL+:"
+    body: Message box has <b>Quit</b>, <b>Save</b>, and <b>Cancel</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_SKIP_SKIPALL_CANCEL+:"
+    body: Message box has <b>Skip</b>, *Skip All* and <b>Cancel</b> buttons
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_SAVE_CANCEL_DONTSAVE+:"
+    body: Message box has *Don't Save*, <b>Cancel</b> and <b>Save</b> buttons
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Return values
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_YES+:"
+    body: The <b>Yes</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_NO+:"
+    body: The <b>No</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_OK+:"
+    body: The <b>Ok</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_CANCEL+:"
+    body: The <b>Cancel</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_QUIT+:"
+    body: The <b>Quit</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_SAVE+:"
+    body: The <b>Save</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_SKIP+:"
+    body: The <b>Skip</b> button was clicked
+  - !ruby/struct:SM::Flow::LI 
+    label: "+MBOX_CLICKED_SKIPALL+:"
+    body: The *Skip All* button was clicked
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXMessageBox
+includes: []
+
+instance_methods: []
+
+name: FXMessageBox
+superclass: FXDialogBox

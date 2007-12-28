@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SSH::Connection::Driver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SSH::Connection::Driver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/net/ssh/connection/driver_rb.html">
+                lib/net/ssh/connection/driver.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000320">add_channel_open_handler</a>&nbsp;&nbsp;
+      <a href="#M000322">allocate_channel_id</a>&nbsp;&nbsp;
+      <a href="#M000327">channel_request</a>&nbsp;&nbsp;
+      <a href="#M000319">channels</a>&nbsp;&nbsp;
+      <a href="#M000341">do_channel_close</a>&nbsp;&nbsp;
+      <a href="#M000338">do_channel_data</a>&nbsp;&nbsp;
+      <a href="#M000340">do_channel_eof</a>&nbsp;&nbsp;
+      <a href="#M000339">do_channel_extended_data</a>&nbsp;&nbsp;
+      <a href="#M000344">do_channel_failure</a>&nbsp;&nbsp;
+      <a href="#M000334">do_channel_open</a>&nbsp;&nbsp;
+      <a href="#M000336">do_channel_open_confirmation</a>&nbsp;&nbsp;
+      <a href="#M000335">do_channel_open_failure</a>&nbsp;&nbsp;
+      <a href="#M000342">do_channel_request</a>&nbsp;&nbsp;
+      <a href="#M000343">do_channel_success</a>&nbsp;&nbsp;
+      <a href="#M000337">do_channel_window_adjust</a>&nbsp;&nbsp;
+      <a href="#M000331">do_global_request</a>&nbsp;&nbsp;
+      <a href="#M000333">do_request_failure</a>&nbsp;&nbsp;
+      <a href="#M000332">do_request_success</a>&nbsp;&nbsp;
+      <a href="#M000326">global_request</a>&nbsp;&nbsp;
+      <a href="#M000324">loop</a>&nbsp;&nbsp;
+      <a href="#M000316">new</a>&nbsp;&nbsp;
+      <a href="#M000317">open_channel</a>&nbsp;&nbsp;
+      <a href="#M000330">ping!</a>&nbsp;&nbsp;
+      <a href="#M000325">process</a>&nbsp;&nbsp;
+      <a href="#M000329">reader_ready?</a>&nbsp;&nbsp;
+      <a href="#M000323">register_data_request</a>&nbsp;&nbsp;
+      <a href="#M000318">remove_channel</a>&nbsp;&nbsp;
+      <a href="#M000321">remove_channel_open_handler</a>&nbsp;&nbsp;
+      <a href="#M000328">send_message</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Constants.html">Constants</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">Request</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new( :type, :data, :callback )</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A structure for representing global requests, as registered by the <a
+href="Driver.html#M000326">global_request</a> method.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DataRequest</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new( :channel, :data, :type )</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+A structure for representing a data buffer that must be sent across a
+channel.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MESSAGES</td>
+          <td>=</td>
+          <td class="context-item-value">%w(           global_request           request_success request_failure channel_open channel_open_failure           channel_open_confirmation channel_window_adjust channel_data           channel_extended_data channel_eof channel_close channel_request           channel_success channel_failure         ).inject({}) do |map, event|           constant = Constants.const_get event.upcase.to_sym</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000316" class="method-detail">
+        <a name="M000316"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000316.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000316.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( session, log, buffers, factories )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Driver.html#M000316">new</a> connection driver that
+communicates over the given transport session. <tt>log</tt> is the logger
+instance to write log messages to, buffers is a buffer factory, and <a
+href="Driver.html#M000319">channels</a> is a factory that can return <a
+href="Driver.html#M000316">new</a> channel instances.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000320" class="method-detail">
+        <a name="M000320"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000320.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000320.html');return false;">
+          <span class="method-name">add_channel_open_handler</span><span class="method-args">( type, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Add a callback to be invoked when a channel-open request is recieved for a
+channel of the given type. The handler-id is returned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000322" class="method-detail">
+        <a name="M000322"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000322.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000322.html');return false;">
+          <span class="method-name">allocate_channel_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the next available channel id for this connection. This method is
+thread-safe.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000327" class="method-detail">
+        <a name="M000327"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000327.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000327.html');return false;">
+          <span class="method-name">channel_request</span><span class="method-args">( type )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Send a channel request packet to the server.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000319" class="method-detail">
+        <a name="M000319"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000319.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000319.html');return false;">
+          <span class="method-name">channels</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of active <a href="Driver.html#M000319">channels</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000341" class="method-detail">
+        <a name="M000341"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000341.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000341.html');return false;">
+          <span class="method-name">do_channel_close</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000338" class="method-detail">
+        <a name="M000338"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000338.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000338.html');return false;">
+          <span class="method-name">do_channel_data</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000340" class="method-detail">
+        <a name="M000340"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000340.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000340.html');return false;">
+          <span class="method-name">do_channel_eof</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000339" class="method-detail">
+        <a name="M000339"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000339.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000339.html');return false;">
+          <span class="method-name">do_channel_extended_data</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000344" class="method-detail">
+        <a name="M000344"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000344.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000344.html');return false;">
+          <span class="method-name">do_channel_failure</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000334" class="method-detail">
+        <a name="M000334"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000334.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000334.html');return false;">
+          <span class="method-name">do_channel_open</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000336" class="method-detail">
+        <a name="M000336"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000336.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000336.html');return false;">
+          <span class="method-name">do_channel_open_confirmation</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000335" class="method-detail">
+        <a name="M000335"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000335.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000335.html');return false;">
+          <span class="method-name">do_channel_open_failure</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000342" class="method-detail">
+        <a name="M000342"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000342.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000342.html');return false;">
+          <span class="method-name">do_channel_request</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000343" class="method-detail">
+        <a name="M000343"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000343.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000343.html');return false;">
+          <span class="method-name">do_channel_success</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000337" class="method-detail">
+        <a name="M000337"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000337.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000337.html');return false;">
+          <span class="method-name">do_channel_window_adjust</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000331" class="method-detail">
+        <a name="M000331"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000331.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000331.html');return false;">
+          <span class="method-name">do_global_request</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000333" class="method-detail">
+        <a name="M000333"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000333.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000333.html');return false;">
+          <span class="method-name">do_request_failure</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000332" class="method-detail">
+        <a name="M000332"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000332.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000332.html');return false;">
+          <span class="method-name">do_request_success</span><span class="method-args">( response )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000326" class="method-detail">
+        <a name="M000326"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000326.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000326.html');return false;">
+          <span class="method-name">global_request</span><span class="method-args">( type, data=nil, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Send a global request packet to the server. This returns immediately. The
+given block will be invoked when the server responds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000324" class="method-detail">
+        <a name="M000324"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000324.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000324.html');return false;">
+          <span class="method-name">loop</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Repeated call <a href="Driver.html#M000325">process</a> for as long as the
+given block returns <tt>true</tt>. If no block is given, then the <a
+href="Driver.html#M000324">loop</a> continues until there are no more open
+<a href="Driver.html#M000319">channels</a> on this connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000317" class="method-detail">
+        <a name="M000317"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000317.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000317.html');return false;">
+          <span class="method-name">open_channel</span><span class="method-args">( type, extra_data=nil, &amp;on_confirm )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Open and return a <a href="Driver.html#M000316">new</a> channel. This
+returns immediately, before the server confirms that the channel was
+opened. When the server sends the confirmation, the <tt>on_confirm</tt>
+callback will be invoked.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000330" class="method-detail">
+        <a name="M000330"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000330.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000330.html');return false;">
+          <span class="method-name">ping!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sends an innocuous packet to the server to test the connection. Can be used
+to defeat timeouts on long-running commands.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000325" class="method-detail">
+        <a name="M000325"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000325.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000325.html');return false;">
+          <span class="method-name">process</span><span class="method-args">( nonblock=false )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Wait for and dispatch a single event. If <tt>nonblock</tt> is false (the
+default) this will block until a message has been received. Otherwise, it
+will return immediately.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000329" class="method-detail">
+        <a name="M000329"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000329.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000329.html');return false;">
+          <span class="method-name">reader_ready?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to the reader_ready method of the transport session.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000323" class="method-detail">
+        <a name="M000323"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000323.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000323.html');return false;">
+          <span class="method-name">register_data_request</span><span class="method-args">( channel, data, type=nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register a data buffer (of an optional type) to be sent across the given
+channel at the next available opportunity.
+</p>
+<p>
+This is used internally by <a href="Driver.html#M000319">channels</a> to
+hide the window size and maximum packet size from the client. Clients
+should not call this method directly.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000318" class="method-detail">
+        <a name="M000318"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000318.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000318.html');return false;">
+          <span class="method-name">remove_channel</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove the given channel from the connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000321" class="method-detail">
+        <a name="M000321"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000321.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000321.html');return false;">
+          <span class="method-name">remove_channel_open_handler</span><span class="method-args">( type, id )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Remove a callback with the given id for channel-open requests of the given
+type.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000328" class="method-detail">
+        <a name="M000328"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000328.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000328.html');return false;">
+          <span class="method-name">send_message</span><span class="method-args">( msg )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A convenience method for sending messages.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

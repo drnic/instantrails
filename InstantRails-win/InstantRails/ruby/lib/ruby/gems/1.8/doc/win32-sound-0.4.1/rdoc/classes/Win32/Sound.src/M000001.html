@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>devices (Win32::Sound)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/sound.rb, line 42</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">devices</span>
+         <span class="ruby-identifier">devs</span> = []
+         
+         <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@waveOutGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WAVEOUT#{i}&quot;</span> }
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@waveInGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;WAVEIN#{i}&quot;</span> }
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@midiOutGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;MIDIOUT#{i}&quot;</span> }
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@midiInGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;MIDIIN#{i}&quot;</span> }
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@auxGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;AUX#{i}&quot;</span> }
+            <span class="ruby-value">0</span>.<span class="ruby-identifier">upto</span>(<span class="ruby-ivar">@@mixerGetNumDevs</span>.<span class="ruby-identifier">call</span>){ <span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-identifier">devs</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;MIXER#{i}&quot;</span> }
+         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">devs</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

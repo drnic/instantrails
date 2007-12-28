@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:06 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>0.4.6 - 27-Aug-2007</h1>
+<ul>
+<li>Reading event logs is now approximately 5-7 times faster!
+
+</li>
+<li>Fixed a potential bug where, in rare cases, event descriptions could be
+overwritten by other event descriptions.
+
+</li>
+<li>Fixed a bug where, in unusual cases, there was leading garbage in the event
+descriptions.
+
+</li>
+</ul>
+<h1>0.4.5 - 25-Aug-2007</h1>
+<ul>
+<li>Fixed two potential issues where reading from remote event log sources
+could fail either due to permissions (reading DLL&#8216;s) or because local
+registry entries didn&#8216;t necessarily match the remote registry
+entries. Thanks go to Andrew Garberoglio and Ivan Shiel for the spot.
+
+</li>
+</ul>
+<h1>0.4.4 - 31-Jul-2007</h1>
+<ul>
+<li>The EventLogError class is now EventLog::Error.
+
+</li>
+<li>The MCError class is now MC::Error.
+
+</li>
+<li>Added a Rakefile with tasks for installation and testing.
+
+</li>
+<li>Removed the install.rb file. Installation is now handled by the Rakefile.
+
+</li>
+<li>Fixed some bad test cases in tc_eventlog.rb.
+
+</li>
+<li>Added some more source comments.
+
+</li>
+<li>Updates to the README and MANIFEST file.
+
+</li>
+</ul>
+<h1>0.4.3 - 18-Dec-2006</h1>
+<ul>
+<li>Removed the FORMAT_MESSAGE_FROM_SYSTEM flag to the FormatMessage function
+in the get_description private method because it could sometimes return
+bogus information. Thanks go to Greg Holmes for the spot.
+
+</li>
+<li>Added the string_inserts member to the EventLogStruct. This contains an
+array of only the raw string inserts, rather than the entire text message.
+
+</li>
+</ul>
+<h1>0.4.2 - 6-Aug-2006</h1>
+<ul>
+<li>Fixed a bug in the EventLog.read method related to the
+EVENTLOG_BACKWARDS_READ flag.
+
+</li>
+<li>Fixed a bug in the EventLog.read method where the event_type was not being
+set properly. Thanks go to &quot;TheR&quot; for the spot and the fix.
+
+</li>
+<li>Fixed bugs in the EventLog#tail method where it would fail if the log was
+full and dups would appear.
+
+</li>
+</ul>
+<h1>0.4.1 - 28-May-2006</h1>
+<ul>
+<li>Fixed a bug in the EventLog#notify_change method where the handle would die
+after five or six reads. Thanks go to botp for the spot.
+
+</li>
+</ul>
+<h1>0.4.0 - 24-May-2006</h1>
+<ul>
+<li>Now pure Ruby.
+
+</li>
+<li>Now includes a gemspec.
+
+</li>
+<li>Fixed a major bug the EventLog#tail method where it was reading the log in
+the wrong order (!!!).
+
+</li>
+<li>Fixed a bug in the EventLog#report_event with regards to long
+category_id&#8216;s. Actually, this wasn&#8216;t so much &quot;fixed&quot;
+as &quot;avoided&quot; by virtue of using a pure Ruby solution.
+
+</li>
+<li>Added the EventLog#full? method.
+
+</li>
+<li>Documentation updates and corrections, including the tutorial on creating
+and writing to your own event source.
+
+</li>
+</ul>
+<h2>0.3.3 - 2-Jan-2006</h2>
+<ul>
+<li>If EventLog.new fails, it now raises EventLogError instead of
+StandardError.
+
+</li>
+<li>Added documentation to the eventlog.txt file for EventLog#notify_change.
+
+</li>
+<li>Added inline rdoc to the C source code.
+
+</li>
+<li>Code cleanup.
+
+</li>
+</ul>
+<h2>0.3.2 - 26-May-2005</h2>
+<ul>
+<li>Code now more Unicode friendly, and other cleanup.
+
+</li>
+<li>Made the .txt files rdoc friendly, and removed the .rd files.
+
+</li>
+<li>Minor adjustments to the test suite.
+
+</li>
+</ul>
+<h2>0.3.1 - 16-Feb-2005</h2>
+<ul>
+<li>Minor modifications to the source to eliminate some warnings that appeared
+in Ruby 1.8.2 or later, plus other minor tweaks.
+
+</li>
+<li>Renamed the sample programs and moved the &#8216;examples&#8217; directory
+to the toplevel directory.
+
+</li>
+<li>Made this document rdoc friendly.
+
+</li>
+</ul>
+<h2>0.3.0 - 30-Oct-2004</h2>
+<ul>
+<li>Added the notify_change() and tail() methods.
+
+</li>
+<li>Added the write() alias for report_event().
+
+</li>
+<li>The read() class and instance methods now return an array of structs if no
+block is given.
+
+</li>
+<li>Added the &#8216;rubymsg.mc&#8217; message category file. If installed,
+this will create a &#8216;RubyMsg&#8217; event source for use with
+win32-service, though you may use it for whatever you wish. See the README
+for more details.
+
+</li>
+<li>Renamed struct back to EventLogStruct - sorry, sorry - I promise I
+won&#8216;t change this again.
+
+</li>
+<li>Fixed a bug where using EventLog::SEEK_READ did not work properly (thanks
+Park).
+
+</li>
+<li>Added the notify.rb test script under doc/examples.
+
+</li>
+</ul>
+<h2>0.2.5 - 28-Oct-2004</h2>
+<ul>
+<li>Modified the open() and read() class methods to default to
+&quot;Application&quot; for the default Event source.
+
+</li>
+<li>Removed the .html files. You can generate these on your own with rd2.
+
+</li>
+</ul>
+<h2>0.2.4 - 19-Oct-2004</h2>
+<ul>
+<li>Fixed a bug where a segfault would result if an Event Log entry were
+somehow corrupted. Thanks go again to Joey Gibson for the spot.
+
+</li>
+<li>Very minor doc corrections in tutorial.txt and eventlog.txt
+
+</li>
+</ul>
+<h2>0.2.3 - 14-Oct-2004</h2>
+<ul>
+<li>Fixed a bug where some Event Log descriptions were returning nil instead of
+the actual description. Thanks go to Joey Gibson for the spot.
+
+</li>
+<li>Minor test suite and doc additions, including a &quot;future plan&quot;
+that may be of interest.
+
+</li>
+</ul>
+<h2>0.2.2 - 02-Jul-2004</h2>
+<ul>
+<li>Fixed a bug in the read() method where not all the records were being
+returned.
+
+</li>
+<li>Fixed calls to rb_time_new() - second argument appears to be mandatory as
+of 1.8.2.
+
+</li>
+<li>Renamed struct returned by read() to &quot;EventLog&quot;.
+
+</li>
+<li>Changed struct members &quot;id&quot; and &quot;type&quot; to
+&quot;event_id&quot; and &quot;event_type&quot;, respectively. This was to
+avoid any confusion with the builtin Ruby methods of the same name.
+
+</li>
+<li>Replaced STR2CSTR() with StringValuePtr(), as the former is deprecated.
+This means that as of this version, Ruby 1.8.0 or later is required.
+
+</li>
+<li>Moved the sample programs to doc/examples.
+
+</li>
+</ul>
+<h2>0.2.1 - 04-Mar-2004</h2>
+<ul>
+<li>The add_event_source() and report_event() methods now accept symbols as
+well as do key validation.
+
+</li>
+<li>Moved the EventLogError class under the <a
+href="../classes/Win32.html">Win32</a> module.
+
+</li>
+<li>Normalized the tc_eventlog.rb and tc_mc.rb scripts by making it easier to
+run them standalone from another directory.
+
+</li>
+<li>Minor modification to the build process.
+
+</li>
+<li>Added a test_write.rb script for general futzing when it comes to creating
+and writing events to the log.
+
+</li>
+<li>Doc updates, warranty information added.
+
+</li>
+</ul>
+<h2>0.2.0 - 1-Feb-2004</h2>
+<ul>
+<li>Changed the Win32EventLogError class to just EventLogError. I felt the <a
+href="../classes/Win32.html">Win32</a> was redundant given that the class
+is already under the <a href="../classes/Win32.html">Win32</a> module.
+
+</li>
+<li>Fixed bug where bogus error messages were returned because I was calling
+GetLastError() too late.
+
+</li>
+<li>Fixed bug where error messages were getting cut off and/or garbled due to
+\r\n character. (Thanks Park Heesob).
+
+</li>
+<li>Added open_backup class method.
+
+</li>
+</ul>
+<h2>0.1.4 - 16-Jan-2004</h2>
+<ul>
+<li>Slightly better handling of the EventLog#close method. Adopted from code
+previously submitted by Park Heesob.
+
+</li>
+<li>Fixed a bug in the (internal) GetUser() function that caused a segfault if
+there were 250+ records. That function has been greatly simplified.
+
+</li>
+<li>Removed the rb_ensure() approach. What I thought was a memory leak was not,
+in fact, a memory leak. Also, it was slowing down the method considerably.
+
+</li>
+<li>Minor test suite update.
+
+</li>
+</ul>
+<h2>0.1.3 - 7-Jan-2004</h2>
+<ul>
+<li>Fixed memory leaks in read() method (Park Heesob).
+
+</li>
+<li>Added read() class method (Daniel Berger).
+
+</li>
+<li>Test suite and doc additions &amp; updates
+
+</li>
+</ul>
+<h2>0.1.2 - 30-Nov-2003</h2>
+<ul>
+<li>Added the report_event method. You can now write to the event log.
+
+</li>
+<li>Added the add_event_source class method, allowing you to register a custom
+event source.
+
+</li>
+<li>Added the win32-mc package to the distribution. This is a simple wrapper to
+generate .dll files from .mc files.
+
+</li>
+<li>Added Event Type constants
+
+</li>
+<li>Test suite additions
+
+</li>
+<li>Documentation updates and additions, including a small tutorial.
+
+</li>
+</ul>
+<h2>0.1.1 - 5-Nov-2003</h2>
+<ul>
+<li>Fixed the free() call, and added implicit eventlog closing (when the
+EventLog object is free&#8216;d).
+
+</li>
+<li>Simplified constants by removing &#8216;EVENTLOG_&#8217; portion of name.
+
+</li>
+<li>Cleanup in the GetDescription() method, which was causing segfaults in
+conjunction with TestUnit.
+
+</li>
+<li>Minor doc updates and cleanup.
+
+</li>
+</ul>
+<h2>0.1.0 - 14-Oct-2003</h2>
+<ul>
+<li>Initial release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

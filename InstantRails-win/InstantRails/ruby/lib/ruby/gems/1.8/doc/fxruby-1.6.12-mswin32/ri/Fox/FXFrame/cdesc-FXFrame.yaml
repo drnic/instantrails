@@ -1,0 +1,86 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Base GUI color [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border width, in pixels [Integer]
+  name: borderWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Frame style [Integer]
+  name: frameStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom interior padding, in pixels [Integer]
+  name: padBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left interior padding, in pixels [Integer]
+  name: padLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right interior padding, in pixels [Integer]
+  name: padRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top interior padding, in pixels [Integer]
+  name: padTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Frame widget provides borders around some contents. Borders may be raised, sunken, thick, ridged or etched. They can also be turned off completely. In addition, a certain amount of padding may be specified between the contents of the widget and the borders. The contents may be justified inside the widget using the justification options. The Frame widget is sometimes used by itself as a place holder, but most often is used as a convenient base class for simple controls.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Constants
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DEFAULT_PAD+:"
+    body: Default padding
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXFrame
+includes: []
+
+instance_methods: []
+
+name: FXFrame
+superclass: FXWindow

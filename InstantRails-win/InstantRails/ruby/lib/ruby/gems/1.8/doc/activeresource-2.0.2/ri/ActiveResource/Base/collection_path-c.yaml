@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Gets the collection path for the REST resources. If the <tt>query_options</tt> parameter is omitted, Rails will split from the <tt>prefix_options</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+prefix_options+:"
+    body: A hash to add a prefix to the request for nested URL's (e.g., <tt>:account_id =&gt; 19</tt> would yield a URL like <tt>/accounts/19/purchases.xml</tt>).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+query_options+:"
+    body: A hash to add items to the query string for the request.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.collection_path\n  # =&gt; /posts.xml\n\n  Comment.collection_path(:post_id =&gt; 5)\n  # =&gt; /posts/5/comments.xml\n\n  Comment.collection_path(:post_id =&gt; 5, :active =&gt; 1)\n  # =&gt; /posts/5/comments.xml?active=1\n\n  Comment.collection_path({:post_id =&gt; 5}, {:active =&gt; 1})\n  # =&gt; /posts/5/comments.xml?active=1\n"
+full_name: ActiveResource::Base::collection_path
+is_singleton: true
+name: collection_path
+params: (prefix_options = {}, query_options = nil)
+visibility: public

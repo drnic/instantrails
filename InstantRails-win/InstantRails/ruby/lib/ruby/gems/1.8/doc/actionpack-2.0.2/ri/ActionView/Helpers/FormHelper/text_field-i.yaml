@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an input tag of the &quot;text&quot; type tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>. These options will be tagged onto the HTML as an HTML element attribute as in the example shown.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  text_field(:post, :title, :size =&gt; 20)\n  # =&gt; &lt;input type=&quot;text&quot; id=&quot;post_title&quot; name=&quot;post[title]&quot; size=&quot;20&quot; value=&quot;#{@post.title}&quot; /&gt;\n\n  text_field(:post, :title, :class =&gt; &quot;create_input&quot;)\n  # =&gt; &lt;input type=&quot;text&quot; id=&quot;post_title&quot; name=&quot;post[title]&quot; value=&quot;#{@post.title}&quot; class=&quot;create_input&quot; /&gt;\n\n  text_field(:session, :user, :onchange =&gt; &quot;if $('session[user]').value == 'admin' { alert('Your login can not be admin!'); }&quot;)\n  # =&gt; &lt;input type=&quot;text&quot; id=&quot;session_user&quot; name=&quot;session[user]&quot; value=&quot;#{@session.user}&quot; onchange = &quot;if $('session[user]').value == 'admin' { alert('Your login can not be admin!'); }&quot;/&gt;\n\n  text_field(:snippet, :code, :size =&gt; 20, :class =&gt; 'code_input')\n  # =&gt; &lt;input type=&quot;text&quot; id=&quot;snippet_code&quot; name=&quot;snippet[code]&quot; size=&quot;20&quot; value=&quot;#{@snippet.code}&quot; class=&quot;code_input&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#text_field
+is_singleton: false
+name: text_field
+params: (object_name, method, options = {})
+visibility: public

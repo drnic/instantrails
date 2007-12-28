@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process (Net::SSH::Connection::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/connection/driver.rb, line 147</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>( <span class="ruby-identifier">nonblock</span>=<span class="ruby-keyword kw">false</span> )
+          <span class="ruby-identifier">process_data_requests</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">nonblock</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">reader_ready?</span>
+            <span class="ruby-identifier">type</span>, <span class="ruby-identifier">response</span> = <span class="ruby-ivar">@session</span>.<span class="ruby-identifier">wait_for_message</span>
+
+            <span class="ruby-keyword kw">unless</span> ( <span class="ruby-identifier">dispatcher</span> = <span class="ruby-constant">MESSAGES</span>[ <span class="ruby-identifier">type</span> ] )
+              <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+                <span class="ruby-node">&quot;Unexpected response type '#{type}', (#{response.inspect})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">dispatcher</span>[<span class="ruby-identifier">:method</span>].<span class="ruby-identifier">bind</span>( <span class="ruby-keyword kw">self</span> ).<span class="ruby-identifier">call</span>( <span class="ruby-identifier">response</span> )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">self</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

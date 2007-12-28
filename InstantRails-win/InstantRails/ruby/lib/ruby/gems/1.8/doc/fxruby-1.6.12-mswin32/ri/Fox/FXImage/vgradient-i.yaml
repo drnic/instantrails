@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Fill image using a vertical gradient.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+top+:"
+    body: starting color, for topmost pixels [FXColor]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bottom+:"
+    body: ending color, for bottommost pixels [FXColor]
+  type: :NOTE
+full_name: Fox::FXImage#vgradient
+is_singleton: false
+name: vgradient
+params: (top, bottom)
+visibility: public

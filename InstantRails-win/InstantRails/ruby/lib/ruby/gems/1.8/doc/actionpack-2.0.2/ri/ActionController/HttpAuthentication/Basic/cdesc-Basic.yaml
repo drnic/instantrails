@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Makes it dead easy to do HTTP Basic authentication.
+- !ruby/struct:SM::Flow::P 
+  body: "Simple Basic example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class PostsController &lt; ApplicationController\n    USER_NAME, PASSWORD = &quot;dhh&quot;, &quot;secret&quot;\n\n    before_filter :authenticate, :except =&gt; [ :index ]\n\n    def index\n      render :text =&gt; &quot;Everyone can see me!&quot;\n    end\n\n    def edit\n      render :text =&gt; &quot;I'm only accessible if you know the password&quot;\n    end\n\n    private\n      def authenticate\n        authenticate_or_request_with_http_basic do |user_name, password|\n          user_name == USER_NAME &amp;&amp; password == PASSWORD\n        end\n      end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Here is a more advanced Basic example where only Atom feeds and the XML API is protected by HTTP authentication, the regular HTML interface is protected by a session approach:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ApplicationController &lt; ActionController::Base\n    before_filter :set_account, :authenticate\n\n    protected\n      def set_account\n        @account = Account.find_by_url_name(request.subdomains.first)\n      end\n\n      def authenticate\n        case request.format\n        when Mime::XML, Mime::ATOM\n          if user = authenticate_with_http_basic { |u, p| @account.users.authenticate(u, p) }\n            @current_user = user\n          else\n            request_http_basic_authentication\n          end\n        else\n          if session_authenticated?\n            @current_user = @account.users.find(session[:authenticated][:user_id])\n          else\n            redirect_to(login_url) and return false\n          end\n        end\n      end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "In your integration tests, you can do something like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def test_access_granted_from_xml\n    get(\n      &quot;/notes/1.xml&quot;, nil,\n      :authorization =&gt; ActionController::HttpAuthentication::Basic.encode_credentials(users(:dhh).name, users(:dhh).password)\n    )\n\n    assert_equal 200, status\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "On shared hosts, Apache sometimes doesn't pass authentication headers to FCGI instances. If your environment matches this description and you cannot authenticate, try this rule in public/.htaccess (replace the plain one):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  RewriteRule ^(.*)$ dispatch.fcgi [E=X-HTTP_AUTHORIZATION:%{HTTP:Authorization},QSA,L]\n"
+constants: []
+
+full_name: ActionController::HttpAuthentication::Basic
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: authenticate
+- !ruby/object:RI::MethodSummary 
+  name: authentication_request
+- !ruby/object:RI::MethodSummary 
+  name: authorization
+- !ruby/object:RI::MethodSummary 
+  name: decode_credentials
+- !ruby/object:RI::MethodSummary 
+  name: encode_credentials
+- !ruby/object:RI::MethodSummary 
+  name: user_name_and_password
+name: Basic
+superclass: 

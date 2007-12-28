@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>define_javascript_functions (ActionView::Helpers::JavaScriptHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/javascript_helper.rb, line 134</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">define_javascript_functions</span>
+        <span class="ruby-identifier">javascript</span> = <span class="ruby-node">&quot;&lt;script type=\&quot;#{Mime::JS}\&quot;&gt;&quot;</span>
+        
+        <span class="ruby-comment cmt"># load prototype.js and its extensions first </span>
+        <span class="ruby-identifier">prototype_libs</span> = <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">JAVASCRIPT_PATH</span>, <span class="ruby-value str">'prototype*'</span>)).<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">reverse</span>
+        <span class="ruby-identifier">prototype_libs</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span> 
+          <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">filename</span>)
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-comment cmt"># load other libraries</span>
+        (<span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">JAVASCRIPT_PATH</span>, <span class="ruby-value str">'*'</span>)) <span class="ruby-operator">-</span> <span class="ruby-identifier">prototype_libs</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">filename</span><span class="ruby-operator">|</span> 
+          <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">IO</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">filename</span>)
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">javascript</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'&lt;/script&gt;'</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

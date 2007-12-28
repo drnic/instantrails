@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>send (Net::SSH::Transport::OutgoingPacketStream)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/packet-stream.rb, line 85</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">send</span>( <span class="ruby-identifier">payload</span> )
+          <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-comment cmt"># force the payload into a string</span>
+            <span class="ruby-identifier">payload</span> = <span class="ruby-ivar">@compressor</span>.<span class="ruby-identifier">compress</span>( <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">to_s</span> )
+
+            <span class="ruby-comment cmt"># the length of the packet, minus the padding</span>
+            <span class="ruby-identifier">actual_length</span> = <span class="ruby-value">4</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+
+            <span class="ruby-comment cmt"># compute the padding length</span>
+            <span class="ruby-identifier">padding_length</span> = <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span> <span class="ruby-operator">-</span>
+              ( <span class="ruby-identifier">actual_length</span> <span class="ruby-operator">%</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span> )
+            <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">4</span>
+
+            <span class="ruby-comment cmt"># compute the packet length (sans the length field itself)</span>
+            <span class="ruby-identifier">packet_length</span> = <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">packet_length</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">16</span>
+              <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">+=</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span>
+              <span class="ruby-identifier">packet_length</span> = <span class="ruby-identifier">payload</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">padding</span> = <span class="ruby-constant">Array</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">padding_length</span> ) { <span class="ruby-identifier">rand</span>(<span class="ruby-value">256</span>) }.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">&quot;C*&quot;</span>)
+
+            <span class="ruby-identifier">unencrypted_data</span> = [ <span class="ruby-identifier">packet_length</span>, <span class="ruby-identifier">padding_length</span>, <span class="ruby-identifier">payload</span>,
+              <span class="ruby-identifier">padding</span> ].<span class="ruby-identifier">pack</span>( <span class="ruby-value str">&quot;NCA*A*&quot;</span> )
+            <span class="ruby-identifier">mac</span> = <span class="ruby-identifier">compute_hmac</span>( <span class="ruby-identifier">unencrypted_data</span> )
+
+            <span class="ruby-identifier">encrypted_data</span> = <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">update</span>( <span class="ruby-identifier">unencrypted_data</span> ) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">final</span>
+            <span class="ruby-identifier">message</span> = <span class="ruby-identifier">encrypted_data</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">mac</span>
+            <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">send</span> <span class="ruby-identifier">message</span>, <span class="ruby-value">0</span>
+
+            <span class="ruby-identifier">increment_sequence_number</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

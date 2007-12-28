@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Register the named service with the container. When the service is requested (with Container#[]), the associated callback will be used to construct it.
+- !ruby/struct:SM::Flow::P 
+  body: This returns the registry that was used to register the service.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.register( :calc, :model=&gt;:prototype ) do |c|\n    Calc.new( c.operations )\n  end\n"
+full_name: Needle::Container#register
+is_singleton: false
+name: register
+params: ( name, opts={}, &callback )
+visibility: public

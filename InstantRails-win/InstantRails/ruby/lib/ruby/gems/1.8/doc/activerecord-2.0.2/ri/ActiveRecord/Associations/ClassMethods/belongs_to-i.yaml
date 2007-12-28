@@ -1,0 +1,85 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Adds the following methods for retrieval and query for a single associated object for which this object holds an id: <tt>association</tt> is replaced with the symbol passed as the first argument, so <tt>belongs_to :author</tt> would add among others <tt>author.nil?</tt>."
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association(force_reload = false)</tt> - returns the associated object. <tt>nil</tt> is returned if none is found.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association=(associate)</tt> - assigns the associate object, extracts the primary key, and sets it as the foreign key.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>association.nil?</tt> - returns <tt>true</tt> if there is no associated object.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>build_association(attributes = {})</tt> - returns a new object of the associated type that has been instantiated with <tt>attributes</tt> and linked to this object through a foreign key, but has not yet been saved.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>create_association(attributes = {})</tt> - returns a new object of the associated type that has been instantiated with <tt>attributes</tt>, linked to this object through a foreign key, and that has already been saved (if it passed the validation).
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Example: A Post class declares <tt>belongs_to :author</tt>, which will add:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#author</tt> (similar to <tt>Author.find(author_id)</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#author=(author)</tt> (similar to <tt>post.author_id = author.id</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#author?</tt> (similar to <tt>post.author == some_author</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#author.nil?</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#build_author</tt> (similar to <tt>post.author = Author.new</tt>)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Post#create_author</tt> (similar to <tt>post.author = Author.new; post.author.save; post.author</tt>)
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: The declaration can also include an options hash to specialize the behavior of the association.
+- !ruby/struct:SM::Flow::P 
+  body: "Options are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:class_name</tt> - specify the class name of the association. Use it only if that name can't be inferred from the association name. So <tt>has_one :author</tt> will by default be linked to the <tt>Author</tt> class, but if the real class name is <tt>Person</tt>, you'll have to specify it with this option.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:conditions</tt> - specify the conditions that the associated object must meet in order to be included as a <tt>WHERE</tt> SQL fragment, such as <tt>authorized = 1</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:order</tt> - specify the order in which the associated objects are returned as an <tt>ORDER BY</tt> SQL fragment, such as <tt>last_name, first_name DESC</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:foreign_key</tt> - specify the foreign key used for the association. By default this is guessed to be the name of the associated class in lower-case and <tt>_id</tt> suffixed. So a <tt>Person</tt> class that makes a <tt>belongs_to</tt> association to a <tt>Boss</tt> class will use <tt>boss_id</tt> as the default <tt>foreign_key</tt>.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:counter_cache</tt> - caches the number of belonging objects on the associate class through the use of <tt>increment_counter</tt> and <tt>decrement_counter</tt>. The counter cache is incremented when an object of this class is created and decremented when it's destroyed. This requires that a column named <tt>#{table_name}_count</tt> (such as <tt>comments_count</tt> for a belonging <tt>Comment</tt> class) is used on the associate class (such as a <tt>Post</tt> class). You can also specify a custom counter cache column by providing a column name instead of a <tt>true</tt>/<tt>false</tt> value to this option (e.g., <tt>:counter_cache =&gt; :my_custom_counter</tt>.) Note: Specifying a counter_cache will add it to that model's list of readonly attributes using #attr_readonly."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:include</tt> - specify second-order associations that should be eager loaded when this object is loaded.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:polymorphic</tt> - specify this association is a polymorphic association by passing <tt>true</tt>. Note: If you've enabled the counter cache, then you may want to add the counter cache attribute to the attr_readonly list in the associated classes (e.g. class Post; attr_readonly :comments_count; end)."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Option examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  belongs_to :firm, :foreign_key =&gt; &quot;client_of&quot;\n  belongs_to :author, :class_name =&gt; &quot;Person&quot;, :foreign_key =&gt; &quot;author_id&quot;\n  belongs_to :valid_coupon, :class_name =&gt; &quot;Coupon&quot;, :foreign_key =&gt; &quot;coupon_id&quot;,\n             :conditions =&gt; 'discounts &gt; #{payments_count}'\n  belongs_to :attachable, :polymorphic =&gt; true\n"
+full_name: ActiveRecord::Associations::ClassMethods#belongs_to
+is_singleton: false
+name: belongs_to
+params: (association_id, options = {})
+visibility: public

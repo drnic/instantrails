@@ -1,0 +1,24 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: determine_default_mailer
+- !ruby/object:RI::MethodSummary 
+  name: mailer_class
+- !ruby/object:RI::MethodSummary 
+  name: tests
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: New Test Super class for forward compatibility. To override
+constants: []
+
+full_name: ActionMailer::TestCase
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: ActionMailer::Quoting
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setup
+name: TestCase
+superclass: ActiveSupport::TestCase

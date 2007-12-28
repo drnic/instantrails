@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Gem::Indexer::AbstractIndexBuilder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Gem::Indexer::AbstractIndexBuilder</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/rubygems/indexer/abstract_index_builder_rb.html">
+                lib/rubygems/indexer/abstract_index_builder.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Abstract base class for building gem indicies. Uses the template pattern
+with subclass specialization in the <tt>begin_index</tt>, <tt><a
+href="AbstractIndexBuilder.html#M000116">end_index</a></tt> and <tt><a
+href="AbstractIndexBuilder.html#M000117">cleanup</a></tt> methods.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000113">build</a>&nbsp;&nbsp;
+      <a href="#M000117">cleanup</a>&nbsp;&nbsp;
+      <a href="#M000114">compress</a>&nbsp;&nbsp;
+      <a href="#M000116">end_index</a>&nbsp;&nbsp;
+      <a href="#M000112">new</a>&nbsp;&nbsp;
+      <a href="#M000115">start_index</a>&nbsp;&nbsp;
+      <a href="#M000118">unzip</a>&nbsp;&nbsp;
+      <a href="#M000119">zip</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">directory</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+Directory to put index files in
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filename</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+File name of the generated index
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">files</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+List of written files/directories to move into production
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000112" class="method-detail">
+        <a name="M000112"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000112.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000112.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(filename, directory)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000113" class="method-detail">
+        <a name="M000113"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000113.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000113.html');return false;">
+          <span class="method-name">build</span><span class="method-args">() {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Build a <a href="../../Gem.html">Gem</a> index. Yields to block to handle
+the details of the actual building. Calls <tt>begin_index</tt>, <tt><a
+href="AbstractIndexBuilder.html#M000116">end_index</a></tt> and <tt><a
+href="AbstractIndexBuilder.html#M000117">cleanup</a></tt> at appropriate
+times to customize basic operations.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000117" class="method-detail">
+        <a name="M000117"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000117.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000117.html');return false;">
+          <span class="method-name">cleanup</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called from within builder after the index file has been closed.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000114" class="method-detail">
+        <a name="M000114"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000114.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000114.html');return false;">
+          <span class="method-name">compress</span><span class="method-args">(filename, ext=&quot;rz&quot;)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Compress the given file.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000116" class="method-detail">
+        <a name="M000116"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000116.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000116.html');return false;">
+          <span class="method-name">end_index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called immediately after the yield in <a
+href="AbstractIndexBuilder.html#M000113">build</a>. The index file is still
+open and available as @file.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000115" class="method-detail">
+        <a name="M000115"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000115.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000115.html');return false;">
+          <span class="method-name">start_index</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Called immediately before the yield in <a
+href="AbstractIndexBuilder.html#M000113">build</a>. The index file is open
+and available as @file.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000118" class="method-detail">
+        <a name="M000118"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000118.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000118.html');return false;">
+          <span class="method-name">unzip</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an uncompressed version of a compressed string.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000119" class="method-detail">
+        <a name="M000119"></a>
+
+        <div class="method-heading">
+          <a href="AbstractIndexBuilder.src/M000119.html" target="Code" class="method-signature"
+            onclick="popupCode('AbstractIndexBuilder.src/M000119.html');return false;">
+          <span class="method-name">zip</span><span class="method-args">(string)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return a compressed version of the given string.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds a view_path to the end of the view_paths array. This change affects the current request only.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  self.append_view_path(&quot;views/default&quot;)\n  self.append_view_path([&quot;views/default&quot;, &quot;views/custom&quot;])\n"
+full_name: ActionController::Base#append_view_path
+is_singleton: false
+name: append_view_path
+params: (path)
+visibility: public

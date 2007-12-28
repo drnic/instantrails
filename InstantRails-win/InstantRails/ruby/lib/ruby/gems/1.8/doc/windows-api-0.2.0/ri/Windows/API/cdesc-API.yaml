@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: dll_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: function_name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: prototype
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: return_type
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: auto_constant
+- !ruby/object:RI::MethodSummary 
+  name: auto_constant=
+- !ruby/object:RI::MethodSummary 
+  name: auto_method
+- !ruby/object:RI::MethodSummary 
+  name: auto_method=
+- !ruby/object:RI::MethodSummary 
+  name: auto_namespace
+- !ruby/object:RI::MethodSummary 
+  name: auto_namespace=
+- !ruby/object:RI::MethodSummary 
+  name: auto_unicode
+- !ruby/object:RI::MethodSummary 
+  name: auto_unicode=
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.2.0'"
+full_name: Windows::API
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+name: API
+superclass: Object

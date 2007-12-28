@@ -1,0 +1,19 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A specialization of SSHOutputPipe that represents specifically the <tt>stderr</tt> stream of a process. It should only be used by popen3.
+constants: []
+
+full_name: Net::SSH::Service::Process::POpen3Manager::SSHStderrPipe
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+name: SSHStderrPipe
+superclass: SSHOutputPipe

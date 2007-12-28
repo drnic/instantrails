@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns a JavaScript tag with the <tt>content</tt> inside. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  javascript_tag &quot;alert('All is good')&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Returns:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;script type=&quot;text/javascript&quot;&gt;\n  //&lt;![CDATA[\n  alert('All is good')\n  //]]&gt;\n  &lt;/script&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>html_options</tt> may be a hash of attributes for the &lt;script&gt; tag. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  javascript_tag &quot;alert('All is good')&quot;, :defer =&gt; 'defer'\n  # =&gt; &lt;script defer=&quot;defer&quot; type=&quot;text/javascript&quot;&gt;alert('All is good')&lt;/script&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Instead of passing the content as an argument, you can also use a block in which case, you pass your <tt>html_options</tt> as the first parameter.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% javascript_tag :defer =&gt; 'defer' do -%&gt;\n    alert('All is good')\n  &lt;% end -%&gt;\n"
+full_name: ActionView::Helpers::JavaScriptHelper#javascript_tag
+is_singleton: false
+name: javascript_tag
+params: (content_or_options_with_block = nil, html_options = {}, &block)
+visibility: public

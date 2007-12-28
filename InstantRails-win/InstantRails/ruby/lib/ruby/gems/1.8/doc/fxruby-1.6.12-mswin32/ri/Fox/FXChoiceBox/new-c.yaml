@@ -1,0 +1,48 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theChoiceBox
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct choice box with given caption, icon, message text, and with choices from array of strings. If <em>owner</em> is another FXWindow, the dialog box is created as a child of that window. If <em>owner</em> is an FXApp instance, it's created as a free-floating dialog box.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: Owner for this dialog box [FXWindow or FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+caption+:"
+    body: Caption for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+text+:"
+    body: Message text for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+icon+:"
+    body: Icon for this dialog box [FXIcon]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+choices+:"
+    body: Array of strings containing choices [Array]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: Dialog box options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height
+  type: :NOTE
+full_name: Fox::FXChoiceBox::new
+is_singleton: true
+name: new
+params: (owner, caption, text, icon, choices, opts=0, x=0, y=0, width=0, height=0) {|theChoiceBox| ...}
+visibility: public

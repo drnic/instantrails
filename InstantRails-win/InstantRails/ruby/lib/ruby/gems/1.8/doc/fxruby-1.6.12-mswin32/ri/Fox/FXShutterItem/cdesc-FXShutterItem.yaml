@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The button for this shutter item [FXButton]
+  name: button
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The contents for this shutter item [FXVerticalFrame]
+  name: content
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this shutter item [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message for this shutter item [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Shutter Item is a panel which is embedded inside a Shutter Widget. It can contain other user interface widgets which can be added under the content widget. The content widget is itself embedded in a scroll window to allow unlimited room for all the contents.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHUTTERITEM_BUTTON+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXShutterItem
+includes: []
+
+instance_methods: []
+
+name: FXShutterItem
+superclass: FXVerticalFrame

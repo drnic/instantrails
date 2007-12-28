@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>number_to_human_size (ActionView::Helpers::NumberHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/number_helper.rb, line 164</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">number_to_human_size</span>(<span class="ruby-identifier">size</span>, <span class="ruby-identifier">precision</span>=<span class="ruby-value">1</span>)
+        <span class="ruby-identifier">size</span> = <span class="ruby-constant">Kernel</span>.<span class="ruby-constant">Float</span>(<span class="ruby-identifier">size</span>)
+        <span class="ruby-keyword kw">case</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">size</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">==</span> <span class="ruby-value">1</span>;    <span class="ruby-value str">&quot;1 Byte&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">kilobyte</span>; <span class="ruby-value str">&quot;%d Bytes&quot;</span> <span class="ruby-operator">%</span> <span class="ruby-identifier">size</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">megabyte</span>; <span class="ruby-node">&quot;%.#{precision}f KB&quot;</span>  <span class="ruby-operator">%</span> (<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-value">1.0</span>.<span class="ruby-identifier">kilobyte</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">gigabyte</span>; <span class="ruby-node">&quot;%.#{precision}f MB&quot;</span>  <span class="ruby-operator">%</span> (<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-value">1.0</span>.<span class="ruby-identifier">megabyte</span>)
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">size</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span>.<span class="ruby-identifier">terabyte</span>; <span class="ruby-node">&quot;%.#{precision}f GB&quot;</span>  <span class="ruby-operator">%</span> (<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-value">1.0</span>.<span class="ruby-identifier">gigabyte</span>)
+          <span class="ruby-keyword kw">else</span>                    <span class="ruby-node">&quot;%.#{precision}f TB&quot;</span>  <span class="ruby-operator">%</span> (<span class="ruby-identifier">size</span> <span class="ruby-operator">/</span> <span class="ruby-value">1.0</span>.<span class="ruby-identifier">terabyte</span>)
+        <span class="ruby-keyword kw">end</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/([0-9])\.?0+ /</span>, <span class="ruby-value str">'\1 '</span> )
+      <span class="ruby-keyword kw">rescue</span>
+        <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::GDI::PaintingDrawing</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::GDI::PaintingDrawing</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/windows/gdi/painting_drawing_rb.html">
+                lib/windows/gdi/painting_drawing.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_ACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Flags for DrawCaption
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_SMALLCAP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_ICON</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_TEXT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_INBUTTON</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_GRADIENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DC_BUTTONS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_RAISEDOUTER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+3D border styles
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_SUNKENOUTER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_RAISEDINNER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_SUNKENINNER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_OUTER</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_RAISEDOUTER | BDR_SUNKENOUTER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_INNER</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_RAISEDINNER | BDR_SUNKENINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_RAISED</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_RAISEDOUTER | BDR_RAISEDINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BDR_SUNKEN</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_SUNKENOUTER | BDR_SUNKENINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EDGE_RAISED</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_RAISEDOUTER | BDR_RAISEDINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EDGE_SUNKEN</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_SUNKENOUTER | BDR_SUNKENINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EDGE_ETCHED</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_SUNKENOUTER | BDR_RAISEDINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EDGE_BUMP</td>
+          <td>=</td>
+          <td class="context-item-value">(BDR_RAISEDOUTER | BDR_SUNKENINNER)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_LEFT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Border flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_TOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_RIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_BOTTOM</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_TOPLEFT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_TOP | BF_LEFT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_TOPRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_TOP | BF_RIGHT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_BOTTOMLEFT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_BOTTOM | BF_LEFT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_BOTTOMRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_BOTTOM | BF_RIGHT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_RECT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_LEFT | BF_TOP | BF_RIGHT | BF_BOTTOM)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_DIAGONAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_DIAGONAL_ENDTOPRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_DIAGONAL | BF_TOP | BF_RIGHT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_DIAGONAL_ENDTOPLEFT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_DIAGONAL | BF_TOP | BF_LEFT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_DIAGONAL_ENDBOTTOMLEFT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_DIAGONAL | BF_BOTTOM | BF_LEFT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_DIAGONAL_ENDBOTTOMRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">(BF_DIAGONAL | BF_BOTTOM | BF_RIGHT)</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_MIDDLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_SOFT</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_ADJUST</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_FLAT</td>
+          <td>=</td>
+          <td class="context-item-value">0x4000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BF_MONO</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFC_CAPTION</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Flags for DrawFrameControl
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFC_MENU</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFC_SCROLL</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFC_BUTTON</td>
+          <td>=</td>
+          <td class="context-item-value">4</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFC_POPUPMENU</td>
+          <td>=</td>
+          <td class="context-item-value">5</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CAPTIONCLOSE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CAPTIONMIN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CAPTIONMAX</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CAPTIONRESTORE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CAPTIONHELP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_MENUARROW</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_MENUCHECK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_MENUBULLET</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_MENUARROWRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLDOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLLEFT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLCOMBOBOX</td>
+          <td>=</td>
+          <td class="context-item-value">0x0005</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLSIZEGRIP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_SCROLLSIZEGRIPRIGHT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTONCHECK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTONRADIOIMAGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTONRADIOMASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTONRADIO</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTON3STATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_BUTTONPUSH</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_INACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_PUSHED</td>
+          <td>=</td>
+          <td class="context-item-value">0x0200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_CHECKED</td>
+          <td>=</td>
+          <td class="context-item-value">0x0400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_TRANSPARENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_HOT</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_ADJUSTRECT</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_FLAT</td>
+          <td>=</td>
+          <td class="context-item-value">0x4000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DFCS_MONO</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

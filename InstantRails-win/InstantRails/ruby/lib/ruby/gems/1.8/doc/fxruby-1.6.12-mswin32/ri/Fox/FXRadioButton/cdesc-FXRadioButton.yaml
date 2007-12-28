@@ -1,0 +1,90 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio button state, one of <tt>TRUE</tt>, <tt>FALSE</tt> or <tt>MAYBE</tt> [Integer]
+  name: checkState
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio disk color [FXColor]
+  name: diskColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio button style [Integer]
+  name: radioButtonStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Radio ball color [FXColor]
+  name: radioColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A radio button is a tri-state button. Normally, it is either <tt>TRUE</tt> or <tt>FALSE</tt>; a third state <tt>MAYBE</tt> may be set to indicate that no selection has been made yet by the user, or that the state is ambiguous. When pressed, the radio button sets its state to <tt>TRUE</tt> and sends a <tt>SEL_COMMAND</tt> message to its target, with the message data set to the state of the radio button. A group of radio buttons can be made mutually exclusive by linking them to a common data target (i.e. an instance of FXDataTarget). Alternatively, an application can implement a common <tt>SEL_UPDATE</tt> handler to check and uncheck radio buttons as appropriate.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXRadioButton to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the radio button is pressed.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: RadioButton flags
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RADIOBUTTON_AUTOGRAY+:"
+    body: Automatically gray out when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RADIOBUTTON_AUTOHIDE+:"
+    body: Automatically hide when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RADIOBUTTON_NORMAL+:"
+    body: <tt>JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXRadioButton
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: checked?
+- !ruby/object:RI::MethodSummary 
+  name: checked?
+- !ruby/object:RI::MethodSummary 
+  name: maybe?
+- !ruby/object:RI::MethodSummary 
+  name: maybe?
+- !ruby/object:RI::MethodSummary 
+  name: unchecked?
+- !ruby/object:RI::MethodSummary 
+  name: unchecked?
+name: FXRadioButton
+superclass: Object

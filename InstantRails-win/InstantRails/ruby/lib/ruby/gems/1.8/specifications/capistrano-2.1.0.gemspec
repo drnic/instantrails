@@ -1,0 +1,24 @@
+Gem::Specification.new do |s|
+  s.name = %q{capistrano}
+  s.version = "2.1.0"
+
+  s.specification_version = 1 if s.respond_to? :specification_version=
+
+  s.required_rubygems_version = nil if s.respond_to? :required_rubygems_version=
+  s.authors = ["Jamis Buck"]
+  s.autorequire = %q{capistrano}
+  s.cert_chain = nil
+  s.date = %q{2007-10-14}
+  s.email = %q{jamis@37signals.com}
+  s.executables = ["cap", "capify"]
+  s.files = ["bin/cap", "bin/capify", "lib/capistrano", "lib/capistrano/callback.rb", "lib/capistrano/cli", "lib/capistrano/cli/execute.rb", "lib/capistrano/cli/help.rb", "lib/capistrano/cli/help.txt", "lib/capistrano/cli/options.rb", "lib/capistrano/cli/ui.rb", "lib/capistrano/cli.rb", "lib/capistrano/command.rb", "lib/capistrano/configuration", "lib/capistrano/configuration/actions", "lib/capistrano/configuration/actions/file_transfer.rb", "lib/capistrano/configuration/actions/inspect.rb", "lib/capistrano/configuration/actions/invocation.rb", "lib/capistrano/configuration/callbacks.rb", "lib/capistrano/configuration/connections.rb", "lib/capistrano/configuration/execution.rb", "lib/capistrano/configuration/loading.rb", "lib/capistrano/configuration/namespaces.rb", "lib/capistrano/configuration/roles.rb", "lib/capistrano/configuration/servers.rb", "lib/capistrano/configuration/variables.rb", "lib/capistrano/configuration.rb", "lib/capistrano/errors.rb", "lib/capistrano/extensions.rb", "lib/capistrano/gateway.rb", "lib/capistrano/logger.rb", "lib/capistrano/recipes", "lib/capistrano/recipes/compat.rb", "lib/capistrano/recipes/deploy", "lib/capistrano/recipes/deploy/dependencies.rb", "lib/capistrano/recipes/deploy/local_dependency.rb", "lib/capistrano/recipes/deploy/remote_dependency.rb", "lib/capistrano/recipes/deploy/scm", "lib/capistrano/recipes/deploy/scm/accurev.rb", "lib/capistrano/recipes/deploy/scm/base.rb", "lib/capistrano/recipes/deploy/scm/bzr.rb", "lib/capistrano/recipes/deploy/scm/cvs.rb", "lib/capistrano/recipes/deploy/scm/darcs.rb", "lib/capistrano/recipes/deploy/scm/git.rb", "lib/capistrano/recipes/deploy/scm/mercurial.rb", "lib/capistrano/recipes/deploy/scm/perforce.rb", "lib/capistrano/recipes/deploy/scm/subversion.rb", "lib/capistrano/recipes/deploy/scm.rb", "lib/capistrano/recipes/deploy/strategy", "lib/capistrano/recipes/deploy/strategy/base.rb", "lib/capistrano/recipes/deploy/strategy/checkout.rb", "lib/capistrano/recipes/deploy/strategy/copy.rb", "lib/capistrano/recipes/deploy/strategy/export.rb", "lib/capistrano/recipes/deploy/strategy/remote.rb", "lib/capistrano/recipes/deploy/strategy/remote_cache.rb", "lib/capistrano/recipes/deploy/strategy.rb", "lib/capistrano/recipes/deploy/templates", "lib/capistrano/recipes/deploy/templates/maintenance.rhtml", "lib/capistrano/recipes/deploy.rb", "lib/capistrano/recipes/standard.rb", "lib/capistrano/recipes/templates", "lib/capistrano/recipes/templates/maintenance.rhtml", "lib/capistrano/recipes/upgrade.rb", "lib/capistrano/server_definition.rb", "lib/capistrano/shell.rb", "lib/capistrano/ssh.rb", "lib/capistrano/task_definition.rb", "lib/capistrano/upload.rb", "lib/capistrano/version.rb", "lib/capistrano.rb", "examples/sample.rb", "test/cli", "test/cli/execute_test.rb", "test/cli/help_test.rb", "test/cli/options_test.rb", "test/cli/ui_test.rb", "test/cli_test.rb", "test/command_test.rb", "test/configuration", "test/configuration/actions", "test/configuration/actions/file_transfer_test.rb", "test/configuration/actions/inspect_test.rb", "test/configuration/actions/invocation_test.rb", "test/configuration/callbacks_test.rb", "test/configuration/connections_test.rb", "test/configuration/execution_test.rb", "test/configuration/loading_test.rb", "test/configuration/namespace_dsl_test.rb", "test/configuration/roles_test.rb", "test/configuration/servers_test.rb", "test/configuration/variables_test.rb", "test/configuration_test.rb", "test/deploy", "test/deploy/scm", "test/deploy/scm/accurev_test.rb", "test/deploy/scm/base_test.rb", "test/deploy/scm/git_test.rb", "test/deploy/strategy", "test/deploy/strategy/copy_test.rb", "test/extensions_test.rb", "test/fixtures", "test/fixtures/cli_integration.rb", "test/fixtures/config.rb", "test/fixtures/custom.rb", "test/gateway_test.rb", "test/logger_test.rb", "test/server_definition_test.rb", "test/shell_test.rb", "test/ssh_test.rb", "test/task_definition_test.rb", "test/upload_test.rb", "test/utils.rb", "test/version_test.rb", "README", "MIT-LICENSE", "CHANGELOG"]
+  s.homepage = %q{http://www.capify.org}
+  s.require_paths = ["lib"]
+  s.required_ruby_version = Gem::Requirement.new("> 0.0.0")
+  s.rubygems_version = %q{1.0.1}
+  s.summary = %q{Capistrano is a utility and framework for executing commands in parallel on multiple remote machines, via SSH.}
+
+  s.add_dependency(%q<net-ssh>, [">= 1.0.10"])
+  s.add_dependency(%q<net-sftp>, [">= 1.1.0"])
+  s.add_dependency(%q<highline>, ["> 0.0.0"])
+end

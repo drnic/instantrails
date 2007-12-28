@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read_keyblob (Net::SSH::Transport::OSSL::ReaderBufferImpl)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/ossl/buffer.rb, line 48</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read_keyblob</span>( <span class="ruby-identifier">type</span> )
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;ssh-dss&quot;</span>
+                <span class="ruby-identifier">key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DSA</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">p</span> = <span class="ruby-identifier">read_bignum</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">q</span> = <span class="ruby-identifier">read_bignum</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">g</span> = <span class="ruby-identifier">read_bignum</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">pub_key</span> = <span class="ruby-identifier">read_bignum</span>
+
+              <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;ssh-rsa&quot;</span>
+                <span class="ruby-identifier">key</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">RSA</span>.<span class="ruby-identifier">new</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">e</span> = <span class="ruby-identifier">read_bignum</span>
+                <span class="ruby-identifier">key</span>.<span class="ruby-identifier">n</span> = <span class="ruby-identifier">read_bignum</span>
+
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">NotImplementedError</span>, <span class="ruby-node">&quot;unsupported key type '#{type}'&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">key</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

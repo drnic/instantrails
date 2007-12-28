@@ -1,0 +1,52 @@
+Ruby DBI FrontBase Driver version 0.5.2
+=========================================
+
+This is an implementation of the ruby-dbi driver for the FrontBase
+data base.
+
+Warning: This software is very experimental. The ruby DBI interface
+is still a moving target.
+
+See the following URL's for required software ...
+
+Ruby DBI:
+    http://ruby-dbi.rubyforge.org/
+
+DBI Spec:
+    http://ruby-dbi.rubyforge.org/DBI_SPEC.html
+
+DBD Spec:
+    http://ruby-dbi.rubyforge.org/DBD_SPEC.html
+
+Installation
+============
+
+    A bit of configuration is needed to move the driver to the
+    ruby-dbi-all package. 
+
+        cp -r ruby-frontbase/dbd_frontbase ruby-dbi-all/lib/
+        cd ruby-dbi-all
+    
+        cat >> lib/PATHCONV
+        dbd_frontbase dbd_frontbase DBD/FrontBase
+        CTRL-D
+
+    Install like every DBD.
+    
+        ruby setup.rb config --with=dbd_frontbase
+        ruby setup.rb setup
+        sudo ruby setup.rb install
+  
+Unit Tests
+==========
+
+There are unit tests available, but currently they depend on a
+pre-existing database on my machine.  Future versions will remove that
+dependency.  To run the tests, type "make test".
+
+Files
+=====
+
+    README                      -- Simple instructions
+    dbd_frontbase/frontbase.rb  -- Basic FrontBase Driver
+

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Specify the callback to invoke when the session has been successfully opened (i.e., once the driver's state has moved to <tt>open</tt>). The callback should accept a single parameter--the driver itself.
+full_name: Net::SFTP::Protocol::Driver#on_open
+is_singleton: false
+name: on_open
+params: ( &block )
+visibility: public

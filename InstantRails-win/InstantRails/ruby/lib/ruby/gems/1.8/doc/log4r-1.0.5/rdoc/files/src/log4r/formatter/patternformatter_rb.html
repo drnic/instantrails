@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: patternformatter.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>patternformatter.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>src/log4r/formatter/patternformatter.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:36 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>PatternFormatter</h1>
+<p>
+PatternFormatter offers complete control over the appearance of <a
+href="../../../../classes/Log4r.html">Log4r</a> log events without having
+to write custom Formatter classes. In order to take advantage of
+PatternFormatter, some familarity with Kernel#sprintf or the C printf
+function is recommended. For time formatting, please look at Time.strftime.
+</p>
+<p>
+PatternFormatter accepts three hash arguments:
+</p>
+<table>
+<tr><td valign="top"><tt>pattern</tt>:</td><td>Log event format string.
+
+</td></tr>
+<tr><td valign="top"><tt>date_pattern</tt>:</td><td>Date format string.
+
+</td></tr>
+<tr><td valign="top"><tt>date_method</tt>:</td><td><tt>Time</tt> method to call (instead of using date_pattern).
+
+</td></tr>
+</table>
+<p>
+The <tt>pattern</tt> format string is something like &quot;%l [%d]
+%80M&quot;, which resembles a pattern one would normally pass to
+Kernel#sprintf. However, the directives are specific to <a
+href="../../../../classes/Log4r.html">Log4r</a>. Before we go on,
+let&#8216;s cover some terminology.
+</p>
+<h2>Terminology</h2>
+<dl>
+<dt><b>%</b></dt><dd>The directive identifier. Everything after this up to and including one of
+the <em>directive letters</em> defines a <em>directive</em>.
+
+</dd>
+<dt><b>directive letter</b></dt><dd>Letters in the set <tt>[cCdtmMl%]</tt>. These identify what kind of data
+we&#8216;re interested in. They are detailed below.
+
+</dd>
+<dt><b>format directive</b></dt><dd>The numbers and assorted symbols that appears between <b>%</b> and a
+<em>directive letter</em> is a format directive. It is comprised of an
+integer specifying the field width followed optionally by a period and an
+integer specifying the precision. The field width is the minimum number of
+characters to copy from the data string while the precision is the maximum
+number to copy. If the field width is preceded by a - sign, the data will
+be left-justified. Otherwise, it is right-justified.
+
+</dd>
+<dt><b>directive</b></dt><dd>A statement that says, &quot;I want this data to appear with this
+(optional) particular format.&quot; A directive starts with a <b>%</b> and
+is followed by a format directive and terminates in a directive letter.
+
+</dd>
+</dl>
+<h2>What the Directive Letters mean</h2>
+<dl>
+<dt><b>c</b></dt><dd>Produces a logger&#8216;s name. Fast.
+
+</dd>
+<dt><b>C</b></dt><dd>Produces a logger&#8216;s full name. Fast.
+
+</dd>
+<dt><b>d</b></dt><dd>Produces the time in a format specified by <b>date_pattern</b> or by
+<b>date_method</b>. If neither is specified, the default will be used
+(ISO8601). Slow.
+
+</dd>
+<dt><b>t</b></dt><dd>Produces the file and line number of the log event. The appearance varies
+by Ruby version, but it is the same output returned by Kernel#caller[0].
+Slow.
+
+</dd>
+<dt><b>m</b></dt><dd>The non-inspected log message. That is, to_s called on the object passed
+into a log method. Fast.
+
+</dd>
+<dt><b>M</b></dt><dd>The message formatted by the <tt>format_object</tt> method in
+BasicFormatter. It will pretty-print Exceptions, print Strings and inspect
+everything else. Slow.
+
+</dd>
+<dt><b>l</b></dt><dd>The name of the level. That&#8216;s l as in Lambda. Fast.
+
+</dd>
+<dt><b>%</b></dt><dd>%% just prints a %. Any formatting is <em>probably</em> ignored. Fast.
+
+</dd>
+</dl>
+<h2>Examples of directives:</h2>
+<dl>
+<dt><b>%d</b></dt><dd>Prints out the date according to our date_pattern or date_method. By
+default, it looks like this: 2001-01-12 13:15:50
+
+</dd>
+<dt><b>%.120m</b></dt><dd>Prints out at most 120 characters of the log message.
+
+</dd>
+<dt><b>%15t</b></dt><dd>Prints the execution trace and pads it on the left with enough whitespace
+to make the whole thing 15 chars.
+
+</dd>
+</dl>
+<h2>Pattern String</h2>
+<p>
+A pattern string is simply a bunch of directives combined with the desired
+format. For instance, to show the level in brackets followed by the date
+and then the log message trimmed to 15 characters, we use the following
+pattern:
+</p>
+<pre>
+  &quot;[%l] %d :: %.15m&quot;     #=&gt;     [DEBUG] 2001-01-12 13:15:50 :: This is a messa
+</pre>
+<p>
+To create a PatternFormatter with this format:
+</p>
+<pre>
+  p = PatternFormatter.new(:pattern =&gt; &quot;[%l] %d :: %.15m&quot;)
+</pre>
+<h2>Formatting time</h2>
+<p>
+To format time, do one of the following:
+</p>
+<ul>
+<li>Specify a date_pattern
+
+</li>
+<li>Specify what class method of Ruby&#8216;s <tt>Time</tt> class to call.
+
+</li>
+<li>Use the default format
+
+</li>
+</ul>
+<p>
+If neither date_pattern nor date_method is specified, the default date
+format will be used. Currently, that would be ISO8601,
+</p>
+<p>
+The date_pattern is exactly what one would pass to <tt>Time.strftime</tt>.
+To specify a date_pattern, pass
+<tt>:date_pattern=&gt;&quot;pattern&quot;</tt> to PatternFormat.new.
+</p>
+<p>
+Alternatively, date_method can be specified to produce the output of a
+specific <tt>Time</tt> method, such as <tt>usec</tt> or <tt>to_s</tt> or
+any other zero argument <tt>Time</tt> method that produces a time. More
+precisely, the method to call will be invoked on <tt>Time.now</tt>. To
+specify a date_method, pass
+<tt>:date_method=&gt;&#8217;methodname&#8216;</tt> (or a Symbol equivalent)
+to <tt>PatternFormatter.new</tt>.
+</p>
+<h1>XML Configuration</h1>
+<p>
+As explained in log4r/configurator.rb, the hash arguments to
+PatternFormatter are <em>XML parameters</em>. Here&#8216;s an example:
+</p>
+<pre>
+  &lt;formatter type=&quot;PatternFormatter&quot; pattern=&quot;[%l] %d :: %.15m&quot;&gt;
+    &lt;date_method&gt;usec&lt;/date_method&gt;
+  &lt;/formatter&gt;
+</pre>
+<h1>Performace considerations</h1>
+<p>
+The performance impact of using a particular directive letter is noted in
+the <b>What the Directives Letters mean</b> section.
+</p>
+<p>
+The performance impact of time formatting merits special attention. If you
+aren&#8216;t aware yet, the Time class is kind of a kludge. Time.now.usec
+happens to be faster than Time.now. If you&#8216;re concerned about
+performance, please profile the various time methods and patterns.
+</p>
+<h2>Other Info</h2>
+<table>
+<tr><td valign="top">Version:</td><td>$Id: patternformatter.rb,v 1.2 2002/01/28 16:05:05 cepheus Exp $
+
+</td></tr>
+<tr><td valign="top">Author:</td><td>Leon Torres &lt;leon@ugcs.caltech.edu&gt;
+
+</td></tr>
+</table>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      log4r/formatter/formatter&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

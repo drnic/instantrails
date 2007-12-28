@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SFTP::Operations)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/operations/services.rb, line 20</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+    <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace</span> <span class="ruby-identifier">:operations</span>
+    <span class="ruby-identifier">container</span>.<span class="ruby-identifier">operations</span>.<span class="ruby-identifier">use</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+      [
+        <span class="ruby-identifier">:open</span>,
+        [ <span class="ruby-identifier">:close_handle</span>, <span class="ruby-identifier">:close</span> ],
+        <span class="ruby-identifier">:read</span>, <span class="ruby-identifier">:write</span>, <span class="ruby-identifier">:opendir</span>, <span class="ruby-identifier">:readdir</span>, <span class="ruby-identifier">:remove</span>,
+        <span class="ruby-identifier">:stat</span>, <span class="ruby-identifier">:lstat</span>, <span class="ruby-identifier">:fstat</span>, <span class="ruby-identifier">:setstat</span>, <span class="ruby-identifier">:fsetstat</span>,
+        <span class="ruby-identifier">:mkdir</span>, <span class="ruby-identifier">:rmdir</span>, <span class="ruby-identifier">:realpath</span>, <span class="ruby-identifier">:rename</span>
+      ].<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">op</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">array</span> = <span class="ruby-identifier">op</span>.<span class="ruby-identifier">is_a?</span>( <span class="ruby-constant">Array</span> )
+        <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">register</span>( <span class="ruby-identifier">array</span> <span class="ruby-value">? </span><span class="ruby-identifier">op</span>.<span class="ruby-identifier">first</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">op</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;net/sftp/operations/#{array ? op.last : op}&quot;</span>
+          <span class="ruby-identifier">klass_name</span> = ( <span class="ruby-identifier">array</span> <span class="ruby-value">? </span><span class="ruby-identifier">op</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">op</span> ).<span class="ruby-identifier">to_s</span>
+          <span class="ruby-identifier">klass</span> = <span class="ruby-identifier">const_get</span>( <span class="ruby-identifier">klass_name</span>[<span class="ruby-value">0</span>,<span class="ruby-value">1</span>].<span class="ruby-identifier">upcase</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">klass_name</span>[<span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>] )
+          <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>], <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:session</span>], <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:protocol</span>][<span class="ruby-identifier">:driver</span>]
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

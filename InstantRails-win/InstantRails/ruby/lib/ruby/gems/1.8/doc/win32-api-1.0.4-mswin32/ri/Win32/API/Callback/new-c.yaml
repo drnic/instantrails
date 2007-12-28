@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates and returns a new Win32::API::Callback object. The <tt>function</tt> is the name of the Windows function.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>prototype</tt> is the function prototype for the callback function. This is a string. The possible valid characters are 'I' (integer), 'L' (long), 'V' (void), or 'P' (pointer). Unlike API objects, API::Callback objects do not have a default prototype.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>return</tt> argument is the return type for the callback function. The valid characters are the same as for the <tt>prototype</tt>. The default is 'L' (long).
+full_name: Win32::API::Callback::new
+is_singleton: true
+name: new
+params: |
+  Win32::API::Callback.new(prototype, return='L')
+
+visibility: public

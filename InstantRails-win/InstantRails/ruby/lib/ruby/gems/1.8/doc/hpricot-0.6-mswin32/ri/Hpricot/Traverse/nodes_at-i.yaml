@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Puts together an array of neighboring nodes based on their proximity to this node. So, for example, to get the next node, you could use <tt>nodes_at(1). Or, to get the previous node, use &lt;tt&gt;nodes_at(1)</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: This method also accepts ranges and sets of numbers.
+- !ruby/struct:SM::Flow::VERB 
+  body: "   ele.nodes_at(-3..-1, 1..3) # gets three nodes before and three after\n   ele.nodes_at(1, 5, 7) # gets three nodes at offsets below the current node\n   ele.nodes_at(0, 5..6) # the current node and two others\n"
+full_name: Hpricot::Traverse#nodes_at
+is_singleton: false
+name: nodes_at
+params: (*pos)
+visibility: public

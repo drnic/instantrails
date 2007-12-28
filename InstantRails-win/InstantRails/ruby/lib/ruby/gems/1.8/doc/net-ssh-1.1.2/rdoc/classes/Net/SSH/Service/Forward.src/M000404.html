@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Service::Forward)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/forward/services.rb, line 23</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+
+          <span class="ruby-comment cmt"># All port forwarding services go in the :forward namespace.</span>
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:forward</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+
+            <span class="ruby-comment cmt"># The :driver service manages all port forwarding. It is declared</span>
+            <span class="ruby-comment cmt"># as deferred so that it is not actually instantiated until it is</span>
+            <span class="ruby-comment cmt"># used--otherwise, it would be instantiated as soon as it was added</span>
+            <span class="ruby-comment cmt"># to the list of available services, whether it was ever used or</span>
+            <span class="ruby-comment cmt"># not.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">driver</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/forward/driver'</span>
+              <span class="ruby-constant">Driver</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:connection</span>][<span class="ruby-identifier">:driver</span>],
+                          <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>],
+                          <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>],
+                          <span class="ruby-identifier">:local</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:local_network_handler</span>],
+                          <span class="ruby-identifier">:remote</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:remote_network_handler</span>] )
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># A constant service, used to indicate the maximum block size to be</span>
+            <span class="ruby-comment cmt"># passed over a forwarded connection.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">read_block_size</span> { <span class="ruby-value">64</span> <span class="ruby-operator">*</span> <span class="ruby-value">1024</span> }
+
+            <span class="ruby-comment cmt"># The :local_network_handler service returns a proc object that</span>
+            <span class="ruby-comment cmt"># creates new LocalNetworkHandler instances for a given client</span>
+            <span class="ruby-comment cmt"># connection. This is used for forwarding ports on the local host.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">local_network_handler</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/forward/local-network-handler'</span>
+              <span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>]
+              <span class="ruby-identifier">block_size</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:read_block_size</span>]
+              <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">client</span><span class="ruby-operator">|</span>
+                <span class="ruby-constant">LocalNetworkHandler</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">log</span>, <span class="ruby-identifier">block_size</span>, <span class="ruby-identifier">client</span> )
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># The :remote_network_handler service returns a proc object that</span>
+            <span class="ruby-comment cmt"># creates new RemoteNetworkHandler instances for a given port and</span>
+            <span class="ruby-comment cmt"># host. This is used for forwarding ports on a remote host.</span>
+            <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">remote_network_handler</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/service/forward/remote-network-handler'</span>
+              <span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>]
+              <span class="ruby-identifier">block_size</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:read_block_size</span>]
+              <span class="ruby-identifier">lambda</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">port</span>, <span class="ruby-identifier">host</span><span class="ruby-operator">|</span>
+                <span class="ruby-constant">RemoteNetworkHandler</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">log</span>, <span class="ruby-identifier">block_size</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">host</span> )
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

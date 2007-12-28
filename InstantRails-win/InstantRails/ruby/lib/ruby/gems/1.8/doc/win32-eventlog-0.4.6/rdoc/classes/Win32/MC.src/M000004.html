@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_res_file (Win32::MC)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/mc.rb, line 45</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_res_file</span>
+         <span class="ruby-identifier">rc_file</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">basename</span>(<span class="ruby-ivar">@mc_file</span>, <span class="ruby-value str">'.mc'</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">'.rc'</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">exists?</span>(<span class="ruby-identifier">rc_file</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">MC</span><span class="ruby-operator">::</span><span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;No .rc file found: #{@rc_file}&quot;</span>
+         <span class="ruby-keyword kw">end</span>
+         <span class="ruby-identifier">system</span>(<span class="ruby-node">&quot;rc -r -fo #{@res_file} #{rc_file}&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

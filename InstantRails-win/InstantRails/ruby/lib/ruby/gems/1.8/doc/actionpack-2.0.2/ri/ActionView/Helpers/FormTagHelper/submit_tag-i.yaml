@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a submit button with the text <tt>value</tt> as the caption.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disable_with</tt> - Value of this parameter will be used as the value for a disabled version
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                         of the submit button when the form is submitted.\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML options for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  submit_tag\n  # =&gt; &lt;input name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Save changes&quot; /&gt;\n\n  submit_tag &quot;Edit this article&quot;\n  # =&gt; &lt;input name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Edit this article&quot; /&gt;\n\n  submit_tag &quot;Save edits&quot;, :disabled =&gt; true\n  # =&gt; &lt;input disabled=&quot;disabled&quot; name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Save edits&quot; /&gt;\n\n  submit_tag &quot;Complete sale&quot;, :disable_with =&gt; &quot;Please wait...&quot;\n  # =&gt; &lt;input name=&quot;commit&quot; onclick=&quot;this.disabled=true;this.value='Please wait...';this.form.submit();&quot;\n  #    type=&quot;submit&quot; value=&quot;Complete sale&quot; /&gt;\n\n  submit_tag nil, :class =&gt; &quot;form_submit&quot;\n  # =&gt; &lt;input class=&quot;form_submit&quot; name=&quot;commit&quot; type=&quot;submit&quot; /&gt;\n\n  submit_tag &quot;Edit&quot;, :disable_with =&gt; &quot;Editing...&quot;, :class =&gt; 'edit-button'\n  # =&gt; &lt;input class=&quot;edit-button&quot; disable_with=&quot;Editing...&quot; name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Edit&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#submit_tag
+is_singleton: false
+name: submit_tag
+params: (value = "Save changes", options = {})
+visibility: public

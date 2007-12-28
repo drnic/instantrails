@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create (Process)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/process.rb, line 261</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create</span>(<span class="ruby-identifier">args</span>)
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>, <span class="ruby-value str">'Expecting hash-style keyword arguments'</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">valid_keys</span> = <span class="ruby-node">%w/
+         app_name inherit creation_flags cwd environment startup_info
+         thread_inherit process_inherit
+      /</span>
+
+      <span class="ruby-identifier">valid_si_keys</span> = <span class="ruby-value str">%/
+         startf_flags desktop title x y x_size y_size x_count_chars
+         y_count_chars fill_attribute sw_flags stdin stdout stderr
+      /</span>
+
+      <span class="ruby-comment cmt"># Set some default values</span>
+      <span class="ruby-identifier">hash</span> = {
+         <span class="ruby-value str">'inherit'</span>          =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+         <span class="ruby-value str">'process_inherit'</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+         <span class="ruby-value str">'thread_inherit'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+         <span class="ruby-value str">'creation_flags'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+         <span class="ruby-value str">'cwd'</span>              =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+      }
+      <span class="ruby-identifier">env</span> = <span class="ruby-value">0</span>
+      
+      <span class="ruby-comment cmt"># Validate the keys, and convert symbols and case to lowercase strings.     </span>
+      <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+         <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-node">&quot;invalid key '#{key}'&quot;</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-comment cmt"># Convert true to 1 and nil/false to 0.</span>
+         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">val</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">true</span>, <span class="ruby-keyword kw">false</span>
+               <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span> <span class="ruby-operator">?</span> <span class="ruby-value">0</span> <span class="ruby-operator">:</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+               <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-value">0</span> <span class="ruby-comment cmt"># Win32API sometimes doesn't like nil</span>
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+         <span class="ruby-keyword kw">end</span>
+      }
+      
+      <span class="ruby-identifier">si_hash</span> = {}
+      
+      <span class="ruby-comment cmt"># If the startup_info key is present, validate its subkeys</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'startup_info'</span>]
+         <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'startup_info'</span>].<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_si_keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-node">&quot;invalid startup_info key '#{key}'&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+         }
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># The +app_name+ key is mandatory</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'app_name'</span>]
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-value str">'app_name must be specified'</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-comment cmt"># The environment string should be passed as a string of ';' separated</span>
+      <span class="ruby-comment cmt"># paths.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'environment'</span>] 
+         <span class="ruby-identifier">env</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'environment'</span>].<span class="ruby-identifier">split</span>(<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_SEPARATOR</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>
+         <span class="ruby-identifier">env</span> = [<span class="ruby-identifier">env</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\0&quot;</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'p*'</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-keyword kw">end</span>
+ 
+      <span class="ruby-identifier">startinfo</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">startinfo</span> = <span class="ruby-identifier">startinfo</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLLLLLLLLLLLSSLLLL'</span>)
+      <span class="ruby-identifier">procinfo</span>  = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLLL'</span>)
+
+      <span class="ruby-comment cmt"># Process SECURITY_ATTRIBUTE structure</span>
+      <span class="ruby-identifier">process_security</span> = <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'process_inherit?'</span>]
+         <span class="ruby-identifier">process_security</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLL'</span>)
+         <span class="ruby-identifier">process_security</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>] = [<span class="ruby-value">12</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-comment cmt"># sizeof(SECURITY_ATTRIBUTE)</span>
+         <span class="ruby-identifier">process_security</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'process_inherit?'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Thread SECURITY_ATTRIBUTE structure</span>
+      <span class="ruby-identifier">thread_security</span> = <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'thread_security?'</span>]
+         <span class="ruby-identifier">thread_security</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLL'</span>)
+         <span class="ruby-identifier">thread_security</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>] = [<span class="ruby-value">12</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-comment cmt"># sizeof(SECURITY_ATTRIBUTE)</span>
+         <span class="ruby-identifier">thread_security</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">hash</span>[<span class="ruby-value str">'thread_inherit?'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Automatically handle stdin, stdout and stderr as either IO objects</span>
+      <span class="ruby-comment cmt"># or file descriptors.  This won't work for StringIO, however.</span>
+      [<span class="ruby-value str">'stdin'</span>, <span class="ruby-value str">'stdout'</span>, <span class="ruby-value str">'stderr'</span>].<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">io</span><span class="ruby-operator">|</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">io</span>]
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">io</span>].<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:fileno</span>)
+               <span class="ruby-identifier">handle</span> = <span class="ruby-identifier">get_osfhandle</span>(<span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">io</span>].<span class="ruby-identifier">fileno</span>)
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-identifier">handle</span> = <span class="ruby-identifier">get_osfhandle</span>(<span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">io</span>])
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_HANDLE_VALUE</span>
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-identifier">si_hash</span>[<span class="ruby-identifier">io</span>] = <span class="ruby-identifier">handle</span>
+         <span class="ruby-keyword kw">end</span>
+      }
+      
+      <span class="ruby-comment cmt"># The bytes not covered here are reserved (null)</span>
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">si_hash</span>.<span class="ruby-identifier">empty?</span>
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>]  = [<span class="ruby-identifier">startinfo</span>.<span class="ruby-identifier">size</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>]  = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'desktop'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'p*'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'desktop'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">12</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'title'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'p*'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'title'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">16</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">20</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">24</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x_size'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x_size'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">28</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y_size'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y_size'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">32</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x_count_chars'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'x_count_chars'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">36</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y_count_chars'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'y_count_chars'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">40</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'fill_attribute'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'fill_attribute'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">44</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'startf_flags'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'startf_flags'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">48</span>,<span class="ruby-value">2</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'sw_flags'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'S'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'sw_flags'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">56</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stdin'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stdin'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">60</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stdout'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stdout'</span>]
+         <span class="ruby-identifier">startinfo</span>[<span class="ruby-value">64</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stderr'</span>]].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">si_hash</span>[<span class="ruby-value str">'stderr'</span>]        
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">bool</span> = <span class="ruby-constant">CreateProcess</span>(
+         <span class="ruby-value">0</span>,                      <span class="ruby-comment cmt"># App name</span>
+         <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'app_name'</span>],       <span class="ruby-comment cmt"># Command line</span>
+         <span class="ruby-identifier">process_security</span>,       <span class="ruby-comment cmt"># Process attributes</span>
+         <span class="ruby-identifier">thread_security</span>,        <span class="ruby-comment cmt"># Thread attributes</span>
+         <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'inherit'</span>],        <span class="ruby-comment cmt"># Inherit handles?</span>
+         <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'creation_flags'</span>], <span class="ruby-comment cmt"># Creation flags</span>
+         <span class="ruby-identifier">env</span>,                    <span class="ruby-comment cmt"># Environment</span>
+         <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'cwd'</span>],            <span class="ruby-comment cmt"># Working directory</span>
+         <span class="ruby-identifier">startinfo</span>,              <span class="ruby-comment cmt"># Startup Info</span>
+         <span class="ruby-identifier">procinfo</span>                <span class="ruby-comment cmt"># Process Info</span>
+      )
+      
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bool</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-value str">&quot;CreateProcess() failed: &quot;</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-constant">ProcessInfo</span>.<span class="ruby-identifier">new</span>(
+         <span class="ruby-identifier">procinfo</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-comment cmt"># hProcess</span>
+         <span class="ruby-identifier">procinfo</span>[<span class="ruby-value">4</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-comment cmt"># hThread</span>
+         <span class="ruby-identifier">procinfo</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>, <span class="ruby-comment cmt"># hProcessId</span>
+         <span class="ruby-identifier">procinfo</span>[<span class="ruby-value">12</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span> <span class="ruby-comment cmt"># hThreadId</span>
+      )
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,307 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Anchor item, if any [FXTreeItem]
+  name: anchorItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current item, if any [FXTreeItem]
+  name: currentItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item under the cursor, if any [FXTreeItem]
+  name: cursorItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First root-level item [FXTreeItem]
+  name: firstItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text for this list [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Parent-child indent amount, in pixels [Integer]
+  name: indent
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Last root-level item [FXTreeItem]
+  name: lastItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Line color [FXColor]
+  name: lineColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: List style [Integer]
+  name: listStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of items [Integer]
+  name: numItems
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible items [Integer]
+  name: numVisible
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text background color [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text color [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal text color [FXColor]
+  name: textColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Tree List Widget organizes items in a hierarchical, tree-like fashion. Subtrees can be collapsed or expanded by double-clicking on an item or by clicking on the optional plus button in front of the item. Each item may have a text and optional open-icon as well as a closed-icon. The items may be connected by optional lines to show the hierarchical relationship. When an item's selected state changes, the treelist emits a SEL_SELECTED or SEL_DESELECTED message. If an item is opened or closed, a message of type SEL_OPENED or SEL_CLOSED is sent. When the subtree under an item is expanded, a SEL_EXPANDED or SEL_COLLAPSED message is issued. A change of the current item is signified by the SEL_CHANGED message. In addition, the tree list sends SEL_COMMAND messages when the user clicks on an item, and SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED when the user clicks once, twice, or thrice, respectively. When items are added or removed, the tree list sends messages of the type SEL_INSERTED or SEL_DELETED. In each of these cases, a pointer to the item, if any, is passed in the 3rd argument of the message.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTreeList to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a list item is clicked on; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLICKED+:"
+    body: sent when the left mouse button is single-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <tt>nil</tt> if no item was clicked.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DOUBLECLICKED+:"
+    body: sent when the left mouse button is double-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <tt>nil</tt> if no item was clicked.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_TRIPLECLICKED+:"
+    body: sent when the left mouse button is triple-clicked in the list; the message data is a reference to the item clicked (an FXTreeItem instance) or <tt>nil</tt> if no item was clicked.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_OPENED+:"
+    body: sent when an item is opened; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLOSED+:"
+    body: sent when an item is closed; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_EXPANDED+:"
+    body: sent when a sub-tree is expanded; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COLLAPSED+:"
+    body: sent when a sub-tree is collapsed; the message data is a reference to the root item for the sub-tree (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent when an item is selected; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent when an item is deselected; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the current item changes; the message data is a reference to the current item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_INSERTED+:"
+    body: sent after an item is added to the list; the message data is a reference to the item (an FXTreeItem instance).
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETED+:"
+    body: sent before an item is removed from the list; the message data is a reference to the item (an FXTreeItem instance).
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Tree list styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_EXTENDEDSELECT+:"
+    body: Extended selection mode allows for drag-selection of ranges of items
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_SINGLESELECT+:"
+    body: Single selection mode allows up to one item to be selected
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_BROWSESELECT+:"
+    body: Browse selection mode enforces one single item to be selected at all times
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_MULTIPLESELECT+:"
+    body: Multiple selection mode is used for selection of individual items
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_AUTOSELECT+:"
+    body: Automatically select under cursor
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_SHOWS_LINES+:"
+    body: Lines shown
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_SHOWS_BOXES+:"
+    body: Boxes to expand shown
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_ROOT_BOXES+:"
+    body: Display root boxes also
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TREELIST_NORMAL+:"
+    body: same as <tt>TREELIST_EXTENDEDLIST</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTreeList
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: closeItem
+- !ruby/object:RI::MethodSummary 
+  name: collapseTree
+- !ruby/object:RI::MethodSummary 
+  name: deselectItem
+- !ruby/object:RI::MethodSummary 
+  name: disableItem
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: enableItem
+- !ruby/object:RI::MethodSummary 
+  name: expandTree
+- !ruby/object:RI::MethodSummary 
+  name: extendSelection
+- !ruby/object:RI::MethodSummary 
+  name: extractItem
+- !ruby/object:RI::MethodSummary 
+  name: fillItems
+- !ruby/object:RI::MethodSummary 
+  name: findItem
+- !ruby/object:RI::MethodSummary 
+  name: findItemByData
+- !ruby/object:RI::MethodSummary 
+  name: getItemAt
+- !ruby/object:RI::MethodSummary 
+  name: getItemClosedIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemHeight
+- !ruby/object:RI::MethodSummary 
+  name: getItemOpenIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: getItemWidth
+- !ruby/object:RI::MethodSummary 
+  name: hitItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: itemCurrent?
+- !ruby/object:RI::MethodSummary 
+  name: itemEnabled?
+- !ruby/object:RI::MethodSummary 
+  name: itemExpanded?
+- !ruby/object:RI::MethodSummary 
+  name: itemLeaf?
+- !ruby/object:RI::MethodSummary 
+  name: itemOpened?
+- !ruby/object:RI::MethodSummary 
+  name: itemSelected?
+- !ruby/object:RI::MethodSummary 
+  name: itemVisible?
+- !ruby/object:RI::MethodSummary 
+  name: killSelection
+- !ruby/object:RI::MethodSummary 
+  name: makeItemVisible
+- !ruby/object:RI::MethodSummary 
+  name: moveItem
+- !ruby/object:RI::MethodSummary 
+  name: openItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: removeItems
+- !ruby/object:RI::MethodSummary 
+  name: selectItem
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemClosedIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemOpenIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: sortChildItems
+- !ruby/object:RI::MethodSummary 
+  name: sortItems
+- !ruby/object:RI::MethodSummary 
+  name: sortRootItems
+- !ruby/object:RI::MethodSummary 
+  name: toggleItem
+- !ruby/object:RI::MethodSummary 
+  name: updateItem
+name: FXTreeList
+superclass: Object

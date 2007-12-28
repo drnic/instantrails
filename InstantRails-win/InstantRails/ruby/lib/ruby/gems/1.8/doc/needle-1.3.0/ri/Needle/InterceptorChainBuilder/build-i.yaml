@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This will apply the given interceptors to the given service by first ordering the interceptors based on their relative priorities, and then dynamically modifying the service's methods so that the chain of interceptors sits in front of each of them.
+- !ruby/struct:SM::Flow::P 
+  body: The modified service is returned.
+full_name: Needle::InterceptorChainBuilder#build
+is_singleton: false
+name: build
+params: ( point, service, interceptors )
+visibility: public

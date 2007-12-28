@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The currently displayed shutter item (a zero-based index) [Integer]
+  name: current
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Shutter widget provides a set of foldable sub panels. Each subpanel consists of a Shutter Item which contains a button and some contents. A sub panel can be unfolded by pressing on that panel's button.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXShutter to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent whenever a new shutter item is opened; the message data is an integer indicating the new currently displayed shutter item.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHUTTER_TIMEOUT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SHUTTERITEM+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FIRST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_LAST+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXShutter
+includes: []
+
+instance_methods: []
+
+name: FXShutter
+superclass: FXVerticalFrame

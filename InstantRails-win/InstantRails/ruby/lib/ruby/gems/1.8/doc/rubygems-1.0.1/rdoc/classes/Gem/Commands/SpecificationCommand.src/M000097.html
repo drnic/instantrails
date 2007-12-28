@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>execute (Gem::Commands::SpecificationCommand)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/commands/specification_command.rb, line 39</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>
+    <span class="ruby-identifier">specs</span> = []
+    <span class="ruby-identifier">gem</span> = <span class="ruby-identifier">get_one_gem_name</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">local?</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">source_index</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceIndex</span>.<span class="ruby-identifier">from_installed_gems</span>
+      <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">push</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">source_index</span>.<span class="ruby-identifier">search</span>(<span class="ruby-node">/\A#{gem}\z/</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:version</span>]))
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">remote?</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">alert_warning</span> <span class="ruby-value str">&quot;Remote information is not complete\n\n&quot;</span>
+
+      <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">SourceInfoCache</span>.<span class="ruby-identifier">cache_data</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">_</span>,<span class="ruby-identifier">sice</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">push</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sice</span>.<span class="ruby-identifier">source_index</span>.<span class="ruby-identifier">search</span>(<span class="ruby-identifier">gem</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:version</span>]))
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">alert_error</span> <span class="ruby-node">&quot;Unknown gem '#{gem}'&quot;</span>
+      <span class="ruby-identifier">terminate_interaction</span> <span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-identifier">output</span> = <span class="ruby-identifier">lambda</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">say</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">to_yaml</span>; <span class="ruby-identifier">say</span> <span class="ruby-value str">&quot;\n&quot;</span> }
+
+    <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:all</span>] <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">each</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">output</span>)
+    <span class="ruby-keyword kw">else</span>
+      <span class="ruby-identifier">spec</span> = <span class="ruby-identifier">specs</span>.<span class="ruby-identifier">sort_by</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">spec</span><span class="ruby-operator">|</span> <span class="ruby-identifier">spec</span>.<span class="ruby-identifier">version</span> }.<span class="ruby-identifier">last</span>
+      <span class="ruby-identifier">output</span>[<span class="ruby-identifier">spec</span>]
+    <span class="ruby-keyword kw">end</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

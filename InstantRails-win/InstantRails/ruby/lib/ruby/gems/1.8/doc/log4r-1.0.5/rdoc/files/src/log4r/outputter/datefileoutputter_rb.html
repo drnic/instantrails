@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: datefileoutputter.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>datefileoutputter.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>src/log4r/outputter/datefileoutputter.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:36 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>DateFileOutputter</h1>
+<p>
+Subclass of FileOutputter that changes the log file daily. When a new day
+begins, a new file is created with the date included in the name.
+</p>
+<h2>Usage</h2>
+<pre>
+  df_out = DateFileOutputter.new('name',
+             :dirname=&quot;/tmp&quot;, :date_pattern=&gt;&quot;%m-%d&quot;
+           )
+</pre>
+<h2>Rate of Change</h2>
+<p>
+A new logfile is created whenever the current time as formatted by the date
+pattern no longer matches the previous time. (This is a simple String
+comparison.) So, in order to change the frequency of the rollover, just
+alter the date pattern to match how fast the files should be generated. For
+instance, to generate files by the minute,
+</p>
+<pre>
+  df_out.date_pattern = &quot;%M&quot;
+</pre>
+<p>
+This causes the following files to show up one minute apart, asuming the
+script starts at the 4th minute of the hour:
+</p>
+<pre>
+  file_04.rb
+  file_05.rb
+  file_06.rb
+  ...
+</pre>
+<p>
+The only limitation of this approach is that the precise time cannot be
+recorded as the smallest time interval equals the rollover period for this
+system.
+</p>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      log4r/outputter/fileoutputter&nbsp;&nbsp;
+      log4r/staticlogger&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Defines the packets available to version 1 of the SFTP protocol, as well as their formats. These packets are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: open( id, path, flags, attrs )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: close( id, handle )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: read( id, handle, offset, length )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: write( id, handle, offset, data )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: opendir( id, path )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: readdir( id, handle )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: remove( id, filename )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: stat( id, path )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: lstat( id, path )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: fstat( id, handle )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: setstat( id, path, attrs )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: fsetstat( id, handle, attrs )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: mkdir( id, path, attrs )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: rmdir( id, path )
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: realpath( id, path )
+  type: :BULLET
+constants: []
+
+full_name: Net::SFTP::Protocol::V_01::PacketAssistant
+includes: []
+
+instance_methods: []
+
+name: PacketAssistant
+superclass: Protocol::PacketAssistant

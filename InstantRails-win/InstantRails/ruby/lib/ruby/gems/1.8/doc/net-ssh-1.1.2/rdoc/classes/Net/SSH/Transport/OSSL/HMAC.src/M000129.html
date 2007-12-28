@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Transport::OSSL::HMAC)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/ossl/hmac/services.rb, line 25</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+            <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:hmac</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">space</span><span class="ruby-operator">|</span>
+
+              <span class="ruby-comment cmt"># Register each supported HMAC algorithm.</span>
+              <span class="ruby-node">%w{sha1 sha1-96 md5 md5-96}</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+                <span class="ruby-identifier">space</span>.<span class="ruby-identifier">__send__</span>( <span class="ruby-identifier">name</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/-/</span>, <span class="ruby-value str">&quot;_&quot;</span>).<span class="ruby-identifier">intern</span> ) <span class="ruby-keyword kw">do</span>
+                  <span class="ruby-identifier">require</span> <span class="ruby-node">&quot;net/ssh/transport/ossl/hmac/#{name}&quot;</span>
+                  <span class="ruby-identifier">const_get</span>( <span class="ruby-identifier">name</span>.<span class="ruby-identifier">upcase</span>.<span class="ruby-identifier">sub</span>(<span class="ruby-regexp re">/-/</span>, <span class="ruby-value str">&quot;_&quot;</span>).<span class="ruby-identifier">intern</span> ).<span class="ruby-identifier">new</span>
+                <span class="ruby-keyword kw">end</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-comment cmt"># The :none service is trivial--simply doing as much of nothing</span>
+              <span class="ruby-comment cmt"># as possible. This is for consistency in how HMAC's are handled,</span>
+              <span class="ruby-comment cmt"># since it is possible to not have an HMAC for part of the</span>
+              <span class="ruby-comment cmt"># communication cycle.</span>
+              <span class="ruby-identifier">space</span>.<span class="ruby-identifier">none</span> <span class="ruby-keyword kw">do</span>
+                <span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/ssh/transport/ossl/hmac/none&quot;</span>
+                <span class="ruby-constant">None</span>.<span class="ruby-identifier">new</span>
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-comment cmt"># Add the implementations to a hash, naming them according to the</span>
+              <span class="ruby-comment cmt"># SSH2 specification.</span>
+              <span class="ruby-identifier">space</span>.<span class="ruby-identifier">collection</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+                <span class="ruby-constant">Hash</span>[ <span class="ruby-value str">&quot;hmac-sha1&quot;</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">sha1</span>,
+                      <span class="ruby-value str">&quot;hmac-sha1-96&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">sha1_96</span>,
+                      <span class="ruby-value str">&quot;hmac-md5&quot;</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">md5</span>,
+                      <span class="ruby-value str">&quot;hmac-md5-96&quot;</span>  =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">md5_96</span>,
+                      <span class="ruby-value str">&quot;none&quot;</span>         =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">none</span> ]
+              <span class="ruby-keyword kw">end</span>
+
+              <span class="ruby-comment cmt"># Add the collection of algorithms to the list of known HMAC</span>
+              <span class="ruby-comment cmt"># algorithm sources.</span>
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">space</span>.<span class="ruby-identifier">knows_key?</span>( <span class="ruby-identifier">:hmac_algorithm_sources</span> )
+                <span class="ruby-identifier">space</span>.<span class="ruby-identifier">hmac_algorithm_sources</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">space</span>.<span class="ruby-identifier">collection</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

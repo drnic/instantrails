@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Gem::Indexer)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/rubygems/indexer.rb, line 29</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">directory</span>)
+    <span class="ruby-keyword kw">unless</span> <span class="ruby-value str">''</span>.<span class="ruby-identifier">respond_to?</span> <span class="ruby-identifier">:to_xs</span> <span class="ruby-keyword kw">then</span>
+      <span class="ruby-identifier">fail</span> <span class="ruby-value str">&quot;Gem::Indexer requires that the XML Builder library be installed:&quot;</span> \
+           <span class="ruby-value str">&quot;\n\tgem install builder&quot;</span>
+    <span class="ruby-keyword kw">end</span>
+
+    <span class="ruby-ivar">@dest_directory</span> = <span class="ruby-identifier">directory</span>
+    <span class="ruby-ivar">@directory</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span> <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">tmpdir</span>, <span class="ruby-node">&quot;gem_generate_index_#{$$}&quot;</span>
+
+    <span class="ruby-identifier">marshal_name</span> = <span class="ruby-node">&quot;Marshal.#{Gem.marshal_version}&quot;</span>
+
+    <span class="ruby-ivar">@master_index</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Indexer</span><span class="ruby-operator">::</span><span class="ruby-constant">MasterIndexBuilder</span>.<span class="ruby-identifier">new</span> <span class="ruby-value str">&quot;yaml&quot;</span>, <span class="ruby-ivar">@directory</span>
+    <span class="ruby-ivar">@marshal_index</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Indexer</span><span class="ruby-operator">::</span><span class="ruby-constant">MarshalIndexBuilder</span>.<span class="ruby-identifier">new</span> <span class="ruby-identifier">marshal_name</span>, <span class="ruby-ivar">@directory</span>
+    <span class="ruby-ivar">@quick_index</span> = <span class="ruby-constant">Gem</span><span class="ruby-operator">::</span><span class="ruby-constant">Indexer</span><span class="ruby-operator">::</span><span class="ruby-constant">QuickIndexBuilder</span>.<span class="ruby-identifier">new</span> <span class="ruby-value str">&quot;index&quot;</span>, <span class="ruby-ivar">@directory</span>
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

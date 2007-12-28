@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: files
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: guard
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements a handler that can run Rails and serve files out of the Rails application's public directory. This lets you run your Rails application with Mongrel during development and testing, then use it also in production behind a server that's better at serving the static files.
+- !ruby/struct:SM::Flow::P 
+  body: The RailsHandler takes a mime_map parameter which is a simple suffix=mimetype mapping that it should add to the list of valid mime types.
+- !ruby/struct:SM::Flow::P 
+  body: "It also supports page caching directly and will try to resolve a request in the following order:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: If the requested exact PATH_INFO exists as a file then serve it.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: If it exists at PATH_INFO+&quot;.html&quot; exists then serve that.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Finally, construct a Mongrel::CGIWrapper and run Dispatcher.dispatch to have Rails go.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: This means that if you are using page caching it will actually work with Mongrel and you should see a decent speed boost (but not as fast as if you use a static server like Apache or Litespeed).
+constants: []
+
+full_name: Mongrel::Rails::RailsHandler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: reload!
+name: RailsHandler
+superclass: Mongrel::HttpHandler

@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>doc/README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 21 21:17:03 -0500 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1><a href="../../classes/Needle.html">Needle</a> Dependency Injection Container</h1>
+<p>
+<a href="../../classes/Needle.html">Needle</a> is a Dependency Injection
+container, similar in goal to <a
+href="http://jakarta.apache.org/hivemind">HiveMind</a>, <a
+href="http://www.springframework.org">Spring</a>, and <a
+href="http://www.picocontainer.org">PicoContainer</a> (in the Java
+universe), but vastly different in implementation. It takes advantage of
+the dynamic features in Ruby, especially closures and
+<tt>instance_eval</tt>.
+</p>
+<ul>
+<li>Project page: <a
+href="http://rubyforge.org/projects/needle">rubyforge.org/projects/needle</a>
+
+</li>
+<li>User Manual: <a href="http://needle.rubyforge.org">needle.rubyforge.org</a>
+
+</li>
+<li>API Documentation: <a
+href="http://needle.rubyforge.org/api">needle.rubyforge.org/api</a>
+
+</li>
+<li><a href="../../classes/Needle.html">Needle</a> Wiki: <a
+href="http://needle.rubyforge.org/wiki/wiki.pl">needle.rubyforge.org/wiki/wiki.pl</a>
+
+</li>
+</ul>
+<p>
+For an excellent overview of dependency injection, have a look at
+&quot;Dependency Injection in Ruby&quot; (<a
+href="di-in-ruby_rdoc.html">files/doc/di-in-ruby_rdoc.html</a>).
+</p>
+<h2>Downloading</h2>
+<p>
+You may download <a href="../../classes/Needle.html">Needle</a> from <a
+href="../../classes/Needle.html">Needle</a>&#8216;s RubyForge project, at
+<a
+href="http://rubyforge.org/projects/needle">rubyforge.org/projects/needle</a>.
+<a href="../../classes/Needle.html">Needle</a> is distributed both as a <a
+href="http://rubygems.rubyforge.org">RubyGem</a>, and as a Ruby library. It
+is also available from the <a href="http://rpa-base.rubyforge.org">RPA</a>.
+</p>
+<h2>Installation</h2>
+<p>
+<a href="../../classes/Needle.html">Needle</a> is distributed as a gem,
+which makes it extremely easy to download, install, and use. However, it
+requires that you have <a href="http://rubygems.rubyforge.org">RubyGems</a>
+installed, first.
+</p>
+<p>
+Assuming you have RubyGems installed, all you have to do is:
+</p>
+<pre>
+  gem --remote-install needle
+</pre>
+<p>
+This will install the latest version of <a
+href="../../classes/Needle.html">Needle</a>.
+</p>
+<p>
+<a href="../../classes/Needle.html">Needle</a> is also distributed as a
+Ruby library. It&#8216;s not as easy to install this way, but it works.
+Simply grab the latest <a href="../../classes/Needle.html">Needle</a>
+package from the website, untar it, and install it by typing:
+</p>
+<pre>
+  ruby setup.rb
+</pre>
+<p>
+Or, if you want a little more control over the installation:
+</p>
+<pre>
+  ruby setup.rb --help
+</pre>
+<p>
+This will show you the options that are available to you, and then you can
+do each stage of the installation manually:
+</p>
+<pre>
+  ruby setup.rb config
+  ruby setup.rb setup
+  ruby setup.rb install
+</pre>
+<h2>Manual</h2>
+<p>
+For more information about <a href="../../classes/Needle.html">Needle</a>,
+such as an overview and tutorials, see the <a
+href="../../classes/Needle.html">Needle</a> manual at <a
+href="http://needle.rubyforge.org">needle.rubyforge.org</a>.
+</p>
+<h2>Credits</h2>
+<p>
+Thanks go to:
+</p>
+<ul>
+<li>Matz, for creating Ruby in the first place.
+
+</li>
+<li>Jim Weirich, for his inspirational blog article &quot;Dependency Injection
+in Ruby&quot; (<a
+href="http://onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc">onestepback.org/index.cgi/Tech/Ruby/DependencyInjectionInRuby.rdoc</a>)
+that formed the embryo of what <a
+href="../../classes/Needle.html">Needle</a> has eventually become.
+
+</li>
+</ul>
+<h2>License</h2>
+<p>
+<a href="../../classes/Needle.html">Needle</a> is copyright (c) 2004 Jamis
+Buck. It is open-source software, and may be redistributed under the terms
+of the BSD or Ruby licenses. The texts of these licences are included in
+the <a href="../../classes/Needle.html">Needle</a> distribution, under the
+<tt>doc</tt> subdirectory.
+</p>
+<p>
+The <a href="../../classes/Needle.html">Needle</a> manual and all software
+used to build it are distributed under the Attribution-ShareAlike 1.0
+Creative Commons license. Distribute it and modify it all you want, but
+give me credit and distribute your changes under an identical license.
+</p>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

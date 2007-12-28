@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Create a new resource instance and request to the remote service that it be saved, making it equivalent to the following simultaneous calls:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ryan = Person.new(:first =&gt; 'ryan')\n  ryan.save\n"
+- !ruby/struct:SM::Flow::P 
+  body: The newly created resource is returned. If a failure has occurred an exception will be raised (see save). If the resource is invalid and has not been saved then valid? will return <tt>false</tt>, while new? will still return <tt>true</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.create(:name =&gt; 'Jeremy', :email =&gt; 'myname@nospam.com', :enabled =&gt; true)\n  my_person = Person.find(:first)\n  my_person.email\n  # =&gt; myname@nospam.com\n\n  dhh = Person.create(:name =&gt; 'David', :email =&gt; 'dhh@nospam.com', :enabled =&gt; true)\n  dhh.valid?\n  # =&gt; true\n  dhh.new?\n  # =&gt; false\n\n  # We'll assume that there's a validation that requires the name attribute\n  that_guy = Person.create(:name =&gt; '', :email =&gt; 'thatguy@nospam.com', :enabled =&gt; true)\n  that_guy.valid?\n  # =&gt; false\n  that_guy.new?\n  # =&gt; true\n"
+full_name: ActiveResource::Base::create
+is_singleton: true
+name: create
+params: (attributes = {})
+visibility: public

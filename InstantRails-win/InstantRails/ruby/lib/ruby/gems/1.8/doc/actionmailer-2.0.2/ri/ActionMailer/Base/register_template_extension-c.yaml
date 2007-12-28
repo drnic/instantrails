@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Register a template extension so mailer templates written in a templating language other than rhtml or rxml are supported. To use this, include in your template-language plugin's init code or on a per-application basis, this can be invoked from config/environment.rb:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActionMailer::Base.register_template_extension('haml')\n"
+full_name: ActionMailer::Base::register_template_extension
+is_singleton: true
+name: register_template_extension
+params: (extension)
+visibility: public

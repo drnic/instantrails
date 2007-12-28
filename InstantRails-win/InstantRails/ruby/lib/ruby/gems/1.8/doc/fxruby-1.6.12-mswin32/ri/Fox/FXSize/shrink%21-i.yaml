@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Shrink the rectangle by some amount, and return a reference to the rectangle.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+leftmargin+:"
+    body: number of units to shrink on the left side [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+rightmargin+:"
+    body: number of units to shrink on the right side [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+topmargin+:"
+    body: number of units to shrink on the top side [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+bottommargin+:"
+    body: number of units to shrink on the bottom side [Integer]
+  type: :NOTE
+full_name: Fox::FXSize#shrink!
+is_singleton: false
+name: shrink!
+params: (leftmargin, rightmargin, topmargin, bottommargin)
+visibility: public

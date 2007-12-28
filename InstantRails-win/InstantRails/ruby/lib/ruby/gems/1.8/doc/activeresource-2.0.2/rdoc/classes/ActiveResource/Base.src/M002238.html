@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>respond_to? (ActiveResource::Base)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_resource/base.rb, line 775</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">method</span>, <span class="ruby-identifier">include_priv</span> = <span class="ruby-keyword kw">false</span>)
+      <span class="ruby-identifier">method_name</span> = <span class="ruby-identifier">method</span>.<span class="ruby-identifier">to_s</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">nil?</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span>
+      <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">method_name</span>)
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span> 
+      <span class="ruby-keyword kw">elsif</span> [<span class="ruby-value str">'?'</span>,<span class="ruby-value str">'='</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">last</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">attributes</span>.<span class="ruby-identifier">has_key?</span>(<span class="ruby-identifier">method_name</span>.<span class="ruby-identifier">first</span>(<span class="ruby-value">-1</span>))
+        <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-comment cmt"># super must be called at the end of the method, because the inherited respond_to?</span>
+      <span class="ruby-comment cmt"># would return true for generated readers, even if the attribute wasn't present</span>
+      <span class="ruby-keyword kw">super</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is used internally to indicate that a VERSION packet was received from the server. This may only be called when the driver's state is <tt>version</tt>. It determines the highest possible protocol version supported by both the client and the server, selects the dispatcher that handles that protocol version, moves the state to <tt>open</tt>, and then invokes the <tt>on_open</tt> callback (if one was registered).
+full_name: Net::SFTP::Protocol::Driver#do_version
+is_singleton: false
+name: do_version
+params: ( content )
+visibility: public

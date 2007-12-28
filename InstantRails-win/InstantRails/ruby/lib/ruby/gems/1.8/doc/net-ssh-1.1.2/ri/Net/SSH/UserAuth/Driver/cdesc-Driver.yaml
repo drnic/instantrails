@@ -1,0 +1,51 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The UserKeyManager instance used by the auth service.
+  name: key_manager
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The array of auth-method names (as strings), giving the order in which each auth-method will be tried.
+  name: order
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The SSH (transport) session to use for communication.
+  name: session
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A wrapper around the transport layer that represents the functionality of user authentication.
+constants: []
+
+full_name: Net::SSH::UserAuth::Driver
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Net::SSH::UserAuth::Constants
+- !ruby/object:RI::IncludedModule 
+  name: Net::SSH::Transport::Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: authenticate
+- !ruby/object:RI::MethodSummary 
+  name: on_banner
+- !ruby/object:RI::MethodSummary 
+  name: send_message
+- !ruby/object:RI::MethodSummary 
+  name: set_auth_method_order
+- !ruby/object:RI::MethodSummary 
+  name: set_host_key_files
+- !ruby/object:RI::MethodSummary 
+  name: set_key_files
+- !ruby/object:RI::MethodSummary 
+  name: wait_for_message
+name: Driver
+superclass: Object

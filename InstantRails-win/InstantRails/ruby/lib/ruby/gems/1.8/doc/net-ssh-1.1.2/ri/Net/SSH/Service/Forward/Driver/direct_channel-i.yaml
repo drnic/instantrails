@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open a direct &quot;tcpip&quot; channel to the remote machine, which will then forward the connection to the given remote-host and remote-port. The connection will appear to have come from the given port on the local machine.
+- !ruby/struct:SM::Flow::P 
+  body: "The handler object may respond to the following messages, in order to respond to requests over the channel:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "on_receive( channel, data ): when data is received over the channel (from the remote machine), this method will be invoked."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "on_eof( channel ): when the remote machine will no longer send data, this method will be invoked. The client may continue to send data over the channel, however."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "on_close( channel ): when the channel has been closed and is no longer valid for passing data, this method will be invoked."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "confirm( channel, local_port, remote_host, remote_port, *data ): when the channel has been opened and the remote machine has confirmed it, this method will be invoked. The <tt>data</tt> parameters are the same parameters as were passed to the direct_channel method."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "process( channel ): invoked after the channel is confirmed, to process the channel. It is invoked in a new Thread."
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Only the <tt>process</tt> method is required--the others will only be invoked if the handler responds to them.
+full_name: Net::SSH::Service::Forward::Driver#direct_channel
+is_singleton: false
+name: direct_channel
+params: ( local_port, remote_host, remote_port, handler, *data )
+visibility: public

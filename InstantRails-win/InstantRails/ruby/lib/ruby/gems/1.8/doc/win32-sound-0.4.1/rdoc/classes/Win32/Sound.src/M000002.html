@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>beep (Win32::Sound)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/sound.rb, line 64</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">beep</span>(<span class="ruby-identifier">frequency</span>, <span class="ruby-identifier">duration</span>)
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">frequency</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">HIGH_FREQUENCY</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">frequency</span> <span class="ruby-operator">&lt;</span> <span class="ruby-constant">LOW_FREQUENCY</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-value str">'invalid frequency'</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-value">0</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@@Beep</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">frequency</span>, <span class="ruby-identifier">duration</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>        
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

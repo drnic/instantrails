@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>setup_forward (TMail::Mail)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail-1.1.0/tmail/net.rb, line 159</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup_forward</span>( <span class="ruby-identifier">mail</span> )
+      <span class="ruby-identifier">m</span> = <span class="ruby-constant">Mail</span>.<span class="ruby-identifier">new</span>(<span class="ruby-constant">StringPort</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">''</span>))
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">body</span> = <span class="ruby-identifier">decoded</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">set_content_type</span> <span class="ruby-value str">'message'</span>, <span class="ruby-value str">'rfc822'</span>
+      <span class="ruby-identifier">m</span>.<span class="ruby-identifier">encoding</span> = <span class="ruby-identifier">encoding</span>(<span class="ruby-value str">'7bit'</span>)
+      <span class="ruby-identifier">mail</span>.<span class="ruby-identifier">parts</span>.<span class="ruby-identifier">push</span> <span class="ruby-identifier">m</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

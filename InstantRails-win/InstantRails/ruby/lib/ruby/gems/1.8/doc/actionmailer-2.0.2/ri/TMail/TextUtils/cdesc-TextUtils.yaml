@@ -1,0 +1,87 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ATOM_UNSAFE
+  value: /[#{Regexp.quote aspecial}#{control}#{lwsp}]/n
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PHRASE_UNSAFE
+  value: /[#{Regexp.quote aspecial}#{control}]/n
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TOKEN_UNSAFE
+  value: /[#{Regexp.quote tspecial}#{control}#{lwsp}]/n
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONTROL_CHAR
+  value: /[#{control}]/n
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ZONESTR_TABLE
+  value: "{       'jst' =>   9 * 60,       'eet' =>   2 * 60,       'bst' =>   1 * 60,       'met' =>   1 * 60,       'gmt' =>   0,       'utc' =>   0,       'ut'  =>   0,       'nst' => -(3 * 60 + 30),       'ast' =>  -4 * 60,       'edt' =>  -4 * 60,       'est' =>  -5 * 60,       'cdt' =>  -5 * 60,       'cst' =>  -6 * 60,       'mdt' =>  -6 * 60,       'mst' =>  -7 * 60,       'pdt' =>  -7 * 60,       'pst' =>  -8 * 60,       'a'   =>  -1 * 60,       'b'   =>  -2 * 60,       'c'   =>  -3 * 60,       'd'   =>  -4 * 60,       'e'   =>  -5 * 60,       'f'   =>  -6 * 60,       'g'   =>  -7 * 60,       'h'   =>  -8 * 60,       'i'   =>  -9 * 60,       # j not use       'k'   => -10 * 60,       'l'   => -11 * 60,       'm'   => -12 * 60,       'n'   =>   1 * 60,       'o'   =>   2 * 60,       'p'   =>   3 * 60,       'q'   =>   4 * 60,       'r'   =>   5 * 60,       's'   =>   6 * 60,       't'   =>   7 * 60,       'u'   =>   8 * 60,       'v'   =>   9 * 60,       'w'   =>  10 * 60,       'x'   =>  11 * 60,       'y'   =>  12 * 60,       'z'   =>   0 * 60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WDAY
+  value: "%w( Sun Mon Tue Wed Thu Fri Sat TMailBUG )"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MONTH
+  value: "%w( TMailBUG Jan Feb Mar Apr May Jun                          Jul Aug Sep Oct Nov Dec TMailBUG )"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MESSAGE_ID
+  value: /<[^\@>]+\@[^>\@]+>/
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MIME_ENCODED
+  value: /=\?[^\s?=]+\?[QB]\?[^\s?=]+\?=/i
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NKF_FLAGS
+  value: "{       'EUC'  => '-e -m',       'SJIS' => '-s -m'"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RFC2231_ENCODED
+  value: /\A(?:iso-2022-jp|euc-jp|shift_jis|us-ascii)?'[a-z]*'/in
+full_name: TMail::TextUtils
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: atom_safe?
+- !ruby/object:RI::MethodSummary 
+  name: decode_RFC2231
+- !ruby/object:RI::MethodSummary 
+  name: decode_params
+- !ruby/object:RI::MethodSummary 
+  name: join_domain
+- !ruby/object:RI::MethodSummary 
+  name: message_id?
+- !ruby/object:RI::MethodSummary 
+  name: mime_encoded?
+- !ruby/object:RI::MethodSummary 
+  name: quote_atom
+- !ruby/object:RI::MethodSummary 
+  name: quote_boundary
+- !ruby/object:RI::MethodSummary 
+  name: quote_phrase
+- !ruby/object:RI::MethodSummary 
+  name: quote_token
+- !ruby/object:RI::MethodSummary 
+  name: time2str
+- !ruby/object:RI::MethodSummary 
+  name: timezone_string_to_unixtime
+- !ruby/object:RI::MethodSummary 
+  name: to_kcode
+- !ruby/object:RI::MethodSummary 
+  name: token_safe?
+- !ruby/object:RI::MethodSummary 
+  name: unquote
+name: TextUtils
+superclass: 

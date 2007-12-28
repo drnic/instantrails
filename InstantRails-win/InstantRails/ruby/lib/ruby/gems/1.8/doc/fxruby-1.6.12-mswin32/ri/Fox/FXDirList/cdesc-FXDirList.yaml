@@ -1,0 +1,130 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: File associations [FXFileDict]
+  name: associations
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current file [String]
+  name: currentFile
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current directory [String]
+  name: directory
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard matching mode, some combination of file matching flags [Integer]
+  name: matchMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard pattern [String]
+  name: pattern
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXDirList widget provides a tree-structured view of the file system. It automatically updates itself periodically by re-scanning the file system for any changes. As it scans the displayed directories and files, it automatically determines the icons to be displayed by consulting the file-associations registry settings. A number of messages can be sent to the FXDirList to control the filter pattern, sorting order, case sensitivity, and hidden file display mode. The Directory list widget supports drags and drops of files.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLOSED+:"
+    body: sent when a folder item is closed; the message data is a reference to the FXDirItem that was closed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_OPENED+:"
+    body: sent when a folder item is opened; the message data is a reference to the FXDirItem that was opened
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Directory List options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIRLIST_SHOWFILES+:"
+    body: Show files as well as directories
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIRLIST_SHOWHIDDEN+:"
+    body: Show hidden files or directories
+  - !ruby/struct:SM::Flow::LI 
+    label: "+DIRLIST_NO_OWN_ASSOC+:"
+    body: Do not create associations for files
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REFRESH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_FILES+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HIDE_FILES+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_FILES+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_HIDDEN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HIDE_HIDDEN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_HIDDEN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SET_PATTERN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SORT_REVERSE+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDirList
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: filesShown=
+- !ruby/object:RI::MethodSummary 
+  name: filesShown?
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown=
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown?
+- !ruby/object:RI::MethodSummary 
+  name: itemDirectory?
+- !ruby/object:RI::MethodSummary 
+  name: itemExecutable?
+- !ruby/object:RI::MethodSummary 
+  name: itemFile?
+- !ruby/object:RI::MethodSummary 
+  name: itemPathname
+- !ruby/object:RI::MethodSummary 
+  name: pathnameItem
+- !ruby/object:RI::MethodSummary 
+  name: scan
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentFile
+- !ruby/object:RI::MethodSummary 
+  name: setDirectory
+name: FXDirList
+superclass: FXTreeList

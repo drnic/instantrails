@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Needle::InterceptorChainBuilder</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Needle::InterceptorChainBuilder</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/needle/interceptor-chain_rb.html">
+                lib/needle/interceptor-chain.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This module encapsulates the functionality for building interceptor chains.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000017">build</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="InterceptorChainBuilder/InterceptedServiceProxy.html" class="link">Needle::InterceptorChainBuilder::InterceptedServiceProxy</a><br />
+Class <a href="InterceptorChainBuilder/InterceptorChainElement.html" class="link">Needle::InterceptorChainBuilder::InterceptorChainElement</a><br />
+Class <a href="InterceptorChainBuilder/ProxyObjectChainElement.html" class="link">Needle::InterceptorChainBuilder::ProxyObjectChainElement</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">InvocationContext</td>
+          <td>=</td>
+          <td class="context-item-value">Struct.new( :sym, :args, :block, :data )</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The context of a method invocation. This is used in an interceptor chain to
+encapsulate the elements of the current invocation. sym: the name of the
+method being invoked args: the argument list being passed to the method
+block: the reference to the block attached to the method invocation data: a
+hash that may be used by clients for storing arbitrary data in
+
+<pre>
+       the context.
+</pre>
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000017" class="method-detail">
+        <a name="M000017"></a>
+
+        <div class="method-heading">
+          <a href="InterceptorChainBuilder.src/M000017.html" target="Code" class="method-signature"
+            onclick="popupCode('InterceptorChainBuilder.src/M000017.html');return false;">
+          <span class="method-name">build</span><span class="method-args">( point, service, interceptors )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This will apply the given interceptors to the given service by first
+ordering the interceptors based on their relative priorities, and then
+dynamically modifying the service&#8216;s methods so that the chain of
+interceptors sits in front of each of them.
+</p>
+<p>
+The modified service is returned.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

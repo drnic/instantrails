@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Empty the elements in this list, by removing their insides.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc = Hpricot(&quot;&lt;p&gt; We have <em>so much</em> to say.&lt;/p&gt;&quot;)\n  doc.search(&quot;i&quot;).empty\n  doc.to_html\n    =&gt; &quot;&lt;p&gt; We have  to say.&lt;/p&gt;&quot;\n"
+full_name: Hpricot::Elements#empty
+is_singleton: false
+name: empty
+params: ()
+visibility: public

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Convert to a formatted string - see DATE_FORMATS for predefined formats. You can also add your own formats to the DATE_FORMATS constant and use them with this method.
+- !ruby/struct:SM::Flow::P 
+  body: This method is also aliased as <tt>to_s</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  date = Date.new(2007, 11, 10)       # =&gt; Sat, 10 Nov 2007\n\n  date.to_formatted_s(:db)            # =&gt; &quot;2007-11-10&quot;\n  date.to_s(:db)                      # =&gt; &quot;2007-11-10&quot;\n\n  date.to_formatted_s(:short)         # =&gt; &quot;10 Nov&quot;\n  date.to_formatted_s(:long)          # =&gt; &quot;November 10, 2007&quot;\n  date.to_formatted_s(:long_ordinal)  # =&gt; &quot;November 10th, 2007&quot;\n  date.to_formatted_s(:rfc822)        # =&gt; &quot;10 Nov 2007&quot;\n"
+full_name: ActiveSupport::CoreExtensions::Date::Conversions#to_formatted_s
+is_singleton: false
+name: to_formatted_s
+params: (format = :default)
+visibility: public

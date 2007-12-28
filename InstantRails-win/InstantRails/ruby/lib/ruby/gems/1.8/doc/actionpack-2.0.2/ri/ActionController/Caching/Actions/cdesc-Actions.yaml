@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Action caching is similar to page caching by the fact that the entire output of the response is cached, but unlike page caching, every request still goes through the Action Pack. The key benefit of this is that filters are run before the cache is served, which allows for authentication and other restrictions on whether someone is allowed to see the cache. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ListsController &lt; ApplicationController\n    before_filter :authenticate, :except =&gt; :public\n    caches_page   :public\n    caches_action :show, :feed\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: In this example, the public action doesn't require authentication, so it's possible to use the faster page caching method. But both the show and feed action are to be shielded behind the authenticate filter, so we need to implement those as action caches.
+- !ruby/struct:SM::Flow::P 
+  body: Action caching internally uses the fragment caching and an around filter to do the job. The fragment cache is named according to both the current host and the path. So a page that is accessed at http://david.somewhere.com/lists/show/1 will result in a fragment named &quot;david.somewhere.com/lists/show/1&quot;. This allows the cacher to differentiate between &quot;david.somewhere.com/lists/&quot; and &quot;jamis.somewhere.com/lists/&quot; -- which is a helpful way of assisting the subdomain-as-account-key pattern.
+- !ruby/struct:SM::Flow::P 
+  body: Different representations of the same resource, e.g. <tt>http://david.somewhere.com/lists</tt> and <tt>http://david.somewhere.com/lists.xml</tt> are treated like separate requests and so are cached separately. Keep in mind when expiring an action cache that <tt>:action =&gt; 'lists'</tt> is not the same as <tt>:action =&gt; 'list', :format =&gt; :xml</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: You can set modify the default action cache path by passing a :cache_path option. This will be passed directly to ActionCachePath.path_for. This is handy for actions with multiple possible routes that should be cached differently. If a block is given, it is called with the current controller instance.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class ListsController &lt; ApplicationController\n    before_filter :authenticate, :except =&gt; :public\n    caches_page   :public\n    caches_action :show, :cache_path =&gt; { :project =&gt; 1 }\n    caches_action :show, :cache_path =&gt; Proc.new { |controller|\n      controller.params[:user_id] ?\n        controller.send(:user_list_url, c.params[:user_id], c.params[:id]) :\n        controller.send(:list_url, c.params[:id]) }\n  end\n"
+constants: []
+
+full_name: ActionController::Caching::Actions
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: expire_action
+- !ruby/object:RI::MethodSummary 
+  name: protected_instance_variables_with_action_caching
+name: Actions
+superclass: 

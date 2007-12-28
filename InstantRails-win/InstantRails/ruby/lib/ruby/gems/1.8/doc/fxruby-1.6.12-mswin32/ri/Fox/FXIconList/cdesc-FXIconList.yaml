@@ -1,0 +1,357 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index of anchor item, or -1 if none [Integer]
+  name: anchorItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index of current item, or -1 if none [Integer]
+  name: currentItem
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index of item under the cursor, or -1 if none [Integer]
+  name: cursorItem
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The header control [FXHeader]
+  name: header
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item height [Integer]
+  name: itemHeight
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum item space (in pixels) for each item [Integer]
+  name: itemSpace
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item width [Integer]
+  name: itemWidth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Icon list style [Integer]
+  name: listStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of columns [Integer]
+  name: numCols
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of header items in the header control [Integer]
+  name: numHeaders
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of items [Integer]
+  name: numItems
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of rows [Integer]
+  name: numRows
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Background color for selected item(s) [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color for selected item(s) [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal text color [FXColor]
+  name: textColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Icon List Widget displays a list of items, each with a text and optional icon. Icon List can display its items in essentially three different ways; in big-icon mode, the bigger of the two icons is used for each item, and the text is placed underneath the icon. In mini- icon mode, the icons are listed in rows and columns, with the smaller icon preceding the text. Finally, in detail mode the icons are listed in a single column, and all fields of the text are shown under a header control with one button for each subfield. When an item's selected state changes, the icon list sends a <tt>SEL_SELECTED</tt> or <tt>SEL_DESELECTED</tt> message. A change of the current item is signified by the <tt>SEL_CHANGED</tt> message. The icon list sends <tt>SEL_COMMAND</tt> messages when the user clicks on an item, and <tt>SEL_CLICKED</tt>, <tt>SEL_DOUBLECLICKED</tt>, and <tt>SEL_TRIPLECLICKED</tt> when the user clicks once, twice, or thrice, respectively. When items are added, replaced, or removed, the icon list sends messages of the type <tt>SEL_INSERTED</tt>, <tt>SEL_REPLACED</tt>, or <tt>SEL_DELETED</tt>. In each of these cases, the index to the item, if any, is passed in the 3rd argument of the message.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXIconList to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the current list item changes; the message data is an Integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLICKED+:"
+    body: sent when a list item is single-clicked; the message data is an Integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DOUBLECLICKED+:"
+    body: sent when a list item is double-clicked; the message data is an Integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_TRIPLECLICKED+:"
+    body: sent when a list item is triple-clicked; the message data is an Integer indicating the index of the current item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent when a list item is selected; the message data is an Integer indicating the index of the selected item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent when a list item is deselected; the message data is an Integer indicating the index of the deselected item.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_REPLACED+:"
+    body: sent when a list item is about to be replaced; the message data is an Integer indicating the index of the item to be replaced.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_INSERTED+:"
+    body: sent after a list item is inserted; the message data is an Integer indicating the index of the item that was inserted.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETED+:"
+    body: sent when a list item is about to be removed; the message data is an Integer indicating the index of the item to be removed.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Icon list styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_EXTENDEDSELECT+:"
+    body: Extended selection mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_SINGLESELECT+:"
+    body: At most one selected item
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_BROWSESELECT+:"
+    body: Always exactly one selected item
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_MULTIPLESELECT+:"
+    body: Multiple selection mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_AUTOSIZE+:"
+    body: Automatically size item spacing
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_DETAILED+:"
+    body: List mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_MINI_ICONS+:"
+    body: Mini Icon mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_BIG_ICONS+:"
+    body: Big Icon mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_ROWS+:"
+    body: Row-wise mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_COLUMNS+:"
+    body: Column-wise mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICONLIST_NORMAL+:"
+    body: same as <tt>ICONLIST_EXTENDEDSELECT</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_DETAILS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_MINI_ICONS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW_BIG_ICONS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ARRANGE_BY_ROWS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ARRANGE_BY_COLUMNS+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HEADER_CHANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TIPTIMER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LOOKUPTIMER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DESELECT_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_INVERSE+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXIconList
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: appendHeader
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: appendItem
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: deselectItem
+- !ruby/object:RI::MethodSummary 
+  name: disableItem
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: enableItem
+- !ruby/object:RI::MethodSummary 
+  name: extendSelection
+- !ruby/object:RI::MethodSummary 
+  name: extractItem
+- !ruby/object:RI::MethodSummary 
+  name: fillItems
+- !ruby/object:RI::MethodSummary 
+  name: findItem
+- !ruby/object:RI::MethodSummary 
+  name: findItemByData
+- !ruby/object:RI::MethodSummary 
+  name: getHeaderIcon
+- !ruby/object:RI::MethodSummary 
+  name: getHeaderSize
+- !ruby/object:RI::MethodSummary 
+  name: getHeaderText
+- !ruby/object:RI::MethodSummary 
+  name: getItem
+- !ruby/object:RI::MethodSummary 
+  name: getItemAt
+- !ruby/object:RI::MethodSummary 
+  name: getItemBigIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemMiniIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: hitItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: insertItem
+- !ruby/object:RI::MethodSummary 
+  name: itemCurrent?
+- !ruby/object:RI::MethodSummary 
+  name: itemEnabled?
+- !ruby/object:RI::MethodSummary 
+  name: itemSelected?
+- !ruby/object:RI::MethodSummary 
+  name: itemVisible?
+- !ruby/object:RI::MethodSummary 
+  name: killSelection
+- !ruby/object:RI::MethodSummary 
+  name: makeItemVisible
+- !ruby/object:RI::MethodSummary 
+  name: moveItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: prependItem
+- !ruby/object:RI::MethodSummary 
+  name: removeHeader
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: selectInRectangle
+- !ruby/object:RI::MethodSummary 
+  name: selectItem
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentItem
+- !ruby/object:RI::MethodSummary 
+  name: setHeaderIcon
+- !ruby/object:RI::MethodSummary 
+  name: setHeaderSize
+- !ruby/object:RI::MethodSummary 
+  name: setHeaderText
+- !ruby/object:RI::MethodSummary 
+  name: setHeaders
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemBigIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemMiniIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: sortItems
+- !ruby/object:RI::MethodSummary 
+  name: toggleItem
+- !ruby/object:RI::MethodSummary 
+  name: updateItem
+name: FXIconList
+superclass: Object

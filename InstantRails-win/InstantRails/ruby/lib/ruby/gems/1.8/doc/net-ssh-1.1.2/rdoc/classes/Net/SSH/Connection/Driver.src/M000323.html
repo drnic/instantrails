@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_data_request (Net::SSH::Connection::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/connection/driver.rb, line 116</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_data_request</span>( <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">type</span>=<span class="ruby-keyword kw">nil</span> )
+          <span class="ruby-ivar">@data_requests_mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-ivar">@data_requests</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">DataRequest</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">channel</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">type</span> )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># make sure the new data request has a chance to be sent to the</span>
+          <span class="ruby-comment cmt"># server... Otherwise, it cannot be sent until the next time #process</span>
+          <span class="ruby-comment cmt"># is invoked, which can be unexpected in synchronous situations.</span>
+          <span class="ruby-identifier">process_data_requests</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

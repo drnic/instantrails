@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Enables the use of resources in a module by setting the name_prefix, path_prefix, and namespace for the model. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  map.namespace(:admin) do |admin|\n    admin.resources :products,\n      :has_many =&gt; [ :tags, :images, :variants ]\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: This will create <tt>admin_products_url</tt> pointing to &quot;admin/products&quot;, which will look for an Admin::ProductsController. It'll also create <tt>admin_product_tags_url</tt> pointing to &quot;admin/products/#{product_id}/tags&quot;, which will look for Admin::TagsController.
+full_name: ActionController::Routing::RouteSet::Mapper#namespace
+is_singleton: false
+name: namespace
+params: (name, options = {}, &block)
+visibility: public

@@ -1,0 +1,128 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Visual depth, i.e. number of significant bits in color representation [Integer]
+  name: depth
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Visual construction flags [Integer]
+  name: flags
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum number of colors [Integer]
+  name: maxColors
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of bits of blue [Integer]
+  name: numBlue
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of colors [Integer]
+  name: numColors
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of bits of green [Integer]
+  name: numGreen
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of bits of red [Integer]
+  name: numRed
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The visual type, one of <tt>VISUALTYPE_MONO</tt>, <tt>VISUALTYPE_TRUE</tt> <tt>VISUALTYPE_INDEX</tt> or <tt>VISUALTYPE_GRAY</tt>. The visual type may also be <tt>VISUALTYPE_UNKNOWN</tt> before the visual is actually created.
+  name: visualType
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXVisual instance describes the pixel format for a drawable (i.e. an FXDrawable instance).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Construction options for FXVisual
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_DEFAULT+:"
+    body: Default visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_MONOCHROME+:"
+    body: Must be monochrome visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_BEST+:"
+    body: Best (deepest) visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_INDEXCOLOR+:"
+    body: Palette visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_GRAYSCALE+:"
+    body: Gray scale visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_TRUECOLOR+:"
+    body: Must be true color visual
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_OWNCOLORMAP+:"
+    body: Allocate private colormap
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_DOUBLEBUFFER+:"
+    body: Double-buffered [FXGLVisual]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_STEREO+:"
+    body: Stereo [FXGLVisual]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_NOACCEL+:"
+    body: No hardware acceleration [for broken h/w]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUAL_SWAP_COPY+:"
+    body: Buffer swap by copying (for FXGLVisual)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Visual type
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUALTYPE_UNKNOWN+:"
+    body: Undetermined visual type
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUALTYPE_MONO+:"
+    body: Visual for drawing into 1-bpp surfaces
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUALTYPE_TRUE+:"
+    body: True color
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUALTYPE_INDEX+:"
+    body: Index [palette] color
+  - !ruby/struct:SM::Flow::LI 
+    label: "+VISUALTYPE_GRAY+:"
+    body: Gray scale
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXVisual
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getColor
+- !ruby/object:RI::MethodSummary 
+  name: getPixel
+name: FXVisual
+superclass: FXId

@@ -1,0 +1,87 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The undo list manages a list of undoable (and redoable) commands for a FOX application; it works hand-in-hand with subclasses of FXCommand and is an application of the well-known <em>Command</em> pattern. Your application code should implement any number of command classes and then add then to an FXUndoList instance. For an example of how this works, see the textedit example program from the FXRuby distribution.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Class Constants
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID_UNDO
+    body: Message identifier for the undo method. When a <tt>SEL_COMMAND</tt> message with this identifier is sent to an undo list, it undoes the last command. FXUndoList also provides a <tt>SEL_UPDATE</tt> handler for this identifier, that enables or disables the sender depending on whether it's possible to undo.
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID\_UNDO\_ALL
+    body: Message identifier for the &quot;undo all&quot; method. FXUndoList handles both the <tt>SEL_COMMAND</tt> and <tt>SEL_UPDATE</tt> messages for this message identifier.
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID_REDO
+    body: Message identifier for the redo method. When a <tt>SEL_COMMAND</tt> message with this identifier is sent to an undo list, it redoes the last command. FXUndoList also provides a <tt>SEL_UPDATE</tt> handler for this identifier, that enables or disables the sender depending on whether it's possible to redo.
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID\_REDO\_ALL
+    body: Message identifier for the &quot;redo all&quot; method. FXUndoList handles both the <tt>SEL_COMMAND</tt> and <tt>SEL_UPDATE</tt> messages for this message identifier.
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID_CLEAR
+    body: Message identifier for the &quot;clear&quot; method. FXUndoList handles both the <tt>SEL_COMMAND</tt> and <tt>SEL_UPDATE</tt> messages for this message identifier.
+  - !ruby/struct:SM::Flow::LI 
+    label: FXUndoList::ID_REVERT
+    body: Message identifier for the &quot;revert&quot; method. FXUndoList handles both the <tt>SEL_COMMAND</tt> and <tt>SEL_UPDATE</tt> messages for this message identifier.
+  type: :LABELED
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ID_LAST
+  value: enum(0, 7)
+full_name: Fox::FXUndoList
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Responder
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add
+- !ruby/object:RI::MethodSummary 
+  name: canRedo?
+- !ruby/object:RI::MethodSummary 
+  name: canRevert?
+- !ruby/object:RI::MethodSummary 
+  name: canUndo?
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: current
+- !ruby/object:RI::MethodSummary 
+  name: cut
+- !ruby/object:RI::MethodSummary 
+  name: mark
+- !ruby/object:RI::MethodSummary 
+  name: marked?
+- !ruby/object:RI::MethodSummary 
+  name: redo
+- !ruby/object:RI::MethodSummary 
+  name: redoAll
+- !ruby/object:RI::MethodSummary 
+  name: redoName
+- !ruby/object:RI::MethodSummary 
+  name: revert
+- !ruby/object:RI::MethodSummary 
+  name: trimCount
+- !ruby/object:RI::MethodSummary 
+  name: trimSize
+- !ruby/object:RI::MethodSummary 
+  name: undo
+- !ruby/object:RI::MethodSummary 
+  name: undoAll
+- !ruby/object:RI::MethodSummary 
+  name: undoCount
+- !ruby/object:RI::MethodSummary 
+  name: undoName
+- !ruby/object:RI::MethodSummary 
+  name: undoSize
+- !ruby/object:RI::MethodSummary 
+  name: unmark
+name: FXUndoList
+superclass: FXObject

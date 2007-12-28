@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a hash describing the current file permissions for the given file. The account name is the key, and the value is an integer representing an or'd value that corresponds to the security permissions for that file.
+- !ruby/struct:SM::Flow::P 
+  body: To get a human readable version of the permissions, pass the value to the +File.securities+ method.
+full_name: File::get_permissions
+is_singleton: true
+name: get_permissions
+params: (file, host=nil)
+visibility: public

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>keys_for (Net::SSH::KnownHosts)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/known-hosts.rb, line 56</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">keys_for</span>(<span class="ruby-identifier">host</span>)
+      <span class="ruby-identifier">keys</span> = []
+      <span class="ruby-identifier">hosts</span> = <span class="ruby-constant">Array</span>(<span class="ruby-identifier">host</span>)
+
+      <span class="ruby-constant">File</span>.<span class="ruby-identifier">open</span>(<span class="ruby-identifier">source</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">file</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">scanner</span> = <span class="ruby-constant">StringScanner</span>.<span class="ruby-identifier">new</span>(<span class="ruby-value str">&quot;&quot;</span>)
+        <span class="ruby-identifier">file</span>.<span class="ruby-identifier">each_line</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">line</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">string</span> = <span class="ruby-identifier">line</span>
+
+          <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">skip</span>(<span class="ruby-regexp re">/\s*/</span>)
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">match?</span>(<span class="ruby-regexp re">/$|#/</span>)
+
+          <span class="ruby-identifier">hostlist</span> = <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/\S+/</span>)
+          <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> (<span class="ruby-identifier">hostlist</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,/</span>) <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">hosts</span>).<span class="ruby-identifier">empty?</span>
+
+          <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">skip</span>(<span class="ruby-regexp re">/\s*/</span>)
+          <span class="ruby-identifier">type</span> = <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">scan</span>(<span class="ruby-regexp re">/\S+/</span>)
+          <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">skip</span>(<span class="ruby-regexp re">/\s*/</span>)
+          <span class="ruby-identifier">blob</span> = <span class="ruby-identifier">scanner</span>.<span class="ruby-identifier">rest</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;m*&quot;</span>).<span class="ruby-identifier">first</span>
+          <span class="ruby-identifier">keys</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Transport</span><span class="ruby-operator">::</span><span class="ruby-constant">OSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">Buffer</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">blob</span>).<span class="ruby-identifier">read_key</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">keys</span>
+    <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">SystemCallError</span>
+      <span class="ruby-keyword kw">return</span> []
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create_junction
+- !ruby/object:RI::MethodSummary 
+  name: empty?
+- !ruby/object:RI::MethodSummary 
+  name: junction?
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.3.2'"
+full_name: Dir
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Directory
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Shell
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+- !ruby/object:RI::IncludedModule 
+  name: Windows::File
+- !ruby/object:RI::IncludedModule 
+  name: Windows::DeviceIO
+instance_methods: []
+
+name: Dir
+superclass: Object

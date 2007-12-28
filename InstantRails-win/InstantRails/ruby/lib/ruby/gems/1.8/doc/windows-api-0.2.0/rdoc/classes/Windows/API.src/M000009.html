@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Windows::API)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/windows/api.rb, line 203</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">func</span>, <span class="ruby-identifier">proto</span>=<span class="ruby-value str">'V'</span>, <span class="ruby-identifier">rtype</span>=<span class="ruby-value str">'L'</span>, <span class="ruby-identifier">dll</span>=<span class="ruby-value str">'kernel32'</span>)
+         <span class="ruby-ivar">@function_name</span> = <span class="ruby-identifier">func</span>
+         <span class="ruby-ivar">@prototype</span>     = <span class="ruby-identifier">proto</span>
+         <span class="ruby-ivar">@return_type</span>   = <span class="ruby-identifier">rtype</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'B'</span> <span class="ruby-operator">?</span> <span class="ruby-value str">'I'</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">rtype</span>
+         <span class="ruby-ivar">@dll_name</span>      = <span class="ruby-identifier">dll</span>
+         <span class="ruby-ivar">@boolean</span>       = <span class="ruby-identifier">rtype</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'B'</span> <span class="ruby-operator">?</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">false</span>
+         
+         <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-ivar">@api</span> = <span class="ruby-constant">Win32</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">func</span>, <span class="ruby-identifier">proto</span>, <span class="ruby-identifier">rtype</span>, <span class="ruby-identifier">dll</span>)
+         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RuntimeError</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">err</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">err</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">api_a</span> = <span class="ruby-keyword kw">nil</span>
+         <span class="ruby-identifier">api_w</span> = <span class="ruby-keyword kw">nil</span>
+         
+         <span class="ruby-comment cmt"># If the auto_unicode option is set, and the func is not already</span>
+         <span class="ruby-comment cmt"># an explicit ANSI or Unicode function name, generate Win32::API</span>
+         <span class="ruby-comment cmt"># objects for those functions as well. Ignore errors because not</span>
+         <span class="ruby-comment cmt"># all functions have explicit ANSI or Unicode equivalents.</span>
+         <span class="ruby-comment cmt"># </span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_unicode</span>
+            <span class="ruby-keyword kw">begin</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">func</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'A'</span>
+                  <span class="ruby-identifier">api_a</span> = <span class="ruby-constant">Win32</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{func}A&quot;</span>, <span class="ruby-identifier">proto</span>, <span class="ruby-identifier">rtype</span>, <span class="ruby-identifier">dll</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RuntimeError</span>
+            <span class="ruby-keyword kw">end</span>
+         
+            <span class="ruby-keyword kw">begin</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">func</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'W'</span>
+                  <span class="ruby-identifier">api_w</span> = <span class="ruby-constant">Win32</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{func}W&quot;</span>, <span class="ruby-identifier">proto</span>, <span class="ruby-identifier">rtype</span>, <span class="ruby-identifier">dll</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">RuntimeError</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-comment cmt"># Automatically define a constant matching the function name if the</span>
+         <span class="ruby-comment cmt"># auto_constant option is set.</span>
+         <span class="ruby-comment cmt"># </span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_constant</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_namespace</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_namespace</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">'Windows'</span>
+               <span class="ruby-identifier">namespace</span> = <span class="ruby-identifier">class_for</span>(<span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_namespace</span>)
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-identifier">namespace</span> = <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_namespace</span>
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-identifier">func</span>, <span class="ruby-ivar">@api</span>)
+            
+            <span class="ruby-comment cmt"># Automatically define the explicit ANSI and Unicode functions</span>
+            <span class="ruby-comment cmt"># as constants as well, if appropriate.</span>
+            <span class="ruby-comment cmt"># </span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_unicode</span>
+               <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-node">&quot;#{func}A&quot;</span>, <span class="ruby-identifier">api_a</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_a</span>
+               <span class="ruby-identifier">namespace</span>.<span class="ruby-identifier">const_set</span>(<span class="ruby-node">&quot;#{func}W&quot;</span>, <span class="ruby-identifier">api_w</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_w</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-comment cmt"># Automatically define a method in the auto_namespace if the</span>
+         <span class="ruby-comment cmt"># auto_method option is set. The explicit ANSI and Unicode methods</span>
+         <span class="ruby-comment cmt"># are added as well if the auto_unicode option is set to true.</span>
+         <span class="ruby-comment cmt"># </span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_method</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-constant">Windows</span><span class="ruby-operator">::</span><span class="ruby-constant">API</span>.<span class="ruby-identifier">auto_namespace</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'V'</span>
+               <span class="ruby-identifier">proto</span> = <span class="ruby-value str">''</span>
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-identifier">n</span> = <span class="ruby-value">0</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">proto</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+                  <span class="ruby-identifier">proto</span> = <span class="ruby-identifier">proto</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">''</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                     <span class="ruby-identifier">n</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+                     <span class="ruby-identifier">e</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>
+                  }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">proto</span> = <span class="ruby-identifier">proto</span>.<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">e</span><span class="ruby-operator">|</span>
+                     <span class="ruby-identifier">n</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+                     <span class="ruby-identifier">e</span>.<span class="ruby-identifier">downcase</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">n</span>.<span class="ruby-identifier">to_s</span>
+                  }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">', '</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@boolean</span>
+               <span class="ruby-identifier">string</span> = <span class="ruby-value str">&quot;module \#{Windows::API.auto_namespace}\ndef \#{func}(\#{proto})\n\#{func}.call(\#{proto}) != 0\nend\n&quot;</span>
+                  
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_a</span>
+                  <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
+                     def #{func}A(#{proto})
+                        #{func}A.call(#{proto}) != 0
+                     end
+                  }</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_w</span>
+                  <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
+                     def #{func}W(#{proto})
+                        #{func}W.call(#{proto}) != 0
+                     end
+                  }</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'end'</span>
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-identifier">string</span> = <span class="ruby-value str">&quot;module \#{Windows::API.auto_namespace}\ndef \#{func}(\#{proto})\n\#{func}.call(\#{proto})\nend\n&quot;</span>
+                  
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_a</span>
+                  <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
+                     def #{func}A(#{proto})
+                        #{func}A.call(#{proto})
+                     end
+                  }</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">api_w</span>
+                  <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%Q{
+                     def #{func}W(#{proto})
+                        #{func}W.call(#{proto})
+                     end
+                  }</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-identifier">string</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'end'</span>
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-identifier">eval</span>(<span class="ruby-identifier">string</span>)
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

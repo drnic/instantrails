@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+comment: 
+constants: []
+
+full_name: ActionController::RequestForgeryProtection
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: authenticity_token_from_cookie_session
+- !ruby/object:RI::MethodSummary 
+  name: authenticity_token_from_session_id
+- !ruby/object:RI::MethodSummary 
+  name: form_authenticity_token
+- !ruby/object:RI::MethodSummary 
+  name: protect_against_forgery?
+- !ruby/object:RI::MethodSummary 
+  name: verifiable_request_format?
+- !ruby/object:RI::MethodSummary 
+  name: verified_request?
+- !ruby/object:RI::MethodSummary 
+  name: verify_authenticity_token
+name: RequestForgeryProtection
+superclass: 

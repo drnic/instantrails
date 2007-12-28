@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Unicode</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Unicode</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/unicode_rb.html">
+                lib/windows/unicode.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000001">multi_to_wide</a>&nbsp;&nbsp;
+      <a href="#M000002">wide_to_multi</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_ACP</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_OEMCP</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_MACCP</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_THREAD_ACP</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_SYMBOL</td>
+          <td>=</td>
+          <td class="context-item-value">42</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_UTF7</td>
+          <td>=</td>
+          <td class="context-item-value">65000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CP_UTF8</td>
+          <td>=</td>
+          <td class="context-item-value">65001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MB_PRECOMPOSED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MB_COMPOSITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MB_USEGLYPHCHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MB_ERR_INVALID_CHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WC_COMPOSITECHECK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WC_DISCARDNS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WC_SEPCHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WC_DEFAULTCHAR</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WC_NO_BEST_FIT_CHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ANSI_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYMBOL_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SHIFTJIS_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">128</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGEUL_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">129</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HANGUL_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">129</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GB2312_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">134</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CHINESEBIG5_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">136</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">OEM_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">255</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">JOHAB_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">130</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEBREW_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">177</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ARABIC_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">178</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GREEK_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">161</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TURKISH_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">162</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VIETNAMESE_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">163</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">THAI_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">222</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">EASTEUROPE_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">238</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RUSSIAN_CHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">204</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_ASCII16</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_REVERSE_ASCII16</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_STATISTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_REVERSE_STATISTICS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_CONTROLS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_REVERSE_CONTROLS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_SIGNATURE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_REVERSE_SIGNATURE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_ILLEGAL_CHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_ODD_LENGTH</td>
+          <td>=</td>
+          <td class="context-item-value">0x0200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_DBCS_LEADBYTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_NULL_BYTES</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_UNICODE_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x000F</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_REVERSE_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00F0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_NOT_UNICODE_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0x0F00</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IS_TEXT_UNICODE_NOT_ASCII_MASK</td>
+          <td>=</td>
+          <td class="context-item-value">0xF000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TCI_SRCCHARSET</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TCI_SRCCODEPAGE</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TCI_SRCFONTSIG</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">TCI_SRCLOCALE</td>
+          <td>=</td>
+          <td class="context-item-value">0x100</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Unicode.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Unicode.src/M000001.html');return false;">
+          <span class="method-name">multi_to_wide</span><span class="method-args">(string, encoding=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Maps a wide character string to a new character string using the specified
+<tt>encoding</tt>. If no encoding is specified, then CP_UTF8 iss used if
+$KCODE is set to UTF8. Otherwise, CP_ACP is used.
+</p>
+<p>
+If the function fails it simply returns the string as-is.
+</p>
+<p>
+Maps a string to a wide (unicode) string using <tt>encoding</tt>. If no
+encoding is specified, then CP_UTF8 is used if $KCODE is set to UTF8.
+Otherwise, CP_ACP is used.
+</p>
+<p>
+If the function fails it simply returns the string as-is.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Unicode.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Unicode.src/M000002.html');return false;">
+          <span class="method-name">wide_to_multi</span><span class="method-args">(string, encoding=nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Maps a wide character string to a new character string using the specified
+<tt>encoding</tt>. If no encoding is specified, then CP_UTF8 iss used if
+$KCODE is set to UTF8. Otherwise, CP_ACP is used.
+</p>
+<p>
+If the function fails it simply returns the string as-is.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

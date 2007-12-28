@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>show_help (CmdParse::Command)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre>     <span class="ruby-comment cmt"># File lib/cmdparse.rb, line 231</span>
+231:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">show_help</span>
+232:       <span class="ruby-identifier">puts</span> <span class="ruby-node">&quot;#{@name}: #{short_desc}&quot;</span>
+233:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">description</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">description</span>
+234:       <span class="ruby-identifier">puts</span>
+235:       <span class="ruby-identifier">puts</span> <span class="ruby-identifier">usage</span>
+236:       <span class="ruby-identifier">puts</span>
+237:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">has_commands?</span>
+238:         <span class="ruby-identifier">list_commands</span>
+239:         <span class="ruby-identifier">puts</span>
+240:       <span class="ruby-keyword kw">end</span>
+241:       <span class="ruby-keyword kw">unless</span> (<span class="ruby-identifier">summary</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">summarize</span>).<span class="ruby-identifier">empty?</span>
+242:         <span class="ruby-identifier">puts</span> <span class="ruby-identifier">summary</span>
+243:         <span class="ruby-identifier">puts</span>
+244:       <span class="ruby-keyword kw">end</span>
+245:     <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

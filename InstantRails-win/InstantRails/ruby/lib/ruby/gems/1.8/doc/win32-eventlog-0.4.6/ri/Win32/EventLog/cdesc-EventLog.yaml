@@ -1,0 +1,146 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the file used in the EventLog.open_backup method. This is set to nil if the file was not opened using the EventLog.open_backup method.
+  name: file
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the server which the event log is reading from.
+  name: server
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of the event log source. This will typically be 'Application', 'System' or 'Security', but could also refer to a custom event log source.
+  name: source
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_event_source
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: open_backup
+- !ruby/object:RI::MethodSummary 
+  name: read
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The EventLog class encapsulates an Event Log source and provides methods for interacting with that source.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.4.6'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Aliased read flags
+  name: FORWARDS_READ
+  value: EVENTLOG_FORWARDS_READ
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BACKWARDS_READ
+  value: EVENTLOG_BACKWARDS_READ
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEEK_READ
+  value: EVENTLOG_SEEK_READ
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEQUENTIAL_READ
+  value: EVENTLOG_SEQUENTIAL_READ
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Aliased event types
+  name: SUCCESS
+  value: EVENTLOG_SUCCESS
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR
+  value: EVENTLOG_ERROR_TYPE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WARN
+  value: EVENTLOG_WARNING_TYPE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INFO
+  value: EVENTLOG_INFORMATION_TYPE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AUDIT_SUCCESS
+  value: EVENTLOG_AUDIT_SUCCESS
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AUDIT_FAILURE
+  value: EVENTLOG_AUDIT_FAILURE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BUFFER_SIZE
+  value: 1024 * 64
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_SIZE
+  value: "256"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_STRINGS
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BASE_KEY
+  value: "\"SYSTEM\\\\CurrentControlSet\\\\Services\\\\EventLog\\\\\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The EventLogStruct encapsulates a single event log record.
+  name: EventLogStruct
+  value: Struct.new('EventLogStruct', :record_number,          :time_generated, :time_written, :event_id, :event_type, :category,          :source, :computer, :user, :string_inserts, :description
+full_name: Win32::EventLog
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+- !ruby/object:RI::IncludedModule 
+  name: Windows::EventLog
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Security
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Registry
+- !ruby/object:RI::IncludedModule 
+  name: Windows::SystemInfo
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Library
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Synchronize
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Handle
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: backup
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: full?
+- !ruby/object:RI::MethodSummary 
+  name: notify_change
+- !ruby/object:RI::MethodSummary 
+  name: oldest_record_number
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: report_event
+- !ruby/object:RI::MethodSummary 
+  name: tail
+- !ruby/object:RI::MethodSummary 
+  name: total_records
+- !ruby/object:RI::MethodSummary 
+  name: write
+name: EventLog
+superclass: Object

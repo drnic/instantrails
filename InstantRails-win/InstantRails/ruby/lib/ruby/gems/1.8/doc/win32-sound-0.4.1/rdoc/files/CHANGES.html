@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: CHANGES</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>CHANGES</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>CHANGES
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:27 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h2>0.4.1 - 27-Jul-2007</h2>
+<ul>
+<li>Changed SoundError to Sound::Error.
+
+</li>
+<li>Added a Rakefile with tasks for installation and testing.
+
+</li>
+<li>Removed the install.rb file. Installation is now handled via a rake task.
+
+</li>
+<li>Documentation updates.
+
+</li>
+</ul>
+<h2>0.4.0 - 26-Feb-2006</h2>
+<ul>
+<li>Now pure Ruby only.
+
+</li>
+<li>Documentation updates and reorganization.
+
+</li>
+<li>Added a gemspec.
+
+</li>
+<li>Minor test suite changes.
+
+</li>
+</ul>
+<h2>0.3.0 - 29-May-2005</h2>
+<ul>
+<li>Changed the Sound.volume= method (which didn&#8216;t work) to
+Sound.set_wave_volume because it takes up to two values and only affects
+the wave volume, not the master volume.
+
+</li>
+<li>Renamed the Sound.volume method to Sound.wave_volume.
+
+</li>
+<li>Fixed a bug in the Sound.wave_volume method.
+
+</li>
+<li>Created the Sound.get_wave_volume alias for Sound.wave_volume.
+
+</li>
+<li>Fixed the Sound.set_wave_volume method.
+
+</li>
+<li>Test adjustments and additions to reflect API changes.
+
+</li>
+<li>Now Unicode friendly.
+
+</li>
+<li>Removed the sound.rd file. The sound.txt file is now rdoc friendly.
+
+</li>
+</ul>
+<h2>0.2.1 - 1-Mar-2005</h2>
+<ul>
+<li>Moved the &#8216;examples&#8217; directory to the toplevel directory
+
+</li>
+<li>Made the CHANGES and README files rdoc friendly
+
+</li>
+<li>Some cleanup in sound.h.
+
+</li>
+</ul>
+<h2>0.2.0 - 13-Jul-2004</h2>
+<ul>
+<li>Moved the SoundError class under the <a
+href="../classes/Win32.html">Win32</a> module namespace
+
+</li>
+<li>Replaced the deprecated STR2CSTR() function with the StringValuePtr()
+function. This means that as of version 0.2.0, this package requires Ruby
+1.8.0 or later.
+
+</li>
+<li>Moved the test.rb script to doc/examples
+
+</li>
+<li>Added the README file (oops).
+
+</li>
+</ul>
+<h2>0.1.0 - 14-Feb-2004</h2>
+<ul>
+<li>Initial release
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: target
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXPseudoKeyboard object provides a simple means to operate widgets programmatically, to aid test driven design. An FXPseudoKeyboard instance can be pointed at an FXObject and will manage the sending of events to it.
+- !ruby/struct:SM::Flow::P 
+  body: "For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  textfield = FXTextField.new(...)\n  pk = FXPseudoKeyboard.new(textfield)\n  pk.doKeyPress     # sends a SEL_KEYPRESS message to the textfield\n  pk.doKeyRelease   # sends a SEL_KEYRELEASE message to the textfield\n"
+constants: []
+
+full_name: Fox::FXPseudoKeyboard
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: doKeyPress
+- !ruby/object:RI::MethodSummary 
+  name: doKeyRelease
+name: FXPseudoKeyboard
+superclass: Object

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: ""
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If the block raises, send status code as a last-ditch response.
+full_name: ActionController::Dispatcher::failsafe_response
+is_singleton: true
+name: failsafe_response
+params: (fallback_output, status, originating_exception = nil) {|| ...}
+visibility: public

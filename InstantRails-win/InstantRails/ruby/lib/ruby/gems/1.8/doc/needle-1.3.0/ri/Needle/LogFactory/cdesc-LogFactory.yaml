@@ -1,0 +1,73 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default date format string to use when logging.
+  name: default_date_format
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default log level to use for logs that are created.
+  name: default_level
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default message format string to use when logging.
+  name: default_message_format
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The device that logs will write to.
+  name: device
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A factory class that returns Logger instances. Since each registry has its own logger factory, the logger factory must be separately instantiable.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default name of the log file to write to.
+  name: DEFAULT_LOG_FILENAME
+  value: "\"./needle.log\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default format of the log messages (see Logger for more info)
+  name: DEFAULT_MESSAGE_FORMAT
+  value: "\"[%-5p] %d -- %C: %m\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Translate names of levels to their actual values.
+  name: LEVEL_TRANSLATOR
+  value: "{       \"DEBUG\" => Logger::DEBUG,       \"INFO\" => Logger::INFO,       \"WARN\" => Logger::WARN,       \"ERROR\" => Logger::ERROR,       \"FATAL\" => Logger::FATAL,       \"UNKNOWN\" => Logger::UNKNOWN"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_OPTIONS
+  value: "[ :device, :filename, :roll_age, :roll_frequency,                       :roll_size, :default_date_format,                       :default_message_format, :default_level, :levels ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_LEVEL_OPTIONS
+  value: "[ :level, :date_format, :message_format ]"
+full_name: Needle::LogFactory
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: closed?
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: write_to
+name: LogFactory
+superclass: Object

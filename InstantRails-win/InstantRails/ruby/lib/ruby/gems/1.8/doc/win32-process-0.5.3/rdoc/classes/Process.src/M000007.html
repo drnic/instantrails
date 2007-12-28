@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>fork (Process)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/process.rb, line 531</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">fork</span>
+      <span class="ruby-identifier">last_arg</span> = <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">last</span>
+      
+      <span class="ruby-comment cmt"># Look for the 'child#xxx' tag</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">last_arg</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/child#\d+/</span>
+         <span class="ruby-ivar">@i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+         <span class="ruby-identifier">num</span> = <span class="ruby-identifier">last_arg</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">'#'</span>).<span class="ruby-identifier">last</span>.<span class="ruby-identifier">to_i</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">num</span> <span class="ruby-operator">==</span> <span class="ruby-ivar">@i</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+               <span class="ruby-identifier">status</span> = <span class="ruby-value">0</span>
+               <span class="ruby-keyword kw">begin</span>
+                  <span class="ruby-keyword kw">yield</span>
+               <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+                  <span class="ruby-identifier">status</span> = <span class="ruby-value">-1</span> <span class="ruby-comment cmt"># Any non-zero result is failure</span>
+               <span class="ruby-keyword kw">ensure</span>
+                  <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">status</span>
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">nil</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">false</span>
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+   
+      <span class="ruby-comment cmt"># Tag the command with the word 'child#xxx' to distinguish it</span>
+      <span class="ruby-comment cmt"># from the calling process.</span>
+      <span class="ruby-identifier">cmd</span> = <span class="ruby-value str">'ruby -I &quot;'</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">$LOAD_PATH</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">PATH_SEPARATOR</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'&quot; &quot;'</span>
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">$PROGRAM_NAME</span>) <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">'&quot; '</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-constant">ARGV</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">' '</span>)
+      <span class="ruby-identifier">cmd</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">' child#'</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">length</span>.<span class="ruby-identifier">to_s</span>
+      
+      <span class="ruby-identifier">startinfo</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>]
+      <span class="ruby-identifier">startinfo</span> = <span class="ruby-identifier">startinfo</span>.<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLLLLLLLLLLLSSLLLL'</span>)
+      <span class="ruby-identifier">procinfo</span>  = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'LLLL'</span>)
+      
+      <span class="ruby-identifier">rv</span> = <span class="ruby-constant">CreateProcess</span>(<span class="ruby-value">0</span>, <span class="ruby-identifier">cmd</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">1</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">startinfo</span>, <span class="ruby-identifier">procinfo</span>)
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">rv</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ProcessError</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">pid</span> = <span class="ruby-identifier">procinfo</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>
+      <span class="ruby-ivar">@child_pids</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">pid</span>)
+      
+      <span class="ruby-identifier">pid</span> 
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

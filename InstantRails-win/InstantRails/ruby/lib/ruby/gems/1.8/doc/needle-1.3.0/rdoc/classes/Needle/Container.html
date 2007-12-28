@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Needle::Container</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Needle::Container</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/needle/container_rb.html">
+                lib/needle/container.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The container is the heart of <a href="../Needle.html">Needle</a>&#8216;s
+model. Every <a href="Container.html">Container</a> instance is a miniature
+registry, and is really a <a href="Container.html#M000056">namespace</a>
+separate from every other <a href="Container.html">Container</a> instance.
+Service lookups inside of a container always look in <tt>self</tt> first,
+and if not found, they then look in their parent container, recursively.
+</p>
+<p>
+You will rarely need to instantiate a <a
+href="Container.html">Container</a> directly. Instead, <a
+href="Container.html#M000071">use</a> the <a
+href="Container.html#M000056">Container#namespace</a> method to create <a
+href="Container.html#M000048">new</a> containers.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000064">[]</a>&nbsp;&nbsp;
+      <a href="#M000052">builder</a>&nbsp;&nbsp;
+      <a href="#M000053">define</a>&nbsp;&nbsp;
+      <a href="#M000054">define!</a>&nbsp;&nbsp;
+      <a href="#M000050">descended_from?</a>&nbsp;&nbsp;
+      <a href="#M000062">find_definition</a>&nbsp;&nbsp;
+      <a href="#M000051">fullname</a>&nbsp;&nbsp;
+      <a href="#M000063">get</a>&nbsp;&nbsp;
+      <a href="#M000065">has_key?</a>&nbsp;&nbsp;
+      <a href="#M000060">intercept</a>&nbsp;&nbsp;
+      <a href="#M000067">keys</a>&nbsp;&nbsp;
+      <a href="#M000066">knows_key?</a>&nbsp;&nbsp;
+      <a href="#M000069">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000056">namespace</a>&nbsp;&nbsp;
+      <a href="#M000058">namespace!</a>&nbsp;&nbsp;
+      <a href="#M000059">namespace_define</a>&nbsp;&nbsp;
+      <a href="#M000057">namespace_define!</a>&nbsp;&nbsp;
+      <a href="#M000048">new</a>&nbsp;&nbsp;
+      <a href="#M000061">pipeline</a>&nbsp;&nbsp;
+      <a href="#M000055">register</a>&nbsp;&nbsp;
+      <a href="#M000068">require</a>&nbsp;&nbsp;
+      <a href="#M000070">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M000049">root</a>&nbsp;&nbsp;
+      <a href="#M000071">use</a>&nbsp;&nbsp;
+      <a href="#M000072">use!</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">defaults</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+A hash of default options to <a href="Container.html#M000071">use</a> when
+registering services. These defaults also apply to namespaces, so when
+specifying a <a href="Container.html#M000048">new</a> default service model
+(for instance) there may be unexpected side-effects with the namespaces
+that are created.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">name</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The name of this container. May be <tt>nil</tt>.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">parent</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The container that contains this container. This will be <tt>nil</tt> for
+the <a href="Container.html#M000049">root</a> of a hierarchy (see <a
+href="Registry.html">Registry</a>).
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000048" class="method-detail">
+        <a name="M000048"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000048.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000048.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( parent=nil, name=nil )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Container.html#M000048">new</a> empty container with the
+given parent and name. If a parent is given, this container will inherit
+the defaults of the parent at the time the container was created.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000064" class="method-detail">
+        <a name="M000064"></a>
+
+        <div class="method-heading">
+          <span class="method-name">[]</span><span class="method-args">( name, *args )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Container.html#M000063">get</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000052" class="method-detail">
+        <a name="M000052"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000052.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000052.html');return false;">
+          <span class="method-name">builder</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="DefinitionContext.html">DefinitionContext</a> instance
+that can be used to &quot;build&quot; this container.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000053" class="method-detail">
+        <a name="M000053"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000053.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000053.html');return false;">
+          <span class="method-name">define</span><span class="method-args">() {|builder if block_given?| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+If a block is given, yields the container&#8216;s <a
+href="Container.html#M000052">builder</a> instance to the block. Otherwise,
+simply returns the <a href="Container.html#M000052">builder</a> instance.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.define do |b|
+    b.foo { Bar.new }
+    b.baz { Baz.new }
+    ...
+  end
+</pre>
+<p>
+Or:
+</p>
+<pre>
+  container.define.foo { Bar.new }
+  container.define.baz { Baz.new }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000054" class="method-detail">
+        <a name="M000054"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000054.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000054.html');return false;">
+          <span class="method-name">define!</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Container.html#M000048">new</a> <a
+href="DefinitionContext.html">DefinitionContext</a> around the container,
+and then evaluate the block within the <a
+href="Container.html#M000048">new</a> context instance (via
+<tt>instance_eval</tt>).
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.define! do
+    calc( :model =&gt; :prototype ) { Calc.new( operations ) }
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000050" class="method-detail">
+        <a name="M000050"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000050.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000050.html');return false;">
+          <span class="method-name">descended_from?</span><span class="method-args">( container )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if this container either is the given container or is
+descended from the given container, and <tt>false</tt> otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000062" class="method-detail">
+        <a name="M000062"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000062.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000062.html');return false;">
+          <span class="method-name">find_definition</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Searches the current container and its ancestors for the named service. If
+found, the service point (the definition of that service) is returned,
+otherwise <tt>nil</tt> is returned.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000051" class="method-detail">
+        <a name="M000051"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000051.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000051.html');return false;">
+          <span class="method-name">fullname</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return the fully qualified name of this container, which is the
+container&#8216;s name and all parent&#8216;s names up to the <a
+href="Container.html#M000049">root</a> container, catenated together with
+dot characters, i.e., &quot;one.two.three&quot;.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000063" class="method-detail">
+        <a name="M000063"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000063.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000063.html');return false;">
+          <span class="method-name">get</span><span class="method-args">( name, *args )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Retrieves the named service, if it exists. Ancestors are searched if the
+service is not defined by the current container (see <a
+href="Container.html#M000062">find_definition</a>). If the named service
+does not exist, <a href="ServiceNotFound.html">ServiceNotFound</a> is
+raised.
+</p>
+<p>
+Note that this returns the instantiated service, not the service point.
+</p>
+<p>
+Also, if any <a href="Container.html#M000061">pipeline</a> element in the
+instantiation <a href="Container.html#M000061">pipeline</a> does not
+support extra parameters when extra parameters have been given, then an
+error will be raised.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000065" class="method-detail">
+        <a name="M000065"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000065.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000065.html');return false;">
+          <span class="method-name">has_key?</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if this container includes a service point with the
+given name. Returns <tt>false</tt> otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000060" class="method-detail">
+        <a name="M000060"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000060.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000060.html');return false;">
+          <span class="method-name">intercept</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Describe a <a href="Container.html#M000048">new</a> interceptor to <a
+href="Container.html#M000071">use</a> that will <a
+href="Container.html#M000060">intercept</a> method calls on the named
+service. This method returns a <a href="Container.html#M000048">new</a> <a
+href="Interceptor.html">Interceptor</a> instance, which can be used
+directly to configure the behavior of the interceptor.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.intercept( :calc ).with { |c| c.logging_interceptor }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000067" class="method-detail">
+        <a name="M000067"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000067.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000067.html');return false;">
+          <span class="method-name">keys</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of the names of all service points in this container.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000066" class="method-detail">
+        <a name="M000066"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000066.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000066.html');return false;">
+          <span class="method-name">knows_key?</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns <tt>true</tt> if this container <em>or any ancestor</em> includes a
+service point with the given name. Returns <tt>false</tt> otherwise.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000069" class="method-detail">
+        <a name="M000069"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000069.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000069.html');return false;">
+          <span class="method-name">method_missing</span><span class="method-args">( sym, *args )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+As a convenience for accessing services, this delegates any message sent to
+the container (which has no parameters and no block) to <a
+href="Container.html">Container</a>#[]. Note that this incurs slightly more
+overhead than simply calling <a href="Container.html">Container</a>#[]
+directly, so if performance is an issue, you should avoid this approach.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.register( :add ) { Adder.new }
+  p container.add == container[:add] # =&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000056" class="method-detail">
+        <a name="M000056"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000056.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000056.html');return false;">
+          <span class="method-name">namespace</span><span class="method-args">( name, opts={}, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a> within the container, with the
+given name. If a block is provided, it will be invoked when the <a
+href="Container.html#M000056">namespace</a> is created, with the <a
+href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a> passed to it.
+</p>
+<p>
+For the curious, namespaces are simply services that are implemented by <a
+href="Container.html">Container</a>. The two statements are conceptually
+identical:
+</p>
+<pre>
+  container.namespace( :calc )
+  container.register( :calc ) { |c,p| Needle::Container.new( c, p.name ) }
+</pre>
+<p>
+Note that this means that namespaces may be singletons or prototypes, or
+have immediate or deferred instantiation, and so forth. (The default of
+immediate, singleton instantiation is sufficient for 99% of the things
+you&#8216;ll <a href="Container.html#M000071">use</a> namespaces for.)
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.namespace( :operations ) do |op|
+    op.register( :add ) { Adder.new }
+    ...
+  end
+
+  adder = container.calc.operations.add
+</pre>
+<p>
+<b>Note</b>: the block is not invoked until the <a
+href="Container.html#M000056">namespace</a> is created, which is not until
+it is first referenced. If you need the <a
+href="Container.html#M000056">namespace</a> to be created immediately,
+either <a href="Container.html#M000071">use</a> <a
+href="Container.html#M000059">namespace_define</a> or reference the <a
+href="Container.html#M000056">namespace</a> as soon as you&#8216;ve created
+it.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000058" class="method-detail">
+        <a name="M000058"></a>
+
+        <div class="method-heading">
+          <span class="method-name">namespace!</span><span class="method-args">( name, opts={}, &amp;block )</span>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Container.html#M000059">namespace_define</a>!
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000059" class="method-detail">
+        <a name="M000059"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000059.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000059.html');return false;">
+          <span class="method-name">namespace_define</span><span class="method-args">( name, opts={}, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a> within the container, with the
+given name. The block (which is required) will be passed to <a
+href="Container.html#M000053">Container#define</a> on the <a
+href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a>.
+</p>
+<p>
+For the curious, namespaces are simply services that are implemented by <a
+href="Container.html">Container</a>. The two statements are really
+identical:
+</p>
+<pre>
+  container.namespace( :calc )
+  container.register( :calc ) { |c,p| Needle::Container.new( c, p.name ) }
+</pre>
+<p>
+Note that this means that namespaces may be singletons or prototypes, or
+have immediate or deferred instantiation, and so forth. (The default of
+immediate, singleton instantiation is sufficient for 99% of the things
+you&#8216;ll <a href="Container.html#M000071">use</a> namespaces for.)
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.namespace_define( :operations ) do |b|
+    b.add { Adder.new }
+    ...
+  end
+
+  adder = container.calc.operations.add
+</pre>
+<p>
+<b>Note</b>: this method will immediately instantiate the <a
+href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a>, unlike <a
+href="Container.html#M000056">namespace</a>. If you want instantiation of
+the <a href="Container.html#M000056">namespace</a> to be deferred, either
+<a href="Container.html#M000071">use</a> a deferring service model (like
+<tt>:singleton_deferred</tt>) or create the <a
+href="Container.html#M000056">namespace</a> via <a
+href="Container.html#M000056">namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000057" class="method-detail">
+        <a name="M000057"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000057.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000057.html');return false;">
+          <span class="method-name">namespace_define!</span><span class="method-args">( name, opts={}, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a> within the container, with the
+given name. The block (which is required) will be passed to <a
+href="Container.html#M000053">Container#define</a>! on the <a
+href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a>.
+</p>
+<p>
+For the curious, namespaces are simply services that are implemented by <a
+href="Container.html">Container</a>. The two statements are really
+identical:
+</p>
+<pre>
+  container.namespace( :calc )
+  container.register( :calc ) { |c,p| Needle::Container.new( c, p.name ) }
+</pre>
+<p>
+Note that this means that namespaces may be singletons or prototypes, or
+have immediate or deferred instantiation, and so forth. (The default of
+immediate, singleton instantiation is sufficient for 99% of the things
+you&#8216;ll <a href="Container.html#M000071">use</a> namespaces for.)
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.namespace_define!( :operations ) do
+    add { Adder.new }
+    ...
+  end
+
+  adder = container.calc.operations.add
+</pre>
+<p>
+<b>Note</b>: this method will immediately instantiate the <a
+href="Container.html#M000048">new</a> <a
+href="Container.html#M000056">namespace</a>, unlike <a
+href="Container.html#M000056">namespace</a>. If you want instantiation of
+the <a href="Container.html#M000056">namespace</a> to be deferred, either
+<a href="Container.html#M000071">use</a> a deferring service model (like
+<tt>:singleton_deferred</tt>) or create the <a
+href="Container.html#M000056">namespace</a> via <a
+href="Container.html#M000056">namespace</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000061" class="method-detail">
+        <a name="M000061"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000061.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000061.html');return false;">
+          <span class="method-name">pipeline</span><span class="method-args">( name )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Container.html#M000061">pipeline</a> object for the
+named service, which allows clients to explicitly manipulate the
+service&#8216;s instantiation <a
+href="Container.html#M000061">pipeline</a>.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.pipeline( :calc ).
+    add( :initialize ).
+    add( :custom ) { |me,*args| me.succ.call( *args ) }
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000055" class="method-detail">
+        <a name="M000055"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000055.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000055.html');return false;">
+          <span class="method-name">register</span><span class="method-args">( name, opts={}, &amp;callback )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the named service with the container. When the service is
+requested (with <a href="Container.html">Container</a>#[]), the associated
+callback will be used to construct it.
+</p>
+<p>
+This returns the registry that was used to <a
+href="Container.html#M000055">register</a> the service.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.register( :calc, :model=&gt;:prototype ) do |c|
+    Calc.new( c.operations )
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000068" class="method-detail">
+        <a name="M000068"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000068.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000068.html');return false;">
+          <span class="method-name">require</span><span class="method-args">( file, target_name, registration_method=:register_services )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Require the given file, and then invoke the given registration method on
+the target module. The container will be passed as the sole parameter to
+the registration method. This allows you to easily decentralize the
+definition of services.
+</p>
+<p>
+Usage:
+</p>
+<pre>
+  container.require( &quot;app/services&quot;, &quot;App::Services&quot; )
+
+  # in app/services.rb:
+
+  module App
+    module Services
+
+      def register_services( container )
+        ...
+      end
+      module_function :register_services
+
+    end
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000070" class="method-detail">
+        <a name="M000070"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000070.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000070.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">( sym )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if this container responds to the given message, or if it
+explicitly contains a service with the given name (see has_key?). In this
+case, has_key? is used instead of knows_key? so that subcontainers may be
+used as proper hashes by their parents.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000049" class="method-detail">
+        <a name="M000049"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000049.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000049.html');return false;">
+          <span class="method-name">root</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the <a href="Container.html#M000049">root</a> of the current
+hierarchy. If the container is the <a
+href="Container.html#M000049">root</a>, returns self, otherwise calls <a
+href="Container.html#M000049">Container#root</a> on its parent. The value
+is cached for future reference.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000071" class="method-detail">
+        <a name="M000071"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000071.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000071.html');return false;">
+          <span class="method-name">use</span><span class="method-args">( opts ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies a set of default options to <a
+href="Container.html#M000071">use</a> temporarily. The options are merged
+with the current set of defaults for the container. The original options
+are returned, and may be restored by invoking <a
+href="Container.html#M000071">use</a> again with the hash that is returned.
+If a block is given, the registry will be yielded to it and the options
+automatically restored when the block returns.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000072" class="method-detail">
+        <a name="M000072"></a>
+
+        <div class="method-heading">
+          <a href="Container.src/M000072.html" target="Code" class="method-signature"
+            onclick="popupCode('Container.src/M000072.html');return false;">
+          <span class="method-name">use!</span><span class="method-args">( opts ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specifies a set of default options to <a
+href="Container.html#M000071">use</a> temporarily. The original options are
+returned. This differs from <a href="Container.html#M000071">use</a> in
+that it will completely replace the original options, instead of merging
+the parameters with the originals.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

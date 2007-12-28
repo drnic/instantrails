@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a JavaScript snippet to be used on the Ajax callbacks for starting visual effects.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= link_to_remote &quot;Reload&quot;, :update =&gt; &quot;posts&quot;,\n        :url =&gt; { :action =&gt; &quot;reload&quot; },\n        :complete =&gt; visual_effect(:highlight, &quot;posts&quot;, :duration =&gt; 0.5)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If no element_id is given, it assumes &quot;element&quot; which should be a local variable in the generated JavaScript execution context. This can be used for example with drop_receiving_element:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= drop_receiving_element (...), :loading =&gt; visual_effect(:fade) %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This would fade the element that was dropped on the drop receiving element.
+- !ruby/struct:SM::Flow::P 
+  body: For toggling visual effects, you can use :toggle_appear, :toggle_slide, and :toggle_blind which will alternate between appear/fade, slidedown/slideup, and blinddown/blindup respectively.
+- !ruby/struct:SM::Flow::P 
+  body: You can change the behaviour with various options, see http://script.aculo.us for more documentation.
+full_name: ActionView::Helpers::ScriptaculousHelper#visual_effect
+is_singleton: false
+name: visual_effect
+params: (name, element_id = false, js_options = {})
+visibility: public

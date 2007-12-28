@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw arcs, where <em>arcs</em> is an array of FXArc instances.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+arcs+:"
+    body: an array of FXArc instances [Array]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawArc, #fillArc and #fillArcs."
+full_name: Fox::FXDC#drawArcs
+is_singleton: false
+name: drawArcs
+params: (arcs)
+visibility: public

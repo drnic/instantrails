@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Test two HTML strings for equivalency (e.g., identical up to reordering of attributes)
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that the referenced method generates the appropriate HTML string\n  assert_dom_equal '&lt;a href=&quot;http://www.example.com&quot;&gt;Apples&lt;/a&gt;', link_to(&quot;Apples&quot;, &quot;http://www.example.com&quot;)\n"
+full_name: ActionController::Assertions::DomAssertions#assert_dom_equal
+is_singleton: false
+name: assert_dom_equal
+params: (expected, actual, message = "")
+visibility: public

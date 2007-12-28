@@ -1,0 +1,70 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Form helpers are designed to make working with models much easier compared to using just standard HTML elements by providing a set of methods for creating forms based on your models. This helper generates the HTML for forms, providing a method for each sort of input (e.g., text, password, select, and so on). When the form is submitted (i.e., when the user hits the submit button or <tt>form.submit</tt> is called via JavaScript), the form inputs will be bundled into the <tt>params</tt> object and passed back to the controller.
+- !ruby/struct:SM::Flow::P 
+  body: "There are two types of form helpers: those that specifically work with model attributes and those that don't. This helper deals with those that work with model attributes; to see an example of form helpers that don't work with model attributes, check the ActionView::Helpers::FormTagHelper documentation."
+- !ruby/struct:SM::Flow::P 
+  body: "The core method of this helper, form_for, gives you the ability to create a form for a model instance; for example, let's say that you have a model <tt>Person</tt> and want to create a new instance of it:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    # Note: a @person variable will have been created in the controller.\n    # For example: @person = Person.new\n    &lt;% form_for :person, @person, :url =&gt; { :action =&gt; &quot;create&quot; } do |f| %&gt;\n      &lt;%= f.text_field :first_name %&gt;\n      &lt;%= f.text_field :last_name %&gt;\n      &lt;%= submit_tag 'Create' %&gt;\n    &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The HTML generated for this would be:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    &lt;form action=&quot;/persons/create&quot; method=&quot;post&quot;&gt;\n      &lt;input id=&quot;person_first_name&quot; name=&quot;person[first_name]&quot; size=&quot;30&quot; type=&quot;text&quot; /&gt;\n      &lt;input id=&quot;person_last_name&quot; name=&quot;person[last_name]&quot; size=&quot;30&quot; type=&quot;text&quot; /&gt;\n      &lt;input name=&quot;commit&quot; type=&quot;submit&quot; value=&quot;Create&quot; /&gt;\n    &lt;/form&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The <tt>params</tt> object created when this form is submitted would look like:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    {&quot;action&quot;=&gt;&quot;create&quot;, &quot;controller&quot;=&gt;&quot;persons&quot;, &quot;person&quot;=&gt;{&quot;first_name&quot;=&gt;&quot;William&quot;, &quot;last_name&quot;=&gt;&quot;Smith&quot;}}\n"
+- !ruby/struct:SM::Flow::P 
+  body: The params hash has a nested <tt>person</tt> value, which can therefore be accessed with <tt>params[:person]</tt> in the controller. If were editing/updating an instance (e.g., <tt>Person.find(1)</tt> rather than <tt>Person.new</tt> in the controller), the objects attribute values are filled into the form (e.g., the <tt>person_first_name</tt> field would have that person's first name in it).
+- !ruby/struct:SM::Flow::P 
+  body: "If the object name contains square brackets the id for the object will be inserted. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= text_field &quot;person[]&quot;, &quot;name&quot; %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...will generate the following ERb.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;input type=&quot;text&quot; id=&quot;person_&lt;%= @person.id %&gt;_name&quot; name=&quot;person[&lt;%= @person.id %&gt;][name]&quot; value=&quot;&lt;%= @person.name %&gt;&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "If the helper is being used to generate a repetitive sequence of similar form elements, for example in a partial used by <tt>render_collection_of_partials</tt>, the <tt>index</tt> option may come in handy. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%= text_field &quot;person&quot;, &quot;name&quot;, &quot;index&quot; =&gt; 1 %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...becomes...
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;input type=&quot;text&quot; id=&quot;person_1_name&quot; name=&quot;person[1][name]&quot; value=&quot;&lt;%= @person.name %&gt;&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: There are also methods for helping to build form tags in link:classes/ActionView/Helpers/FormOptionsHelper.html, link:classes/ActionView/Helpers/DateHelper.html, and link:classes/ActionView/Helpers/ActiveRecordHelper.html
+constants: []
+
+full_name: ActionView::Helpers::FormHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: check_box
+- !ruby/object:RI::MethodSummary 
+  name: fields_for
+- !ruby/object:RI::MethodSummary 
+  name: file_field
+- !ruby/object:RI::MethodSummary 
+  name: form_for
+- !ruby/object:RI::MethodSummary 
+  name: hidden_field
+- !ruby/object:RI::MethodSummary 
+  name: label
+- !ruby/object:RI::MethodSummary 
+  name: password_field
+- !ruby/object:RI::MethodSummary 
+  name: radio_button
+- !ruby/object:RI::MethodSummary 
+  name: text_area
+- !ruby/object:RI::MethodSummary 
+  name: text_field
+name: FormHelper
+superclass: 

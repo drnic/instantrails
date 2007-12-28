@@ -1,0 +1,21 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "A single element in an interceptor chain. Each interceptor object is wrapped in an instance of one of these. Calling #process_next on a given chain element, invokes the #process method on the corresponding interceptor, with the next element in the chain being passed in."
+constants: []
+
+full_name: Needle::InterceptorChainBuilder::InterceptorChainElement
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: next
+- !ruby/object:RI::MethodSummary 
+  name: process_next
+name: InterceptorChainElement
+superclass: Object

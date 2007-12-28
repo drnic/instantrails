@@ -1,0 +1,1428 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveResource::Base</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveResource::Base</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/active_resource/base_rb.html">
+                lib/active_resource/base.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+<a href="Base.html">ActiveResource::Base</a> is the main class for mapping
+RESTful resources as models in a Rails application.
+</p>
+<p>
+For an outline of what Active Resource is capable of, see <a
+href="../../files/README.html">files/README.html</a>.
+</p>
+<h2>Automated mapping</h2>
+<p>
+Active Resource objects represent your RESTful resources as manipulatable
+Ruby objects. To map resources to Ruby objects, Active Resource only needs
+a class name that corresponds to the resource name (e.g., the class Person
+maps to the resources people, very similarly to Active Record) and a <tt><a
+href="Base.html#M002209">site</a></tt> value, which holds the URI of the
+resources.
+</p>
+<pre>
+    class Person &lt; ActiveResource::Base
+      self.site = &quot;http://api.people.com:3000/&quot;
+    end
+</pre>
+<p>
+Now the Person class is mapped to RESTful resources located at <tt><a
+href="http://api.people.com:3000/people">api.people.com:3000/people</a>/</tt>,
+and you can now use Active Resource&#8216;s lifecycles methods to
+manipulate resources.
+</p>
+<h2>Lifecycle methods</h2>
+<p>
+Active Resource exposes methods for creating, finding, updating, and
+deleting resources from REST web services.
+</p>
+<pre>
+  ryan = Person.new(:first =&gt; 'Ryan', :last =&gt; 'Daigle')
+  ryan.save  #=&gt; true
+  ryan.id  #=&gt; 2
+  Person.exists?(ryan.id)  #=&gt; true
+  ryan.exists?  #=&gt; true
+
+  ryan = Person.find(1)
+  # =&gt; Resource holding our newly create Person object
+
+  ryan.first = 'Rizzle'
+  ryan.save  #=&gt; true
+
+  ryan.destroy  #=&gt; true
+</pre>
+<p>
+As you can see, these are very similar to Active Record&#8216;s lifecycle
+methods for database records. You can read more about each of these methods
+in their respective documentation.
+</p>
+<h3>Custom REST methods</h3>
+<p>
+Since simple CRUD/lifecycle methods can&#8216;t accomplish every task,
+Active Resource also supports defining your own custom REST methods.
+</p>
+<pre>
+  Person.new(:name =&gt; 'Ryan).post(:register)
+  # =&gt; { :id =&gt; 1, :name =&gt; 'Ryan', :position =&gt; 'Clerk' }
+
+  Person.find(1).put(:promote, :position =&gt; 'Manager')
+  # =&gt; { :id =&gt; 1, :name =&gt; 'Ryan', :position =&gt; 'Manager' }
+</pre>
+<p>
+For more information on creating and using custom REST methods, see the <a
+href="CustomMethods.html">ActiveResource::CustomMethods</a> documentation.
+</p>
+<h2><a href="Validations.html">Validations</a></h2>
+<p>
+You can validate resources client side by overriding validation methods in
+the base class.
+</p>
+<pre>
+    class Person &lt; ActiveResource::Base
+       self.site = &quot;http://api.people.com:3000/&quot;
+       protected
+         def validate
+           errors.add(&quot;last&quot;, &quot;has invalid characters&quot;) unless last =~ /[a-zA-Z]*/
+         end
+    end
+</pre>
+<p>
+See the <a href="Validations.html">ActiveResource::Validations</a>
+documentation for more information.
+</p>
+<h2>Authentication</h2>
+<p>
+Many REST APIs will require authentication, usually in the form of basic
+HTTP authentication. Authentication can be specified by putting the
+credentials in the <tt><a href="Base.html#M002209">site</a></tt> variable
+of the Active Resource class you need to authenticate.
+</p>
+<pre>
+  class Person &lt; ActiveResource::Base
+    self.site = &quot;http://ryan:password@api.people.com:3000/&quot;
+  end
+</pre>
+<p>
+For obvious security reasons, it is probably best if such services are
+available over HTTPS.
+</p>
+<h2><a href="Errors.html">Errors</a> &amp; Validation</h2>
+<p>
+Error handling and validation is handled in much the same manner as
+you&#8216;re used to seeing in Active Record. Both the response code in the
+Http response and the body of the response are used to indicate that an
+error occurred.
+</p>
+<h3>Resource errors</h3>
+<p>
+When a get is requested for a resource that does not exist, the HTTP +404+
+(Resource Not Found) response code will be returned from the server which
+will raise an <a
+href="ResourceNotFound.html">ActiveResource::ResourceNotFound</a>
+exception.
+</p>
+<pre>
+  # GET http://api.people.com:3000/people/999.xml
+  ryan = Person.find(999) # =&gt; Raises ActiveResource::ResourceNotFound
+  # =&gt; Response = 404
+</pre>
+<p>
++404+ is just one of the HTTP error response codes that <a
+href="../ActiveResource.html">ActiveResource</a> will handle with its own
+exception. The following HTTP response codes will also result in these
+exceptions:
+</p>
+<table>
+<tr><td valign="top">200 - 399:</td><td>Valid response, no exception
+
+</td></tr>
+<tr><td valign="top">404:</td><td><a href="ResourceNotFound.html">ActiveResource::ResourceNotFound</a>
+
+</td></tr>
+<tr><td valign="top">409:</td><td><a href="ResourceConflict.html">ActiveResource::ResourceConflict</a>
+
+</td></tr>
+<tr><td valign="top">422:</td><td>ActiveResource::ResourceInvalid (rescued by <a
+href="Base.html#M002232">save</a> as validation errors)
+
+</td></tr>
+<tr><td valign="top">401 - 499:</td><td><a href="ClientError.html">ActiveResource::ClientError</a>
+
+</td></tr>
+<tr><td valign="top">500 - 599:</td><td><a href="ServerError.html">ActiveResource::ServerError</a>
+
+</td></tr>
+</table>
+<p>
+These custom exceptions allow you to deal with resource errors more
+naturally and with more precision rather than returning a general HTTP
+error. For example:
+</p>
+<pre>
+  begin
+    ryan = Person.find(my_id)
+  rescue ActiveResource::ResourceNotFound
+    redirect_to :action =&gt; 'not_found'
+  rescue ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid
+    redirect_to :action =&gt; 'new'
+  end
+</pre>
+<h3>Validation errors</h3>
+<p>
+Active Resource supports validations on resources and will return errors if
+any these validations fail (e.g., &quot;First name can not be blank&quot;
+and so on). These types of errors are denoted in the response by a response
+code of +422+ and an XML representation of the validation errors. The <a
+href="Base.html#M002232">save</a> operation will then fail (with a
+<tt>false</tt> return value) and the validation errors can be accessed on
+the resource in question.
+</p>
+<pre>
+  ryan = Person.find(1)
+  ryan.first #=&gt; ''
+  ryan.save  #=&gt; false
+
+  # When
+  # PUT http://api.people.com:3000/people/1.xml
+  # is requested with invalid values, the response is:
+  #
+  # Response (422):
+  # &lt;errors type=&quot;array&quot;&gt;&lt;error&gt;First cannot be empty&lt;/error&gt;&lt;/errors&gt;
+  #
+
+  ryan.errors.invalid?(:first)  #=&gt; true
+  ryan.errors.full_messages  #=&gt; ['First cannot be empty']
+</pre>
+<p>
+Learn more about Active Resource&#8216;s validation features in the <a
+href="Validations.html">ActiveResource::Validations</a> documentation.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M002228">==</a>&nbsp;&nbsp;
+      <a href="#M002245">collection_path</a>&nbsp;&nbsp;
+      <a href="#M002218">collection_path</a>&nbsp;&nbsp;
+      <a href="#M002212">connection</a>&nbsp;&nbsp;
+      <a href="#M002239">connection</a>&nbsp;&nbsp;
+      <a href="#M002219">create</a>&nbsp;&nbsp;
+      <a href="#M002241">create</a>&nbsp;&nbsp;
+      <a href="#M002221">delete</a>&nbsp;&nbsp;
+      <a href="#M002233">destroy</a>&nbsp;&nbsp;
+      <a href="#M002231">dup</a>&nbsp;&nbsp;
+      <a href="#M002217">element_path</a>&nbsp;&nbsp;
+      <a href="#M002244">element_path</a>&nbsp;&nbsp;
+      <a href="#M002229">eql?</a>&nbsp;&nbsp;
+      <a href="#M002234">exists?</a>&nbsp;&nbsp;
+      <a href="#M002222">exists?</a>&nbsp;&nbsp;
+      <a href="#M002220">find</a>&nbsp;&nbsp;
+      <a href="#M002211">format=</a>&nbsp;&nbsp;
+      <a href="#M002230">hash</a>&nbsp;&nbsp;
+      <a href="#M002213">headers</a>&nbsp;&nbsp;
+      <a href="#M002225">id</a>&nbsp;&nbsp;
+      <a href="#M002226">id=</a>&nbsp;&nbsp;
+      <a href="#M002243">id_from_response</a>&nbsp;&nbsp;
+      <a href="#M002237">load</a>&nbsp;&nbsp;
+      <a href="#M002242">load_attributes_from_response</a>&nbsp;&nbsp;
+      <a href="#M002223">new</a>&nbsp;&nbsp;
+      <a href="#M002224">new?</a>&nbsp;&nbsp;
+      <a href="#M002214">prefix</a>&nbsp;&nbsp;
+      <a href="#M002216">prefix=</a>&nbsp;&nbsp;
+      <a href="#M002215">prefix_source</a>&nbsp;&nbsp;
+      <a href="#M002236">reload</a>&nbsp;&nbsp;
+      <a href="#M002238">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M002232">save</a>&nbsp;&nbsp;
+      <a href="#M002209">site</a>&nbsp;&nbsp;
+      <a href="#M002210">site=</a>&nbsp;&nbsp;
+      <a href="#M002227">to_param</a>&nbsp;&nbsp;
+      <a href="#M002235">to_xml</a>&nbsp;&nbsp;
+      <a href="#M002240">update</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+    <div id="aliases-list">
+      <h3 class="section-bar">External Aliases</h3>
+
+      <div class="name-list">
+                        <table summary="aliases">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">prefix=</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">set_prefix</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">element_name=</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">set_element_name</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">collection_name=</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">set_collection_name</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">primary_key=</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">set_primary_key</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">respond_to?</td>
+          <td>-&gt;</td>
+          <td class="context-item-value">respond_to_without_attributes?</td>
+        </tr>
+      <tr class="top-aligned-row context-row">
+        <td>&nbsp;</td>
+        <td colspan="2" class="context-item-desc">
+For checking <a href="Base.html#M002238">respond_to?</a> without searching
+the attributes (which is faster).
+
+</td>
+      </tr>
+                        </table>
+      </div>
+    </div>
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M002218" class="method-detail">
+        <a name="M002218"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002218.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002218.html');return false;">
+          <span class="method-name">collection_path</span><span class="method-args">(prefix_options = {}, query_options = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the collection path for the REST resources. If the
+<tt>query_options</tt> parameter is omitted, Rails will split from the
+<tt>prefix_options</tt>.
+</p>
+<h4>Options</h4>
+<table>
+<tr><td valign="top"><tt>prefix_options</tt>:</td><td>A <a href="Base.html#M002230">hash</a> to add a <a
+href="Base.html#M002214">prefix</a> to the request for nested URL&#8216;s
+(e.g., <tt>:account_id =&gt; 19</tt> would yield a URL like
+<tt>/accounts/19/purchases.xml</tt>).
+
+</td></tr>
+<tr><td valign="top"><tt>query_options</tt>:</td><td>A <a href="Base.html#M002230">hash</a> to add items to the query string for
+the request.
+
+</td></tr>
+</table>
+<h4>Examples</h4>
+<pre>
+  Post.collection_path
+  # =&gt; /posts.xml
+
+  Comment.collection_path(:post_id =&gt; 5)
+  # =&gt; /posts/5/comments.xml
+
+  Comment.collection_path(:post_id =&gt; 5, :active =&gt; 1)
+  # =&gt; /posts/5/comments.xml?active=1
+
+  Comment.collection_path({:post_id =&gt; 5}, {:active =&gt; 1})
+  # =&gt; /posts/5/comments.xml?active=1
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002212" class="method-detail">
+        <a name="M002212"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002212.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002212.html');return false;">
+          <span class="method-name">connection</span><span class="method-args">(refresh = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An instance of <a href="Connection.html">ActiveResource::Connection</a>
+that is the base <a href="Base.html#M002212">connection</a> to the remote
+service. The <tt>refresh</tt> parameter toggles whether or not the <a
+href="Base.html#M002212">connection</a> is refreshed at every request or
+not (defaults to <tt>false</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002219" class="method-detail">
+        <a name="M002219"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002219.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002219.html');return false;">
+          <span class="method-name">create</span><span class="method-args">(attributes = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Base.html#M002223">new</a> resource instance and request
+to the remote service that it be saved, making it equivalent to the
+following simultaneous calls:
+</p>
+<pre>
+  ryan = Person.new(:first =&gt; 'ryan')
+  ryan.save
+</pre>
+<p>
+The newly created resource is returned. If a failure has occurred an
+exception will be raised (see <a href="Base.html#M002232">save</a>). If the
+resource is invalid and has not been saved then valid? will return
+<tt>false</tt>, while <a href="Base.html#M002224">new?</a> will still
+return <tt>true</tt>.
+</p>
+<h4>Examples</h4>
+<pre>
+  Person.create(:name =&gt; 'Jeremy', :email =&gt; 'myname@nospam.com', :enabled =&gt; true)
+  my_person = Person.find(:first)
+  my_person.email
+  # =&gt; myname@nospam.com
+
+  dhh = Person.create(:name =&gt; 'David', :email =&gt; 'dhh@nospam.com', :enabled =&gt; true)
+  dhh.valid?
+  # =&gt; true
+  dhh.new?
+  # =&gt; false
+
+  # We'll assume that there's a validation that requires the name attribute
+  that_guy = Person.create(:name =&gt; '', :email =&gt; 'thatguy@nospam.com', :enabled =&gt; true)
+  that_guy.valid?
+  # =&gt; false
+  that_guy.new?
+  # =&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002221" class="method-detail">
+        <a name="M002221"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002221.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002221.html');return false;">
+          <span class="method-name">delete</span><span class="method-args">(id, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes the resources with the ID in the <tt><a
+href="Base.html#M002225">id</a></tt> parameter.
+</p>
+<h4>Options</h4>
+<p>
+All options specify <a href="Base.html#M002214">prefix</a> and query
+parameters.
+</p>
+<h4>Examples</h4>
+<pre>
+  Event.delete(2)
+  # =&gt; DELETE /events/2
+
+  Event.create(:name =&gt; 'Free Concert', :location =&gt; 'Community Center')
+  my_event = Event.find(:first)
+  # =&gt; Events (id: 7)
+  Event.delete(my_event.id)
+  # =&gt; DELETE /events/7
+
+  # Let's assume a request to events/5/cancel.xml
+  Event.delete(params[:id])
+  # =&gt; DELETE /events/5
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002217" class="method-detail">
+        <a name="M002217"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002217.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002217.html');return false;">
+          <span class="method-name">element_path</span><span class="method-args">(id, prefix_options = {}, query_options = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the element path for the given ID in <tt><a
+href="Base.html#M002225">id</a></tt>. If the <tt>query_options</tt>
+parameter is omitted, Rails will split from the <a
+href="Base.html#M002214">prefix</a> options.
+</p>
+<h4>Options</h4>
+<table>
+<tr><td valign="top"><tt>prefix_options</tt>:</td><td>A <a href="Base.html#M002230">hash</a> to add a <a
+href="Base.html#M002214">prefix</a> to the request for nested URL&#8216;s
+(e.g., <tt>:account_id =&gt; 19</tt> would yield a URL like
+<tt>/accounts/19/purchases.xml</tt>).
+
+</td></tr>
+<tr><td valign="top"><tt>query_options</tt>:</td><td>A <a href="Base.html#M002230">hash</a> to add items to the query string for
+the request.
+
+</td></tr>
+</table>
+<h4>Examples</h4>
+<pre>
+  Post.element_path(1)
+  # =&gt; /posts/1.xml
+
+  Comment.element_path(1, :post_id =&gt; 5)
+  # =&gt; /posts/5/comments/1.xml
+
+  Comment.element_path(1, :post_id =&gt; 5, :active =&gt; 1)
+  # =&gt; /posts/5/comments/1.xml?active=1
+
+  Comment.element_path(1, {:post_id =&gt; 5}, {:active =&gt; 1})
+  # =&gt; /posts/5/comments/1.xml?active=1
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002222" class="method-detail">
+        <a name="M002222"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002222.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002222.html');return false;">
+          <span class="method-name">exists?</span><span class="method-args">(id, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Asserts the existence of a resource, returning <tt>true</tt> if the
+resource is found.
+</p>
+<h4>Examples</h4>
+<pre>
+  Note.create(:title =&gt; 'Hello, world.', :body =&gt; 'Nothing more for now...')
+  Note.exists?(1)
+  # =&gt; true
+
+  Note.exists(1349)
+  # =&gt; false
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002220" class="method-detail">
+        <a name="M002220"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002220.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002220.html');return false;">
+          <span class="method-name">find</span><span class="method-args">(*arguments)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Core method for finding resources. Used similarly to Active Record&#8216;s
+<a href="Base.html#M002220">find</a> method.
+</p>
+<h4>Arguments</h4>
+<p>
+The first argument is considered to be the scope of the query. That is, how
+many resources are returned from the request. It can be one of the
+following.
+</p>
+<table>
+<tr><td valign="top">+:one+:</td><td>Returns a single resource.
+
+</td></tr>
+<tr><td valign="top">+:first+:</td><td>Returns the first resource found.
+
+</td></tr>
+<tr><td valign="top">+:all+:</td><td>Returns every resource that matches the request.
+
+</td></tr>
+</table>
+<h4>Options</h4>
+<table>
+<tr><td valign="top"><tt>from</tt>:</td><td>Sets the path or custom method that resources will be fetched from.
+
+</td></tr>
+<tr><td valign="top"><tt>params</tt>:</td><td>Sets query and <a href="Base.html#M002214">prefix</a> (nested URL)
+parameters.
+
+</td></tr>
+</table>
+<h4>Examples</h4>
+<pre>
+  Person.find(1)
+  # =&gt; GET /people/1.xml
+
+  Person.find(:all)
+  # =&gt; GET /people.xml
+
+  Person.find(:all, :params =&gt; { :title =&gt; &quot;CEO&quot; })
+  # =&gt; GET /people.xml?title=CEO
+
+  Person.find(:first, :from =&gt; :managers)
+  # =&gt; GET /people/managers.xml
+
+  Person.find(:all, :from =&gt; &quot;/companies/1/people.xml&quot;)
+  # =&gt; GET /companies/1/people.xml
+
+  Person.find(:one, :from =&gt; :leader)
+  # =&gt; GET /people/leader.xml
+
+  Person.find(:one, :from =&gt; &quot;/companies/1/manager.xml&quot;)
+  # =&gt; GET /companies/1/manager.xml
+
+  StreetAddress.find(1, :params =&gt; { :person_id =&gt; 1 })
+  # =&gt; GET /people/1/street_addresses/1.xml
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002211" class="method-detail">
+        <a name="M002211"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002211.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002211.html');return false;">
+          <span class="method-name">format=</span><span class="method-args">(mime_type_reference_or_format)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the format that attributes are sent and received in from a mime type
+reference. Example:
+</p>
+<pre>
+  Person.format = :json
+  Person.find(1) # =&gt; GET /people/1.json
+
+  Person.format = ActiveResource::Formats::XmlFormat
+  Person.find(1) # =&gt; GET /people/1.xml
+</pre>
+<p>
+Default format is :xml.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002213" class="method-detail">
+        <a name="M002213"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002213.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002213.html');return false;">
+          <span class="method-name">headers</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M002223" class="method-detail">
+        <a name="M002223"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002223.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002223.html');return false;">
+          <span class="method-name">new</span><span class="method-args">(attributes = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Constructor method for <a href="Base.html#M002223">new</a> resources; the
+optional <tt>attributes</tt> parameter takes a <tt>Hash</tt> of attributes
+for the <a href="Base.html#M002223">new</a> resource.
+</p>
+<h4>Examples</h4>
+<pre>
+  my_course = Course.new
+  my_course.name = &quot;Western Civilization&quot;
+  my_course.lecturer = &quot;Don Trotter&quot;
+  my_course.save
+
+  my_other_course = Course.new(:name =&gt; &quot;Philosophy: Reason and Being&quot;, :lecturer =&gt; &quot;Ralph Cling&quot;)
+  my_other_course.save
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002214" class="method-detail">
+        <a name="M002214"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002214.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002214.html');return false;">
+          <span class="method-name">prefix</span><span class="method-args">(options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the <a href="Base.html#M002214">prefix</a> for a resource&#8216;s
+nested URL (e.g., <tt>prefix/collectionname/1.xml</tt>) This method is
+regenerated at runtime based on what the <a
+href="Base.html#M002214">prefix</a> is set to.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002216" class="method-detail">
+        <a name="M002216"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002216.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002216.html');return false;">
+          <span class="method-name">prefix=</span><span class="method-args">(value = '/')</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the <a href="Base.html#M002214">prefix</a> for a resource&#8216;s
+nested URL (e.g., <tt>prefix/collectionname/1.xml</tt>). Default value is
+<tt>site.path</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002215" class="method-detail">
+        <a name="M002215"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002215.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002215.html');return false;">
+          <span class="method-name">prefix_source</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+An attribute reader for the source string for the resource path <a
+href="Base.html#M002214">prefix</a>. This method is regenerated at runtime
+based on what the <a href="Base.html#M002214">prefix</a> is set to.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002209" class="method-detail">
+        <a name="M002209"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002209.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002209.html');return false;">
+          <span class="method-name">site</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Gets the URI of the REST resources to map for this class. The <a
+href="Base.html#M002209">site</a> variable is required <a
+href="../ActiveResource.html">ActiveResource</a>&#8216;s mapping to work.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002210" class="method-detail">
+        <a name="M002210"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002210.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002210.html');return false;">
+          <span class="method-name">site=</span><span class="method-args">(site)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the URI of the REST resources to map for this class to the value in
+the <tt><a href="Base.html#M002209">site</a></tt> argument. The <a
+href="Base.html#M002209">site</a> variable is required <a
+href="../ActiveResource.html">ActiveResource</a>&#8216;s mapping to work.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M002228" class="method-detail">
+        <a name="M002228"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002228.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002228.html');return false;">
+          <span class="method-name">==</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Test for equality. Resource are equal if and only if <tt>other</tt> is the
+same object or is an instance of the same class, is not +<a
+href="Base.html#M002224">new?</a>+, and has the same <tt><a
+href="Base.html#M002225">id</a></tt>.
+</p>
+<h4>Examples</h4>
+<pre>
+  ryan = Person.create(:name =&gt; 'Ryan')
+  jamie = Person.create(:name =&gt; 'Jamie')
+
+  ryan == jamie
+  # =&gt; false (Different name attribute and id)
+
+  ryan_again = Person.new(:name =&gt; 'Ryan')
+  ryan == ryan_again
+  # =&gt; false (ryan_again is new?)
+
+  ryans_clone = Person.create(:name =&gt; 'Ryan')
+  ryan == ryans_clone
+  # =&gt; false (Different id attributes)
+
+  ryans_twin = Person.find(ryan.id)
+  ryan == ryans_twin
+  # =&gt; true
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002233" class="method-detail">
+        <a name="M002233"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002233.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002233.html');return false;">
+          <span class="method-name">destroy</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Deletes the resource from the remote service.
+</p>
+<h4>Examples</h4>
+<pre>
+  my_id = 3
+  my_person = Person.find(my_id)
+  my_person.destroy
+  Person.find(my_id)
+  # =&gt; 404 (Resource Not Found)
+
+  new_person = Person.create(:name =&gt; 'James')
+  new_id = new_person.id
+  # =&gt; 7
+  new_person.destroy
+  Person.find(new_id)
+  # =&gt; 404 (Resource Not Found)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002231" class="method-detail">
+        <a name="M002231"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002231.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002231.html');return false;">
+          <span class="method-name">dup</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Duplicate the current resource without saving it.
+</p>
+<h4>Examples</h4>
+<pre>
+  my_invoice = Invoice.create(:customer =&gt; 'That Company')
+  next_invoice = my_invoice.dup
+  next_invoice.new?
+  # =&gt; true
+
+  next_invoice.save
+  next_invoice == my_invoice
+  # =&gt; false (different id attributes)
+
+  my_invoice.customer
+  # =&gt; That Company
+  next_invoice.customer
+  # =&gt; That Company
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002229" class="method-detail">
+        <a name="M002229"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002229.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002229.html');return false;">
+          <span class="method-name">eql?</span><span class="method-args">(other)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Tests for equality (delegates to ==).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002234" class="method-detail">
+        <a name="M002234"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002234.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002234.html');return false;">
+          <span class="method-name">exists?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Evaluates to <tt>true</tt> if this resource is not +<a
+href="Base.html#M002224">new?</a>+ and is found on the remote service.
+Using this method, you can check for resources that may have been deleted
+between the object&#8216;s instantiation and actions on it.
+</p>
+<h4>Examples</h4>
+<pre>
+  Person.create(:name =&gt; 'Theodore Roosevelt')
+  that_guy = Person.find(:first)
+  that_guy.exists?
+  # =&gt; true
+
+  that_lady = Person.new(:name =&gt; 'Paul Bean')
+  that_lady.exists?
+  # =&gt; false
+
+  guys_id = that_guy.id
+  Person.delete(guys_id)
+  that_guy.exists?
+  # =&gt; false
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002230" class="method-detail">
+        <a name="M002230"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002230.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002230.html');return false;">
+          <span class="method-name">hash</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates to <a href="Base.html#M002225">id</a> in order to allow two
+resources of the same type and <a href="Base.html#M002225">id</a> to work
+with something like:
+</p>
+<pre>
+  [Person.find(1), Person.find(2)] &amp; [Person.find(1), Person.find(4)] # =&gt; [Person.find(1)]
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002225" class="method-detail">
+        <a name="M002225"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002225.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002225.html');return false;">
+          <span class="method-name">id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Get the <tt><a href="Base.html#M002225">id</a></tt> attribute of the
+resource.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002226" class="method-detail">
+        <a name="M002226"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002226.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002226.html');return false;">
+          <span class="method-name">id=</span><span class="method-args">(id)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the <tt><a href="Base.html#M002225">id</a></tt> attribute of the
+resource.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002237" class="method-detail">
+        <a name="M002237"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002237.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002237.html');return false;">
+          <span class="method-name">load</span><span class="method-args">(attributes)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to manually <a href="Base.html#M002237">load</a> attributes from a
+<a href="Base.html#M002230">hash</a>. Recursively loads collections of
+resources. This method is called in initialize and <a
+href="Base.html#M002219">create</a> when a <tt>Hash</tt> of attributes is
+provided.
+</p>
+<h4>Examples</h4>
+<pre>
+  my_attrs = {:name =&gt; 'J&amp;J Textiles', :industry =&gt; 'Cloth and textiles'}
+
+  the_supplier = Supplier.find(:first)
+  the_supplier.name
+  # =&gt; 'J&amp;M Textiles'
+  the_supplier.load(my_attrs)
+  the_supplier.name('J&amp;J Textiles')
+
+  # These two calls are the same as Supplier.new(my_attrs)
+  my_supplier = Supplier.new
+  my_supplier.load(my_attrs)
+
+  # These three calls are the same as Supplier.create(my_attrs)
+  your_supplier = Supplier.new
+  your_supplier.load(my_attrs)
+  your_supplier.save
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002224" class="method-detail">
+        <a name="M002224"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002224.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002224.html');return false;">
+          <span class="method-name">new?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to determine if the resource a <a href="Base.html#M002223">new</a>
+object (i.e., it has not been POSTed to the remote service yet).
+</p>
+<h4>Examples</h4>
+<pre>
+  not_new = Computer.create(:brand =&gt; 'Apple', :make =&gt; 'MacBook', :vendor =&gt; 'MacMall')
+  not_new.new?
+  # =&gt; false
+
+  is_new = Computer.new(:brand =&gt; 'IBM', :make =&gt; 'Thinkpad', :vendor =&gt; 'IBM')
+  is_new.new?
+  # =&gt; true
+
+  is_new.save
+  is_new.new?
+  # =&gt; false
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002236" class="method-detail">
+        <a name="M002236"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002236.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002236.html');return false;">
+          <span class="method-name">reload</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to <a href="Base.html#M002236">reload</a> the attributes of this
+object from the remote web service.
+</p>
+<h4>Examples</h4>
+<pre>
+  my_branch = Branch.find(:first)
+  my_branch.name
+  # =&gt; Wislon Raod
+
+  # Another client fixes the typo...
+
+  my_branch.name
+  # =&gt; Wislon Raod
+  my_branch.reload
+  my_branch.name
+  # =&gt; Wilson Road
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002238" class="method-detail">
+        <a name="M002238"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002238.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002238.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">(method, include_priv = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to determine if an object responds to a message (e.g., a method
+call). In Active Resource, a <tt>Person</tt> object with a <tt>name</tt>
+attribute can answer <tt>true</tt> to
++my_person.respond_to?(&quot;name&quot;)+,
++my_person.respond_to?(&quot;name=&quot;)+, and
++my_person.respond_to?(&quot;name?&quot;)+.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002232" class="method-detail">
+        <a name="M002232"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002232.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002232.html');return false;">
+          <span class="method-name">save</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to <a href="Base.html#M002232">save</a> (<tt>POST</tt>) or <a
+href="Base.html#M002240">update</a> (<tt>PUT</tt>) a resource. It delegates
+to <tt><a href="Base.html#M002219">create</a></tt> if a <a
+href="Base.html#M002223">new</a> object, <tt><a
+href="Base.html#M002240">update</a></tt> if it is existing. If the response
+to the <a href="Base.html#M002232">save</a> includes a body, it will be
+assumed that this body is XML for the final object as it looked after the
+<a href="Base.html#M002232">save</a> (which would include attributes like
+<tt>created_at</tt> that weren&#8216;t part of the original submit).
+</p>
+<h4>Examples</h4>
+<pre>
+  my_company = Company.new(:name =&gt; 'RoleModel Software', :owner =&gt; 'Ken Auer', :size =&gt; 2)
+  my_company.new?
+  # =&gt; true
+  my_company.save
+  # =&gt; POST /companies/ (create)
+
+  my_company.new?
+  # =&gt; false
+  my_company.size = 10
+  my_company.save
+  # =&gt; PUT /companies/1 (update)
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002227" class="method-detail">
+        <a name="M002227"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002227.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002227.html');return false;">
+          <span class="method-name">to_param</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Allows <a href="../ActiveResource.html">ActiveResource</a> objects to be
+used as parameters in ActionPack URL generation.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002235" class="method-detail">
+        <a name="M002235"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002235.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002235.html');return false;">
+          <span class="method-name">to_xml</span><span class="method-args">(options={})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A method to convert the the resource to an XML string.
+</p>
+<h4>Options</h4>
+<p>
+The <tt>options</tt> parameter is handed off to the <tt><a
+href="Base.html#M002235">to_xml</a></tt> method on each attribute, so it
+has the same options as the <tt><a href="Base.html#M002235">to_xml</a></tt>
+methods in ActiveSupport.
+</p>
+<table>
+<tr><td valign="top">indent:</td><td>Set the indent level for the XML output (default is +2+).
+
+</td></tr>
+<tr><td valign="top">dasherize:</td><td>Boolean option to determine whether or not element names should replace
+underscores with dashes (default is <tt>false</tt>).
+
+</td></tr>
+<tr><td valign="top">skip_instruct:</td><td>Toggle skipping the +instruct!+ call on the XML builder that generates the
+XML declaration (default is <tt>false</tt>).
+
+</td></tr>
+</table>
+<h4>Examples</h4>
+<pre>
+  my_group = SubsidiaryGroup.find(:first)
+  my_group.to_xml
+  # =&gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  #    &lt;subsidiary_group&gt; [...] &lt;/subsidiary_group&gt;
+
+  my_group.to_xml(:dasherize =&gt; true)
+  # =&gt; &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+  #    &lt;subsidiary-group&gt; [...] &lt;/subsidiary-group&gt;
+
+  my_group.to_xml(:skip_instruct =&gt; true)
+  # =&gt; &lt;subsidiary_group&gt; [...] &lt;/subsidiary_group&gt;
+</pre>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M002245" class="method-detail">
+        <a name="M002245"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002245.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002245.html');return false;">
+          <span class="method-name">collection_path</span><span class="method-args">(options = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M002239" class="method-detail">
+        <a name="M002239"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002239.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002239.html');return false;">
+          <span class="method-name">connection</span><span class="method-args">(refresh = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M002241" class="method-detail">
+        <a name="M002241"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002241.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002241.html');return false;">
+          <span class="method-name">create</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create (i.e., <a href="Base.html#M002232">save</a> to the remote service)
+the <a href="Base.html#M002223">new</a> resource.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002244" class="method-detail">
+        <a name="M002244"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002244.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002244.html');return false;">
+          <span class="method-name">element_path</span><span class="method-args">(options = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M002243" class="method-detail">
+        <a name="M002243"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002243.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002243.html');return false;">
+          <span class="method-name">id_from_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Takes a response from a typical <a href="Base.html#M002219">create</a> post
+and pulls the ID out
+</p>
+        </div>
+      </div>
+
+      <div id="method-M002242" class="method-detail">
+        <a name="M002242"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002242.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002242.html');return false;">
+          <span class="method-name">load_attributes_from_response</span><span class="method-args">(response)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M002240" class="method-detail">
+        <a name="M002240"></a>
+
+        <div class="method-heading">
+          <a href="Base.src/M002240.html" target="Code" class="method-signature"
+            onclick="popupCode('Base.src/M002240.html');return false;">
+          <span class="method-name">update</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Update the resource on the remote service.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

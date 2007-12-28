@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: []
+
+full_name: DB2::Connection
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: DB2Util
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: commit
+- !ruby/object:RI::MethodSummary 
+  name: connect
+- !ruby/object:RI::MethodSummary 
+  name: disconnect
+- !ruby/object:RI::MethodSummary 
+  name: rollback
+- !ruby/object:RI::MethodSummary 
+  name: set_auto_commit_off
+- !ruby/object:RI::MethodSummary 
+  name: set_auto_commit_on
+- !ruby/object:RI::MethodSummary 
+  name: set_connect_attr
+name: Connection
+superclass: Object

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Identical to #assert_tag, but asserts that a matching tag does <em>not</em> exist. (See #assert_tag for a full discussion of the syntax.)"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Assert that there is not a &quot;div&quot; containing a &quot;p&quot;\n  assert_no_tag :tag =&gt; &quot;div&quot;, :descendant =&gt; { :tag =&gt; &quot;p&quot; }\n\n  # Assert that an unordered list is empty\n  assert_no_tag :tag =&gt; &quot;ul&quot;, :descendant =&gt; { :tag =&gt; &quot;li&quot; }\n\n  # Assert that there is not a &quot;p&quot; tag with between 1 to 3 &quot;img&quot; tags\n  # as immediate children\n  assert_no_tag :tag =&gt; &quot;p&quot;,\n             :children =&gt; { :count =&gt; 1..3, :only =&gt; { :tag =&gt; &quot;img&quot; } }\n"
+full_name: ActionController::Assertions::TagAssertions#assert_no_tag
+is_singleton: false
+name: assert_no_tag
+params: (*opts)
+visibility: public

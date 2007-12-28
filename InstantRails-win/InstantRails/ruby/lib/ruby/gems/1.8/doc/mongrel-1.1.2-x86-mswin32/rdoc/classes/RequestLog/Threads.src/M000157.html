@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>process (RequestLog::Threads)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/debug.rb, line 175</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">process</span>(<span class="ruby-identifier">request</span>, <span class="ruby-identifier">response</span>)
+      <span class="ruby-constant">MongrelDbg</span><span class="ruby-operator">::</span><span class="ruby-identifier">trace</span>(<span class="ruby-identifier">:threads</span>, <span class="ruby-node">&quot;#{Time.now} REQUEST #{request.params['PATH_INFO']}&quot;</span>)
+      <span class="ruby-keyword kw">begin</span>
+        <span class="ruby-constant">ObjectSpace</span>.<span class="ruby-identifier">each_object</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">obj</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">class</span> <span class="ruby-operator">==</span> <span class="ruby-constant">Mongrel</span><span class="ruby-operator">::</span><span class="ruby-constant">HttpServer</span>
+              <span class="ruby-identifier">worker_list</span> = <span class="ruby-identifier">obj</span>.<span class="ruby-identifier">workers</span>.<span class="ruby-identifier">list</span>
+  
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">worker_list</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                <span class="ruby-identifier">keys</span> = <span class="ruby-value str">&quot;-----\n\tKEYS:&quot;</span>
+                <span class="ruby-identifier">worker_list</span>.<span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span> <span class="ruby-identifier">keys</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;\n\t\t-- #{t}: #{t.keys.inspect}&quot;</span> }
+              <span class="ruby-keyword kw">end</span>
+  
+              <span class="ruby-constant">MongrelDbg</span><span class="ruby-operator">::</span><span class="ruby-identifier">trace</span>(<span class="ruby-identifier">:threads</span>, <span class="ruby-node">&quot;#{obj.host}:#{obj.port} -- THREADS: #{worker_list.length} #{keys}&quot;</span>)
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span> <span class="ruby-comment cmt"># Ignore since obj.class can sometimes take parameters            </span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Object</span> <span class="ruby-comment cmt"># Ignore since ObjectSpace might not be loaded on JRuby</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

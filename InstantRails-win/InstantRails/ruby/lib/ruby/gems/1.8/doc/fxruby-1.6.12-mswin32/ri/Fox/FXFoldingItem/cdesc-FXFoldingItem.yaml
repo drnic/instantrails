@@ -1,0 +1,159 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item logically above this item [FXFoldingItem]
+  name: above
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item logically below this item [FXFoldingItem]
+  name: below
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Closed icon [FXIcon]
+  name: closedIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: User data [Object]
+  name: data
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the item is draggable [Boolean]
+  name: draggable
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the item is enabled [Boolean]
+  name: enabled
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the item is expanded [Boolean]
+  name: expanded
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First child item [FXFoldingItem]
+  name: first
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Last child item [FXFoldingItem]
+  name: last
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Next sibling item [FXFoldingItem]
+  name: next
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of child items [Integer]
+  name: numChildren
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Open icon [FXIcon]
+  name: openIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the item is opened [Boolean]
+  name: opened
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Parent item [FXFoldingItem]
+  name: parent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Previous sibling item [FXFoldingItem]
+  name: prev
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Indicates whether the item is selected [Boolean]
+  name: selected
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Item text [String]
+  name: text
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXFoldingItem is an item in an FXFoldingList widget.
+constants: []
+
+full_name: Fox::FXFoldingItem
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: childOf?
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: detach
+- !ruby/object:RI::MethodSummary 
+  name: draggable?
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: enabled?
+- !ruby/object:RI::MethodSummary 
+  name: expanded?
+- !ruby/object:RI::MethodSummary 
+  name: getHeight
+- !ruby/object:RI::MethodSummary 
+  name: getWidth
+- !ruby/object:RI::MethodSummary 
+  name: hasFocus?
+- !ruby/object:RI::MethodSummary 
+  name: hasItems=
+- !ruby/object:RI::MethodSummary 
+  name: hasItems?
+- !ruby/object:RI::MethodSummary 
+  name: opened?
+- !ruby/object:RI::MethodSummary 
+  name: parentOf?
+- !ruby/object:RI::MethodSummary 
+  name: selected?
+- !ruby/object:RI::MethodSummary 
+  name: setClosedIcon
+- !ruby/object:RI::MethodSummary 
+  name: setFocus
+- !ruby/object:RI::MethodSummary 
+  name: setOpenIcon
+- !ruby/object:RI::MethodSummary 
+  name: to_s
+name: FXFoldingItem
+superclass: Object

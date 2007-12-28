@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The packet assistant, used to format packets for version 2 of the SFTP protocol. This simply adds support for the RENAME packet:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: rename( id, old, new )
+  type: :BULLET
+constants: []
+
+full_name: Net::SFTP::Protocol::V_02::PacketAssistant
+includes: []
+
+instance_methods: []
+
+name: PacketAssistant
+superclass: V_01::PacketAssistant

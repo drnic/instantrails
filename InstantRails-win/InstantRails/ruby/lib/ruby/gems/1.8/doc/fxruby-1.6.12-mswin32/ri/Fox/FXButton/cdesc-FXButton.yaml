@@ -1,0 +1,97 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Button style flags (some combination of <tt>BUTTON_AUTOGRAY</tt>, <tt>BUTTON_AUTOHIDE</tt>, etc.) [Integer]
+  name: buttonStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Button state (one of <tt>STATE_UP</tt>, <tt>STATE_DOWN</tt>, etc.) [Integer]
+  name: state
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A button provides a push button, with optional icon and/or text label. When pressed, the button widget sends a <tt>SEL_COMMAND</tt> to its target. Passing the <tt>BUTTON_TOOLBAR</tt> style option gives buttons a &quot;flat&quot; look, and causes the edge of the button to be raised when the cursor moves over it. Passing <tt>BUTTON_DEFAULT</tt> allows the button to become the default button in a dialog, when the focus moves to it. The default widget in a dialog is the widget which will accept the <em>Return</em> key when it is pressed. The <tt>BUTTON_INITIAL</tt> flag makes the button the default widget when the focus moves to a widget which can not itself be a default widget. There should be only a single button in the dialog which is the initial default; typically this is the <em>OK</em> or <em>Close</em> button. The option <tt>BUTTON_AUTOGRAY</tt> (<tt>BUTTON_AUTOHIDE</tt>) causes the button to be grayed out (hidden) if its handler does not respond to the <tt>SEL_UPDATE</tt> message. This is useful when messages are delegated, for example when using a multiple document interface, where the ultimate destination of a message can be changed.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXButton to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the button is clicked.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Button state bits
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATE_UP+:"
+    body: Button is up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATE_DOWN+:"
+    body: Button is down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATE_ENGAGED+:"
+    body: Button is engaged
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATE_UNCHECKED+:"
+    body: Same as <tt>STATE_UP</tt> (used for check buttons or radio buttons)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+STATE_CHECKED+:"
+    body: Same as <tt>STATE_ENGAGED</tt> (used for check buttons or radio buttons)
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Button flags
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_AUTOGRAY+:"
+    body: Automatically gray out when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_AUTOHIDE+:"
+    body: Automatically hide button when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_TOOLBAR+:"
+    body: Toolbar style button [flat look]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_DEFAULT+:"
+    body: May become default button when receiving focus
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_INITIAL+:"
+    body: This button is the initial default button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+BUTTON_NORMAL+:"
+    body: Default button flags (<tt>FRAME_RAISED|FRAME_THICK|JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>)
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXButton
+includes: []
+
+instance_methods: []
+
+name: FXButton
+superclass: FXLabel

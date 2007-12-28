@@ -1,0 +1,52 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a string with a <tt>DIV</tt> containing all of the error messages for the objects located as instance variables by the names given. If more than one object is specified, the errors for the objects are displayed in the order that the object names are provided.
+- !ruby/struct:SM::Flow::P 
+  body: "This <tt>DIV</tt> can be tailored by the following options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>header_tag</tt> - Used for the header of the error div (default: h2)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>id</tt> - The id of the error div (default: errorExplanation)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>class</tt> - The class of the error div (default: errorExplanation)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>object</tt> - The object (or array of objects) for which to display errors, if you need to escape the instance variable convention
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>object_name</tt> - The object name to use in the header, or any text that you prefer. If <tt>object_name</tt> is not set, the name of the first object will be used.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>header_message</tt> - The message in the header of the error div. Pass <tt>nil</tt> or an empty string to avoid the header message altogether. (default: X errors prohibited this object from being saved)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>message</tt> - The explanation message after the header message and before the error list. Pass <tt>nil</tt> or an empty string to avoid the explanation message altogether. (default: There were problems with the following fields:)"
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "To specify the display for one object, you simply provide its name as a parameter. For example, for the <tt>User</tt> model:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error_messages_for 'user'\n"
+- !ruby/struct:SM::Flow::P 
+  body: To specify more than one object, you simply list them; optionally, you can add an extra <tt>object_name</tt> parameter, which will be the name used in the header message.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error_messages_for 'user_common', 'user', :object_name =&gt; 'user'\n"
+- !ruby/struct:SM::Flow::P 
+  body: If the objects cannot be located as instance variables, you can add an extra <tt>object</tt> paremeter which gives the actual object (or array of objects to use)
+- !ruby/struct:SM::Flow::VERB 
+  body: "  error_messages_for 'user', :object =&gt; @question.user\n"
+- !ruby/struct:SM::Flow::P 
+  body: "NOTE: This is a pre-packaged presentation of the errors with embedded strings and a certain HTML structure. If what you need is significantly different from the default presentation, it makes plenty of sense to access the object.errors instance yourself and set it up. View the source of this method to see how easy it is."
+full_name: ActionView::Helpers::ActiveRecordHelper#error_messages_for
+is_singleton: false
+name: error_messages_for
+params: (*params)
+visibility: public

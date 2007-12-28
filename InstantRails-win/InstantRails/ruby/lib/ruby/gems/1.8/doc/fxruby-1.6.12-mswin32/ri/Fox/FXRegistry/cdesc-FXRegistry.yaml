@@ -1,0 +1,40 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Application key [String]
+  name: appKey
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Use file-based registry instead of Windows Registry [Boolean]
+  name: asciiMode
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Vendor key [String]
+  name: vendorKey
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The registry maintains a database of persistent settings for an application. The settings database is organized in two groups of three layers each. The system-wide settings group contains settings information pertaining to all users on a system. The per-user settings group contains settings affecting that user only. Each settings group contains a desktop layer, which comprises the settings which affect all FOX programs, a vendor layer which holds settings that affect all applications from that vendor (e.g. a application-suite), and an application layer which holds settings only for a single application. The vendor-key and application-key determine which files these layers come from, while the &quot;Desktop&quot; key is used for all FOX applications. Settings in the system-wide group are overwritten by the per-user group, and settings from the &quot;Desktop&quot; layer are overwritten by the vendor-layer; vendor-layer settings are overwritten by the application-layer settings. Only the per-user, per-application settings ever gets written; the layers in the system-group only get written during installation and configuration of the application. The registry is read when FXApp::init() is called, and written back to the system when FXApp::exit() is called.
+constants: []
+
+full_name: Fox::FXRegistry
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: asciiMode?
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: write
+name: FXRegistry
+superclass: FXSettings

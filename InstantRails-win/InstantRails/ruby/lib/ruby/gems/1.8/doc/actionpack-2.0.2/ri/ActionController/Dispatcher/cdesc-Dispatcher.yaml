@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: after_dispatch
+- !ruby/object:RI::MethodSummary 
+  name: before_dispatch
+- !ruby/object:RI::MethodSummary 
+  name: dispatch
+- !ruby/object:RI::MethodSummary 
+  name: failsafe_response
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: to_prepare
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dispatches requests to the appropriate controller and takes care of reloading the app after each request when Dependencies.load? is true.
+constants: []
+
+full_name: ActionController::Dispatcher
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cleanup_application
+- !ruby/object:RI::MethodSummary 
+  name: dispatch
+- !ruby/object:RI::MethodSummary 
+  name: dispatch_cgi
+- !ruby/object:RI::MethodSummary 
+  name: failsafe_rescue
+- !ruby/object:RI::MethodSummary 
+  name: flush_logger
+- !ruby/object:RI::MethodSummary 
+  name: handle_request
+- !ruby/object:RI::MethodSummary 
+  name: prepare_application
+- !ruby/object:RI::MethodSummary 
+  name: reload_application
+- !ruby/object:RI::MethodSummary 
+  name: run_callbacks
+name: Dispatcher
+superclass: Object

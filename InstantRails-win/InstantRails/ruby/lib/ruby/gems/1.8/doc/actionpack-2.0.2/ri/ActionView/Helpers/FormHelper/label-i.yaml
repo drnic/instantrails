@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a label tag tailored for labelling an input field for a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). The text of label will default to the attribute name unless you specify it explicitly. Additional options on the label tag can be passed as a hash with <tt>options</tt>. These options will be tagged onto the HTML as an HTML element attribute as in the example shown.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  label(:post, :title)\n  #=&gt; &lt;label for=&quot;post_title&quot;&gt;Title&lt;/label&gt;\n\n  label(:post, :title, &quot;A short title&quot;)\n  #=&gt; &lt;label for=&quot;post_title&quot;&gt;A short title&lt;/label&gt;\n\n  label(:post, :title, &quot;A short title&quot;, :class =&gt; &quot;title_label&quot;)\n  #=&gt; &lt;label for=&quot;post_title&quot; class=&quot;title_label&quot;&gt;A short title&lt;/label&gt;\n"
+full_name: ActionView::Helpers::FormHelper#label
+is_singleton: false
+name: label
+params: (object_name, method, text = nil, options = {})
+visibility: public

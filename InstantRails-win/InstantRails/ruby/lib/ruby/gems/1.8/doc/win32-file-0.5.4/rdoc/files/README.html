@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: README</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href=".././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>README</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>README
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:49:44 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Description</h1>
+<p>
+Extra or redefined methods for the <a href="../classes/File.html">File</a>
+class on MS Windows.
+</p>
+<h1>Prerequisites</h1>
+<ul>
+<li>Ruby 1.8.0 or later
+
+</li>
+<li>windows-pr 0.3.0 or later
+
+</li>
+<li>win32-file-stat 1.2.0 or later
+
+</li>
+</ul>
+<h1>Installation</h1>
+<pre>
+   rake test (optional)
+   rake install (standard) or rake install_gem (rubygems)
+</pre>
+<h1>Synopsis</h1>
+<pre>
+   require 'win32/file'
+
+   p File.hidden?(somefile)
+   p File.attributes(somefile)
+
+   File.open(somefile){ |fh|
+      fh.hidden = true
+   }
+</pre>
+<h1>Class methods added - see documentation for details</h1>
+<ul>
+<li><a href="../classes/File.html#M000029">File.attributes</a>
+
+</li>
+<li>File.archive?
+
+</li>
+<li>File.compressed?
+
+</li>
+<li><a href="../classes/File.html#M000005">File.decrypt</a>
+
+</li>
+<li><a href="../classes/File.html#M000004">File.encrypt</a>
+
+</li>
+<li>File.encrypted?
+
+</li>
+<li><a href="../classes/File.html#M000003">File.get_permissions</a>
+
+</li>
+<li>File.hidden?
+
+</li>
+<li>File.indexed?
+
+</li>
+<li>File.longpath
+
+</li>
+<li>File.normal?
+
+</li>
+<li>File.offline?
+
+</li>
+<li>File.readonly?
+
+</li>
+<li><a href="../classes/File.html#M000031">File.remove_attributes</a>
+
+</li>
+<li>File.reparse_point?
+
+</li>
+<li><a href="../classes/File.html#M000002">File.securities</a>
+
+</li>
+<li><a href="../classes/File.html#M000030">File.set_attributes</a>
+
+</li>
+<li><a href="../classes/File.html#M000001">File.set_permissions</a>
+
+</li>
+<li>File.shortpath
+
+</li>
+<li>File.sparse?
+
+</li>
+<li>File.system?
+
+</li>
+<li>File.temporary?
+
+</li>
+</ul>
+<h1>Instance methods added - see documentation for details</h1>
+<ul>
+<li>File#archive=
+
+</li>
+<li>File#compressed=
+
+</li>
+<li>File#hidden=
+
+</li>
+<li>File#indexed=
+
+</li>
+<li>File#normal=
+
+</li>
+<li>File#offline=
+
+</li>
+<li>File#readonly=
+
+</li>
+<li>File#sparse=
+
+</li>
+<li>File#system=
+
+</li>
+<li>File#temporary=
+
+</li>
+</ul>
+<h1>Class methods redefined</h1>
+<ul>
+<li><a href="../classes/File.html#M000006">File.basename</a> # UNC path issues
+
+</li>
+<li><a href="../classes/File.html#M000013">File.blksize</a> # Wasn&#8216;t
+implemented
+
+</li>
+<li>File.blockdev? # Wasn&#8216;t implemented
+
+</li>
+<li>File.chardev? # Wasn&#8216;t implemented
+
+</li>
+<li><a href="../classes/File.html#M000007">File.dirname</a> # UNC path issues
+
+</li>
+<li><a href="../classes/File.html#M000016">File.size</a> # 2GB limitation
+
+</li>
+<li><a href="../classes/File.html#M000010">File.split</a> # UNC path issues
+
+</li>
+</ul>
+<h1>Notes about the test suite</h1>
+<p>
+For all the unit tests to pass, the &#8216;sometestfile.txt&#8217; file
+must have the &#8216;archive&#8217; and &#8216;readonly&#8217; attributes
+set. Although I have them set on the file when I create the zip archive, it
+seems that file attributes aren&#8216;t guaranteed to survive the process.
+</p>
+<p>
+So, please change the file attributes manually if needed before running the
+test suite. You can do this by right-clicking on the file in Explorer and
+selecting &#8216;properties&#8217;. The readonly attribute check-box is at
+the bottom left corner. To get to the archive attribute click on the
+&#8216;Advanced&#8217; tab. You should see a checkbox at the top.
+</p>
+<h1>Known issues or bugs</h1>
+<p>
+None that I&#8216;m aware of. Please report any bugs you find on the
+project page at <a
+href="http://www.rubyforge.org/projects/win32utils">www.rubyforge.org/projects/win32utils</a>.
+</p>
+<h1>License</h1>
+<p>
+Ruby&#8216;s
+</p>
+<h1>Warranty</h1>
+<p>
+This package is provided &quot;as is&quot; and without any express or
+implied warranties, including, without limitation, the implied warranties
+of merchantability and fitness for a particular purpose.
+</p>
+<h1>Authors</h1>
+<ul>
+<li>Daniel J. Berger
+
+</li>
+<li>Park Heesob
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

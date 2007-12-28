@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>callback (Net::SFTP::Protocol::V_01::Impl)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/01/impl.rb, line 80</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">callback</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">names</span> )
+      <span class="ruby-identifier">names</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def on_\#{name}( &amp;block )\n@on_\#{name} = block\nend\n\ndef has_on_\#{name}?\nnot @on_\#{name}.nil?\nend\n\ndef call_on_\#{name}( *args )\nreturn unless @on_\#{name}\n@on_\#{name}.call( *args )\nend\n\npublic :on_\#{name}\nprotected :has_on_\#{name}?, :call_on_\#{name}\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

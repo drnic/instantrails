@@ -1,0 +1,27 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Implements the <tt>read</tt> operation, which reads data from an open file handle. This also implements the common case of reading to the end of the file. In that case, the callback is guaranteed to receive the contents of the entire file in one chunk.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The default maximum amount of data to read at once when reading an entire file.
+  name: DEFAULT_CHUNK_SIZE
+  value: 64 * 1024
+full_name: Net::SFTP::Operations::Read
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: perform
+name: Read
+superclass: Abstract

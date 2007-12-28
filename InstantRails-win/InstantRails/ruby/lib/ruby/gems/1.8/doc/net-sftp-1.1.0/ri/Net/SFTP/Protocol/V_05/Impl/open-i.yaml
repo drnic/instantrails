@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The open operation changed in version 4. This method keeps the same interface as previous versions, but changes how the parameters are interpreted and converted into a packet.
+full_name: Net::SFTP::Protocol::V_05::Impl#open
+is_singleton: false
+name: open
+params: ( id, path, flags, mode=0660 )
+visibility: public

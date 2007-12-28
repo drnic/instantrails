@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Memory</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Memory</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/memory_rb.html">
+                lib/windows/memory.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GHND</td>
+          <td>=</td>
+          <td class="context-item-value">0x0042</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GMEM_FIXED</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GMEM_MOVABLE</td>
+          <td>=</td>
+          <td class="context-item-value">0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GMEM_ZEROINIT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">GPTR</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAP_NO_SERIALIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAP_GENERATE_EXCEPTIONS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAP_ZERO_MEMORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAP_REALLOC_IN_PLACE_ONLY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HEAP_CREATE_ENABLE_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00040000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_COMMIT</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_RESERVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_DECOMMIT</td>
+          <td>=</td>
+          <td class="context-item-value">0x4000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_RELEASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_FREE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_PRIVATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_MAPPED</td>
+          <td>=</td>
+          <td class="context-item-value">0x40000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_RESET</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_TOP_DOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x100000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_WRITE_WATCH</td>
+          <td>=</td>
+          <td class="context-item-value">0x200000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_PHYSICAL</td>
+          <td>=</td>
+          <td class="context-item-value">0x400000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_LARGE_PAGES</td>
+          <td>=</td>
+          <td class="context-item-value">0x20000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEM_4MB_PAGES</td>
+          <td>=</td>
+          <td class="context-item-value">0x80000000200000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_NOACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x01</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_READONLY</td>
+          <td>=</td>
+          <td class="context-item-value">0x02</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_READWRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_WRITECOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x08</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x20</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_READWRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x40</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_EXECUTE_WRITECOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x80</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_GUARD</td>
+          <td>=</td>
+          <td class="context-item-value">0x100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_NOCACHE</td>
+          <td>=</td>
+          <td class="context-item-value">0x200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PAGE_WRITECOMBINE</td>
+          <td>=</td>
+          <td class="context-item-value">0x400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_FILE</td>
+          <td>=</td>
+          <td class="context-item-value">0x800000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_IMAGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_VLM</td>
+          <td>=</td>
+          <td class="context-item-value">0x2000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_RESERVE</td>
+          <td>=</td>
+          <td class="context-item-value">0x4000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_COMMIT</td>
+          <td>=</td>
+          <td class="context-item-value">0x8000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SEC_NOCACHE</td>
+          <td>=</td>
+          <td class="context-item-value">0x10000000</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

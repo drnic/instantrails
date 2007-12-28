@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>verify (Net::SSH::HostKeyVerifier)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/host-key-verifier.rb, line 8</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">verify</span>(<span class="ruby-identifier">arguments</span>)
+        <span class="ruby-identifier">host</span> = <span class="ruby-identifier">canonize</span>(<span class="ruby-identifier">arguments</span>[<span class="ruby-identifier">:peer</span>])
+        <span class="ruby-identifier">matches</span> = <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">KnownHosts</span>.<span class="ruby-identifier">search_for</span>(<span class="ruby-identifier">host</span>)
+
+        <span class="ruby-comment cmt"># we've never seen this host before, so just automatically add the key.</span>
+        <span class="ruby-comment cmt"># not the most secure option (since the first hit might be the one that</span>
+        <span class="ruby-comment cmt"># is hacked), but since almost nobody actually compares the key</span>
+        <span class="ruby-comment cmt"># fingerprint, this is a reasonable compromise between usability and</span>
+        <span class="ruby-comment cmt"># security.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">KnownHosts</span>.<span class="ruby-identifier">add</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">arguments</span>[<span class="ruby-identifier">:key</span>])
+          <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">true</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># If we found any matches, check to see that the key type and</span>
+        <span class="ruby-comment cmt"># blob also match.</span>
+        <span class="ruby-identifier">found</span> = <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">any?</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">key</span>.<span class="ruby-identifier">ssh_type</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">arguments</span>[<span class="ruby-identifier">:key</span>].<span class="ruby-identifier">ssh_type</span> <span class="ruby-operator">&amp;&amp;</span>
+          <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_blob</span>  <span class="ruby-operator">==</span> <span class="ruby-identifier">arguments</span>[<span class="ruby-identifier">:key</span>].<span class="ruby-identifier">to_blob</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># If a match was found, return true. Otherwise, raise an exception</span>
+        <span class="ruby-comment cmt"># indicating that the key was not recognized.</span>
+        <span class="ruby-identifier">found</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">process_cache_miss</span>(<span class="ruby-identifier">host</span>, <span class="ruby-identifier">arguments</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

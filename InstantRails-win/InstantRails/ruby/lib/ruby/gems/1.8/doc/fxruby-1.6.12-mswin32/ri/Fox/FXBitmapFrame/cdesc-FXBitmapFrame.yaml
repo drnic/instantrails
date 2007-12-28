@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current image being displayed [FXBitmap]
+  name: bitmap
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current justification mode, some combination of the flags <tt>JUSTIFY_LEFT</tt>, <tt>JUSTIFY_RIGHT</tt>, <tt>JUSTIFY_TOP</tt> and <tt>JUSTIFY_BOTTOM</tt> [Integer]
+  name: justify
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color used for the &quot;off&quot; bits in the bitmap [FXColor]
+  name: offColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color used for the &quot;on&quot; bits in the bitmap [FXColor]
+  name: onColor
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The bitmap frame is a simple frame widget displaying an monochrome bitmap image; the bitmap is not owned by the bitmap frame so it must be explicitly deleted elsewhere.
+constants: []
+
+full_name: Fox::FXBitmapFrame
+includes: []
+
+instance_methods: []
+
+name: FXBitmapFrame
+superclass: FXFrame

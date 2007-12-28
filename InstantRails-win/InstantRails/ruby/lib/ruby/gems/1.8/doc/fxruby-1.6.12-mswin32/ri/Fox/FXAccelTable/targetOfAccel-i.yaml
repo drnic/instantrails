@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the target object of the given accelerator, or <tt>nil</tt> if the accelerator is not present in this accelerator table. Here, <em>hotKey</em> is a code representing an accelerator key as returned by the Fox.fxparseAccel method. For example,
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc = accelTable.targetofAccel(fxparseAccel(&quot;Ctrl+S&quot;))\n"
+full_name: Fox::FXAccelTable#targetOfAccel
+is_singleton: false
+name: targetOfAccel
+params: (hotKey)
+visibility: public

@@ -1,0 +1,135 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Mouse button pressed [Integer]
+  name: click_button
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Click count [Integer]
+  name: click_count
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Time of mouse button press [Integer]
+  name: click_time
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative x-coordinate of mouse press [Integer]
+  name: click_x
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative y-coordinate of mouse press [Integer]
+  name: click_y
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Button, keysym or mode; DDE source [Integer]
+  name: code
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative x-coordinate of previous mouse location [Integer]
+  name: last_x
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative y-coordinate of previous mouse location [Integer]
+  name: last_y
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window x-coordinate [Integer]
+  name: root_x
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window y-coordinate [Integer]
+  name: root_y
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window x-coordinate of mouse press [Integer]
+  name: rootclick_x
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window y-coordinate of mouse press [Integer]
+  name: rootclick_y
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Keyboard/modifier state [Integer]
+  name: state
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Target drag type being requested [Integer]
+  name: target
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text of keyboard event [String]
+  name: text
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Time of last event [Integer]
+  name: time
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Event type [Integer]
+  name: type
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative x-coordinate [Integer]
+  name: win_x
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window-relative y-coordinate [Integer]
+  name: win_y
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FOX Event
+constants: []
+
+full_name: Fox::FXEvent
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: moved?
+- !ruby/object:RI::MethodSummary 
+  name: rect
+- !ruby/object:RI::MethodSummary 
+  name: synthetic?
+name: FXEvent
+superclass: Object

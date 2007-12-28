@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>wide_to_multi (Windows::Unicode)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/windows/unicode.rb, line 123</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wide_to_multi</span>(<span class="ruby-identifier">string</span>, <span class="ruby-identifier">encoding</span>=<span class="ruby-keyword kw">nil</span>)
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">encoding</span>
+            <span class="ruby-identifier">encoding</span> = (<span class="ruby-identifier">$KCODE</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'UTF8'</span>) <span class="ruby-operator">?</span> <span class="ruby-constant">CP_UTF8</span> <span class="ruby-operator">:</span> <span class="ruby-constant">CP_ACP</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span>
+         
+         <span class="ruby-identifier">int</span> = <span class="ruby-constant">WideCharToMultiByte</span>(
+            <span class="ruby-identifier">encoding</span>,
+            <span class="ruby-value">0</span>,
+            <span class="ruby-identifier">string</span>,
+            <span class="ruby-identifier">string</span>.<span class="ruby-identifier">size</span><span class="ruby-operator">/</span><span class="ruby-value">2</span>,
+            <span class="ruby-identifier">buf</span>,
+            <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span>,
+            <span class="ruby-value">0</span>,
+            <span class="ruby-value">0</span>
+         )
+
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">int</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">buf</span>[<span class="ruby-value">0</span>, <span class="ruby-identifier">int</span>]
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">string</span>
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

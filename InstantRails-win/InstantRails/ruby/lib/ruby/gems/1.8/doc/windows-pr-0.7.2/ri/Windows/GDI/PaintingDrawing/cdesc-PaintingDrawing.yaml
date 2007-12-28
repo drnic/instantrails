@@ -1,0 +1,314 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Flags for DrawCaption
+  name: DC_ACTIVE
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_SMALLCAP
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_ICON
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_TEXT
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_INBUTTON
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_GRADIENT
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DC_BUTTONS
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: 3D border styles
+  name: BDR_RAISEDOUTER
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_SUNKENOUTER
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_RAISEDINNER
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_SUNKENINNER
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_OUTER
+  value: (BDR_RAISEDOUTER | BDR_SUNKENOUTER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_INNER
+  value: (BDR_RAISEDINNER | BDR_SUNKENINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_RAISED
+  value: (BDR_RAISEDOUTER | BDR_RAISEDINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BDR_SUNKEN
+  value: (BDR_SUNKENOUTER | BDR_SUNKENINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_RAISED
+  value: (BDR_RAISEDOUTER | BDR_RAISEDINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_SUNKEN
+  value: (BDR_SUNKENOUTER | BDR_SUNKENINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_ETCHED
+  value: (BDR_SUNKENOUTER | BDR_RAISEDINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: EDGE_BUMP
+  value: (BDR_RAISEDOUTER | BDR_SUNKENINNER)
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border flags
+  name: BF_LEFT
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_TOP
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_RIGHT
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_BOTTOM
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_TOPLEFT
+  value: (BF_TOP | BF_LEFT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_TOPRIGHT
+  value: (BF_TOP | BF_RIGHT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_BOTTOMLEFT
+  value: (BF_BOTTOM | BF_LEFT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_BOTTOMRIGHT
+  value: (BF_BOTTOM | BF_RIGHT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_RECT
+  value: (BF_LEFT | BF_TOP | BF_RIGHT | BF_BOTTOM)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_DIAGONAL
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_DIAGONAL_ENDTOPRIGHT
+  value: (BF_DIAGONAL | BF_TOP | BF_RIGHT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_DIAGONAL_ENDTOPLEFT
+  value: (BF_DIAGONAL | BF_TOP | BF_LEFT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_DIAGONAL_ENDBOTTOMLEFT
+  value: (BF_DIAGONAL | BF_BOTTOM | BF_LEFT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_DIAGONAL_ENDBOTTOMRIGHT
+  value: (BF_DIAGONAL | BF_BOTTOM | BF_RIGHT)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_MIDDLE
+  value: "0x0800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_SOFT
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_ADJUST
+  value: "0x2000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_FLAT
+  value: "0x4000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BF_MONO
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Flags for DrawFrameControl
+  name: DFC_CAPTION
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFC_MENU
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFC_SCROLL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFC_BUTTON
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFC_POPUPMENU
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CAPTIONCLOSE
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CAPTIONMIN
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CAPTIONMAX
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CAPTIONRESTORE
+  value: "0x0003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CAPTIONHELP
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_MENUARROW
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_MENUCHECK
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_MENUBULLET
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_MENUARROWRIGHT
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLUP
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLDOWN
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLLEFT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLRIGHT
+  value: "0x0003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLCOMBOBOX
+  value: "0x0005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLSIZEGRIP
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_SCROLLSIZEGRIPRIGHT
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTONCHECK
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTONRADIOIMAGE
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTONRADIOMASK
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTONRADIO
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTON3STATE
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_BUTTONPUSH
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_INACTIVE
+  value: "0x0100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_PUSHED
+  value: "0x0200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_CHECKED
+  value: "0x0400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_TRANSPARENT
+  value: "0x0800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_HOT
+  value: "0x1000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_ADJUSTRECT
+  value: "0x2000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_FLAT
+  value: "0x4000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DFCS_MONO
+  value: "0x8000"
+full_name: Windows::GDI::PaintingDrawing
+includes: []
+
+instance_methods: []
+
+name: PaintingDrawing
+superclass: 

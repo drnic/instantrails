@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Transport)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/services.rb, line 22</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:transport</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">kex_names</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">compression_algorithms</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">decompression_algorithms</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">cipher_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">hmac_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffer_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bn_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digest_factories</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">ciphers</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">cipher_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">hmacs</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">hmac_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">keys</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">key_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">buffers</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">buffer_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">bns</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">bn_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">digesters</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">c</span>.<span class="ruby-identifier">digest_factories</span>.<span class="ruby-identifier">fetch</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">crypto_backend</span> ) }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">identity_cipher</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/identity-cipher'</span>
+            <span class="ruby-constant">IdentityCipher</span>.<span class="ruby-identifier">new</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">outgoing_packet_stream</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype_deferred</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/packet-stream'</span>
+            <span class="ruby-constant">OutgoingPacketStream</span>.<span class="ruby-identifier">new</span>(
+              <span class="ruby-identifier">c</span>.<span class="ruby-identifier">ciphers</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">hmacs</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">compression_algorithms</span> )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">incoming_packet_stream</span> <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype_deferred</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/packet-stream'</span>
+            <span class="ruby-identifier">stream</span> = <span class="ruby-constant">IncomingPacketStream</span>.<span class="ruby-identifier">new</span>(
+              <span class="ruby-identifier">c</span>.<span class="ruby-identifier">ciphers</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">hmacs</span>, <span class="ruby-identifier">c</span>.<span class="ruby-identifier">decompression_algorithms</span> )
+            <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">buffers</span>
+            <span class="ruby-identifier">stream</span>.<span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>.<span class="ruby-identifier">log_for</span>( <span class="ruby-identifier">point</span> )
+            <span class="ruby-identifier">stream</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">algorithms</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-constant">Hash</span>[
+              <span class="ruby-identifier">:host_key</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-value str">&quot;ssh-dss&quot;</span>, <span class="ruby-value str">&quot;ssh-rsa&quot;</span> ],
+              <span class="ruby-identifier">:kex</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-value str">&quot;diffie-hellman-group-exchange-sha1&quot;</span>,
+                        <span class="ruby-value str">&quot;diffie-hellman-group1-sha1&quot;</span> ],
+              <span class="ruby-identifier">:encryption</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-value str">&quot;3des-cbc&quot;</span>,
+                               <span class="ruby-value str">&quot;aes128-cbc&quot;</span>, 
+                               <span class="ruby-value str">&quot;blowfish-cbc&quot;</span>,
+                               <span class="ruby-value str">&quot;aes256-cbc&quot;</span>,
+                               <span class="ruby-value str">&quot;aes192-cbc&quot;</span>,
+                               <span class="ruby-value str">&quot;idea-cbc&quot;</span>,
+                               <span class="ruby-value str">&quot;none&quot;</span> ],
+              <span class="ruby-identifier">:hmac</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-value str">&quot;hmac-md5&quot;</span>,
+                         <span class="ruby-value str">&quot;hmac-sha1&quot;</span>,
+                         <span class="ruby-value str">&quot;hmac-md5-96&quot;</span>,
+                         <span class="ruby-value str">&quot;hmac-sha1-96&quot;</span>,
+                         <span class="ruby-value str">&quot;none&quot;</span> ],
+              <span class="ruby-identifier">:compression</span> =<span class="ruby-operator">&gt;</span> [ <span class="ruby-value str">&quot;none&quot;</span>, <span class="ruby-value str">&quot;zlib&quot;</span> ],
+              <span class="ruby-identifier">:languages</span> =<span class="ruby-operator">&gt;</span> []
+            ]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_ssh_port</span> { <span class="ruby-value">22</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">socket_factory</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'socket'</span>
+            <span class="ruby-constant">TCPSocket</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">version_negotiator</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/version-negotiator'</span>
+            <span class="ruby-constant">VersionNegotiator</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>.<span class="ruby-identifier">log_for</span>( <span class="ruby-identifier">point</span> ) )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">algorithm_negotiator</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/algorithm-negotiator'</span>
+            <span class="ruby-constant">AlgorithmNegotiator</span>.<span class="ruby-identifier">new</span>(
+              <span class="ruby-identifier">c</span>.<span class="ruby-identifier">log_for</span>( <span class="ruby-identifier">point</span> ),
+              <span class="ruby-identifier">c</span>.<span class="ruby-identifier">algorithms</span>,
+              <span class="ruby-identifier">c</span>.<span class="ruby-identifier">buffers</span> )
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">session</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">point</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/session'</span>
+
+            <span class="ruby-identifier">args</span> = [ <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport_host</span>] ]
+            <span class="ruby-identifier">args</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport_options</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">knows_key?</span>(<span class="ruby-identifier">:transport_options</span>)
+
+            <span class="ruby-constant">Session</span>.<span class="ruby-identifier">new</span>( <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">s</span><span class="ruby-operator">|</span>
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">logger</span>               = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">point</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">default_port</span>         = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:default_ssh_port</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">version_negotiator</span>   = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:version_negotiator</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">algorithm_negotiator</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:algorithm_negotiator</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">socket_factory</span>       = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:socket_factory</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">packet_sender</span>        = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:outgoing_packet_stream</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">packet_receiver</span>      = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:incoming_packet_stream</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">ciphers</span>              = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:ciphers</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">hmacs</span>                = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:hmacs</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">kexs</span>                 = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:kex_names</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">compressors</span>          = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:compression_algorithms</span>]
+              <span class="ruby-identifier">s</span>.<span class="ruby-identifier">decompressors</span>        = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:decompression_algorithms</span>]
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/ossl/services'</span>, <span class="ruby-node">&quot;#{self}::OSSL&quot;</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/compress/services'</span>, <span class="ruby-node">&quot;#{self}::Compress&quot;</span>
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/kex/services'</span>, <span class="ruby-node">&quot;#{self}::Kex&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

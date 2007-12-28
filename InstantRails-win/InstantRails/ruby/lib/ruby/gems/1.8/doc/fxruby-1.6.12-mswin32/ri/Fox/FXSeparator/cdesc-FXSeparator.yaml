@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Separator style, one of SEPARATOR_NONE, SEPARATOR_GROOVE, SEPARATOR_RIDGE or SEPARATOR_LINE [Integer]
+  name: separatorStyle
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Separator widget is used to draw a horizontal or vertical divider between groups of controls. It is purely decorative. The separator may be drawn in various styles as determined by the SEPARATOR_NONE, SEPARATOR_GROOVE, SEPARATOR_RIDGE, and SEPARATOR_LINE options. Since its derived from Frame, it can also have the frame's border styles.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Separator options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEPARATOR_NONE+:"
+    body: Nothing visible
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEPARATOR_GROOVE+:"
+    body: Etched-in looking groove
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEPARATOR_RIDGE+:"
+    body: Embossed looking ridge
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEPARATOR_LINE+:"
+    body: Simple line
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXSeparator
+includes: []
+
+instance_methods: []
+
+name: FXSeparator
+superclass: FXFrame

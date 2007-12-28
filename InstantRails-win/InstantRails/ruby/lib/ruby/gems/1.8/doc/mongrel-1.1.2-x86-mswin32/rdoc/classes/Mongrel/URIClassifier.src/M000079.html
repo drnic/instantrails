@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register (Mongrel::URIClassifier)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/uri_classifier.rb, line 28</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register</span>(<span class="ruby-identifier">uri</span>, <span class="ruby-identifier">handler</span>)
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">RegistrationError</span>, <span class="ruby-node">&quot;#{uri.inspect} is already registered&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@handler_map</span>[<span class="ruby-identifier">uri</span>]
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">RegistrationError</span>, <span class="ruby-value str">&quot;URI is empty&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">uri</span> <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">uri</span>.<span class="ruby-identifier">empty?</span>
+      <span class="ruby-identifier">raise</span> <span class="ruby-constant">RegistrationError</span>, <span class="ruby-node">&quot;URI must begin with a \&quot;#{Const::SLASH}\&quot;&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">uri</span>[<span class="ruby-value">0</span><span class="ruby-operator">..</span><span class="ruby-value">0</span>] <span class="ruby-operator">==</span> <span class="ruby-constant">Const</span><span class="ruby-operator">::</span><span class="ruby-constant">SLASH</span>
+      <span class="ruby-ivar">@handler_map</span>[<span class="ruby-identifier">uri</span>.<span class="ruby-identifier">dup</span>] = <span class="ruby-identifier">handler</span>
+      <span class="ruby-identifier">rebuild</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

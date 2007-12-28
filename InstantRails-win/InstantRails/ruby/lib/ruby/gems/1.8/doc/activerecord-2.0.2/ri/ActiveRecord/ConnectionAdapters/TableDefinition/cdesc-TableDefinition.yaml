@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: columns
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Represents a SQL table in an abstract way. Columns are stored as a ColumnDefinition in the #columns attribute."
+constants: []
+
+full_name: ActiveRecord::ConnectionAdapters::TableDefinition
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: belongs_to
+- !ruby/object:RI::MethodSummary 
+  name: column
+- !ruby/object:RI::MethodSummary 
+  name: primary_key
+- !ruby/object:RI::MethodSummary 
+  name: references
+- !ruby/object:RI::MethodSummary 
+  name: timestamps
+- !ruby/object:RI::MethodSummary 
+  name: to_sql
+name: TableDefinition
+superclass: Object

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>inspect (File::Stat)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file/stat.rb, line 473</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">inspect</span>    
+      <span class="ruby-identifier">members</span> = <span class="ruby-node">%w/
+         archive? atime blksize blocks compressed? ctime dev encrypted? gid
+         hidden? indexed? ino mode mtime rdev nlink normal? offline? readonly?
+         reparse_point? size sparse? system? temporary? uid
+      /</span>
+      <span class="ruby-identifier">str</span> = <span class="ruby-node">&quot;#&lt;#{self.class}&quot;</span>
+      <span class="ruby-identifier">members</span>.<span class="ruby-identifier">sort</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">mem</span><span class="ruby-operator">|</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mem</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'mode'</span>
+            <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{mem}=&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;0%o&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">intern</span>))
+         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">mem</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'?'</span>
+            <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{mem.chop}=&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">intern</span>).<span class="ruby-identifier">to_s</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">str</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot; #{mem}=&quot;</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">send</span>(<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">intern</span>).<span class="ruby-identifier">to_s</span>
+         <span class="ruby-keyword kw">end</span>
+      }
+      <span class="ruby-identifier">str</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>open (Net::SSH::Connection::Channel)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/connection/channel.rb, line 67</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">log</span>, <span class="ruby-identifier">buffers</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword kw">nil</span> )
+          <span class="ruby-identifier">channel</span> = <span class="ruby-identifier">new</span>( <span class="ruby-identifier">connection</span>, <span class="ruby-identifier">log</span>, <span class="ruby-identifier">buffers</span>, <span class="ruby-identifier">type</span> )
+
+          <span class="ruby-identifier">msg</span> = <span class="ruby-identifier">buffers</span>.<span class="ruby-identifier">writer</span>
+
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_byte</span> <span class="ruby-constant">CHANNEL_OPEN</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">type</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">local_id</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">local_window_size</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">local_maximum_packet_size</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">data</span>
+
+          <span class="ruby-identifier">connection</span>.<span class="ruby-identifier">send_message</span> <span class="ruby-identifier">msg</span>
+
+          <span class="ruby-identifier">channel</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

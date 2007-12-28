@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The callback used internally to indicate that the requested channel has been confirmed. This will request the SFTP subsystem, register some request callbacks, and move the driver's state to <tt>init</tt>. This may only be called when the driver's state is <tt>unconfirmed</tt>.
+full_name: Net::SFTP::Protocol::Driver#do_confirm
+is_singleton: false
+name: do_confirm
+params: ( channel )
+visibility: public

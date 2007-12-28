@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Test for equality. Resource are equal if and only if <tt>other</tt> is the same object or is an instance of the same class, is not +new?+, and has the same <tt>id</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ryan = Person.create(:name =&gt; 'Ryan')\n  jamie = Person.create(:name =&gt; 'Jamie')\n\n  ryan == jamie\n  # =&gt; false (Different name attribute and id)\n\n  ryan_again = Person.new(:name =&gt; 'Ryan')\n  ryan == ryan_again\n  # =&gt; false (ryan_again is new?)\n\n  ryans_clone = Person.create(:name =&gt; 'Ryan')\n  ryan == ryans_clone\n  # =&gt; false (Different id attributes)\n\n  ryans_twin = Person.find(ryan.id)\n  ryan == ryans_twin\n  # =&gt; true\n"
+full_name: ActiveResource::Base#==
+is_singleton: false
+name: ==
+params: (other)
+visibility: public

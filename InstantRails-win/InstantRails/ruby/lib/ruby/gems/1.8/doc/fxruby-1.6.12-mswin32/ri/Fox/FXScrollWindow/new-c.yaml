@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theScrollWindow
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return an initialized FXScrollWindow instance.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+p+:"
+    body: the parent window for this scroll window [FXComposite]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: the options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: initial x-position, when the <tt>LAYOUT_FIX_X</tt> layout hint is in effect [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: initial y-position, when the <tt>LAYOUT_FIX_Y</tt> layout hint is in effect [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: initial width, when the <tt>LAYOUT_FIX_WIDTH</tt> layout hint is in effect [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: initial height, when the <tt>LAYOUT_FIX_HEIGHT</tt> layout hint is in effect [Integer]
+  type: :NOTE
+full_name: Fox::FXScrollWindow::new
+is_singleton: true
+name: new
+params: (p, opts=0, x=0, y=0, width=0, height=0) {|theScrollWindow| ...}
+visibility: public

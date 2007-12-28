@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>setup (ActionMailer::TestCase)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/test_case.rb, line 36</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup</span>
+      <span class="ruby-constant">ActionMailer</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">delivery_method</span> = <span class="ruby-identifier">:test</span>
+      <span class="ruby-constant">ActionMailer</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">perform_deliveries</span> = <span class="ruby-keyword kw">true</span>
+      <span class="ruby-constant">ActionMailer</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">deliveries</span> = []
+
+      <span class="ruby-ivar">@expected</span> = <span class="ruby-constant">TMail</span><span class="ruby-operator">::</span><span class="ruby-constant">Mail</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-ivar">@expected</span>.<span class="ruby-identifier">set_content_type</span> <span class="ruby-value str">&quot;text&quot;</span>, <span class="ruby-value str">&quot;plain&quot;</span>, { <span class="ruby-value str">&quot;charset&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">charset</span> }
+      <span class="ruby-ivar">@expected</span>.<span class="ruby-identifier">mime_version</span> = <span class="ruby-value str">'1.0'</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

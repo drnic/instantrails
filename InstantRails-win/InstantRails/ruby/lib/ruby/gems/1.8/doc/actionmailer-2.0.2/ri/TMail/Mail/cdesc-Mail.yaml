@@ -1,0 +1,466 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: port
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: boundary
+- !ruby/object:RI::MethodSummary 
+  name: load
+- !ruby/object:RI::MethodSummary 
+  name: msgid
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: parse
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: facade.rb
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: header
+  name: ALLOW_MULTIPLE
+  value: "{       'received'          => true,       'resent-date'       => true,       'resent-from'       => true,       'resent-sender'     => true,       'resent-to'         => true,       'resent-cc'         => true,       'resent-bcc'        => true,       'resent-message-id' => true,       'comments'          => true,       'keywords'          => true"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: USE_ARRAY
+  value: ALLOW_MULTIPLE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FIELD_ORDER
+  value: "%w(       return-path received       resent-date resent-from resent-sender resent-to       resent-cc resent-bcc resent-message-id       date from sender reply-to to cc bcc       message-id in-reply-to references       subject comments keywords       mime-version content-type content-transfer-encoding       content-disposition content-description     )"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NOSEND_FIELDS
+  value: "%w(       received       bcc     )"
+full_name: TMail::Mail
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: TextUtils
+- !ruby/object:RI::IncludedModule 
+  name: TextUtils
+- !ruby/object:RI::IncludedModule 
+  name: StrategyInterface
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: accept
+- !ruby/object:RI::MethodSummary 
+  name: add_date
+- !ruby/object:RI::MethodSummary 
+  name: add_message_id
+- !ruby/object:RI::MethodSummary 
+  name: attachment?
+- !ruby/object:RI::MethodSummary 
+  name: attachments
+- !ruby/object:RI::MethodSummary 
+  name: base64_decode
+- !ruby/object:RI::MethodSummary 
+  name: base64_decode
+- !ruby/object:RI::MethodSummary 
+  name: base64_encode
+- !ruby/object:RI::MethodSummary 
+  name: base64_encode
+- !ruby/object:RI::MethodSummary 
+  name: bcc
+- !ruby/object:RI::MethodSummary 
+  name: bcc
+- !ruby/object:RI::MethodSummary 
+  name: bcc=
+- !ruby/object:RI::MethodSummary 
+  name: bcc=
+- !ruby/object:RI::MethodSummary 
+  name: bcc_addrs
+- !ruby/object:RI::MethodSummary 
+  name: bcc_addrs
+- !ruby/object:RI::MethodSummary 
+  name: bcc_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: bcc_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: body
+- !ruby/object:RI::MethodSummary 
+  name: body=
+- !ruby/object:RI::MethodSummary 
+  name: body_port
+- !ruby/object:RI::MethodSummary 
+  name: cc
+- !ruby/object:RI::MethodSummary 
+  name: cc
+- !ruby/object:RI::MethodSummary 
+  name: cc=
+- !ruby/object:RI::MethodSummary 
+  name: cc=
+- !ruby/object:RI::MethodSummary 
+  name: cc_addrs
+- !ruby/object:RI::MethodSummary 
+  name: cc_addrs
+- !ruby/object:RI::MethodSummary 
+  name: cc_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: cc_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: charset
+- !ruby/object:RI::MethodSummary 
+  name: charset
+- !ruby/object:RI::MethodSummary 
+  name: charset=
+- !ruby/object:RI::MethodSummary 
+  name: charset=
+- !ruby/object:RI::MethodSummary 
+  name: clear
+- !ruby/object:RI::MethodSummary 
+  name: content_disposition
+- !ruby/object:RI::MethodSummary 
+  name: content_disposition
+- !ruby/object:RI::MethodSummary 
+  name: content_disposition=
+- !ruby/object:RI::MethodSummary 
+  name: content_disposition=
+- !ruby/object:RI::MethodSummary 
+  name: content_transfer_encoding
+- !ruby/object:RI::MethodSummary 
+  name: content_transfer_encoding
+- !ruby/object:RI::MethodSummary 
+  name: content_transfer_encoding=
+- !ruby/object:RI::MethodSummary 
+  name: content_transfer_encoding=
+- !ruby/object:RI::MethodSummary 
+  name: content_type
+- !ruby/object:RI::MethodSummary 
+  name: content_type
+- !ruby/object:RI::MethodSummary 
+  name: content_type=
+- !ruby/object:RI::MethodSummary 
+  name: content_type=
+- !ruby/object:RI::MethodSummary 
+  name: create_empty_mail
+- !ruby/object:RI::MethodSummary 
+  name: create_forward
+- !ruby/object:RI::MethodSummary 
+  name: create_reply
+- !ruby/object:RI::MethodSummary 
+  name: create_reply
+- !ruby/object:RI::MethodSummary 
+  name: create_reply
+- !ruby/object:RI::MethodSummary 
+  name: date
+- !ruby/object:RI::MethodSummary 
+  name: date
+- !ruby/object:RI::MethodSummary 
+  name: date=
+- !ruby/object:RI::MethodSummary 
+  name: date=
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: delete_if
+- !ruby/object:RI::MethodSummary 
+  name: delete_no_send_fields
+- !ruby/object:RI::MethodSummary 
+  name: destinations
+- !ruby/object:RI::MethodSummary 
+  name: destinations
+- !ruby/object:RI::MethodSummary 
+  name: disposition
+- !ruby/object:RI::MethodSummary 
+  name: disposition
+- !ruby/object:RI::MethodSummary 
+  name: disposition=
+- !ruby/object:RI::MethodSummary 
+  name: disposition=
+- !ruby/object:RI::MethodSummary 
+  name: disposition_param
+- !ruby/object:RI::MethodSummary 
+  name: disposition_param
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_dest
+- !ruby/object:RI::MethodSummary 
+  name: each_dest
+- !ruby/object:RI::MethodSummary 
+  name: each_dest
+- !ruby/object:RI::MethodSummary 
+  name: each_destination
+- !ruby/object:RI::MethodSummary 
+  name: each_destination
+- !ruby/object:RI::MethodSummary 
+  name: each_field
+- !ruby/object:RI::MethodSummary 
+  name: each_header
+- !ruby/object:RI::MethodSummary 
+  name: each_header_name
+- !ruby/object:RI::MethodSummary 
+  name: each_key
+- !ruby/object:RI::MethodSummary 
+  name: each_pair
+- !ruby/object:RI::MethodSummary 
+  name: each_part
+- !ruby/object:RI::MethodSummary 
+  name: each_value
+- !ruby/object:RI::MethodSummary 
+  name: encoding
+- !ruby/object:RI::MethodSummary 
+  name: encoding
+- !ruby/object:RI::MethodSummary 
+  name: encoding=
+- !ruby/object:RI::MethodSummary 
+  name: encoding=
+- !ruby/object:RI::MethodSummary 
+  name: epilogue
+- !ruby/object:RI::MethodSummary 
+  name: epilogue=
+- !ruby/object:RI::MethodSummary 
+  name: error_reply_addresses
+- !ruby/object:RI::MethodSummary 
+  name: error_reply_addresses
+- !ruby/object:RI::MethodSummary 
+  name: fetch
+- !ruby/object:RI::MethodSummary 
+  name: friendly_from
+- !ruby/object:RI::MethodSummary 
+  name: friendly_from
+- !ruby/object:RI::MethodSummary 
+  name: from
+- !ruby/object:RI::MethodSummary 
+  name: from
+- !ruby/object:RI::MethodSummary 
+  name: from=
+- !ruby/object:RI::MethodSummary 
+  name: from=
+- !ruby/object:RI::MethodSummary 
+  name: from_addr
+- !ruby/object:RI::MethodSummary 
+  name: from_address
+- !ruby/object:RI::MethodSummary 
+  name: from_address=
+- !ruby/object:RI::MethodSummary 
+  name: from_addrs
+- !ruby/object:RI::MethodSummary 
+  name: from_addrs
+- !ruby/object:RI::MethodSummary 
+  name: from_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: from_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: from_phrase
+- !ruby/object:RI::MethodSummary 
+  name: has_attachments?
+- !ruby/object:RI::MethodSummary 
+  name: has_key?
+- !ruby/object:RI::MethodSummary 
+  name: has_value?
+- !ruby/object:RI::MethodSummary 
+  name: header
+- !ruby/object:RI::MethodSummary 
+  name: header_string
+- !ruby/object:RI::MethodSummary 
+  name: header_string
+- !ruby/object:RI::MethodSummary 
+  name: in_reply_to
+- !ruby/object:RI::MethodSummary 
+  name: in_reply_to
+- !ruby/object:RI::MethodSummary 
+  name: in_reply_to=
+- !ruby/object:RI::MethodSummary 
+  name: in_reply_to=
+- !ruby/object:RI::MethodSummary 
+  name: include?
+- !ruby/object:RI::MethodSummary 
+  name: indexes
+- !ruby/object:RI::MethodSummary 
+  name: indices
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: key?
+- !ruby/object:RI::MethodSummary 
+  name: keys
+- !ruby/object:RI::MethodSummary 
+  name: main_type
+- !ruby/object:RI::MethodSummary 
+  name: main_type
+- !ruby/object:RI::MethodSummary 
+  name: message_id
+- !ruby/object:RI::MethodSummary 
+  name: message_id
+- !ruby/object:RI::MethodSummary 
+  name: message_id=
+- !ruby/object:RI::MethodSummary 
+  name: message_id=
+- !ruby/object:RI::MethodSummary 
+  name: mime_encode
+- !ruby/object:RI::MethodSummary 
+  name: mime_encode_binary
+- !ruby/object:RI::MethodSummary 
+  name: mime_encode_multipart
+- !ruby/object:RI::MethodSummary 
+  name: mime_encode_singlepart
+- !ruby/object:RI::MethodSummary 
+  name: mime_encode_text
+- !ruby/object:RI::MethodSummary 
+  name: mime_version
+- !ruby/object:RI::MethodSummary 
+  name: mime_version
+- !ruby/object:RI::MethodSummary 
+  name: mime_version=
+- !ruby/object:RI::MethodSummary 
+  name: mime_version=
+- !ruby/object:RI::MethodSummary 
+  name: msgid
+- !ruby/object:RI::MethodSummary 
+  name: msgid=
+- !ruby/object:RI::MethodSummary 
+  name: multipart?
+- !ruby/object:RI::MethodSummary 
+  name: multipart?
+- !ruby/object:RI::MethodSummary 
+  name: ordered_each
+- !ruby/object:RI::MethodSummary 
+  name: parts
+- !ruby/object:RI::MethodSummary 
+  name: preamble=
+- !ruby/object:RI::MethodSummary 
+  name: quoted_body
+- !ruby/object:RI::MethodSummary 
+  name: quoted_subject
+- !ruby/object:RI::MethodSummary 
+  name: quoted_subject
+- !ruby/object:RI::MethodSummary 
+  name: ready_to_send
+- !ruby/object:RI::MethodSummary 
+  name: references
+- !ruby/object:RI::MethodSummary 
+  name: references
+- !ruby/object:RI::MethodSummary 
+  name: references=
+- !ruby/object:RI::MethodSummary 
+  name: references=
+- !ruby/object:RI::MethodSummary 
+  name: reply_addresses
+- !ruby/object:RI::MethodSummary 
+  name: reply_addresses
+- !ruby/object:RI::MethodSummary 
+  name: reply_to
+- !ruby/object:RI::MethodSummary 
+  name: reply_to
+- !ruby/object:RI::MethodSummary 
+  name: reply_to=
+- !ruby/object:RI::MethodSummary 
+  name: reply_to=
+- !ruby/object:RI::MethodSummary 
+  name: reply_to_addrs
+- !ruby/object:RI::MethodSummary 
+  name: reply_to_addrs
+- !ruby/object:RI::MethodSummary 
+  name: reply_to_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: reply_to_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: send_text_to
+- !ruby/object:RI::MethodSummary 
+  name: send_to
+- !ruby/object:RI::MethodSummary 
+  name: send_to_0
+- !ruby/object:RI::MethodSummary 
+  name: sender
+- !ruby/object:RI::MethodSummary 
+  name: sender
+- !ruby/object:RI::MethodSummary 
+  name: sender=
+- !ruby/object:RI::MethodSummary 
+  name: sender=
+- !ruby/object:RI::MethodSummary 
+  name: sender_addr
+- !ruby/object:RI::MethodSummary 
+  name: sender_addr
+- !ruby/object:RI::MethodSummary 
+  name: sender_addr=
+- !ruby/object:RI::MethodSummary 
+  name: sender_addr=
+- !ruby/object:RI::MethodSummary 
+  name: set_content_disposition
+- !ruby/object:RI::MethodSummary 
+  name: set_content_disposition
+- !ruby/object:RI::MethodSummary 
+  name: set_content_type
+- !ruby/object:RI::MethodSummary 
+  name: set_content_type
+- !ruby/object:RI::MethodSummary 
+  name: set_disposition
+- !ruby/object:RI::MethodSummary 
+  name: set_disposition
+- !ruby/object:RI::MethodSummary 
+  name: setup_forward
+- !ruby/object:RI::MethodSummary 
+  name: setup_reply
+- !ruby/object:RI::MethodSummary 
+  name: store
+- !ruby/object:RI::MethodSummary 
+  name: strftime
+- !ruby/object:RI::MethodSummary 
+  name: strftime
+- !ruby/object:RI::MethodSummary 
+  name: sub_header
+- !ruby/object:RI::MethodSummary 
+  name: sub_type
+- !ruby/object:RI::MethodSummary 
+  name: sub_type
+- !ruby/object:RI::MethodSummary 
+  name: subject
+- !ruby/object:RI::MethodSummary 
+  name: subject
+- !ruby/object:RI::MethodSummary 
+  name: subject
+- !ruby/object:RI::MethodSummary 
+  name: subject=
+- !ruby/object:RI::MethodSummary 
+  name: subject=
+- !ruby/object:RI::MethodSummary 
+  name: to
+- !ruby/object:RI::MethodSummary 
+  name: to
+- !ruby/object:RI::MethodSummary 
+  name: to=
+- !ruby/object:RI::MethodSummary 
+  name: to=
+- !ruby/object:RI::MethodSummary 
+  name: to_addrs
+- !ruby/object:RI::MethodSummary 
+  name: to_addrs
+- !ruby/object:RI::MethodSummary 
+  name: to_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: to_addrs=
+- !ruby/object:RI::MethodSummary 
+  name: transfer_encoding
+- !ruby/object:RI::MethodSummary 
+  name: transfer_encoding
+- !ruby/object:RI::MethodSummary 
+  name: transfer_encoding=
+- !ruby/object:RI::MethodSummary 
+  name: transfer_encoding=
+- !ruby/object:RI::MethodSummary 
+  name: type_param
+- !ruby/object:RI::MethodSummary 
+  name: type_param
+- !ruby/object:RI::MethodSummary 
+  name: unquoted_body
+- !ruby/object:RI::MethodSummary 
+  name: value?
+- !ruby/object:RI::MethodSummary 
+  name: values
+- !ruby/object:RI::MethodSummary 
+  name: values_at
+- !ruby/object:RI::MethodSummary 
+  name: write_back
+name: Mail
+superclass: Object

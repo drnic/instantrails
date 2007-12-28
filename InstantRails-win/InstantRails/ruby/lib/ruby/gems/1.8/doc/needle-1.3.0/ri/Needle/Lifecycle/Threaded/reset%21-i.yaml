@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Resets the cached singleton instance, so that the next time it is requested it is re-constructed. Only the cache for the current thread and service point is reset.
+full_name: Needle::Lifecycle::Threaded#reset!
+is_singleton: false
+name: reset!
+params: ()
+visibility: public

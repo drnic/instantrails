@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Destroys the records matching <tt>conditions</tt> by instantiating each record and calling the destroy method. This means at least 2*N database queries to destroy N records, so avoid destroy_all if you are deleting many records. If you want to simply delete records without worrying about dependent associations or callbacks, use the much faster <tt>delete_all</tt> method instead.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: <tt>conditions</tt> Conditions are specified the same way as with <tt>find</tt> method.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.destroy_all &quot;last_login &lt; '2004-04-04'&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This loads and destroys each person one by one, including its dependent associations and before_ and after_destroy callbacks.
+full_name: ActiveRecord::Base::destroy_all
+is_singleton: true
+name: destroy_all
+params: (conditions = nil)
+visibility: public

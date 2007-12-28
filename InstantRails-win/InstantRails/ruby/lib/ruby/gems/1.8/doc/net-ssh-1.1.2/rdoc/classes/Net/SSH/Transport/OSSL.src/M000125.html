@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>version_check (Net::SSH::Transport::OSSL)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/ossl/services.rb, line 115</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">version_check</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RUBY_VERSION</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value str">&quot;1.8.2&quot;</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">PKey</span><span class="ruby-operator">::</span><span class="ruby-constant">DH</span>.<span class="ruby-identifier">instance_methods</span>.<span class="ruby-identifier">include?</span> <span class="ruby-value str">&quot;p&quot;</span>
+              <span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Your OpenSSL module (the Ruby module, not the library)\n&quot;</span> <span class="ruby-operator">+</span>
+                   <span class="ruby-value str">&quot;is too old. Please go to the Net::SSH downloads page\n&quot;</span> <span class="ruby-operator">+</span>
+                   <span class="ruby-value str">&quot;and install the most recent snapshot of the OpenSSL\n&quot;</span> <span class="ruby-operator">+</span>
+                   <span class="ruby-value str">&quot;module.\n\n&quot;</span> <span class="ruby-operator">+</span>
+                   <span class="ruby-value str">&quot;  http://rubyforge.org/projects/net-ssh&quot;</span>
+              <span class="ruby-identifier">abort</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># make sure that the OpenSSL library itself is at least version 0.9.7</span>
+          <span class="ruby-identifier">match</span> = <span class="ruby-constant">OpenSSL</span><span class="ruby-operator">::</span><span class="ruby-constant">OPENSSL_VERSION</span>.<span class="ruby-identifier">match</span>(
+            <span class="ruby-regexp re">/OpenSSL (\d+)\.(\d+)\.(\d+)(.*?) /</span> )
+          <span class="ruby-identifier">major</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">1</span>].<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">minor</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">tiny</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">3</span>].<span class="ruby-identifier">to_i</span>
+          <span class="ruby-identifier">patch</span> = <span class="ruby-identifier">match</span>[<span class="ruby-value">4</span>]
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">major</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">1</span> <span class="ruby-operator">&amp;&amp;</span> ( <span class="ruby-identifier">minor</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">9</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">minor</span> <span class="ruby-operator">==</span> <span class="ruby-value">9</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">tiny</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">7</span> )
+            <span class="ruby-identifier">ver</span> = <span class="ruby-node">&quot;#{major}.#{minor}.#{tiny}#{patch}&quot;</span>
+            <span class="ruby-identifier">warn</span> <span class="ruby-value str">&quot;Your OpenSSL library (the library itself, not the Ruby\n&quot;</span> <span class="ruby-operator">+</span>
+                 <span class="ruby-node">&quot;module) is version #{ver}, too old to use with Net::SSH.\n&quot;</span> <span class="ruby-operator">+</span>
+                 <span class="ruby-value str">&quot;Please upgrade to at least version 0.9.7 and then rebuild\n&quot;</span> <span class="ruby-operator">+</span>
+                 <span class="ruby-value str">&quot;your Ruby OpenSSL module.&quot;</span>
+            <span class="ruby-identifier">abort</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

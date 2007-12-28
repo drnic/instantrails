@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get (Net::SSH::Transport::IncomingPacketStream)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/packet-stream.rb, line 146</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get</span>
+          <span class="ruby-ivar">@mutex</span>.<span class="ruby-identifier">synchronize</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-comment cmt"># get the first block of data</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+              <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;reading #{@cipher.block_size} bytes from socket...&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">data</span> = <span class="ruby-identifier">read</span>( <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span> )
+
+            <span class="ruby-comment cmt"># decipher it</span>
+            <span class="ruby-identifier">reader</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">reader</span>( <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">update</span>( <span class="ruby-identifier">data</span> ) )
+
+            <span class="ruby-comment cmt"># determine the packet length and how many bytes remain to be read</span>
+            <span class="ruby-identifier">packet_length</span> = <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">read_long</span>
+            <span class="ruby-identifier">remaining_to_read</span> = <span class="ruby-identifier">packet_length</span> <span class="ruby-operator">+</span> <span class="ruby-value">4</span> <span class="ruby-operator">-</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">block_size</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+              <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;packet length(#{packet_length}) &quot;</span> <span class="ruby-operator">+</span>
+                <span class="ruby-node">&quot;remaining(#{remaining_to_read})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># read the remainder of the packet and decrypt it.</span>
+            <span class="ruby-identifier">data</span> = <span class="ruby-identifier">read</span>( <span class="ruby-identifier">remaining_to_read</span> )
+
+            <span class="ruby-comment cmt"># get the hmac from the tail of the packet (if one exists), and</span>
+            <span class="ruby-comment cmt"># then validate it.</span>
+            <span class="ruby-identifier">hmac</span> = <span class="ruby-ivar">@hmac</span>.<span class="ruby-identifier">mac_length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">read</span>( <span class="ruby-ivar">@hmac</span>.<span class="ruby-identifier">mac_length</span> ) <span class="ruby-operator">:</span> <span class="ruby-value str">&quot;&quot;</span>
+
+            <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">append</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">update</span>( <span class="ruby-identifier">data</span> ) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">data</span>.<span class="ruby-identifier">empty?</span>
+            <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">append</span> <span class="ruby-ivar">@cipher</span>.<span class="ruby-identifier">final</span>
+
+            <span class="ruby-identifier">padding_length</span> = <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">read_byte</span>
+
+            <span class="ruby-identifier">payload</span> = <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">read</span>( <span class="ruby-identifier">packet_length</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">-</span> <span class="ruby-value">1</span> )
+            <span class="ruby-identifier">padding</span> = <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">read</span>( <span class="ruby-identifier">padding_length</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">padding_length</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+
+            <span class="ruby-identifier">my_computed_hmac</span> = <span class="ruby-identifier">compute_hmac</span>( <span class="ruby-identifier">reader</span>.<span class="ruby-identifier">content</span> )
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-value str">&quot;corrupted mac detected&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hmac</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">my_computed_hmac</span>
+
+            <span class="ruby-comment cmt"># decompress the payload</span>
+            <span class="ruby-identifier">payload</span> = <span class="ruby-ivar">@decompressor</span>.<span class="ruby-identifier">decompress</span>( <span class="ruby-identifier">payload</span> )
+
+            <span class="ruby-identifier">increment_sequence_number</span>
+
+            <span class="ruby-identifier">buffer</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">reader</span>( <span class="ruby-identifier">payload</span> )
+            <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;received: #{buffer.content.inspect}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">buffer</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

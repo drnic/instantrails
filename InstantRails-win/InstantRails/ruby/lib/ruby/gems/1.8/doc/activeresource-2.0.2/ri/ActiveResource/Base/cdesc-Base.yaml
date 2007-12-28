@@ -1,0 +1,184 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: collection_path
+- !ruby/object:RI::MethodSummary 
+  name: connection
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: delete
+- !ruby/object:RI::MethodSummary 
+  name: element_path
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: format=
+- !ruby/object:RI::MethodSummary 
+  name: headers
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: prefix
+- !ruby/object:RI::MethodSummary 
+  name: prefix=
+- !ruby/object:RI::MethodSummary 
+  name: prefix_source
+- !ruby/object:RI::MethodSummary 
+  name: site
+- !ruby/object:RI::MethodSummary 
+  name: site=
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: ActiveResource::Base is the main class for mapping RESTful resources as models in a Rails application.
+- !ruby/struct:SM::Flow::P 
+  body: For an outline of what Active Resource is capable of, see link:files/README.html.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Automated mapping
+- !ruby/struct:SM::Flow::P 
+  body: Active Resource objects represent your RESTful resources as manipulatable Ruby objects. To map resources to Ruby objects, Active Resource only needs a class name that corresponds to the resource name (e.g., the class Person maps to the resources people, very similarly to Active Record) and a <tt>site</tt> value, which holds the URI of the resources.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    class Person &lt; ActiveResource::Base\n      self.site = &quot;http://api.people.com:3000/&quot;\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Now the Person class is mapped to RESTful resources located at <tt>http://api.people.com:3000/people/</tt>, and you can now use Active Resource's lifecycles methods to manipulate resources.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Lifecycle methods
+- !ruby/struct:SM::Flow::P 
+  body: Active Resource exposes methods for creating, finding, updating, and deleting resources from REST web services.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ryan = Person.new(:first =&gt; 'Ryan', :last =&gt; 'Daigle')\n  ryan.save  #=&gt; true\n  ryan.id  #=&gt; 2\n  Person.exists?(ryan.id)  #=&gt; true\n  ryan.exists?  #=&gt; true\n\n  ryan = Person.find(1)\n  # =&gt; Resource holding our newly create Person object\n\n  ryan.first = 'Rizzle'\n  ryan.save  #=&gt; true\n\n  ryan.destroy  #=&gt; true\n"
+- !ruby/struct:SM::Flow::P 
+  body: As you can see, these are very similar to Active Record's lifecycle methods for database records. You can read more about each of these methods in their respective documentation.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Custom REST methods
+- !ruby/struct:SM::Flow::P 
+  body: Since simple CRUD/lifecycle methods can't accomplish every task, Active Resource also supports defining your own custom REST methods.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Person.new(:name =&gt; 'Ryan).post(:register)\n  # =&gt; { :id =&gt; 1, :name =&gt; 'Ryan', :position =&gt; 'Clerk' }\n\n  Person.find(1).put(:promote, :position =&gt; 'Manager')\n  # =&gt; { :id =&gt; 1, :name =&gt; 'Ryan', :position =&gt; 'Manager' }\n"
+- !ruby/struct:SM::Flow::P 
+  body: For more information on creating and using custom REST methods, see the ActiveResource::CustomMethods documentation.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Validations
+- !ruby/struct:SM::Flow::P 
+  body: You can validate resources client side by overriding validation methods in the base class.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    class Person &lt; ActiveResource::Base\n       self.site = &quot;http://api.people.com:3000/&quot;\n       protected\n         def validate\n           errors.add(&quot;last&quot;, &quot;has invalid characters&quot;) unless last =~ /[a-zA-Z]*/\n         end\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: See the ActiveResource::Validations documentation for more information.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Authentication
+- !ruby/struct:SM::Flow::P 
+  body: Many REST APIs will require authentication, usually in the form of basic HTTP authentication. Authentication can be specified by putting the credentials in the <tt>site</tt> variable of the Active Resource class you need to authenticate.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Person &lt; ActiveResource::Base\n    self.site = &quot;http://ryan:password@api.people.com:3000/&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: For obvious security reasons, it is probably best if such services are available over HTTPS.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Errors &amp; Validation
+- !ruby/struct:SM::Flow::P 
+  body: Error handling and validation is handled in much the same manner as you're used to seeing in Active Record. Both the response code in the Http response and the body of the response are used to indicate that an error occurred.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Resource errors
+- !ruby/struct:SM::Flow::P 
+  body: When a get is requested for a resource that does not exist, the HTTP +404+ (Resource Not Found) response code will be returned from the server which will raise an ActiveResource::ResourceNotFound exception.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # GET http://api.people.com:3000/people/999.xml\n  ryan = Person.find(999) # =&gt; Raises ActiveResource::ResourceNotFound\n  # =&gt; Response = 404\n"
+- !ruby/struct:SM::Flow::P 
+  body: "+404+ is just one of the HTTP error response codes that ActiveResource will handle with its own exception. The following HTTP response codes will also result in these exceptions:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "200 - 399:"
+    body: Valid response, no exception
+  - !ruby/struct:SM::Flow::LI 
+    label: "404:"
+    body: ActiveResource::ResourceNotFound
+  - !ruby/struct:SM::Flow::LI 
+    label: "409:"
+    body: ActiveResource::ResourceConflict
+  - !ruby/struct:SM::Flow::LI 
+    label: "422:"
+    body: ActiveResource::ResourceInvalid (rescued by save as validation errors)
+  - !ruby/struct:SM::Flow::LI 
+    label: "401 - 499:"
+    body: ActiveResource::ClientError
+  - !ruby/struct:SM::Flow::LI 
+    label: "500 - 599:"
+    body: ActiveResource::ServerError
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "These custom exceptions allow you to deal with resource errors more naturally and with more precision rather than returning a general HTTP error. For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  begin\n    ryan = Person.find(my_id)\n  rescue ActiveResource::ResourceNotFound\n    redirect_to :action =&gt; 'not_found'\n  rescue ActiveResource::ResourceConflict, ActiveResource::ResourceInvalid\n    redirect_to :action =&gt; 'new'\n  end\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Validation errors
+- !ruby/struct:SM::Flow::P 
+  body: Active Resource supports validations on resources and will return errors if any these validations fail (e.g., &quot;First name can not be blank&quot; and so on). These types of errors are denoted in the response by a response code of +422+ and an XML representation of the validation errors. The save operation will then fail (with a <tt>false</tt> return value) and the validation errors can be accessed on the resource in question.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ryan = Person.find(1)\n  ryan.first #=&gt; ''\n  ryan.save  #=&gt; false\n\n  # When\n  # PUT http://api.people.com:3000/people/1.xml\n  # is requested with invalid values, the response is:\n  #\n  # Response (422):\n  # &lt;errors type=&quot;array&quot;&gt;&lt;error&gt;First cannot be empty&lt;/error&gt;&lt;/errors&gt;\n  #\n\n  ryan.errors.invalid?(:first)  #=&gt; true\n  ryan.errors.full_messages  #=&gt; ['First cannot be empty']\n"
+- !ruby/struct:SM::Flow::P 
+  body: Learn more about Active Resource's validation features in the ActiveResource::Validations documentation.
+constants: []
+
+full_name: ActiveResource::Base
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: ==
+- !ruby/object:RI::MethodSummary 
+  name: collection_path
+- !ruby/object:RI::MethodSummary 
+  name: connection
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: dup
+- !ruby/object:RI::MethodSummary 
+  name: element_path
+- !ruby/object:RI::MethodSummary 
+  name: eql?
+- !ruby/object:RI::MethodSummary 
+  name: exists?
+- !ruby/object:RI::MethodSummary 
+  name: hash
+- !ruby/object:RI::MethodSummary 
+  name: id
+- !ruby/object:RI::MethodSummary 
+  name: id=
+- !ruby/object:RI::MethodSummary 
+  name: id_from_response
+- !ruby/object:RI::MethodSummary 
+  name: load
+- !ruby/object:RI::MethodSummary 
+  name: load_attributes_from_response
+- !ruby/object:RI::MethodSummary 
+  name: new?
+- !ruby/object:RI::MethodSummary 
+  name: reload
+- !ruby/object:RI::MethodSummary 
+  name: respond_to?
+- !ruby/object:RI::MethodSummary 
+  name: save
+- !ruby/object:RI::MethodSummary 
+  name: to_param
+- !ruby/object:RI::MethodSummary 
+  name: to_xml
+- !ruby/object:RI::MethodSummary 
+  name: update
+name: Base
+superclass: Object

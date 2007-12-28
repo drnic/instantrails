@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The open operation is special, since it protects the caller from the specific flags and options required by SFTP. Instead, the caller simply specifies a combination of IO flags, and an appropriate posix mode, and they are translated into the correct SFTP flags.
+full_name: Net::SFTP::Protocol::V_01::Impl#open
+is_singleton: false
+name: open
+params: ( id, path, flags, mode=0660 )
+visibility: public

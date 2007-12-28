@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Register the given block to be invoked when the command could not be started. The block should accept two parameters: the process instance (<tt>self</tt>) and a status string. (The status string is currently always <tt>nil</tt>, since SSH itself does not indicate why the program failed to start.)"
+full_name: Net::SSH::Service::Process::OpenManager#on_failure
+is_singleton: false
+name: on_failure
+params: ( &block )
+visibility: public

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns an file upload input tag tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). Additional options on the input tag can be passed as a hash with <tt>options</tt>. These options will be tagged onto the HTML as an HTML element attribute as in the example shown.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  file_field(:user, :avatar)\n  # =&gt; &lt;input type=&quot;file&quot; id=&quot;user_avatar&quot; name=&quot;user[avatar]&quot; /&gt;\n\n  file_field(:post, :attached, :accept =&gt; 'text/html')\n  # =&gt; &lt;input type=&quot;file&quot; id=&quot;post_attached&quot; name=&quot;post[attached]&quot; /&gt;\n\n  file_field(:attachment, :file, :class =&gt; 'file_input')\n  # =&gt; &lt;input type=&quot;file&quot; id=&quot;attachment_file&quot; name=&quot;attachment[file]&quot; class=&quot;file_input&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#file_field
+is_singleton: false
+name: file_field
+params: (object_name, method, options = {})
+visibility: public

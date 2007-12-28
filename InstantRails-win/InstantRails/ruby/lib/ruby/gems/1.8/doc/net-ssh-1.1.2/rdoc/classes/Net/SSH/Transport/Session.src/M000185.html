@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>client_name (Net::SSH::Transport::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/session.rb, line 120</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client_name</span>
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@hostname</span> <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span> <span class="ruby-ivar">@hostname</span>
+
+          <span class="ruby-identifier">sockaddr</span> = <span class="ruby-ivar">@socket</span>.<span class="ruby-identifier">getsockname</span>
+          <span class="ruby-keyword kw">begin</span>
+            <span class="ruby-ivar">@hostname</span> =
+              <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">getnameinfo</span>( <span class="ruby-identifier">sockaddr</span>, <span class="ruby-constant">Socket</span><span class="ruby-operator">::</span><span class="ruby-constant">NI_NAMEREQD</span> ).<span class="ruby-identifier">first</span>
+          <span class="ruby-keyword kw">rescue</span>
+            <span class="ruby-keyword kw">begin</span>
+              <span class="ruby-ivar">@hostname</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">getnameinfo</span>( <span class="ruby-identifier">sockaddr</span> ).<span class="ruby-identifier">first</span>
+            <span class="ruby-keyword kw">rescue</span>
+              <span class="ruby-keyword kw">begin</span>
+                <span class="ruby-ivar">@hostname</span> = <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">gethostbyname</span>( <span class="ruby-constant">Socket</span>.<span class="ruby-identifier">gethostname</span> ).<span class="ruby-identifier">first</span>
+              <span class="ruby-keyword kw">rescue</span>
+                <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">error</span> <span class="ruby-value str">&quot;the client ipaddr/name could not be determined&quot;</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">return</span> <span class="ruby-ivar">@hostname</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns <tt>text</tt> transformed into HTML using simple formatting rules. Two or more consecutive newlines(<tt>\n\n</tt>) are considered as a paragraph and wrapped in <tt>&lt;p&gt;</tt> tags. One newline (<tt>\n</tt>) is considered as a linebreak and a <tt>&lt;br /&gt;</tt> tag is appended. This method does not remove the newlines from the <tt>text</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_text = &quot;&quot;&quot;Here is some basic text...\n            ...with a line break.&quot;&quot;&quot;\n\n  simple_format(my_text)\n  # =&gt; &quot;&lt;p&gt;Here is some basic text...&lt;br /&gt;...with a line break.&lt;/p&gt;&quot;\n\n  more_text = &quot;&quot;&quot;We want to put a paragraph...\n\n              ...right there.&quot;&quot;&quot;\n\n  simple_format(more_text)\n  # =&gt; &quot;&lt;p&gt;We want to put a paragraph...&lt;/p&gt;&lt;p&gt;...right there.&lt;/p&gt;&quot;\n"
+full_name: ActionView::Helpers::TextHelper#simple_format
+is_singleton: false
+name: simple_format
+params: (text)
+visibility: public

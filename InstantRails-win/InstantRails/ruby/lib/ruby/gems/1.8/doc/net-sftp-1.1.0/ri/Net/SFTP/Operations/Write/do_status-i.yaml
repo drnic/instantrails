@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Invoked when the server sends a status packet. If the status is FX_OK, then the callback is invoked (if all data has been written), or the next chunk is written to the server (if more data remains). Other status codes are handled by the superclass.
+full_name: Net::SFTP::Operations::Write#do_status
+is_singleton: false
+name: do_status
+params: ( code, message, language )
+visibility: public

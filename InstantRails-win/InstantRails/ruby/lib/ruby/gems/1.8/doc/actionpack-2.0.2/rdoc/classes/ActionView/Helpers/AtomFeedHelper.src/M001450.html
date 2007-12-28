@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>atom_feed (ActionView::Helpers::AtomFeedHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/atom_feed_helper.rb, line 52</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">atom_feed</span>(<span class="ruby-identifier">options</span> = {}, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+        <span class="ruby-identifier">xml</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:xml</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">eval</span>(<span class="ruby-value str">&quot;xml&quot;</span>, <span class="ruby-identifier">block</span>.<span class="ruby-identifier">binding</span>)
+        <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">instruct!</span>
+
+        <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">feed</span> <span class="ruby-value str">&quot;xml:lang&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:language</span>] <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;en-US&quot;</span>, <span class="ruby-value str">&quot;xmlns&quot;</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'http://www.w3.org/2005/Atom'</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">id</span>(<span class="ruby-node">&quot;tag:#{request.host}:#{request.request_uri.split(&quot;.&quot;)[0].gsub(&quot;/&quot;, &quot;&quot;)}&quot;</span>)      
+          <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:rel</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'alternate'</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'text/html'</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:root_url</span>] <span class="ruby-operator">||</span> (<span class="ruby-identifier">request</span>.<span class="ruby-identifier">protocol</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">host_with_port</span>))
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:url</span>]
+            <span class="ruby-identifier">xml</span>.<span class="ruby-identifier">link</span>(<span class="ruby-identifier">:rel</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'self'</span>, <span class="ruby-identifier">:type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">'application/atom+xml'</span>, <span class="ruby-identifier">:href</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:url</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">url</span>)
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">yield</span> <span class="ruby-constant">AtomFeedBuilder</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">xml</span>, <span class="ruby-keyword kw">self</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

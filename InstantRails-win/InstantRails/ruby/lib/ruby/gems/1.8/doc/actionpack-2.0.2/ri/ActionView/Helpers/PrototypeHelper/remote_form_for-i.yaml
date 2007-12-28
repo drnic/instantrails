@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: form_remote_for
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a form that will submit using XMLHttpRequest in the background instead of the regular reloading POST arrangement and a scope around a specific resource that is used as a base for questioning about values for the fields.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Resource
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% remote_form_for(@post) do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This will expand to be the same as:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% remote_form_for :post, @post, :url =&gt; post_path(@post), :html =&gt; { :method =&gt; :put, :class =&gt; &quot;edit_post&quot;, :id =&gt; &quot;edit_post_45&quot; } do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Nested Resource
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% remote_form_for([@post, @comment]) do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This will expand to be the same as:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;% remote_form_for :comment, @comment, :url =&gt; post_comment_path(@post, @comment), :html =&gt; { :method =&gt; :put, :class =&gt; &quot;edit_comment&quot;, :id =&gt; &quot;edit_comment_45&quot; } do |f| %&gt;\n    ...\n  &lt;% end %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: If you don't need to attach a form to a resource, then check out form_remote_tag.
+- !ruby/struct:SM::Flow::P 
+  body: See FormHelper#form_for for additional semantics.
+full_name: ActionView::Helpers::PrototypeHelper#remote_form_for
+is_singleton: false
+name: remote_form_for
+params: (record_or_name_or_array, *args, &proc)
+visibility: public

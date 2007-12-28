@@ -1,0 +1,77 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memcpy
+  value: API.new('memcpy', 'PLL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memccpy
+  value: API.new('_memccpy', 'PPIL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memchr
+  value: API.new('memchr', 'PIL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memcmp
+  value: API.new('memcmp', 'PPL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memicmp
+  value: API.new('_memicmp', 'PPL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memmove
+  value: API.new('memmove', 'PPL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Memset
+  value: API.new('memset', 'PLL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Swab
+  value: API.new('_swab', 'PPI', 'V', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MemcpyPLL
+  value: API.new('memcpy', 'PLL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MemcpyLPL
+  value: API.new('memcpy', 'LPL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MemcpyLLL
+  value: API.new('memcpy', 'LLL', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MemcpyPPL
+  value: API.new('memcpy', 'PPL', 'P', 'msvcrt')
+full_name: Windows::MSVCRT::Buffer
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: memccpy
+- !ruby/object:RI::MethodSummary 
+  name: memchr
+- !ruby/object:RI::MethodSummary 
+  name: memcmp
+- !ruby/object:RI::MethodSummary 
+  name: memcpy
+- !ruby/object:RI::MethodSummary 
+  name: memicmp
+- !ruby/object:RI::MethodSummary 
+  name: memmove
+- !ruby/object:RI::MethodSummary 
+  name: memset
+- !ruby/object:RI::MethodSummary 
+  name: swab
+name: Buffer
+superclass: 

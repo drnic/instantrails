@@ -1,0 +1,44 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The format string for the message (<tt>nil</tt> if the default should be used)
+  name: message_format
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The brief name of this logger (derived from #progname)."
+  name: name
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A specialization of the standard Logger class that comes with Ruby. This provides the additional functionality of a fully-customizable message format, whereas the original only provided a customizable date format.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The map of specifier options supported by this class.
+  name: SPECIFIER_OPTIONS
+  value: "{       \"c\" => { :type => \"s\", :value => \"@name\" },       \"C\" => { :type => \"s\", :value => \"self.progname\" },       \"d\" => { :type => \"s\", :value => \"opts[:timestamp]\" },       \"F\" => { :type => \"s\", :value => \"opts[:caller_file]\" },       \"l\" => { :type => \"s\", :value => \"opts[:caller_info]\" },       \"L\" => { :type => \"d\", :value => \"opts[:caller_line]\" },       \"m\" => { :type => \"s\", :value => \"opts[:msg]\" },       \"M\" => { :type => \"s\", :value => \"opts[:caller_method]\" },       \"n\" => { :type => \"s\", :value => \"$/\" },       \"p\" => { :type => \"s\", :value => \"opts[:severity]\" },       \"t\" => { :type => \"d\", :value => \"Thread.current.__id__\" },       \"%\" => { :type => \"s\", :value => \"'%'\" },       \"P\" => { :type => \"s\", :value => \"opts[:progname]\" },       \"$\" => { :type => \"d\", :value => \"$$\" }"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The regular expression for matching specifier patterns in the format strings.
+  name: SPECIFIER_PATTERN
+  value: /(.*?)%(-?\d*(?:\.\d+)?)?([cCdFlLmMnpt%$P])/
+full_name: Needle::Logger
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: message_format=
+- !ruby/object:RI::MethodSummary 
+  name: progname=
+- !ruby/object:RI::MethodSummary 
+  name: write_to
+name: Logger
+superclass: "::Logger"

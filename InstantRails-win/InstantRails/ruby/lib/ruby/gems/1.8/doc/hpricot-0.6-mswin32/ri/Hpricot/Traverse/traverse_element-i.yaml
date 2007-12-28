@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: element
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: <tt>traverse_element</tt> traverses elements in the tree. It yields elements in depth first order.
+- !ruby/struct:SM::Flow::P 
+  body: If <em>names</em> are empty, it yields all elements. If non-empty <em>names</em> are given, it should be list of universal names.
+- !ruby/struct:SM::Flow::P 
+  body: A nested element is yielded in depth first order as follows.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t = Hpricot('&lt;a id=0&gt;<b>&lt;a id=1 /&gt;</b>&lt;c id=2 /&gt;&lt;/a&gt;')\n  t.traverse_element(&quot;a&quot;, &quot;c&quot;) {|e| p e}\n  # =&gt;\n  {elem &lt;a id=&quot;0&quot;&gt; {elem <b> {emptyelem &lt;a id=&quot;1&quot;&gt;} </b>} {emptyelem &lt;c id=&quot;2&quot;&gt;} &lt;/a&gt;}\n  {emptyelem &lt;a id=&quot;1&quot;&gt;}\n  {emptyelem &lt;c id=&quot;2&quot;&gt;}\n"
+- !ruby/struct:SM::Flow::P 
+  body: Universal names are specified as follows.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  t = Hpricot(&lt;&lt;'End')\n  &lt;html&gt;\n  &lt;meta name=&quot;robots&quot; content=&quot;index,nofollow&quot;&gt;\n  &lt;meta name=&quot;author&quot; content=&quot;Who am I?&quot;&gt;\n  &lt;/html&gt;\n  End\n  t.traverse_element(&quot;{http://www.w3.org/1999/xhtml}meta&quot;) {|e| p e}\n  # =&gt;\n  {emptyelem &lt;{http://www.w3.org/1999/xhtml}meta name=&quot;robots&quot; content=&quot;index,nofollow&quot;&gt;}\n  {emptyelem &lt;{http://www.w3.org/1999/xhtml}meta name=&quot;author&quot; content=&quot;Who am I?&quot;&gt;}\n"
+full_name: Hpricot::Traverse#traverse_element
+is_singleton: false
+name: traverse_element
+params: (*names) {|element| ...}
+visibility: public

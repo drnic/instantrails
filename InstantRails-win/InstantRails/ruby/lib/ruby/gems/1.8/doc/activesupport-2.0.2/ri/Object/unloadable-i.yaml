@@ -1,0 +1,18 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Mark the given constant as unloadable. Unloadable constants are removed each time dependencies are cleared.
+- !ruby/struct:SM::Flow::P 
+  body: Note that marking a constant for unloading need only be done once. Setup or init scripts may list each unloadable constant that may need unloading; each constant will be removed for every subsequent clear, as opposed to for the first clear.
+- !ruby/struct:SM::Flow::P 
+  body: The provided constant descriptor may be a (non-anonymous) module or class, or a qualified constant name as a string or symbol.
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if the constant was not previously marked for unloading, false otherwise.
+full_name: Object#unloadable
+is_singleton: false
+name: unloadable
+params: (const_desc)
+visibility: public

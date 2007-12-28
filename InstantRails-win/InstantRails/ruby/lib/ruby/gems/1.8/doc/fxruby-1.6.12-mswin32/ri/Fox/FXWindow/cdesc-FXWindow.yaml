@@ -1,0 +1,791 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The accelerator table for this window [FXAccelTable]
+  name: accelTable
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window background color [FXColor]
+  name: backColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default cursor for this window [FXCursor]
+  name: defaultCursor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Drag cursor for this window [FXCursor]
+  name: dragCursor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's first child window, if any [FXWindow]
+  name: first
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Currently focused child window, if any [FXWindow]
+  name: focus
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Window key [Integer]
+  name: key
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's last child window, if any [FXWindow]
+  name: last
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Layout hints for this window [Integer]
+  name: layoutHints
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Next (sibling) window, if any [FXWindow]
+  name: next
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of child windows for this window [Integer]
+  name: numChildren
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's owner window [FXWindow]
+  name: owner
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's parent window [FXWindow]
+  name: parent
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Previous (sibling) window, if any [FXWindow]
+  name: prev
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Root window [FXWindow]
+  name: root
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Message identifier for this window [Integer]
+  name: selector
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The shell window for this window [FXWindow]
+  name: shell
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Message target object for this window [FXObject]
+  name: target
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's x-coordinate, in the parent's coordinate system [Integer]
+  name: x
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: This window's y-coordinate, in the parent's coordinate system [Integer]
+  name: y
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: after?
+- !ruby/object:RI::MethodSummary 
+  name: before?
+- !ruby/object:RI::MethodSummary 
+  name: colorType
+- !ruby/object:RI::MethodSummary 
+  name: colorTypeName
+- !ruby/object:RI::MethodSummary 
+  name: commonAncestor
+- !ruby/object:RI::MethodSummary 
+  name: deleteType
+- !ruby/object:RI::MethodSummary 
+  name: deleteTypeName
+- !ruby/object:RI::MethodSummary 
+  name: imageType
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: octetType
+- !ruby/object:RI::MethodSummary 
+  name: octetTypeName
+- !ruby/object:RI::MethodSummary 
+  name: stringType
+- !ruby/object:RI::MethodSummary 
+  name: textType
+- !ruby/object:RI::MethodSummary 
+  name: textTypeName
+- !ruby/object:RI::MethodSummary 
+  name: urilistType
+- !ruby/object:RI::MethodSummary 
+  name: urilistTypeName
+- !ruby/object:RI::MethodSummary 
+  name: utf16Type
+- !ruby/object:RI::MethodSummary 
+  name: utf16TypeName
+- !ruby/object:RI::MethodSummary 
+  name: utf8Type
+- !ruby/object:RI::MethodSummary 
+  name: utf8TypeName
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Base class for all windows
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXWindow to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MAP+:"
+    body: sent when the window is mapped to the screen; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_UNMAP+:"
+    body: sent when the window is unmapped; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CONFIGURE+:"
+    body: sent when the window's size changes; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_ENTER+:"
+    body: sent when the mouse cursor enters this window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEAVE+:"
+    body: sent when the mouse cursor leaves this window
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_FOCUSIN+:"
+    body: sent when this window gains the focus
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_FOCUSOUT+:"
+    body: sent when this window loses the focus
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_UPDATE+:"
+    body: sent when this window needs an update
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_UNGRABBED+:"
+    body: sent when this window loses the mouse grab (or capture)
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "For each of the following keyboard-related events, the message data is an FXEvent instance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key is pressed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key is released
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "For each of the following mouse-related events, the message data is an FXEvent instance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MOTION+:"
+    body: sent when the mouse moves
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONPRESS+:"
+    body: sent when the middle mouse button goes down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONRELEASE+:"
+    body: sent when the middle mouse button goes up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the right mouse button goes down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the right mouse button goes up
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MOUSEWHEEL+:"
+    body: sent when the mouse wheel is scrolled
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "For each of the following selection-related events, the message data is an FXEvent instance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTION_GAINED+:"
+    body: sent when this window acquires the selection
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTION_LOST+:"
+    body: sent when this window loses the selection
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTION_REQUEST+:"
+    body: sent when this window's selection is requested
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "For each of the following clipboard-related events, the message data is an FXEvent instance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLIPBOARD_GAINED+:"
+    body: sent when this window acquires the clipboard
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLIPBOARD_LOST+:"
+    body: sent when this window loses the clipboard
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLIPBOARD_REQUEST+:"
+    body: sent when this window's clipboard data is requested
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "For each of the following drag-and-drop events, the message data is an FXEvent instance:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_BEGINDRAG+:"
+    body: sent at the beginning of a drag operation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DRAGGED+:"
+    body: sent while stuff is being dragged around
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_ENDDRAG+:"
+    body: sent at the end of a drag operation
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DND_ENTER+:"
+    body: drag-and-drop enter
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DND_LEAVE+:"
+    body: drag-and-drop leave
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DND_MOTION+:"
+    body: drag-and-drop motion
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DND_DROP+:"
+    body: drag-and-drop motion
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DND_REQUEST+:"
+    body: drag-and-drop request
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Layout hints for child widgets
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_NORMAL+:"
+    body: Default layout mode
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_SIDE_TOP+:"
+    body: Pack on top side (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_SIDE_BOTTOM+:"
+    body: Pack on bottom side
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_SIDE_LEFT+:"
+    body: Pack on left side
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_SIDE_RIGHT+:"
+    body: Pack on right side
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FILL_COLUMN+:"
+    body: Matrix column is stretchable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FILL_ROW+:"
+    body: Matrix row is stretchable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_LEFT+:"
+    body: Stick on left (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_RIGHT+:"
+    body: Stick on right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_CENTER_X+:"
+    body: Center horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FIX_X+:"
+    body: X fixed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_TOP+:"
+    body: Stick on top (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_BOTTOM+:"
+    body: Stick on bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_CENTER_Y+:"
+    body: Center vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FIX_Y+:"
+    body: Y fixed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FIX_WIDTH+:"
+    body: Width fixed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FIX_HEIGHT+:"
+    body: Height fixed
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_MIN_WIDTH+:"
+    body: Minimum width is the default
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_MIN_HEIGHT+:"
+    body: Minimum height is the default
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FILL_X+:"
+    body: Stretch or shrink horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FILL_Y+:"
+    body: Stretch or shrink vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_FILL:"
+    body: Stretch or shrink in both directions
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_EXPLICIT+:"
+    body: Explicit placement
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_DOCK_SAME+:"
+    body: Dock on same galley, if it fits
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LAYOUT_DOCK_NEXT+:"
+    body: Dock on next galley
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Frame border appearance styles (for subclasses)
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_NONE+:"
+    body: Default is no frame
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_SUNKEN+:"
+    body: Sunken border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_RAISED+:"
+    body: Raised border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_THICK+:"
+    body: Thick border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_GROOVE+:"
+    body: A groove or etched-in border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_RIDGE+:"
+    body: A ridge or embossed border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_LINE+:"
+    body: Simple line border
+  - !ruby/struct:SM::Flow::LI 
+    label: "+FRAME_NORMAL+:"
+    body: Regular raised/thick border
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Packing style (for packers)
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PACK_NORMAL+:"
+    body: Default is each its own size
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PACK_UNIFORM_HEIGHT+:"
+    body: Uniform height
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PACK_UNIFORM_WIDTH+:"
+    body: Uniform width
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message IDs common to most windows
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NONE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HIDE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SHOW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLESHOWN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LOWER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_RAISE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DISABLE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ENABLE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLEENABLED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UNCHECK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CHECK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UNKNOWN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UPDATE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_AUTOSCROLL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HSCROLLED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_VSCROLLED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETINTVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETREALVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETSTRINGVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETINTRANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SETREALRANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GETINTVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GETREALVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GETSTRINGVALUE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GETINTRANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GETREALRANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_QUERY_MENU+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HOTKEY+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ACCEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_UNPOST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_POST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_TILEHORIZONTAL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_TILEVERTICAL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_CASCADE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MAXIMIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MINIMIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_RESTORE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_CLOSE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_WINDOW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MENUWINDOW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MENUMINIMIZE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MENURESTORE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_MENUCLOSE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_NEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MDI_PREV+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXWindow
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acceptDrop
+- !ruby/object:RI::MethodSummary 
+  name: acquireClipboard
+- !ruby/object:RI::MethodSummary 
+  name: acquireSelection
+- !ruby/object:RI::MethodSummary 
+  name: active?
+- !ruby/object:RI::MethodSummary 
+  name: addHotKey
+- !ruby/object:RI::MethodSummary 
+  name: after?
+- !ruby/object:RI::MethodSummary 
+  name: before?
+- !ruby/object:RI::MethodSummary 
+  name: beginDrag
+- !ruby/object:RI::MethodSummary 
+  name: canFocus?
+- !ruby/object:RI::MethodSummary 
+  name: changeFocus
+- !ruby/object:RI::MethodSummary 
+  name: childAtIndex
+- !ruby/object:RI::MethodSummary 
+  name: childOf?
+- !ruby/object:RI::MethodSummary 
+  name: children
+- !ruby/object:RI::MethodSummary 
+  name: clearDragRectangle
+- !ruby/object:RI::MethodSummary 
+  name: clearShape
+- !ruby/object:RI::MethodSummary 
+  name: composeContext
+- !ruby/object:RI::MethodSummary 
+  name: composite?
+- !ruby/object:RI::MethodSummary 
+  name: contains?
+- !ruby/object:RI::MethodSummary 
+  name: containsChild?
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: createComposeContext
+- !ruby/object:RI::MethodSummary 
+  name: cursorPosition
+- !ruby/object:RI::MethodSummary 
+  name: default?
+- !ruby/object:RI::MethodSummary 
+  name: defaultHeight
+- !ruby/object:RI::MethodSummary 
+  name: defaultWidth
+- !ruby/object:RI::MethodSummary 
+  name: destroy
+- !ruby/object:RI::MethodSummary 
+  name: destroyComposeContext
+- !ruby/object:RI::MethodSummary 
+  name: detach
+- !ruby/object:RI::MethodSummary 
+  name: didAccept
+- !ruby/object:RI::MethodSummary 
+  name: disable
+- !ruby/object:RI::MethodSummary 
+  name: doesSaveUnder?
+- !ruby/object:RI::MethodSummary 
+  name: dragging?
+- !ruby/object:RI::MethodSummary 
+  name: dropDisable
+- !ruby/object:RI::MethodSummary 
+  name: dropEnable
+- !ruby/object:RI::MethodSummary 
+  name: dropEnabled?
+- !ruby/object:RI::MethodSummary 
+  name: dropFinished
+- !ruby/object:RI::MethodSummary 
+  name: dropTarget?
+- !ruby/object:RI::MethodSummary 
+  name: each_child
+- !ruby/object:RI::MethodSummary 
+  name: each_child_recursive
+- !ruby/object:RI::MethodSummary 
+  name: enable
+- !ruby/object:RI::MethodSummary 
+  name: enabled?
+- !ruby/object:RI::MethodSummary 
+  name: endDrag
+- !ruby/object:RI::MethodSummary 
+  name: forceRefresh
+- !ruby/object:RI::MethodSummary 
+  name: getChildAt
+- !ruby/object:RI::MethodSummary 
+  name: getDNDData
+- !ruby/object:RI::MethodSummary 
+  name: getHeightForWidth
+- !ruby/object:RI::MethodSummary 
+  name: getWidthForHeight
+- !ruby/object:RI::MethodSummary 
+  name: grab
+- !ruby/object:RI::MethodSummary 
+  name: grabKeyboard
+- !ruby/object:RI::MethodSummary 
+  name: grabbed?
+- !ruby/object:RI::MethodSummary 
+  name: grabbedKeyboard?
+- !ruby/object:RI::MethodSummary 
+  name: handleDrag
+- !ruby/object:RI::MethodSummary 
+  name: hasClipboard?
+- !ruby/object:RI::MethodSummary 
+  name: hasFocus?
+- !ruby/object:RI::MethodSummary 
+  name: hasSelection?
+- !ruby/object:RI::MethodSummary 
+  name: height
+- !ruby/object:RI::MethodSummary 
+  name: height=
+- !ruby/object:RI::MethodSummary 
+  name: hide
+- !ruby/object:RI::MethodSummary 
+  name: inFocusChain?
+- !ruby/object:RI::MethodSummary 
+  name: indexOfChild
+- !ruby/object:RI::MethodSummary 
+  name: initial?
+- !ruby/object:RI::MethodSummary 
+  name: inquireDNDAction
+- !ruby/object:RI::MethodSummary 
+  name: inquireDNDTypes
+- !ruby/object:RI::MethodSummary 
+  name: killFocus
+- !ruby/object:RI::MethodSummary 
+  name: layout
+- !ruby/object:RI::MethodSummary 
+  name: linkAfter
+- !ruby/object:RI::MethodSummary 
+  name: linkBefore
+- !ruby/object:RI::MethodSummary 
+  name: lower
+- !ruby/object:RI::MethodSummary 
+  name: move
+- !ruby/object:RI::MethodSummary 
+  name: offeredDNDType?
+- !ruby/object:RI::MethodSummary 
+  name: position
+- !ruby/object:RI::MethodSummary 
+  name: raiseWindow
+- !ruby/object:RI::MethodSummary 
+  name: recalc
+- !ruby/object:RI::MethodSummary 
+  name: releaseClipboard
+- !ruby/object:RI::MethodSummary 
+  name: releaseSelection
+- !ruby/object:RI::MethodSummary 
+  name: remHotKey
+- !ruby/object:RI::MethodSummary 
+  name: removeChild
+- !ruby/object:RI::MethodSummary 
+  name: repaint
+- !ruby/object:RI::MethodSummary 
+  name: repaint
+- !ruby/object:RI::MethodSummary 
+  name: reparent
+- !ruby/object:RI::MethodSummary 
+  name: resize
+- !ruby/object:RI::MethodSummary 
+  name: scroll
+- !ruby/object:RI::MethodSummary 
+  name: setCursorPosition
+- !ruby/object:RI::MethodSummary 
+  name: setDNDData
+- !ruby/object:RI::MethodSummary 
+  name: setDefault
+- !ruby/object:RI::MethodSummary 
+  name: setDragRectangle
+- !ruby/object:RI::MethodSummary 
+  name: setFocus
+- !ruby/object:RI::MethodSummary 
+  name: setInitial
+- !ruby/object:RI::MethodSummary 
+  name: setShape
+- !ruby/object:RI::MethodSummary 
+  name: shell?
+- !ruby/object:RI::MethodSummary 
+  name: show
+- !ruby/object:RI::MethodSummary 
+  name: shown?
+- !ruby/object:RI::MethodSummary 
+  name: tr
+- !ruby/object:RI::MethodSummary 
+  name: translateCoordinatesFrom
+- !ruby/object:RI::MethodSummary 
+  name: translateCoordinatesTo
+- !ruby/object:RI::MethodSummary 
+  name: underCursor?
+- !ruby/object:RI::MethodSummary 
+  name: ungrab
+- !ruby/object:RI::MethodSummary 
+  name: ungrabKeyboard
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: update
+- !ruby/object:RI::MethodSummary 
+  name: visible=
+- !ruby/object:RI::MethodSummary 
+  name: visible?
+- !ruby/object:RI::MethodSummary 
+  name: width
+- !ruby/object:RI::MethodSummary 
+  name: width=
+name: FXWindow
+superclass: Object

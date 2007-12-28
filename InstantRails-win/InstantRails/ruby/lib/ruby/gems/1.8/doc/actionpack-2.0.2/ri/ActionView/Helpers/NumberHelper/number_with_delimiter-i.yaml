@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats a <tt>number</tt> with grouped thousands using <tt>delimiter</tt> (e.g., 12,324). You can customize the format using optional <em>delimiter</em> and <em>separator</em> parameters.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>delimiter</tt> - Sets the thousands delimiter (defaults to &quot;,&quot;).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>separator</tt> - Sets the separator between the units (defaults to &quot;.&quot;).
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " number_with_delimiter(12345678)       # =&gt; 12,345,678\n number_with_delimiter(12345678.05)    # =&gt; 12,345,678.05\n number_with_delimiter(12345678, &quot;.&quot;)  # =&gt; 12.345.678\n\n number_with_delimiter(98765432.98, &quot; &quot;, &quot;,&quot;)\n # =&gt; 98 765 432,98\n"
+full_name: ActionView::Helpers::NumberHelper#number_with_delimiter
+is_singleton: false
+name: number_with_delimiter
+params: (number, delimiter=",", separator=".")
+visibility: public

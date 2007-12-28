@@ -1,0 +1,94 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Alternate status line help text, shown when toggled [String]
+  name: altHelpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Alternate icon, shown when toggled [FXIcon]
+  name: altIcon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Alternate text, shown when toggled [String]
+  name: altText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Alternate tool tip message, shown when toggled [String]
+  name: altTipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Toggled state [<tt>true</tt> or <tt>false</tt>]
+  name: state
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Toggle button style [Integer]
+  name: toggleStyle
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The toggle button provides a two-state button, which toggles between the on and the off state each time it is pressed. For each state, the toggle button has a unique icon and text label.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXToggleButton to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when the toggle button is pressed.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Toggle button flags
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOGGLEBUTTON_AUTOGRAY+:"
+    body: Automatically gray out when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOGGLEBUTTON_AUTOHIDE+:"
+    body: Automatically hide toggle button when not updated
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOGGLEBUTTON_TOOLBAR+:"
+    body: Toolbar style toggle button [flat look]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TOGGLEBUTTON_NORMAL+:"
+    body: <tt>FRAME_RAISED|FRAME_THICK|JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXToggleButton
+includes: []
+
+instance_methods: []
+
+name: FXToggleButton
+superclass: FXLabel

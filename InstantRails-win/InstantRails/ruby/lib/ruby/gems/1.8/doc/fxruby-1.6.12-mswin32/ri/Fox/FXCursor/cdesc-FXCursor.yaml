@@ -1,0 +1,92 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height of cursor, in pixels (returns zero for stock cursors) [Integer]
+  name: height
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hotspot x-coordinate (returns zero for stock cursors) [Integer]
+  name: hotX
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hotspot y-coordinate (returns zero for stock cursors) [Integer]
+  name: hotY
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width of cursor, in pixels (returns zero for stock cursors) [Integer]
+  name: width
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Cursor class
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Stock cursors
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_ARROW+:"
+    body: Default left pointing arrow
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_RARROW+:"
+    body: Right arrow
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_IBEAM+:"
+    body: Text I-Beam
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_WATCH+:"
+    body: Stopwatch or hourglass
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_CROSS+:"
+    body: Crosshair
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_UPDOWN+:"
+    body: Move up, down
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_LEFTRIGHT+:"
+    body: Move left, right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_MOVE+:"
+    body: Move up, down, left, right
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Cursor options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_KEEP+:"
+    body: Keep pixel data in client
+  - !ruby/struct:SM::Flow::LI 
+    label: "+CURSOR_OWNED+:"
+    body: Pixel data is owned by cursor
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXCursor
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: color?
+- !ruby/object:RI::MethodSummary 
+  name: loadPixels
+- !ruby/object:RI::MethodSummary 
+  name: savePixels
+name: FXCursor
+superclass: FXId

@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Caching is a cheap way of speeding up slow applications by keeping the result of calculations, renderings, and database calls around for subsequent requests. Action Controller affords you three approaches in varying levels of granularity: Page, Action, Fragment."
+- !ruby/struct:SM::Flow::P 
+  body: You can read more about each approach and the sweeping assistance by clicking the modules below.
+- !ruby/struct:SM::Flow::P 
+  body: "Note: To turn off all caching and sweeping, set Base.perform_caching = false."
+constants: []
+
+full_name: ActionController::Caching
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Pages
+- !ruby/object:RI::IncludedModule 
+  name: Actions
+- !ruby/object:RI::IncludedModule 
+  name: Fragments
+- !ruby/object:RI::IncludedModule 
+  name: Sweeping
+- !ruby/object:RI::IncludedModule 
+  name: SqlCache
+instance_methods: []
+
+name: Caching
+superclass: 

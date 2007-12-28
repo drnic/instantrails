@@ -1,0 +1,44 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>helper</tt> class method can take a series of helper module names, a block, or both.
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>*args</tt>: One or more <tt>Modules</tt>, <tt>Strings</tt> or <tt>Symbols</tt>, or the special symbol <tt>:all</tt>."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>&amp;block</tt>: A block defining helper methods."
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::P 
+  body: "When the argument is a <tt>String</tt> or <tt>Symbol</tt>, the method will provide the &quot;_helper&quot; suffix, require the file and include the module in the template class. The second form illustrates how to include custom helpers when working with namespaced controllers, or other cases where the file containing the helper definition is not in one of Rails' standard load paths:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  helper :foo             # =&gt; requires 'foo_helper' and includes FooHelper\n  helper 'resources/foo'  # =&gt; requires 'resources/foo_helper' and includes Resources::FooHelper\n"
+- !ruby/struct:SM::Flow::P 
+  body: When the argument is a <tt>Module</tt>, it will be included directly in the template class.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  helper FooHelper # =&gt; includes FooHelper\n"
+- !ruby/struct:SM::Flow::P 
+  body: When the argument is the symbol <tt>:all</tt>, the controller will include all helpers from <tt>app/helpers/**/*.rb</tt> under <tt>RAILS_ROOT</tt>.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  helper :all\n"
+- !ruby/struct:SM::Flow::P 
+  body: Additionally, the <tt>helper</tt> class method can receive and evaluate a block, making the methods defined available to the template.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # One line\n  helper { def hello() &quot;Hello, world!&quot; end }\n  # Multi-line\n  helper do\n    def foo(bar)\n      &quot;#{bar} is the very best&quot;\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Finally, all the above styles can be mixed together, and the <tt>helper</tt> method can be invoked with a mix of <tt>symbols</tt>, <tt>strings</tt>, <tt>modules</tt> and blocks.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  helper(:three, BlindHelper) { def mice() 'mice' end }\n"
+full_name: ActionController::Helpers::ClassMethods#helper
+is_singleton: false
+name: helper
+params: (*args, &block)
+visibility: public

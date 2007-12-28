@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Repeated call #process for as long as the given block returns <tt>true</tt>. If no block is given, then the loop continues until there are no more open channels on this connection."
+full_name: Net::SSH::Connection::Driver#loop
+is_singleton: false
+name: loop
+params: ( &block )
+visibility: public

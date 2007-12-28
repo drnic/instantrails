@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The file association object for this item [FXFileAssoc]
+  name: assoc
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Date for this item [Time]
+  name: date
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The file size for this item [Integer]
+  name: size
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: File item
+constants: []
+
+full_name: Fox::FXFileItem
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: blockdev?
+- !ruby/object:RI::MethodSummary 
+  name: chardev?
+- !ruby/object:RI::MethodSummary 
+  name: directory?
+- !ruby/object:RI::MethodSummary 
+  name: executable?
+- !ruby/object:RI::MethodSummary 
+  name: fifo?
+- !ruby/object:RI::MethodSummary 
+  name: file?
+- !ruby/object:RI::MethodSummary 
+  name: share?
+- !ruby/object:RI::MethodSummary 
+  name: socket?
+- !ruby/object:RI::MethodSummary 
+  name: symlink?
+name: FXFileItem
+superclass: FXIconItem

@@ -1,0 +1,43 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index install location
+  name: dest_directory
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Index build directory
+  name: directory
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Top level class for building the gem repository index.
+constants: []
+
+full_name: Gem::Indexer
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Gem::UserInteraction
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: abbreviate
+- !ruby/object:RI::MethodSummary 
+  name: build_index
+- !ruby/object:RI::MethodSummary 
+  name: gem_file_list
+- !ruby/object:RI::MethodSummary 
+  name: generate_index
+- !ruby/object:RI::MethodSummary 
+  name: install_index
+- !ruby/object:RI::MethodSummary 
+  name: sanitize
+- !ruby/object:RI::MethodSummary 
+  name: sanitize_string
+name: Indexer
+superclass: Object

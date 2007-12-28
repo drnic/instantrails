@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: set
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Gets and sets attributes on all matched elements.
+- !ruby/struct:SM::Flow::P 
+  body: Pass in a <tt>key</tt> on its own and this method will return the string value assigned to that attribute for the first elements. Or <tt>nil</tt> if the attribute isn't found.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc.search(&quot;a&quot;).attr(&quot;href&quot;)\n    #=&gt; &quot;http://hacketyhack.net/&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: Or, pass in a <tt>key</tt> and <tt>value</tt>. This will set an attribute for all matched elements.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  doc.search(&quot;p&quot;).attr(&quot;class&quot;, &quot;basic&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You may also use a Hash to set a series of attributes:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  (doc/&quot;a&quot;).attr(:class =&gt; &quot;basic&quot;, :href =&gt; &quot;http://hackety.org/&quot;)\n"
+- !ruby/struct:SM::Flow::P 
+  body: Lastly, a block can be used to rewrite an attribute based on the element it belongs to. The block will pass in an element. Return from the block the new value of the attribute.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  records.attr(&quot;href&quot;) { |e| e['href'] + &quot;#top&quot; }\n"
+- !ruby/struct:SM::Flow::P 
+  body: This example adds a <tt>#top</tt> anchor to each link.
+full_name: Hpricot::Elements#attr
+is_singleton: false
+name: attr
+params: (key, value = nil, &blk)
+visibility: public

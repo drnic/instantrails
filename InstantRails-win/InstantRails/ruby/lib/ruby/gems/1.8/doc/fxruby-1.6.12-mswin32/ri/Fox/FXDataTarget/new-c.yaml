@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theDataTarget
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return a new FXDataTarget instance, initialized with the specified <em>value</em>. If the optional message target object and message identifier (<em>tgt</em> and <em>sel</em>) are specified, the data target will forward the <tt>SEL_COMMAND</tt> or <tt>SEL_COMMAND</tt> to this other target.
+full_name: Fox::FXDataTarget::new
+is_singleton: true
+name: new
+params: (value=nil, target=nil, selector=0) {|theDataTarget| ...}
+visibility: public

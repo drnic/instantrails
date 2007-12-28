@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Needle::Lifecycle</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Needle::Lifecycle</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/needle/lifecycle/deferred_rb.html">
+                lib/needle/lifecycle/deferred.rb
+                </a>
+        <br />
+                <a href="../../files/lib/needle/lifecycle/initialize_rb.html">
+                lib/needle/lifecycle/initialize.rb
+                </a>
+        <br />
+                <a href="../../files/lib/needle/lifecycle/multiton_rb.html">
+                lib/needle/lifecycle/multiton.rb
+                </a>
+        <br />
+                <a href="../../files/lib/needle/lifecycle/proxy_rb.html">
+                lib/needle/lifecycle/proxy.rb
+                </a>
+        <br />
+                <a href="../../files/lib/needle/lifecycle/singleton_rb.html">
+                lib/needle/lifecycle/singleton.rb
+                </a>
+        <br />
+                <a href="../../files/lib/needle/lifecycle/threaded_rb.html">
+                lib/needle/lifecycle/threaded.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Lifecycle/Deferred.html" class="link">Needle::Lifecycle::Deferred</a><br />
+Class <a href="Lifecycle/Initialize.html" class="link">Needle::Lifecycle::Initialize</a><br />
+Class <a href="Lifecycle/Multiton.html" class="link">Needle::Lifecycle::Multiton</a><br />
+Class <a href="Lifecycle/Proxy.html" class="link">Needle::Lifecycle::Proxy</a><br />
+Class <a href="Lifecycle/Singleton.html" class="link">Needle::Lifecycle::Singleton</a><br />
+Class <a href="Lifecycle/Threaded.html" class="link">Needle::Lifecycle::Threaded</a><br />
+
+    </div>
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

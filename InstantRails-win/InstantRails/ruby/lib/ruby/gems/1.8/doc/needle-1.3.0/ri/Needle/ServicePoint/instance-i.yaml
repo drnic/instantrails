@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Return the service instance represented by this service point. Depending on the style of lifecycle management chosen for this service point, this may or may not be a new instance for every invocation of this method.
+- !ruby/struct:SM::Flow::P 
+  body: The first argument is the container that should be used to resolve this service point. Assuming the container to be used is this service point's own container would mean that any nested service points couldn't override service points their parents' service points used.
+- !ruby/struct:SM::Flow::P 
+  body: Any extra arguments to this method will be passed through to the chain, which may cause an error if there is an element in the pipeline that does not accept additional arguments. Regardless, the first two parameters to the chain will always be the container and the service point.
+full_name: Needle::ServicePoint#instance
+is_singleton: false
+name: instance
+params: ( actual_container, *args )
+visibility: public

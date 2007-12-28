@@ -1,0 +1,164 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: dev_major
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: dev_minor
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: rdev_major
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: rdev_minor
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'1.2.7'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Defined in Ruby's win32.h. Not meant for public consumption.
+  name: S_IWGRP
+  value: "0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IWOTH
+  value: "0002"
+full_name: File::Stat
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::MSVCRT::Buffer
+- !ruby/object:RI::IncludedModule 
+  name: Windows::MSVCRT::File
+- !ruby/object:RI::IncludedModule 
+  name: Windows::DeviceIO
+- !ruby/object:RI::IncludedModule 
+  name: Windows::FileSystem
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Path
+- !ruby/object:RI::IncludedModule 
+  name: Windows::File
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Handle
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Volume
+- !ruby/object:RI::IncludedModule 
+  name: Comparable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: <=>
+- !ruby/object:RI::MethodSummary 
+  name: archive?
+- !ruby/object:RI::MethodSummary 
+  name: atime
+- !ruby/object:RI::MethodSummary 
+  name: blksize
+- !ruby/object:RI::MethodSummary 
+  name: blockdev?
+- !ruby/object:RI::MethodSummary 
+  name: blocks
+- !ruby/object:RI::MethodSummary 
+  name: chardev?
+- !ruby/object:RI::MethodSummary 
+  name: compressed?
+- !ruby/object:RI::MethodSummary 
+  name: content_indexed?
+- !ruby/object:RI::MethodSummary 
+  name: ctime
+- !ruby/object:RI::MethodSummary 
+  name: dev
+- !ruby/object:RI::MethodSummary 
+  name: directory?
+- !ruby/object:RI::MethodSummary 
+  name: encrypted?
+- !ruby/object:RI::MethodSummary 
+  name: executable?
+- !ruby/object:RI::MethodSummary 
+  name: executable_real?
+- !ruby/object:RI::MethodSummary 
+  name: file?
+- !ruby/object:RI::MethodSummary 
+  name: ftype
+- !ruby/object:RI::MethodSummary 
+  name: gid
+- !ruby/object:RI::MethodSummary 
+  name: grpowned?
+- !ruby/object:RI::MethodSummary 
+  name: hidden?
+- !ruby/object:RI::MethodSummary 
+  name: indexed?
+- !ruby/object:RI::MethodSummary 
+  name: ino
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: mode
+- !ruby/object:RI::MethodSummary 
+  name: mtime
+- !ruby/object:RI::MethodSummary 
+  name: nlink
+- !ruby/object:RI::MethodSummary 
+  name: normal?
+- !ruby/object:RI::MethodSummary 
+  name: offline?
+- !ruby/object:RI::MethodSummary 
+  name: owned?
+- !ruby/object:RI::MethodSummary 
+  name: pipe?
+- !ruby/object:RI::MethodSummary 
+  name: pretty_print
+- !ruby/object:RI::MethodSummary 
+  name: rdev
+- !ruby/object:RI::MethodSummary 
+  name: read_only?
+- !ruby/object:RI::MethodSummary 
+  name: readable?
+- !ruby/object:RI::MethodSummary 
+  name: readable_real?
+- !ruby/object:RI::MethodSummary 
+  name: readonly?
+- !ruby/object:RI::MethodSummary 
+  name: reparse_point?
+- !ruby/object:RI::MethodSummary 
+  name: setgid?
+- !ruby/object:RI::MethodSummary 
+  name: setuid?
+- !ruby/object:RI::MethodSummary 
+  name: size
+- !ruby/object:RI::MethodSummary 
+  name: size?
+- !ruby/object:RI::MethodSummary 
+  name: socket?
+- !ruby/object:RI::MethodSummary 
+  name: sparse?
+- !ruby/object:RI::MethodSummary 
+  name: sticky?
+- !ruby/object:RI::MethodSummary 
+  name: symlink?
+- !ruby/object:RI::MethodSummary 
+  name: system?
+- !ruby/object:RI::MethodSummary 
+  name: temporary?
+- !ruby/object:RI::MethodSummary 
+  name: uid
+- !ruby/object:RI::MethodSummary 
+  name: writable?
+- !ruby/object:RI::MethodSummary 
+  name: writable_real?
+- !ruby/object:RI::MethodSummary 
+  name: zero?
+name: Stat
+superclass: Object

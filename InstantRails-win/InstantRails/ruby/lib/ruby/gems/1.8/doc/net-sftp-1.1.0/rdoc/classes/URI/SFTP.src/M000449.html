@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>direct_open (URI::SFTP)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/uri/open-sftp.rb, line 29</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">direct_open</span>( <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">open_options</span> )
+      <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SFTP</span>.<span class="ruby-identifier">start</span>( <span class="ruby-identifier">host</span>, <span class="ruby-identifier">port</span>, <span class="ruby-identifier">user</span>, <span class="ruby-identifier">password</span>, <span class="ruby-identifier">options</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">sftp</span><span class="ruby-operator">|</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">open_options</span>[<span class="ruby-identifier">:content_length_proc</span>]
+          <span class="ruby-identifier">open_options</span>[<span class="ruby-identifier">:content_length_proc</span>].<span class="ruby-identifier">call</span>( <span class="ruby-identifier">sftp</span>.<span class="ruby-identifier">lstat</span>( <span class="ruby-identifier">path</span> ).<span class="ruby-identifier">size</span> )
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">body</span> = <span class="ruby-keyword kw">nil</span>
+        <span class="ruby-identifier">sftp</span>.<span class="ruby-identifier">open_handle</span>( <span class="ruby-identifier">path</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">handle</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">body</span> = <span class="ruby-identifier">sftp</span>.<span class="ruby-identifier">read</span>( <span class="ruby-identifier">handle</span>,
+                    <span class="ruby-identifier">:chunk_size</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">open_options</span>[<span class="ruby-identifier">:chunk_size</span>],
+                    <span class="ruby-identifier">:progress_callback</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">open_options</span>[<span class="ruby-identifier">:progress_proc</span>] )
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">body</span>.<span class="ruby-identifier">nil?</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">SFTP</span><span class="ruby-operator">::</span><span class="ruby-constant">SFTPError</span>, <span class="ruby-identifier">sftp</span>.<span class="ruby-identifier">status</span>[<span class="ruby-identifier">:message</span>]
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">buf</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">body</span>
+        <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">io</span>.<span class="ruby-identifier">rewind</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

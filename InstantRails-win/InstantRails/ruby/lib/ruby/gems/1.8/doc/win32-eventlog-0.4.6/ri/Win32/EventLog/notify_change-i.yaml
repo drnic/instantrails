@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Yields an EventLogStruct every time a record is written to the event log. Unlike EventLog#tail, this method breaks out of the block after the event.
+- !ruby/struct:SM::Flow::P 
+  body: Raises an Error if no block is provided.
+full_name: Win32::EventLog#notify_change
+is_singleton: false
+name: notify_change
+params: (&block)
+visibility: public

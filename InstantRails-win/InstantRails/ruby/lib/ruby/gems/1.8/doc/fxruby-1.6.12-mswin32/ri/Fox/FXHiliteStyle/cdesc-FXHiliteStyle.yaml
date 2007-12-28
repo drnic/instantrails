@@ -1,0 +1,65 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Active text background color [FXColor]
+  name: activeBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text background color [FXColor]
+  name: hiliteBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text foreground color [FXColor]
+  name: hiliteForeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal text background color [FXColor]
+  name: normalBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Normal text foreground color [FXColor]
+  name: normalForeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text background color [FXColor]
+  name: selectBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Selected text foreground color [FXColor]
+  name: selectForeColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight text style [Integer]
+  name: style
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: from_text
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Highlight style entry
+constants: []
+
+full_name: Fox::FXHiliteStyle
+includes: []
+
+instance_methods: []
+
+name: FXHiliteStyle
+superclass: Object

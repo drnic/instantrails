@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Progress message [String]
+  name: message
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Amount of progress [Integer]
+  name: progress
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Maximum value for progress [Integer]
+  name: total
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A progress dialog is a simple dialog which is used to keep a user informed of the progress of a lengthy operation in a program and that the program is in fact still working.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSDIALOG_NOCANCEL+:"
+    body: Default is no cancel button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSDIALOG_CANCEL+:"
+    body: Enable the cancel button
+  - !ruby/struct:SM::Flow::LI 
+    label: "+PROGRESSDIALOG_NORMAL+:"
+    body: same as <tt>DECOR_TITLE|DECOR_BORDER</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXProgressDialog
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: cancelled?
+- !ruby/object:RI::MethodSummary 
+  name: increment
+name: FXProgressDialog
+superclass: FXDialogBox

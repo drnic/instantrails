@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Win32::Sound</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Win32::Sound</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/win32/sound_rb.html">
+                lib/win32/sound.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000002">beep</a>&nbsp;&nbsp;
+      <a href="#M000001">devices</a>&nbsp;&nbsp;
+      <a href="#M000007">get_wave_volume</a>&nbsp;&nbsp;
+      <a href="#M000004">play</a>&nbsp;&nbsp;
+      <a href="#M000005">set_wave_volume</a>&nbsp;&nbsp;
+      <a href="#M000003">stop</a>&nbsp;&nbsp;
+      <a href="#M000006">wave_volume</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Sound/Error.html" class="link">Win32::Sound::Error</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">VERSION</td>
+          <td>=</td>
+          <td class="context-item-value">'0.4.1'</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOW_FREQUENCY</td>
+          <td>=</td>
+          <td class="context-item-value">37</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HIGH_FREQUENCY</td>
+          <td>=</td>
+          <td class="context-item-value">32767</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MAX_VOLUME</td>
+          <td>=</td>
+          <td class="context-item-value">0xFFFF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYNC</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ASYNC</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NODEFAULT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MEMORY</td>
+          <td>=</td>
+          <td class="context-item-value">0x0004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">LOOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOSTOP</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOWAIT</td>
+          <td>=</td>
+          <td class="context-item-value">8192</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALIAS</td>
+          <td>=</td>
+          <td class="context-item-value">65536</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ALIAS_ID</td>
+          <td>=</td>
+          <td class="context-item-value">1114112</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILENAME</td>
+          <td>=</td>
+          <td class="context-item-value">131072</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">RESOURCE</td>
+          <td>=</td>
+          <td class="context-item-value">262148</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PURGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">APPLICATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0080</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000002" class="method-detail">
+        <a name="M000002"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000002.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000002.html');return false;">
+          <span class="method-name">beep</span><span class="method-args">(frequency, duration)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Generates simple tones on the speaker. The function is synchronous; it does
+not return control to its caller until the sound finishes.
+</p>
+<p>
+The frequency (in Hertz) must be between 37 and 32767. The duration is in
+milliseconds.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000001" class="method-detail">
+        <a name="M000001"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000001.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000001.html');return false;">
+          <span class="method-name">devices</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns an array of all the available sound <a
+href="Sound.html#M000001">devices</a>; their names contain the type of the
+device and a zero-based ID number. Possible return values are WAVEOUT,
+WAVEIN, MIDIOUT, MIDIIN, AUX or MIXER.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000007.html');return false;">
+          <span class="method-name">get_wave_volume</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Alias for <a href="Sound.html#M000006">Sound.wave_volume</a>
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000004.html');return false;">
+          <span class="method-name">play</span><span class="method-args">(sound, flags = 0)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Plays the specified sound. The sound can be a wave file or a system sound,
+when used in conjunction with the ALIAS flag.
+</p>
+<p>
+Valid flags:
+</p>
+<p>
+Sound::ALIAS
+</p>
+<pre>
+  The sound parameter is a system-event alias in the registry or the
+  WIN.INI file. If the registry contains no such name, it plays the
+  system default sound unless the NODEFAULT value is also specified.
+  Do not use with FILENAME.
+</pre>
+<p>
+Sound::APPLICATION
+</p>
+<pre>
+  The sound is played using an application-specific association.
+</pre>
+<p>
+Sound::ASYNC
+</p>
+<pre>
+  The sound is played asynchronously and the function returns
+  immediately after beginning the sound.
+</pre>
+<p>
+Sound::FILENAME
+</p>
+<pre>
+  The sound parameter is the name of a WAV file.  Do not use with
+  ALIAS.
+</pre>
+<p>
+Sound::LOOP
+</p>
+<pre>
+  The sound plays repeatedly until Sound.stop() is called. You must
+  also specify the ASYNC flag to loop sounds.
+</pre>
+<p>
+Sound::MEMORY
+</p>
+<pre>
+  The sound points to an image of a waveform sound in memory.
+</pre>
+<p>
+Sound::NODEFAULT
+</p>
+<pre>
+  If the sound cannot be found, the function returns silently without
+  playing the default sound.
+</pre>
+<p>
+Sound::NOSTOP
+</p>
+<pre>
+  If a sound is currently playing, the function immediately returns
+  false without playing the requested sound.
+</pre>
+<p>
+Sound::NOWAIT
+</p>
+<pre>
+  If the driver is busy, return immediately without playing the sound.
+</pre>
+<p>
+Sound::PURGE
+</p>
+<pre>
+  Stop playing all instances of the specified sound.
+</pre>
+<p>
+Sound::SYNC
+</p>
+<pre>
+  The sound is played synchronously and the function does not return
+  until the sound ends.
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000005.html');return false;">
+          <span class="method-name">set_wave_volume</span><span class="method-args">(left_channel, right_channel = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the volume for the left and right channel. If the
+<tt>right_channel</tt> is omitted, the volume is set for <b>both</b>
+channels.
+</p>
+<p>
+You may optionally pass a single Integer rather than an Array, in which
+case it is assumed you are setting both channels to the same value.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000003" class="method-detail">
+        <a name="M000003"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000003.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000003.html');return false;">
+          <span class="method-name">stop</span><span class="method-args">(purge = false)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Stops any currently playing waveform sound. If <tt>purge</tt> is set to
+true, then <b>all</b> sounds are stopped. The default is false.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="Sound.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('Sound.src/M000006.html');return false;">
+          <span class="method-name">wave_volume</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns a 2-element array that contains the volume for the left channel and
+right channel, respectively.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

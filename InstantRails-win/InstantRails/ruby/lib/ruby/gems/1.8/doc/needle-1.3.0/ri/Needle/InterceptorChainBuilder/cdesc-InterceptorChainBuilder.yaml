@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This module encapsulates the functionality for building interceptor chains.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "The context of a method invocation. This is used in an interceptor chain to encapsulate the elements of the current invocation. sym: the name of the method being invoked args: the argument list being passed to the method block: the reference to the block attached to the method invocation data: a hash that may be used by clients for storing arbitrary data in"
+  - !ruby/struct:SM::Flow::VERB 
+    body: "       the context.\n"
+  name: InvocationContext
+  value: Struct.new( :sym, :args, :block, :data )
+full_name: Needle::InterceptorChainBuilder
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: build
+name: InterceptorChainBuilder
+superclass: 

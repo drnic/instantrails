@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>open_channel (Net::SSH::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/session.rb, line 162</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_channel</span>( <span class="ruby-identifier">type</span>=<span class="ruby-value str">&quot;session&quot;</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+        <span class="ruby-identifier">sanity_check</span>
+        <span class="ruby-identifier">channel</span> = <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">open_channel</span>( <span class="ruby-identifier">type</span>, <span class="ruby-identifier">data</span> )
+        <span class="ruby-identifier">channel</span>.<span class="ruby-identifier">on_confirm_open</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+
+        <span class="ruby-comment cmt"># If we have an agent, and agent-forwarding is enabled, set up</span>
+        <span class="ruby-comment cmt"># the forwarding. Do this once only, after the first channel</span>
+        <span class="ruby-comment cmt"># is opened.</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@forward_agent</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@registry</span>[<span class="ruby-identifier">:userauth</span>].<span class="ruby-identifier">agent</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@agent_forwarded</span>
+            <span class="ruby-identifier">agentforward</span>.<span class="ruby-identifier">request</span>
+            <span class="ruby-ivar">@agent_forwarded</span> = <span class="ruby-keyword kw">true</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">channel</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

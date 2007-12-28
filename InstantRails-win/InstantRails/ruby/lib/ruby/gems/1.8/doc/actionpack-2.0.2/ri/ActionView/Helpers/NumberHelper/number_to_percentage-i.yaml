@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Formats a <tt>number</tt> as a percentage string (e.g., 65%). You can customize the format in the <tt>options</tt> hash.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:precision</tt> - Sets the level of precision (defaults to 3).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:separator</tt> - Sets the separator between the units (defaults to &quot;.&quot;).
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " number_to_percentage(100)                         # =&gt; 100.000%\n number_to_percentage(100, :precision =&gt; 0)        # =&gt; 100%\n\n number_to_percentage(302.24398923423, :precision =&gt; 5)\n # =&gt; 302.24399%\n"
+full_name: ActionView::Helpers::NumberHelper#number_to_percentage
+is_singleton: false
+name: number_to_percentage
+params: (number, options = {})
+visibility: public

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if there are bytes to be read on the socket. Note that this only means there is an encrypted packet ready to be read, not that there is data available to any particular SSH channel.
+full_name: Net::SSH::Transport::Session#reader_ready?
+is_singleton: false
+name: reader_ready?
+params: ()
+visibility: public

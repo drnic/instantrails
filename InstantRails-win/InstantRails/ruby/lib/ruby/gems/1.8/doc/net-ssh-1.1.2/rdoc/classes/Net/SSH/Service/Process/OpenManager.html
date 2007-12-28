@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SSH::Service::Process::OpenManager</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SSH::Service::Process::OpenManager</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../../files/lib/net/ssh/service/process/open_rb.html">
+                lib/net/ssh/service/process/open.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+A delegate class to manage the processing for a single executed process on
+the remote host. It opens a channel, executes the process on it, and
+manages the various callbacks.
+</p>
+<p>
+This service is typically used like this:
+</p>
+<pre>
+  Net::SSH.start( 'host', 'user' ) do |session|
+    session.process.open( &quot;bc&quot; ) do |process|
+      ...
+    end
+  end
+</pre>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000374">close</a>&nbsp;&nbsp;
+      <a href="#M000373">close_input</a>&nbsp;&nbsp;
+      <a href="#M000380">do_close</a>&nbsp;&nbsp;
+      <a href="#M000375">do_confirm</a>&nbsp;&nbsp;
+      <a href="#M000378">do_data</a>&nbsp;&nbsp;
+      <a href="#M000377">do_exec_failure</a>&nbsp;&nbsp;
+      <a href="#M000376">do_exec_success</a>&nbsp;&nbsp;
+      <a href="#M000379">do_extended_data</a>&nbsp;&nbsp;
+      <a href="#M000381">do_request</a>&nbsp;&nbsp;
+      <a href="#M000365">new</a>&nbsp;&nbsp;
+      <a href="#M000370">on_exit</a>&nbsp;&nbsp;
+      <a href="#M000367">on_failure</a>&nbsp;&nbsp;
+      <a href="#M000369">on_stderr</a>&nbsp;&nbsp;
+      <a href="#M000368">on_stdout</a>&nbsp;&nbsp;
+      <a href="#M000366">on_success</a>&nbsp;&nbsp;
+      <a href="#M000372">puts</a>&nbsp;&nbsp;
+      <a href="#M000371">write</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000365" class="method-detail">
+        <a name="M000365"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000365.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000365.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( connection, log, command ) {|self| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="OpenManager.html#M000365">new</a> <a
+href="OpenManager.html">OpenManager</a> instance on the given connection.
+It will attempt to execute the given command. If a block is given, the
+manager will be yielded to the block, and the constructor will not return
+until all channels are closed.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000374" class="method-detail">
+        <a name="M000374"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000374.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000374.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Close the process. All streams (<tt>stdin</tt>, <tt>stdout</tt>,
+<tt>stderr</tt>) will be closed. Any output that the process had already
+produced will still be sent, but it will be shut down as soon as possible.
+This will return immediately.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000373" class="method-detail">
+        <a name="M000373"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000373.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000373.html');return false;">
+          <span class="method-name">close_input</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Indicate that no more data will be sent to the process (sends an EOF to the
+process). The process may continue to send data, but the <tt>stdin</tt>
+stream is effectively closed. This will return immediately.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000380" class="method-detail">
+        <a name="M000380"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000380.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000380.html');return false;">
+          <span class="method-name">do_close</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when the channel is closed. This simply delegates to the <tt><a
+href="OpenManager.html#M000370">on_exit</a></tt> callback, if registered.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000375" class="method-detail">
+        <a name="M000375"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000375.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000375.html');return false;">
+          <span class="method-name">do_confirm</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when the channel&#8216;s opening has been confirmed by the server.
+This is where the command to execute will be sent to the server.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000378" class="method-detail">
+        <a name="M000378"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000378.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000378.html');return false;">
+          <span class="method-name">do_data</span><span class="method-args">( channel, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when data arrives over the channel. This simply delegates to the
+<tt><a href="OpenManager.html#M000368">on_stdout</a></tt> callback, if
+registered.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000377" class="method-detail">
+        <a name="M000377"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000377.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000377.html');return false;">
+          <span class="method-name">do_exec_failure</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when the invocation of the command failed. This will call the
+<tt><a href="OpenManager.html#M000367">on_failure</a></tt> callback, if
+registered, or will otherwise raise an exception.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000376" class="method-detail">
+        <a name="M000376"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000376.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000376.html');return false;">
+          <span class="method-name">do_exec_success</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when the invocation of the command has been successful. This
+registers various callbacks, and then calls the <tt><a
+href="OpenManager.html#M000366">on_success</a></tt> callback (if
+registered).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000379" class="method-detail">
+        <a name="M000379"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000379.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000379.html');return false;">
+          <span class="method-name">do_extended_data</span><span class="method-args">( channel, type, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when extended data arrives over the channel. This simply delegates
+to the <tt><a href="OpenManager.html#M000369">on_stderr</a></tt> callback,
+if registered, if the type is 1; otherwise it does nothing.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000381" class="method-detail">
+        <a name="M000381"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000381.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000381.html');return false;">
+          <span class="method-name">do_request</span><span class="method-args">( channel, type, want_reply, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when a channel request is received.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000370" class="method-detail">
+        <a name="M000370"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000370.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000370.html');return false;">
+          <span class="method-name">on_exit</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the given block to be invoked when the process terminates
+normally. The block should accept two parameters: the process instance
+(<tt>self</tt>) and the exit status of the process.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000367" class="method-detail">
+        <a name="M000367"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000367.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000367.html');return false;">
+          <span class="method-name">on_failure</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the given block to be invoked when the command could not be
+started. The block should accept two parameters: the process instance
+(<tt>self</tt>) and a status string. (The status string is currently always
+<tt>nil</tt>, since <a href="../../../SSH.html">SSH</a> itself does not
+indicate why the program failed to start.)
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000369" class="method-detail">
+        <a name="M000369"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000369.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000369.html');return false;">
+          <span class="method-name">on_stderr</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the given block to be invoked when data is recieved from the
+invoked command&#8216;s <tt>stderr</tt> stream. The block should accept two
+parameters: the process instance (<tt>self</tt>) and the data string. Note
+that if the process sends large amounts of data, this method may be invoked
+multiple times, each time with a portion of the command&#8216;s error
+output.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000368" class="method-detail">
+        <a name="M000368"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000368.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000368.html');return false;">
+          <span class="method-name">on_stdout</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the given block to be invoked when data is recieved from the
+invoked command&#8216;s <tt>stdout</tt> stream. The block should accept two
+parameters: the process instance (<tt>self</tt>) and the data string. Note
+that if the process sends large amounts of data, this method may be invoked
+multiple times, each time with a portion of the command&#8216;s output.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000366" class="method-detail">
+        <a name="M000366"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000366.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000366.html');return false;">
+          <span class="method-name">on_success</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Register the given block to be invoked when the command has been confirmed
+to have been successfully started. The block should accept a single
+parameter, the process instance that was created (<tt>self</tt>).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000372" class="method-detail">
+        <a name="M000372"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000372.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000372.html');return false;">
+          <span class="method-name">puts</span><span class="method-args">( data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Send the given data to the process, appending a newline. As with
+Kernel::puts, this will not append a newline if the string already has one.
+See <a href="OpenManager.html#M000371">write</a>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000371" class="method-detail">
+        <a name="M000371"></a>
+
+        <div class="method-heading">
+          <a href="OpenManager.src/M000371.html" target="Code" class="method-signature"
+            onclick="popupCode('OpenManager.src/M000371.html');return false;">
+          <span class="method-name">write</span><span class="method-args">( data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Send the given data to the process. It will be sent via the process&#8216;s
+<tt>stdin</tt> stream. This method returns immediately.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

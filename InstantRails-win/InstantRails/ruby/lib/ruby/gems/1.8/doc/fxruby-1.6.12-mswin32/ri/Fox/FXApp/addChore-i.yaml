@@ -1,0 +1,32 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Add a idle processing message to be sent to a target object when the system becomes idle, i.e. when there are no more events to be processed. There are several forms for #addChore; the original form (from FOX) takes two arguments, a target object and a message identifier:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    app.addChore(tgt, sel)\n"
+- !ruby/struct:SM::Flow::P 
+  body: If a chore with the same target and message already exists, it will be rescheduled.
+- !ruby/struct:SM::Flow::P 
+  body: "A second form takes a Method instance as its single argument:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    app.addChore(mthd)\n"
+- !ruby/struct:SM::Flow::P 
+  body: For this form, the method should have the standard argument list for a FOX message handler. That is, the method should take three arguments, for the message <em>sender</em> (an FXObject), the message <em>selector</em>, and the message <em>data</em> (if any).
+- !ruby/struct:SM::Flow::P 
+  body: "The last form takes a block:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    app.addChore() do |sender, sel, data|\n        ... handle the chore ...\n    end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "All of these return a reference to an opaque FXChore instance that can be passed to #removeChore if it is necessary to remove the chore before it fires."
+- !ruby/struct:SM::Flow::P 
+  body: For the last two forms, you can pass in the optional +:repeat+ parameter to cause the chore to be re-registered after it fires, e.g.
+- !ruby/struct:SM::Flow::VERB 
+  body: "    chore = app.addChore(:repeat =&gt; true) do |sender, sel, data|\n        ... handle the chore ...\n        ... re-add the chore ...\n    end\n"
+full_name: Fox::FXApp#addChore
+is_singleton: false
+name: addChore
+params: (*args, &block)
+visibility: public

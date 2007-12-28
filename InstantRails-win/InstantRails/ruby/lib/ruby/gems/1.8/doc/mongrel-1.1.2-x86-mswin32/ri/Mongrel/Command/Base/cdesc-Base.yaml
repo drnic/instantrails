@@ -1,0 +1,52 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: done_validating
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: original_args
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: valid
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Command pattern implementation used to create the set of command available to the user from Mongrel. The script uses objects which implement this interface to do the user's bidding.
+constants: []
+
+full_name: Mongrel::Command::Base
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: configure
+- !ruby/object:RI::MethodSummary 
+  name: failure
+- !ruby/object:RI::MethodSummary 
+  name: help
+- !ruby/object:RI::MethodSummary 
+  name: options
+- !ruby/object:RI::MethodSummary 
+  name: run
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+- !ruby/object:RI::MethodSummary 
+  name: valid_dir?
+- !ruby/object:RI::MethodSummary 
+  name: valid_exists?
+- !ruby/object:RI::MethodSummary 
+  name: valid_file?
+- !ruby/object:RI::MethodSummary 
+  name: valid_group?
+- !ruby/object:RI::MethodSummary 
+  name: valid_user?
+- !ruby/object:RI::MethodSummary 
+  name: validate
+name: Base
+superclass: 

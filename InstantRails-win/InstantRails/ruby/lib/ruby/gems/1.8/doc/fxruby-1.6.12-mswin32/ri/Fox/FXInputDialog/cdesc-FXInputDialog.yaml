@@ -1,0 +1,62 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible columns of text [Integer]
+  name: numColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Input string [String]
+  name: text
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getInteger
+- !ruby/object:RI::MethodSummary 
+  name: getInteger
+- !ruby/object:RI::MethodSummary 
+  name: getReal
+- !ruby/object:RI::MethodSummary 
+  name: getReal
+- !ruby/object:RI::MethodSummary 
+  name: getString
+- !ruby/object:RI::MethodSummary 
+  name: getString
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An FXInputDialog is a simple dialog which is used to obtain a text string, integer, or real number from the user. A &quot;password&quot; mode allows the key-in to remain hidden.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Input dialog options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUTDIALOG_STRING+:"
+    body: Ask for a string
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUTDIALOG_INTEGER+:"
+    body: Ask for an integer number
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUTDIALOG_REAL+:"
+    body: Ask for a real number
+  - !ruby/struct:SM::Flow::LI 
+    label: "+INPUTDIALOG_PASSWORD+:"
+    body: Do not reveal key-in
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXInputDialog
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getLimits
+- !ruby/object:RI::MethodSummary 
+  name: setLimits
+name: FXInputDialog
+superclass: FXDialogBox

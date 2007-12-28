@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The base class for all SFTP operations. Subclasses must implement a <tt>perform</tt> method, which accepts the arguments expected by the corresponding method of the driver. Subclasses <em>may</em> also override the default implementations of <tt>do_status</tt>, <tt>do_data</tt>, <tt>do_name</tt>, <tt>do_handle</tt>, and <tt>do_attrs</tt>, as necessary.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A structure for reporting status information.
+  name: Status
+  value: Struct.new( :code, :message, :language )
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A constant for representing the commonly-used FX_OK status.
+  name: OK
+  value: Status.new( FX_OK, "Success", "" )
+full_name: Net::SFTP::Operations::Abstract
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_attrs
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_handle
+- !ruby/object:RI::MethodSummary 
+  name: do_name
+- !ruby/object:RI::MethodSummary 
+  name: do_status
+- !ruby/object:RI::MethodSummary 
+  name: execute
+name: Abstract
+superclass: Object

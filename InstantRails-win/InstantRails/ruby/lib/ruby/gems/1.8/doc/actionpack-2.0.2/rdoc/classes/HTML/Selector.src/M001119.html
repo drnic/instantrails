@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>match (HTML::Selector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/vendor/html-scanner/html/selector.rb, line 363</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">match</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">first_only</span> = <span class="ruby-keyword kw">false</span>)
+      <span class="ruby-comment cmt"># Match element if no element name or element name same as element name</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matched</span> = (<span class="ruby-operator">!</span><span class="ruby-ivar">@tag_name</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@tag_name</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">name</span>)
+        <span class="ruby-comment cmt"># No match if one of the attribute matches failed</span>
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">attr</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@attributes</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-identifier">attr</span>[<span class="ruby-value">0</span>]] <span class="ruby-operator">!~</span> <span class="ruby-identifier">attr</span>[<span class="ruby-value">1</span>]
+            <span class="ruby-identifier">matched</span> = <span class="ruby-keyword kw">false</span>
+            <span class="ruby-keyword kw">break</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Pseudo class matches (nth-child, empty, etc).</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matched</span>
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">pseudo</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@pseudo</span>
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pseudo</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">element</span>)
+            <span class="ruby-identifier">matched</span> = <span class="ruby-keyword kw">false</span>
+            <span class="ruby-keyword kw">break</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># Negation. Same rules as above, but we fail if a match is made.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matched</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@negation</span>
+        <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">negation</span> <span class="ruby-keyword kw">in</span> <span class="ruby-ivar">@negation</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">negation</span>[<span class="ruby-identifier">:tag_name</span>] <span class="ruby-operator">==</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">name</span>
+            <span class="ruby-identifier">matched</span> = <span class="ruby-keyword kw">false</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">attr</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">negation</span>[<span class="ruby-identifier">:attributes</span>]
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">element</span>.<span class="ruby-identifier">attributes</span>[<span class="ruby-identifier">attr</span>[<span class="ruby-value">0</span>]] <span class="ruby-operator">=~</span> <span class="ruby-identifier">attr</span>[<span class="ruby-value">1</span>]
+                <span class="ruby-identifier">matched</span> = <span class="ruby-keyword kw">false</span>
+                <span class="ruby-keyword kw">break</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matched</span>
+            <span class="ruby-keyword kw">for</span> <span class="ruby-identifier">pseudo</span> <span class="ruby-keyword kw">in</span> <span class="ruby-identifier">negation</span>[<span class="ruby-identifier">:pseudo</span>]
+              <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pseudo</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">element</span>)
+                <span class="ruby-identifier">matched</span> = <span class="ruby-keyword kw">false</span>
+                <span class="ruby-keyword kw">break</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">matched</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># If element matched but depends on another element (child,</span>
+      <span class="ruby-comment cmt"># sibling, etc), apply the dependent matches instead.</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matched</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-ivar">@depends</span>
+        <span class="ruby-identifier">matches</span> = <span class="ruby-ivar">@depends</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">first_only</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">matched</span> <span class="ruby-value">? </span>[<span class="ruby-identifier">element</span>] <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-comment cmt"># If this selector is part of the group, try all the alternative</span>
+      <span class="ruby-comment cmt"># selectors (unless first_only).</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-identifier">first_only</span> <span class="ruby-operator">||</span> <span class="ruby-operator">!</span><span class="ruby-identifier">matches</span>
+        <span class="ruby-ivar">@alternates</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">alternate</span><span class="ruby-operator">|</span>
+          <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">first_only</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">subset</span> = <span class="ruby-identifier">alternate</span>.<span class="ruby-identifier">match</span>(<span class="ruby-identifier">element</span>, <span class="ruby-identifier">first_only</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">matches</span>
+              <span class="ruby-identifier">matches</span>.<span class="ruby-identifier">concat</span> <span class="ruby-identifier">subset</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">matches</span> = <span class="ruby-identifier">subset</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">matches</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

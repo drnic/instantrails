@@ -1,0 +1,82 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: matches
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: An assertion that selects elements and makes one or more equality tests.
+- !ruby/struct:SM::Flow::P 
+  body: If the first argument is an element, selects all matching elements starting from (and including) that element and all its children in depth-first order.
+- !ruby/struct:SM::Flow::P 
+  body: "If no element if specified, calling #assert_select will select from the response HTML. Calling #assert_select inside an #assert_select block will run the assertion for each element selected by the enclosing assertion."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_select &quot;ol&gt;li&quot; do |elements|\n    elements.each do |element|\n      assert_select element, &quot;li&quot;\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Or for short:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  assert_select &quot;ol&gt;li&quot; do\n    assert_select &quot;li&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The selector may be a CSS selector expression (<tt>String</tt>), an expression with substitution values, or an HTML::Selector object.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Equality Tests
+- !ruby/struct:SM::Flow::P 
+  body: "The equality test may be one of the following:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>true</tt> -- Assertion is true if at least one element selected.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>false</tt> -- Assertion is true if no element selected.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>String/Regexp</tt> -- Assertion is true if the text value of at least one element matches the string or regular expression.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Integer</tt> -- Assertion is true if exactly that number of elements are selected.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>Range</tt> -- Assertion is true if the number of selected elements fit the range.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: If no equality test specified, the assertion is true if at least one element selected.
+- !ruby/struct:SM::Flow::P 
+  body: "To perform more than one equality tests, use a hash with the following keys:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:text</tt> -- Narrow the selection to elements that have this text value (string or regexp).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:html</tt> -- Narrow the selection to elements that have this HTML content (string or regexp).
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:count</tt> -- Assertion is true if the number of selected elements is equal to this value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:minimum</tt> -- Assertion is true if the number of selected elements is at least this value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:maximum</tt> -- Assertion is true if the number of selected elements is at most this value.
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: If the method is called with a block, once all equality tests are evaluated the block is called with an array of all matched elements.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # At least one form element\n  assert_select &quot;form&quot;\n\n  # Form element includes four input fields\n  assert_select &quot;form input&quot;, 4\n\n  # Page title is &quot;Welcome&quot;\n  assert_select &quot;title&quot;, &quot;Welcome&quot;\n\n  # Page title is &quot;Welcome&quot; and there is only one title element\n  assert_select &quot;title&quot;, {:count=&gt;1, :text=&gt;&quot;Welcome&quot;},\n      &quot;Wrong title or more than one title element&quot;\n\n  # Page contains no forms\n  assert_select &quot;form&quot;, false, &quot;This page must contain no forms&quot;\n\n  # Test the content and style\n  assert_select &quot;body div.header ul.menu&quot;\n\n  # Use substitution values\n  assert_select &quot;ol&gt;li#?&quot;, /item-\\d+/\n\n  # All input fields in the form have a name\n  assert_select &quot;form input&quot; do\n    assert_select &quot;[name=?]&quot;, /.+/  # Not empty\n  end\n"
+full_name: ActionController::Assertions::SelectorAssertions#assert_select
+is_singleton: false
+name: assert_select
+params: |
+  assert_select(selector, equality?, message?)
+  assert_select(element, selector, equality?, message?)
+
+visibility: public

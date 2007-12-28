@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Initiate forwarding of the given remote port on the connected host. Forwarded packets will be passed to the given block as they are recieved. The remote-host represents the address that should be bound on the remote host, and defaults to '127.0.0.1'.
+full_name: Net::SSH::Service::Forward::Driver#remote
+is_singleton: false
+name: remote
+params: ( handler, remote_port, remote_host="127.0.0.1" )
+visibility: public

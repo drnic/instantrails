@@ -1,0 +1,25 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Docking side, one of <tt>LAYOUT_SIDE_LEFT</tt>, <tt>LAYOUT_SIDE_RIGHT</tt>, <tt>LAYOUT_SIDE_TOP</tt> or <tt>LAYOUT_SIDE_BOTTOM</tt> [Integer]
+  name: dockingSide
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A tool bar widget can be docked in a dock site; it automatically adjusts its orientation based on the orientation of the dock site, and adjusts the layout options accordingly. See FXDockBar widget for more information on the docking behavior.
+constants: []
+
+full_name: Fox::FXToolBar
+includes: []
+
+instance_methods: []
+
+name: FXToolBar
+superclass: FXDockBar

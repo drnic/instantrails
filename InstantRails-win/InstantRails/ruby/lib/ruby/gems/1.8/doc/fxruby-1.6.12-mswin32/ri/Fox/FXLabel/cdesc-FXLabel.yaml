@@ -1,0 +1,143 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The icon for this label [FXIcon]
+  name: icon
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Icon position [Integer]
+  name: iconPosition
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text justification mode [Integer]
+  name: justify
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text for this label [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A label widget can be used to place a text and/or icon for explanation purposes. The text label may have an optional tooltip and/or help string. Icon and label are placed relative to the widget using the justfication options, and relative to each other as determined by the icon relationship options. A large number of arrangements is possible.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Justification modes
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_NORMAL+:"
+    body: Default justification is centered text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_CENTER_X+:"
+    body: Text is centered horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_LEFT+:"
+    body: Text is left-justified
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_RIGHT+:"
+    body: Text is right-justified
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_HZ_APART+:"
+    body: Combination of <tt>JUSTIFY_LEFT</tt> &amp; <tt>JUSTIFY_RIGHT</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_CENTER_Y+:"
+    body: Text is centered vertically
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_TOP+:"
+    body: Text is aligned with label top
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_BOTTOM+:"
+    body: Text is aligned with label bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+JUSTIFY_VT_APART+:"
+    body: Combination of <tt>JUSTIFY_TOP</tt> &amp; <tt>JUSTIFY_BOTTOM</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Relationship options for icon-labels
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICON_UNDER_TEXT+:"
+    body: Icon appears under text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICON_AFTER_TEXT+:"
+    body: Icon appears after text (to its right)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICON_BEFORE_TEXT+:"
+    body: Icon appears before text (to its left)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICON_ABOVE_TEXT+:"
+    body: Icon appears above text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ICON_BELOW_TEXT+:"
+    body: Icon appears below text
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_OVER_ICON+:"
+    body: Same as <tt>ICON_UNDER_TEXT</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_AFTER_ICON+:"
+    body: Same as <tt>ICON_BEFORE_TEXT</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_BEFORE_ICON+:"
+    body: Same as <tt>ICON_AFTER_TEXT</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_ABOVE_ICON+:"
+    body: Same as <tt>ICON_BELOW_TEXT</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TEXT_BELOW_ICON+:"
+    body: Same as <tt>ICON_ABOVE_TEXT</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Normal way to show label
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+LABEL_NORMAL+:"
+    body: Same as <tt>JUSTIFY_NORMAL|ICON_BEFORE_TEXT</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXLabel
+includes: []
+
+instance_methods: []
+
+name: FXLabel
+superclass: FXFrame

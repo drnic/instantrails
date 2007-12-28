@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>read (Win32::EventLog)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/eventlog.rb, line 462</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">read</span>(<span class="ruby-identifier">flags</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">offset</span> = <span class="ruby-value">0</span>)
+         <span class="ruby-identifier">buf</span>    = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">BUFFER_SIZE</span> <span class="ruby-comment cmt"># 64k buffer </span>
+         <span class="ruby-identifier">size</span>   = <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span>      
+         <span class="ruby-identifier">read</span>   = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">needed</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-identifier">array</span>  = []
+         <span class="ruby-identifier">lkey</span>   = <span class="ruby-constant">HKEY_LOCAL_MACHINE</span>
+         
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">flags</span>
+            <span class="ruby-identifier">flags</span> = <span class="ruby-constant">FORWARDS_READ</span> <span class="ruby-operator">|</span> <span class="ruby-constant">SEQUENTIAL_READ</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@server</span>
+            <span class="ruby-identifier">hkey</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RegConnectRegistry</span>(<span class="ruby-ivar">@server</span>, <span class="ruby-constant">HKEY_LOCAL_MACHINE</span>, <span class="ruby-identifier">hkey</span>) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">lkey</span> = <span class="ruby-identifier">hkey</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>).<span class="ruby-identifier">first</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">while</span> <span class="ruby-constant">ReadEventLog</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">flags</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">read</span>, <span class="ruby-identifier">needed</span>) <span class="ruby-operator">||</span>
+            <span class="ruby-constant">GetLastError</span>() <span class="ruby-operator">==</span> <span class="ruby-constant">ERROR_INSUFFICIENT_BUFFER</span>
+            
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">GetLastError</span>() <span class="ruby-operator">==</span> <span class="ruby-constant">ERROR_INSUFFICIENT_BUFFER</span>
+               <span class="ruby-identifier">buf</span> <span class="ruby-operator">+=</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">needed</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>]
+               <span class="ruby-constant">ReadEventLog</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-identifier">flags</span>, <span class="ruby-identifier">offset</span>, <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">size</span>, <span class="ruby-identifier">read</span>, <span class="ruby-identifier">needed</span>)
+            <span class="ruby-keyword kw">end</span>
+                       
+            <span class="ruby-identifier">dwread</span> = <span class="ruby-identifier">read</span>.<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>]
+               
+            <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">dwread</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+               <span class="ruby-identifier">struct</span>       = <span class="ruby-constant">EventLogStruct</span>.<span class="ruby-identifier">new</span>
+               <span class="ruby-identifier">event_source</span> = <span class="ruby-identifier">buf</span>[<span class="ruby-value">56</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">nstrip</span>
+               <span class="ruby-identifier">computer</span>     = <span class="ruby-identifier">buf</span>[<span class="ruby-value">56</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">event_source</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>].<span class="ruby-identifier">nstrip</span>
+               
+               <span class="ruby-identifier">user</span> = <span class="ruby-identifier">get_user</span>(<span class="ruby-identifier">buf</span>)
+               <span class="ruby-identifier">strings</span>, <span class="ruby-identifier">desc</span> = <span class="ruby-identifier">get_description</span>(<span class="ruby-identifier">buf</span>, <span class="ruby-identifier">event_source</span>, <span class="ruby-identifier">lkey</span>)
+      
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">source</span>         = <span class="ruby-identifier">event_source</span>
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">computer</span>       = <span class="ruby-identifier">computer</span>
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">record_number</span>  = <span class="ruby-identifier">buf</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>]
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">time_generated</span> = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">buf</span>[<span class="ruby-value">12</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>])
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">time_written</span>   = <span class="ruby-constant">Time</span>.<span class="ruby-identifier">at</span>(<span class="ruby-identifier">buf</span>[<span class="ruby-value">16</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>])
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">event_id</span>       = <span class="ruby-identifier">buf</span>[<span class="ruby-value">20</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>] <span class="ruby-operator">&amp;</span> <span class="ruby-value">0x0000</span><span class="ruby-constant">FFFF</span>
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">event_type</span>     = <span class="ruby-identifier">get_event_type</span>(<span class="ruby-identifier">buf</span>[<span class="ruby-value">24</span>,<span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'S'</span>)[<span class="ruby-value">0</span>])
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">user</span>           = <span class="ruby-identifier">user</span>
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">category</span>       = <span class="ruby-identifier">buf</span>[<span class="ruby-value">28</span>,<span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'S'</span>)[<span class="ruby-value">0</span>]
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">string_inserts</span> = <span class="ruby-identifier">strings</span>
+               <span class="ruby-identifier">struct</span>.<span class="ruby-identifier">description</span>        = <span class="ruby-identifier">desc</span>
+
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+                  <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">struct</span>
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">array</span>.<span class="ruby-identifier">push</span>(<span class="ruby-identifier">struct</span>)
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">flags</span> <span class="ruby-operator">&amp;</span> <span class="ruby-constant">EVENTLOG_BACKWARDS_READ</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">offset</span> = <span class="ruby-identifier">buf</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>] <span class="ruby-operator">-</span> <span class="ruby-value">1</span>
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">offset</span> = <span class="ruby-identifier">buf</span>[<span class="ruby-value">8</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>] <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+               <span class="ruby-keyword kw">end</span>
+               
+               <span class="ruby-identifier">length</span> = <span class="ruby-identifier">buf</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>] <span class="ruby-comment cmt"># Length</span>
+
+               <span class="ruby-identifier">dwread</span> <span class="ruby-operator">-=</span> <span class="ruby-identifier">length</span>
+               <span class="ruby-identifier">buf</span> = <span class="ruby-identifier">buf</span>[<span class="ruby-identifier">length</span><span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+            <span class="ruby-keyword kw">end</span>
+            
+            <span class="ruby-identifier">buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">BUFFER_SIZE</span>
+            <span class="ruby-identifier">read</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">block_given?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">array</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

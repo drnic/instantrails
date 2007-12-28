@@ -1,0 +1,84 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A hash of default options to use when registering services. These defaults also apply to namespaces, so when specifying a new default service model (for instance) there may be unexpected side-effects with the namespaces that are created.
+  name: defaults
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of this container. May be <tt>nil</tt>.
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The container that contains this container. This will be <tt>nil</tt> for the root of a hierarchy (see Registry).
+  name: parent
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The container is the heart of Needle's model. Every Container instance is a miniature registry, and is really a namespace separate from every other Container instance. Service lookups inside of a container always look in <tt>self</tt> first, and if not found, they then look in their parent container, recursively.
+- !ruby/struct:SM::Flow::P 
+  body: You will rarely need to instantiate a Container directly. Instead, use the Container#namespace method to create new containers.
+constants: []
+
+full_name: Needle::Container
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: builder
+- !ruby/object:RI::MethodSummary 
+  name: define
+- !ruby/object:RI::MethodSummary 
+  name: define!
+- !ruby/object:RI::MethodSummary 
+  name: descended_from?
+- !ruby/object:RI::MethodSummary 
+  name: find_definition
+- !ruby/object:RI::MethodSummary 
+  name: fullname
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: has_key?
+- !ruby/object:RI::MethodSummary 
+  name: intercept
+- !ruby/object:RI::MethodSummary 
+  name: keys
+- !ruby/object:RI::MethodSummary 
+  name: knows_key?
+- !ruby/object:RI::MethodSummary 
+  name: method_missing
+- !ruby/object:RI::MethodSummary 
+  name: namespace
+- !ruby/object:RI::MethodSummary 
+  name: namespace!
+- !ruby/object:RI::MethodSummary 
+  name: namespace_define
+- !ruby/object:RI::MethodSummary 
+  name: namespace_define!
+- !ruby/object:RI::MethodSummary 
+  name: pipeline
+- !ruby/object:RI::MethodSummary 
+  name: register
+- !ruby/object:RI::MethodSummary 
+  name: require
+- !ruby/object:RI::MethodSummary 
+  name: respond_to?
+- !ruby/object:RI::MethodSummary 
+  name: root
+- !ruby/object:RI::MethodSummary 
+  name: use
+- !ruby/object:RI::MethodSummary 
+  name: use!
+name: Container
+superclass: Object

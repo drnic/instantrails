@@ -1,0 +1,136 @@
+
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!--
+
+    Methods
+
+  -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Methods</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="rdoc-style.css" type="text/css" />
+  <base target="docwin" />
+</head>
+<body>
+<div id="index">
+  <h1 class="section-bar">Methods</h1>
+  <div id="index-entries">
+    <a href="classes/Needle/Pipeline/Element.html#M000013"><=> (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/Container.html#M000064">[] (Needle::Container)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000016">[] (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000106">[] (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000107">[]= (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000101">action (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Pipeline/Collection.html#M000004">add (Needle::Pipeline::Collection)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder.html#M000017">build (Needle::InterceptorChainBuilder)</a><br />
+    <a href="classes/Needle/Container.html#M000052">builder (Needle::Container)</a><br />
+    <a href="classes/Needle/Pipeline/Collection/BlockElement.html#M000009">call (Needle::Pipeline::Collection::BlockElement)</a><br />
+    <a href="classes/Needle/Lifecycle/Multiton.html#M000031">call (Needle::Lifecycle::Multiton)</a><br />
+    <a href="classes/Needle/Lifecycle/Initialize.html#M000037">call (Needle::Lifecycle::Initialize)</a><br />
+    <a href="classes/Needle/Lifecycle/Deferred.html#M000038">call (Needle::Lifecycle::Deferred)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000014">call (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/Lifecycle/Threaded.html#M000034">call (Needle::Lifecycle::Threaded)</a><br />
+    <a href="classes/Needle/Pipeline/InterceptorElement.html#M000002">call (Needle::Pipeline::InterceptorElement)</a><br />
+    <a href="classes/Needle/Lifecycle/Singleton.html#M000028">call (Needle::Lifecycle::Singleton)</a><br />
+    <a href="classes/Needle/Pipeline/Collection.html#M000007">chain_to (Needle::Pipeline::Collection)</a><br />
+    <a href="classes/Needle/LogFactory.html#M000082">close (Needle::LogFactory)</a><br />
+    <a href="classes/Needle/LogFactory.html#M000083">closed? (Needle::LogFactory)</a><br />
+    <a href="classes/Needle/Registry.html#M000045">define (Needle::Registry)</a><br />
+    <a href="classes/Needle/Container.html#M000053">define (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000054">define! (Needle::Container)</a><br />
+    <a href="classes/Needle/Registry.html#M000044">define! (Needle::Registry)</a><br />
+    <a href="classes/Needle/Container.html#M000050">descended_from? (Needle::Container)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000104">doing (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Container.html#M000062">find_definition (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000051">fullname (Needle::Container)</a><br />
+    <a href="classes/Needle/Registry.html#M000047">fullname (Needle::Registry)</a><br />
+    <a href="classes/Needle/ServicePoint.html#M000074">fullname (Needle::ServicePoint)</a><br />
+    <a href="classes/Needle/LogFactory.html#M000081">get (Needle::LogFactory)</a><br />
+    <a href="classes/Needle/Container.html#M000063">get (Needle::Container)</a><br />
+    <a href="classes/Needle/Pipeline/Collection.html#M000005">get (Needle::Pipeline::Collection)</a><br />
+    <a href="classes/Needle/Container.html#M000065">has_key? (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000094">has_key? (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Pipeline/InterceptorElement.html#M000001">initialize_element (Needle::Pipeline::InterceptorElement)</a><br />
+    <a href="classes/Needle/Lifecycle/Multiton.html#M000030">initialize_element (Needle::Lifecycle::Multiton)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000012">initialize_element (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/Lifecycle/Initialize.html#M000036">initialize_element (Needle::Lifecycle::Initialize)</a><br />
+    <a href="classes/Needle/Lifecycle/Singleton.html#M000027">initialize_element (Needle::Lifecycle::Singleton)</a><br />
+    <a href="classes/Needle/Lifecycle/Proxy.html#M000026">inspect (Needle::Lifecycle::Proxy)</a><br />
+    <a href="classes/Needle/ServicePoint.html#M000076">instance (Needle::ServicePoint)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000086">intercept (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000060">intercept (Needle::Container)</a><br />
+    <a href="classes/Needle/ServicePoint.html#M000075">interceptor (Needle::ServicePoint)</a><br />
+    <a href="classes/Needle/Container.html#M000067">keys (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000066">knows_key? (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000095">knows_key? (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/QueryableMutex.html#M000040">lock (Needle::QueryableMutex)</a><br />
+    <a href="classes/Needle/Logger.html#M000099">message_format= (Needle::Logger)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000096">method_missing (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Lifecycle/Proxy.html#M000025">method_missing (Needle::Lifecycle::Proxy)</a><br />
+    <a href="classes/Needle/Container.html#M000069">method_missing (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000087">namespace (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000056">namespace (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000089">namespace! (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000058">namespace! (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000090">namespace_define (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000059">namespace_define (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000088">namespace_define! (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000057">namespace_define! (Needle::Container)</a><br />
+    <a href="classes/Needle/Pipeline/Collection.html#M000003">new (Needle::Pipeline::Collection)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/InterceptedServiceProxy.html#M000021">new (Needle::InterceptorChainBuilder::InterceptedServiceProxy)</a><br />
+    <a href="classes/Needle/Container.html#M000048">new (Needle::Container)</a><br />
+    <a href="classes/Needle/LogFactory.html#M000079">new (Needle::LogFactory)</a><br />
+    <a href="classes/Needle/Registry.html#M000046">new (Needle::Registry)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000100">new (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Pipeline/Collection/BlockElement.html#M000008">new (Needle::Pipeline::Collection::BlockElement)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/ProxyObjectChainElement.html#M000022">new (Needle::InterceptorChainBuilder::ProxyObjectChainElement)</a><br />
+    <a href="classes/Needle/Interceptor/DynamicInterceptor.html#M000108">new (Needle::Interceptor::DynamicInterceptor)</a><br />
+    <a href="classes/Needle/Lifecycle/Proxy.html#M000024">new (Needle::Lifecycle::Proxy)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000084">new (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/ServicePoint.html#M000073">new (Needle::ServicePoint)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/InterceptorChainElement.html#M000018">new (Needle::InterceptorChainBuilder::InterceptorChainElement)</a><br />
+    <a href="classes/Needle/QueryableMutex.html#M000039">new (Needle::QueryableMutex)</a><br />
+    <a href="classes/Needle/Interceptor/DynamicInterceptor.html#M000109">new (Needle::Interceptor::DynamicInterceptor)</a><br />
+    <a href="classes/Needle/LoggingInterceptor.html#M000077">new (Needle::LoggingInterceptor)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000011">new (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/InterceptorChainElement.html#M000019">next (Needle::InterceptorChainBuilder::InterceptorChainElement)</a><br />
+    <a href="classes/Needle/Container.html#M000061">pipeline (Needle::Container)</a><br />
+    <a href="classes/Needle/LoggingInterceptor.html#M000078">process (Needle::LoggingInterceptor)</a><br />
+    <a href="classes/Needle/Interceptor/DynamicInterceptor.html#M000110">process (Needle::Interceptor::DynamicInterceptor)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/InterceptorChainElement.html#M000020">process_next (Needle::InterceptorChainBuilder::InterceptorChainElement)</a><br />
+    <a href="classes/Needle/InterceptorChainBuilder/ProxyObjectChainElement.html#M000023">process_next (Needle::InterceptorChainBuilder::ProxyObjectChainElement)</a><br />
+    <a href="classes/Needle/Logger.html#M000097">progname= (Needle::Logger)</a><br />
+    <a href="classes/Needle/Container.html#M000055">register (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000068">require (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000091">require (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Lifecycle/Multiton.html#M000032">reset! (Needle::Lifecycle::Multiton)</a><br />
+    <a href="classes/Needle/Pipeline/Collection.html#M000006">reset! (Needle::Pipeline::Collection)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000015">reset! (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/Lifecycle/Threaded.html#M000035">reset! (Needle::Lifecycle::Threaded)</a><br />
+    <a href="classes/Needle/Lifecycle/Singleton.html#M000029">reset! (Needle::Lifecycle::Singleton)</a><br />
+    <a href="classes/Needle/Container.html#M000070">respond_to? (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000049">root (Needle::Container)</a><br />
+    <a href="classes/Needle/QueryableMutex.html#M000043">self_locked? (Needle::QueryableMutex)</a><br />
+    <a href="classes/Needle/Lifecycle/Threaded.html#M000033">service_cache (Needle::Lifecycle::Threaded)</a><br />
+    <a href="classes/Needle/Pipeline/Element.html#M000010">set_default_priority (Needle::Pipeline::Element)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000085">this_container (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/QueryableMutex.html#M000041">try_lock (Needle::QueryableMutex)</a><br />
+    <a href="classes/Needle/QueryableMutex.html#M000042">unlock (Needle::QueryableMutex)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000092">use (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Container.html#M000071">use (Needle::Container)</a><br />
+    <a href="classes/Needle/Container.html#M000072">use! (Needle::Container)</a><br />
+    <a href="classes/Needle/DefinitionContext.html#M000093">use! (Needle::DefinitionContext)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000102">with (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000103">with! (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Interceptor.html#M000105">with_options (Needle::Interceptor)</a><br />
+    <a href="classes/Needle/Logger.html#M000098">write_to (Needle::Logger)</a><br />
+    <a href="classes/Needle/LogFactory.html#M000080">write_to (Needle::LogFactory)</a><br />
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SFTP::Protocol::Driver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SFTP::Protocol::Driver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/net/sftp/protocol/driver_rb.html">
+                lib/net/sftp/protocol/driver.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+This is the driver object for the <a href="../../SFTP.html">SFTP</a>
+protocol. It manages the SSH channel used to communicate with the server,
+as well as the negotiation of the protocol. The operations themselves are
+specific to the protocol version in use, and are handled by
+protocol-version-specific dispatcher objects.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000531">close</a>&nbsp;&nbsp;
+      <a href="#M000534">do_confirm</a>&nbsp;&nbsp;
+      <a href="#M000537">do_data</a>&nbsp;&nbsp;
+      <a href="#M000535">do_success</a>&nbsp;&nbsp;
+      <a href="#M000536">do_version</a>&nbsp;&nbsp;
+      <a href="#M000538">method_missing</a>&nbsp;&nbsp;
+      <a href="#M000530">new</a>&nbsp;&nbsp;
+      <a href="#M000532">next_request_id</a>&nbsp;&nbsp;
+      <a href="#M000533">on_open</a>&nbsp;&nbsp;
+      <a href="#M000539">respond_to?</a>&nbsp;&nbsp;
+      <a href="#M000540">send_data</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name"><a href="Constants.html">Constants</a></span>
+      </div>
+    </div>
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">channel</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The underlying SSH channel supporting this <a
+href="../../SFTP.html">SFTP</a> connection.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">state</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The current state of the driver. This will be one of <tt>unconfirmed</tt>,
+<tt>init</tt>, <tt>version</tt>, <tt>open</tt>, or <tt>closed</tt>.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000530" class="method-detail">
+        <a name="M000530"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000530.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000530.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( connection, buffers, version, dispatchers, log )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Driver.html#M000530">new</a> <a
+href="../../SFTP.html">SFTP</a> protocol driver object on the given SSH
+connection. <tt>buffers</tt> is a reference to a buffer factory,
+<tt>version</tt> is the highest supported <a
+href="../../SFTP.html">SFTP</a> protocol version, <tt>dispatchers</tt> is a
+Proc object that returns a dispatcher instance for a specific protocol
+version, and <tt>log</tt> is a logger instance.
+</p>
+<p>
+The <a href="Driver.html#M000530">new</a> protocol driver will be in an
+<tt>unconfirmed</tt> state, initially. When the server validates the
+requested channel, the driver goes to the <tt>init</tt> state, and requests
+the <a href="../../SFTP.html">SFTP</a> subsystem. When the subsystem has
+been accepted, the driver sends its supported protocol version to the
+server, and goes to the <tt>version</tt> state. Lastly, when the server
+responds with its supported protocol version and the version to use has
+been successfully negotiated, the driver will go to the <tt>open</tt>
+state, after which <a href="../../SFTP.html">SFTP</a> operations may be
+successfully performed on the driver.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000531" class="method-detail">
+        <a name="M000531"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000531.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000531.html');return false;">
+          <span class="method-name">close</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Closes the underlying SSH channel that the <a
+href="../../SFTP.html">SFTP</a> session uses to communicate with the
+server. This moves the driver to the <tt>closed</tt> state. If the driver
+is already closed, this does nothing.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000534" class="method-detail">
+        <a name="M000534"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000534.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000534.html');return false;">
+          <span class="method-name">do_confirm</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The callback used internally to indicate that the requested channel has
+been confirmed. This will request the <a href="../../SFTP.html">SFTP</a>
+subsystem, register some request callbacks, and move the driver&#8216;s
+state to <tt>init</tt>. This may only be called when the driver&#8216;s
+state is <tt>unconfirmed</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000537" class="method-detail">
+        <a name="M000537"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000537.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000537.html');return false;">
+          <span class="method-name">do_data</span><span class="method-args">( channel, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This is called internally when a data packet is received from the server.
+All <a href="../../SFTP.html">SFTP</a> packets are transfered as SSH data
+packets, so this parses the data packet to determine the <a
+href="../../SFTP.html">SFTP</a> packet type, and then sends the contents on
+to the active dispatcher for further processing. This routine correctly
+handles <a href="../../SFTP.html">SFTP</a> packets that span multiple SSH
+data packets.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000535" class="method-detail">
+        <a name="M000535"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000535.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000535.html');return false;">
+          <span class="method-name">do_success</span><span class="method-args">( channel )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The callback used internally to indicate that the <a
+href="../../SFTP.html">SFTP</a> subsystem was successfully requested. This
+may only be called when the driver&#8216;s state is <tt>init</tt>. It sends
+an INIT packet containing the highest supported <a
+href="../../SFTP.html">SFTP</a> protocol version to the server, and moves
+the driver&#8216;s state to <tt>version</tt>.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000536" class="method-detail">
+        <a name="M000536"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000536.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000536.html');return false;">
+          <span class="method-name">do_version</span><span class="method-args">( content )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+This is used internally to indicate that a VERSION packet was received from
+the server. This may only be called when the driver&#8216;s state is
+<tt>version</tt>. It determines the highest possible protocol version
+supported by both the client and the server, selects the dispatcher that
+handles that protocol version, moves the state to <tt>open</tt>, and then
+invokes the <tt><a href="Driver.html#M000533">on_open</a></tt> callback (if
+one was registered).
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000538" class="method-detail">
+        <a name="M000538"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000538.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000538.html');return false;">
+          <span class="method-name">method_missing</span><span class="method-args">( sym, *args, &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Delegates missing methods to the current dispatcher (if the state is
+<tt>open</tt>). This allows clients to register callbacks for the supported
+operations of the negotiated protocol version.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000532" class="method-detail">
+        <a name="M000532"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000532.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000532.html');return false;">
+          <span class="method-name">next_request_id</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the next available request id in a thread-safe manner. The
+request-id is used to identify packets associated with request sequences.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000533" class="method-detail">
+        <a name="M000533"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000533.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000533.html');return false;">
+          <span class="method-name">on_open</span><span class="method-args">( &amp;block )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Specify the callback to invoke when the session has been successfully
+opened (i.e., once the driver&#8216;s state has moved to <tt>open</tt>).
+The callback should accept a single parameter&#8212;the driver itself.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000539" class="method-detail">
+        <a name="M000539"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000539.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000539.html');return false;">
+          <span class="method-name">respond_to?</span><span class="method-args">( sym )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns true if the driver responds to the given message, or if the state
+is <tt>open</tt> and the active dispatcher responds to the given message.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000540" class="method-detail">
+        <a name="M000540"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000540.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000540.html');return false;">
+          <span class="method-name">send_data</span><span class="method-args">( type, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A convenience method for sending an <a href="../../SFTP.html">SFTP</a>
+packet of the given type, with the given payload. This repackages the data
+as an SSH data packet and sends it across the channel.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

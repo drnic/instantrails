@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: find_hidden_method
+- !ruby/object:RI::MethodSummary 
+  name: method_added
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Same as above, except in Object.
+constants: []
+
+full_name: Object
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: InstanceExecMethods
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acts_like?
+- !ruby/object:RI::MethodSummary 
+  name: blank?
+- !ruby/object:RI::MethodSummary 
+  name: duplicable?
+- !ruby/object:RI::MethodSummary 
+  name: instance_exec
+- !ruby/object:RI::MethodSummary 
+  name: instance_variable_defined?
+- !ruby/object:RI::MethodSummary 
+  name: returning
+- !ruby/object:RI::MethodSummary 
+  name: to_json
+- !ruby/object:RI::MethodSummary 
+  name: to_param
+- !ruby/object:RI::MethodSummary 
+  name: to_query
+- !ruby/object:RI::MethodSummary 
+  name: unloadable
+- !ruby/object:RI::MethodSummary 
+  name: with_options
+name: Object
+superclass: Object

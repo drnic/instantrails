@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Open and return a new channel. This returns immediately, before the server confirms that the channel was opened. When the server sends the confirmation, the <tt>on_confirm</tt> callback will be invoked.
+full_name: Net::SSH::Connection::Driver#open_channel
+is_singleton: false
+name: open_channel
+params: ( type, extra_data=nil, &on_confirm )
+visibility: public

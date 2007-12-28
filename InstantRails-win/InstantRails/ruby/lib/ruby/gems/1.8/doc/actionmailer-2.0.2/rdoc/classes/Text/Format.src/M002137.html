@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>new (Text::Format)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/text-format-0.6.3/text/format.rb, line 963</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">arg</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Text</span><span class="ruby-operator">::</span><span class="ruby-constant">Format</span>
+        <span class="ruby-identifier">__create</span>(<span class="ruby-identifier">arg</span>.<span class="ruby-identifier">text</span>) <span class="ruby-keyword kw">do</span>
+          <span class="ruby-ivar">@columns</span>        = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">columns</span>
+          <span class="ruby-ivar">@tabstop</span>        = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">tabstop</span>
+          <span class="ruby-ivar">@first_indent</span>   = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">first_indent</span>
+          <span class="ruby-ivar">@body_indent</span>    = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">body_indent</span>
+          <span class="ruby-ivar">@format_style</span>   = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">format_style</span>
+          <span class="ruby-ivar">@left_margin</span>    = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">left_margin</span>
+          <span class="ruby-ivar">@right_margin</span>   = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">right_margin</span>
+          <span class="ruby-ivar">@extra_space</span>    = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">extra_space</span>
+          <span class="ruby-ivar">@tag_paragraph</span>  = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">tag_paragraph</span>
+          <span class="ruby-ivar">@tag_text</span>       = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">tag_text</span>
+          <span class="ruby-ivar">@abbreviations</span>  = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">abbreviations</span>
+          <span class="ruby-ivar">@nobreak</span>        = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">nobreak</span>
+          <span class="ruby-ivar">@nobreak_regex</span>  = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">nobreak_regex</span>
+          <span class="ruby-ivar">@text</span>           = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">text</span>
+          <span class="ruby-ivar">@hard_margins</span>   = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">hard_margins</span>
+          <span class="ruby-ivar">@split_words</span>    = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">split_words</span>
+          <span class="ruby-ivar">@split_rules</span>    = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">split_rules</span>
+          <span class="ruby-ivar">@hyphenator</span>     = <span class="ruby-identifier">arg</span>.<span class="ruby-identifier">hyphenator</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Hash</span>
+        <span class="ruby-identifier">__create</span> <span class="ruby-keyword kw">do</span>
+          <span class="ruby-ivar">@columns</span>       = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:columns</span>]       <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'columns'</span>]       <span class="ruby-operator">||</span> <span class="ruby-ivar">@columns</span>
+          <span class="ruby-ivar">@tabstop</span>       = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:tabstop</span>]       <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'tabstop'</span>]       <span class="ruby-operator">||</span> <span class="ruby-ivar">@tabstop</span>
+          <span class="ruby-ivar">@first_indent</span>  = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:first_indent</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'first_indent'</span>]  <span class="ruby-operator">||</span> <span class="ruby-ivar">@first_indent</span>
+          <span class="ruby-ivar">@body_indent</span>   = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:body_indent</span>]   <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'body_indent'</span>]   <span class="ruby-operator">||</span> <span class="ruby-ivar">@body_indent</span>
+          <span class="ruby-ivar">@format_style</span>  = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:format_style</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'format_style'</span>]  <span class="ruby-operator">||</span> <span class="ruby-ivar">@format_style</span>
+          <span class="ruby-ivar">@left_margin</span>   = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:left_margin</span>]   <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'left_margin'</span>]   <span class="ruby-operator">||</span> <span class="ruby-ivar">@left_margin</span>
+          <span class="ruby-ivar">@right_margin</span>  = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:right_margin</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'right_margin'</span>]  <span class="ruby-operator">||</span> <span class="ruby-ivar">@right_margin</span>
+          <span class="ruby-ivar">@extra_space</span>   = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:extra_space</span>]   <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'extra_space'</span>]   <span class="ruby-operator">||</span> <span class="ruby-ivar">@extra_space</span>
+          <span class="ruby-ivar">@text</span>          = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:text</span>]          <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'text'</span>]          <span class="ruby-operator">||</span> <span class="ruby-ivar">@text</span>
+          <span class="ruby-ivar">@tag_paragraph</span> = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:tag_paragraph</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'tag_paragraph'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@tag_paragraph</span>
+          <span class="ruby-ivar">@tag_text</span>      = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:tag_text</span>]      <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'tag_text'</span>]      <span class="ruby-operator">||</span> <span class="ruby-ivar">@tag_text</span>
+          <span class="ruby-ivar">@abbreviations</span> = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:abbreviations</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'abbreviations'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@abbreviations</span>
+          <span class="ruby-ivar">@nobreak</span>       = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:nobreak</span>]       <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'nobreak'</span>]       <span class="ruby-operator">||</span> <span class="ruby-ivar">@nobreak</span>
+          <span class="ruby-ivar">@nobreak_regex</span> = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:nobreak_regex</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'nobreak_regex'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@nobreak_regex</span>
+          <span class="ruby-ivar">@hard_margins</span>  = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:hard_margins</span>]  <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'hard_margins'</span>]  <span class="ruby-operator">||</span> <span class="ruby-ivar">@hard_margins</span>
+          <span class="ruby-ivar">@split_rules</span>   = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:split_rules</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'split_rules'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@split_rules</span>
+          <span class="ruby-ivar">@hyphenator</span>    = <span class="ruby-identifier">arg</span>[<span class="ruby-identifier">:hyphenator</span>] <span class="ruby-operator">||</span> <span class="ruby-identifier">arg</span>[<span class="ruby-value str">'hyphenator'</span>] <span class="ruby-operator">||</span> <span class="ruby-ivar">@hyphenator</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">instance_eval</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block</span>.<span class="ruby-identifier">nil?</span>
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">String</span>
+        <span class="ruby-identifier">__create</span>(<span class="ruby-identifier">arg</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">when</span> <span class="ruby-constant">NilClass</span>
+        <span class="ruby-identifier">__create</span>(<span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span>)
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

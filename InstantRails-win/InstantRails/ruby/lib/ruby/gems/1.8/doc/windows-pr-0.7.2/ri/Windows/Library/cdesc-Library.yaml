@@ -1,0 +1,58 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_PROCESS_DETACH
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_PROCESS_ATTACH
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_THREAD_ATTACH
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DLL_THREAD_DETACH
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_PIN
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DONT_RESOLVE_DLL_REFERENCES
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_LIBRARY_AS_DATAFILE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_WITH_ALTERED_SEARCH_PATH
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOAD_IGNORE_CODE_AUTHZ_LEVEL
+  value: "0x00000010"
+full_name: Windows::Library
+includes: []
+
+instance_methods: []
+
+name: Library
+superclass: 

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The preferred method of outputting text in your views is to use the &lt;%= &quot;text&quot; %&gt; eRuby syntax. The regular <em>puts</em> and <em>print</em> methods do not operate as expected in an eRuby code block. If you absolutely must output text within a non-output code block (i.e., &lt;% %&gt;), you can use the concat method.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &lt;%\n      concat &quot;hello&quot;, binding\n      # is the equivalent of &lt;%= &quot;hello&quot; %&gt;\n\n      if (logged_in == true):\n        concat &quot;Logged in!&quot;, binding\n      else\n        concat link_to('login', :action =&gt; login), binding\n      end\n      # will either display &quot;Logged in!&quot; or a login link\n  %&gt;\n"
+full_name: ActionView::Helpers::TextHelper#concat
+is_singleton: false
+name: concat
+params: (string, binding)
+visibility: public

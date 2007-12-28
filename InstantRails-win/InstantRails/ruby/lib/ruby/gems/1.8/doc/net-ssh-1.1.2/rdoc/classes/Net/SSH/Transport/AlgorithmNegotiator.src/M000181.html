@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>negotiate (Net::SSH::Transport::AlgorithmNegotiator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/algorithm-negotiator.rb, line 109</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">negotiate</span>( <span class="ruby-identifier">session</span>, <span class="ruby-identifier">options</span> )
+          <span class="ruby-identifier">prepare_preferred_algorithms</span> <span class="ruby-identifier">session</span>, <span class="ruby-identifier">options</span>
+
+          <span class="ruby-comment cmt"># first, discover what the server can do</span>
+          <span class="ruby-identifier">type</span>, <span class="ruby-identifier">buffer</span> = <span class="ruby-identifier">session</span>.<span class="ruby-identifier">wait_for_message</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>, <span class="ruby-value str">&quot;expected KEXINIT&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-constant">KEXINIT</span>
+
+          <span class="ruby-identifier">server_algorithm_packet</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">content</span>
+
+          <span class="ruby-identifier">cookie</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read</span>( <span class="ruby-value">16</span> )
+          <span class="ruby-identifier">kex_algorithms</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">server_host_key_algorithms</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">encryption_algorithms_client_to_server</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">encryption_algorithms_server_to_client</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">mac_algorithms_client_to_server</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">mac_algorithms_server_to_client</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">compression_algorithms_client_to_server</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">compression_algorithms_server_to_client</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">languages_client_to_server</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">languages_server_to_client</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+          <span class="ruby-identifier">first_kex_packet_follows</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_bool</span>
+          <span class="ruby-identifier">zero</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_long</span>
+
+          <span class="ruby-comment cmt"># TODO: if first_kex_packet_follows, we need to try to skip the</span>
+          <span class="ruby-comment cmt"># actual kexinit stuff and try to guess what the server is doing...</span>
+          <span class="ruby-comment cmt"># need to read more about this scenario.</span>
+
+          <span class="ruby-comment cmt"># next, tell the server what we can do</span>
+
+          <span class="ruby-identifier">my_kex</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:kex</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+          <span class="ruby-identifier">my_server_host_key_algorithms</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:host_key</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+          <span class="ruby-identifier">my_encryption_algorithms</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:encryption</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+          <span class="ruby-identifier">my_mac_algorithms</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:hmac</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+          <span class="ruby-identifier">my_compression_algorithms</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:compression</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+          <span class="ruby-identifier">my_languages</span> = <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:languages</span> ].<span class="ruby-identifier">join</span>( <span class="ruby-value str">&quot;,&quot;</span> )
+
+          <span class="ruby-identifier">msg</span> = <span class="ruby-ivar">@buffers</span>.<span class="ruby-identifier">writer</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_byte</span> <span class="ruby-constant">KEXINIT</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-identifier">rand</span>(<span class="ruby-value">0x</span><span class="ruby-constant">FFFFFFFF</span>), <span class="ruby-identifier">rand</span>(<span class="ruby-value">0x</span><span class="ruby-constant">FFFFFFFF</span>), <span class="ruby-identifier">rand</span>(<span class="ruby-value">0x</span><span class="ruby-constant">FFFFFFFF</span>),
+            <span class="ruby-identifier">rand</span>(<span class="ruby-value">0x</span><span class="ruby-constant">FFFFFFFF</span>)
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">my_kex</span>, <span class="ruby-identifier">my_server_host_key_algorithms</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">my_encryption_algorithms</span>, <span class="ruby-identifier">my_encryption_algorithms</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">my_mac_algorithms</span>, <span class="ruby-identifier">my_mac_algorithms</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">my_compression_algorithms</span>, <span class="ruby-identifier">my_compression_algorithms</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_string</span> <span class="ruby-identifier">my_languages</span>, <span class="ruby-identifier">my_languages</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_bool</span> <span class="ruby-keyword kw">false</span>
+          <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">write_long</span> <span class="ruby-value">0</span>
+
+          <span class="ruby-identifier">client_algorithm_packet</span> = <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">to_s</span>
+          <span class="ruby-identifier">session</span>.<span class="ruby-identifier">send_message</span> <span class="ruby-identifier">msg</span>
+
+          <span class="ruby-comment cmt"># negotiate algorithms</span>
+
+          <span class="ruby-identifier">kex_algorithm</span> = <span class="ruby-identifier">first_matching_element</span>( <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:kex</span> ],
+            <span class="ruby-identifier">kex_algorithms</span> )
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+            <span class="ruby-value str">&quot;could not settle on kex algorithm&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">kex_algorithm</span>
+          <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;kex algorithm: #{kex_algorithm}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+
+          <span class="ruby-identifier">host_key_algorithm</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:host_key</span> ], <span class="ruby-identifier">server_host_key_algorithms</span> )
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+            <span class="ruby-value str">&quot;could not settle on host key algorithm&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">host_key_algorithm</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;host key algorithm: #{host_key_algorithm}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">encryption_algorithm_c2s</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:encryption</span> ], <span class="ruby-identifier">encryption_algorithms_client_to_server</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">encryption_algorithm_c2s</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on client-to-server encryption algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;encryption algorithm (client-to-server): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">encryption_algorithm_c2s</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">encryption_algorithm_s2c</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:encryption</span> ], <span class="ruby-identifier">encryption_algorithms_server_to_client</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">encryption_algorithm_s2c</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on server-to-client encryption algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;encryption algorithm (server-to-client): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">encryption_algorithm_s2c</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">mac_algorithm_c2s</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:hmac</span> ], <span class="ruby-identifier">mac_algorithms_client_to_server</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">mac_algorithm_c2s</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on client-to-server HMAC algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;hmac algorithm (client-to-server): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">mac_algorithm_c2s</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">mac_algorithm_s2c</span> = <span class="ruby-identifier">first_matching_element</span>( <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:hmac</span> ],
+            <span class="ruby-identifier">mac_algorithms_server_to_client</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">mac_algorithm_s2c</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on server-to-client HMAC algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;hmac algorithm (server-to-client): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">mac_algorithm_s2c</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">compression_algorithm_c2s</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:compression</span> ],
+            <span class="ruby-identifier">compression_algorithms_client_to_server</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">compression_algorithm_c2s</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on client-to-server compression algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;compression algorithm (client-to-server): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">compression_algorithm_c2s</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">compression_algorithm_s2c</span> = <span class="ruby-identifier">first_matching_element</span>(
+            <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:compression</span> ],
+            <span class="ruby-identifier">compression_algorithms_server_to_client</span> )
+          <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">compression_algorithm_s2c</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-value str">&quot;could not settle on server-to-client compression algorithm&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;compression algorithm (server-to-client): &quot;</span> <span class="ruby-operator">+</span>
+              <span class="ruby-identifier">compression_algorithm_s2c</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">language_c2s</span> = <span class="ruby-identifier">first_matching_element</span>( <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:languages</span> ],
+            <span class="ruby-identifier">languages_client_to_server</span> ) <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;language (client-to-server): #{language_c2s}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">language_s2c</span> = <span class="ruby-identifier">first_matching_element</span>( <span class="ruby-ivar">@algorithms</span>[ <span class="ruby-identifier">:languages</span> ],
+            <span class="ruby-identifier">languages_server_to_client</span> ) <span class="ruby-operator">||</span> <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;language (server-to-client): #{language_s2c}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Algorithms</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">server_algorithm_packet</span>,
+                                 <span class="ruby-identifier">client_algorithm_packet</span>,
+                                 <span class="ruby-identifier">kex_algorithm</span>,
+                                 <span class="ruby-identifier">host_key_algorithm</span>,
+                                 <span class="ruby-identifier">encryption_algorithm_c2s</span>,
+                                 <span class="ruby-identifier">encryption_algorithm_s2c</span>,
+                                 <span class="ruby-identifier">mac_algorithm_c2s</span>,
+                                 <span class="ruby-identifier">mac_algorithm_s2c</span>,
+                                 <span class="ruby-identifier">compression_algorithm_c2s</span>,
+                                 <span class="ruby-identifier">compression_algorithm_s2c</span>,
+                                 <span class="ruby-identifier">language_c2s</span>,
+                                 <span class="ruby-identifier">language_s2c</span>,
+                                 <span class="ruby-ivar">@compression_level</span> )
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

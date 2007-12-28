@@ -1,0 +1,30 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: options
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: new2
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEFAULT_PORT
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPONENT
+  value: "[       :scheme,       :userinfo,       :host, :port, :path,       :query"
+full_name: URI::SFTP
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: OpenURI::OpenRead
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: direct_open
+name: SFTP
+superclass: Object

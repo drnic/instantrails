@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: outputter.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>outputter.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>src/log4r/outputter/outputter.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:36 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Outputters</h1>
+<p>
+An Outputter is a logging destination with a particular way to format data.
+It has a level threshold and a flexible level mask.
+</p>
+<p>
+Outputters must have names.
+</p>
+<h2>Level Threshold</h2>
+<p>
+Outputters have their own level thresholds that default to <tt>root</tt>
+level. They will not write any log events with a rank less than their
+threshold.
+</p>
+<h2>Level Mask</h2>
+<p>
+Alternatively, an Outputter can be told to log specific levels only:
+</p>
+<pre>
+  o = StdoutOutputter.new 'console'
+  o.only_at DEBUG, FATAL         # only DEBUG and FATAL get written
+</pre>
+<h2>Outputter Repository</h2>
+<p>
+When outputters are created, they store themselves in an Outputter
+repository similar to the Logger repository.
+</p>
+<pre>
+  StdoutOutputter.new 'console'   =&gt; Create 'console' outputter
+  Outputter['console']            =&gt; Get it back from the stash.
+</pre>
+<h2>Formatter</h2>
+<p>
+An outputter has a format defined by its Formatter. If no Formatter is
+specified, DefaultFormatter will be used.
+</p>
+<h2>Outputter is Abstract</h2>
+<p>
+The basic Outputter class is both abstract and a null object.
+</p>
+<h2>Interesting Outputters</h2>
+<ul>
+<li>log4r/outputter/syslogoutputter.rb - Logs to syslog
+
+</li>
+<li>log4r/outputter/emailoutputter.rb - Email logs
+
+</li>
+<li>log4r/logserver.rb - For remote logging
+
+</li>
+</ul>
+<h2>Subclasses</h2>
+<ul>
+<li><a href="../../../../classes/Log4r/IOOutputter.html">Log4r::IOOutputter</a>
+- for any IO object
+
+</li>
+<li><a
+href="../../../../classes/Log4r/StdoutOutputter.html">Log4r::StdoutOutputter</a>
+- $stdout
+
+</li>
+<li><a
+href="../../../../classes/Log4r/StderrOutputter.html">Log4r::StderrOutputter</a>
+- $stderr
+
+</li>
+<li><a
+href="../../../../classes/Log4r/FileOutputter.html">Log4r::FileOutputter</a>
+- log to a file
+
+</li>
+<li><a
+href="../../../../classes/Log4r/RollingFileOutputter.html">Log4r::RollingFileOutputter</a>
+- log to a file and split it as it grows
+
+</li>
+<li><a
+href="../../../../classes/Log4r/SyslogOutputter.html">Log4r::SyslogOutputter</a>
+- logs to syslog
+
+</li>
+<li><a
+href="../../../../classes/Log4r/EmailOutputter.html">Log4r::EmailOutputter</a>
+- email logs
+
+</li>
+<li><a
+href="../../../../classes/Log4r/RemoteOutputter.html">Log4r::RemoteOutputter</a>
+- for remote logging
+
+</li>
+</ul>
+<h2>Default Outputters</h2>
+<p>
+Two outputters named &#8216;stdout&#8217; and &#8216;stderr&#8217; are
+created automatically at the root level. They are nice shortcuts.
+</p>
+<pre>
+  Outputter['stdout'] =&gt; 'stdout'
+  Outputter['stderr'] =&gt; 'stderr'
+  Outputter.stdout    =&gt; 'stdout'
+  Outputter.stderr    =&gt; 'stderr'
+</pre>
+<h2>Configuring</h2>
+<p>
+Outputters must have names and receive hash arguments. The parameter name
+for the hash args can be either a symbol or a string. All defined
+outputters accept <tt>:level</tt> and <tt>:formatter</tt> arguments. For
+arguments specific to a convenience Outputter, please look at the class
+description.
+</p>
+<p>
+The level threshold, the levels to log at (only_at) and formatter can be
+changed dynamically using the <tt>=</tt> methods.
+</p>
+<p>
+As a collective example of all this, here are various ways to set up an
+IOOutputter:
+</p>
+<pre>
+  IOOutputter.new ExoticIO.new 'exotic', 'level' =&gt; WARN,
+                  :formatter =&gt; MyFormatter.new
+  # an equivalent way:
+  o = IOOutputter.new ExoticIO.new 'exotic'
+  o.level = WARN
+  o.formatter = MyFormatter         # we can specify just the class
+  o.only_at = THIS, THAT
+</pre>
+<h2>XML Configuration</h2>
+<p>
+Specify outputters as children of <tt>&lt;log4r_config&gt;</tt>:
+</p>
+<pre>
+  &lt;log4r_config&gt;
+    &lt;outputter name=&quot;myout&quot; type=&quot;Log4r::StdoutOutputter&quot;&gt;
+      &lt;only_at&gt;DEBUG, INFO&lt;/only_at&gt;
+    &lt;/outputter&gt;
+    &lt;outputter name=&quot;file&quot; level=&quot;WARN&quot;&gt;
+      &lt;type&gt;FileOutputter&lt;/type&gt;
+      &lt;filename&gt;#{logpath}/file.log&lt;/filename&gt;
+      &lt;trunc&gt;false&lt;/trunc&gt;
+    &lt;/outputter&gt;
+    ...
+</pre>
+<p>
+As explained in log4r/configurator.rb, the hash arguments you would
+normally pass to <tt>new</tt> are specified as <em>XML parameters</em>. It
+is given an IO object to write to, a Formatter to call, and, optionally,
+levels to write at.
+</p>
+<p>
+Outputters invoke print then flush on the wrapped IO object. If the IO
+chokes, the Outputter will close the IO and set its level to <tt>OFF</tt>.
+</p>
+<h2>Other Info</h2>
+<table>
+<tr><td valign="top">Version:</td><td>$Id: outputter.rb,v 1.6 2003/09/12 23:55:43 fando Exp $
+
+</td></tr>
+<tr><td valign="top">Author:</td><td>Leon Torres &lt;leon@ugcs.caltech.edu&gt;
+
+</td></tr>
+</table>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      thread&nbsp;&nbsp;
+      log4r/outputter/outputterfactory&nbsp;&nbsp;
+      log4r/formatter/formatter&nbsp;&nbsp;
+      log4r/staticlogger&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

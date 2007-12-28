@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sender_addr= (TMail::Mail)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail-1.1.0/tmail/facade.rb, line 250</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sender_addr=</span>( <span class="ruby-identifier">addr</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">addr</span>
+        <span class="ruby-identifier">h</span> = <span class="ruby-constant">HeaderField</span>.<span class="ruby-identifier">internal_new</span>(<span class="ruby-value str">'sender'</span>, <span class="ruby-ivar">@config</span>)
+        <span class="ruby-identifier">h</span>.<span class="ruby-identifier">addr</span> = <span class="ruby-identifier">addr</span>
+        <span class="ruby-ivar">@header</span>[<span class="ruby-value str">'sender'</span>] = <span class="ruby-identifier">h</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-ivar">@header</span>.<span class="ruby-identifier">delete</span> <span class="ruby-value str">'sender'</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">addr</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

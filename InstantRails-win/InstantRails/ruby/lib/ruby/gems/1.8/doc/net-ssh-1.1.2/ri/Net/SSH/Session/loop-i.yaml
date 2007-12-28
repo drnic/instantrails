@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Enters the main communication loop. This processes events occuring over the channel. If a block is given, the loop will continue for as long as the block returns <tt>true</tt>. Otherwise, the loop continues until there are no more open channels. (See Net::SSH::Connection::Driver#loop).
+full_name: Net::SSH::Session#loop
+is_singleton: false
+name: loop
+params: ( &block )
+visibility: public

@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The application associated with this translator [FXApp]
+  name: app
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A translator translates a message to another language.
+constants: []
+
+full_name: Fox::FXTranslator
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: textCodec
+- !ruby/object:RI::MethodSummary 
+  name: textCodec=
+- !ruby/object:RI::MethodSummary 
+  name: tr
+name: FXTranslator
+superclass: Object

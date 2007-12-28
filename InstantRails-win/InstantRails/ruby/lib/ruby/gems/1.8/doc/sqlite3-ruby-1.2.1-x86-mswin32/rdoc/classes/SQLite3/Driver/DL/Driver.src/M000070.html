@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>commit_hook (SQLite3::Driver::DL::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sqlite3/driver/dl/driver.rb, line 311</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">commit_hook</span>( <span class="ruby-identifier">db</span>, <span class="ruby-identifier">data</span>=<span class="ruby-keyword kw">nil</span>, <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+        <span class="ruby-ivar">@commit_hook_handler</span> = <span class="ruby-identifier">block</span>
+
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@commit_hook_handler_callback</span>
+          <span class="ruby-ivar">@commit_hook_handler_callback</span> = <span class="ruby-operator">::</span><span class="ruby-constant">DL</span>.<span class="ruby-identifier">callback</span>( <span class="ruby-value str">&quot;IP&quot;</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">cookie</span><span class="ruby-operator">|</span>
+            <span class="ruby-ivar">@commit_hook_handler</span>.<span class="ruby-identifier">call</span>( <span class="ruby-identifier">cookie</span> )
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-constant">API</span>.<span class="ruby-identifier">sqlite3_commit_hook</span>( <span class="ruby-identifier">db</span>, <span class="ruby-identifier">block</span><span class="ruby-operator">&amp;&amp;</span><span class="ruby-ivar">@commit_hook_handler_callback</span>,
+          <span class="ruby-identifier">data</span> )
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>wait_for_message (Net::SSH::UserAuth::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/driver.rb, line 91</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">wait_for_message</span>
+          <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">type</span>, <span class="ruby-identifier">buffer</span> = <span class="ruby-ivar">@session</span>.<span class="ruby-identifier">wait_for_message</span>
+
+            <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">type</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">USERAUTH_BANNER</span>
+                <span class="ruby-identifier">message</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+                <span class="ruby-identifier">language</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+
+                <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+                  <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;got USERAUTH_BANNER (#{message}:#{language})&quot;</span>
+                <span class="ruby-keyword kw">end</span>
+
+                <span class="ruby-ivar">@on_banner</span>.<span class="ruby-identifier">call</span>( <span class="ruby-identifier">message</span>, <span class="ruby-identifier">language</span> )
+
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">USERAUTH_FAILURE</span>
+                <span class="ruby-identifier">authentications</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span>
+                <span class="ruby-ivar">@allowed_auth_methods</span> = <span class="ruby-identifier">authentications</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,/</span>)
+                <span class="ruby-identifier">partial_success</span> = <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_bool</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">:message_type</span>    =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+                                       <span class="ruby-identifier">:authentications</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">authentications</span>,
+                                       <span class="ruby-identifier">:partial_success</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">partial_success</span> )
+
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">USERAUTH_SUCCESS</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">:message_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span> )
+
+              <span class="ruby-keyword kw">when</span> <span class="ruby-constant">SERVICE_ACCEPT</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">:message_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+                                       <span class="ruby-identifier">:service_name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">buffer</span>.<span class="ruby-identifier">read_string</span> )
+              
+              <span class="ruby-comment cmt"># authmethod-specific codes</span>
+              <span class="ruby-keyword kw">when</span> <span class="ruby-value">60</span><span class="ruby-operator">..</span><span class="ruby-value">79</span>
+                <span class="ruby-keyword kw">return</span> <span class="ruby-constant">OpenStruct</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">:message_type</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">type</span>,
+                                       <span class="ruby-identifier">:buffer</span>       =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">buffer</span> )
+
+              <span class="ruby-keyword kw">else</span>
+                <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+                      <span class="ruby-node">&quot;unexpected message type '#{type}' (#{buffer.to_s})&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

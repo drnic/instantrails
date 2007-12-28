@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>options_for_select (ActionView::Helpers::FormOptionsHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/form_options_helper.rb, line 158</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options_for_select</span>(<span class="ruby-identifier">container</span>, <span class="ruby-identifier">selected</span> = <span class="ruby-keyword kw">nil</span>)
+        <span class="ruby-identifier">container</span> = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">to_a</span> <span class="ruby-keyword kw">if</span> <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">container</span>
+
+        <span class="ruby-identifier">options_for_select</span> = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">inject</span>([]) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">options</span>, <span class="ruby-identifier">element</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">text</span>, <span class="ruby-identifier">value</span> = <span class="ruby-identifier">option_text_and_value</span>(<span class="ruby-identifier">element</span>)
+          <span class="ruby-identifier">selected_attribute</span> = <span class="ruby-value str">' selected=&quot;selected&quot;'</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">option_value_selected?</span>(<span class="ruby-identifier">value</span>, <span class="ruby-identifier">selected</span>)
+          <span class="ruby-identifier">options</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">%(&lt;option value=&quot;#{html_escape(value.to_s)}&quot;#{selected_attribute}&gt;#{html_escape(text.to_s)}&lt;/option&gt;)</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-identifier">options_for_select</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

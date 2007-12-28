@@ -1,0 +1,29 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The service driver for the Shell service. It manages the creation of new Shell::Shell and Shell::SyncShell subservices.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Net::SSH.start( host ) do |session|\n    shell = session.shell.open\n\n    shell.cd &quot;/home/foo&quot;\n    shell.mkdir &quot;-p some/long/dir&quot;\n    shell.cd &quot;some/long/dir&quot;\n    shell.touch &quot;foo.txt&quot;\n    shell.exit\n\n    session.loop\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Or:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Net::SSH.start( host ) do |session|\n    shell = session.shell.sync\n\n    shell.cd &quot;/home/foo&quot;\n\n    out = shell.test &quot;-e some/file.txt&quot;\n    if out.status == 0\n      out = shell.cat &quot;some/file.txt&quot;\n      puts out.stdout\n    else\n      puts &quot;no such file 'some/file.txt'&quot;\n    end\n\n  end\n"
+constants: []
+
+full_name: Net::SSH::Service::Shell::Driver
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: sync
+name: Driver
+superclass: Object

@@ -1,0 +1,34 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: filename
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: trunc
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Convenience wrapper for File. Additional hash arguments are:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:filename</tt>
+    body: Name of the file to log to.
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:trunc</tt>
+    body: Truncate the file?
+  type: :LABELED
+constants: []
+
+full_name: Log4r::FileOutputter
+includes: []
+
+instance_methods: []
+
+name: FileOutputter
+superclass: IOOutputter

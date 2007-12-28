@@ -1,0 +1,146 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: loaded_specs
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Set the value of the ssl_avilable flag.
+  name: ssl_available
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: activate
+- !ruby/object:RI::MethodSummary 
+  name: all_load_paths
+- !ruby/object:RI::MethodSummary 
+  name: bindir
+- !ruby/object:RI::MethodSummary 
+  name: clear_paths
+- !ruby/object:RI::MethodSummary 
+  name: config_file
+- !ruby/object:RI::MethodSummary 
+  name: configuration
+- !ruby/object:RI::MethodSummary 
+  name: configuration=
+- !ruby/object:RI::MethodSummary 
+  name: datadir
+- !ruby/object:RI::MethodSummary 
+  name: default_bindir
+- !ruby/object:RI::MethodSummary 
+  name: default_dir
+- !ruby/object:RI::MethodSummary 
+  name: default_exec_format
+- !ruby/object:RI::MethodSummary 
+  name: default_path
+- !ruby/object:RI::MethodSummary 
+  name: default_sources
+- !ruby/object:RI::MethodSummary 
+  name: default_system_source_cache_dir
+- !ruby/object:RI::MethodSummary 
+  name: default_user_source_cache_dir
+- !ruby/object:RI::MethodSummary 
+  name: dir
+- !ruby/object:RI::MethodSummary 
+  name: ensure_gem_subdirectories
+- !ruby/object:RI::MethodSummary 
+  name: ensure_ssl_available
+- !ruby/object:RI::MethodSummary 
+  name: latest_load_paths
+- !ruby/object:RI::MethodSummary 
+  name: manage_gems
+- !ruby/object:RI::MethodSummary 
+  name: marshal_version
+- !ruby/object:RI::MethodSummary 
+  name: path
+- !ruby/object:RI::MethodSummary 
+  name: platforms
+- !ruby/object:RI::MethodSummary 
+  name: prefix
+- !ruby/object:RI::MethodSummary 
+  name: required_location
+- !ruby/object:RI::MethodSummary 
+  name: ruby
+- !ruby/object:RI::MethodSummary 
+  name: searcher
+- !ruby/object:RI::MethodSummary 
+  name: source_index
+- !ruby/object:RI::MethodSummary 
+  name: sources
+- !ruby/object:RI::MethodSummary 
+  name: ssl_available?
+- !ruby/object:RI::MethodSummary 
+  name: suffix_pattern
+- !ruby/object:RI::MethodSummary 
+  name: suffixes
+- !ruby/object:RI::MethodSummary 
+  name: use_paths
+- !ruby/object:RI::MethodSummary 
+  name: user_home
+- !ruby/object:RI::MethodSummary 
+  name: win_platform?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Main module to hold all RubyGem classes/modules.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SHA1
+  value: Digest::SHA1
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SHA1
+  value: DigestAdapter.new(Digest::SHA1)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SHA256
+  value: Digest::SHA256
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SHA256
+  value: DigestAdapter.new(Digest::SHA256)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RubyGemsVersion
+  value: "'1.0.1'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cache is an alias for SourceIndex to allow older YAMLized source index objects to load properly.
+  name: Cache
+  value: SourceIndex
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ConfigMap
+  value: "{} unless defined?(ConfigMap)"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RbConfig
+  value: Config unless defined? ::RbConfig
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MUTEX
+  value: Mutex.new
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RubyGemsPackageVersion
+  value: RubyGemsVersion
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DIRECTORIES
+  value: "%w[cache doc gems specifications] unless defined?(DIRECTORIES)"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: An Array of Regexps that match windows ruby platforms.
+  name: WIN_PATTERNS
+  value: "[     /bccwin/i,     /cygwin/i,     /djgpp/i,     /mingw/i,     /mswin/i,     /wince/i,   ]"
+full_name: Gem
+includes: []
+
+instance_methods: []
+
+name: Gem
+superclass: 

@@ -1,0 +1,53 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A delegate class to manage the processing for a single executed process on the remote host. It opens a channel, executes the process on it, and manages the various callbacks.
+- !ruby/struct:SM::Flow::P 
+  body: "This service is typically used like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Net::SSH.start( 'host', 'user' ) do |session|\n    session.process.open( &quot;bc&quot; ) do |process|\n      ...\n    end\n  end\n"
+constants: []
+
+full_name: Net::SSH::Service::Process::OpenManager
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: close_input
+- !ruby/object:RI::MethodSummary 
+  name: do_close
+- !ruby/object:RI::MethodSummary 
+  name: do_confirm
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_exec_failure
+- !ruby/object:RI::MethodSummary 
+  name: do_exec_success
+- !ruby/object:RI::MethodSummary 
+  name: do_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: do_request
+- !ruby/object:RI::MethodSummary 
+  name: on_exit
+- !ruby/object:RI::MethodSummary 
+  name: on_failure
+- !ruby/object:RI::MethodSummary 
+  name: on_stderr
+- !ruby/object:RI::MethodSummary 
+  name: on_stdout
+- !ruby/object:RI::MethodSummary 
+  name: on_success
+- !ruby/object:RI::MethodSummary 
+  name: puts
+- !ruby/object:RI::MethodSummary 
+  name: write
+name: OpenManager
+superclass: Object

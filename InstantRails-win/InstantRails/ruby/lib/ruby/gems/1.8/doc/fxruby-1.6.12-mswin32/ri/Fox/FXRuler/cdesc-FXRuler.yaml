@@ -1,0 +1,244 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Content size [Integer]
+  name: contentSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document size [Integer]
+  name: documentSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document size [Integer]
+  name: edgeSpacing
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The status line help text for this ruler [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: First line indent [Integer]
+  name: indentFirst
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lower indent [Integer]
+  name: indentLower
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Upper indent [Integer]
+  name: indentUpper
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document major ticks [Integer]
+  name: majorTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Lower document margin [Integer]
+  name: marginLower
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Upper document margin [Integer]
+  name: marginUpper
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document minor ticks [Integer]
+  name: minorTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document number placement [Integer]
+  name: numberTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Pixels per tick spacing [Float]
+  name: pixelsPerTick
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current position [Integer]
+  name: position
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Ruler alignment [Integer]
+  name: rulerAlignment
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The ruler style [Integer]
+  name: rulerStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The current text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Document tiny ticks [Integer]
+  name: tinyTicks
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The tool tip message for this ruler [String]
+  name: tipText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The slider value [Integer]
+  name: value
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The ruler widget is placed alongside a document to measure position and size of entities within the document, such as margins, paragraph indents, and tickmarks. The ruler widget sends a <tt>SEL_CHANGED</tt> message when the indentation or margins are interactively changed by the user. If the document size exceeds the available space, it is possible to scroll the document using setPosition(). When the document size is less than the available space, the alignment options can be used to center, left-adjust, or right-adjust the document. Finally, a special option exists to stretch the document to the available space, that is to say, the document will always be fitten with given left and right edges substracted from the available space.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXRuler to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent whenever something about the ruler changes
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Ruler options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_NORMAL+:"
+    body: Default appearance (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_HORIZONTAL+:"
+    body: Ruler is horizontal (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_VERTICAL+:"
+    body: Ruler is vertical
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_OFF+:"
+    body: Tick marks off (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_TOP+:"
+    body: Ticks on the top (if horizontal)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_BOTTOM+:"
+    body: Ticks on the bottom (if horizontal)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_LEFT+:"
+    body: Ticks on the left (if vertical)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_RIGHT+:"
+    body: Ticks on the right (if vertical)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_TICKS_CENTER+:"
+    body: Tickmarks centered
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_NUMBERS+:"
+    body: Show numbers
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ARROW+:"
+    body: Draw small arrow for cursor position
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_MARKERS+:"
+    body: Draw markers for indentation settings
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_METRIC+:"
+    body: Metric subdivision (default)
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ENGLISH+:"
+    body: English subdivision
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_MARGIN_ADJUST+:"
+    body: Allow margin adjustment
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_CENTER+:"
+    body: Center document horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_LEFT+:"
+    body: Align document to the left
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_RIGHT+:"
+    body: Align document to the right
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_TOP+:"
+    body: Align document to the top
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_BOTTOM+:"
+    body: Align document to the bottom
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_STRETCH+:"
+    body: Stretch document to fit horizontally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+RULER_ALIGN_NORMAL+:"
+    body: Normally, document is centered both ways
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Message identifiers:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ARROW+:"
+    body: write me
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXRuler
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: documentLower
+- !ruby/object:RI::MethodSummary 
+  name: documentUpper
+name: FXRuler
+superclass: FXFrame

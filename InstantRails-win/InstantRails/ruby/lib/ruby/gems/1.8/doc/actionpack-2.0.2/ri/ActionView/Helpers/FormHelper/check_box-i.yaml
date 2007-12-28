@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a checkbox tag tailored for accessing a specified attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). It's intended that <tt>method</tt> returns an integer and if that integer is above zero, then the checkbox is checked. Additional options on the input tag can be passed as a hash with <tt>options</tt>. The <tt>checked_value</tt> defaults to 1 while the default <tt>unchecked_value</tt> is set to 0 which is convenient for boolean values. Since HTTP standards say that unchecked checkboxes don't post anything, we add a hidden value with the same name as the checkbox as a work around.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Let's say that @post.validated? is 1:\n  check_box(&quot;post&quot;, &quot;validated&quot;)\n  # =&gt; &lt;input type=&quot;checkbox&quot; id=&quot;post_validate&quot; name=&quot;post[validated]&quot; value=&quot;1&quot; checked=&quot;checked&quot; /&gt;\n  #    &lt;input name=&quot;post[validated]&quot; type=&quot;hidden&quot; value=&quot;0&quot; /&gt;\n\n  # Let's say that @puppy.gooddog is &quot;no&quot;:\n  check_box(&quot;puppy&quot;, &quot;gooddog&quot;, {}, &quot;yes&quot;, &quot;no&quot;)\n  # =&gt; &lt;input type=&quot;checkbox&quot; id=&quot;puppy_gooddog&quot; name=&quot;puppy[gooddog]&quot; value=&quot;yes&quot; /&gt;\n  #    &lt;input name=&quot;puppy[gooddog]&quot; type=&quot;hidden&quot; value=&quot;no&quot; /&gt;\n\n  check_box(&quot;eula&quot;, &quot;accepted&quot;, {}, &quot;yes&quot;, &quot;no&quot;, :class =&gt; 'eula_check')\n  # =&gt; &lt;input type=&quot;checkbox&quot; id=&quot;eula_accepted&quot; name=&quot;eula[accepted]&quot; value=&quot;no&quot; /&gt;\n  #    &lt;input name=&quot;eula[accepted]&quot; type=&quot;hidden&quot; value=&quot;no&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormHelper#check_box
+is_singleton: false
+name: check_box
+params: (object_name, method, options = {}, checked_value = "1", unchecked_value = "0")
+visibility: public

@@ -1,0 +1,36 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cube depth [Float]
+  name: depth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cube height [Float]
+  name: height
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cube width [Float]
+  name: width
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: OpenGL cube object
+constants: []
+
+full_name: Fox::FXGLCube
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: drawshape
+name: FXGLCube
+superclass: FXGLShape

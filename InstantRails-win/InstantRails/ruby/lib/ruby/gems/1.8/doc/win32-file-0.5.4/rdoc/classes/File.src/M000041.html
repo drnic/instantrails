@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>sparse= (File)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file.rb, line 944</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">sparse=</span>(<span class="ruby-identifier">bool</span>)     
+      <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bool</span>
+         <span class="ruby-identifier">warn</span> <span class="ruby-value str">'cannot remove sparse property from a file - operation ignored'</span>
+         <span class="ruby-keyword kw">return</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">bytes</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+      
+      <span class="ruby-identifier">handle</span> = <span class="ruby-constant">CreateFile</span>(
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>,
+         <span class="ruby-constant">FILE_READ_DATA</span> <span class="ruby-operator">|</span> <span class="ruby-constant">FILE_WRITE_DATA</span>,
+         <span class="ruby-constant">FILE_SHARE_READ</span> <span class="ruby-operator">|</span> <span class="ruby-constant">FILE_SHARE_WRITE</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-constant">OPEN_EXISTING</span>,
+         <span class="ruby-constant">FSCTL_SET_SPARSE</span>(),
+         <span class="ruby-value">0</span>
+      )
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_HANDLE_VALUE</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-identifier">val</span> = <span class="ruby-constant">DeviceIoControl</span>(
+         <span class="ruby-identifier">handle</span>,
+         <span class="ruby-constant">FSCTL_SET_SPARSE</span>(),
+         <span class="ruby-value">0</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-value">0</span>,
+         <span class="ruby-identifier">bytes</span>,
+         <span class="ruby-value">0</span>
+      )
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">self</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

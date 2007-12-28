@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>open_handle (Net::SFTP::Session)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/session.rb, line 164</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">open_handle</span>( <span class="ruby-identifier">path</span>, <span class="ruby-identifier">flags</span>=<span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">RDONLY</span>, <span class="ruby-identifier">mode</span>=<span class="ruby-value">0660</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">String</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">flags</span>
+        <span class="ruby-identifier">flags</span> = <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">flags</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;r&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">RDONLY</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;r+&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-identifier">:RDWR</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;w&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">WRONLY</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">TRUNC</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;w+&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">RDWR</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">TRUNC</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;a&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;a+&quot;</span> <span class="ruby-keyword kw">then</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">APPEND</span> <span class="ruby-operator">|</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">CREAT</span>
+          <span class="ruby-keyword kw">else</span> <span class="ruby-constant">IO</span><span class="ruby-operator">::</span><span class="ruby-constant">RDONLY</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">handle</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">open</span>( <span class="ruby-identifier">path</span>, <span class="ruby-identifier">flags</span>, <span class="ruby-identifier">mode</span> )
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-keyword kw">begin</span>
+          <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">handle</span>
+        <span class="ruby-keyword kw">ensure</span>
+          <span class="ruby-identifier">close_handle</span>( <span class="ruby-identifier">handle</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">else</span>
+        <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">handle</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>exchange_keys (Net::SSH::Transport::Kex::DiffieHellmanGroup1SHA1)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/kex/dh.rb, line 224</span>
+          <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exchange_keys</span>( <span class="ruby-identifier">session</span>, <span class="ruby-identifier">data</span> )
+            <span class="ruby-identifier">data</span> = <span class="ruby-identifier">data</span>.<span class="ruby-identifier">dup</span>
+            <span class="ruby-identifier">dh</span> = <span class="ruby-identifier">generate_key</span>( <span class="ruby-identifier">session</span>, <span class="ruby-identifier">data</span> )
+
+            <span class="ruby-identifier">buffer</span> = <span class="ruby-identifier">send_kexinit</span>( <span class="ruby-identifier">dh</span>, <span class="ruby-identifier">session</span> )
+
+            <span class="ruby-identifier">result</span> = <span class="ruby-identifier">parse_kex_reply</span>( <span class="ruby-identifier">dh</span>, <span class="ruby-identifier">buffer</span>, <span class="ruby-identifier">session</span> )
+
+            <span class="ruby-identifier">verify_server_key</span>( <span class="ruby-identifier">result</span>[<span class="ruby-identifier">:server_key</span>], <span class="ruby-identifier">session</span> )
+
+            <span class="ruby-identifier">session_id</span> = <span class="ruby-identifier">verify_signature</span>( <span class="ruby-identifier">dh</span>, <span class="ruby-identifier">data</span>, <span class="ruby-identifier">result</span> )
+
+            <span class="ruby-identifier">confirm_newkeys</span>( <span class="ruby-identifier">session</span> )
+
+            <span class="ruby-keyword kw">return</span> <span class="ruby-constant">Struct</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">:session_id</span>,
+              <span class="ruby-identifier">:server_key</span>, <span class="ruby-identifier">:shared_secret</span>, <span class="ruby-identifier">:hashing_algorithm</span> ).<span class="ruby-identifier">new</span>(
+                <span class="ruby-identifier">session_id</span>, <span class="ruby-identifier">result</span>[<span class="ruby-identifier">:server_key</span>], <span class="ruby-identifier">result</span>[<span class="ruby-identifier">:shared_secret</span>],
+                <span class="ruby-ivar">@digester</span> )
+          <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

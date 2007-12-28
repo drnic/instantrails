@@ -1,0 +1,96 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Accept&quot; button [FXButton]
+  name: acceptButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The &quot;Cancel&quot; button [FXButton]
+  name: cancelButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Directory list style [Integer]
+  name: dirBoxStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Directory [String]
+  name: directory
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Wildcard matching mode, some combination of file matching flags [Integer]
+  name: matchMode
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXDirSelector widget is the reusable mega-widget component which is the core of the FXDirDialog. The function of the directory selector widget is very similar to the file selector widget, except that the directory selector widget displays a tree-structured view of the file system, and thereby makes up and down navigation through the file system significantly easier.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRNAME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRLIST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HOME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_WORK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIRECTORY_UP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BOOKMARK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_VISIT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NEW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COPY+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LINK+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDirSelector
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: filesShown=
+- !ruby/object:RI::MethodSummary 
+  name: filesShown?
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown=
+- !ruby/object:RI::MethodSummary 
+  name: hiddenFilesShown?
+name: FXDirSelector
+superclass: FXPacker

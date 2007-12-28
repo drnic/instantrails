@@ -1,0 +1,5454 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: FXALPHAVAL
+- !ruby/object:RI::MethodSummary 
+  name: FXBLUEVAL
+- !ruby/object:RI::MethodSummary 
+  name: FXGREENVAL
+- !ruby/object:RI::MethodSummary 
+  name: FXREDVAL
+- !ruby/object:RI::MethodSummary 
+  name: FXRGB
+- !ruby/object:RI::MethodSummary 
+  name: FXRGBA
+- !ruby/object:RI::MethodSummary 
+  name: FXRGBACOMPVAL
+- !ruby/object:RI::MethodSummary 
+  name: FXSELID
+- !ruby/object:RI::MethodSummary 
+  name: FXSELTYPE
+- !ruby/object:RI::MethodSummary 
+  name: MKUINT
+- !ruby/object:RI::MethodSummary 
+  name: fxTraceLevel
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckBMP
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckGIF
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckICO
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckJPG
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckPCX
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckPNG
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckPPM
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckRGB
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckTGA
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckTIF
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckXBM
+- !ruby/object:RI::MethodSummary 
+  name: fxcheckXPM
+- !ruby/object:RI::MethodSummary 
+  name: fxcolorfromname
+- !ruby/object:RI::MethodSummary 
+  name: fxdecodeColorData
+- !ruby/object:RI::MethodSummary 
+  name: fxdecodeStringData
+- !ruby/object:RI::MethodSummary 
+  name: fxencodeColorData
+- !ruby/object:RI::MethodSummary 
+  name: fxencodeStringData
+- !ruby/object:RI::MethodSummary 
+  name: fxfindhotkeyoffset
+- !ruby/object:RI::MethodSummary 
+  name: fxhsv_to_rgb
+- !ruby/object:RI::MethodSummary 
+  name: fxloadBMP
+- !ruby/object:RI::MethodSummary 
+  name: fxloadGIF
+- !ruby/object:RI::MethodSummary 
+  name: fxloadICO
+- !ruby/object:RI::MethodSummary 
+  name: fxloadJPG
+- !ruby/object:RI::MethodSummary 
+  name: fxloadPCX
+- !ruby/object:RI::MethodSummary 
+  name: fxloadPNG
+- !ruby/object:RI::MethodSummary 
+  name: fxloadRGB
+- !ruby/object:RI::MethodSummary 
+  name: fxloadTGA
+- !ruby/object:RI::MethodSummary 
+  name: fxloadTIF
+- !ruby/object:RI::MethodSummary 
+  name: fxloadXPM
+- !ruby/object:RI::MethodSummary 
+  name: fxnamefromcolor
+- !ruby/object:RI::MethodSummary 
+  name: fxparseAccel
+- !ruby/object:RI::MethodSummary 
+  name: fxparseHotKey
+- !ruby/object:RI::MethodSummary 
+  name: fxrgb_to_hsv
+- !ruby/object:RI::MethodSummary 
+  name: fxrubyversion
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveBMP
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveGIF
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveICO
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveJPG
+- !ruby/object:RI::MethodSummary 
+  name: fxsavePCX
+- !ruby/object:RI::MethodSummary 
+  name: fxsavePNG
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveRGB
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveTGA
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveTIF
+- !ruby/object:RI::MethodSummary 
+  name: fxversion
+- !ruby/object:RI::MethodSummary 
+  name: makeHiliteColor
+- !ruby/object:RI::MethodSummary 
+  name: makeShadowColor
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Adds some methods to FOX's FXSettings class
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Calendar-specific options
+  name: CALENDAR_NORMAL
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CALENDAR_READONLY
+  value: "0x00020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HANDLE_SIZE
+  value: "4.0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Void symbol
+  name: KEY_VoidSymbol
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Miscellaneous
+  name: KEY_BackSpace
+  value: "0xFF08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Tab
+  value: "0xFF09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Linefeed
+  value: "0xFF0A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Clear
+  value: "0xFF0B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Return
+  value: "0xFF0D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pause
+  value: "0xFF13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Scroll_Lock
+  value: "0xFF14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Sys_Req
+  value: "0xFF15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Escape
+  value: "0xFF1B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Delete
+  value: "0xFFFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Multi_key
+  value: "0xFF20"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Japanese
+  name: KEY_Kanji
+  value: "0xFF21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Muhenkan
+  value: "0xFF22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Henkan_Mode
+  value: "0xFF23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Henkan
+  value: "0xFF23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Romaji
+  value: "0xFF24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hiragana
+  value: "0xFF25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Katakana
+  value: "0xFF26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hiragana_Katakana
+  value: "0xFF27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Zenkaku
+  value: "0xFF28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hankaku
+  value: "0xFF29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Zenkaku_Hankaku
+  value: "0xFF2A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Touroku
+  value: "0xFF2B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Massyo
+  value: "0xFF2C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Kana_Lock
+  value: "0xFF2D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Kana_Shift
+  value: "0xFF2E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eisu_Shift
+  value: "0xFF2F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eisu_toggle
+  value: "0xFF30"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cursor
+  name: KEY_Home
+  value: "0xFF50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Left
+  value: "0xFF51"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Up
+  value: "0xFF52"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Right
+  value: "0xFF53"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Down
+  value: "0xFF54"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Prior
+  value: "0xFF55"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Page_Up
+  value: "0xFF55"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Next
+  value: "0xFF56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Page_Down
+  value: "0xFF56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_End
+  value: "0xFF57"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Begin
+  value: "0xFF58"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Functions
+  name: KEY_Select
+  value: "0xFF60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Print
+  value: "0xFF61"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Execute
+  value: "0xFF62"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Insert
+  value: "0xFF63"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Undo
+  value: "0xFF65"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Redo
+  value: "0xFF66"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Menu
+  value: "0xFF67"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Find
+  value: "0xFF68"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cancel
+  value: "0xFF69"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Help
+  value: "0xFF6A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Break
+  value: "0xFF6B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Mode_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_script_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Num_Lock
+  value: "0xFF7F"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Keypad
+  name: KEY_KP_Space
+  value: "0xFF80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Tab
+  value: "0xFF89"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Enter
+  value: "0xFF8D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_F1
+  value: "0xFF91"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_F2
+  value: "0xFF92"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_F3
+  value: "0xFF93"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_F4
+  value: "0xFF94"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Home
+  value: "0xFF95"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Left
+  value: "0xFF96"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Up
+  value: "0xFF97"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Right
+  value: "0xFF98"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Down
+  value: "0xFF99"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Prior
+  value: "0xFF9A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Page_Up
+  value: "0xFF9A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Next
+  value: "0xFF9B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Page_Down
+  value: "0xFF9B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_End
+  value: "0xFF9C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Begin
+  value: "0xFF9D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Insert
+  value: "0xFF9E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Delete
+  value: "0xFF9F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Equal
+  value: "0xFFBD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Multiply
+  value: "0xFFAA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Add
+  value: "0xFFAB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Separator
+  value: "0xFFAC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Subtract
+  value: "0xFFAD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Decimal
+  value: "0xFFAE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_Divide
+  value: "0xFFAF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Keypad numbers
+  name: KEY_KP_0
+  value: "0xFFB0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_1
+  value: "0xFFB1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_2
+  value: "0xFFB2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_3
+  value: "0xFFB3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_4
+  value: "0xFFB4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_5
+  value: "0xFFB5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_6
+  value: "0xFFB6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_7
+  value: "0xFFB7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_8
+  value: "0xFFB8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_KP_9
+  value: "0xFFB9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Function keys
+  name: KEY_F1
+  value: "0xFFBE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F2
+  value: "0xFFBF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F3
+  value: "0xFFC0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F4
+  value: "0xFFC1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F5
+  value: "0xFFC2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F6
+  value: "0xFFC3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F7
+  value: "0xFFC4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F8
+  value: "0xFFC5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F9
+  value: "0xFFC6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F10
+  value: "0xFFC7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F11
+  value: "0xFFC8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L1
+  value: "0xFFC8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F12
+  value: "0xFFC9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L2
+  value: "0xFFC9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F13
+  value: "0xFFCA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L3
+  value: "0xFFCA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F14
+  value: "0xFFCB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L4
+  value: "0xFFCB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F15
+  value: "0xFFCC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L5
+  value: "0xFFCC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F16
+  value: "0xFFCD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L6
+  value: "0xFFCD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F17
+  value: "0xFFCE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L7
+  value: "0xFFCE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F18
+  value: "0xFFCF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L8
+  value: "0xFFCF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F19
+  value: "0xFFD0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L9
+  value: "0xFFD0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F20
+  value: "0xFFD1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L10
+  value: "0xFFD1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F21
+  value: "0xFFD2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R1
+  value: "0xFFD2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F22
+  value: "0xFFD3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R2
+  value: "0xFFD3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F23
+  value: "0xFFD4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R3
+  value: "0xFFD4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F24
+  value: "0xFFD5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R4
+  value: "0xFFD5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F25
+  value: "0xFFD6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R5
+  value: "0xFFD6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F26
+  value: "0xFFD7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R6
+  value: "0xFFD7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F27
+  value: "0xFFD8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R7
+  value: "0xFFD8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F28
+  value: "0xFFD9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R8
+  value: "0xFFD9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F29
+  value: "0xFFDA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R9
+  value: "0xFFDA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F30
+  value: "0xFFDB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R10
+  value: "0xFFDB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F31
+  value: "0xFFDC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R11
+  value: "0xFFDC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F32
+  value: "0xFFDD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R12
+  value: "0xFFDD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F33
+  value: "0xFFDE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R13
+  value: "0xFFDE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F34
+  value: "0xFFDF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R14
+  value: "0xFFDF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F35
+  value: "0xFFE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R15
+  value: "0xFFE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Modifiers
+  name: KEY_Shift_L
+  value: "0xFFE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Shift_R
+  value: "0xFFE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Control_L
+  value: "0xFFE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Control_R
+  value: "0xFFE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Caps_Lock
+  value: "0xFFE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Shift_Lock
+  value: "0xFFE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Meta_L
+  value: "0xFFE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Meta_R
+  value: "0xFFE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Alt_L
+  value: "0xFFE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Alt_R
+  value: "0xFFEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Super_L
+  value: "0xFFEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Super_R
+  value: "0xFFEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hyper_L
+  value: "0xFFED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hyper_R
+  value: "0xFFEE"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: ISO 9995
+  name: KEY_ISO_Lock
+  value: "0xFE01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Level2_Latch
+  value: "0xFE02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Level3_Shift
+  value: "0xFE03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Level3_Latch
+  value: "0xFE04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Level3_Lock
+  value: "0xFE05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Group_Shift
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Group_Latch
+  value: "0xFE06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Group_Lock
+  value: "0xFE07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Next_Group
+  value: "0xFE08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Next_Group_Lock
+  value: "0xFE09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Prev_Group
+  value: "0xFE0A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Prev_Group_Lock
+  value: "0xFE0B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_First_Group
+  value: "0xFE0C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_First_Group_Lock
+  value: "0xFE0D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Last_Group
+  value: "0xFE0E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Last_Group_Lock
+  value: "0xFE0F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Left_Tab
+  value: "0xFE20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Move_Line_Up
+  value: "0xFE21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Move_Line_Down
+  value: "0xFE22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Partial_Line_Up
+  value: "0xFE23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Partial_Line_Down
+  value: "0xFE24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Partial_Space_Left
+  value: "0xFE25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Partial_Space_Right
+  value: "0xFE26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Set_Margin_Left
+  value: "0xFE27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Set_Margin_Right
+  value: "0xFE28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Release_Margin_Left
+  value: "0xFE29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Release_Margin_Right
+  value: "0xFE2A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Release_Both_Margins
+  value: "0xFE2B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Fast_Cursor_Left
+  value: "0xFE2C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Fast_Cursor_Right
+  value: "0xFE2D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Fast_Cursor_Up
+  value: "0xFE2E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Fast_Cursor_Down
+  value: "0xFE2F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Continuous_Underline
+  value: "0xFE30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Discontinuous_Underline
+  value: "0xFE31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Emphasize
+  value: "0xFE32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Center_Object
+  value: "0xFE33"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ISO_Enter
+  value: "0xFE34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_grave
+  value: "0xFE50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_acute
+  value: "0xFE51"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_circumflex
+  value: "0xFE52"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_tilde
+  value: "0xFE53"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_macron
+  value: "0xFE54"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_breve
+  value: "0xFE55"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_abovedot
+  value: "0xFE56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_diaeresis
+  value: "0xFE57"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_abovering
+  value: "0xFE58"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_doubleacute
+  value: "0xFE59"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_caron
+  value: "0xFE5A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_cedilla
+  value: "0xFE5B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_ogonek
+  value: "0xFE5C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_iota
+  value: "0xFE5D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_voiced_sound
+  value: "0xFE5E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_semivoiced_sound
+  value: "0xFE5F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dead_belowdot
+  value: "0xFE60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_First_Virtual_Screen
+  value: "0xFED0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Prev_Virtual_Screen
+  value: "0xFED1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Next_Virtual_Screen
+  value: "0xFED2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Last_Virtual_Screen
+  value: "0xFED4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Terminate_Server
+  value: "0xFED5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_AccessX_Enable
+  value: "0xFE70"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_AccessX_Feedback_Enable
+  value: "0xFE71"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_RepeatKeys_Enable
+  value: "0xFE72"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_SlowKeys_Enable
+  value: "0xFE73"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_BounceKeys_Enable
+  value: "0xFE74"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_StickyKeys_Enable
+  value: "0xFE75"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_MouseKeys_Enable
+  value: "0xFE76"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_MouseKeys_Accel_Enable
+  value: "0xFE77"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Overlay1_Enable
+  value: "0xFE78"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Overlay2_Enable
+  value: "0xFE79"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_AudibleBell_Enable
+  value: "0xFE7A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Left
+  value: "0xFEE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Right
+  value: "0xFEE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Up
+  value: "0xFEE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Down
+  value: "0xFEE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_UpLeft
+  value: "0xFEE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_UpRight
+  value: "0xFEE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DownLeft
+  value: "0xFEE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DownRight
+  value: "0xFEE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button_Dflt
+  value: "0xFEE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button1
+  value: "0xFEE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button2
+  value: "0xFEEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button3
+  value: "0xFEEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button4
+  value: "0xFEEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Button5
+  value: "0xFEED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick_Dflt
+  value: "0xFEEE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick1
+  value: "0xFEEF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick2
+  value: "0xFEF0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick3
+  value: "0xFEF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick4
+  value: "0xFEF2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DblClick5
+  value: "0xFEF3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag_Dflt
+  value: "0xFEF4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag1
+  value: "0xFEF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag2
+  value: "0xFEF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag3
+  value: "0xFEF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag4
+  value: "0xFEF8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Drag5
+  value: "0xFEFD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_EnableKeys
+  value: "0xFEF9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_Accelerate
+  value: "0xFEFA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DfltBtnNext
+  value: "0xFEFB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Pointer_DfltBtnPrev
+  value: "0xFEFC"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: 3270 Terminal
+  name: KEY_3270_Duplicate
+  value: "0xFD01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_FieldMark
+  value: "0xFD02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Right2
+  value: "0xFD03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Left2
+  value: "0xFD04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_BackTab
+  value: "0xFD05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_EraseEOF
+  value: "0xFD06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_EraseInput
+  value: "0xFD07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Reset
+  value: "0xFD08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Quit
+  value: "0xFD09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_PA1
+  value: "0xFD0A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_PA2
+  value: "0xFD0B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_PA3
+  value: "0xFD0C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Test
+  value: "0xFD0D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Attn
+  value: "0xFD0E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_CursorBlink
+  value: "0xFD0F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_AltCursor
+  value: "0xFD10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_KeyClick
+  value: "0xFD11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Jump
+  value: "0xFD12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Ident
+  value: "0xFD13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Rule
+  value: "0xFD14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Copy
+  value: "0xFD15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Play
+  value: "0xFD16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Setup
+  value: "0xFD17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Record
+  value: "0xFD18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_ChangeScreen
+  value: "0xFD19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_DeleteWord
+  value: "0xFD1A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_ExSelect
+  value: "0xFD1B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_CursorSelect
+  value: "0xFD1C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_PrintScreen
+  value: "0xFD1D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3270_Enter
+  value: "0xFD1E"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Latin 1
+  name: KEY_space
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_exclam
+  value: "0x0021"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_quotedbl
+  value: "0x0022"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_numbersign
+  value: "0x0023"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dollar
+  value: "0x0024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_percent
+  value: "0x0025"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ampersand
+  value: "0x0026"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_apostrophe
+  value: "0x0027"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_quoteright
+  value: "0x0027"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_parenleft
+  value: "0x0028"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_parenright
+  value: "0x0029"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_asterisk
+  value: "0x002A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_plus
+  value: "0x002B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_comma
+  value: "0x002C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_minus
+  value: "0x002D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_period
+  value: "0x002E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_slash
+  value: "0x002F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_0
+  value: "0x0030"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_1
+  value: "0x0031"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_2
+  value: "0x0032"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_3
+  value: "0x0033"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_4
+  value: "0x0034"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_5
+  value: "0x0035"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_6
+  value: "0x0036"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_7
+  value: "0x0037"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_8
+  value: "0x0038"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_9
+  value: "0x0039"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_colon
+  value: "0x003A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_semicolon
+  value: "0x003B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_less
+  value: "0x003C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_equal
+  value: "0x003D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_greater
+  value: "0x003E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_question
+  value: "0x003F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_at
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_A
+  value: "0x0041"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_B
+  value: "0x0042"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_C
+  value: "0x0043"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_D
+  value: "0x0044"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_E
+  value: "0x0045"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_F
+  value: "0x0046"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_G
+  value: "0x0047"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_H
+  value: "0x0048"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_I
+  value: "0x0049"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_J
+  value: "0x004A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_K
+  value: "0x004B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_L
+  value: "0x004C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_M
+  value: "0x004D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_N
+  value: "0x004E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_O
+  value: "0x004F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_P
+  value: "0x0050"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Q
+  value: "0x0051"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_R
+  value: "0x0052"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_S
+  value: "0x0053"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_T
+  value: "0x0054"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_U
+  value: "0x0055"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_V
+  value: "0x0056"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_W
+  value: "0x0057"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_X
+  value: "0x0058"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Y
+  value: "0x0059"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Z
+  value: "0x005A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_bracketleft
+  value: "0x005B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_backslash
+  value: "0x005C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_bracketright
+  value: "0x005D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_asciicircum
+  value: "0x005E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_underscore
+  value: "0x005F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_grave
+  value: "0x0060"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_quoteleft
+  value: "0x0060"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_a
+  value: "0x0061"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_b
+  value: "0x0062"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_c
+  value: "0x0063"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_d
+  value: "0x0064"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_e
+  value: "0x0065"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_f
+  value: "0x0066"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_g
+  value: "0x0067"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_h
+  value: "0x0068"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_i
+  value: "0x0069"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_j
+  value: "0x006A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_k
+  value: "0x006B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_l
+  value: "0x006C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_m
+  value: "0x006D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_n
+  value: "0x006E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_o
+  value: "0x006F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_p
+  value: "0x0070"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_q
+  value: "0x0071"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_r
+  value: "0x0072"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_s
+  value: "0x0073"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_t
+  value: "0x0074"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_u
+  value: "0x0075"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_v
+  value: "0x0076"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_w
+  value: "0x0077"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_x
+  value: "0x0078"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_y
+  value: "0x0079"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_z
+  value: "0x007A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_braceleft
+  value: "0x007B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_bar
+  value: "0x007C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_braceright
+  value: "0x007D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_asciitilde
+  value: "0x007E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_nobreakspace
+  value: "0x00A0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_exclamdown
+  value: "0x00A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cent
+  value: "0x00A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_sterling
+  value: "0x00A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_currency
+  value: "0x00A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_yen
+  value: "0x00A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_brokenbar
+  value: "0x00A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_section
+  value: "0x00A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_diaeresis
+  value: "0x00A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_copyright
+  value: "0x00A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ordfeminine
+  value: "0x00AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_guillemotleft
+  value: "0x00AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_notsign
+  value: "0x00AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hyphen
+  value: "0x00AD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_registered
+  value: "0x00AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_macron
+  value: "0x00AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_degree
+  value: "0x00B0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_plusminus
+  value: "0x00B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_twosuperior
+  value: "0x00B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_threesuperior
+  value: "0x00B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_acute
+  value: "0x00B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_mu
+  value: "0x00B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_paragraph
+  value: "0x00B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_periodcentered
+  value: "0x00B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cedilla
+  value: "0x00B8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onesuperior
+  value: "0x00B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_masculine
+  value: "0x00BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_guillemotright
+  value: "0x00BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onequarter
+  value: "0x00BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onehalf
+  value: "0x00BD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_threequarters
+  value: "0x00BE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_questiondown
+  value: "0x00BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Agrave
+  value: "0x00C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Aacute
+  value: "0x00C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Acircumflex
+  value: "0x00C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Atilde
+  value: "0x00C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Adiaeresis
+  value: "0x00C4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Aring
+  value: "0x00C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_AE
+  value: "0x00C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ccedilla
+  value: "0x00C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Egrave
+  value: "0x00C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eacute
+  value: "0x00C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ecircumflex
+  value: "0x00CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ediaeresis
+  value: "0x00CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Igrave
+  value: "0x00CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Iacute
+  value: "0x00CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Icircumflex
+  value: "0x00CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Idiaeresis
+  value: "0x00CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ETH
+  value: "0x00D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eth
+  value: "0x00D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ntilde
+  value: "0x00D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ograve
+  value: "0x00D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Oacute
+  value: "0x00D3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ocircumflex
+  value: "0x00D4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Otilde
+  value: "0x00D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Odiaeresis
+  value: "0x00D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_multiply
+  value: "0x00D7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ooblique
+  value: "0x00D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ugrave
+  value: "0x00D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Uacute
+  value: "0x00DA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ucircumflex
+  value: "0x00DB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Udiaeresis
+  value: "0x00DC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Yacute
+  value: "0x00DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_THORN
+  value: "0x00DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thorn
+  value: "0x00DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ssharp
+  value: "0x00DF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_agrave
+  value: "0x00E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_aacute
+  value: "0x00E1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_acircumflex
+  value: "0x00E2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_atilde
+  value: "0x00E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_adiaeresis
+  value: "0x00E4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_aring
+  value: "0x00E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ae
+  value: "0x00E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ccedilla
+  value: "0x00E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_egrave
+  value: "0x00E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_eacute
+  value: "0x00E9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ecircumflex
+  value: "0x00EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ediaeresis
+  value: "0x00EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_igrave
+  value: "0x00EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_iacute
+  value: "0x00ED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_icircumflex
+  value: "0x00EE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_idiaeresis
+  value: "0x00EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_eth
+  value: "0x00F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ntilde
+  value: "0x00F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ograve
+  value: "0x00F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_oacute
+  value: "0x00F3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ocircumflex
+  value: "0x00F4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_otilde
+  value: "0x00F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_odiaeresis
+  value: "0x00F6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_division
+  value: "0x00F7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_oslash
+  value: "0x00F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ugrave
+  value: "0x00F9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uacute
+  value: "0x00FA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ucircumflex
+  value: "0x00FB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_udiaeresis
+  value: "0x00FC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_yacute
+  value: "0x00FD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_thorn
+  value: "0x00FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ydiaeresis
+  value: "0x00FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Latin 2
+  name: KEY_Aogonek
+  value: "0x01A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_breve
+  value: "0x01A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Lstroke
+  value: "0x01A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Lcaron
+  value: "0x01A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Sacute
+  value: "0x01A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Scaron
+  value: "0x01A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Scedilla
+  value: "0x01AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Tcaron
+  value: "0x01AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Zacute
+  value: "0x01AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Zcaron
+  value: "0x01AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Zabovedot
+  value: "0x01AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_aogonek
+  value: "0x01B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ogonek
+  value: "0x01B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lstroke
+  value: "0x01B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lcaron
+  value: "0x01B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_sacute
+  value: "0x01B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_caron
+  value: "0x01B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_scaron
+  value: "0x01B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_scedilla
+  value: "0x01BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_tcaron
+  value: "0x01BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_zacute
+  value: "0x01BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_doubleacute
+  value: "0x01BD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_zcaron
+  value: "0x01BE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_zabovedot
+  value: "0x01BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Racute
+  value: "0x01C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Abreve
+  value: "0x01C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Lacute
+  value: "0x01C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cacute
+  value: "0x01C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ccaron
+  value: "0x01C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eogonek
+  value: "0x01CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ecaron
+  value: "0x01CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Dcaron
+  value: "0x01CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Dstroke
+  value: "0x01D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Nacute
+  value: "0x01D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ncaron
+  value: "0x01D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Odoubleacute
+  value: "0x01D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Rcaron
+  value: "0x01D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Uring
+  value: "0x01D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Udoubleacute
+  value: "0x01DB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Tcedilla
+  value: "0x01DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_racute
+  value: "0x01E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_abreve
+  value: "0x01E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lacute
+  value: "0x01E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cacute
+  value: "0x01E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ccaron
+  value: "0x01E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_eogonek
+  value: "0x01EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ecaron
+  value: "0x01EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dcaron
+  value: "0x01EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dstroke
+  value: "0x01F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_nacute
+  value: "0x01F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ncaron
+  value: "0x01F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_odoubleacute
+  value: "0x01F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_udoubleacute
+  value: "0x01FB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rcaron
+  value: "0x01F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uring
+  value: "0x01F9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_tcedilla
+  value: "0x01FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_abovedot
+  value: "0x01FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Latin 3
+  name: KEY_Hstroke
+  value: "0x02A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hcircumflex
+  value: "0x02A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Iabovedot
+  value: "0x02A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Gbreve
+  value: "0x02AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Jcircumflex
+  value: "0x02AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hstroke
+  value: "0x02B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hcircumflex
+  value: "0x02B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_idotless
+  value: "0x02B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_gbreve
+  value: "0x02BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_jcircumflex
+  value: "0x02BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cabovedot
+  value: "0x02C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ccircumflex
+  value: "0x02C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Gabovedot
+  value: "0x02D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Gcircumflex
+  value: "0x02D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ubreve
+  value: "0x02DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Scircumflex
+  value: "0x02DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cabovedot
+  value: "0x02E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ccircumflex
+  value: "0x02E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_gabovedot
+  value: "0x02F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_gcircumflex
+  value: "0x02F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ubreve
+  value: "0x02FD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_scircumflex
+  value: "0x02FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Latin 4
+  name: KEY_kra
+  value: "0x03A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kappa
+  value: "0x03A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Rcedilla
+  value: "0x03A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Itilde
+  value: "0x03A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Lcedilla
+  value: "0x03A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Emacron
+  value: "0x03AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Gcedilla
+  value: "0x03AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Tslash
+  value: "0x03AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rcedilla
+  value: "0x03B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_itilde
+  value: "0x03B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lcedilla
+  value: "0x03B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emacron
+  value: "0x03BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_gcedilla
+  value: "0x03BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_tslash
+  value: "0x03BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ENG
+  value: "0x03BD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_eng
+  value: "0x03BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Amacron
+  value: "0x03C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Iogonek
+  value: "0x03C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Eabovedot
+  value: "0x03CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Imacron
+  value: "0x03CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ncedilla
+  value: "0x03D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Omacron
+  value: "0x03D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Kcedilla
+  value: "0x03D3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Uogonek
+  value: "0x03D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Utilde
+  value: "0x03DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Umacron
+  value: "0x03DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_amacron
+  value: "0x03E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_iogonek
+  value: "0x03E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_eabovedot
+  value: "0x03EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_imacron
+  value: "0x03EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ncedilla
+  value: "0x03F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_omacron
+  value: "0x03F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kcedilla
+  value: "0x03F3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uogonek
+  value: "0x03F9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_utilde
+  value: "0x03FD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_umacron
+  value: "0x03FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Katakana
+  name: KEY_overline
+  value: "0x047E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_fullstop
+  value: "0x04A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_openingbracket
+  value: "0x04A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_closingbracket
+  value: "0x04A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_comma
+  value: "0x04A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_conjunctive
+  value: "0x04A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_middledot
+  value: "0x04A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_WO
+  value: "0x04A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_a
+  value: "0x04A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_i
+  value: "0x04A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_u
+  value: "0x04A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_e
+  value: "0x04AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_o
+  value: "0x04AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_ya
+  value: "0x04AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_yu
+  value: "0x04AD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_yo
+  value: "0x04AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_tsu
+  value: "0x04AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_tu
+  value: "0x04AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_prolongedsound
+  value: "0x04B0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_A
+  value: "0x04B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_I
+  value: "0x04B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_U
+  value: "0x04B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_E
+  value: "0x04B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_O
+  value: "0x04B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_KA
+  value: "0x04B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_KI
+  value: "0x04B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_KU
+  value: "0x04B8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_KE
+  value: "0x04B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_KO
+  value: "0x04BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_SA
+  value: "0x04BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_SHI
+  value: "0x04BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_SU
+  value: "0x04BD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_SE
+  value: "0x04BE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_SO
+  value: "0x04BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TA
+  value: "0x04C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_CHI
+  value: "0x04C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TI
+  value: "0x04C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TSU
+  value: "0x04C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TU
+  value: "0x04C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TE
+  value: "0x04C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_TO
+  value: "0x04C4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_NA
+  value: "0x04C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_NI
+  value: "0x04C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_NU
+  value: "0x04C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_NE
+  value: "0x04C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_NO
+  value: "0x04C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_HA
+  value: "0x04CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_HI
+  value: "0x04CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_FU
+  value: "0x04CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_HU
+  value: "0x04CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_HE
+  value: "0x04CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_HO
+  value: "0x04CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_MA
+  value: "0x04CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_MI
+  value: "0x04D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_MU
+  value: "0x04D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_ME
+  value: "0x04D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_MO
+  value: "0x04D3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_YA
+  value: "0x04D4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_YU
+  value: "0x04D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_YO
+  value: "0x04D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_RA
+  value: "0x04D7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_RI
+  value: "0x04D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_RU
+  value: "0x04D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_RE
+  value: "0x04DA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_RO
+  value: "0x04DB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_WA
+  value: "0x04DC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_N
+  value: "0x04DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_voicedsound
+  value: "0x04DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_semivoicedsound
+  value: "0x04DF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_kana_switch
+  value: "0x0FF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Arabic
+  name: KEY_Arabic_comma
+  value: "0x05AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_semicolon
+  value: "0x05BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_question_mark
+  value: "0x05BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hamza
+  value: "0x05C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_maddaonalef
+  value: "0x05C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hamzaonalef
+  value: "0x05C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hamzaonwaw
+  value: "0x05C4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hamzaunderalef
+  value: "0x05C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hamzaonyeh
+  value: "0x05C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_alef
+  value: "0x05C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_beh
+  value: "0x05C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_tehmarbuta
+  value: "0x05C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_teh
+  value: "0x05CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_theh
+  value: "0x05CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_jeem
+  value: "0x05CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_hah
+  value: "0x05CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_khah
+  value: "0x05CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_dal
+  value: "0x05CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_thal
+  value: "0x05D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_ra
+  value: "0x05D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_zain
+  value: "0x05D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_seen
+  value: "0x05D3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_sheen
+  value: "0x05D4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_sad
+  value: "0x05D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_dad
+  value: "0x05D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_tah
+  value: "0x05D7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_zah
+  value: "0x05D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_ain
+  value: "0x05D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_ghain
+  value: "0x05DA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_tatweel
+  value: "0x05E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_feh
+  value: "0x05E1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_qaf
+  value: "0x05E2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_kaf
+  value: "0x05E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_lam
+  value: "0x05E4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_meem
+  value: "0x05E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_noon
+  value: "0x05E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_ha
+  value: "0x05E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_heh
+  value: "0x05E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_waw
+  value: "0x05E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_alefmaksura
+  value: "0x05E9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_yeh
+  value: "0x05EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_fathatan
+  value: "0x05EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_dammatan
+  value: "0x05EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_kasratan
+  value: "0x05ED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_fatha
+  value: "0x05EE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_damma
+  value: "0x05EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_kasra
+  value: "0x05F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_shadda
+  value: "0x05F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_sukun
+  value: "0x05F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Arabic_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cyrillic
+  name: KEY_Serbian_dje
+  value: "0x06A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_gje
+  value: "0x06A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_io
+  value: "0x06A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_ie
+  value: "0x06A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_je
+  value: "0x06A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_dse
+  value: "0x06A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_i
+  value: "0x06A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_i
+  value: "0x06A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_yi
+  value: "0x06A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_yi
+  value: "0x06A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_je
+  value: "0x06A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_je
+  value: "0x06A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_lje
+  value: "0x06A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_lje
+  value: "0x06A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_nje
+  value: "0x06AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_nje
+  value: "0x06AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_tshe
+  value: "0x06AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_kje
+  value: "0x06AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Byelorussian_shortu
+  value: "0x06AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_dzhe
+  value: "0x06AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_dze
+  value: "0x06AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_numerosign
+  value: "0x06B0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_DJE
+  value: "0x06B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_GJE
+  value: "0x06B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_IO
+  value: "0x06B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_IE
+  value: "0x06B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_JE
+  value: "0x06B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_DSE
+  value: "0x06B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_I
+  value: "0x06B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_I
+  value: "0x06B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukrainian_YI
+  value: "0x06B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Ukranian_YI
+  value: "0x06B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_JE
+  value: "0x06B8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_JE
+  value: "0x06B8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_LJE
+  value: "0x06B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_LJE
+  value: "0x06B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_NJE
+  value: "0x06BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_NJE
+  value: "0x06BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_TSHE
+  value: "0x06BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Macedonia_KJE
+  value: "0x06BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Byelorussian_SHORTU
+  value: "0x06BE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_DZHE
+  value: "0x06BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Serbian_DZE
+  value: "0x06BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_yu
+  value: "0x06C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_a
+  value: "0x06C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_be
+  value: "0x06C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_tse
+  value: "0x06C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_de
+  value: "0x06C4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ie
+  value: "0x06C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ef
+  value: "0x06C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ghe
+  value: "0x06C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ha
+  value: "0x06C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_i
+  value: "0x06C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_shorti
+  value: "0x06CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ka
+  value: "0x06CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_el
+  value: "0x06CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_em
+  value: "0x06CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_en
+  value: "0x06CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_o
+  value: "0x06CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_pe
+  value: "0x06D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ya
+  value: "0x06D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_er
+  value: "0x06D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_es
+  value: "0x06D3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_te
+  value: "0x06D4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_u
+  value: "0x06D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_zhe
+  value: "0x06D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ve
+  value: "0x06D7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_softsign
+  value: "0x06D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_yeru
+  value: "0x06D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ze
+  value: "0x06DA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_sha
+  value: "0x06DB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_e
+  value: "0x06DC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_shcha
+  value: "0x06DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_che
+  value: "0x06DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_hardsign
+  value: "0x06DF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_YU
+  value: "0x06E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_A
+  value: "0x06E1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_BE
+  value: "0x06E2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_TSE
+  value: "0x06E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_DE
+  value: "0x06E4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_IE
+  value: "0x06E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_EF
+  value: "0x06E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_GHE
+  value: "0x06E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_HA
+  value: "0x06E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_I
+  value: "0x06E9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_SHORTI
+  value: "0x06EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_KA
+  value: "0x06EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_EL
+  value: "0x06EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_EM
+  value: "0x06ED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_EN
+  value: "0x06EE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_O
+  value: "0x06EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_PE
+  value: "0x06F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_YA
+  value: "0x06F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ER
+  value: "0x06F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ES
+  value: "0x06F3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_TE
+  value: "0x06F4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_U
+  value: "0x06F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ZHE
+  value: "0x06F6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_VE
+  value: "0x06F7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_SOFTSIGN
+  value: "0x06F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_YERU
+  value: "0x06F9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_ZE
+  value: "0x06FA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_SHA
+  value: "0x06FB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_E
+  value: "0x06FC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_SHCHA
+  value: "0x06FD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_CHE
+  value: "0x06FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Cyrillic_HARDSIGN
+  value: "0x06FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Greek
+  name: KEY_Greek_ALPHAaccent
+  value: "0x07A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_EPSILONaccent
+  value: "0x07A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_ETAaccent
+  value: "0x07A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_IOTAaccent
+  value: "0x07A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_IOTAdiaeresis
+  value: "0x07A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_OMICRONaccent
+  value: "0x07A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_UPSILONaccent
+  value: "0x07A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_UPSILONdieresis
+  value: "0x07A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_OMEGAaccent
+  value: "0x07AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_accentdieresis
+  value: "0x07AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_horizbar
+  value: "0x07AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_alphaaccent
+  value: "0x07B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_epsilonaccent
+  value: "0x07B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_etaaccent
+  value: "0x07B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_iotaaccent
+  value: "0x07B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_iotadieresis
+  value: "0x07B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_iotaaccentdieresis
+  value: "0x07B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_omicronaccent
+  value: "0x07B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_upsilonaccent
+  value: "0x07B8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_upsilondieresis
+  value: "0x07B9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_upsilonaccentdieresis
+  value: "0x07BA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_omegaaccent
+  value: "0x07BB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_ALPHA
+  value: "0x07C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_BETA
+  value: "0x07C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_GAMMA
+  value: "0x07C3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_DELTA
+  value: "0x07C4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_EPSILON
+  value: "0x07C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_ZETA
+  value: "0x07C6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_ETA
+  value: "0x07C7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_THETA
+  value: "0x07C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_IOTA
+  value: "0x07C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_KAPPA
+  value: "0x07CA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_LAMDA
+  value: "0x07CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_LAMBDA
+  value: "0x07CB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_MU
+  value: "0x07CC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_NU
+  value: "0x07CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_XI
+  value: "0x07CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_OMICRON
+  value: "0x07CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_PI
+  value: "0x07D0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_RHO
+  value: "0x07D1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_SIGMA
+  value: "0x07D2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_TAU
+  value: "0x07D4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_UPSILON
+  value: "0x07D5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_PHI
+  value: "0x07D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_CHI
+  value: "0x07D7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_PSI
+  value: "0x07D8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_OMEGA
+  value: "0x07D9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_alpha
+  value: "0x07E1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_beta
+  value: "0x07E2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_gamma
+  value: "0x07E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_delta
+  value: "0x07E4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_epsilon
+  value: "0x07E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_zeta
+  value: "0x07E6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_eta
+  value: "0x07E7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_theta
+  value: "0x07E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_iota
+  value: "0x07E9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_kappa
+  value: "0x07EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_lamda
+  value: "0x07EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_lambda
+  value: "0x07EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_mu
+  value: "0x07EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_nu
+  value: "0x07ED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_xi
+  value: "0x07EE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_omicron
+  value: "0x07EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_pi
+  value: "0x07F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_rho
+  value: "0x07F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_sigma
+  value: "0x07F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_finalsmallsigma
+  value: "0x07F3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_tau
+  value: "0x07F4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_upsilon
+  value: "0x07F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_phi
+  value: "0x07F6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_chi
+  value: "0x07F7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_psi
+  value: "0x07F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_omega
+  value: "0x07F9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Greek_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Technical
+  name: KEY_leftradical
+  value: "0x08A1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topleftradical
+  value: "0x08A2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizconnector
+  value: "0x08A3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topintegral
+  value: "0x08A4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botintegral
+  value: "0x08A5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_vertconnector
+  value: "0x08A6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topleftsqbracket
+  value: "0x08A7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botleftsqbracket
+  value: "0x08A8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_toprightsqbracket
+  value: "0x08A9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botrightsqbracket
+  value: "0x08AA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topleftparens
+  value: "0x08AB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botleftparens
+  value: "0x08AC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_toprightparens
+  value: "0x08AD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botrightparens
+  value: "0x08AE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftmiddlecurlybrace
+  value: "0x08AF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightmiddlecurlybrace
+  value: "0x08B0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topleftsummation
+  value: "0x08B1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botleftsummation
+  value: "0x08B2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topvertsummationconnector
+  value: "0x08B3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botvertsummationconnector
+  value: "0x08B4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_toprightsummation
+  value: "0x08B5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_botrightsummation
+  value: "0x08B6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightmiddlesummation
+  value: "0x08B7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lessthanequal
+  value: "0x08BC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_notequal
+  value: "0x08BD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_greaterthanequal
+  value: "0x08BE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_integral
+  value: "0x08BF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_therefore
+  value: "0x08C0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_variation
+  value: "0x08C1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_infinity
+  value: "0x08C2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_nabla
+  value: "0x08C5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_approximate
+  value: "0x08C8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_similarequal
+  value: "0x08C9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ifonlyif
+  value: "0x08CD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_implies
+  value: "0x08CE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_identical
+  value: "0x08CF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_radical
+  value: "0x08D6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_includedin
+  value: "0x08DA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_includes
+  value: "0x08DB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_intersection
+  value: "0x08DC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_union
+  value: "0x08DD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_logicaland
+  value: "0x08DE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_logicalor
+  value: "0x08DF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_partialderivative
+  value: "0x08EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_function
+  value: "0x08F6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftarrow
+  value: "0x08FB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uparrow
+  value: "0x08FC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightarrow
+  value: "0x08FD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_downarrow
+  value: "0x08FE"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Special
+  name: KEY_blank
+  value: "0x09DF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_soliddiamond
+  value: "0x09E0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_checkerboard
+  value: "0x09E1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ht
+  value: "0x09E2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ff
+  value: "0x09E3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cr
+  value: "0x09E4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lf
+  value: "0x09E5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_nl
+  value: "0x09E8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_vt
+  value: "0x09E9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lowrightcorner
+  value: "0x09EA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uprightcorner
+  value: "0x09EB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_upleftcorner
+  value: "0x09EC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lowleftcorner
+  value: "0x09ED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_crossinglines
+  value: "0x09EE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizlinescan1
+  value: "0x09EF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizlinescan3
+  value: "0x09F0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizlinescan5
+  value: "0x09F1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizlinescan7
+  value: "0x09F2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_horizlinescan9
+  value: "0x09F3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftt
+  value: "0x09F4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightt
+  value: "0x09F5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_bott
+  value: "0x09F6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_topt
+  value: "0x09F7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_vertbar
+  value: "0x09F8"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Publishing
+  name: KEY_emspace
+  value: "0x0AA1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_enspace
+  value: "0x0AA2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_em3space
+  value: "0x0AA3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_em4space
+  value: "0x0AA4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_digitspace
+  value: "0x0AA5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_punctspace
+  value: "0x0AA6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_thinspace
+  value: "0x0AA7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hairspace
+  value: "0x0AA8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emdash
+  value: "0x0AA9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_endash
+  value: "0x0AAA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_signifblank
+  value: "0x0AAC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ellipsis
+  value: "0x0AAE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_doubbaselinedot
+  value: "0x0AAF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onethird
+  value: "0x0AB0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_twothirds
+  value: "0x0AB1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onefifth
+  value: "0x0AB2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_twofifths
+  value: "0x0AB3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_threefifths
+  value: "0x0AB4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_fourfifths
+  value: "0x0AB5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_onesixth
+  value: "0x0AB6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_fivesixths
+  value: "0x0AB7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_careof
+  value: "0x0AB8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_figdash
+  value: "0x0ABB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftanglebracket
+  value: "0x0ABC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_decimalpoint
+  value: "0x0ABD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightanglebracket
+  value: "0x0ABE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_marker
+  value: "0x0ABF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_oneeighth
+  value: "0x0AC3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_threeeighths
+  value: "0x0AC4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_fiveeighths
+  value: "0x0AC5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_seveneighths
+  value: "0x0AC6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_trademark
+  value: "0x0AC9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_signaturemark
+  value: "0x0ACA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_trademarkincircle
+  value: "0x0ACB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftopentriangle
+  value: "0x0ACC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightopentriangle
+  value: "0x0ACD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emopencircle
+  value: "0x0ACE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emopenrectangle
+  value: "0x0ACF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftsinglequotemark
+  value: "0x0AD0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightsinglequotemark
+  value: "0x0AD1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftdoublequotemark
+  value: "0x0AD2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightdoublequotemark
+  value: "0x0AD3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_prescription
+  value: "0x0AD4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_minutes
+  value: "0x0AD6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_seconds
+  value: "0x0AD7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_latincross
+  value: "0x0AD9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hexagram
+  value: "0x0ADA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_filledrectbullet
+  value: "0x0ADB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_filledlefttribullet
+  value: "0x0ADC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_filledrighttribullet
+  value: "0x0ADD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emfilledcircle
+  value: "0x0ADE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_emfilledrect
+  value: "0x0ADF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_enopencircbullet
+  value: "0x0AE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_enopensquarebullet
+  value: "0x0AE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_openrectbullet
+  value: "0x0AE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_opentribulletup
+  value: "0x0AE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_opentribulletdown
+  value: "0x0AE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_openstar
+  value: "0x0AE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_enfilledcircbullet
+  value: "0x0AE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_enfilledsqbullet
+  value: "0x0AE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_filledtribulletup
+  value: "0x0AE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_filledtribulletdown
+  value: "0x0AE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftpointer
+  value: "0x0AEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightpointer
+  value: "0x0AEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_club
+  value: "0x0AEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_diamond
+  value: "0x0AED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_heart
+  value: "0x0AEE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_maltesecross
+  value: "0x0AF0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_dagger
+  value: "0x0AF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_doubledagger
+  value: "0x0AF2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_checkmark
+  value: "0x0AF3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_ballotcross
+  value: "0x0AF4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_musicalsharp
+  value: "0x0AF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_musicalflat
+  value: "0x0AF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_malesymbol
+  value: "0x0AF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_femalesymbol
+  value: "0x0AF8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_telephone
+  value: "0x0AF9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_telephonerecorder
+  value: "0x0AFA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_phonographcopyright
+  value: "0x0AFB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_caret
+  value: "0x0AFC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_singlelowquotemark
+  value: "0x0AFD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_doublelowquotemark
+  value: "0x0AFE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_cursor
+  value: "0x0AFF"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: APL
+  name: KEY_leftcaret
+  value: "0x0BA3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightcaret
+  value: "0x0BA6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_downcaret
+  value: "0x0BA8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_upcaret
+  value: "0x0BA9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_overbar
+  value: "0x0BC0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_downtack
+  value: "0x0BC2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_upshoe
+  value: "0x0BC3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_downstile
+  value: "0x0BC4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_underbar
+  value: "0x0BC6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_jot
+  value: "0x0BCA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_quad
+  value: "0x0BCC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_uptack
+  value: "0x0BCE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_circle
+  value: "0x0BCF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_upstile
+  value: "0x0BD3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_downshoe
+  value: "0x0BD6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_rightshoe
+  value: "0x0BD8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_leftshoe
+  value: "0x0BDA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_lefttack
+  value: "0x0BDC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_righttack
+  value: "0x0BFC"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Hebrew
+  name: KEY_hebrew_doublelowline
+  value: "0x0CDF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_aleph
+  value: "0x0CE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_bet
+  value: "0x0CE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_beth
+  value: "0x0CE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_gimel
+  value: "0x0CE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_gimmel
+  value: "0x0CE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_dalet
+  value: "0x0CE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_daleth
+  value: "0x0CE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_he
+  value: "0x0CE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_waw
+  value: "0x0CE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_zain
+  value: "0x0CE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_zayin
+  value: "0x0CE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_chet
+  value: "0x0CE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_het
+  value: "0x0CE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_tet
+  value: "0x0CE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_teth
+  value: "0x0CE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_yod
+  value: "0x0CE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalkaph
+  value: "0x0CEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_kaph
+  value: "0x0CEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_lamed
+  value: "0x0CEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalmem
+  value: "0x0CED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_mem
+  value: "0x0CEE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalnun
+  value: "0x0CEF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_nun
+  value: "0x0CF0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_samech
+  value: "0x0CF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_samekh
+  value: "0x0CF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_ayin
+  value: "0x0CF2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalpe
+  value: "0x0CF3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_pe
+  value: "0x0CF4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalzade
+  value: "0x0CF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_finalzadi
+  value: "0x0CF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_zade
+  value: "0x0CF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_zadi
+  value: "0x0CF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_qoph
+  value: "0x0CF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_kuf
+  value: "0x0CF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_resh
+  value: "0x0CF8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_shin
+  value: "0x0CF9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_taw
+  value: "0x0CFA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_hebrew_taf
+  value: "0x0CFA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hebrew_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Thai
+  name: KEY_Thai_kokai
+  value: "0x0DA1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_khokhai
+  value: "0x0DA2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_khokhuat
+  value: "0x0DA3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_khokhwai
+  value: "0x0DA4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_khokhon
+  value: "0x0DA5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_khorakhang
+  value: "0x0DA6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_ngongu
+  value: "0x0DA7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_chochan
+  value: "0x0DA8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_choching
+  value: "0x0DA9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_chochang
+  value: "0x0DAA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_soso
+  value: "0x0DAB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_chochoe
+  value: "0x0DAC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_yoying
+  value: "0x0DAD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_dochada
+  value: "0x0DAE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_topatak
+  value: "0x0DAF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thothan
+  value: "0x0DB0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thonangmontho
+  value: "0x0DB1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thophuthao
+  value: "0x0DB2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_nonen
+  value: "0x0DB3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_dodek
+  value: "0x0DB4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_totao
+  value: "0x0DB5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thothung
+  value: "0x0DB6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thothahan
+  value: "0x0DB7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thothong
+  value: "0x0DB8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_nonu
+  value: "0x0DB9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_bobaimai
+  value: "0x0DBA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_popla
+  value: "0x0DBB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_phophung
+  value: "0x0DBC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_fofa
+  value: "0x0DBD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_phophan
+  value: "0x0DBE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_fofan
+  value: "0x0DBF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_phosamphao
+  value: "0x0DC0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_moma
+  value: "0x0DC1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_yoyak
+  value: "0x0DC2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_rorua
+  value: "0x0DC3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_ru
+  value: "0x0DC4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_loling
+  value: "0x0DC5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lu
+  value: "0x0DC6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_wowaen
+  value: "0x0DC7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sosala
+  value: "0x0DC8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sorusi
+  value: "0x0DC9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sosua
+  value: "0x0DCA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_hohip
+  value: "0x0DCB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lochula
+  value: "0x0DCC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_oang
+  value: "0x0DCD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_honokhuk
+  value: "0x0DCE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_paiyannoi
+  value: "0x0DCF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraa
+  value: "0x0DD0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maihanakat
+  value: "0x0DD1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraaa
+  value: "0x0DD2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraam
+  value: "0x0DD3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarai
+  value: "0x0DD4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraii
+  value: "0x0DD5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraue
+  value: "0x0DD6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarauee
+  value: "0x0DD7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarau
+  value: "0x0DD8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarauu
+  value: "0x0DD9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_phinthu
+  value: "0x0DDA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maihanakat_maitho
+  value: "0x0DDE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_baht
+  value: "0x0DDF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarae
+  value: "0x0DE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraae
+  value: "0x0DE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_sarao
+  value: "0x0DE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraaimaimuan
+  value: "0x0DE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_saraaimaimalai
+  value: "0x0DE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lakkhangyao
+  value: "0x0DE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maiyamok
+  value: "0x0DE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maitaikhu
+  value: "0x0DE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maiek
+  value: "0x0DE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maitho
+  value: "0x0DE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maitri
+  value: "0x0DEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_maichattawa
+  value: "0x0DEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_thanthakhat
+  value: "0x0DEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_nikhahit
+  value: "0x0DED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_leksun
+  value: "0x0DF0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_leknung
+  value: "0x0DF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_leksong
+  value: "0x0DF2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_leksam
+  value: "0x0DF3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_leksi
+  value: "0x0DF4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lekha
+  value: "0x0DF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lekhok
+  value: "0x0DF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lekchet
+  value: "0x0DF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lekpaet
+  value: "0x0DF8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Thai_lekkao
+  value: "0x0DF9"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Korean
+  name: KEY_Hangul
+  value: "0xFF31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Start
+  value: "0xFF32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_End
+  value: "0xFF33"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Hanja
+  value: "0xFF34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Jamo
+  value: "0xFF35"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Romaja
+  value: "0xFF36"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Codeinput
+  value: "0xFF37"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Jeonja
+  value: "0xFF38"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Banja
+  value: "0xFF39"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_PreHanja
+  value: "0xFF3A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_PostHanja
+  value: "0xFF3B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SingleCandidate
+  value: "0xFF3C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_MultipleCandidate
+  value: "0xFF3D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_PreviousCandidate
+  value: "0xFF3E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Special
+  value: "0xFF3F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_switch
+  value: "0xFF7E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Kiyeog
+  value: "0x0EA1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SsangKiyeog
+  value: "0x0EA2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_KiyeogSios
+  value: "0x0EA3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Nieun
+  value: "0x0EA4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_NieunJieuj
+  value: "0x0EA5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_NieunHieuh
+  value: "0x0EA6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Dikeud
+  value: "0x0EA7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SsangDikeud
+  value: "0x0EA8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Rieul
+  value: "0x0EA9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulKiyeog
+  value: "0x0EAA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulMieum
+  value: "0x0EAB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulPieub
+  value: "0x0EAC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulSios
+  value: "0x0EAD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulTieut
+  value: "0x0EAE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulPhieuf
+  value: "0x0EAF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulHieuh
+  value: "0x0EB0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Mieum
+  value: "0x0EB1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Pieub
+  value: "0x0EB2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SsangPieub
+  value: "0x0EB3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_PieubSios
+  value: "0x0EB4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Sios
+  value: "0x0EB5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SsangSios
+  value: "0x0EB6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Ieung
+  value: "0x0EB7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Jieuj
+  value: "0x0EB8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SsangJieuj
+  value: "0x0EB9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Cieuc
+  value: "0x0EBA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Khieuq
+  value: "0x0EBB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Tieut
+  value: "0x0EBC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Phieuf
+  value: "0x0EBD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_Hieuh
+  value: "0x0EBE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_A
+  value: "0x0EBF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_AE
+  value: "0x0EC0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YA
+  value: "0x0EC1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YAE
+  value: "0x0EC2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_EO
+  value: "0x0EC3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_E
+  value: "0x0EC4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YEO
+  value: "0x0EC5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YE
+  value: "0x0EC6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_O
+  value: "0x0EC7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_WA
+  value: "0x0EC8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_WAE
+  value: "0x0EC9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_OE
+  value: "0x0ECA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YO
+  value: "0x0ECB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_U
+  value: "0x0ECC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_WEO
+  value: "0x0ECD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_WE
+  value: "0x0ECE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_WI
+  value: "0x0ECF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YU
+  value: "0x0ED0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_EU
+  value: "0x0ED1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YI
+  value: "0x0ED2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_I
+  value: "0x0ED3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Kiyeog
+  value: "0x0ED4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_SsangKiyeog
+  value: "0x0ED5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_KiyeogSios
+  value: "0x0ED6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Nieun
+  value: "0x0ED7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_NieunJieuj
+  value: "0x0ED8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_NieunHieuh
+  value: "0x0ED9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Dikeud
+  value: "0x0EDA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Rieul
+  value: "0x0EDB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulKiyeog
+  value: "0x0EDC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulMieum
+  value: "0x0EDD"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulPieub
+  value: "0x0EDE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulSios
+  value: "0x0EDF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulTieut
+  value: "0x0EE0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulPhieuf
+  value: "0x0EE1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_RieulHieuh
+  value: "0x0EE2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Mieum
+  value: "0x0EE3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Pieub
+  value: "0x0EE4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_PieubSios
+  value: "0x0EE5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Sios
+  value: "0x0EE6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_SsangSios
+  value: "0x0EE7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Ieung
+  value: "0x0EE8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Jieuj
+  value: "0x0EE9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Cieuc
+  value: "0x0EEA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Khieuq
+  value: "0x0EEB"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Tieut
+  value: "0x0EEC"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Phieuf
+  value: "0x0EED"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_Hieuh
+  value: "0x0EEE"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_RieulYeorinHieuh
+  value: "0x0EEF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SunkyeongeumMieum
+  value: "0x0EF0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SunkyeongeumPieub
+  value: "0x0EF1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_PanSios
+  value: "0x0EF2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_KkogjiDalrinIeung
+  value: "0x0EF3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_SunkyeongeumPhieuf
+  value: "0x0EF4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_YeorinHieuh
+  value: "0x0EF5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_AraeA
+  value: "0x0EF6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_AraeAE
+  value: "0x0EF7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_PanSios
+  value: "0x0EF8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_KkogjiDalrinIeung
+  value: "0x0EF9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Hangul_J_YeorinHieuh
+  value: "0x0EFA"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEY_Korean_Won
+  value: "0x0EFF"
+full_name: Fox
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: findHotKey
+- !ruby/object:RI::MethodSummary 
+  name: fxsaveXPM
+- !ruby/object:RI::MethodSummary 
+  name: parseAccel
+- !ruby/object:RI::MethodSummary 
+  name: parseHotKey
+- !ruby/object:RI::MethodSummary 
+  name: stripHotKey
+- !ruby/object:RI::MethodSummary 
+  name: unparseAccel
+name: Fox
+superclass: 

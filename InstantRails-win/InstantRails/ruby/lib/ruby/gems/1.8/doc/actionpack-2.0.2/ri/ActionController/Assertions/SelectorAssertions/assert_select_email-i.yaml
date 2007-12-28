@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Extracts the body of an email and runs nested assertions on it.
+- !ruby/struct:SM::Flow::P 
+  body: "You must enable deliveries for this assertion to work, use:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActionMailer::Base.perform_deliveries = true\n"
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " assert_select_email do\n   assert_select &quot;h1&quot;, &quot;Email alert&quot;\n end\n\n assert_select_email do\n   items = assert_select &quot;ol&gt;li&quot;\n   items.each do\n      # Work with items here...\n   end\n end\n"
+full_name: ActionController::Assertions::SelectorAssertions#assert_select_email
+is_singleton: false
+name: assert_select_email
+params: |
+  assert_select_email { }
+
+visibility: public

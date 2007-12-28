@@ -1,0 +1,15 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: 
+- !ruby/object:RI::AliasName 
+  name: xhr
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs an XMLHttpRequest request with the given parameters, mirroring a request from the Prototype library.
+- !ruby/struct:SM::Flow::P 
+  body: The request_method is :get, :post, :put, :delete or :head; the parameters are <tt>nil</tt>, a hash, or a url-encoded or multipart string; the headers are a hash. Keys are automatically upcased and prefixed with 'HTTP_' if not already.
+full_name: ActionController::Integration::Session#xml_http_request
+is_singleton: false
+name: xml_http_request
+params: (request_method, path, parameters = nil, headers = nil)
+visibility: public

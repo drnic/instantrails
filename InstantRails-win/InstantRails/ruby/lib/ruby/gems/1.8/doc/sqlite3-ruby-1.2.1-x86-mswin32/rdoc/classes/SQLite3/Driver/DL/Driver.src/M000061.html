@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>create_function (SQLite3::Driver::DL::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/sqlite3/driver/dl/driver.rb, line 184</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_function</span>( <span class="ruby-identifier">db</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">cookie</span>,
+      <span class="ruby-identifier">func</span>, <span class="ruby-identifier">step</span>, <span class="ruby-identifier">final</span> )
+    <span class="ruby-comment cmt"># begin</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@func_handler_callback</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">func</span>
+        <span class="ruby-ivar">@func_handler_callback</span> = <span class="ruby-operator">::</span><span class="ruby-constant">DL</span>.<span class="ruby-identifier">callback</span>( <span class="ruby-value str">&quot;0PIP&quot;</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">context</span>,<span class="ruby-identifier">nargs</span>,<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">nargs</span><span class="ruby-operator">*</span><span class="ruby-value">4</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;L*&quot;</span>).<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-operator">::</span><span class="ruby-constant">DL</span><span class="ruby-operator">::</span><span class="ruby-constant">PtrData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">i</span>)}
+          <span class="ruby-identifier">data</span> = <span class="ruby-constant">API</span>.<span class="ruby-identifier">sqlite3_user_data</span>( <span class="ruby-identifier">context</span> ).<span class="ruby-identifier">to_object</span>
+          <span class="ruby-identifier">data</span>[<span class="ruby-identifier">:func</span>].<span class="ruby-identifier">call</span>( <span class="ruby-identifier">context</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@step_handler_callback</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">step</span>
+        <span class="ruby-ivar">@step_handler_callback</span> = <span class="ruby-operator">::</span><span class="ruby-constant">DL</span>.<span class="ruby-identifier">callback</span>( <span class="ruby-value str">&quot;0PIP&quot;</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">context</span>,<span class="ruby-identifier">nargs</span>,<span class="ruby-identifier">args</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">args</span> = <span class="ruby-identifier">args</span>.<span class="ruby-identifier">to_s</span>(<span class="ruby-identifier">nargs</span><span class="ruby-operator">*</span><span class="ruby-value">4</span>).<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">&quot;L*&quot;</span>).<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">i</span><span class="ruby-operator">|</span> <span class="ruby-operator">::</span><span class="ruby-constant">DL</span><span class="ruby-operator">::</span><span class="ruby-constant">PtrData</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">i</span>)}
+          <span class="ruby-identifier">data</span> = <span class="ruby-constant">API</span>.<span class="ruby-identifier">sqlite3_user_data</span>( <span class="ruby-identifier">context</span> ).<span class="ruby-identifier">to_object</span>
+          <span class="ruby-identifier">data</span>[<span class="ruby-identifier">:step</span>].<span class="ruby-identifier">call</span>( <span class="ruby-identifier">context</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@final_handler_callback</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">final</span>
+        <span class="ruby-ivar">@final_handler_callback</span> = <span class="ruby-operator">::</span><span class="ruby-constant">DL</span>.<span class="ruby-identifier">callback</span>( <span class="ruby-value str">&quot;0P&quot;</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">context</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">data</span> = <span class="ruby-constant">API</span>.<span class="ruby-identifier">sqlite3_user_data</span>( <span class="ruby-identifier">context</span> ).<span class="ruby-identifier">to_object</span>
+          <span class="ruby-identifier">data</span>[<span class="ruby-identifier">:final</span>].<span class="ruby-identifier">call</span>( <span class="ruby-identifier">context</span> )
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-identifier">data</span> = { <span class="ruby-identifier">:cookie</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">cookie</span>,
+               <span class="ruby-identifier">:name</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">name</span>,
+               <span class="ruby-identifier">:func</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">func</span>,
+               <span class="ruby-identifier">:step</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">step</span>,
+               <span class="ruby-identifier">:final</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">final</span> }
+
+      <span class="ruby-constant">API</span>.<span class="ruby-identifier">sqlite3_create_function</span>( <span class="ruby-identifier">db</span>, <span class="ruby-identifier">name</span>, <span class="ruby-identifier">args</span>, <span class="ruby-identifier">text</span>, <span class="ruby-identifier">data</span>,
+        ( <span class="ruby-identifier">func</span> <span class="ruby-value">? </span><span class="ruby-ivar">@func_handler_callback</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> ),
+        ( <span class="ruby-identifier">step</span> <span class="ruby-value">? </span><span class="ruby-ivar">@step_handler_callback</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> ),
+        ( <span class="ruby-identifier">final</span> <span class="ruby-value">? </span><span class="ruby-ivar">@final_handler_callback</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span> ) )
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

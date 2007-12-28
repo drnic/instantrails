@@ -1,0 +1,665 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Column number for anchor cell [Integer]
+  name: anchorColumn
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Row number for anchor cell [Integer]
+  name: anchorRow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Base GUI color [FXColor]
+  name: baseColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Border color [FXColor]
+  name: borderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell border color [FXColor]
+  name: cellBorderColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell border width, in pixels [Integer]
+  name: cellBorderWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Column header control [FXHeader]
+  name: columnHeader
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Column header font [FXFont]
+  name: columnHeaderFont
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The fixed column header height, if <em>columnHeaderMode</em> is <tt>LAYOUT_FIX_HEIGHT</tt>.
+  name: columnHeaderHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The column header height mode is either fixed (LAYOUT_FIX_HEIGHT) or variable. In variable height mode, the column header will size to fit the contents in it. In fixed height mode, the size is explicitly set via the <em>columnHeaderHeight</em> attribute.
+  name: columnHeaderMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Button in the upper left corner [FXButton]
+  name: cornerButton
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Column number for current cell [Integer]
+  name: currentColumn
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Row number for current cell [Integer]
+  name: currentRow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default column width, in pixels [Integer]
+  name: defColumnWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Default row height, in pixels [Integer]
+  name: defRowHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text font [FXFont]
+  name: font
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Grid color [FXColor]
+  name: gridColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Highlight color [FXColor]
+  name: hiliteColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Bottom cell margin, in pixels [Integer]
+  name: marginBottom
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Left cell margin, in pixels [Integer]
+  name: marginLeft
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Right cell margin, in pixels [Integer]
+  name: marginRight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Top cell margin, in pixels [Integer]
+  name: marginTop
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of columns [Integer]
+  name: numColumns
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of rows [Integer]
+  name: numRows
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Row header control [FXHeader]
+  name: rowHeader
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Row header font [FXFont]
+  name: rowHeaderFont
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The row header width mode is either fixed (LAYOUT_FIX_WIDTH) or variable. In variable width mode, the row header will size to fit the contents in it. In fixed width mode, the size is explicitly set via the <em>rowHeaderWidth</em> attribute.
+  name: rowHeaderMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The fixed row header width, if <em>rowHeaderMode</em> is <tt>LAYOUT_FIX_WIDTH</tt>.
+  name: rowHeaderWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Background color for selected cell(s) [FXColor]
+  name: selBackColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Ending column number for selection, or -1 if there is no selection [Integer]
+  name: selEndColumn
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Ending row number for selection, or -1 if there is no selection [Integer]
+  name: selEndRow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Starting column number for selection, or -1 if there is no selection [Integer]
+  name: selStartColumn
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Starting row number for selection, or -1 if there is no selection [Integer]
+  name: selStartRow
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color for selected cell(s) [FXColor]
+  name: selTextColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Shadow color [FXColor]
+  name: shadowColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Stipple color [FXColor]
+  name: stippleColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Table style [Integer]
+  name: tableStyle
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible columns [Integer]
+  name: visibleColumns
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Number of visible rows [Integer]
+  name: visibleRows
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: csvType
+- !ruby/object:RI::MethodSummary 
+  name: csvTypeName
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXTable widget displays a table of items, each with some text and optional icon. A column Header control provide captions for each column, and a row Header control provides captions for each row. Columns are resizable by means of the column Header control if the TABLE_COL_SIZABLE option is passed. Likewise, rows in the table are resizable if the TABLE_ROW_SIZABLE option is specified. An entire row (column) can be selected by clicking on the a button in the row (column) Header control. Passing TABLE_NO_COLSELECT disables column selection, and passing TABLE_NO_ROWSELECT disables column selection. When TABLE_COL_RENUMBER is specified, columns are automatically renumbered when columns are added or removed. Similarly, TABLE_ROW_RENUMBER will cause row numbers to be recalculated automatically when rows are added or removed. To disable editing of cells in the table, the TABLE_READONLY can be specified. Cells in the table may or may not have items in them. When populating a cell for the first time, an item will be automatically created if necessary. Thus, a cell in the table takes no space unless it has actual contents. Moreover, a contiguous, rectangular region of cells in the table may refer to one single item; in that case, the item will be stretched to cover all the cells in the region, and no grid lines will be drawn interior to the spanning item.
+- !ruby/struct:SM::Flow::P 
+  body: The Table widget issues SEL_SELECTED or SEL_DESELECTED when cells are selected or deselected, respectively. The table position affected is passed along as the 3rd parameter of these messages. Whenever the current (focus) item is changed, a SEL_CHANGED message is sent with the new table position as a parameter. When items are added to the table, a SEL_INSERTED message is sent, with the table range of the newly added cells as the parameter in the message. When items are removed from the table, a SEL_DELETED message is sent prior to the removal of the items, and the table range of the removed cells is passed as a parameter. A SEL_REPLACED message is sent when the contents of a cell are changed, either through editing or by other means; the parameter is the range of affected cells. This message is sent prior to the change. SEL_CLICKED, SEL_DOUBLECLICKED, and SEL_TRIPLECLICKED messages are sent when a cell is clicked, double-clicked, or triple-clicked, respectively. A SEL_COMMAND is sent when an enabled item is clicked inside the table.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTable to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a new item is clicked; the message data is an FXTablePos instance indicating the current cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_RIGHTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_SELECTED+:"
+    body: sent when a cell is selected; the message data is an FXTablePos instance indicating the position of the selected cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DESELECTED+:"
+    body: sent when a cell is deselected; the message data is an FXTablePos instance indicating the position of the deselected cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the current cell changes; the message data is an FXTablePos instance indicating the current cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLICKED+:"
+    body: sent when a cell is single-clicked; the message data is an FXTablePos instance indicating the current cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DOUBLECLICKED+:"
+    body: sent when a cell is double-clicked; the message data is an FXTablePos instance indicating the current cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_TRIPLECLICKED+:"
+    body: sent when a cell is triple-clicked; the message data is an FXTablePos instance indicating the current cell.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DELETED+:"
+    body: sent when a range of cells is about to be removed; the message data is an FXTableRange instance indicating the cells to be removed.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_INSERTED+:"
+    body: sent when a range of cells has been inserted; the message data is an FXTableRange instance indicating the cells inserted.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_REPLACED+:"
+    body: sent when a range of cells has been replaced; the message data is an FXTableRange instance indicating the cells replaced.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Table options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_COL_SIZABLE+:"
+    body: Columns are resizable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_ROW_SIZABLE+:"
+    body: Rows are resizable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_NO_COLSELECT+:"
+    body: Disallow column selections
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_NO_ROWSELECT+:"
+    body: Disallow row selections
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_READONLY+:"
+    body: Table is not editable
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_COL_RENUMBER+:"
+    body: Renumber columns
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TABLE_ROW_RENUMBER+:"
+    body: Renumber rows
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_HORZ_GRID+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_VERT_GRID+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TOGGLE_EDITABLE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE_COLUMN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE_ROW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_INSERT_COLUMN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_INSERT_ROW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_COLUMN_INDEX+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_ROW_INDEX+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_COLUMN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_ROW+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_CELL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SELECT_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DESELECT_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_LEFT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_RIGHT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_UP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_DOWN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_HOME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_END+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_TOP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_BOTTOM+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_PAGEDOWN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MOVE_PAGEUP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_START_INPUT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CANCEL_INPUT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ACCEPT_INPUT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MARK+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_EXTEND+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CUT_SEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COPY_SEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PASTE_SEL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DELETE_SEL+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTable
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Enumerable
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: acceptInput
+- !ruby/object:RI::MethodSummary 
+  name: anythingSelected?
+- !ruby/object:RI::MethodSummary 
+  name: appendColumns
+- !ruby/object:RI::MethodSummary 
+  name: appendRows
+- !ruby/object:RI::MethodSummary 
+  name: cancelInput
+- !ruby/object:RI::MethodSummary 
+  name: clearItems
+- !ruby/object:RI::MethodSummary 
+  name: colAtX
+- !ruby/object:RI::MethodSummary 
+  name: columnRenumbering=
+- !ruby/object:RI::MethodSummary 
+  name: columnRenumbering?
+- !ruby/object:RI::MethodSummary 
+  name: columnSelected?
+- !ruby/object:RI::MethodSummary 
+  name: countText
+- !ruby/object:RI::MethodSummary 
+  name: createItem
+- !ruby/object:RI::MethodSummary 
+  name: disableItem
+- !ruby/object:RI::MethodSummary 
+  name: drawCell
+- !ruby/object:RI::MethodSummary 
+  name: drawRange
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_column
+- !ruby/object:RI::MethodSummary 
+  name: each_row
+- !ruby/object:RI::MethodSummary 
+  name: editable=
+- !ruby/object:RI::MethodSummary 
+  name: editable?
+- !ruby/object:RI::MethodSummary 
+  name: enableItem
+- !ruby/object:RI::MethodSummary 
+  name: extendSelection
+- !ruby/object:RI::MethodSummary 
+  name: extractItem
+- !ruby/object:RI::MethodSummary 
+  name: extractText
+- !ruby/object:RI::MethodSummary 
+  name: fitColumnsToContents
+- !ruby/object:RI::MethodSummary 
+  name: fitRowsToContents
+- !ruby/object:RI::MethodSummary 
+  name: getCellColor
+- !ruby/object:RI::MethodSummary 
+  name: getColumnIcon
+- !ruby/object:RI::MethodSummary 
+  name: getColumnIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: getColumnJustify
+- !ruby/object:RI::MethodSummary 
+  name: getColumnText
+- !ruby/object:RI::MethodSummary 
+  name: getColumnWidth
+- !ruby/object:RI::MethodSummary 
+  name: getColumnX
+- !ruby/object:RI::MethodSummary 
+  name: getItem
+- !ruby/object:RI::MethodSummary 
+  name: getItemBorders
+- !ruby/object:RI::MethodSummary 
+  name: getItemData
+- !ruby/object:RI::MethodSummary 
+  name: getItemIcon
+- !ruby/object:RI::MethodSummary 
+  name: getItemIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: getItemJustify
+- !ruby/object:RI::MethodSummary 
+  name: getItemStipple
+- !ruby/object:RI::MethodSummary 
+  name: getItemText
+- !ruby/object:RI::MethodSummary 
+  name: getRowHeight
+- !ruby/object:RI::MethodSummary 
+  name: getRowIcon
+- !ruby/object:RI::MethodSummary 
+  name: getRowIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: getRowJustify
+- !ruby/object:RI::MethodSummary 
+  name: getRowText
+- !ruby/object:RI::MethodSummary 
+  name: getRowY
+- !ruby/object:RI::MethodSummary 
+  name: horizontalGridShown=
+- !ruby/object:RI::MethodSummary 
+  name: horizontalGridShown?
+- !ruby/object:RI::MethodSummary 
+  name: insertColumns
+- !ruby/object:RI::MethodSummary 
+  name: insertRows
+- !ruby/object:RI::MethodSummary 
+  name: itemCurrent?
+- !ruby/object:RI::MethodSummary 
+  name: itemEnabled?
+- !ruby/object:RI::MethodSummary 
+  name: itemSelected?
+- !ruby/object:RI::MethodSummary 
+  name: itemSpanning?
+- !ruby/object:RI::MethodSummary 
+  name: itemVisible?
+- !ruby/object:RI::MethodSummary 
+  name: killSelection
+- !ruby/object:RI::MethodSummary 
+  name: makePositionVisible
+- !ruby/object:RI::MethodSummary 
+  name: minColumnWidth
+- !ruby/object:RI::MethodSummary 
+  name: minRowHeight
+- !ruby/object:RI::MethodSummary 
+  name: overlayText
+- !ruby/object:RI::MethodSummary 
+  name: removeColumns
+- !ruby/object:RI::MethodSummary 
+  name: removeItem
+- !ruby/object:RI::MethodSummary 
+  name: removeRange
+- !ruby/object:RI::MethodSummary 
+  name: removeRows
+- !ruby/object:RI::MethodSummary 
+  name: rowAtY
+- !ruby/object:RI::MethodSummary 
+  name: rowRenumbering=
+- !ruby/object:RI::MethodSummary 
+  name: rowRenumbering?
+- !ruby/object:RI::MethodSummary 
+  name: rowSelected?
+- !ruby/object:RI::MethodSummary 
+  name: selectColumn
+- !ruby/object:RI::MethodSummary 
+  name: selectItem
+- !ruby/object:RI::MethodSummary 
+  name: selectRange
+- !ruby/object:RI::MethodSummary 
+  name: selectRow
+- !ruby/object:RI::MethodSummary 
+  name: setAnchorItem
+- !ruby/object:RI::MethodSummary 
+  name: setCellColor
+- !ruby/object:RI::MethodSummary 
+  name: setColumnIcon
+- !ruby/object:RI::MethodSummary 
+  name: setColumnIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: setColumnJustify
+- !ruby/object:RI::MethodSummary 
+  name: setColumnText
+- !ruby/object:RI::MethodSummary 
+  name: setColumnWidth
+- !ruby/object:RI::MethodSummary 
+  name: setColumnX
+- !ruby/object:RI::MethodSummary 
+  name: setCurrentItem
+- !ruby/object:RI::MethodSummary 
+  name: setItem
+- !ruby/object:RI::MethodSummary 
+  name: setItemBorders
+- !ruby/object:RI::MethodSummary 
+  name: setItemData
+- !ruby/object:RI::MethodSummary 
+  name: setItemIcon
+- !ruby/object:RI::MethodSummary 
+  name: setItemIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: setItemJustify
+- !ruby/object:RI::MethodSummary 
+  name: setItemStipple
+- !ruby/object:RI::MethodSummary 
+  name: setItemText
+- !ruby/object:RI::MethodSummary 
+  name: setRowHeight
+- !ruby/object:RI::MethodSummary 
+  name: setRowIcon
+- !ruby/object:RI::MethodSummary 
+  name: setRowIconPosition
+- !ruby/object:RI::MethodSummary 
+  name: setRowJustify
+- !ruby/object:RI::MethodSummary 
+  name: setRowText
+- !ruby/object:RI::MethodSummary 
+  name: setRowY
+- !ruby/object:RI::MethodSummary 
+  name: setTableSize
+- !ruby/object:RI::MethodSummary 
+  name: showHorzGrid
+- !ruby/object:RI::MethodSummary 
+  name: showVertGrid
+- !ruby/object:RI::MethodSummary 
+  name: startInput
+- !ruby/object:RI::MethodSummary 
+  name: updateItem
+- !ruby/object:RI::MethodSummary 
+  name: updateRange
+- !ruby/object:RI::MethodSummary 
+  name: verticalGridShown=
+- !ruby/object:RI::MethodSummary 
+  name: verticalGridShown?
+name: FXTable
+superclass: Object

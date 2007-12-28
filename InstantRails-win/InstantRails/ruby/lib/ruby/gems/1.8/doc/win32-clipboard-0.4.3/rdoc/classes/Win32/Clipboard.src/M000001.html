@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_data (Win32::Clipboard)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/clipboard.rb, line 30</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">set_data</span>(<span class="ruby-identifier">clip_data</span>, <span class="ruby-identifier">format</span> = <span class="ruby-constant">TEXT</span>)
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">open</span>
+         <span class="ruby-constant">EmptyClipboard</span>()
+
+         <span class="ruby-comment cmt"># NULL terminate text</span>
+         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">format</span>
+            <span class="ruby-keyword kw">when</span> <span class="ruby-constant">TEXT</span>, <span class="ruby-constant">OEMTEXT</span>, <span class="ruby-constant">UNICODETEXT</span>                             
+               <span class="ruby-identifier">clip_data</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\0&quot;</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-comment cmt"># Global Allocate a movable piece of memory.</span>
+         <span class="ruby-identifier">hmem</span> = <span class="ruby-constant">GlobalAlloc</span>(<span class="ruby-constant">GHND</span>, <span class="ruby-identifier">clip_data</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-value">4</span>)
+         <span class="ruby-identifier">mem</span>  = <span class="ruby-constant">GlobalLock</span>(<span class="ruby-identifier">hmem</span>)
+         <span class="ruby-ivar">@@Memcpy</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">mem</span>, <span class="ruby-identifier">clip_data</span>, <span class="ruby-identifier">clip_data</span>.<span class="ruby-identifier">length</span>)
+
+         <span class="ruby-comment cmt"># Set the new data</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SetClipboardData</span>(<span class="ruby-identifier">format</span>, <span class="ruby-identifier">hmem</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">error</span> = <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-constant">GlobalFree</span>(<span class="ruby-identifier">hmem</span>)
+            <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">close</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-node">&quot;SetClipboardData() failed: #{error}&quot;</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-constant">GlobalFree</span>(<span class="ruby-identifier">hmem</span>)   
+         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">close</span>
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,1389 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Code page identifiers. Used for get_acp_string method.
+  name: CODE_PAGE
+  value: "{          037 => 'IBM EBCDIC = U.S./Canada',          437 => 'OEM = United States',          500 => 'IBM EBCDIC - International',            708 => 'Arabic - ASMO 708',           709 => 'Arabic - ASMO 449+, BCON V4',          710 => 'Arabic - Transparent Arabic',           720 => 'Arabic - Transparent ASMO',          737 => 'OEM - Greek (formerly 437G)',          775 => 'OEM - Baltic',           850 => 'OEM - Multilingual Latin I',          852 => 'OEM - Latin II',           855 => 'OEM - Cyrillic (primarily Russian)',           857 => 'OEM - Turkish',           858 => 'OEM - Multilingual Latin I + Euro symbol',           860 => 'OEM - Portuguese',           861 => 'OEM - Icelandic',           862 => 'OEM - Hebrew',           863 => 'OEM - Canadian-French',           864 => 'OEM - Arabic',           865 => 'OEM - Nordic',           866 => 'OEM - Russian',           869 => 'OEM - Modern Greek',           870 => 'IBM EBCDIC - Multilingual/ROECE (Latin-2)',           874 => 'ANSI/OEM - Thai (same as 28605, ISO 8859-15)',           875 => 'IBM EBCDIC - Modern Greek',           932 => 'ANSI/OEM - Japanese, Shift-JIS',           936 => 'ANSI/OEM - Simplified Chinese (PRC, Singapore)',           949 => 'ANSI/OEM - Korean (Unified Hangul Code)',           950 => 'ANSI/OEM - Traditional Chinese (Taiwan; Hong Kong SAR, PRC)',            1026 => 'IBM EBCDIC - Turkish (Latin-5)',           1047 => 'IBM EBCDIC - Latin 1/Open System',           1140 => 'IBM EBCDIC - U.S./Canada (037 + Euro symbol)',           1141 => 'IBM EBCDIC - Germany (20273 + Euro symbol)',           1142 => 'IBM EBCDIC - Denmark/Norway (20277 + Euro symbol)',           1143 => 'IBM EBCDIC - Finland/Sweden (20278 + Euro symbol)',           1144 => 'IBM EBCDIC - Italy (20280 + Euro symbol)',           1145 => 'IBM EBCDIC - Latin America/Spain (20284 + Euro symbol)',           1146 => 'IBM EBCDIC - United Kingdom (20285 + Euro symbol)',           1147 => 'IBM EBCDIC - France (20297 + Euro symbol)',           1148 => 'IBM EBCDIC - International (500 + Euro symbol)',           1149 => 'IBM EBCDIC - Icelandic (20871 + Euro symbol)',           1200 => 'Unicode UCS-2 Little-Endian (BMP of ISO 10646)',           1201 => 'Unicode UCS-2 Big-Endian',           1250 => 'ANSI - Central European',            1251 => 'ANSI - Cyrillic',           1252 => 'ANSI - Latin I',            1253 => 'ANSI - Greek',           1254 => 'ANSI - Turkish',           1255 => 'ANSI - Hebrew',           1256 => 'ANSI - Arabic',           1257 => 'ANSI - Baltic',           1258 => 'ANSI/OEM - Vietnamese',           1361 => 'Korean (Johab)',           10000 => 'MAC - Roman',           10001 => 'MAC - Japanese',           10002 => 'MAC - Traditional Chinese (Big5)',           10003 => 'MAC - Korean',           10004 => 'MAC - Arabic',           10005 => 'MAC - Hebrew',           10006 => 'MAC - Greek I',           10007 => 'MAC - Cyrillic',           10008 => 'MAC - Simplified Chinese (GB 2312)',           10010 => 'MAC - Romania',           10017 => 'MAC - Ukraine',           10021 => 'MAC - Thai',           10029 => 'MAC - Latin II',           10079 => 'MAC - Icelandic',           10081 => 'MAC - Turkish',           10082 => 'MAC - Croatia',           12000 => 'Unicode UCS-4 Little-Endian',           12001 => 'Unicode UCS-4 Big-Endian',           20000 => 'CNS - Taiwan',            20001 => 'TCA - Taiwan',           20002 => 'Eten - Taiwan',            20003 => 'IBM5550 - Taiwan',            20004 => 'TeleText - Taiwan',            20005 => 'Wang - Taiwan',            20105 => 'IA5 IRV International Alphabet No. 5 (7-bit)',           20106 => 'IA5 German (7-bit)',           20107 => 'IA5 Swedish (7-bit)',          20108 => 'IA5 Norwegian (7-bit)',           20127 => 'US-ASCII (7-bit)',           20261 => 'T.61',          20269 => 'ISO 6937 Non-Spacing Accent',          20273 => 'IBM EBCDIC - Germany',           20277 => 'IBM EBCDIC - Denmark/Norway',           20278 => 'IBM EBCDIC - Finland/Sweden',          20280 => 'IBM EBCDIC - Italy',           20284 => 'IBM EBCDIC - Latin America/Spain',          20285 => 'IBM EBCDIC - United Kingdom',           20290 => 'IBM EBCDIC - Japanese Katakana Extended',           20297 => 'IBM EBCDIC - France',           20420 => 'IBM EBCDIC - Arabic',           20423 => 'IBM EBCDIC - Greek',           20424 => 'IBM EBCDIC - Hebrew',           20833 => 'IBM EBCDIC - Korean Extended',           20838 => 'IBM EBCDIC - Thai',           20866 => 'Russian - KOI8-R',           20871 => 'IBM EBCDIC - Icelandic',           20880 => 'IBM EBCDIC - Cyrillic (Russian)',           20905 => 'IBM EBCDIC - Turkish',           20924 => 'IBM EBCDIC - Latin-1/Open System (1047 + Euro symbol)',           20932 => 'JIS X 0208-1990 & 0121-1990',           20936 => 'Simplified Chinese (GB2312)',           21025 => 'IBM EBCDIC - Cyrillic (Serbian, Bulgarian)',           21027 => '(deprecated)',           21866 => 'Ukrainian (KOI8-U)',           28591 => 'ISO 8859-1 Latin I',           28592 => 'ISO 8859-2 Central Europe',           28593 => 'ISO 8859-3 Latin 3',            28594 => 'ISO 8859-4 Baltic',           28595 => 'ISO 8859-5 Cyrillic',           28596 => 'ISO 8859-6 Arabic',           28597 => 'ISO 8859-7 Greek',           28598 => 'ISO 8859-8 Hebrew',           28599 => 'ISO 8859-9 Latin 5',           28605 => 'ISO 8859-15 Latin 9',           29001 => 'Europa 3',           38598 => 'ISO 8859-8 Hebrew',           50220 => 'ISO 2022 Japanese with no halfwidth Katakana',           50221 => 'ISO 2022 Japanese with halfwidth Katakana',           50222 => 'ISO 2022 Japanese JIS X 0201-1989',           50225 => 'ISO 2022 Korean',            50227 => 'ISO 2022 Simplified Chinese',           50229 => 'ISO 2022 Traditional Chinese',           50930 => 'Japanese (Katakana) Extended',           50931 => 'US/Canada and Japanese',           50933 => 'Korean Extended and Korean',           50935 => 'Simplified Chinese Extended and Simplified Chinese',           50936 => 'Simplified Chinese',           50937 => 'US/Canada and Traditional Chinese',           50939 => 'Japanese (Latin) Extended and Japanese',           51932 => 'EUC - Japanese',           51936 => 'EUC - Simplified Chinese',           51949 => 'EUC - Korean',           51950 => 'EUC - Traditional Chinese',           52936 => 'HZ-GB2312 Simplified Chinese',            54936 => 'Windows XP: GB18030 Simplified Chinese (4 Byte)',            57002 => 'ISCII Devanagari',           57003 => 'ISCII Bengali',           57004 => 'ISCII Tamil',           57005 => 'ISCII Telugu',           57006 => 'ISCII Assamese',           57007 => 'ISCII Oriya',           57008 => 'ISCII Kannada',           57009 => 'ISCII Malayalam',           57010 => 'ISCII Gujarati',           57011 => 'ISCII Punjabi',           65000 => 'Unicode UTF-7',           65001 => 'Unicode UTF-8'"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_NEUTRAL
+  value: "0x00"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_INVARIANT
+  value: "0x7f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_AFRIKAANS
+  value: "0x36"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ALBANIAN
+  value: "0x1c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ARABIC
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ARMENIAN
+  value: "0x2b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ASSAMESE
+  value: "0x4d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_AZERI
+  value: "0x2c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_BASQUE
+  value: "0x2d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_BELARUSIAN
+  value: "0x23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_BENGALI
+  value: "0x45"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_BOSNIAN
+  value: "0x1a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_BULGARIAN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_CATALAN
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_CHINESE
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_CROATIAN
+  value: "0x1a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_CZECH
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_DANISH
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_DIVEHI
+  value: "0x65"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_DUTCH
+  value: "0x13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ENGLISH
+  value: "0x09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ESTONIAN
+  value: "0x25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_FAEROESE
+  value: "0x38"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_FARSI
+  value: "0x29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_FINNISH
+  value: "0x0b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_FRENCH
+  value: "0x0c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_GALICIAN
+  value: "0x56"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_GEORGIAN
+  value: "0x37"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_GERMAN
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_GREEK
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_GUJARATI
+  value: "0x47"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_HEBREW
+  value: "0x0d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_HINDI
+  value: "0x39"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_HUNGARIAN
+  value: "0x0e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ICELANDIC
+  value: "0x0f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_INDONESIAN
+  value: "0x21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ITALIAN
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_JAPANESE
+  value: "0x11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KANNADA
+  value: "0x4b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KASHMIRI
+  value: "0x60"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KAZAK
+  value: "0x3f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KONKANI
+  value: "0x57"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KOREAN
+  value: "0x12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_KYRGYZ
+  value: "0x40"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_LATVIAN
+  value: "0x26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_LITHUANIAN
+  value: "0x27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MACEDONIAN
+  value: "0x2f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MALAY
+  value: "0x3e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MALAYALAM
+  value: "0x4c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MALTESE
+  value: "0x3a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MANIPURI
+  value: "0x58"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MAORI
+  value: "0x81"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MARATHI
+  value: "0x4e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_MONGOLIAN
+  value: "0x50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_NEPALI
+  value: "0x61"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_NORWEGIAN
+  value: "0x14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ORIYA
+  value: "0x48"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_POLISH
+  value: "0x15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_PORTUGUESE
+  value: "0x16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_PUNJABI
+  value: "0x46"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_QUECHUA
+  value: "0x6b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ROMANIAN
+  value: "0x18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_RUSSIAN
+  value: "0x19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SAMI
+  value: "0x3b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SANSKRIT
+  value: "0x4f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SERBIAN
+  value: "0x1a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SINDHI
+  value: "0x59"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SLOVAK
+  value: "0x1b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SLOVENIAN
+  value: "0x24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SOTHO
+  value: "0x6c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SPANISH
+  value: "0x0a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SWAHILI
+  value: "0x41"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SWEDISH
+  value: "0x1d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SYRIAC
+  value: "0x5a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_TAMIL
+  value: "0x49"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_TATAR
+  value: "0x44"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_TELUGU
+  value: "0x4a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_THAI
+  value: "0x1e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_TSWANA
+  value: "0x32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_TURKISH
+  value: "0x1f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_UKRAINIAN
+  value: "0x22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_URDU
+  value: "0x20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_UZBEK
+  value: "0x43"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_VIETNAMESE
+  value: "0x2a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_WELSH
+  value: "0x52"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_XHOSA
+  value: "0x34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_ZULU
+  value: "0x35"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_NEUTRAL
+  value: "0x00"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_DEFAULT
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SYS_DEFAULT
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_SAUDI_ARABIA
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_IRAQ
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_EGYPT
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_LIBYA
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_ALGERIA
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_MOROCCO
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_TUNISIA
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_OMAN
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_YEMEN
+  value: "0x09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_SYRIA
+  value: "0x0a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_JORDAN
+  value: "0x0b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_LEBANON
+  value: "0x0c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_KUWAIT
+  value: "0x0d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_UAE
+  value: "0x0e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_BAHRAIN
+  value: "0x0f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ARABIC_QATAR
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_AZERI_LATIN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_AZERI_CYRILLIC
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_BOSNIAN_BOSNIA_HERZEGOVINA_LATIN
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CHINESE_TRADITIONAL
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CHINESE_SIMPLIFIED
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CHINESE_HONGKONG
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CHINESE_SINGAPORE
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CHINESE_MACAU
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CROATIAN_CROATIA
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_CROATIAN_BOSNIA_HERZEGOVINA_LATIN
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_DUTCH
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_DUTCH_BELGIAN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_US
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_UK
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_AUS
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_CAN
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_NZ
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_EIRE
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_SOUTH_AFRICA
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_JAMAICA
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_CARIBBEAN
+  value: "0x09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_BELIZE
+  value: "0x0a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_TRINIDAD
+  value: "0x0b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_ZIMBABWE
+  value: "0x0c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ENGLISH_PHILIPPINES
+  value: "0x0d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH_BELGIAN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH_CANADIAN
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH_SWISS
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH_LUXEMBOURG
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_FRENCH_MONACO
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_GERMAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_GERMAN_SWISS
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_GERMAN_AUSTRIAN
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_GERMAN_LUXEMBOURG
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_GERMAN_LIECHTENSTEIN
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ITALIAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_ITALIAN_SWISS
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_KASHMIRI_SASIA
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_KASHMIRI_INDIA
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_KOREAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_LITHUANIAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_MALAY_MALAYSIA
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_MALAY_BRUNEI_DARUSSALAM
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_NEPALI_INDIA
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_NORWEGIAN_BOKMAL
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_NORWEGIAN_NYNORSK
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_PORTUGUESE
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_PORTUGUESE_BRAZILIAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_QUECHUA_BOLIVIA
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_QUECHUA_ECUADOR
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_QUECHUA_PERU
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_NORTHERN_NORWAY
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_NORTHERN_SWEDEN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_NORTHERN_FINLAND
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_LULE_NORWAY
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_LULE_SWEDEN
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_SOUTHERN_NORWAY
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_SOUTHERN_SWEDEN
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_SKOLT_FINLAND
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SAMI_INARI_FINLAND
+  value: "0x09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_LATIN
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SERBIAN_BOSNIA_HERZEGOVINA_CYRILLIC
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SERBIAN_LATIN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SERBIAN_CYRILLIC
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SOTHO_NORTHERN_SOUTH_AFRICA
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_MEXICAN
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_MODERN
+  value: "0x03"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_GUATEMALA
+  value: "0x04"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_COSTA_RICA
+  value: "0x05"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_PANAMA
+  value: "0x06"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_DOMINICAN_REPUBLIC
+  value: "0x07"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_VENEZUELA
+  value: "0x08"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_COLOMBIA
+  value: "0x09"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_PERU
+  value: "0x0a"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_ARGENTINA
+  value: "0x0b"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_ECUADOR
+  value: "0x0c"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_CHILE
+  value: "0x0d"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_URUGUAY
+  value: "0x0e"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_PARAGUAY
+  value: "0x0f"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_BOLIVIA
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_EL_SALVADOR
+  value: "0x11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_HONDURAS
+  value: "0x12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_NICARAGUA
+  value: "0x13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SPANISH_PUERTO_RICO
+  value: "0x14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SWEDISH
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_SWEDISH_FINLAND
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_URDU_PAKISTAN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_URDU_INDIA
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_UZBEK_LATIN
+  value: "0x01"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SUBLANG_UZBEK_CYRILLIC
+  value: "0x02"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_NOUSEROVERRIDE
+  value: "0x80000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_USE_CP_ACP
+  value: "0x40000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_RETURN_NUMBER
+  value: "0x20000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ILANGUAGE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SLANGUAGE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SENGLANGUAGE
+  value: "0x00001001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVLANGNAME
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SNATIVELANGNAME
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ICOUNTRY
+  value: "0x00000005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SCOUNTRY
+  value: "0x00000006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SENGCOUNTRY
+  value: "0x00001002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVCTRYNAME
+  value: "0x00000007"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SNATIVECTRYNAME
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTLANGUAGE
+  value: "0x00000009"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTCOUNTRY
+  value: "0x0000000A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTCODEPAGE
+  value: "0x0000000B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTANSICODEPAGE
+  value: "0x00001004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTMACCODEPAGE
+  value: "0x00001011"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SLIST
+  value: "0x0000000C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IMEASURE
+  value: "0x0000000D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDECIMAL
+  value: "0x0000000E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_STHOUSAND
+  value: "0x0000000F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SGROUPING
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDIGITS
+  value: "0x00000011"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ILZERO
+  value: "0x00000012"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INEGNUMBER
+  value: "0x00001010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SNATIVEDIGITS
+  value: "0x00000013"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SCURRENCY
+  value: "0x00000014"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SINTLSYMBOL
+  value: "0x00000015"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONDECIMALSEP
+  value: "0x00000016"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHOUSANDSEP
+  value: "0x00000017"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONGROUPING
+  value: "0x00000018"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ICURRDIGITS
+  value: "0x00000019"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IINTLCURRDIGITS
+  value: "0x0000001A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ICURRENCY
+  value: "0x0000001B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INEGCURR
+  value: "0x0000001C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDATE
+  value: "0x0000001D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_STIME
+  value: "0x0000001E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SSHORTDATE
+  value: "0x0000001F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SLONGDATE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_STIMEFORMAT
+  value: "0x00001003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDATE
+  value: "0x00000021"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ILDATE
+  value: "0x00000022"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ITIME
+  value: "0x00000023"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ITIMEMARKPOSN
+  value: "0x00001005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ICENTURY
+  value: "0x00000024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ITLZERO
+  value: "0x00000025"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDAYLZERO
+  value: "0x00000026"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IMONLZERO
+  value: "0x00000027"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_S1159
+  value: "0x00000028"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_S2359
+  value: "0x00000029"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_ICALENDARTYPE
+  value: "0x00001009"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IOPTIONALCALENDAR
+  value: "0x0000100B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IFIRSTDAYOFWEEK
+  value: "0x0000100C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IFIRSTWEEKOFYEAR
+  value: "0x0000100D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME1
+  value: "0x0000002A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME2
+  value: "0x0000002B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME3
+  value: "0x0000002C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME4
+  value: "0x0000002D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME5
+  value: "0x0000002E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME6
+  value: "0x0000002F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SDAYNAME7
+  value: "0x00000030"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME1
+  value: "0x00000031"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME2
+  value: "0x00000032"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME3
+  value: "0x00000033"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME4
+  value: "0x00000034"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME5
+  value: "0x00000035"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME6
+  value: "0x00000036"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVDAYNAME7
+  value: "0x00000037"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME1
+  value: "0x00000038"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME2
+  value: "0x00000039"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME3
+  value: "0x0000003A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME4
+  value: "0x0000003B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME5
+  value: "0x0000003C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME6
+  value: "0x0000003D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME7
+  value: "0x0000003E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME8
+  value: "0x0000003F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME9
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME10
+  value: "0x00000041"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME11
+  value: "0x00000042"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME12
+  value: "0x00000043"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SMONTHNAME13
+  value: "0x0000100E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME1
+  value: "0x00000044"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME2
+  value: "0x00000045"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME3
+  value: "0x00000046"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME4
+  value: "0x00000047"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME5
+  value: "0x00000048"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME6
+  value: "0x00000049"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME7
+  value: "0x0000004A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME8
+  value: "0x0000004B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME9
+  value: "0x0000004C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME10
+  value: "0x0000004D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME11
+  value: "0x0000004E"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME12
+  value: "0x0000004F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SABBREVMONTHNAME13
+  value: "0x0000100F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SPOSITIVESIGN
+  value: "0x00000050"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SNEGATIVESIGN
+  value: "0x00000051"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IPOSSIGNPOSN
+  value: "0x00000052"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INEGSIGNPOSN
+  value: "0x00000053"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IPOSSYMPRECEDES
+  value: "0x00000054"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IPOSSEPBYSPACE
+  value: "0x00000055"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INEGSYMPRECEDES
+  value: "0x00000056"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INEGSEPBYSPACE
+  value: "0x00000057"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_FONTSIGNATURE
+  value: "0x00000058"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SISO639LANGNAME
+  value: "0x00000059"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SISO3166CTRYNAME
+  value: "0x0000005A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDEFAULTEBCDICCODEPAGE
+  value: "0x00001012"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IPAPERSIZE
+  value: "0x0000100A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SENGCURRNAME
+  value: "0x00001007"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SNATIVECURRNAME
+  value: "0x00001008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SYEARMONTH
+  value: "0x00001006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SSORTNAME
+  value: "0x00001013"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_IDIGITSUBSTITUTION
+  value: "0x00001014"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TIME_NOMINUTESORSECONDS
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TIME_NOSECONDS
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TIME_NOTIMEMARKER
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TIME_FORCE24HOURFORMAT
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_SHORTDATE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_LONGDATE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_USE_ALT_CALENDAR
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_YEARMONTH
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_LTRREADING
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_RTLREADING
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_DEFAULT
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_JAPANESE_XJIS
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_JAPANESE_UNICODE
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_CHINESE_BIG5
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_CHINESE_PRCP
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_CHINESE_UNICODE
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_CHINESE_PRC
+  value: "0x2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_CHINESE_BOPOMOFO
+  value: "0x3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_KOREAN_KSC
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_KOREAN_UNICODE
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_GERMAN_PHONE_BOOK
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_HUNGARIAN_DEFAULT
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_HUNGARIAN_TECHNICAL
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_GEORGIAN_TRADITIONAL
+  value: "0x0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SORT_GEORGIAN_MODERN
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_SYSTEM_DEFAULT
+  value: "2048"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LANG_USER_DEFAULT
+  value: "1024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_SYSTEM_DEFAULT
+  value: "2048"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_USER_DEFAULT
+  value: "1024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: LOCALE_INVARIANT
+  value: "8323072"
+full_name: Windows::National
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: MAKELANGID
+- !ruby/object:RI::MethodSummary 
+  name: MAKELCID
+- !ruby/object:RI::MethodSummary 
+  name: get_acp_string
+name: National
+superclass: 

@@ -1,0 +1,27 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a set of select tags (one for year, month, and day) pre-selected for accessing a specified date-based attribute (identified by <tt>method</tt>) on an object assigned to the template (identified by <tt>object</tt>). It's possible to tailor the selects through the <tt>options</tt> hash, which accepts all the keys that each of the individual select builders do (like :use_month_numbers for select_month) as well as a range of discard options. The discard options are <tt>:discard_year</tt>, <tt>:discard_month</tt> and <tt>:discard_day</tt>. Set to true, they'll drop the respective select. Discarding the month select will also automatically discard the day select. It's also possible to explicitly set the order of the tags using the <tt>:order</tt> option with an array of symbols <tt>:year</tt>, <tt>:month</tt> and <tt>:day</tt> in the desired order. Symbols may be omitted and the respective select is not included.
+- !ruby/struct:SM::Flow::P 
+  body: Pass the <tt>:default</tt> option to set the default date. Use a Time object or a Hash of :year, :month, :day, :hour, :minute, and :second.
+- !ruby/struct:SM::Flow::P 
+  body: Passing :disabled =&gt; true as part of the <tt>options</tt> will make elements inaccessible for change.
+- !ruby/struct:SM::Flow::P 
+  body: "NOTE: Discarded selects will default to 1. So if no month select is available, January will be assumed."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Generates a date select that when POSTed is stored in the post variable, in the written_on attribute\n  date_select(&quot;post&quot;, &quot;written_on&quot;)\n\n  # Generates a date select that when POSTed is stored in the post variable, in the written_on attribute,\n  # with the year in the year drop down box starting at 1995.\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995)\n\n  # Generates a date select that when POSTed is stored in the post variable, in the written_on attribute,\n  # with the year in the year drop down box starting at 1995, numbers used for months instead of words,\n  # and without a day select box.\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :start_year =&gt; 1995, :use_month_numbers =&gt; true,\n                                    :discard_day =&gt; true, :include_blank =&gt; true)\n\n  # Generates a date select that when POSTed is stored in the post variable, in the written_on attribute\n  # with the fields ordered as day, month, year rather than month, day, year.\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :order =&gt; [:day, :month, :year])\n\n  # Generates a date select that when POSTed is stored in the user variable, in the birthday attribute\n  # lacking a year field.\n  date_select(&quot;user&quot;, &quot;birthday&quot;, :order =&gt; [:month, :day])\n\n  # Generates a date select that when POSTed is stored in the user variable, in the birthday attribute\n  # which is initially set to the date 3 days from the current date\n  date_select(&quot;post&quot;, &quot;written_on&quot;, :default =&gt; 3.days.from_now)\n\n  # Generates a date select that when POSTed is stored in the credit_card variable, in the bill_due attribute\n  # that will have a default day of 20.\n  date_select(&quot;credit_card&quot;, &quot;bill_due&quot;, :default =&gt; { :day =&gt; 20 })\n"
+- !ruby/struct:SM::Flow::P 
+  body: The selects are prepared for multi-parameter assignment to an Active Record object.
+- !ruby/struct:SM::Flow::P 
+  body: "Note: If the day is not included as an option but the month is, the day will be set to the 1st to ensure that all month choices are valid."
+full_name: ActionView::Helpers::DateHelper#date_select
+is_singleton: false
+name: date_select
+params: (object_name, method, options = {})
+visibility: public

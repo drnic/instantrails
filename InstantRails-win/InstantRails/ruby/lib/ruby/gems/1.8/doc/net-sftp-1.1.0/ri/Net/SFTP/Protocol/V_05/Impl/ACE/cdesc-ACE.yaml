@@ -1,0 +1,82 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ_DATA
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_LIST_DIRECTORY
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_DATA
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_ADD_FILE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_APPEND_DATA
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_ADD_SUBDIRECTORY
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ_NAMED_ATTRS
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_NAMED_ATTRS
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_EXECUTE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_DELETE_CHILD
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ_ATTRIBUTES
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_ATTRIBUTES
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_DELETE
+  value: "0x00010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ_ACL
+  value: "0x00020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_ACL
+  value: "0x00040000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_OWNER
+  value: "0x00080000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_SYNCHRONIZE
+  value: "0x00100000"
+full_name: Net::SFTP::Protocol::V_05::Impl::ACE
+includes: []
+
+instance_methods: []
+
+name: ACE
+superclass: 

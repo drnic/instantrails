@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Overlay the text for the cells in the specified range with the fields specified in <em>text</em>. Within the <em>text</em> string, each column's text should delimited by the character specified by <em>cs</em>, and each row should be delimited by the character specified by <em>rs</em>. To reverse this operation (i.e. extract the table cells' text into a string), see #extractText. Raises IndexError if any of <em>startrow</em>, <em>endrow</em>, <em>startcol</em> or <em>endcol</em> is out of bounds."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+startrow+:"
+    body: the starting row for the range [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+endrow+:"
+    body: the ending row for the range [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+startcol+:"
+    body: the starting column for the range [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+endcol+:"
+    body: the ending column for the range [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+text+:"
+    body: the text containing the new cell text [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+cs+:"
+    body: the character to insert at each column break [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+rs+:"
+    body: the character to insert at each row break [String]
+  type: :NOTE
+full_name: Fox::FXTable#overlayText
+is_singleton: false
+name: overlayText
+params: (startrow, endrow, startcol, endcol, text, cs="\t", rs="\n", notify=false)
+visibility: public

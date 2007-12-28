@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>get_last_error (Windows::Error)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/windows/error.rb, line 333</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">get_last_error</span>(<span class="ruby-identifier">err_num</span> = <span class="ruby-constant">GetLastError</span>.<span class="ruby-identifier">call</span>)
+         <span class="ruby-identifier">buf</span>   = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">260</span>
+         <span class="ruby-identifier">flags</span> = <span class="ruby-constant">FORMAT_MESSAGE_FROM_SYSTEM</span> <span class="ruby-operator">+</span> <span class="ruby-constant">FORMAT_MESSAGE_ARGUMENT_ARRAY</span>        
+         <span class="ruby-constant">FormatMessage</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">flags</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">err_num</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span>, <span class="ruby-value">0</span>)
+         <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>.<span class="ruby-identifier">chomp</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-value str">'Unknown error'</span>       
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: ActionMailer::TestHelper</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">ActionMailer::TestHelper</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/action_mailer/test_helper_rb.html">
+                lib/action_mailer/test_helper.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M002138">assert_emails</a>&nbsp;&nbsp;
+      <a href="#M002139">assert_no_emails</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M002138" class="method-detail">
+        <a name="M002138"></a>
+
+        <div class="method-heading">
+          <a href="TestHelper.src/M002138.html" target="Code" class="method-signature"
+            onclick="popupCode('TestHelper.src/M002138.html');return false;">
+          <span class="method-name">assert_emails</span><span class="method-args">(number) {|| ...}</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Asserts that the number of emails sent matches the given number.
+</p>
+<pre>
+  def test_emails
+    assert_emails 0
+    ContactMailer.deliver_contact
+    assert_emails 1
+    ContactMailer.deliver_contact
+    assert_emails 2
+  end
+</pre>
+<p>
+If a block is passed, that block should cause the specified number of
+emails to be sent.
+</p>
+<pre>
+  def test_emails_again
+    assert_emails 1 do
+      ContactMailer.deliver_contact
+    end
+
+    assert_emails 2 do
+      ContactMailer.deliver_contact
+      ContactMailer.deliver_contact
+    end
+  end
+</pre>
+        </div>
+      </div>
+
+      <div id="method-M002139" class="method-detail">
+        <a name="M002139"></a>
+
+        <div class="method-heading">
+          <a href="TestHelper.src/M002139.html" target="Code" class="method-signature"
+            onclick="popupCode('TestHelper.src/M002139.html');return false;">
+          <span class="method-name">assert_no_emails</span><span class="method-args">(&amp;block)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Assert that no emails have been sent.
+</p>
+<pre>
+  def test_emails
+    assert_no_emails
+    ContactMailer.deliver_contact
+    assert_emails 1
+  end
+</pre>
+<p>
+If a block is passed, that block should not cause any emails to be sent.
+</p>
+<pre>
+  def test_emails_again
+    assert_no_emails do
+      # No emails should be sent from this block
+    end
+  end
+</pre>
+<p>
+Note: This assertion is simply a shortcut for:
+</p>
+<pre>
+  assert_emails 0
+</pre>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

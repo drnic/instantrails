@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns true if its safe to reload the connection between requests for development mode. This is not the case for Ruby/MySQL and it's not necessary for any adapters except SQLite.
+full_name: ActiveRecord::ConnectionAdapters::AbstractAdapter#requires_reloading?
+is_singleton: false
+name: requires_reloading?
+params: ()
+visibility: public

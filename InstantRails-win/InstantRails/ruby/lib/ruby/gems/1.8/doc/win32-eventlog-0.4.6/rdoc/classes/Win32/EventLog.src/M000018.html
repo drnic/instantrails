@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>tail (Win32::EventLog)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/eventlog.rb, line 411</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tail</span>(<span class="ruby-identifier">frequency</span> = <span class="ruby-value">5</span>)
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">block_given?</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-value str">'block missing for tail()'</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">old_total</span> = <span class="ruby-identifier">total_records</span>()       
+         <span class="ruby-identifier">flags</span>     = <span class="ruby-constant">FORWARDS_READ</span> <span class="ruby-operator">|</span> <span class="ruby-constant">SEEK_READ</span>
+         <span class="ruby-identifier">rec_num</span>   = <span class="ruby-identifier">read_last_event</span>.<span class="ruby-identifier">record_number</span>
+         
+         <span class="ruby-keyword kw">while</span> <span class="ruby-keyword kw">true</span>          
+            <span class="ruby-identifier">new_total</span> = <span class="ruby-identifier">total_records</span>()    
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">new_total</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">old_total</span>
+               <span class="ruby-identifier">rec_num</span> = <span class="ruby-identifier">oldest_record_number</span>() <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">full?</span>
+               <span class="ruby-identifier">read</span>(<span class="ruby-identifier">flags</span>, <span class="ruby-identifier">rec_num</span>).<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">log</span><span class="ruby-operator">|</span> <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">log</span> }
+               <span class="ruby-identifier">old_total</span> = <span class="ruby-identifier">new_total</span>
+               <span class="ruby-identifier">rec_num</span>   = <span class="ruby-identifier">read_last_event</span>.<span class="ruby-identifier">record_number</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">sleep</span> <span class="ruby-identifier">frequency</span>
+         <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

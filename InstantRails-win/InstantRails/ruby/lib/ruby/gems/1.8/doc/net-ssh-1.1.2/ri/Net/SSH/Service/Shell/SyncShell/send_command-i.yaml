@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Attempts to invoke the given command, which must not be terminated with a newline. If <tt>stdin</tt> is not nil, it will be sent to the shell immediately after sending the request to execute the command. It is expected that this will be used by the program that was just executed somehow, but this is not (cannot) be enforced.
+full_name: Net::SSH::Service::Shell::SyncShell#send_command
+is_singleton: false
+name: send_command
+params: ( cmd, stdin=nil )
+visibility: public

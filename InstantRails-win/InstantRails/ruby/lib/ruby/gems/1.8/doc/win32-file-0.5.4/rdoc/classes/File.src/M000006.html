@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>basename (File)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file.rb, line 405</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">basename</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">suffix</span> = <span class="ruby-keyword kw">nil</span>)
+         <span class="ruby-identifier">fpath</span> = <span class="ruby-keyword kw">false</span>
+         <span class="ruby-identifier">file</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">dup</span> <span class="ruby-comment cmt"># Don't modify original string</span>
+         
+         <span class="ruby-comment cmt"># We have to convert forward slashes to backslashes for the Windows</span>
+         <span class="ruby-comment cmt"># functions to work properly.</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'/'</span>)
+            <span class="ruby-identifier">file</span>.<span class="ruby-identifier">tr!</span>(<span class="ruby-value str">'/'</span>, <span class="ruby-value str">'\\'</span>)
+            <span class="ruby-identifier">fpath</span> = <span class="ruby-keyword kw">true</span>
+         <span class="ruby-keyword kw">end</span>
+             
+         <span class="ruby-comment cmt"># Return an empty or root path as-is.</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">file</span>.<span class="ruby-identifier">empty?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">PathIsRoot</span>(<span class="ruby-identifier">file</span>)
+            <span class="ruby-identifier">file</span>.<span class="ruby-identifier">tr!</span>(<span class="ruby-value str">&quot;\\&quot;</span>, <span class="ruby-value str">'/'</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fpath</span>
+            <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">file</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-constant">PathStripPath</span>(<span class="ruby-identifier">file</span>) <span class="ruby-comment cmt"># Gives us the basename</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">suffix</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">suffix</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'.*'</span>
+               <span class="ruby-constant">PathRemoveExtension</span>(<span class="ruby-identifier">file</span>)
+            <span class="ruby-keyword kw">else</span>
+               <span class="ruby-keyword kw">if</span> <span class="ruby-constant">PathFindExtension</span>(<span class="ruby-identifier">file</span>) <span class="ruby-operator">==</span> <span class="ruby-identifier">suffix</span>
+                  <span class="ruby-constant">PathRemoveExtension</span>(<span class="ruby-identifier">file</span>)
+               <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">file</span> = <span class="ruby-identifier">file</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>).<span class="ruby-identifier">first</span>
+         
+         <span class="ruby-comment cmt"># Trim trailing slashes</span>
+         <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">file</span>[<span class="ruby-value">-1</span>].<span class="ruby-identifier">chr</span> <span class="ruby-operator">==</span> <span class="ruby-value str">&quot;\\&quot;</span>
+            <span class="ruby-identifier">file</span>.<span class="ruby-identifier">chop!</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-comment cmt"># Return forward slashes if that's how the path was passed in.</span>
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fpath</span>
+            <span class="ruby-identifier">file</span>.<span class="ruby-identifier">tr!</span>(<span class="ruby-value str">&quot;\\&quot;</span>, <span class="ruby-value str">'/'</span>)
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">file</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>stylesheet_link_tag (ActionView::Helpers::AssetTagHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/asset_tag_helper.rb, line 319</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">stylesheet_link_tag</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">sources</span>)
+        <span class="ruby-identifier">options</span> = <span class="ruby-identifier">sources</span>.<span class="ruby-identifier">extract_options!</span>.<span class="ruby-identifier">stringify_keys</span>
+        <span class="ruby-identifier">cache</span>   = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">delete</span>(<span class="ruby-value str">&quot;cache&quot;</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">ActionController</span><span class="ruby-operator">::</span><span class="ruby-constant">Base</span>.<span class="ruby-identifier">perform_caching</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">cache</span>
+          <span class="ruby-identifier">joined_stylesheet_name</span> = (<span class="ruby-identifier">cache</span> <span class="ruby-operator">==</span> <span class="ruby-keyword kw">true</span> <span class="ruby-operator">?</span> <span class="ruby-value str">&quot;all&quot;</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">cache</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;.css&quot;</span>
+          <span class="ruby-identifier">joined_stylesheet_path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-constant">STYLESHEETS_DIR</span>, <span class="ruby-identifier">joined_stylesheet_name</span>)
+
+          <span class="ruby-identifier">write_asset_file_contents</span>(<span class="ruby-identifier">joined_stylesheet_path</span>, <span class="ruby-identifier">compute_stylesheet_paths</span>(<span class="ruby-identifier">sources</span>))
+          <span class="ruby-identifier">stylesheet_tag</span>(<span class="ruby-identifier">joined_stylesheet_name</span>, <span class="ruby-identifier">options</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">expand_stylesheet_sources</span>(<span class="ruby-identifier">sources</span>).<span class="ruby-identifier">collect</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">source</span><span class="ruby-operator">|</span> <span class="ruby-identifier">stylesheet_tag</span>(<span class="ruby-identifier">source</span>, <span class="ruby-identifier">options</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;\n&quot;</span>)
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

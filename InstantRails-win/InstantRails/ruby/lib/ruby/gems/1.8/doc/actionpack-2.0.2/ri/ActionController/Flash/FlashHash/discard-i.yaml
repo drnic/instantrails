@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Marks the entire flash or a single flash entry to be discarded by the end of the current action:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "    flash.discard              # discard the entire flash at the end of the current action\n    flash.discard(:warning)    # discard only the &quot;warning&quot; entry at the end of the current action\n"
+full_name: ActionController::Flash::FlashHash#discard
+is_singleton: false
+name: discard
+params: (k = nil)
+visibility: public

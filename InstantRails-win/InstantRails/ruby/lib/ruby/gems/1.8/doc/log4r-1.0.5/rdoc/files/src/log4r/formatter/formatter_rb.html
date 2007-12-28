@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>File: formatter.rb</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+  <div id="fileHeader">
+    <h1>formatter.rb</h1>
+    <table class="header-table">
+    <tr class="top-aligned-row">
+      <td><strong>Path:</strong></td>
+      <td>src/log4r/formatter/formatter.rb
+      </td>
+    </tr>
+    <tr class="top-aligned-row">
+      <td><strong>Last Update:</strong></td>
+      <td>Fri Dec 14 11:50:36 -0300 2007</td>
+    </tr>
+    </table>
+  </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <h1>Formatters</h1>
+<p>
+Formatters are responsible for formatting LogEvent data. An Outputter
+owning a Formatter will invoke the Log4r::Formatter#format method prior to
+writing.
+</p>
+<h2>Available Formatters</h2>
+<ul>
+<li><a
+href="../../../../classes/Log4r/BasicFormatter.html">Log4r::BasicFormatter</a>
+- default
+
+</li>
+<li><a
+href="../../../../classes/Log4r/PatternFormatter.html">Log4r::PatternFormatter</a>
+- most flexible. See log4r/formatter/patternformatter.rb
+
+</li>
+<li><a
+href="../../../../classes/Log4r/SimpleFormatter.html">Log4r::SimpleFormatter</a>
+- like BasicFormatter for Strings only (low noise)
+
+</li>
+<li><a
+href="../../../../classes/Log4r/ObjectFormatter.html">Log4r::ObjectFormatter</a>
+- for inspecting objects
+
+</li>
+<li>Log4r::NullFormatter - twirls on its feet and does nothing
+
+</li>
+</ul>
+<h1>XML Configuration</h1>
+<p>
+Specify the Formatter and its class (as <tt>type</tt>) under an
+<tt>&lt;outputter&gt;</tt> directive:
+</p>
+<pre>
+  &lt;outputter name=&quot;someout&quot; type=&quot;sometype&quot;&gt;
+    &lt;formatter type=&quot;Log4r::BasicFormatter&quot;/&gt;
+  &lt;/outputter&gt;
+</pre>
+<p>
+As explained in log4r/configurator.rb, the hash arguments you would
+normally pass to <tt>new</tt> are specified as <em>XML parameters</em>.
+Only PatternFormatter has any of these.
+</p>
+<h1>Custom Formatting</h1>
+<p>
+Building a custom Formatter is extremely easy. Just define a class that
+extends Formatter and override the Formatter#format method. Then give it to
+any interested Outputters.
+</p>
+<p>
+If you&#8216;re interested in setting up your custom formatters in XML,
+please take a look at log4r/configurator.rb.
+</p>
+<h2>Data Available</h2>
+<p>
+See <a href="../../../../classes/Log4r/LogEvent.html">Log4r::LogEvent</a>
+</p>
+<table>
+<tr><td valign="top">Version:</td><td>$Id: formatter.rb,v 1.7 2003/09/01 22:33:20 cepheus Exp $
+
+</td></tr>
+</table>
+
+    </div>
+
+    <div id="requires-list">
+      <h3 class="section-bar">Required files</h3>
+
+      <div class="name-list">
+      singleton&nbsp;&nbsp;
+      log4r/base&nbsp;&nbsp;
+      </div>
+    </div>
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

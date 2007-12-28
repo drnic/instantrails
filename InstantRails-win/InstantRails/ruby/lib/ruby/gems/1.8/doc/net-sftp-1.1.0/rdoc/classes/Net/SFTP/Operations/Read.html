@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SFTP::Operations::Read</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SFTP::Operations::Read</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../files/lib/net/sftp/operations/read_rb.html">
+                lib/net/sftp/operations/read.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="Abstract.html">
+                Abstract
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+Implements the <tt>read</tt> operation, which reads data from an open file
+handle. This also implements the common case of reading to the end of the
+file. In that case, the callback is guaranteed to receive the contents of
+the entire file in one chunk.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000457">do_data</a>&nbsp;&nbsp;
+      <a href="#M000458">do_status</a>&nbsp;&nbsp;
+      <a href="#M000456">perform</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_CHUNK_SIZE</td>
+          <td>=</td>
+          <td class="context-item-value">64 * 1024</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+The default maximum amount of data to read at once when reading an entire
+file.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000457" class="method-detail">
+        <a name="M000457"></a>
+
+        <div class="method-heading">
+          <a href="Read.src/M000457.html" target="Code" class="method-signature"
+            onclick="popupCode('Read.src/M000457.html');return false;">
+          <span class="method-name">do_data</span><span class="method-args">( data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when a data packet is received from the server. If the original
+request was for an entire file, this will send another read request, offset
+to the end of the data that has been read so far. Otherwise, the callback
+will be invoked directly.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000458" class="method-detail">
+        <a name="M000458"></a>
+
+        <div class="method-heading">
+          <a href="Read.src/M000458.html" target="Code" class="method-signature"
+            onclick="popupCode('Read.src/M000458.html');return false;">
+          <span class="method-name">do_status</span><span class="method-args">( code, message, language )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Invoked when a status code is received from the server. If the code is
+FX_EOF, then no data could be read because the end of the file was reached.
+In this case, the callback is invoked with the data that has been read so
+far. Other status codes are handled by the superclass.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000456" class="method-detail">
+        <a name="M000456"></a>
+
+        <div class="method-heading">
+          <a href="Read.src/M000456.html" target="Code" class="method-signature"
+            onclick="popupCode('Read.src/M000456.html');return false;">
+          <span class="method-name">perform</span><span class="method-args">( handle, options={} )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Perform the operation. If length is less than 0 (the default), then the
+entire file (from the given offset) will be read and returned in &quot;one
+fell swoop&quot;. Otherwise, the given length of data will be requested.
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

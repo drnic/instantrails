@@ -1,0 +1,80 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell height, in pixels [Integer]
+  name: cellHeight
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Cell width, in pixels [Integer]
+  name: cellWidth
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current text-justification mode [Integer]
+  name: justify
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text for this label [String]
+  name: text
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The text color [FXColor]
+  name: textColor
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Segment thickness, in pixels [Integer]
+  name: thickness
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Seven-segment (eg LCD/watch style) widget, useful for making indicators and timers. Besides numbers, the seven-segment display widget can also display some letters and punctuations.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: 7 Segment styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEVENSEGMENT_NORMAL+:"
+    body: Draw segments normally
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEVENSEGMENT_SHADOW+:"
+    body: Draw shadow under the segments
+  type: :NOTE
+constants: []
+
+full_name: Fox::FX7Segment
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: get7SegmentStyle
+- !ruby/object:RI::MethodSummary 
+  name: set7SegmentStyle
+name: FX7Segment
+superclass: FXFrame

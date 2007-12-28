@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The instantiation pipeline element that enforces the multiton multiplicity. &quot;Multiton&quot; multiplicity is like singleton multiplicity, except that the guarded instance is unique for each unique set of arguments passed to the multiton.
+constants: []
+
+full_name: Needle::Lifecycle::Multiton
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: call
+- !ruby/object:RI::MethodSummary 
+  name: initialize_element
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+name: Multiton
+superclass: Needle::Pipeline::Element

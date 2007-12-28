@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Send a generic channel request with the given name. The data item will be written directly into the request (after converting it to a string, as necessary).
+full_name: Net::SSH::Connection::Channel#send_request
+is_singleton: false
+name: send_request
+params: ( request_name, data, want_reply=false )
+visibility: public

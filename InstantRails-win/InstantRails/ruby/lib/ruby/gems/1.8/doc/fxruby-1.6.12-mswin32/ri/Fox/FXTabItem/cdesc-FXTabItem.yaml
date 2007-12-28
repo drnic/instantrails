@@ -1,0 +1,67 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current tab item orientation, one of <tt>TAB_TOP</tt>, <tt>TAB_LEFT</tt>, <tt>TAB_RIGHT</tt> or <tt>TAB_BOTTOM</tt> [Integer].
+  name: tabOrientation
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A tab item is placed in a tab bar or tab book. When selected, the tab item sends a message to its parent, and causes itself to become the active tab, and raised slightly above the other tabs. In the tab book, activating a tab item also causes the corresponding panel to be raised to the top.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXTabItem to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Tab item orientations (which affect border)
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_TOP+:"
+    body: Top side tabs
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_LEFT+:"
+    body: Left side tabs
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_RIGHT+:"
+    body: Right side tabs
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_BOTTOM+:"
+    body: Bottom side tabs
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_TOP_NORMAL+:"
+    body: same as <tt>JUSTIFY_NORMAL|ICON_BEFORE_TEXT|TAB_TOP|FRAME_RAISED|FRAME_THICK</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_BOTTOM_NORMAL+:"
+    body: same as <tt>JUSTIFY_NORMAL|ICON_BEFORE_TEXT|TAB_BOTTOM|FRAME_RAISED|FRAME_THICK</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_LEFT_NORMAL+:"
+    body: same as <tt>JUSTIFY_LEFT|JUSTIFY_CENTER_Y|ICON_BEFORE_TEXT|TAB_LEFT|FRAME_RAISED|FRAME_THICK</tt>
+  - !ruby/struct:SM::Flow::LI 
+    label: "+TAB_RIGHT_NORMAL+:"
+    body: same as <tt>JUSTIFY_LEFT|JUSTIFY_CENTER_Y|ICON_BEFORE_TEXT|TAB_RIGHT|FRAME_RAISED|FRAME_THICK</tt>
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXTabItem
+includes: []
+
+instance_methods: []
+
+name: FXTabItem
+superclass: FXLabel

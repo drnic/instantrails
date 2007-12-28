@@ -1,0 +1,30 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: If set to true, and the auto_constant variable is set, then the automatic constant generation will generate the explicit ANSI ('A') and Unicode/wide ('W') versions of the function passed to the constructor, if such versions exist. Likewise, if the the auto_method variable is set, then explicit ANSI and Unicode methods are generated.
+- !ruby/struct:SM::Flow::P 
+  body: "Here's a typical idiom:"
+- !ruby/struct:SM::Flow::P 
+  body: module Windows
+- !ruby/struct:SM::Flow::VERB 
+  body: "   module Path\n      API.auto_namespace = Windows::Path\n      API.auto_constant = true\n      API.new('shlwapi', 'PathAddBackslash', 'P', 'P')\n      API.new('shlwapi', 'PathAddBackslashA', 'P', 'P')\n      API.new('shlwapi', 'PathAddBackslashW', 'P', 'P')\n   end\n"
+- !ruby/struct:SM::Flow::P 
+  body: end
+- !ruby/struct:SM::Flow::P 
+  body: "That can be reduced to this:"
+- !ruby/struct:SM::Flow::P 
+  body: module Windows
+- !ruby/struct:SM::Flow::VERB 
+  body: "   module Path\n      API.auto_namespace = Windows::Path\n      API.auto_constant = true\n      API.auto_unicode  = true\n      API.new('shlwapi', 'PathAddBackslash', 'P', 'P')\n   end\n"
+- !ruby/struct:SM::Flow::P 
+  body: end
+- !ruby/struct:SM::Flow::P 
+  body: This value is ignored if the function passed to the constructor already ends with an 'A' or 'W'.
+full_name: Windows::API::auto_unicode=
+is_singleton: true
+name: auto_unicode=
+params: (bool)
+visibility: public

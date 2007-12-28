@@ -1,0 +1,29 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates a radio button; use groups of radio buttons named the same to allow users to select from a group of options.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML options for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  radio_button_tag 'gender', 'male'\n  # =&gt; &lt;input id=&quot;gender_male&quot; name=&quot;gender&quot; type=&quot;radio&quot; value=&quot;male&quot; /&gt;\n\n  radio_button_tag 'receive_updates', 'no', true\n  # =&gt; &lt;input checked=&quot;checked&quot; id=&quot;receive_updates_no&quot; name=&quot;receive_updates&quot; type=&quot;radio&quot; value=&quot;no&quot; /&gt;\n\n  radio_button_tag 'time_slot', &quot;3:00 p.m.&quot;, false, :disabled =&gt; true\n  # =&gt; &lt;input disabled=&quot;disabled&quot; id=&quot;time_slot_300_pm&quot; name=&quot;time_slot&quot; type=&quot;radio&quot; value=&quot;3:00 p.m.&quot; /&gt;\n\n  radio_button_tag 'color', &quot;green&quot;, true, :class =&gt; &quot;color_input&quot;\n  # =&gt; &lt;input checked=&quot;checked&quot; class=&quot;color_input&quot; id=&quot;color_green&quot; name=&quot;color&quot; type=&quot;radio&quot; value=&quot;green&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#radio_button_tag
+is_singleton: false
+name: radio_button_tag
+params: (name, value, checked = false, options = {})
+visibility: public

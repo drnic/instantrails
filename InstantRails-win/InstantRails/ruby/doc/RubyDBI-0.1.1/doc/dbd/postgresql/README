@@ -1,0 +1,62 @@
+Ruby DBI PostgreSql Driver  version 
+=========================================
+
+This is an implementation of the ruby-dbi driver for the PostgreSql
+data base.  It is designed to be used with Rainer Perl's Ruby DBI
+implementation.  It is built upon Noboru Saitou's basic Postgres
+package.
+
+Warning: This software is very experimental.  The ruby DBI interface
+is still a moving target.
+
+See the following URL's for required software ...
+
+Noboru Saitou's Postgres Package:
+    http://www.ruby-lang.org/en/raa-list.rhtml?name=postgres
+
+Ruby DBI:
+    http://www.ruby-projects.org/dbi
+
+DBI Spec:
+    http://www.ruby-projects.org/dbi/dbi/DBI_SPEC.html
+
+DBD Spec:
+    http://www.ruby-projects.org/dbi/dbi/DBD_SPEC.html
+
+Installation
+============
+
+    Install like every DBD.
+
+    cd ruby-dbi-all
+    ruby setup.rb config --with=dbd_pg
+    ruby setup.rb setup
+    ruby setup.rb install
+  
+Unit Tests
+==========
+
+There are unit tests available, but currently they depend on a
+pre-existing database on my machine.  Future versions will remove that
+dependency.  To run the tests, type "make test".
+
+Files
+=====
+
+    README                  -- Simple instructions
+    test/                   -- Unit test directory
+    runtests.rb             -- Unit test driver
+    dbi/dbd_postgresql.rb   -- Basic Postgres Driver
+    dbi/sqlquote.rb         -- Quoting mixin module
+
+Changes
+=======
+
+* 28.05.2001.6 - Updated to latest DBD spec.  Commit/rollback support
+                 added.  
+
+* 28.05.2001.7 - Added some files that were missed when building .6
+
+--
+-- Jim Weirich
+-- jweirich@one.ent

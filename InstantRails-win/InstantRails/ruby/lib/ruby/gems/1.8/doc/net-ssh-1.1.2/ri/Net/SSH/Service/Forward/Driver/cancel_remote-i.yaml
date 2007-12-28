@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Cease forwarding connections from the given remote port. The <tt>remote_host</tt> parameter must match the corresponding parameter that was passed to #remote. Existing forwarded connections are not affected by this call, but no more connections will be forwarded from the remote host to the local host via that port."
+full_name: Net::SSH::Service::Forward::Driver#cancel_remote
+is_singleton: false
+name: cancel_remote
+params: ( remote_port, remote_host="127.0.0.1" )
+visibility: public

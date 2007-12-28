@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>attribute_match (HTML::Selector)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/vendor/html-scanner/html/selector.rb, line 687</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">attribute_match</span>(<span class="ruby-identifier">equality</span>, <span class="ruby-identifier">value</span>)
+      <span class="ruby-identifier">regexp</span> = <span class="ruby-identifier">value</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">escape</span>(<span class="ruby-identifier">value</span>.<span class="ruby-identifier">to_s</span>)
+      <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">equality</span>
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;=&quot;</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-comment cmt"># Match the attribute value in full</span>
+          <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^#{regexp}$&quot;</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;~=&quot;</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-comment cmt"># Match a space-separated word within the attribute value</span>
+          <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;(^|\s)#{regexp}($|\s)&quot;</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;^=&quot;</span>
+          <span class="ruby-comment cmt"># Match the beginning of the attribute value</span>
+          <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^#{regexp}&quot;</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;$=&quot;</span>
+          <span class="ruby-comment cmt"># Match the end of the attribute value</span>
+          <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;#{regexp}$&quot;</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;*=&quot;</span>
+          <span class="ruby-comment cmt"># Match substring of the attribute value</span>
+          <span class="ruby-identifier">regexp</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">regexp</span> <span class="ruby-operator">:</span> <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">regexp</span>)
+        <span class="ruby-keyword kw">when</span> <span class="ruby-value str">&quot;|=&quot;</span> <span class="ruby-keyword kw">then</span>
+          <span class="ruby-comment cmt"># Match the first space-separated item of the attribute value</span>
+          <span class="ruby-constant">Regexp</span>.<span class="ruby-identifier">new</span>(<span class="ruby-node">&quot;^#{regexp}($|\s)&quot;</span>)
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">raise</span> <span class="ruby-constant">InvalidSelectorError</span>, <span class="ruby-value str">&quot;Invalid operation/value&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">value</span>.<span class="ruby-identifier">empty?</span>
+          <span class="ruby-comment cmt"># Match all attributes values (existence check)</span>
+          <span class="ruby-regexp re">//</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

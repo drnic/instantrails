@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Asserts that path and options match both ways; in other words, it verifies that <tt>path</tt> generates <tt>options</tt> and then that <tt>options</tt> generates <tt>path</tt>. This essentially combines #assert_recognizes and #assert_generates into one step."
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>extras</tt> hash allows you to specify options that would normally be provided as a query string to the action. The <tt>message</tt> parameter allows you to specify a custom error message to display upon failure.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Assert a basic route: a controller with the default action (index)\n assert_routing('/home', :controller =&gt; 'home', :action =&gt; 'index')\n\n # Test a route generated with a specific controller, action, and parameter (id)\n assert_routing('/entries/show/23', :controller =&gt; 'entries', :action =&gt; 'show', id =&gt; 23)\n\n # Assert a basic route (controller + default action), with an error message if it fails\n assert_routing('/store', { :controller =&gt; 'store', :action =&gt; 'index' }, {}, {}, 'Route for store index not generated properly')\n\n # Tests a route, providing a defaults hash\n assert_routing 'controller/action/9', {:id =&gt; &quot;9&quot;, :item =&gt; &quot;square&quot;}, {:controller =&gt; &quot;controller&quot;, :action =&gt; &quot;action&quot;}, {}, {:item =&gt; &quot;square&quot;}\n"
+full_name: ActionController::Assertions::RoutingAssertions#assert_routing
+is_singleton: false
+name: assert_routing
+params: (path, options, defaults={}, extras={}, message=nil)
+visibility: public

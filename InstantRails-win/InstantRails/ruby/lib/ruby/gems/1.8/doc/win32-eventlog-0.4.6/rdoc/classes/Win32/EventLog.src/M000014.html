@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>full? (Win32::EventLog)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/eventlog.rb, line 317</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">full?</span>
+         <span class="ruby-identifier">buf</span>    = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>) <span class="ruby-comment cmt"># dwFull</span>
+         <span class="ruby-identifier">needed</span> = [<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+         
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">GetEventLogInformation</span>(<span class="ruby-ivar">@handle</span>, <span class="ruby-value">0</span>, <span class="ruby-identifier">buf</span>, <span class="ruby-identifier">buf</span>.<span class="ruby-identifier">size</span>, <span class="ruby-identifier">needed</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-value str">'GetEventLogInformation() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">buf</span>[<span class="ruby-value">0</span>,<span class="ruby-value">4</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'L'</span>)[<span class="ruby-value">0</span>] <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

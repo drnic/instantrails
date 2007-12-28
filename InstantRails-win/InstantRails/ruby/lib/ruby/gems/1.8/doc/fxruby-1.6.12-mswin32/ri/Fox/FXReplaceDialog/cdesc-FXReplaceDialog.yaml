@@ -1,0 +1,95 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Replacement text [String]
+  name: replaceText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "Search matching mode, one of the following:"
+  - !ruby/object:SM::Flow::LIST 
+    contents: 
+    - !ruby/struct:SM::Flow::LI 
+      label: "+DONE+:"
+      body: Cancel search
+    - !ruby/struct:SM::Flow::LI 
+      label: "+SEARCH+:"
+      body: Search first occurrence
+    - !ruby/struct:SM::Flow::LI 
+      label: "+REPLACE+:"
+      body: Replace first occurrence
+    - !ruby/struct:SM::Flow::LI 
+      label: "+SEARCH_NEXT+:"
+      body: Search next occurrence
+    - !ruby/struct:SM::Flow::LI 
+      label: "+REPLACE_NEXT+:"
+      body: Replace next occurrence
+    - !ruby/struct:SM::Flow::LI 
+      label: "+REPLACE_ALL+:"
+      body: Replace all occurrences
+    type: :NOTE
+  name: searchMode
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Text or pattern to search for [String]
+  name: searchText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Search and replace dialog box.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PREV+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SEARCH_UP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SEARCH_DN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REPLACE_UP+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REPLACE_DN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_DIR+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_SEARCH_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_REPLACE_TEXT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MODE+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXReplaceDialog
+includes: []
+
+instance_methods: []
+
+name: FXReplaceDialog
+superclass: FXDialogBox

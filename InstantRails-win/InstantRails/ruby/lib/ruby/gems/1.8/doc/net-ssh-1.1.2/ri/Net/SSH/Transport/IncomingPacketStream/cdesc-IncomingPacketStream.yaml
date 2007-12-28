@@ -1,0 +1,32 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A handle to the buffer factory to use when creating buffers
+  name: buffers
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A handle to the logger instance to use for writing log messages
+  name: log
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Handles the decompression and dencryption of incoming packets.
+constants: []
+
+full_name: Net::SSH::Transport::IncomingPacketStream
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: get
+- !ruby/object:RI::MethodSummary 
+  name: set_algorithms
+name: IncomingPacketStream
+superclass: PacketStream

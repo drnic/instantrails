@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Base composite
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent from FXComposite to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down, but only if there is no other widget with the focus (or if the focused widget doesn't handle this keypress). The message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up, but only if there is no other widget with the focus (or if the focused widget doesn't handle this key release). The message data is an FXEvent instance.
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXComposite
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: maxChildHeight
+- !ruby/object:RI::MethodSummary 
+  name: maxChildWidth
+name: FXComposite
+superclass: FXWindow

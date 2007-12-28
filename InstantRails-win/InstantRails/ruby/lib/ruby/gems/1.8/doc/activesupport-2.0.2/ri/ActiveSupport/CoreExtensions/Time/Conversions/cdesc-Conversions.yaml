@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: included
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Getting times in different convenient string representations and other objects
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DATE_FORMATS
+  value: "{           :db           => \"%Y-%m-%d %H:%M:%S\",           :time         => \"%H:%M\",           :short        => \"%d %b %H:%M\",           :long         => \"%B %d, %Y %H:%M\",           :long_ordinal => lambda { |time| time.strftime(\"%B #{time.day.ordinalize}, %Y %H:%M\") },           :rfc822       => \"%a, %d %b %Y %H:%M:%S %z\""
+full_name: ActiveSupport::CoreExtensions::Time::Conversions
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: to_date
+- !ruby/object:RI::MethodSummary 
+  name: to_datetime
+- !ruby/object:RI::MethodSummary 
+  name: to_formatted_s
+- !ruby/object:RI::MethodSummary 
+  name: to_time
+name: Conversions
+superclass: 

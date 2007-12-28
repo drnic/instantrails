@@ -1,0 +1,199 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Asctime
+  value: API.new('asctime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Clock
+  value: API.new('clock', 'V', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Ctime
+  value: API.new('ctime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Ctime64
+  value: API.new('_ctime64', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Difftime
+  value: API.new('difftime', 'LL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Ftime
+  value: API.new('_ftime', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Ftime64
+  value: API.new('_ftime64', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Futime
+  value: API.new('_futime', 'IP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Futime64
+  value: API.new('_futime64', 'IP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Gmtime
+  value: API.new('gmtime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Gmtime64
+  value: API.new('_gmtime64', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Localtime
+  value: API.new('localtime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Localtime64
+  value: API.new('_localtime64', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mktime
+  value: API.new('mktime', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mktime64
+  value: API.new('_mktime64', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strdate
+  value: API.new('_strdate', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strftime
+  value: API.new('strftime', 'PLPP', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Strtime
+  value: API.new('_strtime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WinTime
+  value: API.new('time', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WinTime64
+  value: API.new('_time64', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Tzset
+  value: API.new('_tzset', 'V', 'V', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Utime
+  value: API.new('_utime', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Utime64
+  value: API.new('_utime64', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wasctime
+  value: API.new('_wasctime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wctime
+  value: API.new('_wctime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wctime64
+  value: API.new('_wctime64', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wstrdate
+  value: API.new('_wstrdate', 'P', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wcsftime
+  value: API.new('wcsftime', 'PLPP', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wstrtime
+  value: API.new('_wstrtime', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wutime
+  value: API.new('_wutime', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wutime64
+  value: API.new('_wutime64', 'PP', 'I', 'msvcrt')
+full_name: Windows::MSVCRT::Time
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: asctime
+- !ruby/object:RI::MethodSummary 
+  name: clock
+- !ruby/object:RI::MethodSummary 
+  name: ctime
+- !ruby/object:RI::MethodSummary 
+  name: ctime64
+- !ruby/object:RI::MethodSummary 
+  name: difftime
+- !ruby/object:RI::MethodSummary 
+  name: ftime
+- !ruby/object:RI::MethodSummary 
+  name: ftime64
+- !ruby/object:RI::MethodSummary 
+  name: futime
+- !ruby/object:RI::MethodSummary 
+  name: futime64
+- !ruby/object:RI::MethodSummary 
+  name: gmtime
+- !ruby/object:RI::MethodSummary 
+  name: gmtime64
+- !ruby/object:RI::MethodSummary 
+  name: localtime
+- !ruby/object:RI::MethodSummary 
+  name: localtime64
+- !ruby/object:RI::MethodSummary 
+  name: mktime
+- !ruby/object:RI::MethodSummary 
+  name: mktime64
+- !ruby/object:RI::MethodSummary 
+  name: strdate
+- !ruby/object:RI::MethodSummary 
+  name: strftime
+- !ruby/object:RI::MethodSummary 
+  name: strtime
+- !ruby/object:RI::MethodSummary 
+  name: time
+- !ruby/object:RI::MethodSummary 
+  name: time64
+- !ruby/object:RI::MethodSummary 
+  name: tzset
+- !ruby/object:RI::MethodSummary 
+  name: utime
+- !ruby/object:RI::MethodSummary 
+  name: utime64
+- !ruby/object:RI::MethodSummary 
+  name: wasctime
+- !ruby/object:RI::MethodSummary 
+  name: wcsftime
+- !ruby/object:RI::MethodSummary 
+  name: wctime
+- !ruby/object:RI::MethodSummary 
+  name: wctime64
+- !ruby/object:RI::MethodSummary 
+  name: wstrdate
+- !ruby/object:RI::MethodSummary 
+  name: wstrtime
+- !ruby/object:RI::MethodSummary 
+  name: wutime
+- !ruby/object:RI::MethodSummary 
+  name: wutime64
+name: Time
+superclass: 

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::UserAuth)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/userauth/services.rb, line 21</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:userauth</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">b</span><span class="ruby-operator">|</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/methods/services'</span>, <span class="ruby-node">&quot;#{self}::Methods&quot;</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">agent_socket_factory</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">ALT_SEPARATOR</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/pageant'</span>
+              <span class="ruby-constant">Pageant</span><span class="ruby-operator">::</span><span class="ruby-constant">Socket</span>
+            <span class="ruby-keyword kw">else</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'socket'</span>
+              <span class="ruby-keyword kw">defined?</span>( <span class="ruby-constant">UNIXSocket</span> ) <span class="ruby-operator">?</span> <span class="ruby-constant">UNIXSocket</span> <span class="ruby-operator">:</span> <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_agent_socket_name</span> { <span class="ruby-constant">ENV</span>[<span class="ruby-value str">'SSH_AUTH_SOCK'</span>] }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_agent_version</span> { <span class="ruby-value">2</span> }
+          
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">agent</span>( <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:prototype</span> ) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">socket_factory</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:agent_socket_factory</span>]
+            <span class="ruby-identifier">socket_name</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:default_agent_socket_name</span>]
+
+            <span class="ruby-keyword kw">if</span> (<span class="ruby-constant">File</span><span class="ruby-operator">::</span><span class="ruby-constant">ALT_SEPARATOR</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">socket_name</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">socket_factory</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/agent'</span>
+              <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/transport/services'</span>
+
+              <span class="ruby-identifier">agent</span> = <span class="ruby-constant">Agent</span>.<span class="ruby-identifier">new</span>
+              <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">socket_factory</span> = <span class="ruby-identifier">socket_factory</span>
+              <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">socket_name</span> = <span class="ruby-identifier">socket_name</span>
+              <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">version</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:default_agent_version</span>]
+              <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>]
+              <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">keys</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:keys</span>]
+              
+              <span class="ruby-keyword kw">begin</span>
+                <span class="ruby-identifier">agent</span>.<span class="ruby-identifier">connect!</span>
+              <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>
+                <span class="ruby-comment cmt"># if there was an error connecting to the agent, swallow the</span>
+                <span class="ruby-comment cmt"># error and move on, without the agent</span>
+                <span class="ruby-identifier">agent</span> = <span class="ruby-keyword kw">nil</span>
+              <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">agent</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">agent_factory</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">factory</span> = <span class="ruby-constant">Object</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-identifier">klass</span> = <span class="ruby-keyword kw">class</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">factory</span>; <span class="ruby-keyword kw">self</span>; <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">klass</span>.<span class="ruby-identifier">send</span>( <span class="ruby-identifier">:define_method</span>, <span class="ruby-identifier">:open</span> ) { <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:agent</span>] }
+            <span class="ruby-identifier">factory</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_user_key_locations</span> <span class="ruby-keyword kw">do</span>
+            [ <span class="ruby-node">&quot;#{ENV['HOME']}/.ssh/id_dsa&quot;</span>,
+              <span class="ruby-node">&quot;#{ENV['HOME']}/.ssh2/id_dsa&quot;</span>,
+              <span class="ruby-node">&quot;#{ENV['HOME']}/.ssh/id_rsa&quot;</span>,
+              <span class="ruby-node">&quot;#{ENV['HOME']}/.ssh2/id_rsa&quot;</span> ]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_host_key_locations</span> <span class="ruby-keyword kw">do</span>
+            [ <span class="ruby-value str">&quot;/etc/ssh/ssh_host_dsa_key&quot;</span>,
+              <span class="ruby-value str">&quot;/etc/ssh/ssh_host_rsa_key&quot;</span> ]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_existence_tester</span> { <span class="ruby-constant">File</span> }
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">user_keys</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/userkeys'</span>
+
+            <span class="ruby-identifier">userkeys</span> = <span class="ruby-constant">UserKeyManager</span>.<span class="ruby-identifier">new</span>
+            <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">agent_factory</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:agent_factory</span>]
+            <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">keys</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:keys</span>]
+            <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">buffers</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>]
+            <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">log</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>]
+            <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">key_existence_tester</span> = <span class="ruby-identifier">b</span>.<span class="ruby-identifier">key_existence_tester</span>
+
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_user_key_locations</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">add</span> <span class="ruby-identifier">f</span> }
+            <span class="ruby-identifier">b</span>.<span class="ruby-identifier">default_host_key_locations</span>.<span class="ruby-identifier">each</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-identifier">userkeys</span>.<span class="ruby-identifier">add_host_key</span> <span class="ruby-identifier">f</span> }
+
+            <span class="ruby-identifier">userkeys</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">authentication_method_order</span> <span class="ruby-keyword kw">do</span>
+            [ <span class="ruby-value str">&quot;publickey&quot;</span>,
+              <span class="ruby-value str">&quot;hostbased&quot;</span>,
+              <span class="ruby-value str">&quot;password&quot;</span>,
+              <span class="ruby-value str">&quot;keyboard-interactive&quot;</span> ]
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-identifier">b</span>.<span class="ruby-identifier">driver</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">c</span>,<span class="ruby-identifier">p</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">require</span> <span class="ruby-value str">'net/ssh/userauth/driver'</span>
+
+            <span class="ruby-identifier">driver</span> = <span class="ruby-constant">Driver</span>.<span class="ruby-identifier">new</span>( <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:log_for</span>, <span class="ruby-identifier">p</span>],
+                                 <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:buffers</span>],
+                                 <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:methods</span>],
+                                 <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:authentication_method_order</span>] )
+
+            <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">key_manager</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:user_keys</span>]
+            <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">session</span> = <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:transport</span>][<span class="ruby-identifier">:session</span>]
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">knows_key?</span>(<span class="ruby-identifier">:userauth_keys</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_keys</span>]
+              <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">set_key_files</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_keys</span>]
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">knows_key?</span>(<span class="ruby-identifier">:userauth_host_keys</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_host_keys</span>]
+              <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">set_host_key_files</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_host_keys</span>]
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">c</span>.<span class="ruby-identifier">knows_key?</span>(<span class="ruby-identifier">:userauth_method_order</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_method_order</span>]
+              <span class="ruby-identifier">driver</span>.<span class="ruby-identifier">set_auth_method_order</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">c</span>[<span class="ruby-identifier">:userauth_method_order</span>])
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">driver</span>
+          <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

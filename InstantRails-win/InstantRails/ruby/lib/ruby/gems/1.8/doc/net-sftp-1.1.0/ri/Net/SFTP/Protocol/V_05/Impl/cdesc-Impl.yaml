@@ -1,0 +1,61 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The implementation of the operations available to version 5 of the SFTP protocol.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_CREATE_NEW
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_CREATE_TRUNCATE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_OPEN_EXISTING
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_OPEN_OR_CREATE
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_TRUNCATE_EXISTING
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_APPEND_DATA
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_APPEND_DATA_ATOMIC
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_TEXT_MODE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_READ_LOCK
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_WRITE_LOCK
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: F_DELETE_LOCK
+  value: "0x00000100"
+full_name: Net::SFTP::Protocol::V_05::Impl
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: open
+name: Impl
+superclass: V_04::Impl

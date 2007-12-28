@@ -1,0 +1,1053 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_ALLOCATE_BUFFER
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_IGNORE_INSERTS
+  value: "0x00000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_FROM_STRING
+  value: "0x00000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_FROM_HMODULE
+  value: "0x00000800"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_FROM_SYSTEM
+  value: "0x00001000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_ARGUMENT_ARRAY
+  value: "0x00002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORMAT_MESSAGE_MAX_WIDTH_MASK
+  value: "0x000000FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEM_FAILCRITICALERRORS
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEM_NOALIGNMENTFAULTEXCEPT
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEM_NOGPFAULTERRORBOX
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SEM_NOOPENFILEERRORBOX
+  value: "0x8000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NO_ERROR
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SUCCESS
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_FUNCTION
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_FILE_NOT_FOUND
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_PATH_NOT_FOUND
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_OPEN_FILES
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ACCESS_DENIED
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_HANDLE
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ARENA_TRASHED
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_ENOUGH_MEMORY
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_BLOCK
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_ENVIRONMENT
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_FORMAT
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_ACCESS
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_DATA
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_DRIVE
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CURRENT_DIRECTORY
+  value: "16"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_SAME_DEVICE
+  value: "17"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_MORE_FILES
+  value: "18"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_WRITE_PROTECT
+  value: "19"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_UNIT
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_READY
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_COMMAND
+  value: "22"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CRC
+  value: "23"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_LENGTH
+  value: "24"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEEK
+  value: "25"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_DOS_DISK
+  value: "26"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SECTOR_NOT_FOUND
+  value: "27"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_OUT_OF_PAPER
+  value: "28"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_WRITE_FAULT
+  value: "29"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_READ_FAULT
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_GEN_FAILURE
+  value: "31"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SHARING_VIOLATION
+  value: "32"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_LOCK_VIOLATION
+  value: "33"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_WRONG_DISK
+  value: "34"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_FCB_UNAVAILABLE
+  value: "35"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SHARING_BUFFER_EXCEEDED
+  value: "36"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_SUPPORTED
+  value: "50"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_FILE_EXISTS
+  value: "80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DUP_FCB
+  value: "81"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CANNOT_MAKE
+  value: "82"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_FAIL_I24
+  value: "83"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_OUT_OF_STRUCTURES
+  value: "84"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ALREADY_ASSIGNED
+  value: "85"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_PASSWORD
+  value: "86"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_PARAMETER
+  value: "87"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NET_WRITE_FAULT
+  value: "88"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_PROC_SLOTS
+  value: "89"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_FROZEN
+  value: "90"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERR_TSTOVFL
+  value: "91"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERR_TSTDUP
+  value: "92"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_ITEMS
+  value: "93"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INTERRUPT
+  value: "95"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_SEMAPHORES
+  value: "100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_EXCL_SEM_ALREADY_OWNED
+  value: "101"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEM_IS_SET
+  value: "102"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_SEM_REQUESTS
+  value: "103"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_AT_INTERRUPT_TIME
+  value: "104"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEM_OWNER_DIED
+  value: "105"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEM_USER_LIMIT
+  value: "106"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DISK_CHANGE
+  value: "107"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DRIVE_LOCKED
+  value: "108"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BROKEN_PIPE
+  value: "109"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_OPEN_FAILED
+  value: "110"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DISK_FULL
+  value: "112"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_MORE_SEARCH_HANDLES
+  value: "113"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_TARGET_HANDLE
+  value: "114"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_PROTECTION_VIOLATION
+  value: "115"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_VIOKBD_REQUEST
+  value: "116"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_CATEGORY
+  value: "117"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_VERIFY_SWITCH
+  value: "118"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_DRIVER_LEVEL
+  value: "119"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CALL_NOT_IMPLEMENTED
+  value: "120"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEM_TIMEOUT
+  value: "121"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INSUFFICIENT_BUFFER
+  value: "122"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_NAME
+  value: "123"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_LEVEL
+  value: "124"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_VOLUME_LABEL
+  value: "125"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_MOD_NOT_FOUND
+  value: "126"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_PROC_NOT_FOUND
+  value: "127"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_WAIT_NO_CHILDREN
+  value: "128"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CHILD_NOT_COMPLETE
+  value: "129"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DIRECT_ACCESS_HANDLE
+  value: "130"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NEGATIVE_SEEK
+  value: "131"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEEK_ON_DEVICE
+  value: "132"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_JOIN_TARGET
+  value: "133"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_JOINED
+  value: "134"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_SUBSTED
+  value: "135"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_JOINED
+  value: "136"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_SUBSTED
+  value: "137"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_JOIN_TO_JOIN
+  value: "138"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SUBST_TO_SUBST
+  value: "139"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_JOIN_TO_SUBST
+  value: "140"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SUBST_TO_JOIN
+  value: "141"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BUSY_DRIVE
+  value: "142"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SAME_DRIVE
+  value: "143"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DIR_NOT_ROOT
+  value: "144"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DIR_NOT_EMPTY
+  value: "145"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_SUBST_PATH
+  value: "146"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_JOIN_PATH
+  value: "147"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_PATH_BUSY
+  value: "148"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IS_SUBST_TARGET
+  value: "149"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SYSTEM_TRACE
+  value: "150"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_EVENT_COUNT
+  value: "151"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_MUXWAITERS
+  value: "152"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_LIST_FORMAT
+  value: "153"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_LABEL_TOO_LONG
+  value: "154"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_TCBS
+  value: "155"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SIGNAL_REFUSED
+  value: "156"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DISCARDED
+  value: "157"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_LOCKED
+  value: "158"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_THREADID_ADDR
+  value: "159"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_ARGUMENTS
+  value: "160"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_PATHNAME
+  value: "161"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SIGNAL_PENDING
+  value: "162"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_UNCERTAIN_MEDIA
+  value: "163"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_MAX_THRDS_REACHED
+  value: "164"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_MONITORS_NOT_SUPPORTED
+  value: "165"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_SEGMENT_NUMBER
+  value: "180"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_CALLGATE
+  value: "181"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_ORDINAL
+  value: "182"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ALREADY_EXISTS
+  value: "183"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_CHILD_PROCESS
+  value: "184"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_CHILD_ALIVE_NOWAIT
+  value: "185"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_FLAG_NUMBER
+  value: "186"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_SEM_NOT_FOUND
+  value: "187"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_STARTING_CODESEG
+  value: "188"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_STACKSEG
+  value: "189"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_MODULETYPE
+  value: "190"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_EXE_SIGNATURE
+  value: "191"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_EXE_MARKED_INVALID
+  value: "192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_EXE_FORMAT
+  value: "193"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ITERATED_DATA_EXCEEDS_64k
+  value: "194"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_MINALLOCSIZE
+  value: "195"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_DYNLINK_FROM_INVALID_RING
+  value: "196"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IOPL_NOT_ENABLED
+  value: "197"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_SEGDPL
+  value: "198"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_AUTODATASEG_EXCEEDS_64k
+  value: "199"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_RING2SEG_MUST_BE_MOVABLE
+  value: "200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_RELOC_CHAIN_XEEDS_SEGLIM
+  value: "201"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INFLOOP_IN_RELOC_CHAIN
+  value: "202"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_ENVVAR_NOT_FOUND
+  value: "203"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NOT_CURRENT_CTRY
+  value: "204"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_SIGNAL_SENT
+  value: "205"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_FILENAME_EXCED_RANGE
+  value: "206"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_RING2_STACK_IN_USE
+  value: "207"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_META_EXPANSION_TOO_LONG
+  value: "208"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INVALID_SIGNAL_NUMBER
+  value: "209"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_THREAD_1_INACTIVE
+  value: "210"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_INFO_NOT_AVAIL
+  value: "211"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_LOCKED
+  value: "212"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_BAD_DYNALINK
+  value: "213"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_TOO_MANY_MODULES
+  value: "214"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NESTING_NOT_ALLOWED
+  value: "215"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_MORE_DATA
+  value: "234"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_OPERATION_ABORTED
+  value: "995"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IO_INCOMPLETE
+  value: "996"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_IO_PENDING
+  value: "997"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_USER_DEFINED_BASE
+  value: "0xF000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_WRITE_PROTECT
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_BAD_UNIT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_NOT_READY
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_BAD_COMMAND
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_CRC
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_BAD_LENGTH
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_SEEK
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_NOT_DOS_DISK
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_SECTOR_NOT_FOUND
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_OUT_OF_PAPER
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_WRITE_FAULT
+  value: "0x0A"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_READ_FAULT
+  value: "0x0B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_GEN_FAILURE
+  value: "0x0C"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_DISK_CHANGE
+  value: "0x0D"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_WRONG_DISK
+  value: "0x0F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_UNCERTAIN_MEDIA
+  value: "0x10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_CHAR_CALL_INTERRUPTED
+  value: "0x11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_NO_MONITOR_SUPPORT
+  value: "0x12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_I24_INVALID_PARAMETER
+  value: "0x13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALLOWED_FAIL
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALLOWED_ABORT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALLOWED_RETRY
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ALLOWED_IGNORE
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: I24_OPERATION
+  value: "0x1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: I24_AREA
+  value: "0x6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: I24_CLASS
+  value: "0x80"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_OUTRES
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_TEMPSIT
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_AUTH
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_INTRN
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_HRDFAIL
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_SYSFAIL
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_APPERR
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_NOTFND
+  value: "8"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_BADFMT
+  value: "9"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_LOCKED
+  value: "10"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_MEDIA
+  value: "11"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_ALREADY
+  value: "12"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_UNK
+  value: "13"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_CANT
+  value: "14"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRCLASS_TIME
+  value: "15"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_RETRY
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_DLYRET
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_USER
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_ABORT
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_PANIC
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_IGNORE
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRACT_INTRET
+  value: "7"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRLOC_UNK
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRLOC_DISK
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRLOC_NET
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRLOC_SERDEV
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERRLOC_MEM
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TC_NORMAL
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TC_HARDERR
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TC_GP_TRAP
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TC_SIGNAL
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: From WinError.h
+  name: ERROR_INVALID_FLAGS
+  value: "4100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ERROR_NO_UNICODE_TRANSLATION
+  value: "4371"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: E_INVALIDARG
+  value: "2147942487"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: E_NOINTERFACE
+  value: "2147500034"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: E_NOTIMPL
+  value: "2147500033"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: E_OUTOFMEMORY
+  value: "2147942414"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: E_UNEXPECTED
+  value: "2147549183"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: RPC_E_TIMEOUT
+  value: "2147549471"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CO_E_NOT_SUPPORTED
+  value: "2147500065"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CLASS_E_NOAGGREGATION
+  value: "2147746064"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Registry errors
+  name: REGDB_E_CLASSNOTREG
+  value: "2147746132"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: msterr.h
+  name: SCHED_S_TASK_READY
+  value: "267008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_RUNNING
+  value: "267009"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_DISABLED
+  value: "267010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_HAS_NOT_RUN
+  value: "267011"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_HAS_NO_MORE_RUNS
+  value: "267012"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_NOT_SCHEDULED
+  value: "267013"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_TERMINATED
+  value: "267014"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_TASK_NO_VALID_TRIGGERS
+  value: "267015"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_S_EVENT_TRIGGER
+  value: "267016"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_TRIGGER_NOT_FOUND
+  value: "267017"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_TASK_NOT_READY
+  value: "267018"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_TASK_NOT_RUNNING
+  value: "267019"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_SERVICE_NOT_INSTALLED
+  value: "267020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_CANNOT_OPEN_TASK
+  value: "267021"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_INVALID_TASK
+  value: "267022"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_ACCOUNT_INFORMATION_NOT_SET
+  value: "267023"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_ACCOUNT_NAME_NOT_FOUND
+  value: "267024"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_ACCOUNT_DBASE_CORRUPT
+  value: "267025"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_NO_SECURITY_SERVICES
+  value: "267026"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SCHED_E_UNKNOWN_OBJECT_VERSION
+  value: "267027"
+full_name: Windows::Error
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: get_last_error
+name: Error
+superclass: 

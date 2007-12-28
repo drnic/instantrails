@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: Net::SSH::Service::Forward::Driver</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">Net::SSH::Service::Forward::Driver</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../../../files/lib/net/ssh/service/forward/driver_rb.html">
+                lib/net/ssh/service/forward/driver.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                Object
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The <a href="Driver.html">Forward::Driver</a> class manages ports that have
+been forwarded. It will open a socket on each <a
+href="Driver.html#M000416">local</a> port and listen for <a
+href="Driver.html#M000416">local</a> connections, forwarding those
+connections over an <a href="../../../SSH.html">SSH</a> channel to the
+other end.
+</p>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000419">active_locals</a>&nbsp;&nbsp;
+      <a href="#M000420">active_remotes</a>&nbsp;&nbsp;
+      <a href="#M000421">cancel_local</a>&nbsp;&nbsp;
+      <a href="#M000422">cancel_remote</a>&nbsp;&nbsp;
+      <a href="#M000415">direct_channel</a>&nbsp;&nbsp;
+      <a href="#M000423">do_open_channel</a>&nbsp;&nbsp;
+      <a href="#M000416">local</a>&nbsp;&nbsp;
+      <a href="#M000414">new</a>&nbsp;&nbsp;
+      <a href="#M000417">remote</a>&nbsp;&nbsp;
+      <a href="#M000418">remote_to</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">direct_channel_count</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of direct (<a href="Driver.html#M000416">local</a>-to-<a
+href="Driver.html#M000417">remote</a>) channels that have been opened.
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">open_direct_channel_count</td>
+          <td class="context-item-value">&nbsp;[R]&nbsp;</td>
+          <td class="context-item-desc">
+The number of direct (<a href="Driver.html#M000416">local</a>-to-<a
+href="Driver.html#M000417">remote</a>) channels that are currently open.
+
+</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M000414" class="method-detail">
+        <a name="M000414"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000414.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000414.html');return false;">
+          <span class="method-name">new</span><span class="method-args">( connection, buffers, log, handlers )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="Driver.html#M000414">new</a> <a
+href="Driver.html">Driver</a> instance.
+</p>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000419" class="method-detail">
+        <a name="M000419"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000419.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000419.html');return false;">
+          <span class="method-name">active_locals</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of the active forwarded <a
+href="Driver.html#M000416">local</a> connections. Each element of the array
+is another array containing the <a href="Driver.html#M000416">local</a>
+port, and the <a href="Driver.html#M000417">remote</a> host and port of the
+connection.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000420" class="method-detail">
+        <a name="M000420"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000420.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000420.html');return false;">
+          <span class="method-name">active_remotes</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Return an array of the active forwarded <a
+href="Driver.html#M000417">remote</a> connections. Each element of the
+array is an integer representing the port number of the <a
+href="Driver.html#M000417">remote</a> host that is being forwarded to the
+<a href="Driver.html#M000416">local</a> client.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000421" class="method-detail">
+        <a name="M000421"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000421.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000421.html');return false;">
+          <span class="method-name">cancel_local</span><span class="method-args">( local_port, bind_address=&quot;127.0.0.1&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Cease forwarding connections from the given <a
+href="Driver.html#M000416">local</a> port (and interface). The parameters
+must match those given to a prior call to <a
+href="Driver.html#M000416">local</a>. Existing forwarded connections are
+not affected by this call, but no more connections will be accepted on the
+<a href="Driver.html#M000416">local</a> port.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000422" class="method-detail">
+        <a name="M000422"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000422.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000422.html');return false;">
+          <span class="method-name">cancel_remote</span><span class="method-args">( remote_port, remote_host=&quot;127.0.0.1&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Cease forwarding connections from the given <a
+href="Driver.html#M000417">remote</a> port. The <tt>remote_host</tt>
+parameter must match the corresponding parameter that was passed to <a
+href="Driver.html#M000417">remote</a>. Existing forwarded connections are
+not affected by this call, but no more connections will be forwarded from
+the <a href="Driver.html#M000417">remote</a> host to the <a
+href="Driver.html#M000416">local</a> host via that port.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000415" class="method-detail">
+        <a name="M000415"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000415.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000415.html');return false;">
+          <span class="method-name">direct_channel</span><span class="method-args">( local_port, remote_host, remote_port, handler, *data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Open a direct &quot;tcpip&quot; channel to the <a
+href="Driver.html#M000417">remote</a> machine, which will then forward the
+connection to the given <a href="Driver.html#M000417">remote</a>-host and
+<a href="Driver.html#M000417">remote</a>-port. The connection will appear
+to have come from the given port on the <a
+href="Driver.html#M000416">local</a> machine.
+</p>
+<p>
+The handler object may respond to the following messages, in order to
+respond to requests over the channel:
+</p>
+<ul>
+<li>on_receive( channel, data ): when data is received over the channel (from
+the <a href="Driver.html#M000417">remote</a> machine), this method will be
+invoked.
+
+</li>
+<li>on_eof( channel ): when the <a href="Driver.html#M000417">remote</a>
+machine will no longer send data, this method will be invoked. The client
+may continue to send data over the channel, however.
+
+</li>
+<li>on_close( channel ): when the channel has been closed and is no longer
+valid for passing data, this method will be invoked.
+
+</li>
+<li>confirm( channel, local_port, remote_host, remote_port, *data ): when the
+channel has been opened and the <a href="Driver.html#M000417">remote</a>
+machine has confirmed it, this method will be invoked. The <tt>data</tt>
+parameters are the same parameters as were passed to the <a
+href="Driver.html#M000415">direct_channel</a> method.
+
+</li>
+<li>process( channel ): invoked after the channel is confirmed, to process the
+channel. It is invoked in a <a href="Driver.html#M000414">new</a> Thread.
+
+</li>
+</ul>
+<p>
+Only the <tt>process</tt> method is required&#8212;the others will only be
+invoked if the handler responds to them.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000423" class="method-detail">
+        <a name="M000423"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000423.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000423.html');return false;">
+          <span class="method-name">do_open_channel</span><span class="method-args">( connection, channel, data )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+open a <a href="Driver.html#M000414">new</a> channel as requested by the
+server
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000416" class="method-detail">
+        <a name="M000416"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000416.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000416.html');return false;">
+          <span class="method-name">local</span><span class="method-args">( *args )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+<a href="../Forward.html">Forward</a> connections on the given <a
+href="Driver.html#M000416">local</a> port, to the given <a
+href="Driver.html#M000417">remote</a> host and <a
+href="Driver.html#M000417">remote</a> port.
+</p>
+<p>
+This method will return immediately, forwarding the connections
+asynchronously.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000417" class="method-detail">
+        <a name="M000417"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000417.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000417.html');return false;">
+          <span class="method-name">remote</span><span class="method-args">( handler, remote_port, remote_host=&quot;127.0.0.1&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initiate forwarding of the given <a href="Driver.html#M000417">remote</a>
+port on the connected host. Forwarded packets will be passed to the given
+block as they are recieved. The <a
+href="Driver.html#M000417">remote</a>-host represents the address that
+should be bound on the <a href="Driver.html#M000417">remote</a> host, and
+defaults to &#8216;127.0.0.1&#8217;.
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000418" class="method-detail">
+        <a name="M000418"></a>
+
+        <div class="method-heading">
+          <a href="Driver.src/M000418.html" target="Code" class="method-signature"
+            onclick="popupCode('Driver.src/M000418.html');return false;">
+          <span class="method-name">remote_to</span><span class="method-args">( port, host, remote_port, remote_host=&quot;127.0.0.1&quot; )</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+A convenience method for setting up a forwarded connection from the given
+port on the <a href="Driver.html#M000417">remote</a> host, to the given
+host and port (<a href="Driver.html#M000416">local</a>).
+</p>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

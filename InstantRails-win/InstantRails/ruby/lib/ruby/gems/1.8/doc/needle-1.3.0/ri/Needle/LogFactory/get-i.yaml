@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Retrieves the logger with the given name. If no such log has been created, the log will be created and initialized. Otherwise, the log with the given name is returned.
+- !ruby/struct:SM::Flow::P 
+  body: If <tt>name</tt> responds to either <tt>fullname</tt> or <tt>name</tt>, then the result of invoking that message on <tt>name</tt> will be used as the name.
+full_name: Needle::LogFactory#get
+is_singleton: false
+name: get
+params: ( name )
+visibility: public

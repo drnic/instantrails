@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Compute the rotation of a vector <em>vec</em> by this quaternion; returns the rotated vector (a new FXVec3f instance).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+vec+:"
+    body: the vector to be rotated [FXVec3f]
+  type: :NOTE
+full_name: Fox::FXQuatf#*
+is_singleton: false
+name: "*"
+params: (vec)
+visibility: public

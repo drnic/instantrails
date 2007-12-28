@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Create a new statement attached to the given Database instance, and which encapsulates the given SQL text. If the text contains more than one statement (i.e., separated by semicolons), then the #remainder property will be set to the trailing text."
+full_name: SQLite3::Statement::new
+is_singleton: true
+name: new
+params: ( db, sql, utf16=false )
+visibility: public

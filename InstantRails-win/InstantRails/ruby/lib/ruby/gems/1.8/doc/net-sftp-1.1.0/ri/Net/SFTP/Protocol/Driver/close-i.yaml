@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Closes the underlying SSH channel that the SFTP session uses to communicate with the server. This moves the driver to the <tt>closed</tt> state. If the driver is already closed, this does nothing.
+full_name: Net::SFTP::Protocol::Driver#close
+is_singleton: false
+name: close
+params: ()
+visibility: public

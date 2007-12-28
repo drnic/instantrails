@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Calls the function pointer with the given arguments (if any). Note that, while this method will catch some prototype mismatches (raising a TypeError in the process), it is not fulproof. It is ultimately your job to make sure the arguments match the <tt>prototype</tt> specified in the constructor.
+- !ruby/struct:SM::Flow::P 
+  body: For convenience, nil is converted to NULL, true is converted to TRUE (1) and false is converted to FALSE (0).
+full_name: Win32::API#call
+is_singleton: false
+name: call
+params: |
+  Win32::API#call(arg1, arg2, ...)
+
+visibility: public

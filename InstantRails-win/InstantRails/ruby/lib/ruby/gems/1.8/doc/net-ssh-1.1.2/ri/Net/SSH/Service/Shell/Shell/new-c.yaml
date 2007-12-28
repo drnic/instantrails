@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Create a new shell over the given connection. The <tt>pty_opts</tt> parameter must be either a Hash of the allowed values for the Net::SSH::Connection::Channel#request_pty method, or a boolean value (indicating whether a pty should be allocated or not). This will block until the shell is open and ready to receive input.
+full_name: Net::SSH::Service::Shell::Shell::new
+is_singleton: true
+name: new
+params: ( connection, log, pty_opts )
+visibility: public

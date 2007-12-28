@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to reload the attributes of this object from the remote web service.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_branch = Branch.find(:first)\n  my_branch.name\n  # =&gt; Wislon Raod\n\n  # Another client fixes the typo...\n\n  my_branch.name\n  # =&gt; Wislon Raod\n  my_branch.reload\n  my_branch.name\n  # =&gt; Wilson Road\n"
+full_name: ActiveResource::Base#reload
+is_singleton: false
+name: reload
+params: ()
+visibility: public

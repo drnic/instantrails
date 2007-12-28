@@ -1,0 +1,41 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Overview
+- !ruby/struct:SM::Flow::P 
+  body: ActionController::Resources are a way of defining RESTful resources. A RESTful resource, in basic terms, is something that can be pointed at and it will respond with a representation of the data requested. In real terms this could mean a user with a browser requests an HTML page, or that a desktop application requests XML data.
+- !ruby/struct:SM::Flow::P 
+  body: RESTful design is based on the assumption that there are four generic verbs that a user of an application can request from a resource (the noun).
+- !ruby/struct:SM::Flow::P 
+  body: Resources can be requested using four basic HTTP verbs (GET, POST, PUT, DELETE), the method used denotes the type of action that should take place.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: The Different Methods and their Usage
+- !ruby/struct:SM::Flow::P 
+  body: <tt>GET</tt> Requests for a resource, no saving or editing of a resource should occur in a GET request <tt>POST</tt> Creation of resources <tt>PUT</tt> Editing of attributes on a resource <tt>DELETE</tt> Deletion of a resource
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # A GET request on the Posts resource is asking for all Posts\n  GET /posts\n\n  # A GET request on a single Post resource is asking for that particular Post\n  GET /posts/1\n\n  # A POST request on the Posts resource is asking for a Post to be created with the supplied details\n  POST /posts # with =&gt; { :post =&gt; { :title =&gt; &quot;My Whizzy New Post&quot;, :body =&gt; &quot;I've got a brand new combine harvester&quot; } }\n\n  # A PUT request on a single Post resource is asking for a Post to be updated\n  PUT /posts # with =&gt; { :id =&gt; 1, :post =&gt; { :title =&gt; &quot;Changed Whizzy Title&quot; } }\n\n  # A DELETE request on a single Post resource is asking for it to be deleted\n  DELETE /posts # with =&gt; { :id =&gt; 1 }\n"
+- !ruby/struct:SM::Flow::P 
+  body: By using the REST convention, users of our application can assume certain things about how the data is requested and how it is returned. Rails simplifies the routing part of RESTful design by supplying you with methods to create them in your routes.rb file.
+- !ruby/struct:SM::Flow::P 
+  body: Read more about REST at http://en.wikipedia.org/wiki/Representational_State_Transfer
+constants: []
+
+full_name: ActionController::Resources
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: resource
+- !ruby/object:RI::MethodSummary 
+  name: resources
+name: Resources
+superclass: 

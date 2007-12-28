@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>report_event (Win32::EventLog)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/eventlog.rb, line 573</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">report_event</span>(<span class="ruby-identifier">args</span>)
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Hash</span>)
+         
+         <span class="ruby-identifier">valid_keys</span>  = <span class="ruby-node">%w/source event_id category data event_type/</span>
+         <span class="ruby-identifier">num_strings</span> = <span class="ruby-value">0</span>
+
+         <span class="ruby-comment cmt"># Default values</span>
+         <span class="ruby-identifier">hash</span> = {
+            <span class="ruby-value str">'source'</span>   =<span class="ruby-operator">&gt;</span> <span class="ruby-ivar">@source</span>,
+            <span class="ruby-value str">'event_id'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+            <span class="ruby-value str">'category'</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>,
+            <span class="ruby-value str">'data'</span>     =<span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>
+         }
+         
+         <span class="ruby-comment cmt"># Validate the keys, and convert symbols and case to lowercase strings.     </span>
+         <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">val</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">key</span> = <span class="ruby-identifier">key</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">downcase</span>
+            <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">valid_keys</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">key</span>)
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-node">&quot;invalid key '#{key}'&quot;</span>
+            <span class="ruby-keyword kw">end</span>
+            <span class="ruby-identifier">hash</span>[<span class="ruby-identifier">key</span>] = <span class="ruby-identifier">val</span>
+         }
+         
+         <span class="ruby-comment cmt"># The event_type must be specified</span>
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'event_type'</span>]
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-value str">'no event_type specified'</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">handle</span> = <span class="ruby-constant">RegisterEventSource</span>(<span class="ruby-ivar">@server</span>, <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'source'</span>])
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">handle</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">error</span> = <span class="ruby-value str">'RegisterEventSource() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'data'</span>].<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">String</span>)
+            <span class="ruby-identifier">data</span> = <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'data'</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span>
+            <span class="ruby-identifier">data</span> = [<span class="ruby-identifier">data</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'p*'</span>)
+            <span class="ruby-identifier">num_strings</span> = <span class="ruby-value">1</span>
+         <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">data</span> = <span class="ruby-value">0</span>
+            <span class="ruby-identifier">num_strings</span> = <span class="ruby-value">0</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-identifier">bool</span> = <span class="ruby-constant">ReportEvent</span>(
+            <span class="ruby-identifier">handle</span>,
+            <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'event_type'</span>],
+            <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'category'</span>],
+            <span class="ruby-identifier">hash</span>[<span class="ruby-value str">'event_id'</span>],
+            <span class="ruby-value">0</span>,
+            <span class="ruby-identifier">num_strings</span>,
+            <span class="ruby-value">0</span>,
+            <span class="ruby-identifier">data</span>,
+            <span class="ruby-value">0</span>
+         )
+         
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">bool</span>
+            <span class="ruby-identifier">error</span> = <span class="ruby-value str">'ReportEvent() failed: '</span> <span class="ruby-operator">+</span> <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">error</span>
+         <span class="ruby-keyword kw">end</span>
+         
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

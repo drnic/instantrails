@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Shows hidden DOM elements with the given <tt>ids</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Show a few people\n # Generates: [&quot;person_6&quot;, &quot;person_13&quot;, &quot;person_223&quot;].each(Element.show);\n page.show 'person_6', 'person_13', 'person_223'\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#show
+is_singleton: false
+name: show
+params: (*ids)
+visibility: public

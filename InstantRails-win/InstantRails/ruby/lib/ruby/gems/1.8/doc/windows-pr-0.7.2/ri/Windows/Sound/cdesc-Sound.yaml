@@ -1,0 +1,106 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_SYNC
+  value: "0x0000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ASYNC
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NODEFAULT
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_MEMORY
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_LOOP
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NOSTOP
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_NOWAIT
+  value: "8192"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ALIAS
+  value: "65536"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_ALIAS_ID
+  value: "1114112"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_FILENAME
+  value: "131072"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_RESOURCE
+  value: "262148"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_PURGE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SND_APPLICATION
+  value: "0x0080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Beep
+  value: API.new('Beep', 'LL', 'B')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PlaySound
+  value: API.new('PlaySound', 'PPL', 'B', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveOutSetVolume
+  value: API.new('waveOutSetVolume', 'PL', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveOutGetVolume
+  value: API.new('waveOutGetVolume', 'IP', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveOutGetNumDevs
+  value: API.new('waveOutGetNumDevs', 'V', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WaveInGetNumDevs
+  value: API.new('waveInGetNumDevs', 'V', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MidiOutGetNumDevs
+  value: API.new('midiOutGetNumDevs', 'V', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MidiInGetNumDevs
+  value: API.new('midiInGetNumDevs', 'V', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AuxGetNumDevs
+  value: API.new('auxGetNumDevs', 'V', 'I', 'winmm')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MixerGetNumDevs
+  value: API.new('mixerGetNumDevs', 'V', 'I', 'winmm')
+full_name: Windows::Sound
+includes: []
+
+instance_methods: []
+
+name: Sound
+superclass: 

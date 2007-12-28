@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: (value)
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Ruby-ized realization of the K combinator, courtesy of Mikael Brockman.
+- !ruby/struct:SM::Flow::VERB 
+  body: "  def foo\n    returning values = [] do\n      values &lt;&lt; 'bar'\n      values &lt;&lt; 'baz'\n    end\n  end\n\n  foo # =&gt; ['bar', 'baz']\n\n  def foo\n    returning [] do |values|\n      values &lt;&lt; 'bar'\n      values &lt;&lt; 'baz'\n    end\n  end\n\n  foo # =&gt; ['bar', 'baz']\n"
+full_name: Object#returning
+is_singleton: false
+name: returning
+params: (value) {|value| ...}
+visibility: public

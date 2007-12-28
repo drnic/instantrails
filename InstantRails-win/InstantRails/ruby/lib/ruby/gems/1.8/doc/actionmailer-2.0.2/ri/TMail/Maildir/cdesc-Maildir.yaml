@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: unique_number
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: PORT_CLASS
+  value: MaildirPort
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TOO_OLD
+  value: 60 * 60 * 36
+full_name: TMail::Maildir
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: check_tmp
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: directory
+- !ruby/object:RI::MethodSummary 
+  name: each
+- !ruby/object:RI::MethodSummary 
+  name: each_mail
+- !ruby/object:RI::MethodSummary 
+  name: each_new_port
+- !ruby/object:RI::MethodSummary 
+  name: each_newmail
+- !ruby/object:RI::MethodSummary 
+  name: each_port
+- !ruby/object:RI::MethodSummary 
+  name: inspect
+- !ruby/object:RI::MethodSummary 
+  name: new_mail
+- !ruby/object:RI::MethodSummary 
+  name: new_port
+- !ruby/object:RI::MethodSummary 
+  name: reverse_each
+- !ruby/object:RI::MethodSummary 
+  name: reverse_each_port
+name: Maildir
+superclass: Object

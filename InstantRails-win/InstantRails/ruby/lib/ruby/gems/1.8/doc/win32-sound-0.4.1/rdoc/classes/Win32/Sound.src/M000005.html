@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_wave_volume (Win32::Sound)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/sound.rb, line 148</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">set_wave_volume</span>(<span class="ruby-identifier">left_channel</span>, <span class="ruby-identifier">right_channel</span> = <span class="ruby-keyword kw">nil</span>)
+         <span class="ruby-identifier">right_channel</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">left_channel</span>
+         
+         <span class="ruby-identifier">lvolume</span> = <span class="ruby-identifier">left_channel</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_VOLUME</span> <span class="ruby-value">? </span><span class="ruby-constant">MAX_VOLUME</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">left_channel</span>
+         <span class="ruby-identifier">rvolume</span> = <span class="ruby-identifier">right_channel</span> <span class="ruby-operator">&gt;</span> <span class="ruby-constant">MAX_VOLUME</span> <span class="ruby-value">? </span><span class="ruby-constant">MAX_VOLUME</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">right_channel</span>
+         
+         <span class="ruby-identifier">volume</span> = <span class="ruby-identifier">lvolume</span> <span class="ruby-operator">|</span> <span class="ruby-identifier">rvolume</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value">16</span>
+         
+         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@@waveOutSetVolume</span>.<span class="ruby-identifier">call</span>(<span class="ruby-value">-1</span>, <span class="ruby-identifier">volume</span>) <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Error</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

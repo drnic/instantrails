@@ -1,0 +1,89 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Printer information [FXPrinter]
+  name: printer
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Printer selection dialog
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TO_PRINTER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_TO_FILE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PRINTER_NAME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_FILE_NAME+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_LANDSCAPE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PORTRAIT+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_MEDIA+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLLATE_NORMAL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLLATE_REVERSED+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_ALL+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_EVEN+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_ODD+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_RANGE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_FIRST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PAGES_LAST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_BROWSE_FILE+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_PROPERTIES+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLOR_PRINTER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_GRAY_PRINTER+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_NUM_COPIES+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXPrintDialog
+includes: []
+
+instance_methods: []
+
+name: FXPrintDialog
+superclass: FXDialogBox

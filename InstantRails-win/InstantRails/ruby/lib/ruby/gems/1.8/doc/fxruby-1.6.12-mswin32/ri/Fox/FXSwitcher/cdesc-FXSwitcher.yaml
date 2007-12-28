@@ -1,0 +1,92 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current child window's index [Integer]
+  name: current
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Switcher style flags [Integer]
+  name: switcherStyle
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The FXSwitcher layout manager automatically arranges its child windows such that one of them is placed on top; all other child windows are hidden. Switcher provides a convenient method to conserve screen real-estate by arranging several GUI panels to appear in the same space, depending on context. Switcher ignores all layout hints from its children; all children are stretched according to the switcher layout managers own size. When the <tt>SWITCHER_HCOLLAPSE</tt> or <tt>SWITCHER_VCOLLAPSE</tt> options are used, the switcher's default size is based on the width or height of the current child, instead of the maximum width or height of all of the children.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent by FXSwitcher to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent whenever the current (topmost) child window changes; the message data is an integer indicating the new current window's index.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Switcher options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SWITCHER_HCOLLAPSE+:"
+    body: Collapse horizontally to width of current child
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SWITCHER_VCOLLAPSE+:"
+    body: Collapse vertically to height of current child
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FIRST+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SECOND+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_THIRD+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FOURTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_FIFTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SIXTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_SEVENTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_EIGHTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_NINETH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_TENTH+:"
+    body: x
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_OPEN_LAST+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXSwitcher
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: setCurrent
+name: FXSwitcher
+superclass: FXPacker

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Changes the device that the loggers write to. Every log that was created by this log factory will be changed to use the given device.
+full_name: Needle::LogFactory#write_to
+is_singleton: false
+name: write_to
+params: ( device, shift_age = 0, shift_size = 1048576 )
+visibility: public

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>setup_rails_signals (Mongrel::Rails::RailsConfigurator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/mongrel/rails.rb, line 172</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">setup_rails_signals</span>(<span class="ruby-identifier">options</span>={})
+        <span class="ruby-identifier">ops</span> = <span class="ruby-identifier">resolve_defaults</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">setup_signals</span>(<span class="ruby-identifier">options</span>)
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-constant">RUBY_PLATFORM</span> <span class="ruby-operator">!~</span> <span class="ruby-regexp re">/mswin/</span>
+          <span class="ruby-comment cmt"># rails reload</span>
+          <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;HUP&quot;</span>) { <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;HUP signal received.&quot;</span>; <span class="ruby-identifier">reload!</span>          }
+
+          <span class="ruby-identifier">log</span> <span class="ruby-value str">&quot;Rails signals registered.  HUP =&gt; reload (without restart).  It might not work well.&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

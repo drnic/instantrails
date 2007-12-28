@@ -1,0 +1,21 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "An Outputter needs a name. RootLogger will be loaded if not already done. The hash arguments are as follows:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:level</tt>
+    body: Logger level. Optional, defaults to root level
+  - !ruby/struct:SM::Flow::LI 
+    label: <tt>:formatter</tt>
+    body: A Formatter. Defaults to DefaultFormatter
+  type: :LABELED
+full_name: Log4r::Outputter::new
+is_singleton: true
+name: new
+params: (_name, hash={})
+visibility: public

@@ -1,0 +1,179 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: archive?
+- !ruby/object:RI::MethodSummary 
+  name: attributes
+- !ruby/object:RI::MethodSummary 
+  name: basename
+- !ruby/object:RI::MethodSummary 
+  name: blksize
+- !ruby/object:RI::MethodSummary 
+  name: blockdev?
+- !ruby/object:RI::MethodSummary 
+  name: chardev?
+- !ruby/object:RI::MethodSummary 
+  name: compressed?
+- !ruby/object:RI::MethodSummary 
+  name: decrypt
+- !ruby/object:RI::MethodSummary 
+  name: dirname
+- !ruby/object:RI::MethodSummary 
+  name: encrypt
+- !ruby/object:RI::MethodSummary 
+  name: encrypted?
+- !ruby/object:RI::MethodSummary 
+  name: get_permissions
+- !ruby/object:RI::MethodSummary 
+  name: hidden?
+- !ruby/object:RI::MethodSummary 
+  name: indexed?
+- !ruby/object:RI::MethodSummary 
+  name: long_path
+- !ruby/object:RI::MethodSummary 
+  name: lstat
+- !ruby/object:RI::MethodSummary 
+  name: normal?
+- !ruby/object:RI::MethodSummary 
+  name: offline?
+- !ruby/object:RI::MethodSummary 
+  name: readonly?
+- !ruby/object:RI::MethodSummary 
+  name: remove_attributes
+- !ruby/object:RI::MethodSummary 
+  name: reparse_point?
+- !ruby/object:RI::MethodSummary 
+  name: securities
+- !ruby/object:RI::MethodSummary 
+  name: set_attributes
+- !ruby/object:RI::MethodSummary 
+  name: set_permissions
+- !ruby/object:RI::MethodSummary 
+  name: short_path
+- !ruby/object:RI::MethodSummary 
+  name: size
+- !ruby/object:RI::MethodSummary 
+  name: sparse?
+- !ruby/object:RI::MethodSummary 
+  name: split
+- !ruby/object:RI::MethodSummary 
+  name: stat
+- !ruby/object:RI::MethodSummary 
+  name: system?
+- !ruby/object:RI::MethodSummary 
+  name: temporary?
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VERSION
+  value: "'0.5.4'"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_PATH
+  value: "260"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Abbreviated attribute constants for convenience
+  name: ARCHIVE
+  value: FILE_ATTRIBUTE_ARCHIVE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: COMPRESSED
+  value: FILE_ATTRIBUTE_COMPRESSED
+- !ruby/object:RI::Constant 
+  comment: 
+  name: HIDDEN
+  value: FILE_ATTRIBUTE_HIDDEN
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NORMAL
+  value: FILE_ATTRIBUTE_NORMAL
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OFFLINE
+  value: FILE_ATTRIBUTE_OFFLINE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: READONLY
+  value: FILE_ATTRIBUTE_READONLY
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SYSTEM
+  value: FILE_ATTRIBUTE_SYSTEM
+- !ruby/object:RI::Constant 
+  comment: 
+  name: TEMPORARY
+  value: FILE_ATTRIBUTE_TEMPORARY
+- !ruby/object:RI::Constant 
+  comment: 
+  name: INDEXED
+  value: "0x0002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CONTENT_INDEXED
+  value: "0x0002000"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Custom Security rights
+  name: FULL
+  value: STANDARD_RIGHTS_ALL | FILE_READ_DATA | FILE_WRITE_DATA |       FILE_APPEND_DATA | FILE_READ_EA | FILE_WRITE_EA | FILE_EXECUTE |       FILE_DELETE_CHILD | FILE_READ_ATTRIBUTES | FILE_WRITE_ATTRIBUTES
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CHANGE
+  value: FILE_GENERIC_WRITE | FILE_GENERIC_READ | FILE_EXECUTE | DELETE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: READ
+  value: FILE_GENERIC_READ | FILE_EXECUTE
+- !ruby/object:RI::Constant 
+  comment: 
+  name: ADD
+  value: "0x001201bf"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SECURITY_RIGHTS
+  value: "{       'FULL'    => FULL,       'DELETE'  => DELETE,        'READ'    => READ,        'CHANGE'  => CHANGE,       'ADD'     => ADD"
+full_name: File
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+- !ruby/object:RI::IncludedModule 
+  name: Windows::File
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Security
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Limits
+- !ruby/object:RI::IncludedModule 
+  name: Windows::DeviceIO
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: archive=
+- !ruby/object:RI::MethodSummary 
+  name: compressed=
+- !ruby/object:RI::MethodSummary 
+  name: content_indexed=
+- !ruby/object:RI::MethodSummary 
+  name: hidden=
+- !ruby/object:RI::MethodSummary 
+  name: indexed=
+- !ruby/object:RI::MethodSummary 
+  name: normal=
+- !ruby/object:RI::MethodSummary 
+  name: offline=
+- !ruby/object:RI::MethodSummary 
+  name: readonly=
+- !ruby/object:RI::MethodSummary 
+  name: sparse=
+- !ruby/object:RI::MethodSummary 
+  name: stat
+- !ruby/object:RI::MethodSummary 
+  name: system=
+- !ruby/object:RI::MethodSummary 
+  name: temporary=
+name: File
+superclass: Object

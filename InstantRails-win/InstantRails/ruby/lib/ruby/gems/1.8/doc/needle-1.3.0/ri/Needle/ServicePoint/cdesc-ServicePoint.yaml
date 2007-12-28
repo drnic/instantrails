@@ -1,0 +1,42 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A reference to the container that contains this service point.
+  name: container
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name of this service point, as it is known to the container that it was registered in.
+  name: name
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The reference to the instantiation pipeline used by this service point.
+  name: pipeline
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A &quot;service point&quot; is a definition of a service. Just as a class defines the behavior of an object, so does a service point describe a service. In particular, a service point also knows how to instantiate a service.
+- !ruby/struct:SM::Flow::P 
+  body: A ServicePoint should never be directly instantiated. Instead, define services via the interfaces provided by Container.
+constants: []
+
+full_name: Needle::ServicePoint
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: fullname
+- !ruby/object:RI::MethodSummary 
+  name: instance
+- !ruby/object:RI::MethodSummary 
+  name: interceptor
+name: ServicePoint
+superclass: Object

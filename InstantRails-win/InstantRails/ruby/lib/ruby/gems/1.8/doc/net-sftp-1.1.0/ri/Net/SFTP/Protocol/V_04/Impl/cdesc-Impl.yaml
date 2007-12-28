@@ -1,0 +1,26 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The implementation of the operations available to version 4 of the SFTP protocol.
+constants: []
+
+full_name: Net::SFTP::Protocol::V_04::Impl
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: do_name
+- !ruby/object:RI::MethodSummary 
+  name: fstat
+- !ruby/object:RI::MethodSummary 
+  name: lstat
+- !ruby/object:RI::MethodSummary 
+  name: rename
+- !ruby/object:RI::MethodSummary 
+  name: stat
+name: Impl
+superclass: V_03::Impl

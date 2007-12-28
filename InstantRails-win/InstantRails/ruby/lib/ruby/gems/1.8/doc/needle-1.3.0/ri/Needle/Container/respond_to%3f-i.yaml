@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns true if this container responds to the given message, or if it explicitly contains a service with the given name (see #has_key?). In this case, #has_key? is used instead of #knows_key? so that subcontainers may be used as proper hashes by their parents."
+full_name: Needle::Container#respond_to?
+is_singleton: false
+name: respond_to?
+params: ( sym )
+visibility: public

@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to return errors assigned to <tt>base</tt> object through add_to_base, which returns nil, if no errors are associated with the specified <tt>attribute</tt>, the error message if one error is associated with the specified <tt>attribute</tt>, or an array of error messages if more than one error is associated with the specified <tt>attribute</tt>.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_account = Account.find(1)\n  my_account.errors.on_base\n  # =&gt; nil\n\n  my_account.errors.add_to_base(&quot;This account is frozen&quot;)\n  my_account.errors.on_base\n  # =&gt; &quot;This account is frozen&quot;\n\n  my_account.errors.add_to_base(&quot;This account has been closed&quot;)\n  my_account.errors.on_base\n  # =&gt; [&quot;This account is frozen&quot;, &quot;This account has been closed&quot;]\n"
+full_name: ActiveResource::Errors#on_base
+is_singleton: false
+name: on_base
+params: ()
+visibility: public

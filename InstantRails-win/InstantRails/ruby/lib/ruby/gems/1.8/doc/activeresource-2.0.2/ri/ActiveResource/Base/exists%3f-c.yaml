@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Asserts the existence of a resource, returning <tt>true</tt> if the resource is found.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Note.create(:title =&gt; 'Hello, world.', :body =&gt; 'Nothing more for now...')\n  Note.exists?(1)\n  # =&gt; true\n\n  Note.exists(1349)\n  # =&gt; false\n"
+full_name: ActiveResource::Base::exists?
+is_singleton: true
+name: exists?
+params: (id, options = {})
+visibility: public

@@ -1,0 +1,19 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates an object (or multiple objects) and saves it to the database, if validations pass. The resulting object is returned whether the object was saved successfully to the database or not.
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>attributes</tt> parameter can be either be a Hash or an Array of Hashes. These Hashes describe the attributes on the objects that are to be created.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # Create a single new object\n  User.create(:first_name =&gt; 'Jamie')\n  # Create an Array of new objects\n  User.create([{:first_name =&gt; 'Jamie'}, {:first_name =&gt; 'Jeremy'}])\n"
+full_name: ActiveRecord::Base::create
+is_singleton: true
+name: create
+params: (attributes = nil)
+visibility: public

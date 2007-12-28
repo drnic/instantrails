@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Register a data buffer (of an optional type) to be sent across the given channel at the next available opportunity.
+- !ruby/struct:SM::Flow::P 
+  body: This is used internally by channels to hide the window size and maximum packet size from the client. Clients should not call this method directly.
+full_name: Net::SSH::Connection::Driver#register_data_request
+is_singleton: false
+name: register_data_request
+params: ( channel, data, type=nil )
+visibility: public

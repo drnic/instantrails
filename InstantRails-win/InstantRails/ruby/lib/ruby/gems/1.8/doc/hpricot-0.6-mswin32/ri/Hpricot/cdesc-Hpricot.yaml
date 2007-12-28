@@ -1,0 +1,64 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: XML
+- !ruby/object:RI::MethodSummary 
+  name: build
+- !ruby/object:RI::MethodSummary 
+  name: parse
+- !ruby/object:RI::MethodSummary 
+  name: uxs
+- !ruby/object:RI::MethodSummary 
+  name: xchr
+- !ruby/object:RI::MethodSummary 
+  name: xs
+comment: []
+
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: FORM_TAGS
+  value: "[ :form, :input, :select, :textarea ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SELF_CLOSING_TAGS
+  value: "[ :base, :meta, :link, :hr, :br, :param, :img, :area, :input, :col ]"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Common sets of attributes.
+  name: AttrCore
+  value: "[:id, :class, :style, :title]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttrI18n
+  value: "[:lang, 'xml:lang'.intern, :dir]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttrEvents
+  value: "[:onclick, :ondblclick, :onmousedown, :onmouseup, :onmouseover, :onmousemove,        :onmouseout, :onkeypress, :onkeydown, :onkeyup]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttrFocus
+  value: "[:accesskey, :tabindex, :onfocus, :onblur]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttrHAlign
+  value: "[:align, :char, :charoff]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AttrVAlign
+  value: "[:valign]"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Attrs
+  value: AttrCore + AttrI18n + AttrEvents
+full_name: Hpricot
+includes: []
+
+instance_methods: []
+
+name: Hpricot
+superclass: 

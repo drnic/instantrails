@@ -1,0 +1,50 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: WIN32_PROCESS_VERSION
+  value: "'0.5.3'"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Used by Process.create
+  name: ProcessInfo
+  value: Struct.new("ProcessInfo",       :process_handle,       :thread_handle,       :process_id,       :thread_id
+full_name: Process
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Process
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Error
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Library
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Console
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Handle
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Synchronize
+- !ruby/object:RI::IncludedModule 
+  name: Windows::Window
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: fork
+- !ruby/object:RI::MethodSummary 
+  name: kill
+- !ruby/object:RI::MethodSummary 
+  name: wait
+- !ruby/object:RI::MethodSummary 
+  name: wait2
+- !ruby/object:RI::MethodSummary 
+  name: waitpid
+- !ruby/object:RI::MethodSummary 
+  name: waitpid2
+name: Process
+superclass: 

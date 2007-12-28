@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: "@xml"
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Creates an entry tag for a specific record and prefills the id using class and id.
+- !ruby/struct:SM::Flow::P 
+  body: "Options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:updated</tt>: Time of update. Defaults to the created_at attribute on the record if one such exists."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:published</tt>: Time first published. Defaults to the updated_at attribute on the record if one such exists."
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>:url</tt>: The URL for this entry. Defaults to the polymorphic_url for the record."
+  type: :BULLET
+full_name: ActionView::Helpers::AtomFeedHelper::AtomFeedBuilder#entry
+is_singleton: false
+name: entry
+params: (record, options = {}) {|@xml| ...}
+visibility: public

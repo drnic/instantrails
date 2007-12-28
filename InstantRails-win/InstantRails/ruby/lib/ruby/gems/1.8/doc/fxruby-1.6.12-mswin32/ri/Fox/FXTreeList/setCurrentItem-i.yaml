@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Change current item. If there is already a current item, that item is first closed. After <em>item</em> is set as the tree list's current item, it is opened and selected. If <em>notify</em> is <tt>true</tt>, a <tt>SEL_CHANGED</tt> message is sent to the list's message target after the current item changes.
+full_name: Fox::FXTreeList#setCurrentItem
+is_singleton: false
+name: setCurrentItem
+params: (item, notify=false)
+visibility: public

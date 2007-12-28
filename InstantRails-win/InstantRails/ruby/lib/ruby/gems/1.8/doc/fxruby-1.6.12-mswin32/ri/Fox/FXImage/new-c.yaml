@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: theImage
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Create an image. If a client-side pixel buffer has been specified, the image does not own the pixel buffer unless the <tt>IMAGE_OWNED</tt> flag is set. If the <tt>IMAGE_OWNED</tt> flag is set but a <tt>nil</tt> pixel buffer is passed, a pixel buffer will be automatically created and will be owned by the image. The flags <tt>IMAGE_SHMI</tt> and <tt>IMAGE_SHMP</tt> may be specified for large images to instruct #render to use shared memory to communicate with the server."
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+a+:"
+    body: an application instance [FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+pixels+:"
+    body: pixels [Array of FXColor values]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: image options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: image width [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: image height [Integer]
+  type: :NOTE
+full_name: Fox::FXImage::new
+is_singleton: true
+name: new
+params: (a, pixels=nil, opts=0, width=1, height=1) {|theImage| ...}
+visibility: public

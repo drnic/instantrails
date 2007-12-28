@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Works just like String#center, only integer specifies characters instead of bytes.
+- !ruby/struct:SM::Flow::P 
+  body: "Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  &quot;\xC2\xBE cup&quot;.chars.center(8).to_s\n  #=&gt; &quot; \xC2\xBE cup  &quot;\n\n  &quot;\xC2\xBE cup&quot;.chars.center(8, &quot;\xC2\xA0&quot;).to_s # Use non-breaking whitespace\n  #=&gt; &quot;\xC2\xA0\xC2\xBE cup\xC2\xA0\xC2\xA0&quot;\n"
+full_name: ActiveSupport::Multibyte::Handlers::UTF8Handler::center
+is_singleton: true
+name: center
+params: (str, integer, padstr=' ')
+visibility: public

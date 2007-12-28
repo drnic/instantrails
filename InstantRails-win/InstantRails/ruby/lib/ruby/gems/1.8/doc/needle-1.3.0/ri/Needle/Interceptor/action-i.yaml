@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Returns the action that was specified for this interceptor as a proc instance. This will either be the block passed to #with, or a proc that wraps the instantiation of a DynamicInterceptor (when #doing was used)."
+- !ruby/struct:SM::Flow::P 
+  body: "If neither #with nor #doing were specified, an InterceptorConfigurationError is raised."
+full_name: Needle::Interceptor#action
+is_singleton: false
+name: action
+params: ()
+visibility: public

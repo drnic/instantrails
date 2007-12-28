@@ -1,0 +1,39 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a process executing on the remote machine. It also provides a simple interface for interacting with such a remote process.
+- !ruby/struct:SM::Flow::P 
+  body: "It may be used in either of two ways. The first allows multiple processes to be invoked on the remote machine and run in parallel over the same session. Because of this, it is a bit complicated to set up:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'net/ssh'\n\n  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|\n    process = session.process.open( &quot;bc&quot; )\n    dialog = [ &quot;5+5&quot;, &quot;7*12&quot;, &quot;1+2*5/(7+3)&quot; ]\n\n    process.on_success do |p|\n      puts &quot;requesting computation of '#{dialog.first}'&quot;\n      p.puts dialog.shift\n    end\n\n    process.on_failure do |p, status|\n      puts &quot;process failed to start (#{status})&quot;\n    end\n\n    process.on_stdout do |p, data|\n      puts &quot;--&gt; #{data}&quot;\n      if dialog.empty?\n        p.close_input\n      else\n        puts &quot;requesting computation of '#{dialog.first}'&quot;\n        p.puts dialog.shift\n      end\n    end\n\n    process.on_stderr do |p, data|\n      puts &quot;[stderr]--&gt; #{data}&quot;\n    end\n\n    process.on_exit do |p, status|\n      puts &quot;process finished with exit status: #{status}&quot;\n    end\n\n    session.loop\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: Naturally, not all of the callbacks used above are required. If you omit any of them, they will simply not be called. However, you <b>should</b> do something when the process is successfully started (<tt>on_success</tt>), and you <b>should</b> do something when data is recieved over stdout (<tt>on_stdout</tt>). Lastly, you <b>must</b> execute <tt>session.loop</tt> in order to process the connection.
+- !ruby/struct:SM::Flow::P 
+  body: "The simpler way to use this service is only available when you are not handling multiple parallel processes--you can only use it when the process you are executing is the only task you are using the SSH connection for. It is reminiscent of the popen interface: you invoke a command and get three pseudo-IO objects back--one for the command's &quot;stdin&quot; stream, one for it's &quot;stdout&quot; stream, and one for it's &quot;stderr&quot; stream. You may then write to the &quot;stdin&quot; stream, and read from the &quot;stdout&quot; and &quot;stderr&quot; streams."
+- !ruby/struct:SM::Flow::P 
+  body: "For example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'net/ssh'\n\n  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|\n    input, output, error = session.process.popen3( &quot;bc&quot; )\n    input.puts &quot;5+5&quot;\n    puts &quot;5+5=#{output.read}&quot;\n    input.puts &quot;7*12&quot;\n    puts &quot;7*12=#{output.read}&quot;\n    input.puts &quot;1+2*5/(7+3)&quot;\n    puts &quot;1+2*5/(7+3)=#{output.read}&quot;\n    input.puts &quot;quit&quot;\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "One caveat with this format: the process cannot be explicitly terminated from the client side--the process must terminate on its own (for example, by recieving a &quot;quit&quot; command, as used above). If the command does not support any means of gracefully aborting it, then the only way to kill the command is to terminate the connection."
+- !ruby/struct:SM::Flow::P 
+  body: "A slightly cleaner approach uses blocks to denote the lifespan of the process. When the block terminates, the process is killed (if it is still running):"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  require 'net/ssh'\n\n  Net::SSH.start( 'host', 'user', 'passwd' ) do |session|\n    session.process.popen3( &quot;cat&quot; ) do |input, output, error|\n      input.puts &quot;hello&quot;\n      puts &quot;echo: #{output.read}&quot;\n      input.puts &quot;world&quot;\n      puts &quot;echo: #{output.read}&quot;\n    end\n  end\n"
+constants: []
+
+full_name: Net::SSH::Service::Process::Driver
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: open
+- !ruby/object:RI::MethodSummary 
+  name: popen3
+name: Driver
+superclass: Object

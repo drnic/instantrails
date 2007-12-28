@@ -1,0 +1,33 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw hashed box with upper-left corner at (<em>x</em>, <em>y</em>) and with width and height (<em>w</em>, <em>h</em>).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+x+:"
+    body: x-coordinate of the upper left corner [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+y+:"
+    body: y-coordinate of the upper left corner [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+width+:"
+    body: width of the box, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+height+:"
+    body: height of the box, in pixels [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+b+:"
+    body: border width, in pixels [Integer]
+  type: :NOTE
+full_name: Fox::FXDC#drawHashBox
+is_singleton: false
+name: drawHashBox
+params: (x, y, w, h, b=1)
+visibility: public

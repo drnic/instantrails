@@ -1,0 +1,138 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The connection driver instance that owns this channel
+  name: connection
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The channel's local id (assigned by the connection)
+  name: local_id
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum packet size that may be sent over this channel
+  name: local_maximum_packet_size
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum data window size for this channel
+  name: local_window_size
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum packet size that may be sent over this channel
+  name: maximum_packet_size
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The channel's remote id (assigned by the remote server)
+  name: remote_id
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The type of this channel
+  name: type
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The maximum data window size for this channel
+  name: window_size
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: create
+- !ruby/object:RI::MethodSummary 
+  name: event
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: open
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_PTY_OPTIONS
+  value: "{ :term=>\"xterm\",                               :chars_wide=>80,                               :chars_high=>24,                               :pixels_wide=>640,                               :pixels_high=>480,                               :modes=>{},                               :want_reply=>false }"
+full_name: Net::SSH::Connection::Channel
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: "[]"
+- !ruby/object:RI::MethodSummary 
+  name: "[]="
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: do_confirm_failed
+- !ruby/object:RI::MethodSummary 
+  name: do_confirm_open
+- !ruby/object:RI::MethodSummary 
+  name: do_data
+- !ruby/object:RI::MethodSummary 
+  name: do_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: do_window_adjust
+- !ruby/object:RI::MethodSummary 
+  name: exec
+- !ruby/object:RI::MethodSummary 
+  name: on_close
+- !ruby/object:RI::MethodSummary 
+  name: on_confirm_failed
+- !ruby/object:RI::MethodSummary 
+  name: on_confirm_open
+- !ruby/object:RI::MethodSummary 
+  name: on_data
+- !ruby/object:RI::MethodSummary 
+  name: on_eof
+- !ruby/object:RI::MethodSummary 
+  name: on_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: on_failure
+- !ruby/object:RI::MethodSummary 
+  name: on_request
+- !ruby/object:RI::MethodSummary 
+  name: on_success
+- !ruby/object:RI::MethodSummary 
+  name: on_window_adjust
+- !ruby/object:RI::MethodSummary 
+  name: property
+- !ruby/object:RI::MethodSummary 
+  name: request_pty
+- !ruby/object:RI::MethodSummary 
+  name: send_data
+- !ruby/object:RI::MethodSummary 
+  name: send_data_packet
+- !ruby/object:RI::MethodSummary 
+  name: send_eof
+- !ruby/object:RI::MethodSummary 
+  name: send_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: send_extended_data_packet
+- !ruby/object:RI::MethodSummary 
+  name: send_request
+- !ruby/object:RI::MethodSummary 
+  name: send_request_string
+- !ruby/object:RI::MethodSummary 
+  name: send_signal
+- !ruby/object:RI::MethodSummary 
+  name: send_window_adjust
+- !ruby/object:RI::MethodSummary 
+  name: set_property
+- !ruby/object:RI::MethodSummary 
+  name: subsystem
+- !ruby/object:RI::MethodSummary 
+  name: valid?
+name: Channel
+superclass: Object

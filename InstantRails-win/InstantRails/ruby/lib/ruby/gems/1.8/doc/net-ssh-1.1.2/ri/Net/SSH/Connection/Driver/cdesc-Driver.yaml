@@ -1,0 +1,87 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: "A structure for representing global requests, as registered by the #global_request method."
+  name: Request
+  value: Struct.new( :type, :data, :callback )
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: A structure for representing a data buffer that must be sent across a channel.
+  name: DataRequest
+  value: Struct.new( :channel, :data, :type )
+- !ruby/object:RI::Constant 
+  comment: ""
+  name: MESSAGES
+  value: "%w(           global_request           request_success request_failure channel_open channel_open_failure           channel_open_confirmation channel_window_adjust channel_data           channel_extended_data channel_eof channel_close channel_request           channel_success channel_failure         ).inject({}) do |map, event|           constant = Constants.const_get event.upcase.to_sym"
+full_name: Net::SSH::Connection::Driver
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: add_channel_open_handler
+- !ruby/object:RI::MethodSummary 
+  name: allocate_channel_id
+- !ruby/object:RI::MethodSummary 
+  name: channel_request
+- !ruby/object:RI::MethodSummary 
+  name: channels
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_close
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_data
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_eof
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_extended_data
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_failure
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_open
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_open_confirmation
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_open_failure
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_request
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_success
+- !ruby/object:RI::MethodSummary 
+  name: do_channel_window_adjust
+- !ruby/object:RI::MethodSummary 
+  name: do_global_request
+- !ruby/object:RI::MethodSummary 
+  name: do_request_failure
+- !ruby/object:RI::MethodSummary 
+  name: do_request_success
+- !ruby/object:RI::MethodSummary 
+  name: global_request
+- !ruby/object:RI::MethodSummary 
+  name: loop
+- !ruby/object:RI::MethodSummary 
+  name: open_channel
+- !ruby/object:RI::MethodSummary 
+  name: ping!
+- !ruby/object:RI::MethodSummary 
+  name: process
+- !ruby/object:RI::MethodSummary 
+  name: reader_ready?
+- !ruby/object:RI::MethodSummary 
+  name: register_data_request
+- !ruby/object:RI::MethodSummary 
+  name: remove_channel
+- !ruby/object:RI::MethodSummary 
+  name: remove_channel_open_handler
+- !ruby/object:RI::MethodSummary 
+  name: send_message
+name: Driver
+superclass: Object

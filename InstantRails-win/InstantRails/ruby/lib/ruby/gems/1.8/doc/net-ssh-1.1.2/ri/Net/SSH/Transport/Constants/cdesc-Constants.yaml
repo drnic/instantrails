@@ -1,0 +1,60 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Transport layer generic messages
+  name: DISCONNECT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: IGNORE
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: UNIMPLEMENTED
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: DEBUG
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_REQUEST
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Algorithm negotiation messages
+  name: KEXINIT
+  value: "20"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: NEWKEYS
+  value: "21"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Key exchange method specific messages
+  name: KEXDH_INIT
+  value: "30"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: KEXDH_REPLY
+  value: "31"
+full_name: Net::SSH::Transport::Constants
+includes: []
+
+instance_methods: []
+
+name: Constants
+superclass: 

@@ -1,0 +1,146 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of alpha for the accumulation buffer (default is zero) [Integer]
+  name: accumAlphaSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of blue for the accumulation buffer (default is zero) [Integer]
+  name: accumBlueSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of green for the accumulation buffer (default is zero) [Integer]
+  name: accumGreenSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of red for the accumulation buffer (default is zero) [Integer]
+  name: accumRedSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of alpha for the accumulation buffer [Integer]
+  name: actualAccumAlphaSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of blue for the accumulation buffer [Integer]
+  name: actualAccumBlueSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of green for the accumulation buffer [Integer]
+  name: actualAccumGreenSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of red for the accumulation buffer [Integer]
+  name: actualAccumRedSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of alpha [Integer]
+  name: actualAlphaSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of blue [Integer]
+  name: actualBlueSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual depth size [Integer]
+  name: actualDepthSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of green [Integer]
+  name: actualGreenSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual number of bits of red [Integer]
+  name: actualRedSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Actual stencil size [Integer]
+  name: actualStencilSize
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of alpha (default is zero) [Integer]
+  name: alphaSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of blue (default is 8) [Integer]
+  name: blueSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested depth size (default is 16) [Integer]
+  name: depthSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of green (default is 8) [Integer]
+  name: greenSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested number of bits of red (default is 8) [Integer]
+  name: redSize
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Requested stencil size (default is zero) [Integer]
+  name: stencilSize
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: supported?
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Visual describes pixel format of a drawable
+constants: []
+
+full_name: Fox::FXGLVisual
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: accelerated?
+- !ruby/object:RI::MethodSummary 
+  name: bufferSwapCopy?
+- !ruby/object:RI::MethodSummary 
+  name: doubleBuffered?
+- !ruby/object:RI::MethodSummary 
+  name: stereo?
+name: FXGLVisual
+superclass: FXVisual

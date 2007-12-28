@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>possible_controllers (ActionController::Routing)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_controller/routing.rb, line 318</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">possible_controllers</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-ivar">@possible_controllers</span>
+          <span class="ruby-ivar">@possible_controllers</span> = []
+
+          <span class="ruby-identifier">paths</span> = <span class="ruby-identifier">controller_paths</span>.<span class="ruby-identifier">select</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">directory?</span>(<span class="ruby-identifier">path</span>) <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">!=</span> <span class="ruby-value str">&quot;.&quot;</span> }
+
+          <span class="ruby-identifier">seen_paths</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">h</span>, <span class="ruby-identifier">k</span><span class="ruby-operator">|</span> <span class="ruby-identifier">h</span>[<span class="ruby-identifier">k</span>] = <span class="ruby-keyword kw">true</span>; <span class="ruby-keyword kw">false</span>}
+          <span class="ruby-identifier">normalize_paths</span>(<span class="ruby-identifier">paths</span>).<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">load_path</span><span class="ruby-operator">|</span>
+            <span class="ruby-constant">Dir</span>[<span class="ruby-node">&quot;#{load_path}/**/*_controller.rb&quot;</span>].<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">path</span><span class="ruby-operator">|</span>
+              <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">seen_paths</span>[<span class="ruby-identifier">path</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">%r{^\.[/\\]}</span>, <span class="ruby-value str">&quot;&quot;</span>)]
+
+              <span class="ruby-identifier">controller_name</span> = <span class="ruby-identifier">path</span>[(<span class="ruby-identifier">load_path</span>.<span class="ruby-identifier">length</span> <span class="ruby-operator">+</span> <span class="ruby-value">1</span>)<span class="ruby-operator">..</span><span class="ruby-value">-1</span>]
+
+              <span class="ruby-identifier">controller_name</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/_controller\.rb\Z/</span>, <span class="ruby-value str">''</span>)
+              <span class="ruby-ivar">@possible_controllers</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">controller_name</span>
+            <span class="ruby-keyword kw">end</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-comment cmt"># remove duplicates</span>
+          <span class="ruby-ivar">@possible_controllers</span>.<span class="ruby-identifier">uniq!</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-ivar">@possible_controllers</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

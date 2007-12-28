@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Invoked when extended data arrives over the channel. This simply delegates to the <tt>on_stderr</tt> callback, if registered, if the type is 1; otherwise it does nothing.
+full_name: Net::SSH::Service::Process::OpenManager#do_extended_data
+is_singleton: false
+name: do_extended_data
+params: ( channel, type, data )
+visibility: public

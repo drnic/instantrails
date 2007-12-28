@@ -1,0 +1,45 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the current position of the pointer in the buffer
+  name: position
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A convenience module for representing a string of encoded data. It provides an interface for easily reading and decoding the buffer.
+constants: []
+
+full_name: Net::SSH::Util::ReaderBufferImpl
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: append
+- !ruby/object:RI::MethodSummary 
+  name: clear!
+- !ruby/object:RI::MethodSummary 
+  name: eof?
+- !ruby/object:RI::MethodSummary 
+  name: read
+- !ruby/object:RI::MethodSummary 
+  name: read_bool
+- !ruby/object:RI::MethodSummary 
+  name: read_byte
+- !ruby/object:RI::MethodSummary 
+  name: read_int64
+- !ruby/object:RI::MethodSummary 
+  name: read_long
+- !ruby/object:RI::MethodSummary 
+  name: read_short
+- !ruby/object:RI::MethodSummary 
+  name: read_string
+- !ruby/object:RI::MethodSummary 
+  name: remainder_as_buffer
+- !ruby/object:RI::MethodSummary 
+  name: reset!
+name: ReaderBufferImpl
+superclass: 

@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Performs a request using the specified method, following any subsequent redirect. Note that the redirects are followed until the response is not a redirect--this means you may run into an infinite loop if your redirect loops back to itself.
+full_name: ActionController::Integration::Session#request_via_redirect
+is_singleton: false
+name: request_via_redirect
+params: (http_method, path, parameters = nil, headers = nil)
+visibility: public

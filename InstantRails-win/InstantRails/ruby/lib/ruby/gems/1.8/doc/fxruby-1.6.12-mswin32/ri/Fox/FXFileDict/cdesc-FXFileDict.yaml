@@ -1,0 +1,60 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current icon search path [FXIconDict]
+  name: iconDict
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Current icon search path [String]
+  name: iconPath
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Settings database [FXSettings]
+  name: settings
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: defaultDirBinding
+- !ruby/object:RI::MethodSummary 
+  name: defaultExecBinding
+- !ruby/object:RI::MethodSummary 
+  name: defaultFileBinding
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "The File Association dictionary associates a file extension with a File Association record which contains command name, mime type, icons, and other information about the file type. The icons referenced by the file association are managed by the Icon Dictionary; this guarantees that each icon is loaded only once into memory. The associations are determined by the information by the FOX Registry settings; each entry under the FILETYPES registry section comprises the command line, extension name, large icon, small icon, and mime type:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  command ';' extension ';' bigicon [ ':' bigiconopen ] ';' icon [ ':' iconopen ] ';' mime\n"
+- !ruby/struct:SM::Flow::P 
+  body: "For example, the binding for &quot;jpg&quot; could be:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  xv %s &amp;;JPEG Image;bigimage.xpm;miniimage.xpm;image/jpeg\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The association for a file name is determined by first looking at the entire file name, then at the whole extension, and then at sub-extensions. For example, &quot;name.tar.gz&quot;, &quot;tar.gz&quot;, and &quot;gz&quot; can each be given a different file association. Directory names may also be given associations; there is no command-line association for a directory, however. The association for a directory is found by first checking the whole pathname, then checking the pathname less the first component, and so on. So, &quot;/usr/local/include&quot;, &quot;/local/include&quot;, and &quot;/include&quot; can each be given their own file associations. If the above lookup procedure has not found a file association, the system uses a fallback associations: for files, the fallback association is determined by the binding &quot;defaultfilebinding&quot;. For directories, the &quot;defaultdirbinding&quot; is used, and for executables the &quot;defaultexecbinding&quot; is used."
+constants: []
+
+full_name: Fox::FXFileDict
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: find
+- !ruby/object:RI::MethodSummary 
+  name: findDirBinding
+- !ruby/object:RI::MethodSummary 
+  name: findExecBinding
+- !ruby/object:RI::MethodSummary 
+  name: findFileBinding
+- !ruby/object:RI::MethodSummary 
+  name: remove
+- !ruby/object:RI::MethodSummary 
+  name: replace
+name: FXFileDict
+superclass: FXDict

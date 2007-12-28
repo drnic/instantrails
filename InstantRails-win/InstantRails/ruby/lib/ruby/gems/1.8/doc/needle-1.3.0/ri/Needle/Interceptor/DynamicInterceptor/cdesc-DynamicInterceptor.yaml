@@ -1,0 +1,23 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: This is the wrapper for on-the-fly interceptors that have been created via Interceptor#doing. The callback registered with Interceptor#doing gets wrapped by an instance of this class, to comply with the interface required by InterceptorChainBuilder.
+- !ruby/struct:SM::Flow::P 
+  body: This class should rarely (if ever) be instantiated directly. Instead, using the Interceptor#doing method to create dynamic interceptors.
+constants: []
+
+full_name: Needle::Interceptor::DynamicInterceptor
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: process
+name: DynamicInterceptor
+superclass: Object

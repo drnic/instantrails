@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Height of drawable, in pixels [Integer]
+  name: height
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Visual [FXVisual]
+  name: visual
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Width of drawable, in pixels [Integer]
+  name: width
+  rw: R
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: FXDrawable is an abstract base class for any surface that can be drawn upon, such as an FXWindow or an FXImage.
+constants: []
+
+full_name: Fox::FXDrawable
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: resize
+name: FXDrawable
+superclass: FXId

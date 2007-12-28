@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Draw connected lines, where <em>points</em> is an array of FXPoint instances. The number of lines drawn is equal to the size of the <em>points</em> array minus one. Treats each point's coordinates (after the first) as relative to the previous point.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+points+:"
+    body: array of FXPoint instances that defines all points on the line [Array]
+  type: :NOTE
+- !ruby/struct:SM::Flow::P 
+  body: "See also #drawLine and #drawLines."
+full_name: Fox::FXDC#drawLinesRel
+is_singleton: false
+name: drawLinesRel
+params: (points)
+visibility: public

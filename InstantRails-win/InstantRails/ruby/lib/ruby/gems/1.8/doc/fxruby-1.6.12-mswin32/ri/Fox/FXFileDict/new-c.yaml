@@ -1,0 +1,23 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Construct a dictionary that maps file extensions to file associations. If <em>db</em> is not <tt>nil</tt>, the specified settings database is used as a source for the bindings. Otherwise, the application registry settings are used.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/struct:SM::Flow::P 
+  body: "<tt>app</tt>: Application [FXApp]"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+db+:"
+    body: Settings database [FXSettings]
+  type: :NOTE
+full_name: Fox::FXFileDict::new
+is_singleton: true
+name: new
+params: (app, db=nil)
+visibility: public

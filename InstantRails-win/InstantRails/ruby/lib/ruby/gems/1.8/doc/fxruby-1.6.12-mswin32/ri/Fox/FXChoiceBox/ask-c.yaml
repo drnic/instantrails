@@ -1,0 +1,36 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Show a modal choice dialog. Prompt the user using a dialog with given caption, icon, message text, and choices from array of strings. Returns -1 if the dialog box is cancelled, otherwise returns the index of the selected choice
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: "Parameters:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+owner+:"
+    body: Owner for this dialog box [FXWindow or FXApp]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+opts+:"
+    body: Dialog box options [Integer]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+caption+:"
+    body: Caption for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+text+:"
+    body: Message text for this dialog box [String]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+icon+:"
+    body: Icon for this dialog box [FXIcon]
+  - !ruby/struct:SM::Flow::LI 
+    label: "+choices+:"
+    body: Array of strings containing choices [Array]
+  type: :NOTE
+full_name: Fox::FXChoiceBox::ask
+is_singleton: true
+name: ask
+params: (owner, opts, caption, text, icon, choices)
+visibility: public

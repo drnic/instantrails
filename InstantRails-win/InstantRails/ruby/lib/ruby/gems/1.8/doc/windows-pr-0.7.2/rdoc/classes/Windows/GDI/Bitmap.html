@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::GDI::Bitmap</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::GDI::Bitmap</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/lib/windows/gdi/bitmap_rb.html">
+                lib/windows/gdi/bitmap.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DIB_RGB_COLORS</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DIB_PAL_COLORS</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRCCOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00CC0020</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Raster operations
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRCPAINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00EE0086</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRCAND</td>
+          <td>=</td>
+          <td class="context-item-value">0x008800C6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRCINVERT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00660046</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SRCERASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00440328</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOTSRCCOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00330008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NOTSRCERASE</td>
+          <td>=</td>
+          <td class="context-item-value">0x001100A6</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MERGECOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00C000CA</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">MERGEPAINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00BB0226</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PATCOPY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00F00021</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PATPAINT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00FB0A09</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PATINVERT</td>
+          <td>=</td>
+          <td class="context-item-value">0x005A0049</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DSTINVERT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00550009</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BLACKNESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000042</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">WHITENESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00FF0062</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

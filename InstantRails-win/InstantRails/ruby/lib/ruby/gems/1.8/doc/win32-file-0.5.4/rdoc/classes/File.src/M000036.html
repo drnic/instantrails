@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>indexed= (File)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file.rb, line 851</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">indexed=</span>(<span class="ruby-identifier">bool</span>)
+      <span class="ruby-identifier">attributes</span> = <span class="ruby-constant">GetFileAttributes</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>)
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">attributes</span> <span class="ruby-operator">==</span> <span class="ruby-constant">INVALID_FILE_ATTRIBUTES</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">bool</span>
+         <span class="ruby-identifier">attributes</span> <span class="ruby-operator">&amp;=</span> <span class="ruby-operator">~</span><span class="ruby-constant">FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</span>;
+      <span class="ruby-keyword kw">else</span>
+         <span class="ruby-identifier">attributes</span> <span class="ruby-operator">|=</span> <span class="ruby-constant">FILE_ATTRIBUTE_NOT_CONTENT_INDEXED</span>;
+      <span class="ruby-keyword kw">end</span>
+      
+      <span class="ruby-keyword kw">if</span> <span class="ruby-constant">SetFileAttributes</span>(<span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">path</span>, <span class="ruby-identifier">attributes</span>) <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">self</span>
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

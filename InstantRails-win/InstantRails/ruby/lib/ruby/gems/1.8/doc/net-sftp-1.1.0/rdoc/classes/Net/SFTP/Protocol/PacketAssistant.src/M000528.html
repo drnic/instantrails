@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>packet (Net::SFTP::Protocol::PacketAssistant)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/packet-assistant.rb, line 43</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">packet</span>( <span class="ruby-identifier">name</span>, <span class="ruby-operator">*</span><span class="ruby-identifier">args</span> )
+      <span class="ruby-identifier">body</span> = <span class="ruby-value str">&quot;&quot;</span>
+      <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+        <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;b.write&quot;</span>
+        <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:long</span>, <span class="ruby-identifier">:int64</span>, <span class="ruby-identifier">:short</span>, <span class="ruby-identifier">:byte</span>
+            <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{arg} args.shift.to_i&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:string</span>
+            <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;_#{arg} args.shift.to_s&quot;</span>
+          <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:attrs</span>, <span class="ruby-identifier">:write</span>
+            <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; args.shift.to_s&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-identifier">body</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot;\n&quot;</span>
+      <span class="ruby-keyword kw">end</span>
+      <span class="ruby-identifier">class_eval</span> <span class="ruby-value str">&quot;def \#{name}( id, *args )\nb = buffers.writer\nid ||= driver.next_request_id\nb.write_long id\n\#{body}\n[ id, b.to_s ]\nend\n&quot;</span>, <span class="ruby-keyword kw">__FILE__</span>, <span class="ruby-keyword kw">__LINE__</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

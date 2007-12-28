@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to manually load attributes from a hash. Recursively loads collections of resources. This method is called in initialize and create when a <tt>Hash</tt> of attributes is provided.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  my_attrs = {:name =&gt; 'J&amp;J Textiles', :industry =&gt; 'Cloth and textiles'}\n\n  the_supplier = Supplier.find(:first)\n  the_supplier.name\n  # =&gt; 'J&amp;M Textiles'\n  the_supplier.load(my_attrs)\n  the_supplier.name('J&amp;J Textiles')\n\n  # These two calls are the same as Supplier.new(my_attrs)\n  my_supplier = Supplier.new\n  my_supplier.load(my_attrs)\n\n  # These three calls are the same as Supplier.create(my_attrs)\n  your_supplier = Supplier.new\n  your_supplier.load(my_attrs)\n  your_supplier.save\n"
+full_name: ActiveResource::Base#load
+is_singleton: false
+name: load
+params: (attributes)
+visibility: public

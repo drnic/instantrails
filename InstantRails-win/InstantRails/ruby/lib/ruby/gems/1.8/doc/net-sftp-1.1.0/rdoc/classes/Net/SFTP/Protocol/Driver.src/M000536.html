@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>do_version (Net::SFTP::Protocol::Driver)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/sftp/protocol/driver.rb, line 133</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">do_version</span>( <span class="ruby-identifier">content</span> )
+      <span class="ruby-identifier">assert_state</span> <span class="ruby-identifier">:version</span>
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-value str">&quot;negotiating sftp protocol version&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;my sftp version is #{@version}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+
+      <span class="ruby-identifier">server_version</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_long</span>
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;server reports sftp version #{server_version}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">debug?</span>
+
+      <span class="ruby-identifier">negotiated_version</span> = [ <span class="ruby-ivar">@version</span>, <span class="ruby-identifier">server_version</span> ].<span class="ruby-identifier">min</span> 
+      <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">info</span> <span class="ruby-node">&quot;negotiated version is #{negotiated_version}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@log</span>.<span class="ruby-identifier">info?</span>
+
+      <span class="ruby-identifier">extensions</span> = <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-keyword kw">until</span> <span class="ruby-identifier">content</span>.<span class="ruby-identifier">eof?</span>
+        <span class="ruby-identifier">ext_name</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_string</span>
+        <span class="ruby-identifier">ext_data</span> = <span class="ruby-identifier">content</span>.<span class="ruby-identifier">read_string</span>
+        <span class="ruby-identifier">extensions</span>[ <span class="ruby-identifier">ext_name</span> ] = <span class="ruby-identifier">ext_data</span>
+      <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-ivar">@dispatcher</span> = <span class="ruby-ivar">@dispatchers</span>[ <span class="ruby-identifier">negotiated_version</span>, <span class="ruby-identifier">extensions</span> ]
+
+      <span class="ruby-ivar">@state</span> = <span class="ruby-identifier">:open</span>
+
+      <span class="ruby-ivar">@on_open</span>.<span class="ruby-identifier">call</span>( <span class="ruby-keyword kw">self</span> ) <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@on_open</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

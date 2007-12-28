@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A method to determine if the resource a new object (i.e., it has not been POSTed to the remote service yet).
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  not_new = Computer.create(:brand =&gt; 'Apple', :make =&gt; 'MacBook', :vendor =&gt; 'MacMall')\n  not_new.new?\n  # =&gt; false\n\n  is_new = Computer.new(:brand =&gt; 'IBM', :make =&gt; 'Thinkpad', :vendor =&gt; 'IBM')\n  is_new.new?\n  # =&gt; true\n\n  is_new.save\n  is_new.new?\n  # =&gt; false\n"
+full_name: ActiveResource::Base#new?
+is_singleton: false
+name: new?
+params: ()
+visibility: public

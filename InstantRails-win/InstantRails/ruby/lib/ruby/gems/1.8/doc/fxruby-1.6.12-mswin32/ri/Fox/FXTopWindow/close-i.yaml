@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Close the window, return <tt>true</tt> if actually closed. If <em>notify</em> is <tt>true</tt>, the target will receive a <tt>SEL_CLOSE</tt> message to determine if it is OK to close the window. If the target ignores the <tt>SEL_CLOSE</tt> message or returns 0, the window will be closed, and subsequently deleted. When the last main window has been closed, the application will receive an <tt>ID_QUIT</tt> message and will be closed.
+full_name: Fox::FXTopWindow#close
+is_singleton: false
+name: close
+params: (notify=false)
+visibility: public

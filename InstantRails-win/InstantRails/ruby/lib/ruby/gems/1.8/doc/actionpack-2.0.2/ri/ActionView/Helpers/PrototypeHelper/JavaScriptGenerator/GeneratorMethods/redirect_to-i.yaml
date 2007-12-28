@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Redirects the browser to the given <tt>location</tt> using JavaScript, in the same form as <tt>url_for</tt>.
+- !ruby/struct:SM::Flow::P 
+  body: "Examples:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " # Generates: window.location.href = &quot;/mycontroller&quot;;\n page.redirect_to(:action =&gt; 'index')\n\n # Generates: window.location.href = &quot;/account/signup&quot;;\n page.redirect_to(:controller =&gt; 'account', :action =&gt; 'signup')\n"
+full_name: ActionView::Helpers::PrototypeHelper::JavaScriptGenerator::GeneratorMethods#redirect_to
+is_singleton: false
+name: redirect_to
+params: (location)
+visibility: public

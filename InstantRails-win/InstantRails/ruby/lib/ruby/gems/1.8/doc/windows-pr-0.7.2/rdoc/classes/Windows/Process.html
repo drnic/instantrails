@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::Process</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::Process</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/process_rb.html">
+                lib/windows/process.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_ALL_ACCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x1F0FFF</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_CREATE_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_CREATE_THREAD</td>
+          <td>=</td>
+          <td class="context-item-value">0x0002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_DUP_HANDLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_QUERY_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_QUERY_LIMITED_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x1000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SET_QUOTA</td>
+          <td>=</td>
+          <td class="context-item-value">0x0100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SET_INFORMATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_SUSPEND_RESUME</td>
+          <td>=</td>
+          <td class="context-item-value">0x0800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_TERMINATE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_OPERATION</td>
+          <td>=</td>
+          <td class="context-item-value">0x0008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_READ</td>
+          <td>=</td>
+          <td class="context-item-value">0x0010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">PROCESS_VM_WRITE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">SYNCHRONIZE</td>
+          <td>=</td>
+          <td class="context-item-value">1048576</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STILL_ACTIVE</td>
+          <td>=</td>
+          <td class="context-item-value">259</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ABOVE_NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00008000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">BELOW_NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00004000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">HIGH_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">IDLE_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NORMAL_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">REALTIME_PRIORITY_CLASS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_BREAKAWAY_FROM_JOB</td>
+          <td>=</td>
+          <td class="context-item-value">0x01000000</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+<a href="Process.html">Process</a> creation flags
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_DEFAULT_ERROR_MODE</td>
+          <td>=</td>
+          <td class="context-item-value">0x04000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW_CONSOLE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NEW_PROCESS_GROUP</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_NO_WINDOW</td>
+          <td>=</td>
+          <td class="context-item-value">0x08000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_PRESERVE_CODE_AUTHZ_LEVEL</td>
+          <td>=</td>
+          <td class="context-item-value">0x02000000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SEPARATE_WOW_VDM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000800</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SHARED_WOW_VDM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00001000</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_SUSPENDED</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">CREATE_UNICODE_ENVIRONMENT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000400</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEBUG_ONLY_THIS_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEBUG_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DETACHED_PROCESS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESHOWWINDOW</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESIZE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEPOSITION</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USECOUNTCHARS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEFILLATTRIBUTE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_RUNFULLSCREEN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_FORCEONFEEDBACK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000040</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_FORCEOFFFEEDBACK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000080</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USESTDHANDLES</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000100</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">STARTF_USEHOTKEY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000200</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

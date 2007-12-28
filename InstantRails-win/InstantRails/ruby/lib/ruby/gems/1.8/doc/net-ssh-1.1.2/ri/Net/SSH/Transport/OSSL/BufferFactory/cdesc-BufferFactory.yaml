@@ -1,0 +1,22 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A factory class for returning new buffer instances that have been decorated to also handle OpenSSL specific information.
+constants: []
+
+full_name: Net::SSH::Transport::OSSL::BufferFactory
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: buffer
+- !ruby/object:RI::MethodSummary 
+  name: reader
+- !ruby/object:RI::MethodSummary 
+  name: writer
+name: BufferFactory
+superclass: Object

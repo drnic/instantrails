@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Processes a method invocation context. If the current log has debugging activated, and the requested method is not excluded by the interceptor's exclude and include patterns, then a message will be written for the method's invocation, its return code, and any exception that is thrown.
+full_name: Needle::LoggingInterceptor#process
+is_singleton: false
+name: process
+params: ( chain, context )
+visibility: public

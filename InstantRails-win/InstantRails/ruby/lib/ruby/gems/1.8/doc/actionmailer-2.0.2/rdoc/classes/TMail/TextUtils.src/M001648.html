@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>quote_boundary (TMail::TextUtils)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_mailer/vendor/tmail-1.1.0/tmail/utils.rb, line 258</span>
+    <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quote_boundary</span>
+      <span class="ruby-comment cmt"># Make sure the Content-Type boundary= parameter is quoted if it contains illegal characters</span>
+      <span class="ruby-comment cmt"># (to ensure any special characters in the boundary text are escaped from the parser</span>
+      <span class="ruby-comment cmt"># (such as = in MS Outlook's boundary text))</span>
+      <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@body</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*)boundary=(.*)$/</span><span class="ruby-identifier">m</span>
+        <span class="ruby-identifier">preamble</span> = <span class="ruby-identifier">$1</span>
+        <span class="ruby-identifier">remainder</span> = <span class="ruby-identifier">$2</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">remainder</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/;/</span>
+          <span class="ruby-identifier">remainder</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^(.*)(;.*)$/</span><span class="ruby-identifier">m</span>
+          <span class="ruby-identifier">boundary_text</span> = <span class="ruby-identifier">$1</span>
+          <span class="ruby-identifier">post</span> = <span class="ruby-identifier">$2</span>.<span class="ruby-identifier">chomp</span>
+        <span class="ruby-keyword kw">else</span>
+          <span class="ruby-identifier">boundary_text</span> = <span class="ruby-identifier">remainder</span>.<span class="ruby-identifier">chomp</span>
+        <span class="ruby-keyword kw">end</span>
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">boundary_text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/[\/\?\=]/</span>
+          <span class="ruby-identifier">boundary_text</span> = <span class="ruby-node">&quot;\&quot;#{boundary_text}\&quot;&quot;</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">boundary_text</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^&quot;.*?&quot;$/</span>
+          <span class="ruby-ivar">@body</span> = <span class="ruby-node">&quot;#{preamble}boundary=#{boundary_text}#{post}&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      <span class="ruby-keyword kw">end</span>
+    <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

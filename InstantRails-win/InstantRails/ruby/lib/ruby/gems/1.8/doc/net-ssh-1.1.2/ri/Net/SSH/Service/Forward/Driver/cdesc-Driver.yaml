@@ -1,0 +1,46 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of direct (local-to-remote) channels that have been opened.
+  name: direct_channel_count
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The number of direct (local-to-remote) channels that are currently open.
+  name: open_direct_channel_count
+  rw: R
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: The Forward::Driver class manages ports that have been forwarded. It will open a socket on each local port and listen for local connections, forwarding those connections over an SSH channel to the other end.
+constants: []
+
+full_name: Net::SSH::Service::Forward::Driver
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: active_locals
+- !ruby/object:RI::MethodSummary 
+  name: active_remotes
+- !ruby/object:RI::MethodSummary 
+  name: cancel_local
+- !ruby/object:RI::MethodSummary 
+  name: cancel_remote
+- !ruby/object:RI::MethodSummary 
+  name: direct_channel
+- !ruby/object:RI::MethodSummary 
+  name: do_open_channel
+- !ruby/object:RI::MethodSummary 
+  name: local
+- !ruby/object:RI::MethodSummary 
+  name: remote
+- !ruby/object:RI::MethodSummary 
+  name: remote_to
+name: Driver
+superclass: Object

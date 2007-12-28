@@ -1,0 +1,340 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: SCM access rights
+  name: SC_MANAGER_ALL_ACCESS
+  value: "0xF003F"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_CREATE_SERVICE
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_CONNECT
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_ENUMERATE_SERVICE
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_LOCK
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_MODIFY_BOOT_CONFIG
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_MANAGER_QUERY_LOCK_STATUS
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_STATUS_PROCESS_INFO
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_ENUM_PROCESS_INFO
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service control action types
+  name: SC_ACTION_NONE
+  value: "0"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_ACTION_REBOOT
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_ACTION_RESTART
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SC_ACTION_RUN_COMMAND
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service access rights
+  name: SERVICE_ALL_ACCESS
+  value: "0xF01FF"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CHANGE_CONFIG
+  value: "0x0002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ENUMERATE_DEPENDENTS
+  value: "0x0008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_INTERROGATE
+  value: "0x0080"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_PAUSE_CONTINUE
+  value: "0x0040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_QUERY_CONFIG
+  value: "0x0001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_QUERY_STATUS
+  value: "0x0004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_START
+  value: "0x0010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_STOP
+  value: "0x0020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_USER_DEFINED_CONTROL
+  value: "0x0100"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service types
+  name: SERVICE_KERNEL_DRIVER
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_FILE_SYSTEM_DRIVER
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ADAPTER
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_RECOGNIZER_DRIVER
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_WIN32_OWN_PROCESS
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_WIN32_SHARE_PROCESS
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_WIN32
+  value: "0x00000030"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_INTERACTIVE_PROCESS
+  value: "0x00000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_DRIVER
+  value: "0x0000000B"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_TYPE_ALL
+  value: "0x0000013F"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Error control
+  name: SERVICE_ERROR_IGNORE
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ERROR_NORMAL
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ERROR_SEVERE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ERROR_CRITICAL
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Start types
+  name: SERVICE_BOOT_START
+  value: "0x00000000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_SYSTEM_START
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_AUTO_START
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_DEMAND_START
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_DISABLED
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service control
+  name: SERVICE_CONTROL_STOP
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_PAUSE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_CONTINUE
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_INTERROGATE
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_PARAMCHANGE
+  value: "0x00000006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_NETBINDADD
+  value: "0x00000007"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_NETBINDREMOVE
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_NETBINDENABLE
+  value: "0x00000009"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTROL_NETBINDDISABLE
+  value: "0x0000000A"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service controls accepted
+  name: SERVICE_ACCEPT_STOP
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_PAUSE_CONTINUE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_SHUTDOWN
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_PARAMCHANGE
+  value: "0x00000008"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_NETBINDCHANGE
+  value: "0x00000010"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_HARDWAREPROFILECHANGE
+  value: "0x00000020"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_POWEREVENT
+  value: "0x00000040"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_ACCEPT_SESSIONCHANGE
+  value: "0x00000080"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service states
+  name: SERVICE_ACTIVE
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_INACTIVE
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_STATE_ALL
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Service current states
+  name: SERVICE_STOPPED
+  value: "0x00000001"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_START_PENDING
+  value: "0x00000002"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_STOP_PENDING
+  value: "0x00000003"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_RUNNING
+  value: "0x00000004"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONTINUE_PENDING
+  value: "0x00000005"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_PAUSE_PENDING
+  value: "0x00000006"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_PAUSED
+  value: "0x00000007"
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Info levels
+  name: SERVICE_CONFIG_DESCRIPTION
+  value: "1"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_FAILURE_ACTIONS
+  value: "2"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_DELAYED_AUTO_START_INFO
+  value: "3"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_FAILURE_ACTIONS_FLAG
+  value: "4"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_SERVICE_SID_INFO
+  value: "5"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_REQUIRED_PRIVILEGES_INFO
+  value: "6"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SERVICE_CONFIG_PRESHUTDOWN_INFO
+  value: "7"
+full_name: Windows::Service
+includes: []
+
+instance_methods: []
+
+name: Service
+superclass: 

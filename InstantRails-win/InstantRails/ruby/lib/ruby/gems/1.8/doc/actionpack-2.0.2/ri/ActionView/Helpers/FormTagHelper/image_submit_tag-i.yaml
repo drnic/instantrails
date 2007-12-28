@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Displays an image which when clicked will submit the form.
+- !ruby/struct:SM::Flow::P 
+  body: <tt>source</tt> is passed to AssetTagHelper#image_path
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:disabled</tt> - If set to true, the user will not be able to use this input.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: Any other key creates standard HTML options for the tag.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  image_submit_tag(&quot;login.png&quot;)\n  # =&gt; &lt;input src=&quot;/images/login.png&quot; type=&quot;image&quot; /&gt;\n\n  image_submit_tag(&quot;purchase.png&quot;), :disabled =&gt; true\n  # =&gt; &lt;input disabled=&quot;disabled&quot; src=&quot;/images/purchase.png&quot; type=&quot;image&quot; /&gt;\n\n  image_submit_tag(&quot;search.png&quot;), :class =&gt; 'search-button'\n  # =&gt; &lt;input class=&quot;search-button&quot; src=&quot;/images/search.png&quot; type=&quot;image&quot; /&gt;\n\n  image_submit_tag(&quot;agree.png&quot;), :disabled =&gt; true, :class =&gt; &quot;agree-disagree-button&quot;\n  # =&gt; &lt;input class=&quot;agree-disagree-button&quot; disabled=&quot;disabled&quot; src=&quot;/images/agree.png&quot; type=&quot;image&quot; /&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#image_submit_tag
+is_singleton: false
+name: image_submit_tag
+params: (source, options = {})
+visibility: public

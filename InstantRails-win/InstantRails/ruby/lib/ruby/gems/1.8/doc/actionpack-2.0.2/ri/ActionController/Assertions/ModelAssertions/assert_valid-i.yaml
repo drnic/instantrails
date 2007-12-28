@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Ensures that the passed record is valid by ActiveRecord standards and returns any error messages if it is not.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that a newly created record is valid\n  model = Model.new\n  assert_valid(model)\n"
+full_name: ActionController::Assertions::ModelAssertions#assert_valid
+is_singleton: false
+name: assert_valid
+params: (record)
+visibility: public

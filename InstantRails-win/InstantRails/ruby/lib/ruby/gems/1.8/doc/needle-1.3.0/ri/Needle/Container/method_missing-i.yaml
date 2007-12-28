@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: As a convenience for accessing services, this delegates any message sent to the container (which has no parameters and no block) to Container#[]. Note that this incurs slightly more overhead than simply calling Container#[] directly, so if performance is an issue, you should avoid this approach.
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  container.register( :add ) { Adder.new }\n  p container.add == container[:add] # =&gt; true\n"
+full_name: Needle::Container#method_missing
+is_singleton: false
+name: method_missing
+params: ( sym, *args )
+visibility: public

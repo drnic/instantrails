@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>set_permissions (File)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file.rb, line 103</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">set_permissions</span>(<span class="ruby-identifier">file</span>, <span class="ruby-identifier">perms</span>)
+         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TypeError</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">perms</span>.<span class="ruby-identifier">kind_of?</span>(<span class="ruby-constant">Hash</span>)
+
+         <span class="ruby-identifier">account_rights</span> = <span class="ruby-value">0</span>
+         <span class="ruby-identifier">sec_desc</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">SECURITY_DESCRIPTOR_MIN_LENGTH</span>
+
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">InitializeSecurityDescriptor</span>(<span class="ruby-identifier">sec_desc</span>, <span class="ruby-value">1</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">cb_acl</span> = <span class="ruby-value">1024</span>
+         <span class="ruby-identifier">cb_sid</span> = <span class="ruby-value">1024</span>
+
+         <span class="ruby-identifier">acl_new</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">cb_acl</span>
+
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">InitializeAcl</span>(<span class="ruby-identifier">acl_new</span>, <span class="ruby-identifier">cb_acl</span>, <span class="ruby-constant">ACL_REVISION2</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-identifier">sid</span>      = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">cb_sid</span>
+         <span class="ruby-identifier">snu_type</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-identifier">cb_sid</span>
+
+         <span class="ruby-identifier">all_ace</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-constant">ALLOW_ACE_LENGTH</span>
+         <span class="ruby-identifier">all_ace_ptr</span> = <span class="ruby-identifier">memset</span>(<span class="ruby-identifier">all_ace</span>, <span class="ruby-value">0</span>, <span class="ruby-value">0</span>) <span class="ruby-comment cmt"># address of all_ace</span>
+
+         <span class="ruby-comment cmt"># all_ace_ptr-&gt;Header.AceType = ACCESS_ALLOWED_ACE_TYPE</span>
+         <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">0</span>] = <span class="ruby-value">0</span>
+
+         <span class="ruby-identifier">perms</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">account</span>, <span class="ruby-identifier">mask</span><span class="ruby-operator">|</span>
+            <span class="ruby-keyword kw">next</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mask</span>.<span class="ruby-identifier">nil?</span>
+           
+            <span class="ruby-identifier">cch_domain</span> = [<span class="ruby-value">80</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+            <span class="ruby-identifier">cb_sid</span>     = [<span class="ruby-value">1024</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+            <span class="ruby-identifier">domain_buf</span> = <span class="ruby-value">0</span>.<span class="ruby-identifier">chr</span> <span class="ruby-operator">*</span> <span class="ruby-value">80</span>
+
+            <span class="ruby-identifier">server</span>, <span class="ruby-identifier">account</span> = <span class="ruby-identifier">account</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;\\&quot;</span>)
+
+            <span class="ruby-keyword kw">if</span> [<span class="ruby-value str">'BUILTIN'</span>, <span class="ruby-value str">'NT AUTHORITY'</span>].<span class="ruby-identifier">include?</span>(<span class="ruby-identifier">server</span>.<span class="ruby-identifier">upcase</span>)
+               <span class="ruby-identifier">server</span> = <span class="ruby-keyword kw">nil</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">val</span> = <span class="ruby-constant">LookupAccountName</span>(
+               <span class="ruby-identifier">server</span>,
+               <span class="ruby-identifier">account</span>,
+               <span class="ruby-identifier">sid</span>,
+               <span class="ruby-identifier">cb_sid</span>,
+               <span class="ruby-identifier">domain_buf</span>,
+               <span class="ruby-identifier">cch_domain</span>,
+               <span class="ruby-identifier">snu_type</span>
+            )
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-identifier">size</span> = [<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>,<span class="ruby-value">0</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'CCSLL'</span>).<span class="ruby-identifier">length</span> <span class="ruby-comment cmt"># sizeof(ACCESS_ALLOWED_ACE)</span>
+            
+            <span class="ruby-identifier">val</span> = <span class="ruby-constant">CopySid</span>(
+               <span class="ruby-constant">ALLOW_ACE_LENGTH</span> <span class="ruby-operator">-</span> <span class="ruby-identifier">size</span>,
+               <span class="ruby-identifier">all_ace_ptr</span> <span class="ruby-operator">+</span> <span class="ruby-value">8</span>,  <span class="ruby-comment cmt"># address of all_ace_ptr-&gt;SidStart</span>
+               <span class="ruby-identifier">sid</span>
+            )
+
+            <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+               <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-keyword kw">if</span> (<span class="ruby-constant">GENERIC_ALL</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>).<span class="ruby-identifier">nonzero?</span>
+               <span class="ruby-identifier">account_rights</span> = <span class="ruby-constant">GENERIC_ALL</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>
+            <span class="ruby-keyword kw">elsif</span> (<span class="ruby-constant">GENERIC_RIGHTS_CHK</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>).<span class="ruby-identifier">nonzero?</span>
+               <span class="ruby-identifier">account_rights</span> = <span class="ruby-constant">GENERIC_RIGHTS_MASK</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>
+            <span class="ruby-keyword kw">end</span>
+
+            <span class="ruby-comment cmt"># all_ace_ptr-&gt;Header.AceFlags = INHERIT_ONLY_ACE|OBJECT_INHERIT_ACE</span>
+            <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">1</span>] = <span class="ruby-constant">INHERIT_ONLY_ACE</span> <span class="ruby-operator">|</span> <span class="ruby-constant">OBJECT_INHERIT_ACE</span>
+
+            <span class="ruby-value">2</span>.<span class="ruby-identifier">times</span>{
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">account_rights</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span>
+                  <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">2</span>,<span class="ruby-value">2</span>] = [<span class="ruby-value">12</span> <span class="ruby-operator">-</span> <span class="ruby-value">4</span> <span class="ruby-operator">+</span> <span class="ruby-constant">GetLengthSid</span>(<span class="ruby-identifier">sid</span>)].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'S'</span>)
+                  <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">4</span>,<span class="ruby-value">4</span>] = [<span class="ruby-identifier">account_rights</span>].<span class="ruby-identifier">pack</span>(<span class="ruby-value str">'L'</span>)
+
+                  <span class="ruby-identifier">val</span> = <span class="ruby-constant">AddAce</span>(
+                     <span class="ruby-identifier">acl_new</span>,
+                     <span class="ruby-constant">ACL_REVISION2</span>,
+                     <span class="ruby-constant">MAXDWORD</span>,
+                     <span class="ruby-identifier">all_ace_ptr</span>,
+                     <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">2</span>,<span class="ruby-value">2</span>].<span class="ruby-identifier">unpack</span>(<span class="ruby-value str">'S'</span>).<span class="ruby-identifier">first</span>
+                  )
+
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span> <span class="ruby-operator">==</span> <span class="ruby-value">0</span>
+                     <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+                  <span class="ruby-keyword kw">end</span>
+
+                  <span class="ruby-comment cmt"># all_ace_ptr-&gt;Header.AceFlags = CONTAINER_INHERIT_ACE</span>
+                  <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">1</span>] = <span class="ruby-constant">CONTAINER_INHERIT_ACE</span>
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-comment cmt"># all_ace_ptr-&gt;Header.AceFlags = 0</span>
+                  <span class="ruby-identifier">all_ace</span>[<span class="ruby-value">1</span>] = <span class="ruby-value">0</span>
+               <span class="ruby-keyword kw">end</span>
+
+               <span class="ruby-identifier">account_rights</span> = <span class="ruby-constant">REST_RIGHTS_MASK</span> <span class="ruby-operator">&amp;</span> <span class="ruby-identifier">mask</span>
+            }
+         }
+
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">SetSecurityDescriptorDacl</span>(<span class="ruby-identifier">sec_desc</span>, <span class="ruby-value">1</span>, <span class="ruby-identifier">acl_new</span>, <span class="ruby-value">0</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-keyword kw">unless</span> <span class="ruby-constant">SetFileSecurity</span>(<span class="ruby-identifier">file</span>, <span class="ruby-constant">DACL_SECURITY_INFORMATION</span>, <span class="ruby-identifier">sec_desc</span>)
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">ArgumentError</span>, <span class="ruby-identifier">get_last_error</span>
+         <span class="ruby-keyword kw">end</span>
+
+         <span class="ruby-keyword kw">self</span>
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

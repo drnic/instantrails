@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Registers the given handler with the given request id. This is used internally by the operations, so that the session knows who to delegate a response to that has been received from the server.
+full_name: Net::SFTP::Session#register
+is_singleton: false
+name: register
+params: ( id, handler )
+visibility: public

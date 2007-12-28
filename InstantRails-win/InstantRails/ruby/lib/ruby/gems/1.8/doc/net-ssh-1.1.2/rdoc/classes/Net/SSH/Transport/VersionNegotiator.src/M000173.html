@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>negotiate (Net::SSH::Transport::VersionNegotiator)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/transport/version-negotiator.rb, line 46</span>
+        <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">negotiate</span>( <span class="ruby-identifier">socket</span>, <span class="ruby-identifier">version</span> )
+          <span class="ruby-identifier">server_version</span> = <span class="ruby-value str">&quot;&quot;</span>
+          <span class="ruby-ivar">@header_lines</span> = []
+
+          <span class="ruby-identifier">loop</span> <span class="ruby-keyword kw">do</span>
+            <span class="ruby-identifier">server_version</span> = <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">readline</span>
+            <span class="ruby-keyword kw">break</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">server_version</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-constant">VERSION_LINE</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">server_version</span> )
+            <span class="ruby-ivar">@header_lines</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">server_version</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-operator">!</span><span class="ruby-constant">REQUIRED_VERSION_PATTERN</span>.<span class="ruby-identifier">match</span>( <span class="ruby-identifier">server_version</span> )
+            <span class="ruby-identifier">raise</span> <span class="ruby-constant">Net</span><span class="ruby-operator">::</span><span class="ruby-constant">SSH</span><span class="ruby-operator">::</span><span class="ruby-constant">Exception</span>,
+              <span class="ruby-node">&quot;incompatible ssh version #{server_version.inspect}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+
+          <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug?</span>
+            <span class="ruby-ivar">@logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;remote server is #{server_version.chomp.inspect}&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">socket</span>.<span class="ruby-identifier">print</span> <span class="ruby-node">&quot;#{version}\r\n&quot;</span>
+
+          <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">server_version</span>.<span class="ruby-identifier">chomp</span>
+        <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

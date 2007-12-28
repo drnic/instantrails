@@ -1,0 +1,26 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "In version 4, rename accepts a flags parameter. The valid flags are a combination of the following:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: FXP_RENAME_OVERWRITE (0x01)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: FXP_RENAME_ATOMIC (0x02)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: FXP_RENAME_NATIVE (0x04)
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: Please refer to the SSH2 specification for the description of these flags.
+full_name: Net::SFTP::Protocol::V_04::Impl#rename
+is_singleton: false
+name: rename
+params: ( id, name, new_name, flags=0 )
+visibility: public

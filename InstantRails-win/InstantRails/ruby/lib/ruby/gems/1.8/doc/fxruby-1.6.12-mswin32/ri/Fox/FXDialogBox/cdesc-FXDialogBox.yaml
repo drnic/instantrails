@@ -1,0 +1,35 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Dialog box window.
+- !ruby/struct:SM::Flow::P 
+  body: When a dialog box receives a <tt>SEL_COMMAND</tt> message with identifier <tt>ID_CANCEL</tt> or <tt>ID_ACCEPT</tt>, the dialog box breaks out of the modal loop and returns a completion code of either 0 or 1, respectively.
+- !ruby/struct:SM::Flow::P 
+  body: To close a dialog box when it's not running modally, simply call FXDialogBox#hide (or send it the <tt>ID_HIDE</tt> command message).
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_CANCEL+:"
+    body: Close the dialog, cancel the entry
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_ACCEPT+:"
+    body: Close the dialog, accept the entry
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXDialogBox
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: execute
+name: FXDialogBox
+superclass: FXTopWindow

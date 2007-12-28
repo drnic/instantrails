@@ -1,0 +1,119 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Prototype[http://www.prototypejs.org/] is a JavaScript library that provides DOM[http://en.wikipedia.org/wiki/Document_Object_Model] manipulation, Ajax[http://www.adaptivepath.com/publications/essays/archives/000385.php] functionality, and more traditional object-oriented facilities for JavaScript. This module provides a set of helpers to make it more convenient to call functions from Prototype using Rails, including functionality to call remote Rails methods (that is, making a background request to a Rails action) using Ajax. This means that you can call actions in your controllers without reloading the page, but still update certain parts of it using injections into the DOM. A common use case is having a form that adds a new element to a list without reloading the page or updating a shopping cart total when a new item is added.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Usage
+- !ruby/struct:SM::Flow::P 
+  body: To be able to use these helpers, you must first include the Prototype JavaScript framework in your pages.
+- !ruby/struct:SM::Flow::VERB 
+  body: " javascript_include_tag 'prototype'\n"
+- !ruby/struct:SM::Flow::P 
+  body: (See the documentation for ActionView::Helpers::JavaScriptHelper for more information on including this and other JavaScript files in your Rails templates.)
+- !ruby/struct:SM::Flow::P 
+  body: Now you're ready to call a remote action either through a link...
+- !ruby/struct:SM::Flow::VERB 
+  body: " link_to_remote &quot;Add to cart&quot;,\n   :url =&gt; { :action =&gt; &quot;add&quot;, :id =&gt; product.id },\n   :update =&gt; { :success =&gt; &quot;cart&quot;, :failure =&gt; &quot;error&quot; }\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...through a form...
+- !ruby/struct:SM::Flow::VERB 
+  body: " &lt;% form_remote_tag :url =&gt; '/shipping' do -%&gt;\n   &lt;div&gt;&lt;%= submit_tag 'Recalculate Shipping' %&gt;&lt;/div&gt;\n &lt;% end -%&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...periodically...
+- !ruby/struct:SM::Flow::VERB 
+  body: " periodically_call_remote(:url =&gt; 'update', :frequency =&gt; '5', :update =&gt; 'ticker')\n"
+- !ruby/struct:SM::Flow::P 
+  body: ...or through an observer (i.e., a form or field that is observed and calls a remote action when changed).
+- !ruby/struct:SM::Flow::VERB 
+  body: " &lt;%= observe_field(:searchbox,\n      :url =&gt; { :action =&gt; :live_search }),\n      :frequency =&gt; 0.5,\n      :update =&gt; :hits,\n      :with =&gt; 'query'\n      %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: As you can see, there are numerous ways to use Prototype's Ajax functions (and actually more than are listed here); check out the documentation for each method to find out more about its usage and options.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Common Options
+- !ruby/struct:SM::Flow::P 
+  body: See link_to_remote for documentation of options common to all Ajax helpers; any of the options specified by link_to_remote can be used by the other helpers.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Designing your Rails actions for Ajax
+- !ruby/struct:SM::Flow::P 
+  body: "When building your action handlers (that is, the Rails actions that receive your background requests), it's important to remember a few things. First, whatever your action would normall return to the browser, it will return to the Ajax call. As such, you typically don't want to render with a layout. This call will cause the layout to be transmitted back to your page, and, if you have a full HTML/CSS, will likely mess a lot of things up. You can turn the layout off on particular actions by doing the following:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " class SiteController &lt; ActionController::Base\n   layout &quot;standard&quot;, :except =&gt; [:ajax_method, :more_ajax, :another_ajax]\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Optionally, you could do this in the method you wish to lack a layout:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " render :layout =&gt; false\n"
+- !ruby/struct:SM::Flow::P 
+  body: You can tell the type of request from within your action using the <tt>request.xhr?</tt> (XmlHttpRequest, the method that Ajax uses to make background requests) method.
+- !ruby/struct:SM::Flow::VERB 
+  body: " def name\n   # Is this an XmlHttpRequest request?\n   if (request.xhr?)\n     render :text =&gt; @name.to_s\n   else\n     # No?  Then render an action.\n     render :action =&gt; 'view_attribute', :attr =&gt; @name\n   end\n end\n"
+- !ruby/struct:SM::Flow::P 
+  body: The else clause can be left off and the current action will render with full layout and template. An extension to this solution was posted to Ryan Heneise's blog at ArtOfMission[&quot;http://www.artofmission.com/&quot;].
+- !ruby/struct:SM::Flow::VERB 
+  body: " layout proc{ |c| c.request.xhr? ? false : &quot;application&quot; }\n"
+- !ruby/struct:SM::Flow::P 
+  body: Dropping this in your ApplicationController turns the layout off for every request that is an &quot;xhr&quot; request.
+- !ruby/struct:SM::Flow::P 
+  body: "If you are just returning a little data or don't want to build a template for your output, you may opt to simply render text output, like this:"
+- !ruby/struct:SM::Flow::VERB 
+  body: " render :text =&gt; 'Return this from my method!'\n"
+- !ruby/struct:SM::Flow::P 
+  body: Since whatever the method returns is injected into the DOM, this will simply inject some text (or HTML, if you tell it to). This is usually how small updates, such updating a cart total or a file count, are handled.
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Updating multiple elements
+- !ruby/struct:SM::Flow::P 
+  body: See JavaScriptGenerator for information on updating multiple elements on the page in an Ajax response.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: CALLBACKS
+  value: Set.new([ :uninitialized, :loading, :loaded,                          :interactive, :complete, :failure, :success ] +                          (100..599).to_a)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: AJAX_OPTIONS
+  value: Set.new([ :before, :after, :condition, :url,                          :asynchronous, :method, :insertion, :position,                          :form, :with, :update, :script ]).merge(CALLBACKS)
+full_name: ActionView::Helpers::PrototypeHelper
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: build_callbacks
+- !ruby/object:RI::MethodSummary 
+  name: build_observer
+- !ruby/object:RI::MethodSummary 
+  name: evaluate_remote_response
+- !ruby/object:RI::MethodSummary 
+  name: form_remote_for
+- !ruby/object:RI::MethodSummary 
+  name: form_remote_tag
+- !ruby/object:RI::MethodSummary 
+  name: link_to_remote
+- !ruby/object:RI::MethodSummary 
+  name: method_option_to_s
+- !ruby/object:RI::MethodSummary 
+  name: observe_field
+- !ruby/object:RI::MethodSummary 
+  name: observe_form
+- !ruby/object:RI::MethodSummary 
+  name: options_for_ajax
+- !ruby/object:RI::MethodSummary 
+  name: periodically_call_remote
+- !ruby/object:RI::MethodSummary 
+  name: remote_form_for
+- !ruby/object:RI::MethodSummary 
+  name: remote_function
+- !ruby/object:RI::MethodSummary 
+  name: submit_to_remote
+- !ruby/object:RI::MethodSummary 
+  name: update_page
+- !ruby/object:RI::MethodSummary 
+  name: update_page_tag
+name: PrototypeHelper
+superclass: 

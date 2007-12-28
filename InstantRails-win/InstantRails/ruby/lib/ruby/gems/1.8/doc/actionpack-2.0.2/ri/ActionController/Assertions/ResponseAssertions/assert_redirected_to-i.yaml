@@ -1,0 +1,17 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Assert that the redirection options passed in match those of the redirect called in the latest action. This match can be partial, such that assert_redirected_to(:controller =&gt; &quot;weblog&quot;) will also match the redirection of redirect_to(:controller =&gt; &quot;weblog&quot;, :action =&gt; &quot;show&quot;) and so on.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  # assert that the redirection was to the &quot;index&quot; action on the WeblogController\n  assert_redirected_to :controller =&gt; &quot;weblog&quot;, :action =&gt; &quot;index&quot;\n\n  # assert that the redirection was to the named route login_url\n  assert_redirected_to login_url\n"
+full_name: ActionController::Assertions::ResponseAssertions#assert_redirected_to
+is_singleton: false
+name: assert_redirected_to
+params: (options = {}, message=nil)
+visibility: public

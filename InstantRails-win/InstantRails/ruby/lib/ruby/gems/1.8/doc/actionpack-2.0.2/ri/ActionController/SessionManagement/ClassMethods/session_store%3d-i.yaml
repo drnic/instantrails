@@ -1,0 +1,12 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Set the session store to be used for keeping the session data between requests. By default, sessions are stored in browser cookies (:cookie_store), but you can also specify one of the other included stores (:active_record_store, :p_store, drb_store, :mem_cache_store, or :memory_store) or your own custom class.
+full_name: ActionController::SessionManagement::ClassMethods#session_store=
+is_singleton: false
+name: session_store=
+params: (store)
+visibility: public

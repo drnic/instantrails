@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>options_for_ajax (ActionView::Helpers::PrototypeHelper)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/action_view/helpers/prototype_helper.rb, line 1006</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">options_for_ajax</span>(<span class="ruby-identifier">options</span>)
+        <span class="ruby-identifier">js_options</span> = <span class="ruby-identifier">build_callbacks</span>(<span class="ruby-identifier">options</span>)
+      
+        <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'asynchronous'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:type</span>] <span class="ruby-operator">!=</span> <span class="ruby-identifier">:synchronous</span>
+        <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'method'</span>]       = <span class="ruby-identifier">method_option_to_s</span>(<span class="ruby-identifier">options</span>[<span class="ruby-identifier">:method</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:method</span>]
+        <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'insertion'</span>]    = <span class="ruby-node">&quot;Insertion.#{options[:position].to_s.camelize}&quot;</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:position</span>]
+        <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'evalScripts'</span>]  = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:script</span>].<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:script</span>]
+
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:form</span>]
+          <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] = <span class="ruby-value str">'Form.serialize(this)'</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:submit</span>]
+          <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] = <span class="ruby-node">&quot;Form.serialize('#{options[:submit]}')&quot;</span>
+        <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]
+          <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:with</span>]
+        <span class="ruby-keyword kw">end</span>
+        
+        <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">protect_against_forgery?</span>
+          <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>]
+            <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-value str">&quot; + '&amp;&quot;</span>
+          <span class="ruby-keyword kw">else</span>
+            <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] = <span class="ruby-value str">&quot;'&quot;</span>
+          <span class="ruby-keyword kw">end</span>
+          <span class="ruby-identifier">js_options</span>[<span class="ruby-value str">'parameters'</span>] <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{request_forgery_protection_token}=' + encodeURIComponent('#{escape_javascript form_authenticity_token}')&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+      
+        <span class="ruby-identifier">options_for_javascript</span>(<span class="ruby-identifier">js_options</span>)
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

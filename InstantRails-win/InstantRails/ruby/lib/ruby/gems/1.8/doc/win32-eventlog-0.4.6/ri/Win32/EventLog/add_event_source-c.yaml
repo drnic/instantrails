@@ -1,0 +1,39 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Adds an event source to the registry. The following are valid keys:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: source - Source name. Set to &quot;Application&quot; by default
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: key_name - Name stored as the registry key
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: category_count - Number of supported (custom) categories
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: event_message_file - File (dll) that defines events
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: category_message_file - File (dll) that defines categories
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: supported_types - See the 'event types' constants
+  type: :BULLET
+- !ruby/struct:SM::Flow::P 
+  body: "Of these keys, only <tt>key_name</tt> is mandatory. An ArgumentError is raised if you attempt to use an invalid key. If <tt>supported_types</tt> is not specified then the following value is used:"
+- !ruby/struct:SM::Flow::P 
+  body: EventLog::ERROR | EventLog::WARN | EventLog::INFO
+- !ruby/struct:SM::Flow::P 
+  body: The <tt>event_message_file</tt> and <tt>category_message_file</tt> are typically, though not necessarily, the same file. See the documentation on .mc files for more details.
+full_name: Win32::EventLog::add_event_source
+is_singleton: true
+name: add_event_source
+params: (args)
+visibility: public

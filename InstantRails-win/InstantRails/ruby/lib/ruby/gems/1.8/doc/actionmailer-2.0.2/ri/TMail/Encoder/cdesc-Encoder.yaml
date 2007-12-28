@@ -1,0 +1,77 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: encode
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "FIXME: This class can handle only (euc-jp/shift_jis -&gt; iso-2022-jp)."
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: BENCODE_DEBUG
+  value: false unless defined?(BENCODE_DEBUG)
+- !ruby/object:RI::Constant 
+  comment: 
+  name: SPACER
+  value: "\"\\t\""
+- !ruby/object:RI::Constant 
+  comment: 
+  name: MAX_LINE_LEN
+  value: "70"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: OPTIONS
+  value: "{       'EUC'  => '-Ej -m0',       'SJIS' => '-Sj -m0',       'UTF8' => nil,      # FIXME       'NONE' => nil"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: METHOD_ID
+  value: "{       ?j => :extract_J,       ?e => :extract_E,       ?a => :extract_A,       ?s => :extract_S"
+full_name: TMail::Encoder
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: TextUtils
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: dest
+- !ruby/object:RI::MethodSummary 
+  name: encode_value
+- !ruby/object:RI::MethodSummary 
+  name: header_body
+- !ruby/object:RI::MethodSummary 
+  name: header_line
+- !ruby/object:RI::MethodSummary 
+  name: header_name
+- !ruby/object:RI::MethodSummary 
+  name: kv_pair
+- !ruby/object:RI::MethodSummary 
+  name: lwsp
+- !ruby/object:RI::MethodSummary 
+  name: meta
+- !ruby/object:RI::MethodSummary 
+  name: normalize_encoding
+- !ruby/object:RI::MethodSummary 
+  name: phrase
+- !ruby/object:RI::MethodSummary 
+  name: preserve_quotes
+- !ruby/object:RI::MethodSummary 
+  name: preserve_quotes=
+- !ruby/object:RI::MethodSummary 
+  name: puts
+- !ruby/object:RI::MethodSummary 
+  name: reset
+- !ruby/object:RI::MethodSummary 
+  name: space
+- !ruby/object:RI::MethodSummary 
+  name: spc
+- !ruby/object:RI::MethodSummary 
+  name: terminate
+- !ruby/object:RI::MethodSummary 
+  name: text
+- !ruby/object:RI::MethodSummary 
+  name: write
+name: Encoder
+superclass: Object

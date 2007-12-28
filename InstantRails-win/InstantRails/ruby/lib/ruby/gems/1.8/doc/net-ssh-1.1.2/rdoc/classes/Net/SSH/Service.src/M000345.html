@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>register_services (Net::SSH::Service)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/net/ssh/service/services.rb, line 24</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">register_services</span>( <span class="ruby-identifier">container</span> )
+
+        <span class="ruby-comment cmt"># Define the hash that will be used to record the registered services.</span>
+        <span class="ruby-comment cmt"># If the hash already exists, don't redefine it.</span>
+        <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">container</span>.<span class="ruby-identifier">knows_key?</span>( <span class="ruby-identifier">:services</span> )
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">define</span>.<span class="ruby-identifier">services</span> { <span class="ruby-constant">Hash</span>.<span class="ruby-identifier">new</span> }
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Register the services in their own namespace.</span>
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">namespace_define</span> <span class="ruby-identifier">:service</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">ns</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/ssh/service/forward/services&quot;</span>, <span class="ruby-node">&quot;#{self}::Forward&quot;</span>
+          <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/ssh/service/process/services&quot;</span>, <span class="ruby-node">&quot;#{self}::Process&quot;</span>
+          <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/ssh/service/shell/services&quot;</span>, <span class="ruby-node">&quot;#{self}::Shell&quot;</span>
+          <span class="ruby-identifier">ns</span>.<span class="ruby-identifier">require</span> <span class="ruby-value str">&quot;net/ssh/service/agentforward/services&quot;</span>, <span class="ruby-node">&quot;#{self}::AgentForward&quot;</span>
+        <span class="ruby-keyword kw">end</span>
+
+        <span class="ruby-comment cmt"># Add the services to the services hash.</span>
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">services</span>[ <span class="ruby-identifier">:forward</span> ] = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>.<span class="ruby-identifier">forward</span>.<span class="ruby-identifier">driver</span>
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">services</span>[ <span class="ruby-identifier">:process</span> ] = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>.<span class="ruby-identifier">process</span>.<span class="ruby-identifier">driver</span>
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">services</span>[ <span class="ruby-identifier">:shell</span> ] = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>.<span class="ruby-identifier">shell</span>.<span class="ruby-identifier">driver</span>
+        <span class="ruby-identifier">container</span>.<span class="ruby-identifier">services</span>[ <span class="ruby-identifier">:agentforward</span> ] = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>.<span class="ruby-identifier">agentforward</span>.<span class="ruby-identifier">driver</span>
+
+        <span class="ruby-comment cmt"># Register the external services and add them to the collection of</span>
+        <span class="ruby-comment cmt"># known services.</span>
+        <span class="ruby-constant">EXTERNAL_SERVICES</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">block</span><span class="ruby-operator">|</span>
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>.<span class="ruby-identifier">register</span>( <span class="ruby-identifier">name</span>,
+            <span class="ruby-identifier">:model</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">:singleton_deferred</span>,
+            <span class="ruby-operator">&amp;</span><span class="ruby-identifier">block</span> )
+          <span class="ruby-identifier">container</span>.<span class="ruby-identifier">services</span>[ <span class="ruby-identifier">name</span> ] = <span class="ruby-identifier">container</span>.<span class="ruby-identifier">service</span>[ <span class="ruby-identifier">name</span> ]
+        <span class="ruby-keyword kw">end</span>
+
+      <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

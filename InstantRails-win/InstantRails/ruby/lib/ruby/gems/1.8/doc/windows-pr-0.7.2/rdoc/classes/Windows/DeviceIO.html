@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Module: Windows::DeviceIO</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Module</strong></td>
+          <td class="class-name-in-header">Windows::DeviceIO</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/lib/windows/device_io_rb.html">
+                lib/windows/device_io.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M000004">CTL_CODE</a>&nbsp;&nbsp;
+      <a href="#M000008">FSCTL_CREATE_USN_JOURNAL</a>&nbsp;&nbsp;
+      <a href="#M000013">FSCTL_DELETE_USN_JOURNAL</a>&nbsp;&nbsp;
+      <a href="#M000011">FSCTL_EXTEND_VOLUME</a>&nbsp;&nbsp;
+      <a href="#M000012">FSCTL_QUERY_USN_JOURNAL</a>&nbsp;&nbsp;
+      <a href="#M000009">FSCTL_READ_FILE_USN_DATA</a>&nbsp;&nbsp;
+      <a href="#M000006">FSCTL_READ_USN_JOURNAL</a>&nbsp;&nbsp;
+      <a href="#M000005">FSCTL_SET_COMPRESSION</a>&nbsp;&nbsp;
+      <a href="#M000007">FSCTL_SET_SPARSE</a>&nbsp;&nbsp;
+      <a href="#M000010">FSCTL_WRITE_USN_CLOSE_RECORD</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_BEEP</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000001</td>
+          <td width="3em">&nbsp;</td>
+          <td class="context-item-desc">
+Device Types
+
+</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_CD_ROM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000002</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_CD_ROM_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000003</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_CONTROLLER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000004</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DATALINK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000005</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DFS</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000006</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000007</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DISK_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000008</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000009</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_INPORT_PORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_KEYBOARD</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MAILSLOT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MIDI_IN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MIDI_OUT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MOUSE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000000f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MULTI_UNC_PROVIDER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000010</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NAMED_PIPE</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000011</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NETWORK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000012</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NETWORK_BROWSER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000013</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NETWORK_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000014</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NULL</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000015</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_PARALLEL_PORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000016</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_PHYSICAL_NETCARD</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000017</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_PRINTER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000018</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SCANNER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000019</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SERIAL_MOUSE_PORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SERIAL_PORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SCREEN</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SOUND</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_STREAMS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_TAPE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000001f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_TAPE_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000020</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_TRANSPORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000021</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_UNKNOWN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000022</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_VIDEO</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000023</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_VIRTUAL_DISK</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000024</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_WAVE_IN</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000025</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_WAVE_OUT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000026</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_8042_PORT</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000027</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_NETWORK_REDIRECTOR</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000028</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_BATTERY</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000029</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_BUS_EXTENDER</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002a</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MODEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002b</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_VDM</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002c</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_MASS_STORAGE</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002d</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SMB</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002e</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_KS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000002f</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_CHANGER</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000030</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SMARTCARD</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000031</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_ACPI</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000032</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DVD</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000033</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_FULLSCREEN_VIDEO</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000034</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DFS_FILE_SYSTEM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000035</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_DFS_VOLUME</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000036</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_SERENUM</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000037</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_TERMSRV</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000038</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_KSEC</td>
+          <td>=</td>
+          <td class="context-item-value">0x00000039</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_FIPS</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000003A</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">FILE_DEVICE_INFINIBAND</td>
+          <td>=</td>
+          <td class="context-item-value">0x0000003B</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">METHOD_BUFFERED</td>
+          <td>=</td>
+          <td class="context-item-value">0</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">METHOD_IN_DIRECT</td>
+          <td>=</td>
+          <td class="context-item-value">1</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">METHOD_OUT_DIRECT</td>
+          <td>=</td>
+          <td class="context-item-value">2</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">METHOD_NEITHER</td>
+          <td>=</td>
+          <td class="context-item-value">3</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M000004" class="method-detail">
+        <a name="M000004"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000004.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000004.html');return false;">
+          <span class="method-name">CTL_CODE</span><span class="method-args">(device, function, method, access)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Macros from WinIoCtl.h
+</p>
+        </div>
+      </div>
+
+      <div id="method-M000008" class="method-detail">
+        <a name="M000008"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000008.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000008.html');return false;">
+          <span class="method-name">FSCTL_CREATE_USN_JOURNAL</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000013" class="method-detail">
+        <a name="M000013"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000013.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000013.html');return false;">
+          <span class="method-name">FSCTL_DELETE_USN_JOURNAL</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000011" class="method-detail">
+        <a name="M000011"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000011.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000011.html');return false;">
+          <span class="method-name">FSCTL_EXTEND_VOLUME</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000012" class="method-detail">
+        <a name="M000012"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000012.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000012.html');return false;">
+          <span class="method-name">FSCTL_QUERY_USN_JOURNAL</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000009" class="method-detail">
+        <a name="M000009"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000009.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000009.html');return false;">
+          <span class="method-name">FSCTL_READ_FILE_USN_DATA</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000006" class="method-detail">
+        <a name="M000006"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000006.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000006.html');return false;">
+          <span class="method-name">FSCTL_READ_USN_JOURNAL</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000005" class="method-detail">
+        <a name="M000005"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000005.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000005.html');return false;">
+          <span class="method-name">FSCTL_SET_COMPRESSION</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000007" class="method-detail">
+        <a name="M000007"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000007.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000007.html');return false;">
+          <span class="method-name">FSCTL_SET_SPARSE</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+      <div id="method-M000010" class="method-detail">
+        <a name="M000010"></a>
+
+        <div class="method-heading">
+          <a href="DeviceIO.src/M000010.html" target="Code" class="method-signature"
+            onclick="popupCode('DeviceIO.src/M000010.html');return false;">
+          <span class="method-name">FSCTL_WRITE_USN_CLOSE_RECORD</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

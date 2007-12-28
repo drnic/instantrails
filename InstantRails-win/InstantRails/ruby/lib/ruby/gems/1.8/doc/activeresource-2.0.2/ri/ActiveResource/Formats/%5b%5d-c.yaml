@@ -1,0 +1,14 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Lookup the format class from a mime type reference symbol. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  ActiveResource::Formats[:xml]  # =&gt; ActiveResource::Formats::XmlFormat\n  ActiveResource::Formats[:json] # =&gt; ActiveResource::Formats::JsonFormat\n"
+full_name: ActiveResource::Formats::[]
+is_singleton: true
+name: "[]"
+params: (mime_type_reference)
+visibility: public

@@ -1,0 +1,16 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Instantiate a new Registry (via #new) and immediately invoke #define! using the given block."
+- !ruby/struct:SM::Flow::P 
+  body: "Usage:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  registry = Needle::Registry.define! do\n    add { Adder.new }\n    ...\n  end\n\n  adder = registry.add\n"
+full_name: Needle::Registry::define!
+is_singleton: true
+name: define!
+params: ( *parms, &block )
+visibility: public

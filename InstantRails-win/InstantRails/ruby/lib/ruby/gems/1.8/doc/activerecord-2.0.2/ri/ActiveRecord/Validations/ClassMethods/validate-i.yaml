@@ -1,0 +1,22 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Adds a validation method or block to the class. This is useful when overriding the #validate instance method becomes too unwieldly and you're looking for more descriptive declaration of your validations."
+- !ruby/struct:SM::Flow::P 
+  body: "This can be done with a symbol pointing to a method:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Comment &lt; ActiveRecord::Base\n    validate :must_be_friends\n\n    def must_be_friends\n      errors.add_to_base(&quot;Must be friends to leave a comment&quot;) unless commenter.friend_of?(commentee)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Or with a block which is passed the current record to be validated:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  class Comment &lt; ActiveRecord::Base\n    validate do |comment|\n      comment.must_be_friends\n    end\n\n    def must_be_friends\n      errors.add_to_base(&quot;Must be friends to leave a comment&quot;) unless commenter.friend_of?(commentee)\n    end\n  end\n"
+- !ruby/struct:SM::Flow::P 
+  body: "This usage applies to #validate_on_create and #validate_on_update as well."
+full_name: ActiveRecord::Validations::ClassMethods#validate
+is_singleton: false
+name: validate
+params: (*methods, &block)
+visibility: public

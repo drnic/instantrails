@@ -1,0 +1,24 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Deletes the records matching <tt>conditions</tt> without instantiating the records first, and hence not calling the destroy method and invoking callbacks. This is a single SQL query, much more efficient than destroy_all.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/struct:SM::Flow::P 
+  body: <tt>conditions</tt> Conditions are specified the same way as with <tt>find</tt> method.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Example
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Post.delete_all &quot;person_id = 5 AND (category = 'Something' OR category = 'Else')&quot;\n"
+- !ruby/struct:SM::Flow::P 
+  body: This deletes the affected posts all at once with a single DELETE query. If you need to destroy dependent associations or call your before_ or after_destroy callbacks, use the <tt>destroy_all</tt> method instead.
+full_name: ActiveRecord::Base::delete_all
+is_singleton: true
+name: delete_all
+params: (conditions = nil)
+visibility: public

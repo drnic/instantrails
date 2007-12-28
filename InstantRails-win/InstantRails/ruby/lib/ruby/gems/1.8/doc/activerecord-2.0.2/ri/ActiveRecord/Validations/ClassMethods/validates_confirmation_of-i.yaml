@@ -1,0 +1,35 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: "Encapsulates the pattern of wanting to validate a password or email address field with a confirmation. Example:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  Model:\n    class Person &lt; ActiveRecord::Base\n      validates_confirmation_of :user_name, :password\n      validates_confirmation_of :email_address, :message =&gt; &quot;should match confirmation&quot;\n    end\n\n  View:\n    &lt;%= password_field &quot;person&quot;, &quot;password&quot; %&gt;\n    &lt;%= password_field &quot;person&quot;, &quot;password_confirmation&quot; %&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "The added <tt>password_confirmation</tt> attribute is virtual; it exists only as an in-memory attribute for validating the password. To achieve this, the validation adds acccessors to the model for the confirmation attribute. NOTE: This check is performed only if <tt>password_confirmation</tt> is not nil, and by default only on save. To require confirmation, make sure to add a presence check for the confirmation attribute:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  validates_presence_of :password_confirmation, :if =&gt; :password_changed?\n"
+- !ruby/struct:SM::Flow::P 
+  body: "Configuration options:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: "<tt>message</tt> - A custom error message (default is: &quot;doesn't match confirmation&quot;)"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>on</tt> - Specifies when this validation is active (default is :save, other options :create, :update)
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>if</tt> - Specifies a method, proc or string to call to determine if the validation should occur (e.g. :if =&gt; :allow_validation, or :if =&gt; Proc.new { |user| user.signup_step &gt; 2 }). The method, proc or string should return or evaluate to a true or false value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>unless</tt> - Specifies a method, proc or string to call to determine if the validation should not occur (e.g. :unless =&gt; :skip_validation, or :unless =&gt; Proc.new { |user| user.signup_step &lt;= 2 }). The method, proc or string should return or evaluate to a true or false value.
+  type: :BULLET
+full_name: ActiveRecord::Validations::ClassMethods#validates_confirmation_of
+is_singleton: false
+name: validates_confirmation_of
+params: (*attr_names)
+visibility: public

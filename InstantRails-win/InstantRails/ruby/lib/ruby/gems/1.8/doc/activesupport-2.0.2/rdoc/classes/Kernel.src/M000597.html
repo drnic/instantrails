@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>daemonize (Kernel)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/active_support/core_ext/kernel/daemonizing.rb, line 4</span>
+  <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">daemonize</span>
+    <span class="ruby-identifier">exit</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fork</span>                   <span class="ruby-comment cmt"># Parent exits, child continues.</span>
+    <span class="ruby-constant">Process</span>.<span class="ruby-identifier">setsid</span>                 <span class="ruby-comment cmt"># Become session leader.</span>
+    <span class="ruby-identifier">exit</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">fork</span>                   <span class="ruby-comment cmt"># Zap session leader. See [1].</span>
+    <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span> <span class="ruby-value str">&quot;/&quot;</span>                  <span class="ruby-comment cmt"># Release old working directory.</span>
+    <span class="ruby-constant">File</span>.<span class="ruby-identifier">umask</span> <span class="ruby-value">0000</span>                <span class="ruby-comment cmt"># Ensure sensible umask. Adjust as needed.</span>
+    <span class="ruby-constant">STDIN</span>.<span class="ruby-identifier">reopen</span> <span class="ruby-value str">&quot;/dev/null&quot;</span>       <span class="ruby-comment cmt"># Free file descriptors and</span>
+    <span class="ruby-constant">STDOUT</span>.<span class="ruby-identifier">reopen</span> <span class="ruby-value str">&quot;/dev/null&quot;</span>, <span class="ruby-value str">&quot;a&quot;</span> <span class="ruby-comment cmt"># point them somewhere sensible.</span>
+    <span class="ruby-constant">STDERR</span>.<span class="ruby-identifier">reopen</span> <span class="ruby-constant">STDOUT</span>           <span class="ruby-comment cmt"># STDOUT/ERR should better go to a logfile.</span>
+    <span class="ruby-identifier">trap</span>(<span class="ruby-value str">&quot;TERM&quot;</span>) { <span class="ruby-identifier">exit</span> }
+  <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

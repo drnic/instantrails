@@ -1,0 +1,108 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Status line help text [String]
+  name: helpText
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Only opaque colors allowed [Boolean]
+  name: opaqueOnly
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The color [FXColor]
+  name: rgba
+  rw: RW
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: Tool tip message [String]
+  name: tipText
+  rw: RW
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A Color Well is a widget which controls color settings. Colors may be dragged and dropped from one color well to another. A double-click inside a color well will bring up the standard color dialog panel to edit the color well's color. Colors may be also pasted by name using middle-mouse click into/out of color wells from/to other selection-capable applications; for example, you can highlight the word `red' and paste it into a color well.
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Events
+- !ruby/struct:SM::Flow::P 
+  body: "The following messages are sent from FXColorWell to its target:"
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_COMMAND+:"
+    body: sent when a new color is applied; the message data is the color value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CHANGED+:"
+    body: sent when the color changes; the message data is the color value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYPRESS+:"
+    body: sent when a key goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_KEYRELEASE+:"
+    body: sent when a key goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONPRESS+:"
+    body: sent when the left mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_LEFTBUTTONRELEASE+:"
+    body: sent when the left mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONPRESS+:"
+    body: sent when the middle mouse button goes down; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_MIDDLEBUTTONRELEASE+:"
+    body: sent when the middle mouse button goes up; the message data is an FXEvent instance.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_CLICKED+:"
+    body: sent when the color well is single-clicked; the message data is the color value.
+  - !ruby/struct:SM::Flow::LI 
+    label: "+SEL_DOUBLECLICKED+:"
+    body: sent when the color well is double-clicked; the message data is the color value.
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Color Well Styles
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COLORWELL_OPAQUEONLY+:"
+    body: Colors must be opaque
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COLORWELL_SOURCEONLY+:"
+    body: This color well is never a target
+  - !ruby/struct:SM::Flow::LI 
+    label: "+COLORWELL_NORMAL+:"
+    body: Same as <tt>JUSTIFY_NORMAL</tt>
+  type: :NOTE
+- !ruby/struct:SM::Flow::H 
+  level: 3
+  text: Message identifiers
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "+ID_COLORDIALOG+:"
+    body: x
+  type: :NOTE
+constants: []
+
+full_name: Fox::FXColorWell
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: getRGBA
+- !ruby/object:RI::MethodSummary 
+  name: opaqueOnly?
+- !ruby/object:RI::MethodSummary 
+  name: setRGBA
+name: FXColorWell
+superclass: FXFrame

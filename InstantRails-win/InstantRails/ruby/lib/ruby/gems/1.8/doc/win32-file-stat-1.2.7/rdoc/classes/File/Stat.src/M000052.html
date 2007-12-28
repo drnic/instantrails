@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+  <title>pretty_print (File::Stat)</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+</head>
+<body class="standalone-code">
+  <pre><span class="ruby-comment cmt"># File lib/win32/file/stat.rb, line 496</span>
+   <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">pretty_print</span>(<span class="ruby-identifier">q</span>)
+      <span class="ruby-identifier">members</span> = <span class="ruby-node">%w/
+         archive? atime blksize blocks compressed? ctime dev encrypted? gid
+         hidden? indexed? ino mode mtime rdev nlink normal? offline? readonly?
+         reparse_point? size sparse? system? temporary? uid
+      /</span>
+
+      <span class="ruby-identifier">q</span>.<span class="ruby-identifier">object_group</span>(<span class="ruby-keyword kw">self</span>){
+         <span class="ruby-identifier">q</span>.<span class="ruby-identifier">breakable</span>
+         <span class="ruby-identifier">members</span>.<span class="ruby-identifier">each</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">mem</span><span class="ruby-operator">|</span>
+            <span class="ruby-identifier">q</span>.<span class="ruby-identifier">group</span>{
+               <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-node">&quot;#{mem}&quot;</span>.<span class="ruby-identifier">ljust</span>(<span class="ruby-value">15</span>) <span class="ruby-operator">+</span> <span class="ruby-value str">&quot;=&gt; &quot;</span>)
+               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">mem</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'mode'</span>
+                  <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">&quot;0%o&quot;</span>, <span class="ruby-identifier">send</span>(<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">intern</span>)))
+               <span class="ruby-keyword kw">else</span>
+                  <span class="ruby-identifier">val</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">send</span>(<span class="ruby-identifier">mem</span>.<span class="ruby-identifier">intern</span>)
+                  <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">val</span>.<span class="ruby-identifier">nil?</span>
+                     <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-value str">'nil'</span>)
+                  <span class="ruby-keyword kw">else</span>
+                     <span class="ruby-identifier">q</span>.<span class="ruby-identifier">text</span>(<span class="ruby-identifier">val</span>.<span class="ruby-identifier">to_s</span>)
+                  <span class="ruby-keyword kw">end</span>
+               <span class="ruby-keyword kw">end</span>
+            }
+            <span class="ruby-identifier">q</span>.<span class="ruby-identifier">comma_breakable</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">mem</span> <span class="ruby-operator">==</span> <span class="ruby-identifier">members</span>.<span class="ruby-identifier">last</span>
+         }
+      }
+   <span class="ruby-keyword kw">end</span></pre>
+</body>
+</html>

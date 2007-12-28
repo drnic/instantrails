@@ -1,0 +1,117 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFMT
+  value: "0170000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFDIR
+  value: "0040000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFCHR
+  value: "0020000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFIFO
+  value: "0010000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IFREG
+  value: "0100000"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IREAD
+  value: "0000400"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IWRITE
+  value: "0000200"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: S_IEXEC
+  value: "0000100"
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Chmod
+  value: API.new('_chmod', 'PI', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Chsize
+  value: API.new('_chsize', 'IL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mktemp
+  value: API.new('_mktemp', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Stat
+  value: API.new('_stat', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Stat64
+  value: API.new('_stat64', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wchmod
+  value: API.new('_wchmod', 'PI', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wmktemp
+  value: API.new('_wmktemp', 'P', 'P', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wstat
+  value: API.new('_wstat', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wstat64
+  value: API.new('_wstat64', 'PP', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Chsize_s
+  value: API.new('_chsize_s', 'IL', 'I', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Mktemp_s
+  value: API.new('_mktemp_s', 'PL', 'L', 'msvcrt')
+- !ruby/object:RI::Constant 
+  comment: 
+  name: Wmktemp_s
+  value: API.new('_wmktemp_s', 'PL', 'L', 'msvcrt')
+full_name: Windows::MSVCRT::File
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: chmod
+- !ruby/object:RI::MethodSummary 
+  name: chsize
+- !ruby/object:RI::MethodSummary 
+  name: chsize_s
+- !ruby/object:RI::MethodSummary 
+  name: mktemp
+- !ruby/object:RI::MethodSummary 
+  name: mktemp_s
+- !ruby/object:RI::MethodSummary 
+  name: stat
+- !ruby/object:RI::MethodSummary 
+  name: stat64
+- !ruby/object:RI::MethodSummary 
+  name: wchmod
+- !ruby/object:RI::MethodSummary 
+  name: wmktemp
+- !ruby/object:RI::MethodSummary 
+  name: wmktemp_s
+- !ruby/object:RI::MethodSummary 
+  name: wstat
+- !ruby/object:RI::MethodSummary 
+  name: wstat64
+name: File
+superclass: 

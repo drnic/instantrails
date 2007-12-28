@@ -1,0 +1,31 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Returns a stylesheet link tag for the sources specified as arguments. If you don't specify an extension, .css will be appended automatically. You can modify the link attributes by passing a hash as the last argument.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  stylesheet_link_tag &quot;style&quot; # =&gt;\n    &lt;link href=&quot;/stylesheets/style.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;style.css&quot; # =&gt;\n    &lt;link href=&quot;/stylesheets/style.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;http://www.railsapplication.com/style.css&quot; # =&gt;\n    &lt;link href=&quot;http://www.railsapplication.com/style.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;style&quot;, :media =&gt; &quot;all&quot; # =&gt;\n    &lt;link href=&quot;/stylesheets/style.css&quot; media=&quot;all&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;style&quot;, :media =&gt; &quot;print&quot; # =&gt;\n    &lt;link href=&quot;/stylesheets/style.css&quot; media=&quot;print&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;random.styles&quot;, &quot;/css/stylish&quot; # =&gt;\n    &lt;link href=&quot;/stylesheets/random.styles&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/css/stylish.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::P 
+  body: "You can also include all styles in the stylesheet directory using :all as the source:"
+- !ruby/struct:SM::Flow::VERB 
+  body: "  stylesheet_link_tag :all # =&gt;\n    &lt;link href=&quot;/stylesheets/style1.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/styleB.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/styleX2.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n"
+- !ruby/struct:SM::Flow::H 
+  level: 2
+  text: Caching multiple stylesheets into one
+- !ruby/struct:SM::Flow::P 
+  body: "You can also cache multiple stylesheets into one file, which requires less HTTP connections and can better be compressed by gzip (leading to faster transfers). Caching will only happen if ActionController::Base.perform_caching is set to true (which is the case by default for the Rails production environment, but not for the development environment). Examples:"
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  stylesheet_link_tag :all, :cache =&gt; true # when ActionController::Base.perform_caching is false =&gt;\n    &lt;link href=&quot;/stylesheets/style1.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/styleB.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/styleX2.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag :all, :cache =&gt; true # when ActionController::Base.perform_caching is true =&gt;\n    &lt;link href=&quot;/stylesheets/all.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;shop&quot;, &quot;cart&quot;, &quot;checkout&quot;, :cache =&gt; &quot;payment&quot; # when ActionController::Base.perform_caching is false =&gt;\n    &lt;link href=&quot;/stylesheets/shop.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/cart.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n    &lt;link href=&quot;/stylesheets/checkout.css&quot; media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n\n  stylesheet_link_tag &quot;shop&quot;, &quot;cart&quot;, &quot;checkout&quot;, :cache =&gt; &quot;payment&quot; # when ActionController::Base.perform_caching is true =&gt;\n    &lt;link href=&quot;/stylesheets/payment.css&quot;  media=&quot;screen&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot; /&gt;\n"
+full_name: ActionView::Helpers::AssetTagHelper#stylesheet_link_tag
+is_singleton: false
+name: stylesheet_link_tag
+params: (*sources)
+visibility: public

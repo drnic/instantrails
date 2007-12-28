@@ -1,0 +1,28 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: []
+
+class_methods: []
+
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: A cipher that does nothing but pass the data through, unchanged. This keeps things in the code nice and clean when a cipher has not yet been determined (i.e., during key exchange).
+constants: []
+
+full_name: Net::SSH::Transport::IdentityCipher
+includes: []
+
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: block_size
+- !ruby/object:RI::MethodSummary 
+  name: decrypt
+- !ruby/object:RI::MethodSummary 
+  name: encrypt
+- !ruby/object:RI::MethodSummary 
+  name: final
+- !ruby/object:RI::MethodSummary 
+  name: name
+- !ruby/object:RI::MethodSummary 
+  name: update
+name: IdentityCipher
+superclass: Object

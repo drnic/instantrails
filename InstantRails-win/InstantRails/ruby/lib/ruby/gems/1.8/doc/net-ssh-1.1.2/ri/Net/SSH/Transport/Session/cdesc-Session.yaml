@@ -1,0 +1,120 @@
+--- !ruby/object:RI::ClassDescription 
+attributes: 
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: algorithm_negotiator
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the collection of algorithms currently being used
+  name: algorithms
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: ciphers
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: compressors
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: decompressors
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: default_port
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: hmacs
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the hostname that was requested
+  name: host
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: kexs
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: logger
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: packet_receiver
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: packet_sender
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the port that was requested
+  name: port
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: the unique session identifier
+  name: session_id
+  rw: R
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: socket_factory
+  rw: W
+- !ruby/object:RI::Attribute 
+  comment: 
+  name: version_negotiator
+  rw: W
+class_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: new
+- !ruby/object:RI::MethodSummary 
+  name: version
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Represents a low-level SSH session, at the transport protocol level. This handles the algorithm negotiation and key exchange for any SSH connection.
+constants: 
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The name that Net::SSH reports for itself
+  name: NAME
+  value: "\"Ruby/Net::SSH\""
+- !ruby/object:RI::Constant 
+  comment: 
+  - !ruby/struct:SM::Flow::P 
+    body: The SSH protocol supported by Net::SSH.
+  name: PROTOCOL
+  value: "\"SSH-2.0\""
+- !ruby/object:RI::Constant 
+  comment: 
+  name: VALID_OPTIONS
+  value: "[ :port, :host_key, :kex, :encryption, :hmac,                           :compression, :languages, :compression_level, :proxy,                           :timeout ]"
+full_name: Net::SSH::Transport::Session
+includes: 
+- !ruby/object:RI::IncludedModule 
+  name: Constants
+instance_methods: 
+- !ruby/object:RI::MethodSummary 
+  name: client_name
+- !ruby/object:RI::MethodSummary 
+  name: close
+- !ruby/object:RI::MethodSummary 
+  name: peer
+- !ruby/object:RI::MethodSummary 
+  name: ping!
+- !ruby/object:RI::MethodSummary 
+  name: reader_ready?
+- !ruby/object:RI::MethodSummary 
+  name: send_message
+- !ruby/object:RI::MethodSummary 
+  name: wait_for_message
+name: Session
+superclass: Object

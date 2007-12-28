@@ -1,0 +1,34 @@
+--- !ruby/object:RI::MethodDescription 
+aliases: []
+
+block_params: 
+comment: 
+- !ruby/struct:SM::Flow::P 
+  body: Starts a form tag that points the action to an url configured with <tt>url_for_options</tt> just like ActionController::Base#url_for. The method for the form defaults to POST.
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Options
+- !ruby/object:SM::Flow::LIST 
+  contents: 
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:multipart</tt> - If set to true, the enctype is set to &quot;multipart/form-data&quot;.
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: <tt>:method</tt> - The method to use when submitting the form, usually either &quot;get&quot; or &quot;post&quot;.
+  - !ruby/struct:SM::Flow::VERB 
+    body: "                      If &quot;put&quot;, &quot;delete&quot;, or another verb is used, a hidden input with name _method\n                      is added to simulate the verb over post.\n"
+  - !ruby/struct:SM::Flow::LI 
+    label: "*"
+    body: A list of parameters to feed to the URL the form will be posted to.
+  type: :BULLET
+- !ruby/struct:SM::Flow::H 
+  level: 4
+  text: Examples
+- !ruby/struct:SM::Flow::VERB 
+  body: "  form_tag('/posts')\n  # =&gt; &lt;form action=&quot;/posts&quot; method=&quot;post&quot;&gt;\n\n  form_tag('/posts/1', :method =&gt; :put)\n  # =&gt; &lt;form action=&quot;/posts/1&quot; method=&quot;put&quot;&gt;\n\n  form_tag('/upload', :multipart =&gt; true)\n  # =&gt; &lt;form action=&quot;/upload&quot; method=&quot;post&quot; enctype=&quot;multipart/form-data&quot;&gt;\n\n  &lt;% form_tag '/posts' do -%&gt;\n    &lt;div&gt;&lt;%= submit_tag 'Save' %&gt;&lt;/div&gt;\n  &lt;% end -%&gt;\n  # =&gt; &lt;form action=&quot;/posts&quot; method=&quot;post&quot;&gt;&lt;div&gt;&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Save&quot; /&gt;&lt;/div&gt;&lt;/form&gt;\n"
+full_name: ActionView::Helpers::FormTagHelper#form_tag
+is_singleton: false
+name: form_tag
+params: (url_for_options = {}, options = {}, *parameters_for_url, &block)
+visibility: public
