@@ -1,148 +1,158 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
-<html><head><title>InstantRailsWiki: Release Notes For Instant Rails 1.7</title>
-
-<meta name="KEYWORDS" content="Release_Notes_For_Instant_Rails_1.7">
-<link rel="stylesheet" href="releasenotes_files/wiki.css"></head><body bgcolor="white">
-<div class="wikiheader"><h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails"><img src="releasenotes_files/logo50.png" alt="[Home]" align="right" border="0"></a><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?back=Release+Notes+For+Instant+Rails+1.7">Release Notes For Instant Rails 1.7</a></h1><a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
-<hr class="wikilineheader"></div><div class="wikitext"><h1>Release Name: Instant Rails 1.7</h1>
+<HTML><HEAD><TITLE>InstantRailsWiki: Release Notes For Instant Rails 2.0</TITLE>
+<META NAME='KEYWORDS' CONTENT='Release_Notes_For_Instant_Rails_2.0'/>
+<LINK REL="stylesheet" HREF="/wiki.css">
+</HEAD><BODY BGCOLOR="white">
+<div class=wikiheader><h1><a href="wiki.pl?Instant_Rails"><img src="images/logo50.png" alt="[Home]" border=0 align="right"></a><a href="wiki.pl?back=Release+Notes+For+Instant+Rails+2.0">Release Notes For Instant Rails 2.0</a></h1><a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
+<hr class=wikilineheader></div><div class=wikitext><H1>Release Name: Instant Rails 2.0</H1>
 
 <p>
 This release of Instant Rails contains the following major
 changes:
-</p><p>
-</p><ul>
-<li> Upgrades Ruby to version 1.8.6 
-</li><li> Upgrades Rails to 1.2.3
-</li><li> Upgrades PHPMyAdmin<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=PHPMyAdmin" class="wikipageedit">?</a> to version 2.10.0.2 
-</li></ul>
 <p>
-</p><ul>
-<li> Automatic <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RadRails" class="wikipagelink">RadRails</a> configuration: if your choose your Instant Rails "rails_apps" subdirectory as your workspace, then all of the <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RadRails" class="wikipagelink">RadRails</a> paths (to ruby, rake, ri, rdoc, etc.) will be automatically set.
-</li></ul>
+<PRE >
+    * Upgrades Ruby to version 1.8.6 Patch Level 111
+    * Upgrades Rails to 2.0.2
+    * Upgrades Mongrel to 1.1.2
+    * Upgrades RubyGems<a href="wiki.pl?action=edit&id=RubyGems" class=wikipageedit>?</a> to 1.0.1
+    * Upgrades Rake to 0.8.1
+    * Upgraded Cookbook app to support Rails 2.0.2
+    * Added SQLite3 Support
+</PRE>
 <p>
-</p><h1>Included Components</h1>
+<UL >
+<li> Automatic <a href="wiki.pl?RadRails" class=wikipagelink>RadRails</a> configuration: if your choose your Instant Rails "rails_apps" subdirectory as your workspace, then all of the <a href="wiki.pl?RadRails" class=wikipagelink>RadRails</a> paths (to ruby, rake, ri, rdoc, etc.) will be automatically set.
+</UL>
+<p>
+<H1>Included Components</H1>
 
 <p>
-Instant Rails includes a number of open source software packages. Below is a list of all included software in <strong>Instant Rails 1.6</strong>.
-</p><p>
-</p><h2>Primary Instant Rails Components</h2>
+Instant Rails includes a number of open source software packages. Below is a list of all included software in this release.
+<p>
+<H2>Primary Instant Rails Components</H2>
 
 <p>
-</p><ul>
-<li> <a href="http://rubyforge.org/scm/?group_id=904">[Instant Rails Manager]</a> 1.7
-</li></ul>
+<UL >
+<li> <a href="HTTP://rubyforge.org/scm/?group_id=904">[Instant Rails Manager]</a> 2.0
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://ruby-lang.org/">[Ruby 1.8.6 (from the [HTTP://rubyinstaller.rubyforge.org/ One-Click Ruby Installer]</a> 1.8.6-25)
-</li></ul>
+<UL >
+<li> <a href="HTTP://ruby-lang.org/">[Ruby 1.8.6]</a> (from the <a href="HTTP://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> 1.8.6-26)
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://www.rubyonrails.com/">[Ruby on Rails]</a> 1.2.3
-</li></ul>
+<UL >
+<li> <a href="HTTP://www.rubyonrails.com/">[Ruby on Rails]</a> 2.0.2
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://httpd.apache.org/">[Apache]</a> 1.3.33
-</li></ul>
+<UL >
+<li> <a href="HTTP://httpd.apache.org/">[Apache]</a> 1.3.33
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://www.mysql.com/">[MySQL]</a> 5.0.27
-</li></ul>
+<UL >
+<li> <a href="HTTP://www.mysql.com/">[MySQL]</a> 5.0.27
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://www.vandomburg.net/pages/mysql-ruby-windows">[MySQL/Ruby]</a> 2.7.3 (native driver)
-</li></ul>
+<UL >
+<li> <a href="HTTP://www.vandomburg.net/pages/mysql-ruby-windows">[MySQL/Ruby]</a> 2.7.3 (native driver)
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://mongrel.rubyforge.org/">[Mongrel]</a> 1.0.1
-</li></ul>
+<UL >
+<li> <a href="HTTP://mongrel.rubyforge.org/">[Mongrel]</a> 1.1.2
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://www.phpmyadmin.net/home_page/index.php">[PHPMyAdmin]</a> 2.10.0.2
-</li></ul>
+<UL >
+<li> <a href="HTTP://www.phpmyadmin.net/home_page/index.php">[phpMyAdmin]</a> 2.10.0.2
+</UL>
 <p>
-</p><h2>Preinstalled Sample Apps</h2>
+<H2>Preinstalled Sample Apps</H2>
 
 <p>
-</p><ul>
-<li> Cookbook app from <a href="http://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[ONLamp.com article]</a>
-</li></ul>
+<UL >
+<li> Cookbook app from <a href="HTTP://www.onlamp.com/pub/a/onlamp/2005/01/20/rails.html">[ONLamp.com article]</a>
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://typo.leetsoft.com/trac/">[Typo]</a> 2.6.0
-</li></ul>
+<UL >
+<li> <a href="HTTP://typo.leetsoft.com/trac/">[Typo]</a> 2.6.0
+</UL>
 <p>
-</p><h2>Ancillary Instant Rails Components</h2>
+<H2>Ancillary Instant Rails Components</H2>
 
 <p>
-These components are not the primary focus of Instant Rails, but are
-included because the primary components above depend upon them..
-</p><p>
-</p><ul>
-<li> <a href="http://www.php.net/">[PHP]</a> 4.3.10
-</li></ul>
+These components are not the primary focus of Instant Rails, but are included because the primary components above depend upon them..
 <p>
-</p><ul>
-<li> <a href="http://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> 1.8.5-22
-</li></ul>
+<UL >
+<li> <a href="HTTP://www.php.net/">[PHP]</a> 4.3.10
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://cmdparse.rubyforge.org/">[cmdparse]</a> 2.0.2
-</li></ul>
+<UL >
+<li> <a href="HTTP://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> 1.8.6-26
+</UL>
 <p>
-</p><ul>
-<li> <a href="http://highline.rubyforge.org/">[HighLine]</a> 1.2.7
-</li></ul>
+<UL >
+<li> <a href="HTTP://cmdparse.rubyforge.org/">[cmdparse]</a> 2.0.2
+</UL>
 <p>
-</p><h2>One-Click Ruby Installer Components</h2>
+<UL >
+<li> <a href="HTTP://highline.rubyforge.org/">[HighLine]</a> 1.4.0
+</UL>
+<p>
+<H2>One-Click Ruby Installer Components</H2>
 
 <p>
-The following components are installed because they are included in the <a href="http://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> for Windows:
-</p><p>
-</p><pre>                            Ruby Installer for Windows
+The following components are installed because they are included in the <a href="HTTP://rubyinstaller.rubyforge.org/">[One-Click Ruby Installer]</a> for Windows:
+<p>
+<PRE >
+                            Ruby Installer for Windows
                                Ruby Version 1.8.6
-                              Installer Version 186-25
+                              Installer Version 186-26
                                  RELEASE NOTES
-                         <hr class="wikiline">
+                         <hr class=wikiline>
                          
-                         ruby-mswin32        ruby-1.8.6
+                         ruby-mswin32        ruby-1.8.6-p111
                          zlib-lib            1.2.3
                          ZLib                0.6.0
-                         RubyGems            0.9.2
-                         Rake                0.7.2
-                         RubySrc             1.8.6
-                         FXRuby              1.6.6
+                         RubyGems            0.9.4
+                         Rake                0.7.3
+                         RubySrc             1.8.6-p111
+                         OpenSSL             0.9.8d
+                         FXRuby              1.6.12
                          FXri                0.3.6
                          SciTE               1.72
-                         OpenGL              0.23b
+                         OpenGL              0.50.0
                          GLUT                3.7.6
-                         SWin                060205
-                         VRuby               060223
+                         SWin                070409
+                         VRuby               061102
                          Expat               2.0.0
                          XMLParser           0.6.8
-                         Hpricot             0.4
+                         Hpricot             0.6
                          RubyDBI             0.1.1
-                         DBD/ODBC            0.9994
-                         windows-pr          0.6.2
-                         win32-file-stat     1.2.3
-                         win32-file          0.5.3
-                         win32-clipboard     0.4.1
-                         win32-dir           0.3.1
-                         win32-eventlog      0.4.3
-                         win32-process       0.5.1
-                         win32-sapi          0.1.3
-                         win32-sound         0.4.0
+                         DBD/ODBC            0.9995
+                         win32-api           1.0.4
+                         windows-api         0.2.0
+                         windows-pr          0.7.2
+                         win32-file-stat     1.2.7
+                         win32-file          0.5.4
+                         win32-clipboard     0.4.3
+                         win32-dir           0.3.2
+                         win32-eventlog      0.4.6
+                         win32-process       0.5.3
+                         win32-sapi          0.1.4
+                         win32-sound         0.4.1
                          log4r               1.0.5
                          Programming Ruby    1st Edition
-                         OpenSSL             0.9.8d
+                         libfcgi             2.4.0
+                         ruby-fcgi           0.8.7
                          Iconv               1.8
                          readline            4.3-2
                          PDCurses            2.60-1
                          GDBM                1.8.3-1
-                         Installer-Patches   1.8.5
+                         Installer-Patches   1.8.6
                          
-</pre>
-</div><hr class="wikilinefooter">
-<div class="wikifooter"><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
-<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Instant_Rails" class="wikipagelink">Instant Rails</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?RecentChanges" class="wikipagelink">RecentChanges</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=editprefs">Preferences</a><br>
-<a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=edit&amp;id=Release_Notes_For_Instant_Rails_1.7" class="wikipageedit">Edit text of this page</a> | <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=history&amp;id=Release_Notes_For_Instant_Rails_1.7">View other revisions</a><br>Last edited March 24, 2007 3:16 am by <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?Curt_Hibbs" title="ID 10222 from 24-182-167-96.dhcp.stls.mo.charter.com">Curt Hibbs</a> <a href="http://instantrails.rubyforge.org/wiki/wiki.pl?action=browse&amp;diff=1&amp;id=Release_Notes_For_Instant_Rails_1.7">(diff)</a><br>Search: <input name="search" size="20" type="text"><input name="dosearch" value="1" type="hidden"></form></div>
-</body></html>
+</PRE>
+<p>
+</div><hr class=wikilinefooter>
+<div class=wikifooter><form method="post" action="wiki.pl" enctype="application/x-www-form-urlencoded">
+<a href="wiki.pl?Instant_Rails" class=wikipagelink>Instant Rails</a> | <a href="wiki.pl?RecentChanges" class=wikipagelink>RecentChanges</a> | <a href="wiki.pl?action=editprefs">Preferences</a><br>
+<a href="wiki.pl?action=edit&id=Release_Notes_For_Instant_Rails_2.0" class=wikipageedit>Edit text of this page</a> | <a href="wiki.pl?action=history&id=Release_Notes_For_Instant_Rails_2.0">View other revisions</a><br>Last edited December 28, 2007 8:35 pm by <a href="wiki.pl?Rob_Bazinet" title="ID 16686 from pc-71-80-123-223.will.ct.charter.com">Rob Bazinet</a> <a href="wiki.pl?action=browse&diff=1&id=Release_Notes_For_Instant_Rails_2.0">(diff)</a><br>Search: <input type="text" name="search"  size="20" /><input type="hidden" name="dosearch" value="1"  /></form></div>
+</body>
+</html>
