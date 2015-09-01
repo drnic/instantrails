@@ -293,7 +293,7 @@ module Net
       end
       private :host_key_verifier_from
 
-      # Make sure we're in an acceptible state.
+      # Make sure we're in an acceptable state.
       def sanity_check
         raise Net::SSH::Exception, "session not open" unless @open
       end

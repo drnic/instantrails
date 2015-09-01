@@ -94,7 +94,7 @@ class TC_Methods_PublicKey < Test::Unit::TestCase
     assert_equal :finished, manager.state
   end
 
-  def test_authenticate_no_acceptible_identities
+  def test_authenticate_no_acceptable_identities
     manager = KeyManager.new( Key.new( 0x01010101, 0x02020202 ),
                               Key.new( 0x03030303, 0x04040404 ) )
     @messenger.data.concat [ OpenStruct.new( :message_type => 51 ),
@@ -121,7 +121,7 @@ class TC_Methods_PublicKey < Test::Unit::TestCase
     assert_equal :finished, manager.state
   end
 
-  def test_authenticate_acceptible_identities_fail
+  def test_authenticate_acceptable_identities_fail
     manager = KeyManager.new( Key.new( 0x01010101, 0x02020202 ) )
     @messenger.data.concat [ OpenStruct.new( :message_type => 60 ),
                              OpenStruct.new( :message_type => 51 ) ]
@@ -145,7 +145,7 @@ class TC_Methods_PublicKey < Test::Unit::TestCase
     assert_equal signature, sigdata[1]
   end
 
-  def test_authenticate_acceptible_identities_error
+  def test_authenticate_acceptable_identities_error
     manager = KeyManager.new( Key.new( 0x01010101, 0x02020202 ) )
     @messenger.data.concat [ OpenStruct.new( :message_type => 60 ),
                              OpenStruct.new( :message_type => 0 ) ]
@@ -155,7 +155,7 @@ class TC_Methods_PublicKey < Test::Unit::TestCase
     assert_equal 2, @messenger.messages.length
   end
 
-  def test_authenticate_acceptible_identities_success
+  def test_authenticate_acceptable_identities_success
     manager = KeyManager.new( Key.new( 0x01010101, 0x02020202 ) )
     @messenger.data.concat [ OpenStruct.new( :message_type => 60 ),
                              OpenStruct.new( :message_type => 52 ) ]

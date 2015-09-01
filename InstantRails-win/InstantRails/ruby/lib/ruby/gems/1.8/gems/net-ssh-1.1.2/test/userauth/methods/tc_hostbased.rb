@@ -123,7 +123,7 @@ class TC_Methods_HostBased < Test::Unit::TestCase
     assert_equal 2, @messenger.messages.length
   end
 
-  def test_authenticate_acceptible_identities_error
+  def test_authenticate_acceptable_identities_error
     manager = KeyManager.new( Key.new( 0x01010101, 0x02020202 ) )
     @messenger.data.concat [ OpenStruct.new( :message_type => 60 ),
                              OpenStruct.new( :message_type => 0 ) ]

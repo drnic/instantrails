@@ -59,7 +59,7 @@ module Net ; module SFTP ; module Protocol ; module V_04
     end
 
     # A convenience method for converting the (stat) flags parameter into a
-    # value acceptible to the SFTP protocol.
+    # value acceptable to the SFTP protocol.
     def convert_flags( flags )
       return 0x800001FD if flags.nil?
       flags
